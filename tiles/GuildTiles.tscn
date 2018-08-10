@@ -1,0 +1,710 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiles/tiles.png" type="Texture" id=1]
+
+[node name="GuildTiles" type="Node"]
+
+editor/display_folded = true
+
+[node name="Carpet" type="Node" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="Carpet_TL" type="Sprite" parent="Carpet" index="0"]
+
+position = Vector2( 16, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_TM" type="Sprite" parent="Carpet" index="1"]
+
+position = Vector2( 56, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_TR" type="Sprite" parent="Carpet" index="2"]
+
+position = Vector2( 96, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_LM" type="Sprite" parent="Carpet" index="3"]
+
+position = Vector2( 16, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_M" type="Sprite" parent="Carpet" index="4"]
+
+position = Vector2( 56, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_RM" type="Sprite" parent="Carpet" index="5"]
+
+position = Vector2( 96, 66 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_BL" type="Sprite" parent="Carpet" index="6"]
+
+position = Vector2( 16, 116 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_BM" type="Sprite" parent="Carpet" index="7"]
+
+position = Vector2( 56, 116 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 80, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Carpet_BR" type="Sprite" parent="Carpet" index="8"]
+
+position = Vector2( 96, 116 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Outside" type="Node" parent="." index="1"]
+
+[node name="Flowers_1" type="Sprite" parent="Outside" index="0"]
+
+position = Vector2( 144, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Grass_1" type="Sprite" parent="Outside" index="1"]
+
+position = Vector2( 144, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 256, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Grass_2" type="Sprite" parent="Outside" index="2"]
+
+position = Vector2( 192, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 256, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Flowers_2" type="Sprite" parent="Outside" index="3"]
+
+position = Vector2( 192, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 128, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Flowers_3" type="Sprite" parent="Outside" index="4"]
+
+position = Vector2( 240, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 160, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Flowers_4" type="Sprite" parent="Outside" index="5"]
+
+position = Vector2( 288, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 160, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Path_1" type="Sprite" parent="Outside" index="6"]
+
+position = Vector2( 336, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Path_2" type="Sprite" parent="Outside" index="7"]
+
+position = Vector2( 384, 16 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 192, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Path_3" type="Sprite" parent="Outside" index="8"]
+
+position = Vector2( 336, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 224, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Path_4" type="Sprite" parent="Outside" index="9"]
+
+position = Vector2( 384, 64 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 224, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Floor" type="Node" parent="." index="2"]
+
+editor/display_folded = true
+
+[node name="Dark" type="Node" parent="Floor" index="0"]
+
+[node name="Wood_11" type="Sprite" parent="Floor/Dark" index="0"]
+
+position = Vector2( 16, 352 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_12" type="Sprite" parent="Floor/Dark" index="1"]
+
+position = Vector2( 64, 352 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_13" type="Sprite" parent="Floor/Dark" index="2"]
+
+position = Vector2( 112, 352 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_14" type="Sprite" parent="Floor/Dark" index="3"]
+
+position = Vector2( 16, 400 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_15" type="Sprite" parent="Floor/Dark" index="4"]
+
+position = Vector2( 64, 400 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_16" type="Sprite" parent="Floor/Dark" index="5"]
+
+position = Vector2( 112, 400 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_17" type="Sprite" parent="Floor/Dark" index="6"]
+
+position = Vector2( 16, 448 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_18" type="Sprite" parent="Floor/Dark" index="7"]
+
+position = Vector2( 64, 448 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_19" type="Sprite" parent="Floor/Dark" index="8"]
+
+position = Vector2( 112, 448 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light" type="Node" parent="Floor" index="1"]
+
+editor/display_folded = true
+
+[node name="Wood_5" type="Sprite" parent="Floor/Light" index="0"]
+
+position = Vector2( 16, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_6" type="Sprite" parent="Floor/Light" index="1"]
+
+position = Vector2( 64, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_7" type="Sprite" parent="Floor/Light" index="2"]
+
+position = Vector2( 112, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 288, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_8" type="Sprite" parent="Floor/Light" index="3"]
+
+position = Vector2( 16, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_9" type="Sprite" parent="Floor/Light" index="4"]
+
+position = Vector2( 64, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_10" type="Sprite" parent="Floor/Light" index="5"]
+
+position = Vector2( 112, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Medium" type="Node" parent="Floor" index="2"]
+
+editor/display_folded = true
+
+[node name="Wood_1" type="Sprite" parent="Floor/Medium" index="0"]
+
+position = Vector2( 16, 160 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_2" type="Sprite" parent="Floor/Medium" index="1"]
+
+position = Vector2( 64, 160 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_3" type="Sprite" parent="Floor/Medium" index="2"]
+
+position = Vector2( 16, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 64, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wood_4" type="Sprite" parent="Floor/Medium" index="3"]
+
+position = Vector2( 64, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Walls" type="Node" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="Room" type="Node" parent="Walls" index="0"]
+
+editor/display_folded = true
+
+[node name="Wall_TL" type="Sprite" parent="Walls/Room" index="0"]
+
+position = Vector2( 176, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_TM" type="Sprite" parent="Walls/Room" index="1"]
+
+position = Vector2( 224, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 240, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_TR" type="Sprite" parent="Walls/Room" index="2"]
+
+position = Vector2( 272, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BL" type="Sprite" parent="Walls/Room" index="3"]
+
+position = Vector2( 176, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BM_1" type="Sprite" parent="Walls/Room" index="4"]
+
+position = Vector2( 224, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BM_2" type="Sprite" parent="Walls/Room" index="5"]
+
+position = Vector2( 272, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BR" type="Sprite" parent="Walls/Room" index="6"]
+
+position = Vector2( 320, 208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 0, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BR_2" type="Sprite" parent="Walls/Room" index="7"]
+
+position = Vector2( 320, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_BR_3" type="Sprite" parent="Walls/Room" index="8"]
+
+position = Vector2( 320, 256 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_LM" type="Sprite" parent="Walls/Room" index="9"]
+
+position = Vector2( 176, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Wall_RM" type="Sprite" parent="Walls/Room" index="10"]
+
+position = Vector2( 272, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 32, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_window_east" type="Sprite" parent="Walls/Room" index="11"]
+
+position = Vector2( 384, 224 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 32, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_door_west" type="Sprite" parent="Walls/Room" index="12"]
+
+position = Vector2( 448, 224 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 32, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior" type="Node" parent="Walls" index="1"]
+
+[node name="Exterior_Wall_1" type="Sprite" parent="Walls/Exterior" index="0"]
+
+position = Vector2( 240, 368 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 128, 160, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_5" type="Sprite" parent="Walls/Exterior" index="1"]
+
+position = Vector2( 464, 368 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 128, 160, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_6" type="Sprite" parent="Walls/Exterior" index="2"]
+
+position = Vector2( 448, 432 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 192, 128, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_7" type="Sprite" parent="Walls/Exterior" index="3"]
+
+position = Vector2( 432, 480 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 256, 96, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_2" type="Sprite" parent="Walls/Exterior" index="4"]
+
+position = Vector2( 256, 432 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 192, 128, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_3" type="Sprite" parent="Walls/Exterior" index="5"]
+
+position = Vector2( 272, 480 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 256, 96, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Exterior_Wall_4" type="Sprite" parent="Walls/Exterior" index="6"]
+
+position = Vector2( 352, 400 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 96, 64, 192 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="roof_ext_east1" type="Sprite" parent="Walls/Exterior" index="7"]
+
+position = Vector2( 528, 272 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="roof_ext_east2" type="Sprite" parent="Walls/Exterior" index="8"]
+
+position = Vector2( 528, 304 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 64, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="roof_ext_west1" type="Sprite" parent="Walls/Exterior" index="9"]
+
+position = Vector2( 160, 448 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 192, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+

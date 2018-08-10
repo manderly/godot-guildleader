@@ -20,6 +20,7 @@ window/size/width=480
 window/size/height=960
 window/size/always_on_top=true
 window/handheld/orientation="portrait"
+window/handheld/emulate_touchscreen=true
 
 [rendering]
 

@@ -1,4 +1,4 @@
-extends Node
+extends Button
 
 # class member variables go here, for example:
 # var a = 2
@@ -15,6 +15,6 @@ func _ready():
 #	pass
 
 
-func _on_Quests_pressed():
-	get_tree().change_scene("res://Button.tscn");
-	print("test")
+func _on_Button_pressed():
+	get_tree().change_scene("res://main.tscn");
+	pass # replace with function body

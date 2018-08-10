@@ -1,4 +1,4 @@
-extends Node
+extends Camera2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -14,7 +14,6 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-
-func _on_Quests_pressed():
-	get_tree().change_scene("res://Button.tscn");
-	print("test")
+func _input(event):
+	if event is InputEventScreenDrag:
+		self.move_local_y(event.relative.y)
