@@ -4,6 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 var guildMembers = []
+var nameGenerator = load("res://nameGenerator.gd").new()
 
 func _ready():
 	randomize()
@@ -17,8 +18,11 @@ func _ready():
 	var heroX = 100
 	var heroY = 100
 	for i in range(heroQuantity):
+		var newHeroFirstName = nameGenerator.generate(3, 9)
+		var newHeroLastName = nameGenerator.generate(3, 9)
+		var newHeroFullName = newHeroFirstName + " " + newHeroLastName
 		var newHero = preload("res://hero.tscn").instance()
-		newHero.set_name("hero #" + str(i))
+		newHero.set_name(newHeroFullName)
 		newHero.set_position(Vector2(heroX, heroY))
 		newHero.set_level(1)
 		newHero.set_class(randi()%3+1)

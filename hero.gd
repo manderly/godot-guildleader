@@ -16,7 +16,7 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	$field_name.text = heroName
-	$HBoxContainer/field_level.text = str(heroLevel)
+	$HBoxContainer/field_level.text = "(" + str(heroLevel) + ")"
 	$HBoxContainer/field_class.text = heroClass
 	pass
 	
@@ -37,9 +37,4 @@ func set_class(newClass):
 	
 func set_current_room(roomNumber):
 	currentRoom = roomNumber
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
 
