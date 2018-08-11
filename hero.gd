@@ -16,8 +16,7 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	$field_name.text = heroName
-	$HBoxContainer/field_level.text = "(" + str(heroLevel) + ")"
-	$HBoxContainer/field_class.text = heroClass
+	$field_levelAndClass.text = "Level " + str(heroLevel) + " " + heroClass
 	pass
 	
 func set_name(newName):
