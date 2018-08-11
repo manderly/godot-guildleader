@@ -4,8 +4,6 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
-const Hero = preload("hero.gd")
-
 var guildMembers = []
 
 func _ready():
@@ -14,15 +12,27 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	
-	#attempting to populate the guild members array 
+	# Generate X number of heroes (default guild members for now) 
 	var heroQuantity = 3
+	var heroX = 100
+	var heroY = 100
 	for i in range(heroQuantity):
-		var newHero = Hero.new("hero #" + str(i));
+		# var newHero = Hero.new("hero #" + str(i), 1);
+		var newHero = preload("res://hero.tscn").instance()
+		newHero.set_name("hero #" + str(i))
+		newHero.set_position(Vector2(heroX, heroY))
+		newHero.set_level(1)
 		guildMembers.append(newHero)
+		add_child(newHero) #put it on stage (child of main) 
+		heroX += 20
+		heroY += 25
 		
+	#verify they were generated 
 	print("Guild members are:")
 	for i in range(heroQuantity):
 		print(guildMembers[i].heroName)
+		pass
+	
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
