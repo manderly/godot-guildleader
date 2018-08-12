@@ -1,18 +1,21 @@
 extends Node2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var questData = null
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+	
+func set_quest_data(data):
+	questData = data
+	populate_fields(questData)
 
 func populate_fields(data):
+	$field_questName.text = data.name
 	$field_questDuration.text = str(data.duration)
+	$field_description.text = data.text
+
+func _on_Button_pressed():
+	playervars.currentQuest = questData
+	get_tree().change_scene("res://menus/questConfirm.tscn");

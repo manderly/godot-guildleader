@@ -13,10 +13,10 @@ func _ready():
 	for i in range(quest_data.size()):
 			print(quest_data[i].name)
 			var questButton = preload("res://menus/questSelect_questButton.tscn").instance()
-			questButton.populate_fields(quest_data[i])
+			questButton.set_quest_data(quest_data[i])
 			questButton.set_position(Vector2(buttonX, buttonY))
 			add_child(questButton) #put it on stage (child of main)
-			buttonY += 100
+			buttonY += 130
 
 func _on_Button_pressed():
 	get_tree().change_scene("res://main.tscn");
