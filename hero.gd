@@ -1,10 +1,5 @@
 extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
-# maybe use export before var? 
 var heroName = "Default Name"
 var heroLevel = 0
 var heroXp = 0
@@ -36,4 +31,10 @@ func set_class(newClass):
 	
 func set_current_room(roomNumber):
 	currentRoom = roomNumber
+
+func _on_heroButton_released():
+	print("clicked hero: " + heroName)
+
+func _on_heroButton_pressed():
+	print("clicked hero: " + heroName)
 

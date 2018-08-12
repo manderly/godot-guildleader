@@ -1,4 +1,4 @@
-extends Button
+extends Node2D
 
 # class member variables go here, for example:
 # var a = 2
@@ -14,7 +14,5 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-
-func _on_Button_pressed():
-	get_tree().change_scene("res://main.tscn");
-	pass # replace with function body
+func populate_fields(data):
+	$field_questDuration.text = str(data.duration)

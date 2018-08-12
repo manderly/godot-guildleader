@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Test Quest Short",
+    "duration": 10,
+    "xp": 5,
+    "text": "\"This is a short test quest\"",
+    "prestige": 0,
+    "rarity": 0,
+    "groupSize": 2,
+    "level": 1,
+    "item1": "Rusty Broadsword",
+    "item1Chance": 10,
+    "item2": "Chainmail Vest",
+    "item2Chance": 1
+  },
+  {
+    "name": "Test Quest Long",
+    "duration": 60,
+    "xp": 100,
+    "text": "\"This is a long test quest\"",
+    "prestige": 0,
+    "rarity": 0,
+    "groupSize": 3,
+    "level": 1,
+    "item1": "Cracked Staff",
+    "item1Chance": 10,
+    "item2": "",
+    "item2Chance": ""
+  },
+  {
+    "name": "Goblin Caves",
+    "duration": 300,
+    "xp": 15,
+    "text": "\"Venture into the musty goblin caves and collect any treasure they might be hoarding.\"",
+    "prestige": 0,
+    "rarity": 0,
+    "groupSize": 3,
+    "level": 2,
+    "item1": "Sparkling Metallic Robe",
+    "item1Chance": 10,
+    "item2": "Tzip's Crooked Dagger",
+    "item2Chance": 10
+  }
+]

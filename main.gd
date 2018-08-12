@@ -10,8 +10,6 @@ func _ready():
 	randomize()
 	# these should be global variables
 	$HUD.update_currency(150, 15)
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	
 	# Generate X number of heroes (default guild members for now) 
 	var heroQuantity = 3
@@ -46,6 +44,7 @@ func _ready():
 
 
 func _on_Quests_pressed():
-	get_tree().change_scene("res://Button.tscn");
+	get_tree().change_scene("res://menus/questSelect.tscn");
 	print("test")
+
 	
