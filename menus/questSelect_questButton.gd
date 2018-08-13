@@ -3,8 +3,6 @@ extends Node2D
 var questData = null
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 	
 func set_quest_data(data):

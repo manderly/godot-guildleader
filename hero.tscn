@@ -4,7 +4,7 @@
 [ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=2]
 [ext_resource path="res://characters/wizard-female-2.png" type="Texture" id=3]
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends TouchScreenButton
 
@@ -32,7 +32,7 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=3]
 
 render_priority = 0
 trail_divisor = 1
@@ -89,14 +89,13 @@ shape_visible = true
 passby_press = false
 action = ""
 visibility_mode = 0
-script = SubResource( 3 )
+script = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
 position = Vector2( 0, -1.32684 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 centered = false
 
@@ -160,7 +159,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 3 )
 texture = null
 normal_map = null
 h_frames = 1
