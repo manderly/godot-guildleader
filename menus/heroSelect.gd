@@ -13,8 +13,5 @@ func _ready():
 		add_child(heroButton) 
 		buttonY += 130
 
-
-
 func _on_back_button_pressed():
-	print("going back to QUEST CONFIRM")
 	get_tree().change_scene("res://menus/questConfirm.tscn")
