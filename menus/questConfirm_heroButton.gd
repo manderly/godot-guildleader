@@ -1,19 +1,20 @@
 extends Node2D
 #questConfirm_heroButton.gd
+#the square-shaped buttons on the questConfirm screen that hold hero names 
+
+var buttonID = null
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
-
+func set_button_id(i):
+	buttonID = i
+	
 func _on_Button_pressed():
-	print("going to hero selection screen")
+	playervars.questButtonID = buttonID
 	get_tree().change_scene("res://menus/heroSelect.tscn")
-	#playervars.quest1Heroes.append(heroData.heroName)
-	#get_tree().change_scene("res://menus/questConfirm.tscn");
+	
+func display_hero_name(heroName):
+	$Button.text = heroName

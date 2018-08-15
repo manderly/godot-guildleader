@@ -38,6 +38,7 @@ func _ready():
 		newHero.heroLevel = 1
 		newHero.heroClass = newHeroClass
 		newHero.currentRoom = 1
+		newHero.available = true
 		
 		#playervars.guildRoster.append(load("res://hero.tscn").instance())
 		playervars.guildRoster.append(newHero)

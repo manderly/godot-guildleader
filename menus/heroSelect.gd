@@ -16,5 +16,5 @@ func _ready():
 
 
 func _on_back_button_pressed():
-	print("going back")
-	get_tree().change_scene("res://questConfirm.tscn");
+	print("going back to QUEST CONFIRM")
+	get_tree().change_scene("res://menus/questConfirm.tscn")

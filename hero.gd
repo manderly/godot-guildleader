@@ -6,6 +6,7 @@ var heroXp = 0
 var heroHp = 10
 var heroClass = "NONE"
 var currentRoom = 0
+var available = true
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
