@@ -27,7 +27,8 @@ func _on_button_beginQuest_pressed():
 	if (playervars.questHeroes.size() < playervars.currentQuest.groupSize):
 		print("Not enough groupies yet")
 	else:
-		#playervars.questTimer.set_wait_time(playervars.currentQuest.duration)
-		playervars.questTimer.set_wait_time(6)
-		playervars.questTimer.start()
+		playervars._begin_global_quest_timer(playervars.currentQuest.duration);
 		get_tree().change_scene("res://main.tscn")
+
+func _on_button_back_pressed():
+	get_tree().change_scene("res://menus/questSelect.tscn")

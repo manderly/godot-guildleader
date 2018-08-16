@@ -13,10 +13,14 @@ func _ready():
 	# Initialization here
 	$field_name.text = heroName
 	$field_levelAndClass.text = "Level " + str(heroLevel) + " " + heroClass
+	$field_xp.text = str(heroXp) + " xp"
 	
+#I think this needs a refactor, it's just setting local vars not 
+#pushing data into display fields 
 func set_display_fields(data):
 	heroName = data.heroName
 	heroLevel = data.heroLevel
+	heroXp = data.heroXp
 	heroClass = data.heroClass
 	currentRoom = data.currentRoom
 

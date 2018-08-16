@@ -4,7 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 var nameGenerator = load("res://nameGenerator.gd").new()
-
+	
 func _ready():
 	randomize()
 	# these should be global variables
@@ -36,6 +36,8 @@ func _ready():
 		
 			newHero.heroName = newHeroFullName
 			newHero.heroLevel = 1
+			newHero.heroXp = 0
+			newHero.heroHp = 10
 			newHero.heroClass = newHeroClass
 			newHero.currentRoom = 1
 			newHero.available = true
@@ -57,7 +59,6 @@ func _ready():
 
 func _on_Quests_pressed():
 	get_tree().change_scene("res://menus/questSelect.tscn");
-	print("test")
 
 func draw_heroes():
 	var heroX = 100

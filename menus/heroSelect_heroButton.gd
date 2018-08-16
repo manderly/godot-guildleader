@@ -14,11 +14,11 @@ func set_hero_data(data):
 func populate_fields(data):
 	$field_heroName.text = data.heroName
 	$field_levelAndClass.text = "Level " + str(data.heroLevel) + " " + data.heroClass
-	print(data)
 	if (data.available):
 		$field_available.text = "Available"
 	else:
 		$field_available.text = "Busy"
+		$Button.set_disabled(true)
 
 func _on_Button_pressed():
 	if (heroData.available):
