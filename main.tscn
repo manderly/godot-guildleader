@@ -10,7 +10,7 @@
 [ext_resource path="res://mainCamera.gd" type="Script" id=8]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=9]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

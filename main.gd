@@ -62,9 +62,11 @@ func draw_heroes():
 	var heroY = 100
 	
 	for i in range(playervars.guildRoster.size()):
-		var heroScene = preload("res://hero.tscn").instance()
-		heroScene.set_position(Vector2(heroX, heroY))
-		heroScene.set_display_fields(playervars.guildRoster[i])
-		add_child(heroScene)
-		heroX += 20
-		heroY += 100
+		#only draw heroes who are "available" (ie: at home) 
+		if (playervars.guildRoster[i].available):
+			var heroScene = preload("res://hero.tscn").instance()
+			heroScene.set_position(Vector2(heroX, heroY))
+			heroScene.set_display_fields(playervars.guildRoster[i])
+			add_child(heroScene)
+			heroX += 20
+			heroY += 100
