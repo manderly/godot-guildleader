@@ -1,11 +1,14 @@
 extends Node
+#Pick a quest out of a list of available quests 
 
 func _ready():
+	#Load quest data (todo: this should probably be done once in the global file) 
 	var file = File.new()
 	file.open("res://gameData/Quests.json", file.READ)
 	var quest_data = parse_json(file.get_as_text())
 	file.close()
 	
+	#print a vertically scrolling list of quest buttons
 	var buttonX = 0
 	var buttonY = 100
 	for i in range(quest_data.size()):
@@ -16,5 +19,6 @@ func _ready():
 		add_child(questButton)
 		buttonY += 130
 
+#back button - refactor to say "back" in method name 
 func _on_Button_pressed():
 	get_tree().change_scene("res://main.tscn");

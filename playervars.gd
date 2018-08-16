@@ -5,6 +5,7 @@ var globalSoftCurrency = 123;
 var currentQuest = null
 var guildRoster = []
 var questHeroes = [null, null, null, null, null, null]
+var questHeroesPicked = 0 #workaround for having to declare the array at-size 
 var questButtonID = null
 var questActive = false
 var initDone = false
@@ -38,5 +39,6 @@ func _on_questTimer_timeout():
 			questHeroes[i].heroXp += currentQuest.xp
 			questHeroes[i].available = true
 			questHeroes[i] = null
+			questHeroesPicked -= 1
 		
 

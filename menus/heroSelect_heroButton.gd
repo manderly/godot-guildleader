@@ -28,6 +28,7 @@ func _on_Button_pressed():
 			playervars.questHeroes[playervars.questButtonID].available = true
 		#assign this hero to this spot in the questHeroes array  
 		playervars.questHeroes[playervars.questButtonID] = heroData
+		playervars.questHeroesPicked += 1
 		get_tree().change_scene("res://menus/questConfirm.tscn")
 	else:
 		print("Hero not available")

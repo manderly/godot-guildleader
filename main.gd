@@ -1,8 +1,5 @@
 extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
 var nameGenerator = load("res://nameGenerator.gd").new()
 	
 func _ready():
@@ -16,7 +13,7 @@ func _ready():
 
 		for i in range(heroQuantity):
 			#make a name
-			var newHeroFirstName = nameGenerator.generate(3, 9)
+			var newHeroFirstName = nameGenerator.generate(3, 6)
 			var newHeroLastName = nameGenerator.generate(3, 9)
 			var newHeroFullName = newHeroFirstName + " " + newHeroLastName
 			

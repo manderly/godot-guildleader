@@ -6,7 +6,7 @@ func _ready():
 	var buttonY = 100
 	print(playervars.guildRoster.size())
 	for i in range(playervars.guildRoster.size()):
-		print(playervars.guildRoster[i]);
+		#print(playervars.guildRoster[i]) #print all heroes (debug)
 		var heroButton = preload("res://menus/heroSelect_heroButton.tscn").instance()
 		heroButton.set_hero_data(playervars.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
