@@ -1,4 +1,4 @@
-extends Node2D
+extends Button
 #questConfirm_heroButton.gd
 #the square-shaped buttons on the questConfirm screen that hold hero names 
 
@@ -17,4 +17,4 @@ func _on_Button_pressed():
 	get_tree().change_scene("res://menus/heroSelect.tscn")
 	
 func display_hero_name(heroName):
-	$Button.text = heroName
+	text = heroName
