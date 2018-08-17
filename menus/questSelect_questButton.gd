@@ -15,5 +15,5 @@ func populate_fields(data):
 	$field_description.text = data.text
 
 func _on_Button_pressed():
-	playervars.currentQuest = questData
+	global.currentQuest = questData
 	get_tree().change_scene("res://menus/questConfirm.tscn");

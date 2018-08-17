@@ -4,11 +4,11 @@ extends Node2D
 func _ready():
 	var buttonX = 0
 	var buttonY = 100
-	print(playervars.guildRoster.size())
-	for i in range(playervars.guildRoster.size()):
-		#print(playervars.guildRoster[i]) #print all heroes (debug)
+	print(global.guildRoster.size())
+	for i in range(global.guildRoster.size()):
+		#print(global.guildRoster[i]) #print all heroes (debug)
 		var heroButton = preload("res://menus/heroSelect_heroButton.tscn").instance()
-		heroButton.set_hero_data(playervars.guildRoster[i])
+		heroButton.set_hero_data(global.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
 		add_child(heroButton) 
 		buttonY += 130

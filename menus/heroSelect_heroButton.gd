@@ -24,11 +24,11 @@ func _on_Button_pressed():
 	if (heroData.available):
 		heroData.available = false #change status to busy 
 		#first, free up whoever is already in that spot (if anyone) 
-		if (playervars.questHeroes[playervars.questButtonID]):
-			playervars.questHeroes[playervars.questButtonID].available = true
+		if (global.questHeroes[global.questButtonID]):
+			global.questHeroes[global.questButtonID].available = true
 		#assign this hero to this spot in the questHeroes array  
-		playervars.questHeroes[playervars.questButtonID] = heroData
-		playervars.questHeroesPicked += 1
+		global.questHeroes[global.questButtonID] = heroData
+		global.questHeroesPicked += 1
 		get_tree().change_scene("res://menus/questConfirm.tscn")
 	else:
 		print("Hero not available")

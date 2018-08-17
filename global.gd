@@ -1,4 +1,4 @@
-#playervars.gd 
+#global.gd 
 extends Node
 
 var globalSoftCurrency = 123;

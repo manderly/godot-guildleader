@@ -8,7 +8,7 @@ func _ready():
 	$HUD.update_currency(150, 15)
 		
 	# Generate X number of heroes (default guild members for now)
-	if (!playervars.initDone):
+	if (!global.initDone):
 		var heroQuantity = 3
 
 		for i in range(heroQuantity):
@@ -39,14 +39,14 @@ func _ready():
 			newHero.currentRoom = 1
 			newHero.available = true
 		
-			playervars.guildRoster.append(newHero)
+			global.guildRoster.append(newHero)
 			
 		#verify they were generated 
 		print("Guild members are:")
 		for i in range(heroQuantity):
-			print(playervars.guildRoster[i].heroName)
+			print(global.guildRoster[i].heroName)
 
-		playervars.initDone = true
+		global.initDone = true
 		
 		#use the hero data to create individual hero scene instances
 		draw_heroes()
@@ -61,12 +61,12 @@ func draw_heroes():
 	var heroX = 100
 	var heroY = 100
 	
-	for i in range(playervars.guildRoster.size()):
+	for i in range(global.guildRoster.size()):
 		#only draw heroes who are "available" (ie: at home) 
-		if (playervars.guildRoster[i].available):
+		if (global.guildRoster[i].available):
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_position(Vector2(heroX, heroY))
-			heroScene.set_display_fields(playervars.guildRoster[i])
+			heroScene.set_display_fields(global.guildRoster[i])
 			add_child(heroScene)
 			heroX += 20
 			heroY += 100

@@ -5,15 +5,13 @@ extends Button
 var buttonID = null
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 
 func set_button_id(i):
 	buttonID = i
 	
 func _on_Button_pressed():
-	playervars.questButtonID = buttonID
+	global.questButtonID = buttonID
 	get_tree().change_scene("res://menus/heroSelect.tscn")
 	
 func display_hero_name(heroName):
