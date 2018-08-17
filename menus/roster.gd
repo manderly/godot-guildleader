@@ -1,10 +1,11 @@
 extends Node2D
-#heroSelect.gd
+#roster.gd
+#makes a long list of every hero in the player's guild
+#individual heroes can be clicked on to go to their hero page 
 
 func _ready():
 	var buttonX = 0
 	var buttonY = 100
-	print(global.guildRoster.size())
 	for i in range(global.guildRoster.size()):
 		#print(global.guildRoster[i]) #print all heroes (debug)
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
@@ -14,4 +15,4 @@ func _ready():
 		buttonY += 130
 
 func _on_back_button_pressed():
-	get_tree().change_scene("res://menus/questConfirm.tscn")
+	get_tree().change_scene("res://main.tscn")

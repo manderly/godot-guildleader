@@ -1,6 +1,6 @@
 extends Node2D
-#questConfirm_heroButton.gd
-#what happens when player clicks a "select hero" button in quest confirm screen 
+#heroButton.gd
+#used in heroSelect and roster
 
 var heroData = null
 

@@ -56,6 +56,9 @@ func _ready():
 
 func _on_Quests_pressed():
 	get_tree().change_scene("res://menus/questSelect.tscn");
+	
+func _on_Roster_pressed():
+	get_tree().change_scene("res://menus/roster.tscn");
 
 func draw_heroes():
 	var heroX = 100
@@ -70,3 +73,6 @@ func draw_heroes():
 			add_child(heroScene)
 			heroX += 20
 			heroY += 100
+
+
+
