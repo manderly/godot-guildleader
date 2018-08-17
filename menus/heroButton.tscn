@@ -50,6 +50,7 @@ text = "HERO_NAME"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="field_levelAndClass" type="Label" parent="." index="2"]
 
@@ -71,6 +72,7 @@ text = "LEVEL X CLASSNAME"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="field_xp" type="Label" parent="." index="3"]
 
@@ -92,6 +94,7 @@ text = "xp: XXX/YYY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="field_available" type="Label" parent="." index="4"]
 
@@ -113,6 +116,7 @@ text = "Status: Available"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse", "Size Flags" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

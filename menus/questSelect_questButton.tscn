@@ -52,6 +52,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="label_duration" type="Label" parent="." index="2"]
 
@@ -75,6 +76,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="field_questName" type="Label" parent="." index="3"]
 
@@ -97,6 +99,7 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Mouse" ]
 
 [node name="field_description" type="RichTextLabel" parent="." index="4"]
 
@@ -110,7 +113,7 @@ margin_right = 315.0
 margin_bottom = 128.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -125,6 +128,7 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
+_sections_unfolded = [ "Mouse" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

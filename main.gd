@@ -3,9 +3,9 @@ extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
 	
 func _ready():
+	global.currentMenu = "main"
 	randomize()
-	# these should be global variables
-	$HUD.update_currency(150, 15)
+	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 		
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
@@ -55,9 +55,11 @@ func _ready():
 		draw_heroes()
 
 func _on_Quests_pressed():
+	global.currentMenu = "quests"
 	get_tree().change_scene("res://menus/questSelect.tscn");
 	
 func _on_Roster_pressed():
+	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
 
 func draw_heroes():

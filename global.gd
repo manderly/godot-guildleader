@@ -1,7 +1,9 @@
 #global.gd 
 extends Node
 
-var globalSoftCurrency = 123;
+var softCurrency = 500
+var hardCurrency = 10
+var currentMenu = "main"
 var currentQuest = null
 var guildRoster = []
 var questHeroes = [null, null, null, null, null, null]
@@ -11,9 +13,7 @@ var questActive = false
 var initDone = false
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	print(globalSoftCurrency) # can't figure out how to pass this to main 
+	pass
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
