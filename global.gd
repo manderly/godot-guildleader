@@ -5,6 +5,7 @@ var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
 var currentQuest = null
+var selectedHero = null #which hero to show on heroPage
 var guildRoster = []
 var questHeroes = [null, null, null, null, null, null]
 var questHeroesPicked = 0 #workaround for having to declare the array at-size 

@@ -17,24 +17,29 @@ func _ready():
 			var newHeroLastName = nameGenerator.generate(3, 9)
 			var newHeroFullName = newHeroFirstName + " " + newHeroLastName
 			
+			#make new hero object
+			var newHero = {}
+			
 			#pick a random class
 			var newHeroClass = "NONE"
 			var randomNumber = randi()%3+1
 			
 			if randomNumber == 1:
 				newHeroClass = "Wizard"
+				newHero.heroHp = 10
+				newHero.heroMana = 20
 			elif randomNumber == 2:
 				newHeroClass = "Rogue"
+				newHero.heroHp = 18
+				newHero.heroMana = 0
 			else:
 				newHeroClass = "Warrior"
-			
-			#new hero object
-			var newHero = {}
+				newHero.heroHp = 30
+				newHero.heroMana = 0
 		
 			newHero.heroName = newHeroFullName
 			newHero.heroLevel = 1
 			newHero.heroXp = 0
-			newHero.heroHp = 10
 			newHero.heroClass = newHeroClass
 			newHero.currentRoom = 1
 			newHero.available = true
@@ -61,6 +66,10 @@ func _on_Quests_pressed():
 func _on_Roster_pressed():
 	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
+	
+func _on_Hero_pressed():
+	global.currentMenu = "heroPage"
+	get_tree().change_scene("res://menus/heroPage.tscn");
 
 func draw_heroes():
 	var heroX = 100

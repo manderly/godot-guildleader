@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://hero.gd" type="Script" id=1]
 [ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=2]
@@ -72,12 +72,25 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Spread", "Trail" ]
 
-[node name="hero" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=5]
 
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="hero" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
 script = ExtResource( 1 )
 
 [node name="heroButton" type="TouchScreenButton" parent="." index="0"]
 
+visible = false
 position = Vector2( -11.8272, -15.8192 )
 scale = Vector2( 84.5043, 98.5884 )
 normal = null
@@ -96,6 +109,7 @@ script = SubResource( 4 )
 position = Vector2( 0, -1.32684 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 centered = false
 
@@ -187,8 +201,10 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 
-[connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
+position = Vector2( 44.3621, 36.2047 )
+scale = Vector2( 4.41247, 3.78498 )
+shape = SubResource( 5 )
 
 

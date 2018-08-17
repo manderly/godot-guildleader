@@ -2,6 +2,7 @@ extends Node2D
 #heroButton.gd
 #used in heroSelect and roster
 
+#refactor to use global.selectedHero?
 var heroData = null
 
 func _ready():
@@ -24,7 +25,8 @@ func populate_fields(data):
 func _on_Button_pressed():
 	#distinguish between whether button is on roster or heroSelect menu
 	if (global.currentMenu == "roster"):
-		print("todo: go to hero page")
+		global.selectedHero = heroData
+		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "quests"):
 		if (heroData.available):
 			heroData.available = false #change status to busy 
