@@ -12,35 +12,36 @@ func _ready():
 		var heroQuantity = 3
 
 		for i in range(heroQuantity):
-			#make a name
-			var newHeroFirstName = nameGenerator.generate(3, 6)
-			var newHeroLastName = nameGenerator.generate(3, 9)
-			var newHeroFullName = newHeroFirstName + " " + newHeroLastName
-			
 			#make new hero object
 			var newHero = {}
 			
-			#pick a random class
-			var newHeroClass = "NONE"
-			var randomNumber = randi()%3+1
+			#random name
+			newHero.heroName = nameGenerator.generate(3, 6) + " " + nameGenerator.generate(3, 9)
 			
+			#random class
+			var randomNumber = randi()%3+1
 			if randomNumber == 1:
-				newHeroClass = "Wizard"
-				newHero.heroHp = 10
-				newHero.heroMana = 20
+				newHero.heroClass = "Wizard"
 			elif randomNumber == 2:
-				newHeroClass = "Rogue"
-				newHero.heroHp = 18
-				newHero.heroMana = 0
+				newHero.heroClass = "Rogue"
 			else:
-				newHeroClass = "Warrior"
-				newHero.heroHp = 30
-				newHero.heroMana = 0
-		
-			newHero.heroName = newHeroFullName
-			newHero.heroLevel = 1
-			newHero.heroXp = 0
-			newHero.heroClass = newHeroClass
+				newHero.heroClass = "Warrior"
+	
+			#assign stats accordingly
+			newHero.hp = global.heroStartingStatData[newHero.heroClass]["hp"]
+			newHero.mana = global.heroStartingStatData[newHero.heroClass]["mana"]
+			newHero.dps = global.heroStartingStatData[newHero.heroClass]["dps"]
+			newHero.stamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
+			newHero.defense = global.heroStartingStatData[newHero.heroClass]["defense"]
+			newHero.intelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
+			newHero.drama = global.heroStartingStatData[newHero.heroClass]["drama"]
+			newHero.mood = global.heroStartingStatData[newHero.heroClass]["mood"]
+			newHero.prestige = global.heroStartingStatData[newHero.heroClass]["prestige"]
+			newHero.groupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
+			newHero.raidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
+
+			newHero.level = 1
+			newHero.xp = 0
 			newHero.currentRoom = 1
 			newHero.available = true
 		

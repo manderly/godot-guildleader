@@ -1,11 +1,12 @@
 extends Area2D
 
 var heroName = "Default Name"
-var heroLevel = -1
-var heroXp = -1
-var heroHp = -1
-var heroMana = -1
 var heroClass = "NONE"
+var level = -1
+var xp = -1
+var hp = -1
+var mana = -1
+
 var currentRoom = 0
 var available = true
 
@@ -13,8 +14,8 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	$field_name.text = heroName
-	$field_levelAndClass.text = "Level " + str(heroLevel) + " " + heroClass
-	$field_xp.text = str(heroXp) + " xp"
+	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
+	$field_xp.text = str(xp) + " xp"
 
 func _input_event(viewport, event, shape_idx):
     if event is InputEventMouseButton \
@@ -29,8 +30,8 @@ func on_click():
 #pushing data into display fields 
 func set_display_fields(data):
 	heroName = data.heroName
-	heroLevel = data.heroLevel
-	heroXp = data.heroXp
+	level = data.level
+	xp = data.xp
 	heroClass = data.heroClass
 	currentRoom = data.currentRoom
 

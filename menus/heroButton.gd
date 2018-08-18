@@ -14,8 +14,8 @@ func set_hero_data(data):
 
 func populate_fields(data):
 	$field_heroName.text = data.heroName
-	$field_levelAndClass.text = "Level " + str(data.heroLevel) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.heroXp) + "/" + str(global.levelXpData[data.heroLevel].total)
+	$field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
+	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
 	if (data.available):
 		$field_available.text = "Available"
 	else:

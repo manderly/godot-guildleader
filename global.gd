@@ -12,15 +12,27 @@ var questHeroesPicked = 0 #workaround for having to declare the array at-size
 var questButtonID = null
 var questActive = false
 var initDone = false
-var levelXpData = null
+var levelXpData = null #from json 
+var heroStartingStatData = null #from json
 var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
 func _ready():
 	#Load hero level data 
-	var file = File.new()
-	file.open("res://gameData/levelXpData.json", file.READ)
-	levelXpData = parse_json(file.get_as_text())
-	file.close()
+	var levelXpFile = File.new()
+	levelXpFile.open("res://gameData/levelXpData.json", levelXpFile.READ)
+	levelXpData = parse_json(levelXpFile.get_as_text())
+	levelXpFile.close()
+	
+	#Load hero stat data
+	var heroStatsFile = File.new()
+	heroStatsFile.open("res://gameData/heroStats.json", heroStatsFile.READ)
+	heroStartingStatData = parse_json(heroStatsFile.get_as_text())
+	heroStatsFile.close()
+	heroStartingStatData = heroStartingStatData[0]
+	#print(heroStatData)
+	#access an individual class's stats like this: 
+	#print(str(heroStartingStatData[0].rogue)) 
+	#print(str(heroStartingStatData[0]["rogue"]["defense"]))
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):

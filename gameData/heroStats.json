@@ -1,0 +1,69 @@
+[
+  {
+    "Warrior": {
+      "hp": 20,
+      "mana": 0,
+      "dps": 3,
+      "stamina": 18,
+      "defense": 18,
+      "intelligence": 6,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0
+    },
+    "Rogue": {
+      "hp": 15,
+      "mana": 0,
+      "dps": 5,
+      "stamina": 10,
+      "defense": 12,
+      "intelligence": 6,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0
+    },
+    "Cleric": {
+      "hp": 12,
+      "mana": 18,
+      "dps": 2,
+      "stamina": 10,
+      "defense": 12,
+      "intelligence": 16,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0
+    },
+    "Wizard": {
+      "hp": 10,
+      "mana": 20,
+      "dps": 6,
+      "stamina": 6,
+      "defense": 8,
+      "intelligence": 18,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0
+    },
+    "Ranger": {
+      "hp": 16,
+      "mana": 0,
+      "dps": 6,
+      "stamina": 10,
+      "defense": 12,
+      "intelligence": 6,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0
+    }
+  }
+]
