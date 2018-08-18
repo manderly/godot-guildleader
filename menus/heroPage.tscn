@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/heroPage.gd" type="Script" id=1]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -69,7 +69,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Button" type="Button" parent="." index="3"]
+[node name="button_train" type="Button" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -94,7 +94,7 @@ text = "TRAIN"
 flat = false
 align = 1
 
-[node name="Button2" type="Button" parent="." index="4"]
+[node name="button_back" type="Button" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -460,5 +460,9 @@ group = null
 flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
+
+[connection signal="pressed" from="button_train" to="." method="_on_button_train_pressed"]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 

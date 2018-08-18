@@ -12,9 +12,14 @@ var questHeroesPicked = 0 #workaround for having to declare the array at-size
 var questButtonID = null
 var questActive = false
 var initDone = false
+var levelXpData = null
 
 func _ready():
-	pass
+	#Load hero level data 
+	var file = File.new()
+	file.open("res://gameData/levelXpData.json", file.READ)
+	levelXpData = parse_json(file.get_as_text())
+	file.close()
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
@@ -38,6 +43,9 @@ func _on_questTimer_timeout():
 	for i in range(questHeroes.size()):
 		if (questHeroes[i] != null):
 			questHeroes[i].heroXp += currentQuest.xp
+			#if there's xp overflow, set xp to level total 
+			if (questHeroes[i].heroXp > global.levelXpData[questHeroes[i].heroLevel].total):
+				questHeroes[i].heroXp = global.levelXpData[questHeroes[i].heroLevel].total
 			questHeroes[i].available = true
 			questHeroes[i] = null
 			questHeroesPicked -= 1

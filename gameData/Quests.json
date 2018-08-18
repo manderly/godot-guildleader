@@ -40,5 +40,19 @@
     "item1Chance": 10,
     "item2": "Tzip's Crooked Dagger",
     "item2Chance": 10
+  },
+  {
+    "name": "XP fest for lots of XP!!!",
+    "duration": 10,
+    "xp": 100,
+    "text": "\"This is a test quest that gives loads of XP so Mandi doesn't have to wait long while testing!\"",
+    "prestige": 0,
+    "rarity": 0,
+    "groupSize": 2,
+    "level": 1,
+    "item1": "",
+    "item1Chance": "",
+    "item2": "",
+    "item2Chance": ""
   }
 ]
