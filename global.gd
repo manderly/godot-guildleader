@@ -55,10 +55,10 @@ func _on_questTimer_timeout():
 	#clear them out of the quest array 
 	for i in range(questHeroes.size()):
 		if (questHeroes[i] != null):
-			questHeroes[i].heroXp += currentQuest.xp
+			questHeroes[i].xp += currentQuest.xp
 			#if there's xp overflow, set xp to level total 
-			if (questHeroes[i].heroXp > global.levelXpData[questHeroes[i].heroLevel].total):
-				questHeroes[i].heroXp = global.levelXpData[questHeroes[i].heroLevel].total
+			if (questHeroes[i].xp > global.levelXpData[questHeroes[i].level].total):
+				questHeroes[i].xp = global.levelXpData[questHeroes[i].level].total
 			questHeroes[i].available = true
 			questHeroes[i] = null
 			questHeroesPicked -= 1
