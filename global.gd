@@ -13,6 +13,7 @@ var questButtonID = null
 var questActive = false
 var initDone = false
 var levelXpData = null
+var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
 func _ready():
 	#Load hero level data 

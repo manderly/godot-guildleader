@@ -2,6 +2,20 @@ extends Node2D
 
 func _ready():
 	populate_fields(global.selectedHero)
+	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
+	var buttonX = 0
+	var buttonY = 100
+	
+	for i in range(global.heroInventorySlots.size()):
+		print(global.heroInventorySlots[i])
+		var heroInventoryButton = preload("res://menus/heroPage_inventoryButton.tscn").instance()
+		heroInventoryButton.set_label(global.heroInventorySlots[i])
+		heroInventoryButton.set_position(Vector2(buttonX, buttonY))
+		if (i < 4):
+			$hbox_items.add_child(heroInventoryButton)
+		else:
+			$hbox_items2.add_child(heroInventoryButton)
+		#todo: later, expand this to show the actual item owned by this hero for this slot 
 	
 func populate_fields(data):
 	$field_heroName.text = data.heroName
