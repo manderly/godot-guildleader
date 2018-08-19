@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://menus/questConfirm.gd" type="Script" id=1]
+[ext_resource path="res://menus/questComplete.gd" type="Script" id=1]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -45,7 +45,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "PRIZES"
+text = "YOU WON:"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -96,14 +96,14 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "CHOOSE HEROES"
+text = "THESE HEROES GOT XP:"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_beginQuest" type="Button" parent="." index="4"]
+[node name="button_collectRewards" type="Button" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -120,11 +120,12 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_colors/font_color = Color( 0.992371, 1, 0.0234375, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Begin quest!"
+text = "COLLECT REWARDS!"
 flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
@@ -175,7 +176,37 @@ size_flags_vertical = 1
 custom_constants/separation = -1
 alignment = 1
 
-[connection signal="pressed" from="button_beginQuest" to="." method="_on_button_beginQuest_pressed"]
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 179.0
+margin_top = 19.0
+margin_right = 348.0
+margin_bottom = 59.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_colors/default_color = Color( 0.914063, 0.901342, 0.0999756, 1 )
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "QUEST COMPLETE!!"
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Material", "Pause", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+
+[connection signal="pressed" from="button_collectRewards" to="." method="_on_button_collectRewards_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

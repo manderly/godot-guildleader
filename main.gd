@@ -88,3 +88,7 @@ func draw_heroes():
 
 
 
+
+
+func _on_button_collectQuest_pressed():
+	pass # replace with function body

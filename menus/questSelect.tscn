@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/questSelect.gd" type="Script" id=1]
 
-[node name="questSelect" type="Node"]
+[node name="questSelect" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

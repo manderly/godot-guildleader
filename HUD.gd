@@ -9,16 +9,17 @@ func update_currency(sc, hc):
 	var hcField = $GUI/vbox_currencies/HBoxContainer/field_hardCurrency
 	hcField.text = str(hc)
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+	if (!global.questReadyToCollect):
+		$button_collectQuest.hide()
+	else:
+		$button_collectQuest.show()
+	global.connect("quest_complete", self, "_on_quest_complete")
+	
+func _on_quest_complete(name):
+	print("quest done and GUI knows about it " + name)
+	$button_collectQuest.show()
+	
+func _on_button_collectQuest_pressed():
+	print("opening quest report")
+	get_tree().change_scene("res://menus/questComplete.tscn")
