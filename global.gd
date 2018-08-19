@@ -16,6 +16,7 @@ var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
 var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
+#signal quest_begun
 signal quest_complete
 
 func _ready():
@@ -39,6 +40,7 @@ func _ready():
 func _begin_global_quest_timer(duration):
 	if (!questActive):
 		print("starting quest timer: " + str(duration))
+		#emit_signal("quest_begun", currentQuest.name)
 		questActive = true
 		questReadyToCollect = false
 		var questTimer = Timer.new()
@@ -55,7 +57,4 @@ func _on_questTimer_timeout():
 	questActive = false
 	questReadyToCollect = true
 	emit_signal("quest_complete", currentQuest.name)
-		
-	
-		
 
