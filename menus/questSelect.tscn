@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/questSelect.gd" type="Script" id=1]
 
-[node name="questSelect" type="Node" index="0"]
+[node name="questSelect" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -47,7 +47,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Quest Select"
+text = "Available Quests"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
