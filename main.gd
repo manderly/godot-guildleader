@@ -11,14 +11,20 @@ func _ready():
 	randomize()
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 	
-	#spawn a test room
+	#spawn the player's rooms (use roomOrder array)
 	var roomX = -1
 	var roomY = 75 
 	for i in range(roomOrder.size()):
 		var roomInstance = roomOrder[i].instance()
 		roomInstance.set_position(Vector2(roomX,roomY))
 		add_child(roomInstance)
-		roomY -= 128
+		if (i == roomOrder.size() - 2):
+			roomY -= 192 #for placing the taller-than-a-room top edge piece	
+		else:
+			roomY -= 128
+			
+	#place the "add a room" button above the last placed piece
+	$screen/scrolling_buttons/button_addRoom.set_position(Vector2(200, roomY + 200))
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
@@ -100,4 +106,8 @@ func draw_heroes():
 			heroY += 100
 
 func _on_button_collectQuest_pressed():
-	pass # replace with function body
+	pass
+
+
+func _on_button_addRoom_pressed():
+	print("stub: adding a room")
