@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 12, 0, 3, 10, 0, 4, 11, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 10, 0, 9, 11, 0, 10, 10, 0, 11, 10, 0, 12, 10, 0, 13, 10, 0, 14, 13, 0, 15, 10, 0, 65536, 10, 0, 65537, 11, 0, 65538, 10, 0, 65539, 10, 0, 65540, 10, 0, 65541, 13, 0, 65542, 10, 0, 65543, 11, 0, 65544, 12, 0, 65545, 10, 0, 65546, 10, 0, 65547, 13, 0, 65548, 10, 0, 65549, 13, 0, 65550, 10, 0, 65551, 10, 0, 131072, 10, 0, 131073, 12, 0, 131074, 11, 0, 131075, 10, 0, 131076, 78, 0, 131077, 10, 0, 131078, 12, 0, 131079, 13, 0, 131080, 10, 0, 131081, 10, 0, 131082, 10, 0, 131083, 11, 0, 131084, 10, 0, 131085, 10, 0, 131086, 11, 0, 131087, 13, 0, 196608, 12, 0, 196609, 12, 0, 196610, 10, 0, 196611, 86, 0, 196612, 85, 0, 196613, 86, 0, 196614, 85, 0, 196615, 86, 0, 196616, 85, 0, 196617, 86, 0, 196618, 85, 0, 196619, 86, 0, 196620, 85, 0, 196621, 13, 0, 196622, 12, 0, 196623, 10, 0 )
+_sections_unfolded = [ "Cell" ]
+
+

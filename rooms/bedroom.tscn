@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://sprites/bedroom/bed.png" type="Texture" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 25, 0, 4, 25, 0, 5, 25, 0, 6, 37, 0, 7, 38, 0, 8, 38, 0, 9, 38, 0, 10, 38, 0, 11, 38, 0, 12, 39, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 25, 0, 65540, 25, 0, 65541, 23, 0, 65542, 81, 0, 65543, 0, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 2, 0, 65548, 41, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 18, 0, 131076, 25, 0, 131077, 25, 0, 131079, 3, 0, 131080, 4, 0, 131081, 4, 0, 131082, 4, 0, 131083, 5, 0, 131084, 80, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 25, 0, 196612, 23, 0, 196613, 25, 0, 196614, 40, 0, 196615, 6, 0, 196616, 7, 0, 196617, 7, 0, 196618, 7, 0, 196619, 8, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="sprite_bed" type="Sprite" parent="." index="1"]
+
+position = Vector2( 270, 32 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="sprite_bed2" type="Sprite" parent="." index="2"]
+
+position = Vector2( 336, 33 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+
