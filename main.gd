@@ -87,10 +87,6 @@ func _on_Quests_pressed():
 func _on_Roster_pressed():
 	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
-	
-func _on_Hero_pressed():
-	global.currentMenu = "heroPage"
-	get_tree().change_scene("res://menus/heroPage.tscn");
 
 func draw_heroes():
 	var heroX = 100

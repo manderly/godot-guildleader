@@ -24,7 +24,15 @@ func _input_event(viewport, event, shape_idx):
         self.on_click()
 		
 func on_click():
-    print("Click")
+	#this is a bad way to do it (should be based on unique IDs, not names)
+	#but for now, loop through the heroes and find a name match to 
+	#figure out what hero data we are viewing from the global hero array 
+	for i in range(global.guildRoster.size()):
+		if (global.guildRoster[i].heroName == heroName):
+			global.selectedHero = global.guildRoster[i]
+			global.currentMenu = "heroPage"
+			get_tree().change_scene("res://menus/heroPage.tscn")
+
 	
 #I think this needs a refactor, it's just setting local vars not 
 #pushing data into display fields 
@@ -35,6 +43,4 @@ func set_display_fields(data):
 	heroClass = data.heroClass
 	currentRoom = data.currentRoom
 
-func _on_heroButton_pressed():
-	print("clicked hero: " + heroName)
 
