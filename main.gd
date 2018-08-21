@@ -25,7 +25,7 @@ func _ready():
 			roomY -= 128
 			
 	#place the "add a room" button above the last placed piece
-	#$screen/button_addRoom.set_position(Vector2(200, roomY + 200))
+	$screen/button_addRoom.set_position(Vector2(192, roomY + 200))
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
