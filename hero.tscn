@@ -4,7 +4,7 @@
 [ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=2]
 [ext_resource path="res://characters/wizard-female-2.png" type="Texture" id=3]
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends TouchScreenButton
 
@@ -23,7 +23,7 @@ func _ready():
 #	pass
 "
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
@@ -72,7 +72,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Spread", "Trail" ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -102,12 +102,12 @@ shape_visible = true
 passby_press = false
 action = ""
 visibility_mode = 0
-script = SubResource( 4 )
+script = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
 
 position = Vector2( 0, -1.32684 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "default"
 frame = 1
 playing = true
@@ -205,6 +205,6 @@ max_lines_visible = -1
 
 position = Vector2( 44.3621, 36.2047 )
 scale = Vector2( 4.41247, 3.78498 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 
