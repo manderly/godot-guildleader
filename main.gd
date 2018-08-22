@@ -6,6 +6,12 @@ onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
 onready var topEdgeScene = preload("res://rooms/topedge.tscn")
 onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
 
+#todo: globalize these
+var mainRoomMinX = 110
+var mainRoomMaxX = 360
+var mainRoomMinY = 250
+var mainRoomMaxY = 410
+
 func _ready():
 	global.currentMenu = "main"
 	randomize()
@@ -89,18 +95,19 @@ func _on_Roster_pressed():
 	get_tree().change_scene("res://menus/roster.tscn");
 
 func draw_heroes():
-	var heroX = 100
-	var heroY = 100
-	
+	var heroX = -1
+	var heroY = -1
+
 	for i in range(global.guildRoster.size()):
+		heroX = rand_range(mainRoomMinX, mainRoomMaxX)
+		heroY = rand_range(mainRoomMinY, mainRoomMaxY)
+	
 		#only draw heroes who are "available" (ie: at home) 
 		if (global.guildRoster[i].available):
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_fields(global.guildRoster[i])
 			add_child(heroScene)
-			heroX += 20
-			heroY += 100
 
 func _on_button_collectQuest_pressed():
 	pass

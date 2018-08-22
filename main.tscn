@@ -20,6 +20,10 @@
 [node name="main" type="Node"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 430.0 ],
+"_edit_vertical_guides_": [ 380.0 ]
+}
 
 [node name="HUD" type="CanvasLayer" parent="." index="0"]
 
