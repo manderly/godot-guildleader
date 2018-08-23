@@ -16,10 +16,29 @@ var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
 var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
+
+var roomTypeData = null
+
+#rooms
+onready var bedroomScene = preload("res://rooms/bedroom.tscn")
+onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
+onready var topEdgeScene = preload("res://rooms/topedge.tscn")
+onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")
+onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
+onready var roomCount = roomOrder.size() - 1
+var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+
 #signal quest_begun
 signal quest_complete
 
 func _ready():
+	#Load room type data and save it to a global var
+	var roomTypeFile = File.new()
+	roomTypeFile.open("res://gameData/roomTypes.json", roomTypeFile.READ)
+	roomTypeData = parse_json(roomTypeFile.get_as_text())
+	print(roomTypeData)
+	roomTypeFile.close()
+	
 	#Load hero level data 
 	var levelXpFile = File.new()
 	levelXpFile.open("res://gameData/levelXpData.json", levelXpFile.READ)

@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Bedroom",
+    "description": "Adds space for 2 more heroes.",
+    "icon": "none.jpg",
+    "scCost": 100,
+    "hcCost": 100
+  },
+  {
+    "name": "Training",
+    "description": "Train one hero to the next level in this room.",
+    "icon": "none.jpg",
+    "scCost": 100,
+    "hcCost": 100
+  },
+  {
+    "name": "Tradeskill",
+    "description": "A tradeskill-specific room.",
+    "icon": "none.jpg",
+    "scCost": 100,
+    "hcCost": 100
+  },
+  {
+    "name": "Class",
+    "description": "Class-specific training room.",
+    "icon": "none.jpg",
+    "scCost": 100,
+    "hcCost": 100
+  },
+  {
+    "name": "Vault",
+    "description": "Space for more items in your inventory!",
+    "icon": "none.jpg",
+    "scCost": 100,
+    "hcCost": 100
+  }
+]

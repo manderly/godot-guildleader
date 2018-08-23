@@ -14,7 +14,7 @@ var walkDestX = -1
 var walkDestY = -1
 var target = Vector2()
 var velocity = Vector2()
-var speed = 16
+var speed = 20
 var walking = false
 
 #todo: globalize these
@@ -34,7 +34,7 @@ func _ready():
 
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
-	$idleTimer.set_wait_time(rand_range(10, 20))
+	$idleTimer.set_wait_time(rand_range(5, 15))
 	$idleTimer.start() #walk when the timer expires
 	
 func _start_walking():

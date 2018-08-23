@@ -1,10 +1,6 @@
 extends Node
 
 var nameGenerator = load("res://nameGenerator.gd").new()
-onready var bedroomScene = preload("res://rooms/bedroom.tscn")
-onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
-onready var topEdgeScene = preload("res://rooms/topedge.tscn")
-onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -21,17 +17,19 @@ func _ready():
 	#spawn the player's rooms (use roomOrder array)
 	var roomX = -1
 	var roomY = 75 
-	for i in range(roomOrder.size()):
-		var roomInstance = roomOrder[i].instance()
+	for i in range(global.roomOrder.size()):
+		var roomInstance = global.roomOrder[i].instance()
 		roomInstance.set_position(Vector2(roomX,roomY))
-		rooms.add_child(roomInstance)
-		if (i == roomOrder.size() - 2):
+		rooms.add_child(roomInstance) #add it to the layer named "rooms" in the 2D scene 
+		if (i == global.roomOrder.size() - 2):
 			roomY -= 192 #for placing the taller-than-a-room top edge piece
 		else:
 			roomY -= 128
 			
 	#place the "add a room" button above the last placed piece
-	$screen/button_addRoom.set_position(Vector2(192, roomY + 200))
+	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
+	#display the cost to build a new room
+	$screen/button_addRoom.text = "BUILD A NEW ROOM: " + str(global.newRoomCost[global.roomCount]) + " coins"
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
@@ -114,4 +112,5 @@ func _on_button_collectQuest_pressed():
 
 
 func _on_button_addRoom_pressed():
-	print("stub: adding a room")
+	print("stub: adding a room at cost " + str(global.newRoomCost))
+	get_tree().change_scene("res://menus/buildNewRoom.tscn")
