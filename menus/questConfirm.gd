@@ -27,6 +27,9 @@ func _ready():
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
+	$field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
+	$field_hcRange.text = str(data.hcMin) + " - " + str(data.hcMax) + " diamonds"
+	$field_rareItem.text = "Plus a small chance to find: " + data.item1 
 
 func _on_button_beginQuest_pressed():
 	print(global.questHeroes.size())

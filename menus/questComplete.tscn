@@ -35,24 +35,112 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 124.0
-margin_top = 219.0
-margin_right = 365.0
-margin_bottom = 271.0
+margin_left = 3.0
+margin_top = 210.0
+margin_right = 478.0
+margin_bottom = 262.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "YOU WON:"
+text = "YOU WON SOME STUFF:"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_questDescription" type="RichTextLabel" parent="." index="2"]
+[node name="field_sc" type="Label" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 266.0
+margin_right = 458.0
+margin_bottom = 295.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "###COINS"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_hc" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 10.0
+margin_top = 295.0
+margin_right = 458.0
+margin_bottom = 324.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "###COINS"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_lootName1" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 17.0
+margin_top = 325.0
+margin_right = 474.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "###ITEM NAME"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_lootName2" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 17.0
+margin_top = 354.0
+margin_right = 474.0
+margin_bottom = 389.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "###ITEM NAME"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_questDescription" type="RichTextLabel" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -80,15 +168,14 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="label_chooseHeroes" type="Label" parent="." index="3"]
+[node name="label_chooseHeroes" type="Label" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
 margin_top = 391.0
-margin_right = 327.0
+margin_right = 478.0
 margin_bottom = 422.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -103,7 +190,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_collectRewards" type="Button" parent="." index="4"]
+[node name="button_collectRewards" type="Button" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -130,7 +217,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="button_back" type="Button" parent="." index="5"]
+[node name="button_back" type="Button" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -156,7 +243,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="hbox" type="HBoxContainer" parent="." index="6"]
+[node name="hbox" type="HBoxContainer" parent="." index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -176,7 +263,7 @@ size_flags_vertical = 1
 custom_constants/separation = -1
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." index="7"]
+[node name="RichTextLabel" type="RichTextLabel" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0

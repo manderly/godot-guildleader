@@ -11,7 +11,11 @@
     "item1": "Rusty Broadsword",
     "item1Chance": 10,
     "item2": "Chainmail Vest",
-    "item2Chance": 1
+    "item2Chance": 1,
+    "scMin": 100,
+    "scMax": 200,
+    "hcMin": 0,
+    "hcMax": 0
   },
   {
     "name": "Test Quest Long",
@@ -25,7 +29,11 @@
     "item1": "Cracked Staff",
     "item1Chance": 10,
     "item2": "",
-    "item2Chance": ""
+    "item2Chance": "",
+    "scMin": 100,
+    "scMax": 200,
+    "hcMin": 0,
+    "hcMax": 0
   },
   {
     "name": "Goblin Caves",
@@ -39,7 +47,11 @@
     "item1": "Sparkling Metallic Robe",
     "item1Chance": 10,
     "item2": "Tzip's Crooked Dagger",
-    "item2Chance": 10
+    "item2Chance": 10,
+    "scMin": 100,
+    "scMax": 200,
+    "hcMin": 0,
+    "hcMax": 1
   },
   {
     "name": "XP fest for lots of XP!!!",
@@ -53,6 +65,10 @@
     "item1": "",
     "item1Chance": "",
     "item2": "",
-    "item2Chance": ""
+    "item2Chance": "",
+    "scMin": 500,
+    "scMax": 800,
+    "hcMin": 1,
+    "hcMax": 2
   }
 ]

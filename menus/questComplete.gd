@@ -20,10 +20,18 @@ func _ready():
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
+	$field_sc.text = str(global.questPrizeSC) + " coins" #set in global when the quest timer expires
+	$field_hc.text = str(global.questPrizeHC) + " diamonds"
+	$field_lootName1.text = global.questPrizeItem1
+	$field_lootName2.text = global.questPrizeItem2
 
 func _on_button_collectRewards_pressed():
 	print("COLLECTING PRIZES AND GOING BACK TO MAIN")
-	#COLLECT coins, xp, inventory items 
+	#COLLECT coins, xp, inventory items into player's real inventory
+	global.softCurrency += global.questPrizeSC
+	global.hardCurrency += global.questPrizeHC
+	#todo: item system
+	
 	#give xp to each hero in quest list, set status back to available, clear them out of the quest array
 	for i in range(global.questHeroes.size()):
 		if (global.questHeroes[i] != null):

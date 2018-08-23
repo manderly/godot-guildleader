@@ -4,14 +4,23 @@ extends Node
 var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
-var currentQuest = null
+
 var selectedHero = null #which hero to show on heroPage
 var guildRoster = []
+
+#active quest
+var currentQuest = null
 var questHeroes = [null, null, null, null, null, null]
 var questHeroesPicked = 0 #workaround for having to declare the array at-size 
 var questButtonID = null
 var questActive = false
 var questReadyToCollect = false
+#set these with random results when the quest is completed, then clear them out for next use
+var questPrizeSC = 0
+var questPrizeHC = 0
+var questPrizeItem1 = "none"
+var questPrizeItem2 = "none"
+
 var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
@@ -75,5 +84,9 @@ func _on_questTimer_timeout():
 	print("Quest timer complete! Finished this quest: " + currentQuest.name)
 	questActive = false
 	questReadyToCollect = true
+	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
+	questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
+	questPrizeItem1 = "none" #todo: item system
+	questPrizeItem2 = "none"
 	emit_signal("quest_complete", currentQuest.name)
 

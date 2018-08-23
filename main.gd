@@ -113,5 +113,4 @@ func _on_button_collectQuest_pressed():
 
 
 func _on_button_addRoom_pressed():
-	print("stub: adding a room at cost " + str(global.newRoomCost))
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")
