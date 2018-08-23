@@ -17,7 +17,7 @@
 [ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=15]
 [ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=16]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -27,7 +27,6 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="." index="0"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -37,7 +36,6 @@ script = ExtResource( 2 )
 
 [node name="hbox_bottomBar" type="HBoxContainer" parent="HUD" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

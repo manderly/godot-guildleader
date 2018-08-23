@@ -13,14 +13,15 @@ func _ready():
 	randomize()
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 	
-	var rooms = $screen/rooms 
+	var roomsLayer = $screen/rooms 
 	#spawn the player's rooms (use roomOrder array)
 	var roomX = -1
 	var roomY = 75 
 	for i in range(global.roomOrder.size()):
 		var roomInstance = global.roomOrder[i].instance()
 		roomInstance.set_position(Vector2(roomX,roomY))
-		rooms.add_child(roomInstance) #add it to the layer named "rooms" in the 2D scene 
+		roomInstance.display_room_name("coded name")
+		roomsLayer.add_child(roomInstance)
 		if (i == global.roomOrder.size() - 2):
 			roomY -= 192 #for placing the taller-than-a-room top edge piece
 		else:
