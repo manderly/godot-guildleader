@@ -30,7 +30,7 @@ func _ready():
 	#place the "add a room" button above the last placed piece
 	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
 	#display the cost to build a new room
-	$screen/button_addRoom.text = "BUILD A NEW ROOM: " + str(global.newRoomCost[global.roomCount]) + " coins"
+	$screen/button_addRoom/field_addRoomButtonLabel.text = "BUILD A NEW ROOM \n" + str(global.newRoomCost[global.roomCount]) + " coins"
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):

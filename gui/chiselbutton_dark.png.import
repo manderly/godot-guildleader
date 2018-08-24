@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chiselbutton.png-c94935af431ae91a67c09f6732930d38.stex"
+path="res://.import/chiselbutton_dark.png-90d1cc024920ced508cb17e904e5f5d7.stex"
 
 [deps]
 
-source_file="res://gui/chiselbutton.png"
-dest_files=[ "res://.import/chiselbutton.png-c94935af431ae91a67c09f6732930d38.stex" ]
+source_file="res://gui/chiselbutton_dark.png"
+dest_files=[ "res://.import/chiselbutton_dark.png-90d1cc024920ced508cb17e904e5f5d7.stex" ]
 
 [params]
 
