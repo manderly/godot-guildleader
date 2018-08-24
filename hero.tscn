@@ -106,7 +106,6 @@ script = SubResource( 1 )
 position = Vector2( 0, -1.32684 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 centered = false
 
@@ -198,7 +197,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_room" type="Label" parent="." index="6"]
+[node name="field_debug" type="Label" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0

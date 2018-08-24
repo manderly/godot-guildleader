@@ -1,5 +1,6 @@
 extends Node2D
 #heroSelect.gd
+#use this menu to pick a hero to assign to a quest
 
 func _ready():
 	var buttonX = 0

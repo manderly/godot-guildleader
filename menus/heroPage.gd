@@ -5,7 +5,6 @@ func _ready():
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	for i in range(global.heroInventorySlots.size()):
-		print(global.heroInventorySlots[i])
 		var heroInventoryButton = preload("res://menus/heroPage_inventoryButton.tscn").instance()
 		heroInventoryButton.set_label(global.heroInventorySlots[i])
 		#heroInventoryButton.set_position(Vector2(buttonX, buttonY))
@@ -82,22 +81,25 @@ func _on_button_train_pressed():
 		else: 
 			print("Need more xp - or pay diamonds to level up now!")
 	else: #hero not part of guild yet
-		print("recruiting this hero: " + global.selectedHero.heroName)
+		#print("heroPage.gd: Recruiting this hero: " + global.selectedHero.heroName)
 		#loop through unrecruited hero array and find the one that we're viewing
 		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroName == global.selectedHero.heroName):
-				print("found selected hero in the unrecruited hero array")
+			if (global.unrecruited[i].heroID == global.selectedHero.heroID):
+				#change recruited boolean to true and append to guildRoster
+				global.unrecruited[i].recruited = true
 				global.guildRoster.append(global.unrecruited[i])
-				get_tree().change_scene("res://main.tscn")
 				break
 		
-		#now remove it from the unrecruited hero array
+		#now remove this hero from the unrecruited hero array
 		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroName == global.selectedHero.heroName):
+			if (global.unrecruited[i].heroID == global.selectedHero.heroID):
 				var findMe = global.selectedHero
 				var index = global.unrecruited.find(findMe)
 				global.unrecruited.remove(index)
 				break
+				
+		#finally, go back to main 
+		get_tree().change_scene("res://main.tscn")
 
 func _on_button_rename_pressed():
 	get_node("confirm_rename_dialog").popup()
@@ -118,11 +120,10 @@ func _on_button_back_pressed():
 func _on_confirm_dismiss_dialog_confirmed():
 	#Remove this hero from the guild
 	#Return to main screen
-	print("looking for: " + global.selectedHero.heroName)
+	#print("looking for: " + global.selectedHero.heroName)
 	for i in range(global.guildRoster.size()):
-		print (str(i) + " of " + str(global.guildRoster.size()))
-		if (global.guildRoster[i].heroName == global.selectedHero.heroName):
-			print("DONE - FOUND THE GUY TO REMOVE")
+		#print (str(i) + " of " + str(global.guildRoster.size()))
+		if (global.guildRoster[i].heroID == global.selectedHero.heroID):
 			var findMe = global.selectedHero
 			var removeIndex = global.guildRoster.find(findMe)
 			global.guildRoster.remove(removeIndex)

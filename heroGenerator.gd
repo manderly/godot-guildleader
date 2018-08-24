@@ -4,13 +4,13 @@ extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	pass
 
 #make new hero object
 func generate(destinationArray):
 	var newHero = {}
+	newHero.heroID = global.nextHeroID
+	global.nextHeroID += 1
 	
 	#random name
 	newHero.heroName = nameGenerator.generate()
@@ -37,8 +37,11 @@ func generate(destinationArray):
 	newHero.groupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
 	newHero.raidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
 
+	#other aspects of a hero 
+	newHero.available = true
 	newHero.level = 1
 	newHero.xp = 0
+	
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
 		newHero.recruited = true #false by default 
@@ -46,7 +49,5 @@ func generate(destinationArray):
 		newHero.currentRoom = 0
 		newHero.recruited = false
 		newHero.level = randi()%3+1
-		
-	newHero.available = true
 
 	destinationArray.append(newHero)

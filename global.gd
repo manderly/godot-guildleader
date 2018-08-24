@@ -5,6 +5,8 @@ var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
 
+var nextHeroID = 100
+
 var selectedHero = null #which hero to show on heroPage
 var guildRoster = []
 

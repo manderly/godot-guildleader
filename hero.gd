@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var heroID = -1
 var heroName = "Default Name"
 var heroClass = "NONE"
 var level = -1
@@ -35,7 +36,7 @@ func _ready():
 	$field_name.text = heroName
 	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
 	$field_xp.text = str(xp) + " xp"
-	$field_room.text = "room: " + str(currentRoom)
+	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
 	_start_idle_timer()
 
 
@@ -78,22 +79,22 @@ func _physics_process(delta):
 			$idleTimer.start()
 		
 func on_click():
-	#this is a bad way to do it (should be based on unique IDs, not names)
-	#but for now, loop through the heroes and find a name match to 
+	#loop through the heroes and find a unique ID to match to 
 	#figure out what hero data we are viewing from the global hero array
-	print("recruited status: " + str(self.recruited))
+	#print("hero.gd: Recruited status: " + str(self.recruited))
 	if (self.recruited):
 		for i in range(global.guildRoster.size()):
-			if (global.guildRoster[i].heroName == heroName):
+			if (global.guildRoster[i].heroID == heroID):
 				global.selectedHero = global.guildRoster[i]
 				global.currentMenu = "heroPage"
 				get_tree().change_scene("res://menus/heroPage.tscn")
+				break
 	else:
 		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroName == heroName):
+			if (global.unrecruited[i].heroID == heroID):
 				global.selectedHero = global.unrecruited[i]
-				global.currentMenu = "heroPage"
 				get_tree().change_scene("res://menus/heroPage.tscn")
+				break
 
 	
 func set_instance_data(data):
@@ -103,6 +104,7 @@ func set_instance_data(data):
 	heroClass = data.heroClass
 	currentRoom = data.currentRoom
 	recruited = data.recruited
+	heroID = data.heroID
 	
 
 
