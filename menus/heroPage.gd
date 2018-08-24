@@ -101,5 +101,14 @@ func _on_button_train_pressed():
 			else:
 				print("heroPage.gd: ERROR REMOVING HERO FROM UNRECRUITED ARRAY")
 
+func _on_button_rename_pressed():
+	get_node("rename_dialogue").popup()
+
+func _on_rename_dialogue_confirmed():
+	var newName = $rename_dialogue/LineEdit.text
+	print("heropage.gd: Renamed hero to: " + newName)
+	global.selectedHero.heroName = newName
+	$field_heroName.text = global.selectedHero.heroName
+	
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/roster.tscn")

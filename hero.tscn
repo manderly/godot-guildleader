@@ -106,6 +106,7 @@ script = SubResource( 1 )
 position = Vector2( 0, -1.32684 )
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 centered = false
 

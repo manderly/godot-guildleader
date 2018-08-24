@@ -6,7 +6,32 @@
 
 script = ExtResource( 1 )
 
-[node name="field_heroName" type="Label" parent="." index="0"]
+[node name="button_rename" type="Button" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 382.0
+margin_top = 20.0
+margin_right = 462.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Rename"
+flat = false
+align = 1
+
+[node name="field_heroName" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -27,7 +52,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_levelAndClass" type="Label" parent="." index="1"]
+[node name="field_levelAndClass" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -48,7 +73,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_xp" type="Label" parent="." index="2"]
+[node name="field_xp" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -69,7 +94,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_trainOrRecruit" type="Button" parent="." index="3"]
+[node name="button_trainOrRecruit" type="Button" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -94,7 +119,7 @@ text = "TRAIN"
 flat = false
 align = 1
 
-[node name="button_back" type="Button" parent="." index="4"]
+[node name="button_back" type="Button" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -119,7 +144,7 @@ text = "Back"
 flat = false
 align = 1
 
-[node name="hbox_items" type="HBoxContainer" parent="." index="5"]
+[node name="hbox_items" type="HBoxContainer" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -138,7 +163,7 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="hbox_items2" type="HBoxContainer" parent="." index="6"]
+[node name="hbox_items2" type="HBoxContainer" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -157,7 +182,7 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="vbox_stats1" type="VBoxContainer" parent="." index="7"]
+[node name="vbox_stats1" type="VBoxContainer" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -177,7 +202,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="vbox_stats2" type="VBoxContainer" parent="." index="8"]
+[node name="vbox_stats2" type="VBoxContainer" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -197,8 +222,60 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
+[node name="rename_dialogue" type="ConfirmationDialog" parent="." index="10"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 67.0
+margin_top = 221.0
+margin_right = 417.0
+margin_bottom = 389.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Rename Hero"
+resizable = false
+dialog_text = "Enter new name"
+dialog_hide_on_ok = true
+_sections_unfolded = [ "Dialog" ]
+
+[node name="LineEdit" type="LineEdit" parent="rename_dialogue" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.0
+margin_top = 25.0
+margin_right = 343.0
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+focus_mode = 2
+context_menu_enabled = true
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
+caret_position = 0
+
+[connection signal="pressed" from="button_rename" to="." method="_on_button_rename_pressed"]
+
 [connection signal="pressed" from="button_trainOrRecruit" to="." method="_on_button_train_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
+
+[connection signal="confirmed" from="rename_dialogue" to="." method="_on_rename_dialogue_confirmed"]
 
 
