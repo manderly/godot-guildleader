@@ -89,8 +89,7 @@ func _on_button_train_pressed():
 				print("found selected hero in the unrecruited hero array")
 				global.guildRoster.append(global.unrecruited[i])
 				get_tree().change_scene("res://main.tscn")
-			else:
-				print("heroPage.gd: ERROR RECRUITING HERO")
+				break
 		
 		#now remove it from the unrecruited hero array
 		for i in range(global.unrecruited.size()):
@@ -98,17 +97,36 @@ func _on_button_train_pressed():
 				var findMe = global.selectedHero
 				var index = global.unrecruited.find(findMe)
 				global.unrecruited.remove(index)
-			else:
-				print("heroPage.gd: ERROR REMOVING HERO FROM UNRECRUITED ARRAY")
+				break
 
 func _on_button_rename_pressed():
-	get_node("rename_dialogue").popup()
+	get_node("confirm_rename_dialog").popup()
+	
+func _on_button_dismiss_pressed():
+	get_node("confirm_dismiss_dialog").popup()
 
 func _on_rename_dialogue_confirmed():
-	var newName = $rename_dialogue/LineEdit.text
+	var newName = $confirm_rename_dialog/LineEdit.text
 	print("heropage.gd: Renamed hero to: " + newName)
 	global.selectedHero.heroName = newName
+	#redraw the name display field on the hero page with the new name
 	$field_heroName.text = global.selectedHero.heroName
 	
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/roster.tscn")
+
+func _on_confirm_dismiss_dialog_confirmed():
+	#Remove this hero from the guild
+	#Return to main screen
+	print("looking for: " + global.selectedHero.heroName)
+	for i in range(global.guildRoster.size()):
+		print (str(i) + " of " + str(global.guildRoster.size()))
+		if (global.guildRoster[i].heroName == global.selectedHero.heroName):
+			print("DONE - FOUND THE GUY TO REMOVE")
+			var findMe = global.selectedHero
+			var removeIndex = global.guildRoster.find(findMe)
+			global.guildRoster.remove(removeIndex)
+			get_tree().change_scene("res://main.tscn")
+			break
+
+
