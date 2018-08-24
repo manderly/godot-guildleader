@@ -20,7 +20,7 @@ func _ready():
 	for i in range(global.roomOrder.size()):
 		var roomInstance = global.roomOrder[i].instance()
 		roomInstance.set_position(Vector2(roomX,roomY))
-		roomInstance.display_room_name("coded name")
+		roomInstance.display_room_name("coded name here")
 		roomsLayer.add_child(roomInstance)
 		if (i == global.roomOrder.size() - 2):
 			roomY -= 192 #for placing the taller-than-a-room top edge piece
@@ -34,17 +34,27 @@ func _ready():
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
+		#Todo: maybe this belongs in global? 
 		var heroQuantity = 3
 		for i in range(heroQuantity):
-			heroGenerator.generate() #returns nothing, just puts them in global.guildRoster 
+			heroGenerator.generate(global.guildRoster) #returns nothing, just puts them in the array reference that's passed in
 
+		var unrecruitedQuantity = 2
+		for i in range(unrecruitedQuantity):
+			heroGenerator.generate(global.unrecruited)
+			
 		#verify they were generated 
 		print("Guild members are:")
 		for i in range(heroQuantity):
-			print(global.guildRoster[i].heroName)
+			print(global.guildRoster[i])
+			print("")
+		
+		print("Unrecruited peeps are:")
+		for i in range(unrecruitedQuantity):
+			print(global.unrecruited[i].heroName)
+			
 
 		global.initDone = true
-		
 		#use the hero data to create individual hero scene instances
 		draw_heroes()
 	else:
@@ -71,8 +81,19 @@ func draw_heroes():
 		if (global.guildRoster[i].available):
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_position(Vector2(heroX, heroY))
-			heroScene.set_display_fields(global.guildRoster[i])
+			heroScene.set_instance_data(global.guildRoster[i])
 			add_child(heroScene)
+	
+	#draw unrecruited heroes outside the base
+	for i in range(global.unrecruited.size()):
+		heroX = rand_range(150, 380)
+		heroY = rand_range(650, 820)
+	
+		#only draw heroes who are "available" (ie: at home) 
+		var heroScene = preload("res://hero.tscn").instance()
+		heroScene.set_position(Vector2(heroX, heroY))
+		heroScene.set_instance_data(global.unrecruited[i])
+		add_child(heroScene)
 
 func _on_button_collectQuest_pressed():
 	pass

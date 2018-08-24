@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 #make new hero object
-func generate():
+func generate(destinationArray):
 	var newHero = {}
 	
 	#random name
@@ -39,7 +39,14 @@ func generate():
 
 	newHero.level = 1
 	newHero.xp = 0
-	newHero.currentRoom = 1
+	if (destinationArray == global.guildRoster):
+		newHero.currentRoom = 1 #inside (0 by default - outside)
+		newHero.recruited = true #false by default 
+	else:
+		newHero.currentRoom = 0
+		newHero.recruited = false
+		newHero.level = randi()%3+1
+		
 	newHero.available = true
 
-	global.guildRoster.append(newHero)
+	destinationArray.append(newHero)

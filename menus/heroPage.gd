@@ -66,16 +66,24 @@ func populate_fields(data):
 	$field_heroName.text = data.heroName
 	$field_levelAndClass.text = str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
+	if (data.recruited):
+		$button_trainOrRecruit.text = "Train to next level"
+	else:
+		$button_trainOrRecruit.text = "Recruit hero"
 
 func _on_button_train_pressed():
-	if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
-		print("Training this hero to next level")
-		#todo: this should be on a timer and the hero is unavailable while training
-		#also, only one hero can train up at a time 
-		global.selectedHero.xp = 0
-		global.selectedHero.level += 1
-	else: 
-		print("Need more xp - or pay diamonds to level up now!")
+	if (global.selectedHero.recruited):
+		if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
+			print("Training this hero to next level")
+			#todo: this should be on a timer and the hero is unavailable while training
+			#also, only one hero can train up at a time 
+			global.selectedHero.xp = 0
+			global.selectedHero.level += 1
+		else: 
+			print("Need more xp - or pay diamonds to level up now!")
+	else: #hero not part of guild yet
+		pass
+		#todo: add this hero to the global array
 
 
 func _on_button_back_pressed():

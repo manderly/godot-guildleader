@@ -17,12 +17,12 @@
 [ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=15]
 [ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=16]
 
-[node name="main" type="Node" index="0"]
+[node name="main" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 430.0 ],
-"_edit_vertical_guides_": [ 380.0 ]
+"_edit_horizontal_guides_": [ 430.0, 820.0 ],
+"_edit_vertical_guides_": [ 380.0, 140.0 ]
 }
 
 [node name="HUD" type="CanvasLayer" parent="." index="0"]

@@ -8,6 +8,8 @@ var currentMenu = "main"
 var selectedHero = null #which hero to show on heroPage
 var guildRoster = []
 
+var unrecruited = []
+
 #active quest
 var currentQuest = null
 var questHeroes = [null, null, null, null, null, null]
