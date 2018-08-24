@@ -39,3 +39,5 @@ func _on_Button_pressed():
 			get_tree().change_scene("res://menus/questConfirm.tscn")
 		else:
 			print("Hero not available")
+	else:
+		print("FREAK OUT AND DO NOTHING!!")

@@ -1,5 +1,5 @@
 extends Node2D
-
+#heroPage.gd 
 func _ready():
 	populate_fields(global.selectedHero)
 	
@@ -73,13 +73,13 @@ func populate_fields(data):
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
 		if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
-			print("Training this hero to next level")
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
 			global.selectedHero.xp = 0
 			global.selectedHero.level += 1
 		else: 
-			print("Need more xp - or pay diamonds to level up now!")
+			$confirm_instant_train.popup()
+			
 	else: #hero not part of guild yet
 		#print("heroPage.gd: Recruiting this hero: " + global.selectedHero.heroName)
 		#loop through unrecruited hero array and find the one that we're viewing
@@ -115,7 +115,12 @@ func _on_rename_dialogue_confirmed():
 	$field_heroName.text = global.selectedHero.heroName
 	
 func _on_button_back_pressed():
-	get_tree().change_scene("res://menus/roster.tscn")
+	if (global.currentMenu == "roster"):
+		get_tree().change_scene("res://menus/roster.tscn")
+	elif (global.currentMenu == "quests"):
+		get_tree().change_scene("res://menus/questConfirm.tscn")
+	else:
+		get_tree().change_scene("res://main.tscn")
 
 func _on_confirm_dismiss_dialog_confirmed():
 	#Remove this hero from the guild
@@ -130,4 +135,15 @@ func _on_confirm_dismiss_dialog_confirmed():
 			get_tree().change_scene("res://main.tscn")
 			break
 
-
+func _on_confirm_instant_train_confirmed():
+	if (global.hardCurrency >= 1):
+		print("Training this hero to next level")
+		#todo: this should be on a timer and the hero is unavailable while training
+		#also, only one hero can train up at a time
+		global.hardCurrency -= 1
+		global.selectedHero.xp = 0
+		global.selectedHero.level += 1
+		#todo: refactor the redrawing of fields into something less case-by-case
+		$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
+	else: 
+		print("heroPage.gd: not enough diamonds")

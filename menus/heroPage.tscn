@@ -273,16 +273,16 @@ dialog_text = "Enter new name"
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="LineEdit" type="LineEdit" parent="confirm_rename_dialog" index="4"]
+[node name="LineEdit" type="LineEdit" parent="confirm_rename_dialog" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 9.0
-margin_top = 25.0
-margin_right = 343.0
-margin_bottom = 57.0
+margin_left = 8.0
+margin_top = 22.0
+margin_right = 342.0
+margin_bottom = 132.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -299,6 +299,7 @@ caret_position = 0
 
 [node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="12"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -347,6 +348,57 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
+[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 200.0
+margin_right = 395.0
+margin_bottom = 356.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Instant Training"
+resizable = false
+dialog_hide_on_ok = true
+_sections_unfolded = [ "Dialog" ]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="confirm_instant_train" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 15.0
+margin_right = 283.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "This hero doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for 1 diamond?"
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+
 [connection signal="pressed" from="button_rename" to="." method="_on_button_rename_pressed"]
 
 [connection signal="pressed" from="button_dismiss" to="." method="_on_button_dismiss_pressed"]
@@ -358,5 +410,7 @@ override_selected_font_color = false
 [connection signal="confirmed" from="confirm_rename_dialog" to="." method="_on_rename_dialogue_confirmed"]
 
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
+
+[connection signal="confirmed" from="confirm_instant_train" to="." method="_on_confirm_instant_train_confirmed"]
 
 

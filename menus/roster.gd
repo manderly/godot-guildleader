@@ -6,6 +6,7 @@ extends Node2D
 func _ready():
 	var buttonX = 0
 	var buttonY = 100
+	#draw a hero button for each hero in the roster
 	for i in range(global.guildRoster.size()):
 		#print(global.guildRoster[i]) #print all heroes (debug)
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
