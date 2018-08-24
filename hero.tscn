@@ -77,7 +77,7 @@ _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Sprea
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10.1507 )
 
-[node name="hero" type="KinematicBody2D" index="0"]
+[node name="hero" type="KinematicBody2D"]
 
 input_pickable = true
 collision_layer = 2
@@ -106,6 +106,7 @@ script = SubResource( 1 )
 position = Vector2( 0, -1.32684 )
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 centered = false
 

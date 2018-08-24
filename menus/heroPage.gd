@@ -82,8 +82,22 @@ func _on_button_train_pressed():
 		else: 
 			print("Need more xp - or pay diamonds to level up now!")
 	else: #hero not part of guild yet
-		pass
-		#todo: add this hero to the global array
+		print("recruiting this hero: " + global.selectedHero.heroName)
+		#loop through unrecruited hero array and find the one that we're viewing
+		for i in range(global.unrecruited.size()):
+			if (global.unrecruited[i].heroName == global.selectedHero.heroName):
+				print("found selected hero in the unrecruited hero array")
+				global.guildRoster.append(global.unrecruited[i])
+				get_tree().change_scene("res://main.tscn")
+			else:
+				print("heroPage.gd: ERROR RECRUITING HERO")
+		
+		#now remove it from the unrecruited hero array
+		for i in range(global.unrecruited.size()):
+			if (global.unrecruited[i].heroName == global.selectedHero.heroName):
+				var findMe = global.selectedHero
+				var index = global.unrecruited.find(findMe)
+				global.unrecruited.remove(index)
 
 
 func _on_button_back_pressed():
