@@ -1,78 +1,19 @@
 extends Node
 
-# Name generator code from: 
-# https://github.com/xsellier/godot-name-generator/blob/master/name-generator.gd
+const startPhoneme = ["Ast","Ben","Sar","Pi","Pe","Ro","Ric","Quel","Darn","Tur","Vel","Tee","Lass","Pur","Lurd","Lo","Ta","Bors","Cli","Sart","Ern","Kwi","Sot","Das","Yos","Ya","Yrte","Tok","Pe","Oas","Tar","Klo"]
+const middlePhoneme = ["","","","","","","","","","rel","ou","je","taa","lo","nem","vis","eo","ops","tre","er","sut","sur","nes","mir","ve","heil","'po","'tlas","'nio","te","tot","klo","eg","uy","ha","se","'na","'Phlo","tes"]
+const endPhoneme = ["den","slon","sion","erg","rel","it","ok","ak","ic","is","'in","ut","'ret","as","eras","in","iot","uet"]
+const space = " "
+const lastName = ["Crystalwind","Waters","Fields","Snow","Ironhammer", "Pureheart", "the Brave", "the Wave Caller", "Bluewind", "Tarly", "the Tepid", "Aura", "Blackheart", "'Tazra", "Nowell", "Reznor", "Wolfheart", "Azkanbee", "Potts", "Burley", "Kettleblack", "Silverfish", "of the Vale", "Eversleep", "Nightwatcher", "the Stalker", "Tash", "the Sassy", "Glitter", "Stormsteel", "Beerdrinker", "Ragecleaver", "Hills", "Glory", "the Peacebringer", "Earthbloom", "Cloudstrength", "Skullriver", "Prime", "Fury", "Proudbasher", "Bonepunch", "Greenroot", "Battleglade", "Stonewind", "Flint", "Flatgust", "Monsterward", "Fistgloom", "of the Moon", "Cheerheart", "Moltenglaze", "Trueflower", "Rumblemourn", "the Snakefriend", "Bladetaker", "Honorbrought", "Everbend", "Strongdust", "Sacredheart", "Johnson", "the Burly"]
 
-const MIN_LENGTH = 3
-const MAX_LENGTH = 7
-const LETTERS = {
-  'VOYELLE': ['a', 'e', 'a', 'e', 'i', 'o', 'o', 'a', 'e', 'a', 'e', 'i', 'a', 'e', 'a', 'e', 'i', 'o', 'o', 'a', 'e', 'a', 'e', 'i', 'y'],
-  'DOUBLE_VOYELLE': ['oi', 'ai', 'ou', 'ei', 'ae', 'eu', 'ie', 'ea'],
-
-  'CONSONNE': ['b', 'c', 'c', 'd', 'f', 'g', 'h', 'j', 'l', 'm', 'n', 'n', 'p', 'r', 'r', 's', 't', 's', 't', 'b', 'c', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'n', 'p', 'r', 'r', 's', 't', 's', 't', 'v', 'w', 'x', 'z'],
-  'DOUBLE_CONSONNE': ['mm', 'nn', 'st', 'ch', 'll', 'tt', 'ss'],
-
-  'COMPOSE': ['qu', 'gu', 'cc', 'sc', 'tr', 'fr', 'pr', 'br', 'cr', 'ch', 'll', 'tt', 'ss', 'gn']
-}
-
-const TRANSITION = {
-  'INITIAL': ['VOYELLE', 'CONSONNE', 'COMPOSE'],
-  'VOYELLE': ['CONSONNE', 'DOUBLE_CONSONNE', 'COMPOSE'],
-  'DOUBLE_VOYELLE': ['CONSONNE', 'DOUBLE_CONSONNE', 'COMPOSE'],
-  
-  'CONSONNE': ['VOYELLE', 'DOUBLE_VOYELLE'],
-  'DOUBLE_CONSONNE': ['VOYELLE', 'DOUBLE_VOYELLE'],
-
-  'COMPOSE': ['VOYELLE']
-}
-
-static func pick_random_number(max_value, min_value=0):
-  randomize()
-
-  return round(randi() % (max_value - min_value) + min_value)
-
-static func clone_array(original):
-  var result = []
-
-  for item in original:
-    result.append(item)
-
-  return result
-
-static func get_letter(state, last_letter, max_length):
-  var transitions = clone_array(TRANSITION[state])
-
-  if max_length < 3:
-    transitions.erase('COMPOSE')
-    transitions.erase('DOUBLE_CONSONNE')
-    transitions.erase('DOUBLE_VOYELLE')
-
-  var state_index = pick_random_number(transitions.size())
-
-  state = transitions[state_index]
-
-  var letters_list = LETTERS[state]
-  var letter_index = pick_random_number(letters_list.size())
-
-  return [state, letters_list[letter_index]]
-
-static func generate(min_length=MIN_LENGTH, max_length=MAX_LENGTH):
-  var length = pick_random_number(max_length, min_length)
-  var name = ''
-  var last_letter = ''
-  var index = 0
-  var state = 'INITIAL'
-
-  while index < length:
-    var obj = get_letter(state, last_letter, index - length)
-
-    state = obj[0]
-    last_letter = obj[1]
-
-    name += last_letter
-    index += last_letter.length()
-
-  return name.capitalize()
+static func generate():
+	var startRand = round(rand_range(0, startPhoneme.size() - 1))
+	var middleRand = round(rand_range(0, middlePhoneme.size() - 1))
+	var endRand = round(rand_range(0, endPhoneme.size() - 1))
+	var lastRand = round(rand_range(0, lastName.size() - 1))
+	var completeName = startPhoneme[startRand] + middlePhoneme[middleRand] + endPhoneme[endRand] + space + lastName[lastRand]
+  	
+	return completeName
 
 func _ready():
 	# Called when the node is added to the scene for the first time.

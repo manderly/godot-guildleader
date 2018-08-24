@@ -13,7 +13,7 @@ func generate(destinationArray):
 	var newHero = {}
 	
 	#random name
-	newHero.heroName = nameGenerator.generate(3, 6) + " " + nameGenerator.generate(3, 9)
+	newHero.heroName = nameGenerator.generate()
 	
 	#random class
 	var randomNumber = randi()%3+1

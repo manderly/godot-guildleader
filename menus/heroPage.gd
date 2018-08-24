@@ -98,7 +98,8 @@ func _on_button_train_pressed():
 				var findMe = global.selectedHero
 				var index = global.unrecruited.find(findMe)
 				global.unrecruited.remove(index)
-
+			else:
+				print("heroPage.gd: ERROR REMOVING HERO FROM UNRECRUITED ARRAY")
 
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/roster.tscn")
