@@ -17,7 +17,7 @@
 [ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=15]
 [ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=16]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {

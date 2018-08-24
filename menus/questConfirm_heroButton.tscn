@@ -2,13 +2,13 @@
 
 [ext_resource path="res://menus/questConfirm_heroButton.gd" type="Script" id=1]
 
-[node name="Button" type="Button" index="0"]
+[node name="Button" type="Button"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 98.0
+margin_right = 100.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 100, 105 )
 rect_pivot_offset = Vector2( 0, 0 )

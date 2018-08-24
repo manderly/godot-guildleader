@@ -1,6 +1,6 @@
 extends Node
 
-var nameGenerator = load("res://nameGenerator.gd").new()
+var heroGenerator = load("res://heroGenerator.gd").new()
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -35,43 +35,9 @@ func _ready():
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
 		var heroQuantity = 3
-
 		for i in range(heroQuantity):
-			#make new hero object
-			var newHero = {}
-			
-			#random name
-			newHero.heroName = nameGenerator.generate(3, 6) + " " + nameGenerator.generate(3, 9)
-			
-			#random class
-			var randomNumber = randi()%3+1
-			if randomNumber == 1:
-				newHero.heroClass = "Wizard"
-			elif randomNumber == 2:
-				newHero.heroClass = "Rogue"
-			else:
-				newHero.heroClass = "Warrior"
-	
-			#assign stats accordingly
-			newHero.hp = global.heroStartingStatData[newHero.heroClass]["hp"]
-			newHero.mana = global.heroStartingStatData[newHero.heroClass]["mana"]
-			newHero.dps = global.heroStartingStatData[newHero.heroClass]["dps"]
-			newHero.stamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
-			newHero.defense = global.heroStartingStatData[newHero.heroClass]["defense"]
-			newHero.intelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
-			newHero.drama = global.heroStartingStatData[newHero.heroClass]["drama"]
-			newHero.mood = global.heroStartingStatData[newHero.heroClass]["mood"]
-			newHero.prestige = global.heroStartingStatData[newHero.heroClass]["prestige"]
-			newHero.groupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
-			newHero.raidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
+			heroGenerator.generate() #returns nothing, just puts them in global.guildRoster 
 
-			newHero.level = 1
-			newHero.xp = 0
-			newHero.currentRoom = 1
-			newHero.available = true
-		
-			global.guildRoster.append(newHero)
-			
 		#verify they were generated 
 		print("Guild members are:")
 		for i in range(heroQuantity):
