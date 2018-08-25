@@ -3,6 +3,11 @@ extends Node2D
 func _ready():
 	populate_fields(global.selectedHero)
 	
+	#hide dismiss and rename buttons if this hero isn't a recruited hero
+	if (!global.selectedHero.recruited):
+		$button_rename.hide()
+		$button_dismiss.hide()
+	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	for i in range(global.heroInventorySlots.size()):
 		var heroInventoryButton = preload("res://menus/heroPage_inventoryButton.tscn").instance()
