@@ -3,10 +3,10 @@ extends CanvasLayer
 signal start_game
 
 func update_currency(sc, hc):
-	var scField = $vbox_currencies/HBoxContainer/field_softCurrency
+	var scField = $vbox_currencies/HBoxContainer/sc_container/field_softCurrency
 	scField.text = str(sc)
 	
-	var hcField = $vbox_currencies/HBoxContainer/field_hardCurrency
+	var hcField = $vbox_currencies/HBoxContainer/hc_container/field_hardCurrency
 	hcField.text = str(hc)
 
 func _ready():

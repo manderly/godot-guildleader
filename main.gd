@@ -8,6 +8,8 @@ var mainRoomMaxX = 360
 var mainRoomMinY = 250
 var mainRoomMaxY = 410
 
+var questTimeLeft = -1
+
 func _ready():
 	global.currentMenu = "main"
 	randomize()
@@ -69,6 +71,10 @@ func _on_Roster_pressed():
 	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
 
+func _process(delta):
+	if (global.questActive):
+		$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))	
+	
 func draw_heroes():
 	var heroX = -1
 	var heroY = -1

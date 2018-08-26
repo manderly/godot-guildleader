@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coin_stack.png-0df07d612e1582334e6f44f103c2f707.stex"
+path="res://.import/up_arrow.png-e18ad4e386ee4f5026c228149e8efa79.stex"
 
 [deps]
 
-source_file="res://gui/icons/coin_stack.png"
-dest_files=[ "res://.import/coin_stack.png-0df07d612e1582334e6f44f103c2f707.stex" ]
+source_file="res://gui/icons/up_arrow.png"
+dest_files=[ "res://.import/up_arrow.png-e18ad4e386ee4f5026c228149e8efa79.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

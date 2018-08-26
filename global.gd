@@ -13,6 +13,7 @@ var guildRoster = []
 var unrecruited = []
 
 #active quest
+var questTimer = null
 var currentQuest = null
 var questHeroes = [null, null, null, null, null, null]
 var questHeroesPicked = 0 #workaround for having to declare the array at-size 
@@ -75,7 +76,7 @@ func _begin_global_quest_timer(duration):
 		#emit_signal("quest_begun", currentQuest.name)
 		questActive = true
 		questReadyToCollect = false
-		var questTimer = Timer.new()
+		questTimer = Timer.new()
 		questTimer.set_one_shot(true)
 		questTimer.set_wait_time(duration)
 		questTimer.connect("timeout", self, "_on_questTimer_timeout")
