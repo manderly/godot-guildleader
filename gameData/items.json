@@ -1,6 +1,7 @@
 [
   {
     "name": "Rusty Broadsword",
+    "icon": "sword2.png",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -19,6 +20,7 @@
   },
   {
     "name": "Rusty Knife",
+    "icon": "dagger1.png",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -37,6 +39,7 @@
   },
   {
     "name": "Rusty Old Shield",
+    "icon": "shield1.png",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -55,6 +58,7 @@
   },
   {
     "name": "Cracked Staff",
+    "icon": "crackedstaff.png",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -73,6 +77,7 @@
   },
   {
     "name": "Chainmail Vest",
+    "icon": "chest_chainmail1.png",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -91,6 +96,7 @@
   },
   {
     "name": "Chainmail Leggings",
+    "icon": "legs_chainmail1.png",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -109,6 +115,7 @@
   },
   {
     "name": "Chainmail Boots",
+    "icon": "feet_chainmail1.png",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -127,6 +134,7 @@
   },
   {
     "name": "Chainmail Coif",
+    "icon": "head_chainmail1.png",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -145,6 +153,7 @@
   },
   {
     "name": "Simple Ring",
+    "icon": "ring1.png",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
@@ -163,6 +172,7 @@
   },
   {
     "name": "Simple Earring",
+    "icon": "earring1.png",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
@@ -181,6 +191,7 @@
   },
   {
     "name": "Basic Bow",
+    "icon": "bow1.png",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -199,6 +210,7 @@
   },
   {
     "name": "Cloth Shirt",
+    "icon": "chest_cloth1.png",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -217,6 +229,7 @@
   },
   {
     "name": "Cloth Pants",
+    "icon": "legs_cloth1.png",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -235,6 +248,7 @@
   },
   {
     "name": "Shabby Robe",
+    "icon": "robe2.png",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -253,6 +267,7 @@
   },
   {
     "name": "Simple Grey Robe",
+    "icon": "robe5.png",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -271,6 +286,7 @@
   },
   {
     "name": "Blue Cotton Robe",
+    "icon": "robe1.png",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -289,6 +305,7 @@
   },
   {
     "name": "Sparkling Metallic Robe",
+    "icon": "robe3.png",
     "prestige": 5,
     "slot": "chest",
     "rarity": "uncommon",
@@ -307,6 +324,7 @@
   },
   {
     "name": "Robe of Eternity",
+    "icon": "robe4.png",
     "prestige": 10,
     "slot": "chest",
     "rarity": "epic",
@@ -325,6 +343,7 @@
   },
   {
     "name": "Tzip's Crooked Dagger",
+    "icon": "dagger2.png",
     "prestige": 5,
     "slot": "mainHand",
     "rarity": "rare",

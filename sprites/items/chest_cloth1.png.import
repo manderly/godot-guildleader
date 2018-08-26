@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex"
+path="res://.import/chest_cloth1.png-7e095fb06e5fb4372853988d2e31b3ec.stex"
 
 [deps]
 
-source_file="res://gui/sprite_inventory_button.png"
-dest_files=[ "res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex" ]
+source_file="res://sprites/items/chest_cloth1.png"
+dest_files=[ "res://.import/chest_cloth1.png-7e095fb06e5fb4372853988d2e31b3ec.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

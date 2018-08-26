@@ -66,11 +66,15 @@ func _ready():
 func _on_Quests_pressed():
 	global.currentMenu = "quests"
 	get_tree().change_scene("res://menus/questSelect.tscn");
+
+func _on_Vault_pressed():
+	global.currentMenu = "vault"
+	get_tree().change_scene("res://menus/vault.tscn");
 	
 func _on_Roster_pressed():
 	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
-
+	
 func _process(delta):
 	if (global.questActive):
 		$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))	
@@ -107,3 +111,5 @@ func _on_button_collectQuest_pressed():
 
 func _on_button_addRoom_pressed():
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")
+
+

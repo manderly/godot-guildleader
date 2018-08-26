@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex"
+path="res://.import/ring1.png-93c00c8c7259138bf00e6fb7cb062ed1.stex"
 
 [deps]
 
-source_file="res://gui/sprite_inventory_button.png"
-dest_files=[ "res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex" ]
+source_file="res://sprites/items/ring1.png"
+dest_files=[ "res://.import/ring1.png-93c00c8c7259138bf00e6fb7cb062ed1.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

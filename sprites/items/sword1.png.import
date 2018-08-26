@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex"
+path="res://.import/sword1.png-943a82357382d51e750b1f55e491480c.stex"
 
 [deps]
 
-source_file="res://gui/sprite_inventory_button.png"
-dest_files=[ "res://.import/sprite_inventory_button.png-28b67fc07e212ebf773f11bf61f8c444.stex" ]
+source_file="res://sprites/items/sword1.png"
+dest_files=[ "res://.import/sword1.png-943a82357382d51e750b1f55e491480c.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
