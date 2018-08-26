@@ -4,7 +4,7 @@ extends Node
 func _ready():
 	#Load quest data (todo: this should probably be done once in the global file) 
 	var file = File.new()
-	file.open("res://gameData/Quests.json", file.READ)
+	file.open("res://gameData/quests.json", file.READ)
 	var quest_data = parse_json(file.get_as_text())
 	file.close()
 	

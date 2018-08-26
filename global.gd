@@ -32,6 +32,7 @@ var heroStartingStatData = null #from json
 var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
 var roomTypeData = null
+var itemData = null
 
 #rooms
 onready var bedroomScene = preload("res://rooms/bedroom.tscn")
@@ -44,6 +45,10 @@ var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 10
 
 #signal quest_begun
 signal quest_complete
+
+#items
+var allGameItems = {}
+var guildItems = []
 
 func _ready():
 	#Load room type data and save it to a global var
@@ -69,6 +74,29 @@ func _ready():
 	#access an individual class's stats like this: 
 	#print(str(heroStartingStatData[0].rogue)) 
 	#print(str(heroStartingStatData[0]["rogue"]["defense"]))
+	
+	#Load game item data
+	var itemsFile = File.new()
+	itemsFile.open("res://gameData/items.json", itemsFile.READ)
+	itemData = parse_json(itemsFile.get_as_text())
+	itemsFile.close()
+	var itemKey = null #a string, ie: "Rusty Broadsword"
+	var itemValue = null #another dictionary, ie: {dps:4, str:5}
+	
+	#want to be able to access like: 
+	#var item = find("Rusty Broadsword")
+	#then access stats like: item.dps, item.str etc by name 
+	#["Rusty Broadsword"]["dps"]
+	for i in range(itemData.size()):
+		itemKey = itemData[i]["name"]
+		itemValue = itemData[i]
+		global.allGameItems[itemKey] = itemValue
+		#print(global.items)	
+	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))
+	
+	#for now, start the user off with some items (visible in the vault)
+	global.guildItems.append(global.allGameItems["Rusty Broadsword"])
+	global.guildItems.append(global.allGameItems["Blue Cotton Robe"])
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
