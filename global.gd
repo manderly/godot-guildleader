@@ -4,6 +4,7 @@ extends Node
 var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
+var vaultSpace = 18 #should be a multiple of 6
 
 var nextHeroID = 100
 
@@ -97,6 +98,18 @@ func _ready():
 	#for now, start the user off with some items (visible in the vault)
 	global.guildItems.append(global.allGameItems["Rusty Broadsword"])
 	global.guildItems.append(global.allGameItems["Blue Cotton Robe"])
+	
+	#here's a ton more
+	global.guildItems.append(global.allGameItems["Basic Bow"])
+	global.guildItems.append(global.allGameItems["Simple Ring"])
+	global.guildItems.append(global.allGameItems["Rusty Knife"])
+	global.guildItems.append(global.allGameItems["Rusty Old Shield"])
+	global.guildItems.append(global.allGameItems["Chainmail Boots"])
+	global.guildItems.append(global.allGameItems["Chainmail Coif"])
+	global.guildItems.append(global.allGameItems["Shabby Robe"])
+	global.guildItems.append(global.allGameItems["Simple Grey Robe"])
+	global.guildItems.append(global.allGameItems["Cloth Shirt"])
+
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
