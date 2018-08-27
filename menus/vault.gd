@@ -8,7 +8,7 @@ var currentRow = 1
 
 func _ready():
 	#hbox.add_constant_override("separation", 4)
-	print("GUILD INVENTORY:")
+	#print("GUILD INVENTORY:")
 	
 	#print inventory size and capacity
 	$field_guildInventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
@@ -20,7 +20,7 @@ func _ready():
 	for i in range(global.guildItems.size()):
 		#if row is full, increase hbox number by 1 so items continue to draw one row lower
 		if (itemsInCurrentRow == itemsPerRow):
-			print("ROW FULL")
+			#print("ROW FULL")
 			currentRow += 1
 			itemsInCurrentRow = 0
 		
@@ -39,7 +39,7 @@ func _ready():
 		elif (currentRow == 5):
 			$hbox5.add_child(itemButton)
 			
-		print(global.guildItems[i])
+		#print(global.guildItems[i])
 		itemsInCurrentRow += 1
 	
 	#finish the row with empty boxes

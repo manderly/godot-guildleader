@@ -30,7 +30,8 @@ func _on_button_collectRewards_pressed():
 	#COLLECT coins, xp, inventory items into player's real inventory
 	global.softCurrency += global.questPrizeSC
 	global.hardCurrency += global.questPrizeHC
-	#todo: item system
+	#we have the item's name, now get its actual entity and give it to the guildItems array 
+	global.guildItems.append(global.allGameItems[global.questPrizeItem1])
 	
 	#give xp to each hero in quest list, set status back to available, clear them out of the quest array
 	for i in range(global.questHeroes.size()):

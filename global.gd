@@ -92,7 +92,7 @@ func _ready():
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
 		global.allGameItems[itemKey] = itemValue
-		#print(global.items)	
+		#print(global.items)
 	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))
 	
 	#for now, start the user off with some items (visible in the vault)
@@ -127,12 +127,16 @@ func _begin_global_quest_timer(duration):
 		print("error: quest already running")
 	
 func _on_questTimer_timeout():
+	#this is where the quest's random prizes are determined 
 	print("Quest timer complete! Finished this quest: " + currentQuest.name)
 	questActive = false
 	questReadyToCollect = true
 	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
 	questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
-	questPrizeItem1 = "none" #todo: item system
+	#this is just its NAME, not the item itself 
+	questPrizeItem1 = currentQuest.item1 #todo: random chance to win this item, not guaranteed
 	questPrizeItem2 = "none"
+	#now in questComplete.gd, we access these vars as global vars such as:
+	#global.questPrizeItem1 
 	emit_signal("quest_complete", currentQuest.name)
 

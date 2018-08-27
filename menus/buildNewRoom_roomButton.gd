@@ -8,8 +8,6 @@ func _ready():
 func set_button_fields(data):
 	$field_description.text = data.description
 	$field_name.text = data.name
-	
-	
 
 func _on_button_buildRoom_pressed():
 	#deduct the cost (if you can afford it)
