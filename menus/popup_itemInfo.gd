@@ -4,6 +4,8 @@ extends WindowDialog
 var itemData = null
 var vaultIndex = -1
 
+signal item_deleted
+
 func _ready():
 	pass
 
@@ -27,6 +29,7 @@ func _populate_fields():
 
 func _on_button_trash_pressed():
 	print("trashing this item: " + itemData.name)
+	emit_signal("item_deleted")
 	#todo: this might need to distinguish between whether we're on the hero page or the vault
 	if (global.currentMenu == "heroPage"):
 		#the current hero is available globally, so get at the item that way
@@ -34,7 +37,6 @@ func _on_button_trash_pressed():
 		if (global.selectedHero["equipment"][itemData.slot] != null):
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
-			self.hide()
 			#heroInventoryButton._clear_icon() 
 			#heroInventoryButton._clear_data()
 	elif (global.currentMenu == "vault"):
@@ -42,6 +44,7 @@ func _on_button_trash_pressed():
 		if (global.guildItems[vaultIndex]):
 			#print("gonna delete this: " + str(global.guildItems[vaultIndex]))
 			global.guildItems[vaultIndex] = null
+	self.hide()
 
 func _on_button_moveItemToVault_pressed():
 	print("moving this item to the vault: " + itemData.name)

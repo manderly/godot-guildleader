@@ -4,7 +4,7 @@
 [ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=2]
 [ext_resource path="res://gui/icons/diamond.png" type="Texture" id=3]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 

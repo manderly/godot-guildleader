@@ -5,24 +5,33 @@ var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
 
 func _ready():
-	#todo: use some math to center it 
+	#todo: use some math to center it
+	itemPopup.connect("item_deleted", self, "deleted_callback")
 	add_child(itemPopup)
 
+func deleted_callback():
+	if (global.currentMenu == "vault"):
+		_clear_label()
+	_clear_data()
+	_clear_icon()
+	
 func _set_vault_index(idx):
 	itemVaultIndex = idx
 
 func _set_label(inventorySlotName):
 	$field_slotName.text = inventorySlotName
 
+func _clear_label():
+	$field_slotName.text = ""
+	
 func _set_icon(filename):
 	$sprite_itemIcon.texture = load("res://sprites/items/" + filename)
 
-#item data comes in here
-func _set_data(data):
-	itemData = data
-	
 func _clear_icon():
 	$sprite_itemIcon.texture = null
+	
+func _set_data(data):
+	itemData = data
 	
 func _clear_data():
 	itemData = null

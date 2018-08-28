@@ -3,7 +3,6 @@
 [ext_resource path="res://gui/sprite_inventory_button.png" type="Texture" id=1]
 [ext_resource path="res://menus/itemButton.gd" type="Script" id=2]
 
-
 [sub_resource type="StyleBoxTexture" id=1]
 
 content_margin_left = -1.0
@@ -24,7 +23,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Button" type="Button" index="0"]
+[node name="Button" type="Button"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -67,7 +66,6 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "SLOT"
 align = 1
 valign = 1
 percent_visible = 1.0
