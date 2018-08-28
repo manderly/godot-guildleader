@@ -43,5 +43,6 @@ func _on_Button_pressed():
 		itemPopup._set_data(itemData)
 		itemPopup._set_vault_index(itemVaultIndex)
 		itemPopup.popup()
-	else:  
+	else:
+		global.currentMenu = "vaultViaHeroPage"
 		get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type 

@@ -10,13 +10,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 3,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Rusty Knife",
@@ -24,18 +23,17 @@
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
-    "classRestriction": "",
+    "classRestriction": "ANY",
     "noDrop": false,
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 1,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Rusty Old Shield",
@@ -48,13 +46,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 2,
-    "defense": 1,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 1,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Cracked Staff",
@@ -67,13 +64,12 @@
     "hpRaw": 0,
     "manaRaw": 2,
     "dps": 0,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Chainmail Vest",
@@ -86,13 +82,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 3,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Chainmail Leggings",
@@ -105,13 +100,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 3,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Chainmail Boots",
@@ -124,13 +118,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 3,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Chainmail Coif",
@@ -143,13 +136,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 2,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Simple Ring",
@@ -157,18 +149,17 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction": "",
+    "classRestriction": "ANY",
     "noDrop": false,
     "hpRaw": 2,
     "manaRaw": 2,
     "dps": 0,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Simple Earring",
@@ -176,18 +167,17 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction": "",
+    "classRestriction": "ANY",
     "noDrop": false,
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 1,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Basic Bow",
@@ -200,13 +190,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 3,
-    "strength": 0,
     "armor": 0,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Cloth Shirt",
@@ -214,18 +203,17 @@
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
-    "classRestriction": "",
+    "classRestriction": "ANY",
     "noDrop": false,
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 1,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Cloth Pants",
@@ -233,18 +221,17 @@
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
-    "classRestriction": "",
+    "classRestriction": "ANY",
     "noDrop": false,
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 1,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Shabby Robe",
@@ -257,13 +244,12 @@
     "hpRaw": 0,
     "manaRaw": 5,
     "dps": 0,
-    "strength": 0,
     "armor": 2,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Simple Grey Robe",
@@ -276,13 +262,12 @@
     "hpRaw": 0,
     "manaRaw": 0,
     "dps": 0,
-    "strength": 0,
     "armor": 2,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 5,
-    "wisdom": 0
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Blue Cotton Robe",
@@ -295,13 +280,12 @@
     "hpRaw": 5,
     "manaRaw": 5,
     "dps": 0,
-    "strength": 0,
     "armor": 3,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 0,
+    "defense": 0,
     "intelligence": 2,
-    "wisdom": 2
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Sparkling Metallic Robe",
@@ -314,13 +298,12 @@
     "hpRaw": 25,
     "manaRaw": 50,
     "dps": 0,
-    "strength": 0,
     "armor": 10,
-    "defense": 0,
-    "accuracy": 0,
     "stamina": 2,
+    "defense": 0,
     "intelligence": 10,
-    "wisdom": 10
+    "strength": 0,
+    "accuracy": 0
   },
   {
     "name": "Robe of Eternity",
@@ -333,13 +316,12 @@
     "hpRaw": 50,
     "manaRaw": 100,
     "dps": 0,
-    "strength": 0,
     "armor": 15,
-    "defense": 5,
-    "accuracy": 5,
     "stamina": 5,
+    "defense": 5,
     "intelligence": 25,
-    "wisdom": 25
+    "strength": 0,
+    "accuracy": 5
   },
   {
     "name": "Tzip's Crooked Dagger",
@@ -352,12 +334,11 @@
     "hpRaw": 25,
     "manaRaw": 0,
     "dps": 15,
-    "strength": 5,
     "armor": 0,
-    "defense": 3,
-    "accuracy": 3,
     "stamina": 3,
+    "defense": 3,
     "intelligence": 0,
-    "wisdom": 0
+    "strength": 5,
+    "accuracy": 3
   }
 ]

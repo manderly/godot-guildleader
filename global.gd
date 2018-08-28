@@ -108,6 +108,7 @@ func _ready():
 	global.guildItems.append(global.allGameItems["Shabby Robe"])
 	global.guildItems.append(global.allGameItems["Simple Grey Robe"])
 	global.guildItems.append(global.allGameItems["Cloth Shirt"])
+	global.guildItems.append(global.allGameItems["Robe of Eternity"])
 
 	
 func _begin_global_quest_timer(duration):
