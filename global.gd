@@ -30,7 +30,6 @@ var questPrizeItem2 = "none"
 var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
-var heroInventorySlots = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
 var roomTypeData = null
 var itemData = null

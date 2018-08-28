@@ -37,11 +37,27 @@ func generate(destinationArray):
 	newHero.groupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
 	newHero.raidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
 
+
 	#other aspects of a hero 
 	newHero.available = true
 	newHero.level = 1
 	newHero.xp = 0
 	
+	#let's give this hero a sword (just for now, to see if it works)
+	#todo idea: a separate script file for handling the creation/awarding/removing of items 
+	newHero.equipment = {
+		"mainHand": null,
+		"offHand": null,
+		"jewelry": null,
+		"unknown": null,
+		"head": null,
+		"chest": null,
+		"legs": null,
+		"feet": null
+	} 
+	
+	newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
+
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
 		newHero.recruited = true #false by default 

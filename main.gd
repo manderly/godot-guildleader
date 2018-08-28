@@ -46,16 +46,15 @@ func _ready():
 			heroGenerator.generate(global.unrecruited)
 			
 		#verify they were generated 
-		print("Guild members are:")
-		for i in range(heroQuantity):
-			print(global.guildRoster[i])
-			print("")
+		#print("Guild members are:")
+		#for i in range(heroQuantity):
+			#print(global.guildRoster[i])
+			#print("")
 		
-		print("Unrecruited peeps are:")
-		for i in range(unrecruitedQuantity):
-			print(global.unrecruited[i].heroName)
+		#print("Unrecruited peeps are:")
+		#for i in range(unrecruitedQuantity):
+			#print(global.unrecruited[i].heroName)
 			
-
 		global.initDone = true
 		#use the hero data to create individual hero scene instances
 		draw_heroes()
@@ -76,8 +75,17 @@ func _on_Roster_pressed():
 	get_tree().change_scene("res://menus/roster.tscn");
 	
 func _process(delta):
-	if (global.questActive):
-		$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))	
+	#Displays how much time is left on the active quest 
+	if (global.questActive && !global.questReadyToCollect):
+		if (global.questTimer.time_left < 60):
+			$HUD/button_collectQuest/field_questCountdown.set_text("< 1m")
+			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
+		else:
+			$HUD/button_collectQuest/field_questCountdown.set_text("Long time")
+	elif (!global.questActive && global.questReadyToCollect):
+		$HUD/button_collectQuest/field_questCountdown.set_text("DONE!")
+	else:
+		$HUD/button_collectQuest/field_questCountdown.set_text("ERR!")
 	
 func draw_heroes():
 	var heroX = -1

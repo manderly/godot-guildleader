@@ -15,7 +15,7 @@ func _on_button_buildRoom_pressed():
 		global.softCurrency -= global.newRoomCost[global.roomCount]
 		#add the new room to the global room array
 		global.roomOrder.insert(global.roomCount, global.placeholderRoomScene) #second from last so the roof end piece is intact
-		global.roomCount += 1 #can't just re-get the size, it stays stale at 3
+		global.roomCount += 1 #can't just re-get the global size, it stays stale at 3
 		print("global.roomOrder.size() should go up by 1: " + str(global.roomOrder.size()))
 		#return to main room
 		get_tree().change_scene("res://main.tscn");

@@ -1,5 +1,9 @@
 extends Node2D
-#heroPage.gd 
+#heroPage.gd
+
+var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
+var heroEquipmentSlotNames = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
+
 func _ready():
 	populate_fields(global.selectedHero)
 	
@@ -9,15 +13,29 @@ func _ready():
 		$button_dismiss.hide()
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
-	for i in range(global.heroInventorySlots.size()):
+	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
+	print(global.selectedHero["equipment"]["mainHand"])
+	
+	#Create the inventory (equipment) buttons 
+	var slot = null
+	for i in range(heroEquipmentSlots.size()):
+		slot = heroEquipmentSlots[i]
+		
 		var heroInventoryButton = preload("res://menus/heroPage_inventoryButton.tscn").instance()
-		heroInventoryButton.set_label(global.heroInventorySlots[i])
-		#heroInventoryButton.set_position(Vector2(buttonX, buttonY))
+		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
+		
+		#only set icon if the hero actually has an item in this slot, otherwise empty
+		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
+		if (global.selectedHero["equipment"][slot] != null):
+			print("this hero has an item in their slot: " + slot)
+			print(global.selectedHero["equipment"][slot])
+			heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
+			heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
+		
 		if (i < 4):
 			$hbox_items.add_child(heroInventoryButton)
 		else:
 			$hbox_items2.add_child(heroInventoryButton)
-		#todo: later, expand this to show the actual item owned by this hero for this slot 
 		
 	#for each stat, make an instance and pass the data into it 
 	#LEFT SIDE

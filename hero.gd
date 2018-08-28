@@ -1,17 +1,44 @@
 extends KinematicBody2D
 
-var heroID = -1
+#Hero properties - not governed by external spreadsheet data
+#These are set when a hero is randomly generated in heroGenerator.gd 
+var heroID = -1 
 var heroName = "Default Name"
 var heroClass = "NONE"
 var level = -1
 var xp = -1
-var hp = -1
-var mana = -1
-
 var currentRoom = 0 #outside by default
 var available = true
 var recruited = false
 
+#Hero properties from external spreadsheet data
+#These are set when a hero is randomly generated in heroGenerator.gd 
+var hp = -1
+var mana = -1
+var dps = -1
+var stamina = -1
+var defense = -1
+var intelligence = -1
+var drama = -1
+var mood = -1
+var prestige = -1
+var groupBonus = "none"
+var raidBonus = "none"
+
+#This hero's items (equipment)
+#to access: heroInstance.equipment.mainHand
+var equipment = {
+	"mainHand": null,
+	"offHand": null,
+	"jewelry": null,
+	"unknown": null,
+	"head": null,
+	"chest": null,
+	"legs": null,
+	"feet": null
+} 
+
+#Hero walking vars 
 var walkDestX = -1
 var walkDestY = -1
 var target = Vector2()
