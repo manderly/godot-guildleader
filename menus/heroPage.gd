@@ -21,7 +21,7 @@ func _ready():
 	for i in range(heroEquipmentSlots.size()):
 		slot = heroEquipmentSlots[i]
 		
-		var heroInventoryButton = preload("res://menus/heroPage_inventoryButton.tscn").instance()
+		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
 		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
 		
 		#only set icon if the hero actually has an item in this slot, otherwise empty

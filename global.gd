@@ -4,7 +4,7 @@ extends Node
 var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
-var vaultSpace = 18 #should be a multiple of 6
+var vaultSpace = 24 #should be a multiple of 6
 
 var nextHeroID = 100
 
