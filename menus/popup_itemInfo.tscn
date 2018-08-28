@@ -48,7 +48,7 @@ text = "TRASH"
 flat = false
 align = 1
 
-[node name="button_moveItem" type="Button" parent="." index="2"]
+[node name="button_moveItemToVault" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -158,5 +158,9 @@ text = "CLASSES:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[connection signal="pressed" from="button_trash" to="." method="_on_button_trash_pressed"]
+
+[connection signal="pressed" from="button_moveItemToVault" to="." method="_on_button_moveItemToVault_pressed"]
 
 

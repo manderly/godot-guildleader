@@ -17,6 +17,12 @@ func _set_icon(filename):
 #item data comes in here
 func _set_data(data):
 	itemData = data
+	
+func _clear_icon():
+	$sprite_itemIcon.texture = null
+	
+func _clear_data():
+	itemData = null
 
 func _on_Button_pressed():
 	#only show the item popup if there is an item, otherwise go to the vault 
