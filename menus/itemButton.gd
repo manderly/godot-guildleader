@@ -6,10 +6,10 @@ var itemVaultIndex = -1 #only needed when this button is used on the vault page
 
 func _ready():
 	#todo: use some math to center it
-	itemPopup.connect("item_deleted", self, "deleted_callback")
+	itemPopup.connect("itemDeletedOrMovedToVault", self, "deletedOrRemoved_callback")
 	add_child(itemPopup)
 
-func deleted_callback():
+func deletedOrRemoved_callback():
 	if (global.currentMenu == "vault"):
 		_clear_label()
 	_clear_data()

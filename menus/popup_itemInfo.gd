@@ -4,10 +4,11 @@ extends WindowDialog
 var itemData = null
 var vaultIndex = -1
 
-signal item_deleted
+signal itemDeletedOrMovedToVault
 
 func _ready():
-	pass
+	if (global.currentMenu == "vault"):
+		$button_moveItemToVault.hide()
 
 func _set_vault_index(idx):
 	vaultIndex = idx
@@ -28,8 +29,8 @@ func _populate_fields():
 	
 
 func _on_button_trash_pressed():
-	print("trashing this item: " + itemData.name)
-	emit_signal("item_deleted")
+	#print("trashing this item: " + itemData.name)
+	emit_signal("itemDeletedOrMovedToVault")
 	#todo: this might need to distinguish between whether we're on the hero page or the vault
 	if (global.currentMenu == "heroPage"):
 		#the current hero is available globally, so get at the item that way
@@ -47,7 +48,8 @@ func _on_button_trash_pressed():
 	self.hide()
 
 func _on_button_moveItemToVault_pressed():
-	print("moving this item to the vault: " + itemData.name)
+	#print("moving this item to the vault: " + itemData.name)
+	emit_signal("itemDeletedOrMovedToVault")
 	if (global.selectedHero["equipment"][itemData.slot] != null):
 		#this puts the item back into the global guild item array 
 		global.guildItems.append(global.selectedHero["equipment"][itemData.slot])

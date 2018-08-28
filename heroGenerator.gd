@@ -8,7 +8,7 @@ func _ready():
 
 #make new hero object
 func generate(destinationArray):
-	var newHero = {}
+	var newHero = load("res://hero.gd").new()
 	newHero.heroID = global.nextHeroID
 	global.nextHeroID += 1
 	
@@ -42,19 +42,6 @@ func generate(destinationArray):
 	newHero.available = true
 	newHero.level = 1
 	newHero.xp = 0
-	
-	#let's give this hero a sword (just for now, to see if it works)
-	#todo idea: a separate script file for handling the creation/awarding/removing of items 
-	newHero.equipment = {
-		"mainHand": null,
-		"offHand": null,
-		"jewelry": null,
-		"unknown": null,
-		"head": null,
-		"chest": null,
-		"legs": null,
-		"feet": null
-	} 
 	
 	newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
 
