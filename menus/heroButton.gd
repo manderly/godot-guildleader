@@ -38,6 +38,6 @@ func _on_Button_pressed():
 			global.questHeroesPicked += 1
 			get_tree().change_scene("res://menus/questConfirm.tscn")
 		else:
-			print("Hero not available")
+			global.logger(self, "Hero not available")
 	else:
 		print("FREAK OUT AND DO NOTHING!!")

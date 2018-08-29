@@ -58,7 +58,7 @@ func _ready():
 	var roomTypeFile = File.new()
 	roomTypeFile.open("res://gameData/roomTypes.json", roomTypeFile.READ)
 	roomTypeData = parse_json(roomTypeFile.get_as_text())
-	print(roomTypeData)
+	global.logger(self, roomTypeData)
 	roomTypeFile.close()
 	
 	#Load hero level data 
@@ -134,7 +134,7 @@ func _begin_global_quest_timer(duration):
 	
 func _on_questTimer_timeout():
 	#this is where the quest's random prizes are determined 
-	print("Quest timer complete! Finished this quest: " + currentQuest.name)
+	global.logger(self, "Quest timer complete! Finished this quest: " + currentQuest.name)
 	questActive = false
 	questReadyToCollect = true
 	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
@@ -146,3 +146,5 @@ func _on_questTimer_timeout():
 	#global.questPrizeItem1 
 	emit_signal("quest_complete", currentQuest.name)
 
+func logger(script, message):
+	print(script.get_name() + ": " + str(message))
