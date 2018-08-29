@@ -5,10 +5,11 @@ var itemData = null
 var vaultIndex = -1
 
 signal itemDeletedOrMovedToVault
+signal swappingItemWithAnother
 
 func _ready():
 	if (global.currentMenu == "vault"):
-		$button_moveItem.hide()
+		$button_moveItem.text = "Move"
 	elif (global.currentMenu == "heroPage"):
 		$button_moveItem.text = "Put in vault"
 	elif (global.currentMenu == "vaultViaHeroPage"):
@@ -82,32 +83,36 @@ func _on_button_trash_pressed():
 		if (global.selectedHero["equipment"][itemData.slot] != null):
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
-			#heroInventoryButton._clear_icon() 
-			#heroInventoryButton._clear_data()
 	elif (global.currentMenu == "vault"):
 		#here we have to pick it out of the global equipment array 
 		if (global.guildItems[vaultIndex]):
-			#print("gonna delete this: " + str(global.guildItems[vaultIndex]))
 			global.guildItems[vaultIndex] = null
 	self.hide()
 
 func _on_button_moveItem_pressed():
-	#this button moves an item to the vault or gives it to the currently selected hero
-	#depending on which menu the player came here from 
-	emit_signal("itemDeletedOrMovedToVault")
-	#the hero has an item in this slot: they are putting it into the vault 
-	if (global.selectedHero["equipment"][itemData.slot] != null):
-		#this puts the item back into the global guild item array 
-		global.guildItems.append(global.selectedHero["equipment"][itemData.slot])
-		#and nulls it out of the character's equipment slot 
-		global.selectedHero["equipment"][itemData.slot] = null
-		itemData = null
-		self.hide()
-	#the hero has no item in this slot: they are getting it from the vault
-	elif (global.selectedHero["equipment"][itemData.slot] == null):
-		#put it in the hero's equipment slot
-		global.selectedHero["equipment"][itemData.slot] = global.guildItems[vaultIndex]
-		global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
-		#go back to hero page
-		global.currentMenu = "heroPage"
-		get_tree().change_scene("res://menus/heroPage.tscn")  #todo: filter by item type 
+	if (global.currentMenu == "vault"):
+		#in an item swap in the vault, this is the code for the SOURCE item 
+		#it emits a signal caught by itemButton 
+		#but it also makes a record of its index so vault.gd can update the button art 
+		self.hide() #hide the popup
+		emit_signal("swappingItemWithAnother") #caught by itemButton.gd 
+	else:
+		#this button moves an item to the vault or gives it to the currently selected hero
+		#depending on which menu the player came here from 
+		emit_signal("itemDeletedOrMovedToVault")
+		#the hero has an item in this slot: they are putting it into the vault 
+		if (global.selectedHero["equipment"][itemData.slot] != null):
+			#this puts the item back into the global guild item array 
+			global.guildItems.append(global.selectedHero["equipment"][itemData.slot])
+			#and nulls it out of the character's equipment slot 
+			global.selectedHero["equipment"][itemData.slot] = null
+			itemData = null
+			self.hide()
+		#the hero has no item in this slot: they are getting it from the vault
+		elif (global.selectedHero["equipment"][itemData.slot] == null):
+			#put it in the hero's equipment slot
+			global.selectedHero["equipment"][itemData.slot] = global.guildItems[vaultIndex]
+			global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
+			#go back to hero page
+			global.currentMenu = "heroPage"
+			get_tree().change_scene("res://menus/heroPage.tscn")  #todo: filter by item type 

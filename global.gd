@@ -49,6 +49,9 @@ signal quest_complete
 #items
 var allGameItems = {}
 var guildItems = []
+var swapItemSourceIdx = null
+var inSwapItemState = false
+var lastItemButtonClicked = null
 
 func _ready():
 	#Load room type data and save it to a global var
@@ -100,15 +103,18 @@ func _ready():
 	
 	#here's a ton more
 	global.guildItems.append(global.allGameItems["Basic Bow"])
-	global.guildItems.append(global.allGameItems["Simple Ring"])
-	global.guildItems.append(global.allGameItems["Rusty Knife"])
-	global.guildItems.append(global.allGameItems["Rusty Old Shield"])
-	global.guildItems.append(global.allGameItems["Chainmail Boots"])
-	global.guildItems.append(global.allGameItems["Chainmail Coif"])
-	global.guildItems.append(global.allGameItems["Shabby Robe"])
-	global.guildItems.append(global.allGameItems["Simple Grey Robe"])
-	global.guildItems.append(global.allGameItems["Cloth Shirt"])
-	global.guildItems.append(global.allGameItems["Robe of Eternity"])
+	#global.guildItems.append(global.allGameItems["Simple Ring"])
+	#global.guildItems.append(global.allGameItems["Rusty Knife"])
+	#global.guildItems.append(global.allGameItems["Rusty Old Shield"])
+	#global.guildItems.append(global.allGameItems["Chainmail Boots"])
+	#global.guildItems.append(global.allGameItems["Chainmail Coif"])
+	#global.guildItems.append(global.allGameItems["Shabby Robe"])
+	#global.guildItems.append(global.allGameItems["Simple Grey Robe"])
+	#global.guildItems.append(global.allGameItems["Cloth Shirt"])
+	#global.guildItems.append(global.allGameItems["Robe of Eternity"])
+	
+	#since we can't init the guildItems array to the size of the vault...
+	global.guildItems.resize(vaultSpace)
 
 	
 func _begin_global_quest_timer(duration):
