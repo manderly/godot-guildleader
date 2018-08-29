@@ -1,10 +1,31 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/heroPage.gd" type="Script" id=1]
-[ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=2]
-[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=3]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=2]
+[ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=3]
+[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 192, 64 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
+
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -130,7 +151,7 @@ anchor_bottom = 0.0
 margin_left = 147.0
 margin_top = 108.0
 margin_right = 337.0
-margin_bottom = 178.0
+margin_bottom = 188.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -138,14 +159,16 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/normal = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "TRAIN"
-icon = ExtResource( 2 )
+icon = ExtResource( 3 )
 flat = false
 align = 1
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="button_back" type="Button" parent="." index="6"]
 
@@ -416,7 +439,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="confirm_instant_train" index="4"]
 
 position = Vector2( 140.7, 89.5623 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [connection signal="pressed" from="button_rename" to="." method="_on_button_rename_pressed"]
 

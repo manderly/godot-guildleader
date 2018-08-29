@@ -52,11 +52,12 @@ func _on_button_back_pressed():
 func _on_button_quickSort_pressed():
 	#sort the array such that nulls are last 
 	var start = 0
-	var end = global.guildItems.size() - 1
+	var end = global.vaultSpace - 1
 	var tmp = []
 	tmp.resize(global.vaultSpace)
 	
-	for i in range(global.guildItems.size()):
+	global.logger(self, "guild items size is now:" + str(global.guildItems.size()))
+	for i in range(global.vaultSpace):
 		if (global.guildItems[i] != null):
 			tmp[start] = global.guildItems[i]
 			start += 1
@@ -64,7 +65,7 @@ func _on_button_quickSort_pressed():
 			tmp[end] = global.guildItems[i]
 			end -= 1
 	
-	for i in range(global.guildItems.size()):
+	for i in range(global.vaultSpace):
 		global.guildItems[i] = tmp[i]
 	
 	_draw_vault_items()

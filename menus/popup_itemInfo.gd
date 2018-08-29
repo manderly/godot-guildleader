@@ -100,15 +100,20 @@ func _on_button_moveItem_pressed():
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
 		emit_signal("itemDeletedOrMovedToVault")
-		#the hero has an item in this slot: they are putting it into the vault 
+		
+		#Use case 1: player is moving this item from hero to vault
 		if (global.selectedHero["equipment"][itemData.slot] != null):
-			#this puts the item back into the global guild item array 
-			global.guildItems.append(global.selectedHero["equipment"][itemData.slot])
-			#and nulls it out of the character's equipment slot 
+			#todo: make sure the vault has room for it first 
+			for i in range(global.guildItems.size()):
+				if (global.guildItems[i] == null):
+					#finds first open null spot and puts the item there
+					global.guildItems[i] = global.selectedHero["equipment"][itemData.slot]
+					break
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
 			self.hide()
-		#the hero has no item in this slot: they are getting it from the vault
+			
+		#Use case 2: the player is moving this item from the vault to a hero 
 		elif (global.selectedHero["equipment"][itemData.slot] == null):
 			#put it in the hero's equipment slot
 			global.selectedHero["equipment"][itemData.slot] = global.guildItems[vaultIndex]
