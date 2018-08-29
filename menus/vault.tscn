@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/vault.gd" type="Script" id=1]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -49,83 +49,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="hbox1" type="HBoxContainer" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 120.0
-margin_right = 480.0
-margin_bottom = 184.0
-rect_min_size = Vector2( 480, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="hbox2" type="HBoxContainer" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 220.0
-margin_right = 480.0
-margin_bottom = 284.0
-rect_min_size = Vector2( 480, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="hbox3" type="HBoxContainer" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 320.0
-margin_right = 480.0
-margin_bottom = 384.0
-rect_min_size = Vector2( 480, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="hbox4" type="HBoxContainer" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 420.0
-margin_right = 480.0
-margin_bottom = 484.0
-rect_min_size = Vector2( 480, 64 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="button_back" type="Button" parent="." index="6"]
+[node name="button_back" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -150,7 +74,7 @@ text = "Back"
 flat = false
 align = 1
 
-[node name="button_quickSort" type="Button" parent="." index="7"]
+[node name="button_quickSort" type="Button" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -174,6 +98,27 @@ group = null
 text = "Quick Sort"
 flat = false
 align = 1
+
+[node name="grid" type="GridContainer" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 130.0
+margin_right = 480.0
+margin_bottom = 810.0
+rect_min_size = Vector2( 480, 680 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/vseparation = 100
+custom_constants/hseparation = 80
+columns = 6
+_sections_unfolded = [ "Margin", "Rect", "Size Flags", "custom_constants" ]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

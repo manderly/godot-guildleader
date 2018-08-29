@@ -1,4 +1,4 @@
-extends Button
+extends Control
 
 onready var itemPopup = preload("res://menus/popup_itemInfo.tscn").instance()
 var itemData = null
@@ -25,38 +25,41 @@ func swapState_callback():
 	
 func _set_vault_index(idx):
 	itemVaultIndex = idx
+	#display it in the corner for now 
+	$Button/field_vaultIdx.text = str(itemVaultIndex)
 
 func _set_label(inventorySlotName):
-	$field_slotName.text = inventorySlotName
+	$Button/field_slotName.text = inventorySlotName
 
 func _clear_label():
-	$field_slotName.text = ""
+	$Button/field_slotName.text = ""
 	
 func _set_icon(filename):
-	$sprite_itemIcon.texture = load("res://sprites/items/" + filename)
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + filename)
 
 func _clear_icon():
-	$sprite_itemIcon.texture = null
+	$Button/sprite_itemIcon.texture = null
 	
 func _set_data(data):
 	itemData = data
 	
 func _clear_data():
 	itemData = null
-	itemVaultIndex = -1
+	
+func _clear_vault_index():
+	itemVaultIndex = -1 #might not need this 
 
 func _on_Button_pressed():
+	#print("my vault index is: " + str(self.itemVaultIndex))
+	
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
+		
 		var destinationItem = global.guildItems[itemVaultIndex]
 		var sourceItem = global.guildItems[global.swapItemSourceIdx]
 		#perform the swap 
 		global.guildItems[itemVaultIndex] = sourceItem
 		global.guildItems[global.swapItemSourceIdx] = destinationItem
-		#update this button's data and icon
-		_set_data(global.guildItems[itemVaultIndex])
-		_set_icon(global.guildItems[itemVaultIndex].icon)
-		_set_label(global.guildItems[itemVaultIndex].slot)
 		global.inSwapItemState = false
 		#updating the source button's icon/label/etc has to be handled by the Vault parent,
 		#since this button (the destination at this point) has no idea what button that was
@@ -64,7 +67,7 @@ func _on_Button_pressed():
 	else:
 		#save a record of the previous button clicked for use in swapping items 
 		global.lastItemButtonClicked = self
-		print(global.lastItemButtonClicked)
+		#print(global.lastItemButtonClicked)
 		#only show the item popup if there is an item, otherwise go to the vault
 		if (itemData):
 			itemPopup._set_data(itemData)

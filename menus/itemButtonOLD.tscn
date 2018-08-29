@@ -23,20 +23,10 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Control" type="Control" index="0"]
+[node name="Node2D" type="Node2D"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Material", "Rect", "custom_styles" ]
 
 [node name="Button" type="Button" parent="." index="0"]
 
@@ -46,7 +36,6 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 70.0
 margin_bottom = 70.0
-rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -61,7 +50,7 @@ shortcut = null
 group = null
 flat = false
 align = 1
-_sections_unfolded = [ "Rect", "custom_styles" ]
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="field_slotName" type="Label" parent="Button" index="0"]
 
@@ -69,22 +58,24 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 70.0
-margin_right = 70.0
-margin_bottom = 84.0
+margin_top = 71.0
+margin_right = 63.0
+margin_bottom = 85.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
 [node name="sprite_itemIcon" type="Sprite" parent="Button" index="1"]
 
-position = Vector2( 30, 30 )
+position = Vector2( 30.5173, 31.8442 )
 
 [node name="field_vaultIdx" type="Label" parent="Button" index="2"]
 
@@ -92,14 +83,17 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = 9.0
+margin_top = -1.0
+margin_right = 39.0
+margin_bottom = 19.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+text = "123"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
