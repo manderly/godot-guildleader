@@ -27,8 +27,8 @@ func _ready():
 		#only set icon if the hero actually has an item in this slot, otherwise empty
 		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
 		if (global.selectedHero["equipment"][slot] != null):
-			print("this hero has an item in their slot: " + slot)
-			print(global.selectedHero["equipment"][slot])
+			#global.logger(self, "this hero has an item in their slot: " + slot)
+			#global.logger(self, global.selectedHero["equipment"][slot])
 			heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
 			heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
 		
