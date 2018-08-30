@@ -87,7 +87,7 @@ max_lines_visible = -1
 
 [node name="sprite_itemIcon" type="Sprite" parent="Button" index="1"]
 
-position = Vector2( 30, 30 )
+position = Vector2( 34.64, 35.4043 )
 
 [node name="field_vaultIdx" type="Label" parent="Button" index="2"]
 

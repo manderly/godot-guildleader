@@ -99,19 +99,27 @@ func _ready():
 	
 	#for now, start the user off with some items (visible in the vault)
 	global.guildItems.append(global.allGameItems["Rusty Broadsword"])
-	global.guildItems.append(global.allGameItems["Blue Cotton Robe"])
+	global.guildItems.append(global.allGameItems["Novice's Blade"])
+	global.guildItems.append(global.allGameItems["Sparkling Metallic Robe"])
 	
 	#here's a ton more
 	global.guildItems.append(global.allGameItems["Basic Bow"])
 	global.guildItems.append(global.allGameItems["Simple Ring"])
+	global.guildItems.append(global.allGameItems["Silver Ring"])
 	#global.guildItems.append(global.allGameItems["Rusty Knife"])
 	#global.guildItems.append(global.allGameItems["Rusty Old Shield"])
-	global.guildItems.append(global.allGameItems["Chainmail Boots"])
+	global.guildItems.append(global.allGameItems["Simple Chainmail Boots"])
 	#global.guildItems.append(global.allGameItems["Chainmail Coif"])
-	#global.guildItems.append(global.allGameItems["Shabby Robe"])
-	#global.guildItems.append(global.allGameItems["Simple Grey Robe"])
-	global.guildItems.append(global.allGameItems["Cloth Shirt"])
+	global.guildItems.append(global.allGameItems["Novice's Robe"])
+	global.guildItems.append(global.allGameItems["Simple Grey Robe"])
 	global.guildItems.append(global.allGameItems["Robe of Eternity"])
+	global.guildItems.append(global.allGameItems["Robe of Alexandra"])
+	global.guildItems.append(global.allGameItems["Cracked Wooden Buckler"])
+	global.guildItems.append(global.allGameItems["Crimson Staff"])
+	global.guildItems.append(global.allGameItems["Cloth Shirt"])
+	global.guildItems.append(global.allGameItems["Cloth Pants"])
+	global.guildItems.append(global.allGameItems["Cloth Headband"])
+	global.guildItems.append(global.allGameItems["Tiara of Knowledge"])
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)

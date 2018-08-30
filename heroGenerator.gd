@@ -19,10 +19,20 @@ func generate(destinationArray):
 	var randomNumber = randi()%3+1
 	if randomNumber == 1:
 		newHero.heroClass = "Wizard"
+		newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
+		newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
 	elif randomNumber == 2:
 		newHero.heroClass = "Rogue"
-	else:
+		newHero.equipment["mainHand"] = global.allGameItems["Rusty Knife"]
+		newHero.equipment["feet"] = global.allGameItems["Simple Chainmail Boots"]
+	elif randomNumber == 3:
 		newHero.heroClass = "Warrior"
+		newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
+		newHero.equipment["offHand"] = global.allGameItems["Reinforced Shield"]
+	else:
+		newHero.heroClass = "Ranger"
+		newHero.equipment["mainHand"] = global.allGameItems["Basic Bow"]
+		newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
 
 	#assign stats accordingly
 	newHero.hp = global.heroStartingStatData[newHero.heroClass]["hp"]
@@ -42,8 +52,7 @@ func generate(destinationArray):
 	newHero.available = true
 	newHero.level = 1
 	newHero.xp = 0
-	
-	newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
+
 
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
