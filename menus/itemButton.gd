@@ -71,7 +71,6 @@ func _on_Button_pressed():
 	else:
 		#save a record of the previous button clicked for use in swapping items 
 		global.lastItemButtonClicked = self
-		#print(global.lastItemButtonClicked)
 		#only show the item popup if there is an item, otherwise go to the vault
 		if (itemData):
 			itemPopup._set_data(itemData)
@@ -80,4 +79,5 @@ func _on_Button_pressed():
 		else:
 			if (global.currentMenu == "heroPage"):
 				global.currentMenu = "vaultViaHeroPage"
+				global.filterVaultByItemSlot = "jewelry"
 				get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type 

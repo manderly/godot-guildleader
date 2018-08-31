@@ -1,6 +1,48 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/questSelect.gd" type="Script" id=1]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=2]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 192, 64 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
+
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 128, 64 )
+margin_left = 22.0
+margin_right = 22.0
+margin_top = 18.0
+margin_bottom = 18.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Expand Margin", "Margin" ]
 
 [node name="questSelect" type="Node"]
 
@@ -23,6 +65,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/normal = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -30,6 +73,7 @@ group = null
 text = "Back"
 flat = false
 align = 1
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="Label" type="Label" parent="." index="1"]
 
@@ -37,21 +81,27 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 83.0
-margin_top = 34.0
-margin_right = 398.0
-margin_bottom = 95.0
+margin_left = 146.0
+margin_top = 20.0
+margin_right = 353.0
+margin_bottom = 76.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Available Quests"
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.21875, 0.144703, 0.0170898, 1 )
+text = "CHOOSE A QUEST"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

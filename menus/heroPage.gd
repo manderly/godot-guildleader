@@ -43,11 +43,8 @@ func _ready():
 			#global.logger(self, global.selectedHero["equipment"][slot])
 			heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
 			heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
-		
-		if (i < 4):
-			$hbox_items.add_child(heroInventoryButton)
-		else:
-			$hbox_items2.add_child(heroInventoryButton)
+	
+		$centerContainer/grid.add_child(heroInventoryButton)
 		
 	#for each stat, place its instance into the appropriate vbox
 	#populating the data is done in a separate method, update_stats 
@@ -79,7 +76,6 @@ func populate_fields(data):
 	_update_stats()
 	
 func _update_stats():
-	global.logger(self, "UPDATING STAT DISPLAY. Hero HP is currently: " + str(global.selectedHero.hp))
 	displayHP._update_fields("HP", global.selectedHero.hp)
 	displayMana._update_fields("Mana", global.selectedHero.mana)
 	displayArmor._update_fields("Armor", global.selectedHero.armor)

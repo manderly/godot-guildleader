@@ -13,7 +13,7 @@ func _ready():
 		heroButton.set_hero_data(global.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
 		add_child(heroButton) 
-		buttonY += 130
+		buttonY += 100
 
 func _on_back_button_pressed():
 	get_tree().change_scene("res://main.tscn")

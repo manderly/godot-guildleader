@@ -4,7 +4,7 @@ extends Node
 var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
-var vaultSpace = 24 #should be a multiple of 6
+var vaultSpace = 25 #should be a multiple of 5
 
 var nextHeroID = 100
 
@@ -52,6 +52,7 @@ var guildItems = []
 var swapItemSourceIdx = null
 var inSwapItemState = false
 var lastItemButtonClicked = null
+var filterVaultByItemSlot = null
 
 func _ready():
 	#Load room type data and save it to a global var

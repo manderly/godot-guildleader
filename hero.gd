@@ -22,8 +22,8 @@ var baseDps = -1
 var baseStamina = -1
 var baseDefense = -1
 var baseIntelligence = -1
-var baseDrama = -1
-var baseMood = -1
+var baseDrama = 0
+var baseMood = 0
 var basePrestige = -1
 var baseGroupBonus = "none"
 var baseRaidBonus = "none" 
@@ -48,8 +48,8 @@ var dps = -1
 var stamina = -1
 var defense = -1
 var intelligence = -1
-var drama = -1
-var mood = -1
+var drama = 0
+var mood = 0
 var prestige = -1
 var groupBonus = "none"
 var raidBonus = "none"
@@ -208,5 +208,7 @@ func update_hero_stats():
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
 	prestige = basePrestige + modifiedPrestige
+	drama = "Low"
+	mood = "Happy"
 
 

@@ -1,6 +1,28 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/heroButton.gd" type="Script" id=1]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=2]
+[ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 192, 64 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,12 +45,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/normal = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 flat = false
 align = 1
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="field_heroName" type="Label" parent="." index="1"]
 
@@ -37,9 +61,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 120.0
-margin_top = 8.0
+margin_top = 15.0
 margin_right = 222.0
-margin_bottom = 29.0
+margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -59,9 +83,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 121.0
-margin_top = 25.0
+margin_top = 32.0
 margin_right = 249.0
-margin_bottom = 46.0
+margin_bottom = 53.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -81,9 +105,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 365.0
-margin_top = 6.0
+margin_top = 16.0
 margin_right = 438.0
-margin_bottom = 20.0
+margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -103,9 +127,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 339.0
-margin_top = 57.0
+margin_top = 51.0
 margin_right = 444.0
-margin_bottom = 71.0
+margin_bottom = 65.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -117,6 +141,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse", "Size Flags" ]
+
+[node name="Sprite" type="Sprite" parent="." index="5"]
+
+position = Vector2( 54.0736, 40.1418 )
+texture = ExtResource( 3 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 

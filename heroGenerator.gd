@@ -56,10 +56,18 @@ func generate(destinationArray):
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
 		newHero.recruited = true #false by default 
-	else:
+	else: #this is an unrecruited hero
 		newHero.currentRoom = 0
 		newHero.recruited = false
 		newHero.level = randi()%3+1
+		var gearRand1 = randi()%3+1
+		if (gearRand1 == 1):
+			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
+		elif (gearRand1 == 2):
+			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
+		else:
+			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
+			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
 	
 	newHero.update_hero_stats()
 

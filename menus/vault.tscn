@@ -99,25 +99,43 @@ text = "Quick Sort"
 flat = false
 align = 1
 
-[node name="grid" type="GridContainer" parent="." index="4"]
+[node name="centerContainer" type="CenterContainer" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 130.0
+margin_top = 120.0
 margin_right = 480.0
-margin_bottom = 810.0
-rect_min_size = Vector2( 480, 680 )
+margin_bottom = 680.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="grid" type="GridContainer" parent="centerContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 240.0
+margin_top = 280.0
+margin_right = 240.0
+margin_bottom = 280.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/vseparation = 100
-custom_constants/hseparation = 80
-columns = 6
+custom_constants/vseparation = 24
+custom_constants/hseparation = 24
+columns = 5
 _sections_unfolded = [ "Margin", "Rect", "Size Flags", "custom_constants" ]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]

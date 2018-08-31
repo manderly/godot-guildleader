@@ -17,7 +17,7 @@ func _ready():
 		$button_moveItem.text = "Equip"
 	
 	#don't show move to vault or trash buttons if this hero isn't recruited
-	if (!global.selectedHero.recruited):
+	if (global.selectedHero && !global.selectedHero.recruited):
 		$button_moveItem.hide()
 		$button_trash.hide()
 		
