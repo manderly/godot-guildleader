@@ -15,6 +15,11 @@ func _ready():
 		$button_moveItem.text = "Put in vault"
 	elif (global.currentMenu == "vaultViaHeroPage"):
 		$button_moveItem.text = "Equip"
+	
+	#don't show move to vault or trash buttons if this hero isn't recruited
+	if (!global.selectedHero.recruited):
+		$button_moveItem.hide()
+		$button_trash.hide()
 		
 	$field_stat0.hide()
 	$field_stat1.hide()
