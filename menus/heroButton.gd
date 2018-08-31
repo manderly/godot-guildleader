@@ -26,6 +26,7 @@ func _on_Button_pressed():
 	#distinguish between whether button is on roster or heroSelect menu
 	if (global.currentMenu == "roster"):
 		global.selectedHero = heroData
+		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "quests"):
 		if (heroData.available):

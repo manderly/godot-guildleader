@@ -47,7 +47,11 @@ func _draw_vault_items():
 				#keep vault index intact 
 	
 func _on_button_back_pressed():
-	get_tree().change_scene("res://main.tscn")
+	if (global.currentMenu == "vaultViaHeroPage"):
+		global.currentMenu = "heroPage"
+		get_tree().change_scene("res://menus/heroPage.tscn")
+	else:
+		get_tree().change_scene("res://main.tscn")
 	
 func _on_button_quickSort_pressed():
 	#sort the array such that nulls are last 
