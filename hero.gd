@@ -11,10 +11,39 @@ var currentRoom = 0 #outside by default
 var available = true
 var recruited = false
 
-#Hero properties from external spreadsheet data
-#These are set when a hero is randomly generated in heroGenerator.gd 
+#Hero base stats come from external spreadsheet data
+#These are first set when a hero is randomly generated in heroGenerator.gd
+
+#BASE STATS - bulldoze these -1's with data that comes in from heroData.json data (heroGenerator.gd) 
+var baseHp = -1
+var baseMana = -1
+var baseArmor = -1
+var baseDps = -1
+var baseStamina = -1
+var baseDefense = -1
+var baseIntelligence = -1
+var baseDrama = -1
+var baseMood = -1
+var basePrestige = -1
+var baseGroupBonus = "none"
+var baseRaidBonus = "none" 
+
+#EQUIPMENT MODIFIED STATS - the total from the hero's worn items (equipment dictionary further down)
+var modifiedHp = 0
+var modifiedMana = 0
+var modifiedArmor = 0
+var modifiedDps = 0
+var modifiedStamina = 0
+var modifiedDefense = 0
+var modifiedIntelligence = 0
+var modifiedPrestige = 0
+
+#TODO: Buffs - someday, buffs will affect stats, too. 
+
+#FINAL STATS - combine base and modified stats. For now, default to -1 until the math is done.  
 var hp = -1
 var mana = -1
+var armor = -1
 var dps = -1
 var stamina = -1
 var defense = -1
@@ -132,6 +161,52 @@ func set_instance_data(data):
 	currentRoom = data.currentRoom
 	recruited = data.recruited
 	heroID = data.heroID
+
+#call this method after assigning equipment to a hero (or removing it from a hero)
+func update_hero_stats():
+	global.logger(self, "updating hero stats to match equipment for: " + heroName)
+	#add up the stats from the equipment any time equipment is added or removed from hero 
+	#equipment is an object, so to iterate through it I made this array of names 
+	var equipmentSlotNames = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
 	
+	#reset all the stats modified by armor to 0
+	modifiedHp = 0
+	modifiedMana = 0
+	modifiedArmor = 0
+	modifiedDps = 0
+	modifiedStamina = 0
+	modifiedDefense = 0
+	modifiedIntelligence = 0
+	modifiedPrestige = 0
+	
+	#add up all the stats from armor 
+	var equip = null
+	for i in range(equipmentSlotNames.size()):
+		equip = equipment[equipmentSlotNames[i]]
+		#equip should now be the actual item in that slot 
+		if (equip):
+			modifiedHp += equip.hpRaw
+			modifiedMana += equip.manaRaw
+			modifiedArmor += equip.armor
+			modifiedDps += equip.dps
+			modifiedStamina += equip.stamina
+			modifiedDefense += equip.defense
+			modifiedIntelligence += equip.intelligence
+			modifiedPrestige += equip.prestige
+			#groupBonus is a different system (todo) 
+			#raidBonus is a different system (todo)
+			#drama and mood are not affected by equipment
+	
+	#finally, update the hero's stats 
+	global.logger(self, "updating hero stats on hero itself")
+	hp = baseHp + modifiedHp
+	mana = baseMana + modifiedMana
+	global.logger(self, "new hp total: " + str(hp))
+	armor = baseArmor + modifiedArmor
+	dps = baseDps + modifiedDps
+	stamina = baseStamina + modifiedStamina
+	defense = baseDefense + modifiedDefense
+	intelligence = baseIntelligence + modifiedIntelligence
+	prestige = basePrestige + modifiedPrestige
 
 

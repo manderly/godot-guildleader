@@ -4,12 +4,17 @@ onready var itemPopup = preload("res://menus/popup_itemInfo.tscn").instance()
 var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
 signal updateSourceButtonArt
+signal updateStatsOnHeroPage
 
 func _ready():
 	#todo: use some math to center it
 	itemPopup.connect("itemDeletedOrMovedToVault", self, "deletedOrRemoved_callback")
 	itemPopup.connect("swappingItemWithAnother", self, "swapState_callback")
+	itemPopup.connect("updateStats", self, "updateStats_callback") #middleman to pass signal up to heroPage.gd
 	add_child(itemPopup)
+	
+func updateStats_callback():
+	emit_signal("updateStatsOnHeroPage")
 	
 func deletedOrRemoved_callback():
 	if (global.currentMenu == "vault"):
@@ -51,7 +56,6 @@ func _clear_vault_index():
 
 func _on_Button_pressed():
 	#print("my vault index is: " + str(self.itemVaultIndex))
-	
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
 		

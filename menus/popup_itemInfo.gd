@@ -6,6 +6,7 @@ var vaultIndex = -1
 
 signal itemDeletedOrMovedToVault
 signal swappingItemWithAnother
+signal updateStats
 
 func _ready():
 	if (global.currentMenu == "vault"):
@@ -74,7 +75,6 @@ func _populate_fields():
 		get_node("field_stat" + str(i)).show()
 	
 func _on_button_trash_pressed():
-	#print("trashing this item: " + itemData.name)
 	emit_signal("itemDeletedOrMovedToVault")
 	#todo: this might need to distinguish between whether we're on the hero page or the vault
 	if (global.currentMenu == "heroPage"):
@@ -83,6 +83,8 @@ func _on_button_trash_pressed():
 		if (global.selectedHero["equipment"][itemData.slot] != null):
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
+			global.selectedHero.update_hero_stats()
+			emit_signal("updateStats") #caught by itemButton.gd
 	elif (global.currentMenu == "vault"):
 		#here we have to pick it out of the global equipment array 
 		if (global.guildItems[vaultIndex]):
@@ -99,7 +101,7 @@ func _on_button_moveItem_pressed():
 	else:
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
-		emit_signal("itemDeletedOrMovedToVault")
+		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 
 		
 		#Use case 1: player is moving this item from hero to vault
 		if (global.selectedHero["equipment"][itemData.slot] != null):
@@ -111,6 +113,8 @@ func _on_button_moveItem_pressed():
 					break
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
+			global.selectedHero.update_hero_stats()
+			emit_signal("updateStats") #caught by itemButton.gd
 			self.hide()
 			
 		#Use case 2: the player is moving this item from the vault to a hero 
@@ -118,6 +122,7 @@ func _on_button_moveItem_pressed():
 			#put it in the hero's equipment slot
 			global.selectedHero["equipment"][itemData.slot] = global.guildItems[vaultIndex]
 			global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
+			global.selectedHero.update_hero_stats() #recalculate hero stats
 			#go back to hero page
 			global.currentMenu = "heroPage"
 			get_tree().change_scene("res://menus/heroPage.tscn")  #todo: filter by item type 

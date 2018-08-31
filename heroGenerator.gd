@@ -35,24 +35,23 @@ func generate(destinationArray):
 		newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
 
 	#assign stats accordingly
-	newHero.hp = global.heroStartingStatData[newHero.heroClass]["hp"]
-	newHero.mana = global.heroStartingStatData[newHero.heroClass]["mana"]
-	newHero.dps = global.heroStartingStatData[newHero.heroClass]["dps"]
-	newHero.stamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
-	newHero.defense = global.heroStartingStatData[newHero.heroClass]["defense"]
-	newHero.intelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
-	newHero.drama = global.heroStartingStatData[newHero.heroClass]["drama"]
-	newHero.mood = global.heroStartingStatData[newHero.heroClass]["mood"]
-	newHero.prestige = global.heroStartingStatData[newHero.heroClass]["prestige"]
-	newHero.groupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
-	newHero.raidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
-
+	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]
+	newHero.baseMana = global.heroStartingStatData[newHero.heroClass]["mana"]
+	newHero.baseDps = global.heroStartingStatData[newHero.heroClass]["dps"]
+	newHero.baseArmor = 0
+	newHero.baseStamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
+	newHero.baseDefense = global.heroStartingStatData[newHero.heroClass]["defense"]
+	newHero.baseIntelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
+	newHero.baseDrama = global.heroStartingStatData[newHero.heroClass]["drama"]
+	newHero.baseMood = global.heroStartingStatData[newHero.heroClass]["mood"]
+	newHero.basePrestige = global.heroStartingStatData[newHero.heroClass]["prestige"]
+	newHero.baseGroupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
+	newHero.baseRaidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
 
 	#other aspects of a hero 
 	newHero.available = true
 	newHero.level = 1
 	newHero.xp = 0
-
 
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
@@ -61,5 +60,7 @@ func generate(destinationArray):
 		newHero.currentRoom = 0
 		newHero.recruited = false
 		newHero.level = randi()%3+1
+	
+	newHero.update_hero_stats()
 
 	destinationArray.append(newHero)

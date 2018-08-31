@@ -4,9 +4,20 @@ extends Node2D
 var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
 var heroEquipmentSlotNames = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
-func _ready():
-	populate_fields(global.selectedHero)
+var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayMana = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayArmor = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayDPS = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySTA = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayMood = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 	
+func _ready():
 	#hide dismiss and rename buttons if this hero isn't a recruited hero
 	if (!global.selectedHero.recruited):
 		$button_rename.hide()
@@ -14,7 +25,7 @@ func _ready():
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
-	print(global.selectedHero["equipment"]["mainHand"])
+	#print(global.selectedHero["equipment"]["mainHand"])
 	
 	#Create the inventory (equipment) buttons 
 	var slot = null
@@ -23,6 +34,7 @@ func _ready():
 		
 		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
 		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
+		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
 		
 		#only set icon if the hero actually has an item in this slot, otherwise empty
 		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
@@ -37,52 +49,24 @@ func _ready():
 		else:
 			$hbox_items2.add_child(heroInventoryButton)
 		
-	#for each stat, make an instance and pass the data into it 
+	#for each stat, place its instance into the appropriate vbox
+	#populating the data is done in a separate method, update_stats 
 	#LEFT SIDE
-	var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayHP._update_fields("HP", global.selectedHero.hp)
 	$vbox_stats1.add_child(displayHP)
-	
-	var displayMana = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayMana._update_fields("Mana", global.selectedHero.mana)
 	$vbox_stats1.add_child(displayMana)
-	
-	var displayDPS = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayDPS._update_fields("DPS", global.selectedHero.dps)
+	$vbox_stats1.add_child(displayArmor)
 	$vbox_stats1.add_child(displayDPS)
-	
-	var displaySTA = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displaySTA._update_fields("STA", global.selectedHero.stamina)
 	$vbox_stats1.add_child(displaySTA)
-	
-	var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayDEF._update_fields("DEF", global.selectedHero.defense)
 	$vbox_stats1.add_child(displayDEF)
-	
-	var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayINT._update_fields("INT", global.selectedHero.intelligence)
 	$vbox_stats1.add_child(displayINT)
 
 	#RIGHT SIDE
-	var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayDrama._update_fields("Drama", global.selectedHero.drama)
 	$vbox_stats2.add_child(displayDrama)
-	
-	var displayMood = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayMood._update_fields("Mood", global.selectedHero.mood)
 	$vbox_stats2.add_child(displayMood)
-	
-	var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayPrestige._update_fields("Prestige", global.selectedHero.prestige)
 	$vbox_stats2.add_child(displayPrestige)
-	
-	var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayGroupBonus._update_fields("Group Bonus", global.selectedHero.groupBonus)
 	$vbox_stats2.add_child(displayGroupBonus)
-	
-	var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
 	$vbox_stats2.add_child(displayRaidBonus)
+	populate_fields(global.selectedHero)
 	
 func populate_fields(data):
 	$field_heroName.text = data.heroName
@@ -92,7 +76,23 @@ func populate_fields(data):
 		$button_trainOrRecruit.text = "Train to next level"
 	else:
 		$button_trainOrRecruit.text = "Recruit hero"
-
+	_update_stats()
+	
+func _update_stats():
+	global.logger(self, "UPDATING STAT DISPLAY. Hero HP is currently: " + str(global.selectedHero.hp))
+	displayHP._update_fields("HP", global.selectedHero.hp)
+	displayMana._update_fields("Mana", global.selectedHero.mana)
+	displayArmor._update_fields("Armor", global.selectedHero.armor)
+	displayDPS._update_fields("DPS", global.selectedHero.dps)
+	displaySTA._update_fields("STA", global.selectedHero.stamina)
+	displayDEF._update_fields("DEF", global.selectedHero.defense)	
+	displayINT._update_fields("INT", global.selectedHero.intelligence)
+	displayDrama._update_fields("Drama", global.selectedHero.drama)
+	displayMood._update_fields("Mood", global.selectedHero.mood)
+	displayPrestige._update_fields("Prestige", global.selectedHero.prestige)
+	displayGroupBonus._update_fields("Group Bonus", global.selectedHero.groupBonus)
+	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
+	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
 		if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
