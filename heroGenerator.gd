@@ -21,6 +21,8 @@ func generate(destinationArray):
 		newHero.heroClass = "Wizard"
 		newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
 		newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
+		newHero.equipment["mainHand"] = global.allGameItems["Cracked Staff"]
+		newHero.equipment["feet"] = global.allGameItems["Worn Canvas Sandals"]
 	elif randomNumber == 2:
 		newHero.heroClass = "Rogue"
 		newHero.equipment["mainHand"] = global.allGameItems["Rusty Knife"]
@@ -29,10 +31,12 @@ func generate(destinationArray):
 		newHero.heroClass = "Warrior"
 		newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
 		newHero.equipment["offHand"] = global.allGameItems["Reinforced Shield"]
+		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
 	else:
 		newHero.heroClass = "Ranger"
 		newHero.equipment["mainHand"] = global.allGameItems["Basic Bow"]
 		newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
+		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
 
 	#assign stats accordingly
 	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]
@@ -61,8 +65,10 @@ func generate(destinationArray):
 		newHero.recruited = false
 		newHero.level = randi()%3+1
 		var gearRand1 = randi()%3+1
+		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
 		if (gearRand1 == 1):
 			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
+			newHero.equipment["feet"] = global.allGameItems["Worn Canvas Sandals"]
 		elif (gearRand1 == 2):
 			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
 		else:

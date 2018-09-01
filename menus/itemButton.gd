@@ -3,6 +3,7 @@ extends Control
 onready var itemPopup = preload("res://menus/popup_itemInfo.tscn").instance()
 var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
+var itemSlot = null #used on heroPage to know what to filter by 
 signal updateSourceButtonArt
 signal updateStatsOnHeroPage
 
@@ -50,9 +51,17 @@ func _set_data(data):
 	
 func _clear_data():
 	itemData = null
+
+func _set_slot(slotName):
+	itemSlot = slotName
 	
 func _clear_vault_index():
 	itemVaultIndex = -1 #might not need this 
+
+func _set_disabled():
+	$Button.disabled = true
+	$Button.modulate = Color(0.5,0.5,0.5,1)
+	$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
 
 func _on_Button_pressed():
 	#print("my vault index is: " + str(self.itemVaultIndex))
@@ -71,6 +80,8 @@ func _on_Button_pressed():
 	else:
 		#save a record of the previous button clicked for use in swapping items 
 		global.lastItemButtonClicked = self
+		global.browsingForSlot = itemSlot
+		
 		#only show the item popup if there is an item, otherwise go to the vault
 		if (itemData):
 			itemPopup._set_data(itemData)
@@ -79,5 +90,4 @@ func _on_Button_pressed():
 		else:
 			if (global.currentMenu == "heroPage"):
 				global.currentMenu = "vaultViaHeroPage"
-				global.filterVaultByItemSlot = "jewelry"
 				get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type 

@@ -46,13 +46,14 @@ var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 10
 #signal quest_begun
 signal quest_complete
 
-#items
+#items inventory / vault
 var allGameItems = {}
 var guildItems = []
 var swapItemSourceIdx = null
 var inSwapItemState = false
 var lastItemButtonClicked = null
 var filterVaultByItemSlot = null
+var browsingForSlot = ""
 
 func _ready():
 	#Load room type data and save it to a global var
@@ -121,6 +122,8 @@ func _ready():
 	global.guildItems.append(global.allGameItems["Cloth Pants"])
 	global.guildItems.append(global.allGameItems["Cloth Headband"])
 	global.guildItems.append(global.allGameItems["Tiara of Knowledge"])
+	global.guildItems.append(global.allGameItems["Soft Silk Slippers"])
+	global.guildItems.append(global.allGameItems["Softscale Boots"])
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)

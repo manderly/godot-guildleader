@@ -10,6 +10,9 @@ func _ready():
 	$field_guildInventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
 	_position_vault_buttons()
 	
+	if (global.currentMenu == "vaultViaHeroPage"):
+		global.logger(self, "Browsing for: " + global.selectedHero.heroClass + " " + str(global.browsingForSlot))
+	
 func _position_vault_buttons():
 	#this method handles the STRUCTURE of the buttons
 	#it places the empty buttons in the correct hboxes
@@ -35,11 +38,13 @@ func _draw_vault_items():
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
 			if (global.guildItems[i]):
-				if (global.guildItems[i].slot):
-					#print("global.guildItems has an item in this index (" + str(i) + ") it is: " + global.guildItems[i].name)
-					currentButton._set_label(global.guildItems[i].slot)
-					currentButton._set_icon(global.guildItems[i].icon)
-					currentButton._set_data(global.guildItems[i])
+				#print("global.guildItems has an item in this index (" + str(i) + ") it is: " + global.guildItems[i].name)
+				currentButton._set_label(global.guildItems[i].slot)
+				currentButton._set_icon(global.guildItems[i].icon)
+				currentButton._set_data(global.guildItems[i])
+				if (global.currentMenu == "vaultViaHeroPage"):
+					if (global.guildItems[i].slot != global.browsingForSlot.to_lower()):
+						currentButton._set_disabled() #script I wrote in itemButton.gd 
 			else:
 				currentButton._clear_label()
 				currentButton._clear_icon()
