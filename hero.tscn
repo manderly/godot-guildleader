@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/heroes/body01.png" type="Texture" id=2]
 [ext_resource path="res://sprites/heroes/head01.png" type="Texture" id=3]
 [ext_resource path="res://sprites/heroes/weapon03.png" type="Texture" id=4]
-[ext_resource path="res://sprites/heroes/weapon01.png" type="Texture" id=5]
+[ext_resource path="res://sprites/heroes/weaponSecondary02.png" type="Texture" id=5]
+[ext_resource path="res://sprites/heroes/shield01.png" type="Texture" id=6]
 
 [sub_resource type="GDScript" id=1]
 
@@ -228,18 +229,26 @@ texture = ExtResource( 2 )
 
 [node name="head" type="Sprite" parent="base" index="1"]
 
-position = Vector2( 0.19915, -0.547676 )
+position = Vector2( 0.19915, -2.2481 )
 texture = ExtResource( 3 )
+_sections_unfolded = [ "Animation" ]
 
 [node name="weapon1" type="Sprite" parent="base" index="2"]
 
-position = Vector2( -21.5628, 12.3983 )
+position = Vector2( -21.5628, 12.5872 )
 texture = ExtResource( 4 )
 
 [node name="weapon2" type="Sprite" parent="base" index="3"]
 
-position = Vector2( 23.6563, 5.44304 )
+position = Vector2( 6.27415, 23.5809 )
 texture = ExtResource( 5 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="shield" type="Sprite" parent="base" index="4"]
+
+position = Vector2( 18.5158, 18.5158 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Offset" ]
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_Timer_timeout"]
 

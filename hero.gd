@@ -79,7 +79,8 @@ var walking = false
 var headSprite = "head01.png"
 var bodySprite = "body01.png"
 var weapon1Sprite = "weapon01.png"
-var weapon2Sprite = "weapon02.png"
+var weapon2Sprite = "none.png"
+var shieldSprite = "none.png"
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -171,12 +172,14 @@ func set_instance_data(data):
 	bodySprite = data.bodySprite
 	weapon1Sprite = data.weapon1Sprite
 	weapon2Sprite = data.weapon2Sprite
+	shieldSprite = data.shieldSprite
 	
 func _draw_sprites():
 	$base/head.texture = load("res://sprites/heroes/" + headSprite)
 	$base/body.texture = load("res://sprites/heroes/" + bodySprite)
 	$base/weapon1.texture = load("res://sprites/heroes/" + weapon1Sprite)
 	$base/weapon2.texture = load("res://sprites/heroes/" + weapon2Sprite)
+	$base/shield.texture = load("res://sprites/heroes/" + shieldSprite)
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():

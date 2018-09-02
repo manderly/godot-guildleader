@@ -60,7 +60,6 @@ func _ready():
 	var roomTypeFile = File.new()
 	roomTypeFile.open("res://gameData/roomTypes.json", roomTypeFile.READ)
 	roomTypeData = parse_json(roomTypeFile.get_as_text())
-	global.logger(self, roomTypeData)
 	roomTypeFile.close()
 	
 	#Load hero level data 
@@ -124,6 +123,7 @@ func _ready():
 	global.guildItems.append(global.allGameItems["Tiara of Knowledge"])
 	global.guildItems.append(global.allGameItems["Soft Silk Slippers"])
 	global.guildItems.append(global.allGameItems["Softscale Boots"])
+	global.guildItems.append(global.allGameItems["Seer's Orb"])
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)

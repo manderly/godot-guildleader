@@ -952,5 +952,23 @@
     "intelligence": 0,
     "strength": 0,
     "accuracy": 0
+  },
+  {
+    "name": "Seer's Orb",
+    "icon": "offhand1.png",
+    "prestige": 0,
+    "slot": "offHand",
+    "rarity": "uncommon",
+    "classRestriction": "wizard",
+    "noDrop": false,
+    "hpRaw": 0,
+    "manaRaw": 5,
+    "dps": 0,
+    "armor": 1,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 2,
+    "strength": 0,
+    "accuracy": 0
   }
 ]

@@ -29,7 +29,8 @@ func generate(destinationArray):
 		#sprites
 		newHero.bodySprite = "body01.png"
 		newHero.weapon1Sprite = "weaponMain01.png"
-		newHero.weapon2Sprite = "none.png"
+		newHero.weapon2Sprite = "weaponSecondary01.png"
+		newHero.shieldSprite = "none.png"
 		if (randomHead == 1):
 			newHero.headSprite = "head01.png"
 		elif (randomHead == 2):
@@ -51,7 +52,7 @@ func generate(destinationArray):
 		else:
 			newHero.headSprite = "head04.png"
 		newHero.weapon1Sprite = "weaponMain03.png"
-		newHero.weapon2Sprite = "none.png"
+		newHero.weapon2Sprite = "weaponSecondary02.png"
 		
 	elif randomClass == 3:
 		newHero.heroClass = "Warrior"
@@ -68,7 +69,7 @@ func generate(destinationArray):
 		elif (randomHead == 3):
 			newHero.headSprite = "head03.png"
 		newHero.weapon1Sprite = "weaponMain03.png"
-		newHero.weapon2Sprite = "none.png"
+		newHero.shieldSprite = "shield01.png"
 	else:
 		newHero.heroClass = "Ranger"
 		newHero.equipment["mainHand"] = global.allGameItems["Basic Bow"]
