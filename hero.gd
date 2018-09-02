@@ -75,6 +75,12 @@ var velocity = Vector2()
 var speed = 20
 var walking = false
 
+#Hero sprite names (todo: should eventually take sprite data from equipment dictionary)
+var headSprite = "head01.png"
+var bodySprite = "body01.png"
+var weapon1Sprite = "weapon01.png"
+var weapon2Sprite = "weapon02.png"
+
 #todo: globalize these
 var mainRoomMinX = 110
 var mainRoomMaxX = 360
@@ -161,6 +167,16 @@ func set_instance_data(data):
 	currentRoom = data.currentRoom
 	recruited = data.recruited
 	heroID = data.heroID
+	headSprite = data.headSprite
+	bodySprite = data.bodySprite
+	weapon1Sprite = data.weapon1Sprite
+	weapon2Sprite = data.weapon2Sprite
+	
+func _draw_sprites():
+	$base/head.texture = load("res://sprites/heroes/" + headSprite)
+	$base/body.texture = load("res://sprites/heroes/" + bodySprite)
+	$base/weapon1.texture = load("res://sprites/heroes/" + weapon1Sprite)
+	$base/weapon2.texture = load("res://sprites/heroes/" + weapon2Sprite)
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://hero.gd" type="Script" id=1]
-[ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=2]
-[ext_resource path="res://characters/wizard-female-2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heroes/body01.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heroes/head01.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heroes/weapon03.png" type="Texture" id=4]
+[ext_resource path="res://sprites/heroes/weapon01.png" type="Texture" id=5]
 
 [sub_resource type="GDScript" id=1]
 
@@ -22,15 +24,6 @@ func _ready():
 #	# Update game logic here.
 #	pass
 "
-
-[sub_resource type="SpriteFrames" id=2]
-
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 3.0
-} ]
 
 [sub_resource type="ParticlesMaterial" id=3]
 
@@ -101,16 +94,7 @@ action = ""
 visibility_mode = 0
 script = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
-
-position = Vector2( 0, -1.32684 )
-frames = SubResource( 2 )
-animation = "default"
-frame = 1
-playing = true
-centered = false
-
-[node name="field_name" type="Label" parent="." index="2"]
+[node name="field_name" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -132,7 +116,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_levelAndClass" type="Label" parent="." index="3"]
+[node name="field_levelAndClass" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -154,9 +138,9 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="4"]
+[node name="Particles2D" type="Particles2D" parent="." index="3"]
 
-position = Vector2( 57, 16 )
+position = Vector2( 1.29308, 17.6957 )
 emitting = true
 amount = 8
 lifetime = 1.0
@@ -177,7 +161,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
-[node name="field_xp" type="Label" parent="." index="5"]
+[node name="field_xp" type="Label" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -198,7 +182,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_debug" type="Label" parent="." index="6"]
+[node name="field_debug" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -219,19 +203,43 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
 
 position = Vector2( 31.0529, 30.7187 )
 scale = Vector2( 2.53385, 2.95953 )
 shape = SubResource( 4 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 
-[node name="idleTimer" type="Timer" parent="." index="8"]
+[node name="idleTimer" type="Timer" parent="." index="7"]
 
 process_mode = 1
 wait_time = 4.0
 one_shot = true
 autostart = false
+
+[node name="base" type="Node2D" parent="." index="8"]
+
+position = Vector2( 30.9247, 21.1424 )
+
+[node name="body" type="Sprite" parent="base" index="0"]
+
+position = Vector2( 0.257019, 17.4776 )
+texture = ExtResource( 2 )
+
+[node name="head" type="Sprite" parent="base" index="1"]
+
+position = Vector2( 0.19915, -0.547676 )
+texture = ExtResource( 3 )
+
+[node name="weapon1" type="Sprite" parent="base" index="2"]
+
+position = Vector2( -21.5628, 12.3983 )
+texture = ExtResource( 4 )
+
+[node name="weapon2" type="Sprite" parent="base" index="3"]
+
+position = Vector2( 23.6563, 5.44304 )
+texture = ExtResource( 5 )
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_Timer_timeout"]
 

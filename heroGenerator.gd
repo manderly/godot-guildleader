@@ -16,27 +16,73 @@ func generate(destinationArray):
 	newHero.heroName = nameGenerator.generate()
 	
 	#random class
-	var randomNumber = randi()%3+1
-	if randomNumber == 1:
+	var randomClass = randi()%3+1 #1-4
+	var randomHead = randi()%3+1 #1-3
+	
+	if randomClass == 1:
 		newHero.heroClass = "Wizard"
 		newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
 		newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
 		newHero.equipment["mainHand"] = global.allGameItems["Cracked Staff"]
 		newHero.equipment["feet"] = global.allGameItems["Worn Canvas Sandals"]
-	elif randomNumber == 2:
+		
+		#sprites
+		newHero.bodySprite = "body01.png"
+		newHero.weapon1Sprite = "weaponMain01.png"
+		newHero.weapon2Sprite = "none.png"
+		if (randomHead == 1):
+			newHero.headSprite = "head01.png"
+		elif (randomHead == 2):
+			newHero.headSprite = "head02.png"
+		else:
+			newHero.headSprite = "head04.png"
+			
+	elif randomClass == 2:
 		newHero.heroClass = "Rogue"
 		newHero.equipment["mainHand"] = global.allGameItems["Rusty Knife"]
 		newHero.equipment["feet"] = global.allGameItems["Simple Chainmail Boots"]
-	elif randomNumber == 3:
+		
+		#sprites
+		newHero.bodySprite = "body04.png"
+		if (randomHead == 1):
+			newHero.headSprite = "head01.png"
+		elif (randomHead == 2):
+			newHero.headSprite = "head02.png"
+		else:
+			newHero.headSprite = "head04.png"
+		newHero.weapon1Sprite = "weaponMain03.png"
+		newHero.weapon2Sprite = "none.png"
+		
+	elif randomClass == 3:
 		newHero.heroClass = "Warrior"
 		newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
 		newHero.equipment["offHand"] = global.allGameItems["Reinforced Shield"]
 		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
+		
+		#sprites
+		newHero.bodySprite = "body03.png"
+		if (randomHead == 1):
+			newHero.headSprite = "head01.png"
+		elif (randomHead == 2):
+			newHero.headSprite = "head02.png"
+		elif (randomHead == 3):
+			newHero.headSprite = "head03.png"
+		newHero.weapon1Sprite = "weaponMain03.png"
+		newHero.weapon2Sprite = "none.png"
 	else:
 		newHero.heroClass = "Ranger"
 		newHero.equipment["mainHand"] = global.allGameItems["Basic Bow"]
 		newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
 		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
+		
+		#sprites
+		newHero.bodySprite = "body03.png"
+		if (randomHead == 1):
+			newHero.headSprite = "head01.png"
+		else:
+			newHero.headSprite = "head04.png"
+		newHero.weapon1Sprite = "weaponMain02.png" #bow
+		newHero.weapon2Sprite = "none.png"
 
 	#assign stats accordingly
 	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]
@@ -75,6 +121,5 @@ func generate(destinationArray):
 			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
 			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
 	
-	newHero.update_hero_stats()
-
+	newHero.update_hero_stats() #calculate hp, mana, etc.
 	destinationArray.append(newHero)

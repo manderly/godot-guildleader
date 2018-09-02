@@ -100,6 +100,7 @@ func draw_heroes():
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_instance_data(global.guildRoster[i])
+			heroScene._draw_sprites()
 			add_child(heroScene)
 	
 	#draw unrecruited heroes outside the base
@@ -111,6 +112,7 @@ func draw_heroes():
 		var heroScene = preload("res://hero.tscn").instance()
 		heroScene.set_position(Vector2(heroX, heroY))
 		heroScene.set_instance_data(global.unrecruited[i])
+		heroScene._draw_sprites()
 		add_child(heroScene)
 
 func _on_button_collectQuest_pressed():
