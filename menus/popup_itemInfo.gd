@@ -125,7 +125,8 @@ func _on_button_moveItem_pressed():
 		#Use case 2: the player is moving this item from the vault to a hero 
 		elif (global.selectedHero["equipment"][itemData.slot] == null):
 			#put it in the hero's equipment slot
-			global.selectedHero["equipment"][itemData.slot] = global.guildItems[vaultIndex]
+			var vaultItemName = global.guildItems[vaultIndex].name
+			global.selectedHero.give_item(vaultItemName)
 			global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
 			global.selectedHero.update_hero_stats() #recalculate hero stats
 			#go back to hero page

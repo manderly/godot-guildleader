@@ -21,10 +21,11 @@ func generate(destinationArray):
 	
 	if randomClass == 1:
 		newHero.heroClass = "Wizard"
-		newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
-		newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
-		newHero.equipment["mainHand"] = global.allGameItems["Cracked Staff"]
-		newHero.equipment["feet"] = global.allGameItems["Worn Canvas Sandals"]
+		
+		newHero.give_item("Novice's Robe")
+		newHero.give_item("Simple Ring")
+		newHero.give_item("Cracked Staff")
+		newHero.give_item("Worn Canvas Sandals")
 		
 		#sprites
 		newHero.bodySprite = "body01.png"
@@ -40,8 +41,9 @@ func generate(destinationArray):
 			
 	elif randomClass == 2:
 		newHero.heroClass = "Rogue"
-		newHero.equipment["mainHand"] = global.allGameItems["Rusty Knife"]
-		newHero.equipment["feet"] = global.allGameItems["Simple Chainmail Boots"]
+		
+		newHero.give_item("Rusty Knife")
+		newHero.give_item("Simple Chainmail Boots")
 		
 		#sprites
 		newHero.bodySprite = "body04.png"
@@ -56,9 +58,10 @@ func generate(destinationArray):
 		
 	elif randomClass == 3:
 		newHero.heroClass = "Warrior"
-		newHero.equipment["mainHand"] = global.allGameItems["Rusty Broadsword"]
-		newHero.equipment["offHand"] = global.allGameItems["Reinforced Shield"]
-		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
+
+		newHero.give_item("Rusty Broadsword")
+		newHero.give_item("Reinforced Shield")
+		newHero.give_item("Muddy Boots")
 		
 		#sprites
 		newHero.bodySprite = "body03.png"
@@ -72,9 +75,10 @@ func generate(destinationArray):
 		newHero.shieldSprite = "shield01.png"
 	else:
 		newHero.heroClass = "Ranger"
-		newHero.equipment["mainHand"] = global.allGameItems["Basic Bow"]
-		newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
-		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
+		
+		newHero.give_item("Basic Bow")
+		newHero.give_item("Cloth Shirt")
+		newHero.give_item("Muddy Boots")
 		
 		#sprites
 		newHero.bodySprite = "body03.png"
@@ -112,15 +116,17 @@ func generate(destinationArray):
 		newHero.recruited = false
 		newHero.level = randi()%3+1
 		var gearRand1 = randi()%3+1
-		newHero.equipment["feet"] = global.allGameItems["Muddy Boots"]
+		
+		newHero.give_item("Muddy Boots") #everyone should start with shoes of some kind...
+
 		if (gearRand1 == 1):
-			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
-			newHero.equipment["feet"] = global.allGameItems["Worn Canvas Sandals"]
+			newHero.give_item("Cloth Shirt")
+			newHero.give_item("Worn Canvas Sandals")
 		elif (gearRand1 == 2):
-			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
+			newHero.give_item("Simple Ring")
 		else:
-			newHero.equipment["chest"] = global.allGameItems["Cloth Shirt"]
-			newHero.equipment["jewelry"] = global.allGameItems["Simple Ring"]
+			newHero.give_item("Cloth Shirt")
+			newHero.give_item("Simple Ring")
 	
 	newHero.update_hero_stats() #calculate hp, mana, etc.
 	destinationArray.append(newHero)

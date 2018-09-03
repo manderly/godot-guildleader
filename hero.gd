@@ -230,4 +230,11 @@ func update_hero_stats():
 	drama = "Low"
 	mood = "Happy"
 
-
+func give_item(itemNameStr):
+	#This method replaced this code in main.gd:
+	#newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
+	#To use: hero.give_item("Item Name Here") where item is a known item in global.allGameItems
+	
+	#gets the item out of allGameItems by name, and puts it in the hero's correct equip. slot
+	equipment[global.allGameItems[itemNameStr].slot] = global.allGameItems[itemNameStr]
+		
