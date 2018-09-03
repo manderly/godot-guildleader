@@ -36,14 +36,13 @@ func _ready():
 	
 	# Generate X number of heroes (default guild members for now)
 	if (!global.initDone):
-		#Todo: maybe this belongs in global? 
-		var heroQuantity = 3
-		for i in range(heroQuantity):
-			heroGenerator.generate(global.guildRoster) #returns nothing, just puts them in the array reference that's passed in
+		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		heroGenerator.generate(global.guildRoster, "Warrior")
+		heroGenerator.generate(global.guildRoster, "Rogue")
 
-		var unrecruitedQuantity = 2
-		for i in range(unrecruitedQuantity):
-			heroGenerator.generate(global.unrecruited)
+		#Generate unrecruited heroes
+		heroGenerator.generate(global.unrecruited, "Ranger")
+		heroGenerator.generate(global.unrecruited, "Warrior")
 			
 		#verify they were generated 
 		#print("Guild members are:")

@@ -44,7 +44,7 @@ func _draw_vault_items():
 				currentButton._set_data(global.guildItems[i])
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
-					if (global.guildItems[i].slot != global.browsingForSlot.to_lower()):
+					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
 						currentButton._set_disabled() #script I wrote in itemButton.gd
 						
 					#disable this item if it isn't a class match (allows ANY and class)

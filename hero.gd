@@ -99,7 +99,7 @@ func _ready():
 	$field_name.text = heroName
 	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
 	$field_xp.text = str(xp) + " xp"
-	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
+	#$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
 	_start_idle_timer()
 
 

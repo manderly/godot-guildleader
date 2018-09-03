@@ -7,7 +7,7 @@ func _ready():
 	pass
 
 #make new hero object
-func generate(destinationArray):
+func generate(destinationArray, classStr):
 	var newHero = load("res://hero.gd").new()
 	newHero.heroID = global.nextHeroID
 	global.nextHeroID += 1
@@ -19,7 +19,7 @@ func generate(destinationArray):
 	var randomClass = randi()%3+1 #1-4
 	var randomHead = randi()%3+1 #1-3
 	
-	if randomClass == 1:
+	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
 		
 		newHero.give_item("Novice's Robe")
@@ -39,7 +39,7 @@ func generate(destinationArray):
 		else:
 			newHero.headSprite = "head04.png"
 			
-	elif randomClass == 2:
+	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
 		
 		newHero.give_item("Rusty Knife")
@@ -56,7 +56,7 @@ func generate(destinationArray):
 		newHero.weapon1Sprite = "weaponMain03.png"
 		newHero.weapon2Sprite = "weaponSecondary02.png"
 		
-	elif randomClass == 3:
+	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
 
 		newHero.give_item("Rusty Broadsword")
@@ -73,7 +73,8 @@ func generate(destinationArray):
 			newHero.headSprite = "head03.png"
 		newHero.weapon1Sprite = "weaponMain03.png"
 		newHero.shieldSprite = "shield01.png"
-	else:
+	
+	elif (classStr == "Ranger"):
 		newHero.heroClass = "Ranger"
 		
 		newHero.give_item("Basic Bow")
@@ -88,6 +89,8 @@ func generate(destinationArray):
 			newHero.headSprite = "head04.png"
 		newHero.weapon1Sprite = "weaponMain02.png" #bow
 		newHero.weapon2Sprite = "none.png"
+	else:
+		print("ERROR - BAD HERO CLASS TYPE")
 
 	#assign stats accordingly
 	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]
