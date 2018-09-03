@@ -30,8 +30,25 @@ func _on_button_collectRewards_pressed():
 	#COLLECT coins, xp, inventory items into player's real inventory
 	global.softCurrency += global.questPrizeSC
 	global.hardCurrency += global.questPrizeHC
-	#we have the item's name, now get its actual entity and give it to the guildItems array 
-	global.guildItems.append(global.allGameItems[global.questPrizeItem1])
+	#we have the item's name, now get its actual entity and give it to the guildItems array
+	if (global.questPrizeItem1):
+		#todo: make sure the vault has room for it first 
+		#todo: this method should be global because the same logic is used in popup_itemInfo.gd
+		for i in range(global.guildItems.size()):
+			if (global.guildItems[i] == null):
+				#finds first open null spot and puts the item there
+				global.guildItems[i] = global.allGameItems[global.questPrizeItem1]
+				break
+		
+	if (global.questPrizeItem2):
+		global.guildItems.append(global.allGameItems[global.questPrizeItem2])
+		#todo: make sure the vault has room for it first 
+		#todo: this method should be global because the same logic is used in popup_itemInfo.gd
+		for i in range(global.guildItems.size()):
+			if (global.guildItems[i] == null):
+				#finds first open null spot and puts the item there
+				global.guildItems[i] = global.allGameItems[global.questPrizeItem2]
+				break
 	
 	#give xp to each hero in quest list, set status back to available, clear them out of the quest array
 	for i in range(global.questHeroes.size()):
@@ -43,7 +60,9 @@ func _on_button_collectRewards_pressed():
 			global.questHeroes[i].available = true
 			global.questHeroes[i] = null
 			global.questHeroesPicked -= 1
-			
+	
+	global.questPrizeItem1 = null
+	global.questPrizeItem2 = null
 	global.questReadyToCollect = false
 	get_tree().change_scene("res://main.tscn")
 	

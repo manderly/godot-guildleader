@@ -24,8 +24,9 @@ var questReadyToCollect = false
 #set these with random results when the quest is completed, then clear them out for next use
 var questPrizeSC = 0
 var questPrizeHC = 0
-var questPrizeItem1 = "none"
-var questPrizeItem2 = "none"
+var questPrizeItem1 = null
+var questPrizeItem2 = null
+var winItemRandom = 0
 
 var initDone = false
 var levelXpData = null #from json 
@@ -150,12 +151,25 @@ func _on_questTimer_timeout():
 	questActive = false
 	questReadyToCollect = true
 	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
-	questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
-	#this is just its NAME, not the item itself 
-	questPrizeItem1 = currentQuest.item1 #todo: random chance to win this item, not guaranteed
-	questPrizeItem2 = "none"
-	#now in questComplete.gd, we access these vars as global vars such as:
-	#global.questPrizeItem1 
+	if (currentQuest.hcMin != 0 && currentQuest.hcMax != 0):
+		questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
+	#this is just its NAME, not the item itself
+	
+	#Determine if player won item1 (generally more common) or item2 (generally more rare)
+	#Roll 1-100
+	#If number is <= than item1Chance, give item1
+	#Roll 1-100 (again)
+	#If number is <= than item2Chance, give item2
+	
+	if (currentQuest.item1):
+		winItemRandom = randi()%100+1 #1-100
+		if (winItemRandom <= currentQuest.item1Chance):
+			questPrizeItem1 = currentQuest.item1 
+	if (currentQuest.item2):
+		winItemRandom = randi()%100+1 #1-100
+		if (winItemRandom <= currentQuest.item2Chance):
+			questPrizeItem2 = currentQuest.item2
+			
 	emit_signal("quest_complete", currentQuest.name)
 
 func logger(script, message):

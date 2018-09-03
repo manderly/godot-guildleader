@@ -44,22 +44,9 @@ func _ready():
 		heroGenerator.generate(global.unrecruited, "Ranger")
 		heroGenerator.generate(global.unrecruited, "Warrior")
 			
-		#verify they were generated 
-		#print("Guild members are:")
-		#for i in range(heroQuantity):
-			#print(global.guildRoster[i])
-			#print("")
-		
-		#print("Unrecruited peeps are:")
-		#for i in range(unrecruitedQuantity):
-			#print(global.unrecruited[i].heroName)
-			
 		global.initDone = true
-		#use the hero data to create individual hero scene instances
-		draw_heroes()
-	else:
-		#use the hero data to create individual hero scene instances
-		draw_heroes()
+
+	draw_heroes()
 
 func _on_Quests_pressed():
 	global.currentMenu = "quests"

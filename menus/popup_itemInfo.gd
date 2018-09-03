@@ -111,6 +111,7 @@ func _on_button_moveItem_pressed():
 		#Use case 1: player is moving this item from hero to vault
 		if (global.selectedHero["equipment"][itemData.slot] != null):
 			#todo: make sure the vault has room for it first 
+			#todo: this method should be global because the same logic is used in questComplete.gd
 			for i in range(global.guildItems.size()):
 				if (global.guildItems[i] == null):
 					#finds first open null spot and puts the item there
