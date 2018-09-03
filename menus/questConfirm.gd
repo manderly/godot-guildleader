@@ -13,25 +13,40 @@ func _ready():
 		$button_beginQuest.set_disabled(false)
 		
 	#create X number of hero buttons to hold selected heroes for this specific quest
-	for i in range(global.currentQuest.groupSize): 
-		var heroButton = preload("res://menus/questConfirm_heroButton.tscn").instance()
-		#heroButton.set_position(Vector2(buttonX, buttonY))
-		
+	var buttonX = 0
+	var buttonY = 0
+	#draw a hero button for each hero in the roster
+	for i in range(global.currentQuest.groupSize):
+		#print(global.guildRoster[i]) #print all heroes (debug)
+		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		#if a hero has been picked via this button, display hero's name
 		if (global.questHeroes[i] != null):
-			heroButton.display_hero_name(global.questHeroes[i].heroName)
+			heroButton.populate_fields(global.questHeroes[i])
+		else:
+			#otherwise, draw the button empty
+			heroButton.make_button_empty()
+			
 		heroButton.set_button_id(i)
-		$hbox.add_constant_override("separation", 10)
-		$hbox.add_child(heroButton)
+		heroButton.set_position(Vector2(buttonX, buttonY))
+		$vbox.add_child(heroButton) 
+		buttonY += 80
 	
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
 	$field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
 	$field_hcRange.text = str(data.hcMin) + " - " + str(data.hcMax) + " diamonds"
-
-	$field_item1.text = data.item1 + " (" + str(data.item1Chance) + "% chance)"
-	$field_item2.text = data.item2 + " (" + str(data.item2Chance) + "% chance)"
+	
+	#allGameItems is a dictionary of all the games items and you can get a particular item's data by name string
+	if (data.item1):
+		$button_item1._set_icon(global.allGameItems[data.item1].icon)
+		$button_item1._set_data(global.allGameItems[data.item1])
+		$button_item1._set_label(str(data.item1Chance) + "%")
+		
+	if (data.item2):
+		$button_item2._set_icon(global.allGameItems[data.item2].icon)
+		$button_item2._set_data(global.allGameItems[data.item2])
+		$button_item2._set_label(str(data.item2Chance) + "%")
 
 func _on_button_beginQuest_pressed():
 	print(global.questHeroes.size())

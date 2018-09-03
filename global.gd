@@ -153,6 +153,7 @@ func _on_questTimer_timeout():
 	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
 	if (currentQuest.hcMin != 0 && currentQuest.hcMax != 0):
 		questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
+	
 	#this is just its NAME, not the item itself
 	
 	#Determine if player won item1 (generally more common) or item2 (generally more rare)

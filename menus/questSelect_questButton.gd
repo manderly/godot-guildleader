@@ -17,4 +17,5 @@ func populate_fields(data):
 
 func _on_Button_pressed():
 	global.currentQuest = questData
+	global.currentMenu = "questConfirm"
 	get_tree().change_scene("res://menus/questConfirm.tscn");

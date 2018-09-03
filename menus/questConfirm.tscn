@@ -1,8 +1,53 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/questConfirm.gd" type="Script" id=1]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=2]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=3]
+[ext_resource path="res://gui/icons/coin_stack.png" type="Texture" id=4]
+[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=5]
+[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D" index="0"]
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 128, 64 )
+margin_left = 22.0
+margin_right = 22.0
+margin_top = 18.0
+margin_bottom = 18.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
+
+[sub_resource type="StyleBoxTexture" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 192, 64 )
+margin_left = 8.0
+margin_right = 8.0
+margin_top = 8.0
+margin_bottom = 8.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
+
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -12,169 +57,35 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 124.0
-margin_top = 22.0
-margin_right = 365.0
-margin_bottom = 74.0
+margin_left = 120.0
+margin_top = 21.0
+margin_right = 361.0
+margin_bottom = 73.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.215686, 0.141176, 0.0156863, 1 )
 text = "QUEST_NAME"
 align = 1
-valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin", "custom_colors", "custom_styles" ]
 
-[node name="label_prizes" type="Label" parent="." index="1"]
+[node name="field_questDescription" type="RichTextLabel" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 124.0
-margin_top = 176.0
-margin_right = 365.0
-margin_bottom = 228.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "PRIZES"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_scRange" type="Label" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 169.0
-margin_top = 237.0
-margin_right = 317.0
-margin_bottom = 264.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "###COIN RANGE"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_hcRange" type="Label" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 170.0
-margin_top = 264.0
-margin_right = 318.0
-margin_bottom = 291.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "### DIAMOND RANGE"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="label_chanceToFindTheseItems" type="Label" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1.0
-margin_top = 292.0
-margin_right = 476.0
-margin_bottom = 319.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "PLUS A CHANCE TO FIND THESE ITEMS:"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_item1" type="Label" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 317.0
-margin_right = 475.0
-margin_bottom = 344.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "### RARE ITEM 1 NAME"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_item2" type="Label" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 342.0
-margin_right = 475.0
-margin_bottom = 369.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "### RARE ITEM 2 NAME"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_questDescription" type="RichTextLabel" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 62.0
-margin_top = 69.0
-margin_right = 434.0
-margin_bottom = 188.0
+margin_left = 51.0
+margin_top = 81.0
+margin_right = 430.0
+margin_bottom = 171.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -193,16 +104,108 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="label_chooseHeroes" type="Label" parent="." index="8"]
+[node name="label_prizes" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 391.0
-margin_right = 327.0
-margin_bottom = 422.0
+margin_left = 124.0
+margin_top = 176.0
+margin_right = 365.0
+margin_bottom = 228.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.215686, 0.141176, 0.0156863, 1 )
+text = "PRIZES"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_styles" ]
+
+[node name="field_scRange" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 120.0
+margin_top = 250.0
+margin_right = 196.0
+margin_bottom = 277.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "000-999"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_hcRange" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 300.0
+margin_top = 250.0
+margin_right = 384.0
+margin_bottom = 277.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "000-999"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="label_chanceToFindTheseItems" type="Label" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.0
+margin_top = 296.0
+margin_right = 476.0
+margin_bottom = 323.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "PLUS A CHANCE TO FIND THESE ITEMS:"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="label_chooseHeroes" type="Label" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 140.0
+margin_top = 420.0
+margin_right = 317.0
+margin_bottom = 451.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -216,16 +219,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_beginQuest" type="Button" parent="." index="9"]
+[node name="button_beginQuest" type="Button" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 135.0
-margin_top = 701.0
-margin_right = 360.0
-margin_bottom = 789.0
+margin_left = 130.0
+margin_top = 760.0
+margin_right = 355.0
+margin_bottom = 848.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -242,16 +245,16 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="button_back" type="Button" parent="." index="10"]
+[node name="button_back" type="Button" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 135.0
-margin_top = 824.0
-margin_right = 362.0
-margin_bottom = 912.0
+margin_left = 150.0
+margin_top = 870.0
+margin_right = 330.0
+margin_bottom = 930.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -259,6 +262,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/normal = SubResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -266,18 +270,18 @@ group = null
 text = "Back"
 flat = false
 align = 1
-_sections_unfolded = [ "Margin" ]
+_sections_unfolded = [ "Margin", "custom_styles" ]
 
-[node name="hbox" type="HBoxContainer" parent="." index="11"]
+[node name="vbox" type="VBoxContainer" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 427.0
-margin_right = 468.0
-margin_bottom = 548.0
+margin_top = 460.0
+margin_right = 480.0
+margin_bottom = 630.0
+grow_vertical = 0
 rect_min_size = Vector2( 300, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -287,6 +291,35 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/separation = -1
 alignment = 1
+_sections_unfolded = [ "Grow Direction" ]
+
+[node name="sprite_coins" type="Sprite" parent="." index="10"]
+
+position = Vector2( 102, 262 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="sprite_diamonds" type="Sprite" parent="." index="11"]
+
+position = Vector2( 282, 262 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="button_item1" parent="." index="12" instance=ExtResource( 6 )]
+
+margin_left = 150.0
+margin_top = 322.0
+margin_right = 220.0
+margin_bottom = 422.0
+
+[node name="button_item2" parent="." index="13" instance=ExtResource( 6 )]
+
+margin_left = 239.0
+margin_top = 322.0
+margin_right = 309.0
+margin_bottom = 422.0
 
 [connection signal="pressed" from="button_beginQuest" to="." method="_on_button_beginQuest_pressed"]
 

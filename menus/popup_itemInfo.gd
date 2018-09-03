@@ -21,6 +21,11 @@ func _ready():
 		$button_moveItem.hide()
 		$button_trash.hide()
 		
+	#don't show move to vault or trash buttons if this item is on the questConfirm page
+	if (global.currentMenu == "questConfirm"):
+		$button_moveItem.hide()
+		$button_trash.hide()
+		
 	$field_stat0.hide()
 	$field_stat1.hide()
 	$field_stat2.hide()

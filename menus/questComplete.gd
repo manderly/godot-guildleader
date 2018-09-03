@@ -22,8 +22,10 @@ func populate_fields(data):
 	$field_questDescription.text = data.text
 	$field_sc.text = str(global.questPrizeSC) + " coins" #set in global when the quest timer expires
 	$field_hc.text = str(global.questPrizeHC) + " diamonds"
-	$field_lootName1.text = global.questPrizeItem1
-	$field_lootName2.text = global.questPrizeItem2
+	if (global.questPrizeItem1):
+		$field_lootName1.text = global.questPrizeItem1
+	if (global.questPrizeItem2):
+		$field_lootName2.text = global.questPrizeItem2
 
 func _on_button_collectRewards_pressed():
 	print("COLLECTING PRIZES AND GOING BACK TO MAIN")

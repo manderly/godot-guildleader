@@ -10,14 +10,14 @@ func _ready():
 	
 	#print a vertically scrolling list of quest buttons
 	var buttonX = 0
-	var buttonY = 100
+	var buttonY = 0
 	for i in range(quest_data.size()):
 		#print(quest_data[i].name) #prints each quest name that was loaded
 		var questButton = preload("res://menus/questSelect_questButton.tscn").instance()
 		questButton.set_quest_data(quest_data[i])
 		questButton.set_position(Vector2(buttonX, buttonY))
-		add_child(questButton)
-		buttonY += 130
+		$scroll/vbox.add_child(questButton)
+		buttonY += 140
 
 #back button - refactor to say "back" in method name 
 func _on_Button_pressed():

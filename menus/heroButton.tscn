@@ -142,7 +142,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse", "Size Flags" ]
 
-[node name="Sprite" type="Sprite" parent="." index="5"]
+[node name="sprite_hero" type="Sprite" parent="." index="5"]
 
 position = Vector2( 54.0736, 40.1418 )
 texture = ExtResource( 3 )
