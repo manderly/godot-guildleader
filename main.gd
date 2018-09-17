@@ -49,8 +49,10 @@ func _ready():
 	draw_heroes()
 
 func _on_Quests_pressed():
+	#global.currentMenu = "quests"
+	#get_tree().change_scene("res://menus/questSelect.tscn");
 	global.currentMenu = "quests"
-	get_tree().change_scene("res://menus/questSelect.tscn");
+	get_tree().change_scene("res://menus/maps/worldmap.tscn");
 
 func _on_Vault_pressed():
 	global.currentMenu = "vault"

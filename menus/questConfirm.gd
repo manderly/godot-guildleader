@@ -65,4 +65,4 @@ func _on_button_back_pressed():
 			global.questHeroes[i].available = true
 			global.questHeroes[i] = null
 			global.questHeroesPicked -= 1
-	get_tree().change_scene("res://menus/questSelect.tscn")
+	get_tree().change_scene("res://menus/maps/worldmap.tscn")

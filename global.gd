@@ -13,6 +13,9 @@ var guildRoster = []
 
 var unrecruited = []
 
+var unformattedQuestData = null
+var questData = {}
+
 #active quest
 var questTimer = null
 var currentQuest = null
@@ -57,6 +60,21 @@ var filterVaultByItemSlot = null
 var browsingForSlot = ""
 
 func _ready():
+	#Load quest data
+	var questFile = File.new()
+	questFile.open("res://gameData/quests.json", questFile.READ)
+	var unformattedQuestData = parse_json(questFile.get_as_text())
+	questFile.close()
+	
+	#so we can access quests by ID 
+	var questKey = null #a string, ie: "forest01"
+	var questValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
+	for i in range(unformattedQuestData.size()):
+		questKey = unformattedQuestData[i]["questId"]
+		questValue = unformattedQuestData[i]
+		global.questData[questKey] = questValue
+		#to set a quest: global.currentQuest = global.questData["forest01"]
+	
 	#Load room type data and save it to a global var
 	var roomTypeFile = File.new()
 	roomTypeFile.open("res://gameData/roomTypes.json", roomTypeFile.READ)

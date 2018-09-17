@@ -44,7 +44,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Expand Margin", "Margin" ]
 
-[node name="questSelect" type="Node"]
+[node name="questSelect" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

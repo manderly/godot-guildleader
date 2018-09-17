@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/maps/coast.gd" type="Script" id=1]
+[ext_resource path="res://tiles/coast_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxTexture" id=1]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 128, 64 )
+margin_left = 22.0
+margin_right = 22.0
+margin_top = 18.0
+margin_bottom = 18.0
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+modulate_color = Color( 1, 1, 1, 1 )
+draw_center = true
+_sections_unfolded = [ "Margin" ]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 4, 0, 0, 8, 0, 0, 12, 0, 0, 14, 5, 0, 65540, 10, 0, 65542, 10, 0, 65550, 5, 0, 131082, 78, 0, 131084, 10, 0, 131085, 5, 0, 131086, 5, 0, 196620, 5, 0, 196621, 5, 0, 196622, 5, 0, 262144, 0, 0, 262148, 0, 0, 262152, 0, 0, 262154, 10, 0, 262156, 0, 0, 262157, 5, 0, 262158, 5, 0, 327690, 10, 0, 327694, 5, 0, 393230, 5, 0, 458757, 78, 0, 458758, 78, 0, 458766, 5, 0, 524288, 0, 0, 524292, 0, 0, 524296, 0, 0, 524300, 0, 0, 524302, 5, 0, 589834, 78, 0, 589836, 0, 0, 589838, 5, 0, 655373, 5, 0, 655374, 5, 0, 720908, 5, 0, 720909, 5, 0, 720910, 5, 0, 786432, 0, 0, 786436, 0, 0, 786440, 0, 0, 786444, 10, 0, 786445, 5, 0, 786446, 5, 0, 851980, 0, 0, 851981, 78, 0, 851982, 5, 0, 917517, 78, 0, 917518, 5, 0, 983040, 78, 0, 983047, 78, 0, 983049, 78, 0, 983054, 5, 0, 1048576, 0, 0, 1048578, 78, 0, 1048579, 78, 0, 1048580, 0, 0, 1048584, 0, 0, 1048588, 78, 0, 1048590, 5, 0, 1114123, 78, 0, 1114124, 0, 0, 1114126, 5, 0, 1179661, 5, 0, 1179662, 5, 0, 1245197, 5, 0, 1245198, 5, 0, 1310720, 0, 0, 1310724, 0, 0, 1310728, 0, 0, 1310733, 5, 0, 1310734, 5, 0, 1376268, 5, 0, 1376269, 5, 0, 1376270, 5, 0, 1441804, 5, 0, 1441805, 5, 0, 1441806, 5, 0, 1507339, 5, 0, 1507340, 5, 0, 1507341, 5, 0, 1507342, 5, 0, 1572864, 0, 0, 1572868, 0, 0, 1572872, 0, 0, 1572874, 4, 0, 1572875, 5, 0, 1572876, 5, 0, 1572877, 5, 0, 1572878, 5, 0, 1638409, 4, 0, 1638410, 5, 0, 1638411, 5, 0, 1638412, 5, 0, 1638413, 5, 0, 1638414, 5, 0, 1703938, 10, 0, 1703944, 4, 0, 1703945, 5, 0, 1703946, 5, 0, 1703947, 5, 0, 1703948, 5, 0, 1703949, 5, 0, 1703950, 5, 0, 1769479, 5, 0, 1769480, 5, 0, 1769481, 5, 0, 1769482, 5, 0, 1769483, 5, 0, 1769484, 5, 0, 1769485, 5, 0, 1769486, 5, 0, 1835008, 0, 0, 1835009, 0, 0, 1835013, 5, 0, 1835014, 5, 0, 1835015, 5, 0, 1835016, 5, 0, 1835017, 5, 0, 1835018, 5, 0, 1835019, 5, 0, 1835020, 5, 0, 1835021, 5, 0, 1835022, 5, 0, 1900547, 5, 0, 1900548, 5, 0, 1900549, 5, 0, 1900550, 5, 0, 1900551, 5, 0, 1900552, 5, 0, 1900553, 5, 0, 1900554, 5, 0, 1900555, 5, 0, 1900556, 5, 0, 1900557, 5, 0, 1900558, 5, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="trees" type="Node" parent="." index="1"]
+
+[node name="questMarker1" parent="." index="2" instance=ExtResource( 3 )]
+
+margin_left = 90.0
+margin_top = 790.0
+margin_right = 166.0
+margin_bottom = 860.0
+
+[node name="questMarker2" parent="." index="3" instance=ExtResource( 3 )]
+
+margin_left = 160.0
+margin_top = 600.0
+margin_right = 236.0
+margin_bottom = 670.0
+
+[node name="questMarker3" parent="." index="4" instance=ExtResource( 3 )]
+
+margin_left = 290.0
+margin_top = 470.0
+margin_right = 366.0
+margin_bottom = 540.0
+
+[node name="questMarker4" parent="." index="5" instance=ExtResource( 3 )]
+
+margin_left = 350.0
+margin_top = 220.0
+margin_right = 426.0
+margin_bottom = 290.0
+
+[node name="questMarker5" parent="." index="6" instance=ExtResource( 3 )]
+
+margin_left = 210.0
+margin_top = 80.0
+margin_right = 286.0
+margin_bottom = 150.0
+
+[node name="questMarker6" parent="." index="7" instance=ExtResource( 3 )]
+
+margin_left = 70.0
+margin_top = 110.0
+margin_right = 146.0
+margin_bottom = 180.0
+
+[node name="mapName" type="Label" parent="." index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 140.0
+margin_top = 10.0
+margin_right = 356.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_styles/normal = SubResource( 1 )
+custom_colors/font_color = Color( 0.215686, 0.141176, 0.0156863, 1 )
+text = "Shoach Coast"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors", "custom_styles" ]
+
+
