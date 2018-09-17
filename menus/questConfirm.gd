@@ -34,9 +34,18 @@ func _ready():
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
-	$field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
-	$field_hcRange.text = str(data.hcMin) + " - " + str(data.hcMax) + " diamonds"
+	if (data.scMin > 0):
+		$hbox_prizes_currency/prizes_coins/field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
+	else:
+		$hbox_prizes_currency/prizes_diamonds/sprite_coins.hide()
+		$hbox_prizes_currency/prizes_coins/field_scRange.hide()
 	
+	if (data.hcMin > 0):
+		$hbox_prizes_currency/prizes_diamonds/field_hcRange.text = str(data.hcMin) + " - " + str(data.hcMax) + " diamonds"
+	else:
+		$hbox_prizes_currency/prizes_diamonds/sprite_diamonds.hide()
+		$hbox_prizes_currency/prizes_diamonds/field_hcRange.hide()
+		
 	#allGameItems is a dictionary of all the games items and you can get a particular item's data by name string
 	if (data.item1):
 		$button_item1._set_icon(global.allGameItems[data.item1].icon)

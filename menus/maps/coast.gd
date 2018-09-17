@@ -11,3 +11,5 @@ func _ready():
 	$questMarker4._set_data("coast04")
 	$questMarker5._set_data("coast05")
 	$questMarker6._set_data("coast06")
+	$questMarker7._set_data("coast07")
+	$questMarker8._set_data("coast08")
