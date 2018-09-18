@@ -166,6 +166,7 @@ func _on_confirm_instant_train_confirmed():
 		global.selectedHero.xp = 0
 		global.selectedHero.level += 1
 		#todo: refactor the redrawing of fields into something less case-by-case
+		$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
 		$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
 	else: 
 		print("heroPage.gd: not enough diamonds")

@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://menus/maps/forest.gd" type="Script" id=1]
 [ext_resource path="res://tiles/forest_tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/tackbankforest/tree1.png" type="Texture" id=3]
-[ext_resource path="res://sprites/tackbankforest/tree3.png" type="Texture" id=4]
-[ext_resource path="res://sprites/tackbankforest/tree2.png" type="Texture" id=5]
-[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://gui/scroll_light.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tackbankforest/rock1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tackbankforest/tallgrass1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tackbankforest/tree1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tackbankforest/tree3.png" type="Texture" id=6]
+[ext_resource path="res://sprites/tackbankforest/tree2.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tackbankforest/tree4.png" type="Texture" id=8]
+[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -14,7 +17,7 @@ content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
-texture = ExtResource( 7 )
+texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 128, 64 )
 margin_left = 22.0
 margin_right = 22.0
@@ -56,100 +59,129 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="trees" type="Node" parent="." index="1"]
+[node name="rocks and grass" type="Node" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="rock1" type="Sprite" parent="rocks and grass" index="0"]
+
+position = Vector2( 420, 350 )
+texture = ExtResource( 3 )
+
+[node name="rock2" type="Sprite" parent="rocks and grass" index="1"]
+
+position = Vector2( 40, 480 )
+texture = ExtResource( 3 )
+
+[node name="tallgrass1" type="Sprite" parent="rocks and grass" index="2"]
+
+position = Vector2( 70, 490 )
+texture = ExtResource( 4 )
+
+[node name="trees" type="Node" parent="." index="2"]
 
 [node name="tree1" type="Sprite" parent="trees" index="0"]
 
 position = Vector2( 400, 50 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 
 [node name="tree2" type="Sprite" parent="trees" index="1"]
 
 position = Vector2( 460, 110 )
-texture = ExtResource( 4 )
+texture = ExtResource( 6 )
 
 [node name="tree3" type="Sprite" parent="trees" index="2"]
 
 position = Vector2( 110, 270 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 
 [node name="tree6" type="Sprite" parent="trees" index="3"]
 
 position = Vector2( 480, 350 )
+texture = ExtResource( 7 )
+
+[node name="tree4" type="Sprite" parent="trees" index="4"]
+
+position = Vector2( 130, 360 )
 texture = ExtResource( 5 )
 
-[node name="tree7" type="Sprite" parent="trees" index="4"]
+[node name="tree5" type="Sprite" parent="trees" index="5"]
 
-position = Vector2( 230, 360 )
-texture = ExtResource( 5 )
+position = Vector2( 460, 460 )
+texture = ExtResource( 7 )
 
-[node name="tree4" type="Sprite" parent="trees" index="5"]
+[node name="tree7" type="Sprite" parent="trees" index="6"]
 
-position = Vector2( 410, 410 )
-texture = ExtResource( 3 )
+position = Vector2( 60, 390 )
+texture = ExtResource( 7 )
 
-[node name="tree5" type="Sprite" parent="trees" index="6"]
+[node name="tree8" type="Sprite" parent="trees" index="7"]
 
-position = Vector2( 460, 470 )
-texture = ExtResource( 5 )
+position = Vector2( 180, 540 )
+texture = ExtResource( 8 )
 
-[node name="questMarker1" parent="." index="2" instance=ExtResource( 6 )]
+[node name="tree9" type="Sprite" parent="trees" index="8"]
+
+position = Vector2( 410, 830 )
+texture = ExtResource( 8 )
+
+[node name="questMarker1" parent="." index="3" instance=ExtResource( 9 )]
 
 margin_left = 90.0
 margin_top = 790.0
 margin_right = 166.0
 margin_bottom = 860.0
 
-[node name="questMarker2" parent="." index="3" instance=ExtResource( 6 )]
+[node name="questMarker2" parent="." index="4" instance=ExtResource( 9 )]
 
 margin_left = 380.0
 margin_top = 660.0
 margin_right = 456.0
 margin_bottom = 730.0
 
-[node name="questMarker3" parent="." index="4" instance=ExtResource( 6 )]
+[node name="questMarker3" parent="." index="5" instance=ExtResource( 9 )]
 
 margin_left = 40.0
 margin_top = 530.0
 margin_right = 116.0
 margin_bottom = 600.0
 
-[node name="questMarker4" parent="." index="5" instance=ExtResource( 6 )]
+[node name="questMarker4" parent="." index="6" instance=ExtResource( 9 )]
 
 margin_left = 300.0
 margin_top = 550.0
 margin_right = 376.0
 margin_bottom = 620.0
 
-[node name="questMarker5" parent="." index="6" instance=ExtResource( 6 )]
+[node name="questMarker5" parent="." index="7" instance=ExtResource( 9 )]
 
 margin_left = 360.0
 margin_top = 200.0
 margin_right = 436.0
 margin_bottom = 270.0
 
-[node name="questMarker6" parent="." index="7" instance=ExtResource( 6 )]
+[node name="questMarker6" parent="." index="8" instance=ExtResource( 9 )]
 
 margin_left = 100.0
 margin_top = 400.0
 margin_right = 176.0
 margin_bottom = 470.0
 
-[node name="questMarker7" parent="." index="8" instance=ExtResource( 6 )]
+[node name="questMarker7" parent="." index="9" instance=ExtResource( 9 )]
 
 margin_left = 50.0
 margin_top = 80.0
 margin_right = 126.0
 margin_bottom = 150.0
 
-[node name="questMarker8" parent="." index="9" instance=ExtResource( 6 )]
+[node name="questMarker8" parent="." index="10" instance=ExtResource( 9 )]
 
 margin_left = 320.0
 margin_top = 110.0
 margin_right = 396.0
 margin_bottom = 180.0
 
-[node name="mapName" type="Label" parent="." index="10"]
+[node name="mapName" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
