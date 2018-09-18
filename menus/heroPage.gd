@@ -80,7 +80,10 @@ func populate_fields(data):
 	
 func _update_stats():
 	displayHP._update_fields("HP", global.selectedHero.hp)
-	displayMana._update_fields("Mana", global.selectedHero.mana)
+	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
+		displayMana._update_fields("Mana", global.selectedHero.mana)
+	else:
+		displayMana.hide()
 	displayArmor._update_fields("Armor", global.selectedHero.armor)
 	displayDPS._update_fields("DPS", global.selectedHero.dps)
 	displaySTA._update_fields("STA", global.selectedHero.stamina)
@@ -170,3 +173,18 @@ func _on_confirm_instant_train_confirmed():
 		$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
 	else: 
 		print("heroPage.gd: not enough diamonds")
+
+#make the entire vbox clickable
+func _on_vbox_stats1_gui_input(ev):
+	if ev is InputEventMouseButton \
+    and ev.button_index == BUTTON_LEFT \
+    and ev.is_pressed():
+		get_node("info_statsLeft_dialog").popup()
+	
+#make the entire vbox clickable
+func _on_vbox_stats2_gui_input(ev):
+	if ev is InputEventMouseButton \
+    and ev.button_index == BUTTON_LEFT \
+    and ev.is_pressed():
+		get_node("info_statsRight_dialog").popup()
+	
