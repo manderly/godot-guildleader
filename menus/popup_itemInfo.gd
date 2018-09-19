@@ -54,8 +54,12 @@ func _populate_fields():
 	$sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
 	$field_slot.text = itemData.slot.capitalize()
 	
-	#classes will eventually be multiples
-	$field_classes.text = "Classes: " + str(itemData.classRestriction).capitalize()
+	#there might be multiple class restrictions, so build a string
+	var restrictionsStr = ""
+	for i in range(itemData.classRestrictions.size()):
+		restrictionsStr += itemData.classRestrictions[i] + " "
+	#$field_classes.text = "Class: " + str(itemData.classRestriction).capitalize()
+	$field_classes.text = "Classes: \n" + restrictionsStr.capitalize()
 	
 	if (!itemData.noDrop):
 		$field_noDrop.text = "Tradeable"

@@ -114,6 +114,19 @@ func _ready():
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
 		global.allGameItems[itemKey] = itemValue
+		var classRestrictionsArray = []
+		classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)
+		if (global.allGameItems[itemKey].classRestriction2 != ""):
+			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction2)
+		if (global.allGameItems[itemKey].classRestriction3 != ""):
+			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction3)
+		if (global.allGameItems[itemKey].classRestriction4 != ""):
+			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction4)
+		if (global.allGameItems[itemKey].classRestriction5 != ""):
+			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
+			
+		print(classRestrictionsArray)
+		global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
 		#print(global.items)
 	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))
 	

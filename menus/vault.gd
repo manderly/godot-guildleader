@@ -47,10 +47,17 @@ func _draw_vault_items():
 					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
 						currentButton._set_disabled() #script I wrote in itemButton.gd
 						
-					#disable this item if it isn't a class match (allows ANY and class)
-					if (global.guildItems[i].classRestriction != "ANY"):
-						if (global.guildItems[i].classRestriction.to_lower() != global.selectedHero.heroClass.to_lower()):
-							currentButton._set_disabled() #script I wrote in itemButton.gd 
+					var thisHeroCanWear = false
+					if (global.guildItems[i].classRestrictions[0] == "ANY"):
+						thisHeroCanWear = true
+					else:
+						print("test")
+						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
+						for p in range(global.guildItems[i].classRestrictions.size()):
+							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.heroClass.to_lower()):
+								thisHeroCanWear = true
+					if (!thisHeroCanWear):
+						currentButton._set_disabled() #script I wrote in itemButton.gd 
 			else:
 				currentButton._clear_label()
 				currentButton._clear_icon()

@@ -43,7 +43,9 @@ func generate(destinationArray, classStr):
 		newHero.heroClass = "Rogue"
 		
 		newHero.give_item("Rusty Knife")
-		newHero.give_item("Simple Chainmail Boots")
+		newHero.give_item("Muddy Boots")
+		newHero.give_item("Simple Chainmail Leggings")
+		newHero.give_item("Simple Chainmail Vest")
 		
 		#sprites
 		newHero.bodySprite = "body04.png"
@@ -62,6 +64,8 @@ func generate(destinationArray, classStr):
 		newHero.give_item("Rusty Broadsword")
 		newHero.give_item("Reinforced Shield")
 		newHero.give_item("Muddy Boots")
+		newHero.give_item("Worn Ringmail Leg Guards")
+		newHero.give_item("Worn Ringmail Vest")
 		
 		#sprites
 		newHero.bodySprite = "body03.png"
