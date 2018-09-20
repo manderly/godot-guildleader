@@ -4,7 +4,7 @@
 [ext_resource path="res://gui/chiselbutton.png" type="Texture" id=2]
 [ext_resource path="res://gui/scroll_light.png" type="Texture" id=3]
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -24,7 +24,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=2]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -44,7 +44,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Expand Margin", "Margin" ]
 
-[node name="questSelect" type="Node" index="0"]
+[node name="questSelect" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -65,7 +65,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/normal = SubResource( 2 )
+custom_styles/normal = SubResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -91,7 +91,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 2 )
 custom_colors/font_color = Color( 0.21875, 0.144703, 0.0170898, 1 )
 text = "CHOOSE A QUEST"
 align = 1
@@ -124,7 +124,7 @@ scroll_horizontal = 0
 scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
-_sections_unfolded = [ "Scroll" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Pause", "Rect", "Scroll" ]
 
 [node name="vbox" type="VBoxContainer" parent="scroll" index="0"]
 

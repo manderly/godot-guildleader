@@ -1,10 +1,12 @@
 #global.gd 
 extends Node
+var nameGenerator = load("res://nameGenerator.gd").new()
 
 var softCurrency = 500
 var hardCurrency = 10
 var currentMenu = "main"
 var vaultSpace = 25 #should be a multiple of 5
+var guildName = "" 
 
 var nextHeroID = 100
 
@@ -60,6 +62,10 @@ var filterVaultByItemSlot = null
 var browsingForSlot = ""
 
 func _ready():
+	#Name the guild!
+	global.guildName = nameGenerator.generateGuildName()
+	print("Guildname:" + global.guildName)
+	
 	#Load quest data
 	var questFile = File.new()
 	questFile.open("res://gameData/quests.json", questFile.READ)

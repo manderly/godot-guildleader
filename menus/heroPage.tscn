@@ -26,7 +26,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -277,8 +277,6 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="10"]
 
-editor/display_folded = true
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -299,7 +297,7 @@ window_title = "Rename Hero"
 resizable = false
 dialog_text = "Enter new name"
 dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog" ]
+_sections_unfolded = [ "Dialog", "Rect" ]
 
 [node name="LineEdit" type="LineEdit" parent="confirm_rename_dialog" index="3"]
 

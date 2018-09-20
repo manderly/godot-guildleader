@@ -5,8 +5,8 @@
 [ext_resource path="res://gui/square_btn_quest.png" type="Texture" id=3]
 [ext_resource path="res://gui/square_btn_raid.png" type="Texture" id=4]
 [ext_resource path="res://gui/square_btn_vault.png" type="Texture" id=5]
-[ext_resource path="res://gui/square_btn_roster.png" type="Texture" id=6]
-[ext_resource path="res://gui/square_btn_market.png" type="Texture" id=7]
+[ext_resource path="res://gui/square_btn_market.png" type="Texture" id=6]
+[ext_resource path="res://gui/square_btn_roster.png" type="Texture" id=7]
 [ext_resource path="res://gui/icons/coin_stack.png" type="Texture" id=8]
 [ext_resource path="res://gui/icons/diamond.png" type="Texture" id=9]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=10]
@@ -116,7 +116,7 @@ group = null
 texture_normal = ExtResource( 3 )
 _sections_unfolded = [ "Material", "Textures", "Visibility" ]
 
-[node name="Label" type="Label" parent="HUD/hbox_bottomBar/vbox button QUESTS" index="1"]
+[node name="Label2" type="Label" parent="HUD/hbox_bottomBar/vbox button QUESTS" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -191,7 +191,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Raids"
+text = "X"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -274,7 +274,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Roster" type="TextureButton" parent="HUD/hbox_bottomBar/vbox button ROSTER" index="0"]
+[node name="Market" type="TextureButton" parent="HUD/hbox_bottomBar/vbox button ROSTER" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -311,7 +311,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Roster"
+text = "Market"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -334,7 +334,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Market" type="TextureButton" parent="HUD/hbox_bottomBar/vbox button MARKET" index="0"]
+[node name="Guild" type="TextureButton" parent="HUD/hbox_bottomBar/vbox button MARKET" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -371,7 +371,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Market"
+text = "Guild"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -931,7 +931,7 @@ _sections_unfolded = [ "Material", "Mouse", "Visibility", "custom_fonts", "custo
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button VAULT/Vault" to="." method="_on_Vault_pressed"]
 
-[connection signal="pressed" from="HUD/hbox_bottomBar/vbox button ROSTER/Roster" to="." method="_on_Roster_pressed"]
+[connection signal="pressed" from="HUD/hbox_bottomBar/vbox button MARKET/Guild" to="." method="_on_Roster_pressed"]
 
 [connection signal="pressed" from="HUD/button_collectQuest" to="HUD" method="_on_button_collectQuest_pressed"]
 
