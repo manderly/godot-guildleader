@@ -62,6 +62,7 @@ func _draw_vault_items():
 				currentButton._clear_label()
 				currentButton._clear_icon()
 				currentButton._clear_data()
+				currentButton._set_disabled() #disable empty buttons
 				#keep vault index intact 
 	
 func _on_button_back_pressed():

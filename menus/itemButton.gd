@@ -64,6 +64,7 @@ func _set_disabled():
 	$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
 
 func _on_Button_pressed():
+	print("itemButton.gd: item button pressed")
 	#print("my vault index is: " + str(self.itemVaultIndex))
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
