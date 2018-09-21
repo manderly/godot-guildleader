@@ -47,6 +47,7 @@ func _ready():
 		global.initDone = true
 
 	draw_heroes()
+	$HUD/vbox_currencies/HBoxContainer/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 
 func _on_Quests_pressed():
 	#global.currentMenu = "quests"

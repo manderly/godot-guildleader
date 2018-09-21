@@ -5,6 +5,7 @@ extends Node2D
 
 func _ready():
 	$field_guildName.text = global.guildName
+	$field_guildMemberCount.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
 	var buttonX = 0
 	var buttonY = 0

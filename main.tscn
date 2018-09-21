@@ -39,7 +39,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Content Margin", "Margin" ]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -58,6 +58,7 @@ script = ExtResource( 2 )
 
 [node name="hbox_bottomBar" type="HBoxContainer" parent="HUD" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -379,7 +380,6 @@ max_lines_visible = -1
 
 [node name="vbox_currencies" type="VBoxContainer" parent="HUD" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -407,6 +407,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 431.0
+margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -415,13 +416,34 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="sc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="0"]
+[node name="field_guildCapacity" type="Label" parent="HUD/vbox_currencies/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 180.0
+margin_right = 31.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "# / #"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="sc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 35.0
+margin_right = 215.0
+margin_bottom = 14.0
 rect_min_size = Vector2( 180, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -441,6 +463,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="label_softCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/sc_container" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -482,14 +505,16 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="hc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="1"]
+[node name="hc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 184.0
-margin_right = 364.0
+margin_left = 145.0
+margin_top = -4.0
+margin_right = 325.0
+margin_bottom = 10.0
 rect_min_size = Vector2( 180, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -508,6 +533,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="label_hardCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/hc_container" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -759,6 +785,7 @@ shadow_item_cull_mask = 1
 
 [node name="outside sprites" type="Container" parent="screen" index="7"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -771,6 +798,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="sprite_tree10" type="Sprite" parent="screen/outside sprites" index="0"]
 
@@ -897,6 +927,9 @@ group = null
 flat = false
 align = 1
 _sections_unfolded = [ "Margin", "Material", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="field_addRoomButtonLabel" type="RichTextLabel" parent="screen/button_addRoom" index="0"]
 
@@ -926,6 +959,9 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Material", "Mouse", "Visibility", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button QUESTS/Quests" to="." method="_on_Quests_pressed"]
 

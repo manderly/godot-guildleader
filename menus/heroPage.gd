@@ -108,23 +108,30 @@ func _on_button_train_pressed():
 	else: #hero not part of guild yet
 		#print("heroPage.gd: Recruiting this hero: " + global.selectedHero.heroName)
 		#loop through unrecruited hero array and find the one that we're viewing
-		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroID == global.selectedHero.heroID):
-				#change recruited boolean to true and append to guildRoster
-				global.unrecruited[i].recruited = true
-				global.guildRoster.append(global.unrecruited[i])
-				break
 		
-		#now remove this hero from the unrecruited hero array
-		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroID == global.selectedHero.heroID):
-				var findMe = global.selectedHero
-				var index = global.unrecruited.find(findMe)
-				global.unrecruited.remove(index)
-				break
+		#first, see if we have space for this hero
+		if (global.guildRoster.size() == global.guildCapacity):
+			print("not enough room!")
+			get_node("insufficient_guild_capacity_dialog").popup()
+		elif (global.guildRoster.size() < global.guildCapacity):
+			for i in range(global.unrecruited.size()):
+				if (global.unrecruited[i].heroID == global.selectedHero.heroID):
+					#change recruited boolean to true and append to guildRoster
+					global.unrecruited[i].recruited = true
+					global.guildRoster.append(global.unrecruited[i])
+					break
+		
+			#now remove this hero from the unrecruited hero array
+			for i in range(global.unrecruited.size()):
+				if (global.unrecruited[i].heroID == global.selectedHero.heroID):
+					var findMe = global.selectedHero
+					var index = global.unrecruited.find(findMe)
+					global.unrecruited.remove(index)
+					break
 				
-		#finally, go back to main 
-		get_tree().change_scene("res://main.tscn")
+			#after successful recruit, go back to main 
+			#todo: maybe stay on hero page? might be more intuitive 
+			get_tree().change_scene("res://main.tscn")
 
 func _on_button_rename_pressed():
 	get_node("confirm_rename_dialog").popup()

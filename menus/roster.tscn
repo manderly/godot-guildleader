@@ -23,7 +23,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -53,7 +53,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="Label" type="Label" parent="." index="1"]
+[node name="label_guildManagement" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -101,7 +101,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label2" type="Label" parent="." index="3"]
+[node name="label_roster" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -124,15 +124,38 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="scroll_roster" type="ScrollContainer" parent="." index="4"]
+[node name="field_guildMemberCount" type="Label" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 4.0
-margin_top = 216.0
-margin_right = 474.0
+margin_left = 2.0
+margin_top = 193.0
+margin_right = 479.0
+margin_bottom = 216.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "# / #"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="scroll_roster" type="ScrollContainer" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 225.0
+margin_right = 475.0
 margin_bottom = 820.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
@@ -164,7 +187,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_renameGuild" type="Button" parent="." index="5"]
+[node name="button_renameGuild" type="Button" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -189,7 +212,7 @@ text = "Rename guild"
 flat = false
 align = 1
 
-[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="6"]
+[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="7"]
 
 visible = false
 anchor_left = 0.0

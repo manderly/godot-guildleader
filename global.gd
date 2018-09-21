@@ -12,6 +12,7 @@ var nextHeroID = 100
 
 var selectedHero = null #which hero to show on heroPage
 var guildRoster = []
+var guildCapacity = 4 #each bedroom adds +2 capacity 
 
 var unrecruited = []
 
@@ -64,7 +65,6 @@ var browsingForSlot = ""
 func _ready():
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
-	print("Guildname:" + global.guildName)
 	
 	#Load quest data
 	var questFile = File.new()
