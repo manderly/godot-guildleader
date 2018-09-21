@@ -22,7 +22,7 @@ func _ready():
 	for i in range(global.roomOrder.size()):
 		var roomInstance = global.roomOrder[i].instance()
 		roomInstance.set_position(Vector2(roomX,roomY))
-		roomInstance.display_room_name(str(global.roomOrder[i]))
+		#roomInstance.display_room_name(str(global.roomOrder[i]))
 		roomsLayer.add_child(roomInstance)
 		if (i == global.roomOrder.size() - 2):
 			roomY -= 192 #for placing the taller-than-a-room top edge piece

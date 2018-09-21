@@ -3,7 +3,7 @@
 [ext_resource path="res://rooms/roomInstance.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -44,7 +44,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Blacksmith"
+text = "Vault"
 align = 1
 valign = 1
 percent_visible = 1.0
