@@ -36,6 +36,16 @@ func _ready():
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
+	#globalize this into a utility that can be used anywhere
+	var durationForDisplay = null
+	if (data.duration > 3599):
+		durationForDisplay = str(data.duration / 3600) + "h"
+	elif (data.duration > 59):
+		durationForDisplay = str(data.duration / 60) + "m"
+	else:
+		durationForDisplay = str(data.duration) + "s"
+	$field_duration.text = durationForDisplay
+	
 	if (data.scMin > 0):
 		$hbox_prizes_currency/prizes_coins/field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
 	else:
@@ -74,7 +84,7 @@ func _on_button_beginQuest_pressed():
 		#todo: this is just set up on a global level for now, but ideally it'll be quest-specific 
 		get_node("quest_finish_now_dialog").popup()
 	else:
-		print("error - not sure what state we're in")
+		print("questConfirm.gd error - not sure what state we're in")
 
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
