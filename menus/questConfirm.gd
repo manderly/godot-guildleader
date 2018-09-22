@@ -5,6 +5,8 @@ extends Node2D
 func _ready():
 	#quest name, description
 	populate_fields(global.currentQuest)
+	if (global.questActive && !global.questReadyToCollect):
+		$button_beginQuest.text = "Finish now"
 	
 	#disable the begin quest button until enough heroes are assigned
 	if (global.questHeroesPicked < global.currentQuest.groupSize):
@@ -58,14 +60,21 @@ func populate_fields(data):
 		$button_item2._set_label(str(data.item2Chance) + "%")
 
 func _on_button_beginQuest_pressed():
-	print(global.questHeroes.size())
-	print(global.currentQuest.groupSize)
-	
-	if (global.questHeroesPicked < global.currentQuest.groupSize):
-		print("Not enough groupies yet")
+	#this button lets you either begin the quest or finish it early for HC
+	#case 1: no quest active, nothing ready to collect
+	if (!global.questActive && !global.questReadyToCollect):
+		if (global.questHeroesPicked < global.currentQuest.groupSize):
+			print("Not enough groupies yet")
+		else:
+			global._begin_global_quest_timer(global.currentQuest.duration);
+			get_tree().change_scene("res://main.tscn")
+	#case 2: quest is active but not ready to collect 
+	#todo: see if this can be done by just checking the status of the timer instead?
+	elif (global.questActive && !global.questReadyToCollect): #quest is ready to collect
+		#todo: this is just set up on a global level for now, but ideally it'll be quest-specific 
+		get_node("quest_finish_now_dialog").popup()
 	else:
-		global._begin_global_quest_timer(global.currentQuest.duration);
-		get_tree().change_scene("res://main.tscn")
+		print("error - not sure what state we're in")
 
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
@@ -75,3 +84,12 @@ func _on_button_back_pressed():
 			global.questHeroes[i] = null
 			global.questHeroesPicked -= 1
 	get_tree().change_scene("res://menus/maps/worldmap.tscn")
+
+func _on_quest_finish_now_dialog_confirmed():
+	if (global.hardCurrency > 0):
+		global.hardCurrency -= 1
+		global.questTimer.stop()
+		global._on_questTimer_timeout()
+		get_tree().change_scene("res://menus/questComplete.tscn")
+	else:
+		print("insufficient funds")

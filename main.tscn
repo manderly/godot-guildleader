@@ -380,6 +380,7 @@ max_lines_visible = -1
 
 [node name="vbox_currencies" type="VBoxContainer" parent="HUD" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -623,6 +624,8 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="screen" type="Node" parent="." index="1"]
+
+editor/display_folded = true
 
 [node name="TileMap" type="TileMap" parent="screen" index="0"]
 

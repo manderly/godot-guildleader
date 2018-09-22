@@ -18,14 +18,13 @@ func _ready():
 	else:
 		#quest is active, show the button
 		$button_collectQuest.show()
-		if (!global.questReadyToCollect):
-			#quest is not ready to collect, the button is disabled
-			#todo: button isn't disabled, clicking it prompts player to spend diamonds to finish it now
-			$button_collectQuest.set_disabled(true)
 	
 func _on_quest_complete(name):
 	#quest is done, button sits ready to click until collected by player 
 	$button_collectQuest.set_disabled(false)
 	
 func _on_button_collectQuest_pressed():
-	get_tree().change_scene("res://menus/questComplete.tscn")
+	if (global.questReadyToCollect):
+		get_tree().change_scene("res://menus/questComplete.tscn")
+	else:
+		get_tree().change_scene("res://menus/questConfirm.tscn")
