@@ -30,7 +30,7 @@ func _ready():
 			
 		heroButton.set_button_id(i)
 		heroButton.set_position(Vector2(buttonX, buttonY))
-		$vbox.add_child(heroButton) 
+		$scroll/vbox.add_child(heroButton) 
 		buttonY += 80
 	
 func populate_fields(data):
@@ -84,6 +84,7 @@ func _on_button_beginQuest_pressed():
 		#todo: this is just set up on a global level for now, but ideally it'll be quest-specific 
 		get_node("quest_finish_now_dialog").popup()
 	else:
+		#we get into this state if we let the quest finish while sitting on the questConfirm page 
 		print("questConfirm.gd error - not sure what state we're in")
 
 func _on_button_back_pressed():

@@ -11,8 +11,9 @@ func _ready():
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		heroButton.set_hero_data(global.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
-		add_child(heroButton) 
+		$scroll/vbox.add_child(heroButton) 
 		buttonY += 130
 
 func _on_back_button_pressed():
+	global.currentMenu = "questConfirm"
 	get_tree().change_scene("res://menus/questConfirm.tscn")
