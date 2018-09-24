@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex"
+path="res://.import/treasureChest.png-b08686dcbb8b9adf3770d224199a6fa0.stex"
 
 [deps]
 
-source_file="res://sprites/forge/anvil.png"
-dest_files=[ "res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex" ]
+source_file="res://sprites/vault/treasureChest.png"
+dest_files=[ "res://.import/treasureChest.png-b08686dcbb8b9adf3770d224199a6fa0.stex" ]
 
 [params]
 

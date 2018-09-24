@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://rooms/roomInstance.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://sprites/vault/treasureChest.png" type="Texture" id=3]
+[ext_resource path="res://sprites/vault/treasureChestSmall.png" type="Texture" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,7 +27,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 25, 0, 4, 25, 0, 5, 25, 0, 6, 87, 0, 7, 90, 0, 8, 90, 0, 9, 90, 0, 10, 90, 0, 11, 90, 0, 12, 93, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 25, 0, 65540, 25, 0, 65541, 23, 0, 65542, 98, 0, 65543, 96, 0, 65544, 96, 0, 65545, 96, 0, 65546, 96, 0, 65547, 96, 0, 65548, 95, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 18, 0, 131076, 25, 0, 131077, 25, 0, 131079, 97, 0, 131080, 97, 0, 131081, 97, 0, 131082, 97, 0, 131083, 97, 0, 131084, 99, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 25, 0, 196612, 23, 0, 196613, 25, 0, 196614, 88, 0, 196615, 96, 0, 196616, 96, 0, 196617, 96, 0, 196618, 96, 0, 196619, 96, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0 )
+tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 25, 0, 4, 25, 0, 5, 25, 0, 6, 100, 0, 7, 103, 0, 8, 103, 0, 9, 103, 0, 10, 103, 0, 11, 103, 0, 12, 106, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 25, 0, 65540, 25, 0, 65541, 23, 0, 65542, 111, 0, 65543, 109, 0, 65544, 109, 0, 65545, 110, 0, 65546, 110, 0, 65547, 110, 0, 65548, 107, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 18, 0, 131076, 25, 0, 131077, 25, 0, 131079, 110, 0, 131080, 109, 0, 131081, 110, 0, 131082, 109, 0, 131083, 110, 0, 131084, 112, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 25, 0, 196612, 23, 0, 196613, 25, 0, 196614, 101, 0, 196615, 110, 0, 196616, 109, 0, 196617, 110, 0, 196618, 110, 0, 196619, 110, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0 )
 _sections_unfolded = [ "Cell" ]
 
 [node name="field_roomName" type="Label" parent="." index="1"]
@@ -50,5 +52,22 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="sprite_treasureChest_large" type="Sprite" parent="." index="2"]
+
+position = Vector2( 370, 40 )
+texture = ExtResource( 3 )
+
+[node name="sprite_treasureChest_small" type="Sprite" parent="." index="3"]
+
+position = Vector2( 310, 30 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="sprite_treasureChest_small2" type="Sprite" parent="." index="4"]
+
+position = Vector2( 270, 30 )
+texture = ExtResource( 4 )
+_sections_unfolded = [ "Offset" ]
 
 

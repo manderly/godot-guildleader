@@ -2,7 +2,6 @@
 
 [ext_resource path="res://tiles/forest_tiles.png" type="Texture" id=1]
 
-
 [node name="Node2D" type="Node2D"]
 
 [node name="forest_grass_1" type="Sprite" parent="." index="0"]
@@ -15,10 +14,34 @@ _sections_unfolded = [ "Region" ]
 
 [node name="forest_grass_2" type="Sprite" parent="." index="1"]
 
-position = Vector2( 112, 32 )
+position = Vector2( 30, 110 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 64, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="forest_river_top" type="Sprite" parent="." index="2"]
+
+position = Vector2( 30, 190 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 128, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="forest_river_water" type="Sprite" parent="." index="3"]
+
+position = Vector2( 30, 270 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 192, 64, 64 )
+_sections_unfolded = [ "Region" ]
+
+[node name="forest_river_bottom" type="Sprite" parent="." index="4"]
+
+position = Vector2( 30, 350 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 256, 64, 64 )
 _sections_unfolded = [ "Region" ]
 
 

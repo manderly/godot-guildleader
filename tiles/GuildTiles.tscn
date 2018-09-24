@@ -620,6 +620,8 @@ __meta__ = {
 
 [node name="Exterior" type="Node" parent="Walls" index="1"]
 
+editor/display_folded = true
+
 [node name="Exterior_Wall_1" type="Sprite" parent="Walls/Exterior" index="0"]
 
 editor/display_folded = true
@@ -984,6 +986,151 @@ position = Vector2( 336, 624 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 192, 352, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault room" type="Node" parent="Walls" index="3"]
+
+[node name="vault_NWcorner" type="Sprite" parent="Walls/vault room" index="0"]
+
+position = Vector2( 240, 688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_west1" type="Sprite" parent="Walls/vault room" index="1"]
+
+position = Vector2( 240, 720 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_west2" type="Sprite" parent="Walls/vault room" index="2"]
+
+position = Vector2( 240, 752 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_north1" type="Sprite" parent="Walls/vault room" index="3"]
+
+position = Vector2( 272, 688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_north2" type="Sprite" parent="Walls/vault room" index="4"]
+
+position = Vector2( 304, 688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_north3" type="Sprite" parent="Walls/vault room" index="5"]
+
+position = Vector2( 336, 688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_NEcorner" type="Sprite" parent="Walls/vault room" index="6"]
+
+position = Vector2( 368, 688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 320, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_east1" type="Sprite" parent="Walls/vault room" index="7"]
+
+position = Vector2( 368, 720 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_east2" type="Sprite" parent="Walls/vault room" index="8"]
+
+position = Vector2( 368, 752 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 384, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_floor1" type="Sprite" parent="Walls/vault room" index="9"]
+
+position = Vector2( 304, 720 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 352, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_floor2" type="Sprite" parent="Walls/vault room" index="10"]
+
+position = Vector2( 304, 752 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 320, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_door" type="Sprite" parent="Walls/vault room" index="11"]
+
+position = Vector2( 272, 736 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 352, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_window" type="Sprite" parent="Walls/vault room" index="12"]
+
+position = Vector2( 336, 736 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 352, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true

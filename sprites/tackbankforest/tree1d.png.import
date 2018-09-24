@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex"
+path="res://.import/tree1d.png-047bee17179ee62b649d9342d86aa530.stex"
 
 [deps]
 
-source_file="res://sprites/forge/anvil.png"
-dest_files=[ "res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex" ]
+source_file="res://sprites/tackbankforest/tree1d.png"
+dest_files=[ "res://.import/tree1d.png-047bee17179ee62b649d9342d86aa530.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

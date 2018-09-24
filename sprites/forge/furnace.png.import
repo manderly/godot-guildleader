@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex"
+path="res://.import/furnace.png-376c2a1e774b89c60ebf1cbc71d36232.stex"
 
 [deps]
 
-source_file="res://sprites/forge/anvil.png"
-dest_files=[ "res://.import/anvil.png-b7ffa52fdb51689b272c9a19da102b18.stex" ]
+source_file="res://sprites/forge/furnace.png"
+dest_files=[ "res://.import/furnace.png-376c2a1e774b89c60ebf1cbc71d36232.stex" ]
 
 [params]
 
