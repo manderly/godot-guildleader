@@ -94,14 +94,9 @@ var outsideMinY = 650
 var outsideMaxY = 820
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	$field_name.text = heroName
-	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
-	$field_xp.text = str(xp) + " xp"
-	#$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
+	_hide_extended_stats()
 	_start_idle_timer()
-
 
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
@@ -122,14 +117,22 @@ func _start_walking():
 	#_physics_process(delta) handles the rest and determines when the heroes has arrived 
 	
 func _on_Timer_timeout():
-	#print(heroName + " is done idling, time to walk!")
+	#idleTimer is up, time to start walking!
+	_hide_extended_stats()
 	_start_walking()
-
+#
 func _input_event(viewport, event, shape_idx):
-    if event is InputEventMouseButton \
-    and event.button_index == BUTTON_LEFT \
-    and event.is_pressed():
-        self.on_click()
+	pass
+	#print("old input event triggered")
+    #if event is InputEventMouseButton \
+    #and event.button_index == BUTTON_LEFT \
+    #and event.is_pressed():
+        #self.on_click()
+		
+	#if event is InputEventMouseButton \
+    #and event.button_index == BUTTON_LEFT \
+    #and event.is_released():
+        #self.on_heroTouchRelease()
 
 func _physics_process(delta):
 	if (walking):
@@ -142,22 +145,27 @@ func _physics_process(delta):
 			$idleTimer.start()
 		
 func on_click():
+	pass
+
+	
 	#loop through the heroes and find a unique ID to match to 
 	#figure out what hero data we are viewing from the global hero array
 	#print("hero.gd: Recruited status: " + str(self.recruited))
-	if (self.recruited):
-		for i in range(global.guildRoster.size()):
-			if (global.guildRoster[i].heroID == heroID):
-				global.selectedHero = global.guildRoster[i]
-				global.currentMenu = "heroPage"
-				get_tree().change_scene("res://menus/heroPage.tscn")
-				break
-	else:
-		for i in range(global.unrecruited.size()):
-			if (global.unrecruited[i].heroID == heroID):
-				global.selectedHero = global.unrecruited[i]
-				get_tree().change_scene("res://menus/heroPage.tscn")
-				break
+	
+	
+	#if (self.recruited):
+		#for i in range(global.guildRoster.size()):
+			#if (global.guildRoster[i].heroID == heroID):
+				#global.selectedHero = global.guildRoster[i]
+				#global.currentMenu = "heroPage"
+				##get_tree().change_scene("res://menus/heroPage.tscn")
+				#break
+	#else:
+		#for i in range(global.unrecruited.size()):
+			#if (global.unrecruited[i].heroID == heroID):
+				#global.selectedHero = global.unrecruited[i]
+				#get_tree().change_scene("res://menus/heroPage.tscn")
+				#break
 
 	
 func set_instance_data(data):
@@ -237,4 +245,50 @@ func give_item(itemNameStr):
 	
 	#gets the item out of allGameItems by name, and puts it in the hero's correct equip. slot
 	equipment[global.allGameItems[itemNameStr].slot] = global.allGameItems[itemNameStr]
+
+#if we release before 300ms is up, it's a short press - just show the hero name and stop their walking
+#if we release after 300ms is up, it's a long press - open the hero page 
+func _open_hero_page():
+	if (self.recruited):
+		for i in range(global.guildRoster.size()):
+			if (global.guildRoster[i].heroID == heroID):
+				global.selectedHero = global.guildRoster[i]
+				global.currentMenu = "heroPage"
+				get_tree().change_scene("res://menus/heroPage.tscn")
+				break
+	else:
+		for i in range(global.unrecruited.size()):
+			if (global.unrecruited[i].heroID == heroID):
+				global.selectedHero = global.unrecruited[i]
+				get_tree().change_scene("res://menus/heroPage.tscn")
+				break
+				
+func _hide_extended_stats():
+	$field_levelAndClass.text = ""
+	$field_xp.text = ""
+	$field_debug.text = ""
+	
+func _show_extended_stats():
+	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
+	$field_xp.text = str(xp) + " xp"
+	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
+	
+func _on_heroButton_pressed():
+	if (walking):
+		walking = false
+	$touchTimer.set_wait_time(0.5)
+	$touchTimer.start()
+
+func _on_heroButton_released():
+	if $touchTimer.is_stopped():
+		#long press detected
+		_open_hero_page()
+	else:
+		#short press detected
+		_show_extended_stats()
+		$idleTimer.set_wait_time(5)
+		$idleTimer.start()
 		
+func _on_touchTimer_timeout():
+	#touch timer timed out 
+	$touchTimer.stop()

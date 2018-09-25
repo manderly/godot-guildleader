@@ -7,25 +7,6 @@
 [ext_resource path="res://sprites/heroes/weaponSecondary02.png" type="Texture" id=5]
 [ext_resource path="res://sprites/heroes/shield01.png" type="Texture" id=6]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends TouchScreenButton
-
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-"
-
 [sub_resource type="ParticlesMaterial" id=2]
 
 render_priority = 0
@@ -71,7 +52,12 @@ _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Sprea
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10.1507 )
 
-[node name="hero" type="KinematicBody2D"]
+[sub_resource type="RectangleShape2D" id=4]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1, 1 )
+
+[node name="hero" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 2
@@ -80,22 +66,7 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pickable", "collision" ]
 
-[node name="heroButton" type="TouchScreenButton" parent="." index="0"]
-
-position = Vector2( -11.8272, -15.8192 )
-scale = Vector2( 84.5043, 98.5884 )
-normal = null
-pressed = null
-bitmask = null
-shape = null
-shape_centered = true
-shape_visible = true
-passby_press = false
-action = ""
-visibility_mode = 0
-script = SubResource( 1 )
-
-[node name="field_name" type="Label" parent="." index="1"]
+[node name="field_name" type="Label" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -117,7 +88,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_levelAndClass" type="Label" parent="." index="2"]
+[node name="field_levelAndClass" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -139,7 +110,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Size Flags" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="3"]
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
 
 position = Vector2( 1.29308, 17.6957 )
 emitting = true
@@ -162,7 +133,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
-[node name="field_xp" type="Label" parent="." index="4"]
+[node name="field_xp" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -183,7 +154,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="field_debug" type="Label" parent="." index="5"]
+[node name="field_debug" type="Label" parent="." index="4"]
 
 visible = false
 anchor_left = 0.0
@@ -205,21 +176,14 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 
-position = Vector2( 31.0529, 30.7187 )
-scale = Vector2( 2.53385, 2.95953 )
+position = Vector2( 32.299, 32.1148 )
+scale = Vector2( 1.82893, 2.53462 )
 shape = SubResource( 3 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 
-[node name="idleTimer" type="Timer" parent="." index="7"]
-
-process_mode = 1
-wait_time = 4.0
-one_shot = true
-autostart = false
-
-[node name="base" type="Node2D" parent="." index="8"]
+[node name="base" type="Node2D" parent="." index="6"]
 
 position = Vector2( 30.9247, 21.1424 )
 
@@ -251,6 +215,42 @@ position = Vector2( 18.5158, 18.5158 )
 texture = ExtResource( 6 )
 _sections_unfolded = [ "Offset" ]
 
+[node name="heroButton" type="TouchScreenButton" parent="." index="7"]
+
+position = Vector2( 19.4813, 16.1385 )
+scale = Vector2( 22.8798, 29.0313 )
+z_index = 1
+normal = null
+pressed = null
+bitmask = null
+shape = SubResource( 4 )
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="idleTimer" type="Timer" parent="." index="8"]
+
+process_mode = 1
+wait_time = 4.0
+one_shot = true
+autostart = false
+
+[node name="touchTimer" type="Timer" parent="." index="9"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
+
+[connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
+
 [connection signal="timeout" from="idleTimer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="touchTimer" to="." method="_on_touchTimer_timeout"]
 
 
