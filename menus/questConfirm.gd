@@ -32,6 +32,22 @@ func _ready():
 		heroButton.set_position(Vector2(buttonX, buttonY))
 		$scroll/vbox.add_child(heroButton) 
 		buttonY += 80
+		
+func _process(delta):
+	#Displays how much time is left on the active quest 
+	if (global.questActive && !global.questReadyToCollect):
+		if (global.questTimer.time_left < 60):
+			$field_timeRemaining.set_text("Quest time remaining: < 1m")
+			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
+		else:
+			$field_timeRemaining.set_text("Quest time remaining: Long time")
+	elif (!global.questActive && global.questReadyToCollect):
+		$field_timeRemaining.set_text("Quest time remaining: DONE!")
+		$button_beginQuest.text = "COLLECT PRIZES"
+		#just kick player to collection screen automatically
+		get_tree().change_scene("res://menus/questComplete.tscn")
+	else:
+		$field_timeRemaining.set_text("Quest not started")
 	
 func populate_fields(data):
 	$field_questName.text = data.name
@@ -83,8 +99,11 @@ func _on_button_beginQuest_pressed():
 	elif (global.questActive && !global.questReadyToCollect): #quest is ready to collect
 		#todo: this is just set up on a global level for now, but ideally it'll be quest-specific 
 		get_node("quest_finish_now_dialog").popup()
+	elif (!global.questActive && global.questReadyToCollect):
+		#this is on the button, but really it should just kick you to the done screen automatically
+		get_tree().change_scene("res://menus/questComplete.tscn")
 	else:
-		#we get into this state if we let the quest finish while sitting on the questConfirm page 
+		#bug: we get into this state if we let the quest finish while sitting on the questConfirm page 
 		print("questConfirm.gd error - not sure what state we're in")
 
 func _on_button_back_pressed():
