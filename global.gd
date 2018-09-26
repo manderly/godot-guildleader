@@ -51,6 +51,10 @@ onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeSce
 onready var roomCount = roomOrder.size() - 1
 var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
 
+#names
+var humanMaleNames = []
+var humanFemaleNames = []
+
 #signal quest_begun
 signal quest_complete
 
@@ -64,6 +68,7 @@ var filterVaultByItemSlot = null
 var browsingForSlot = ""
 
 func _ready():
+	randomize()
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 	
@@ -105,6 +110,17 @@ func _ready():
 	#print(str(heroStartingStatData[0].rogue)) 
 	#print(str(heroStartingStatData[0]["rogue"]["defense"]))
 	
+	#load names
+	var humanMaleNamesFile = File.new()
+	humanMaleNamesFile.open("res://gameData/names/humanMale.json", humanMaleNamesFile.READ)
+	humanMaleNames = parse_json(humanMaleNamesFile.get_as_text())
+	humanMaleNamesFile.close()
+	
+	var humanFemaleNamesFile = File.new()
+	humanFemaleNamesFile.open("res://gameData/names/humanFemale.json", humanFemaleNamesFile.READ)
+	humanFemaleNames = parse_json(humanFemaleNamesFile.get_as_text())
+	humanFemaleNamesFile.close()
+	
 	#Load game item data
 	var itemsFile = File.new()
 	itemsFile.open("res://gameData/items.json", itemsFile.READ)
@@ -132,7 +148,6 @@ func _ready():
 		if (global.allGameItems[itemKey].classRestriction5 != ""):
 			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
 			
-		print(classRestrictionsArray)
 		global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
 		#print(global.items)
 	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))

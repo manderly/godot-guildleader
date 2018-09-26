@@ -12,8 +12,15 @@ func generate(destinationArray, classStr):
 	newHero.heroID = global.nextHeroID
 	global.nextHeroID += 1
 	
-	#random name
-	newHero.heroName = nameGenerator.generate()
+	#random gender (they're all female by default, but if we roll a 1, change to male)
+	#this is only used to get a name that sounds somewhat masculine or feminine, no effect on gameplay
+	var randomGender = randi()%2 #0 or 1
+	if (randomGender == 1):
+		newHero.gender = "male"
+	
+	#random name 
+	#todo: pass species in addition to gender 
+	newHero.heroName = nameGenerator.generate(newHero.gender)
 	
 	#random class
 	var randomClass = randi()%3+1 #1-4

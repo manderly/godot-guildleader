@@ -10,6 +10,7 @@ var xp = -1
 var currentRoom = 0 #outside by default
 var available = true
 var recruited = false
+var gender = "female"
 
 #Hero base stats come from external spreadsheet data
 #These are first set when a hero is randomly generated in heroGenerator.gd
