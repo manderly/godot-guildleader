@@ -23,6 +23,7 @@ var baseDps = -1
 var baseStamina = -1
 var baseDefense = -1
 var baseIntelligence = -1
+var baseSkillBlacksmithing = -1
 var baseDrama = 0
 var baseMood = 0
 var basePrestige = -1
@@ -37,6 +38,7 @@ var modifiedDps = 0
 var modifiedStamina = 0
 var modifiedDefense = 0
 var modifiedIntelligence = 0
+var modifiedSkillBlacksmithing = 0
 var modifiedPrestige = 0
 
 #TODO: Buffs - someday, buffs will affect stats, too. 
@@ -49,6 +51,7 @@ var dps = -1
 var stamina = -1
 var defense = -1
 var intelligence = -1
+var skillBlacksmithing = -1
 var drama = 0
 var mood = 0
 var prestige = -1
@@ -205,6 +208,7 @@ func update_hero_stats():
 	modifiedStamina = 0
 	modifiedDefense = 0
 	modifiedIntelligence = 0
+	modifiedSkillBlacksmithing = 0
 	modifiedPrestige = 0
 	
 	#add up all the stats from armor 
@@ -221,6 +225,7 @@ func update_hero_stats():
 			modifiedDefense += equip.defense
 			modifiedIntelligence += equip.intelligence
 			modifiedPrestige += equip.prestige
+			#skill stats to come later (todo) 
 			#groupBonus is a different system (todo) 
 			#raidBonus is a different system (todo)
 			#drama and mood are not affected by equipment
@@ -235,6 +240,7 @@ func update_hero_stats():
 	stamina = baseStamina + modifiedStamina
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
+	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	prestige = basePrestige + modifiedPrestige
 	drama = "Low"
 	mood = "Happy"

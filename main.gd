@@ -48,7 +48,10 @@ func _ready():
 
 	draw_heroes()
 	$HUD/vbox_currencies/HBoxContainer/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
-
+	
+	$questMarker1._set_data("guild02")
+	$questMarker2._set_data("guild04")
+	
 func _on_Quests_pressed():
 	#global.currentMenu = "quests"
 	#get_tree().change_scene("res://menus/questSelect.tscn");

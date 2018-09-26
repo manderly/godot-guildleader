@@ -16,17 +16,22 @@ func _on_button_buildRoom_pressed():
 	#check if you can afford this new room
 	if (global.softCurrency >= global.newRoomCost[global.roomCount]):
 		var roomToInsert = null
+		print(roomData.name)
 		if (roomData.name == "Bedroom"):
 			global.guildCapacity += 2
 			roomToInsert = global.bedroomScene
 		elif (roomData.name == "Blacksmith"):
 			roomToInsert = global.blacksmithScene
 		elif (roomData.name == "Training"):
-			roomToInsert = global.placeholderRoomScene
+			roomToInsert = global.trainingScene
 		elif (roomData.name == "Vault"):
 			global.vaultSpace += 5
 			global.guildItems.resize(global.vaultSpace) #otherwise, they fall out of sync and errors result
 			roomToInsert = global.vaultScene
+		elif (roomData.name == "Class"):
+			#Todo: which class you get is random but you can't get the same one twice
+			#for now, it's always the warrior room
+			roomToInsert = global.warriorScene
 		else:
 			roomToInsert = global.placeholderRoomScene
 			

@@ -1,9 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://sprites/forge/wall_tools.png" type="Texture" id=2]
-[ext_resource path="res://sprites/forge/furnace.png" type="Texture" id=3]
-[ext_resource path="res://sprites/forge/anvil.png" type="Texture" id=4]
 
 [node name="Node2D" type="Node2D"]
 
@@ -47,26 +44,11 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Blacksmith"
+text = "Training"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="sprite_wallTools" type="Sprite" parent="." index="2"]
-
-position = Vector2( 251.318, 23.6893 )
-texture = ExtResource( 2 )
-
-[node name="sprite_furnace" type="Sprite" parent="." index="3"]
-
-position = Vector2( 313.739, 21.5546 )
-texture = ExtResource( 3 )
-
-[node name="sprite_anvil" type="Sprite" parent="." index="4"]
-
-position = Vector2( 342.589, 104.29 )
-texture = ExtResource( 4 )
 
 

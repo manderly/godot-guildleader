@@ -2,15 +2,15 @@
 
 [ext_resource path="res://menus/heroPage_heroStatDisplay.gd" type="Script" id=1]
 
-[node name="hbox" type="HBoxContainer"]
+[node name="hbox" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 131.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 60, 32 )
+margin_right = 180.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 160, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -27,9 +27,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 80.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 80, 20 )
+margin_right = 100.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 100, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 2
@@ -43,7 +43,7 @@ percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
 text = "STAT"
-scroll_active = true
+scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
@@ -55,9 +55,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 84.0
-margin_right = 144.0
-margin_bottom = 32.0
+margin_left = 104.0
+margin_right = 164.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 60, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true

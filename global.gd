@@ -44,6 +44,8 @@ var itemData = null
 #rooms
 onready var bedroomScene = preload("res://rooms/bedroom.tscn")
 onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
+onready var trainingScene = preload("res://rooms/training.tscn")
+onready var warriorScene = preload("res://rooms/warrior.tscn")
 onready var vaultScene = preload("res://rooms/vault.tscn")
 onready var topEdgeScene = preload("res://rooms/topedge.tscn")
 onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")

@@ -4,6 +4,7 @@ extends Node2D
 var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
 var heroEquipmentSlotNames = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
+#Stats
 var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayMana = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayArmor = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -11,13 +12,26 @@ var displayDPS = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySTA = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
+#Skills
+var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
+#Attributes
 var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayMood = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-	
+
+var statsLabel = Label.new()
+var attributesLabel = Label.new()
+var skillsLabel = Label.new()
+
 func _ready():
+	statsLabel.text = "Stats"
+	attributesLabel.text = "Attributes"
+	skillsLabel.text = "Skills"
+
 	#hide dismiss and rename buttons if this hero isn't a recruited hero
 	if (!global.selectedHero.recruited):
 		$button_rename.hide()
@@ -39,8 +53,6 @@ func _ready():
 		
 		#only set icon if the hero actually has an item in this slot, otherwise empty
 		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
-		
-			
 		if (global.selectedHero["equipment"][slot] != null):
 			#global.logger(self, "this hero has an item in their slot: " + slot)
 			#global.logger(self, global.selectedHero["equipment"][slot])
@@ -52,6 +64,7 @@ func _ready():
 	#for each stat, place its instance into the appropriate vbox
 	#populating the data is done in a separate method, update_stats 
 	#LEFT SIDE
+	$vbox_stats1.add_child(statsLabel)
 	$vbox_stats1.add_child(displayHP)
 	$vbox_stats1.add_child(displayMana)
 	$vbox_stats1.add_child(displayArmor)
@@ -59,8 +72,11 @@ func _ready():
 	$vbox_stats1.add_child(displaySTA)
 	$vbox_stats1.add_child(displayDEF)
 	$vbox_stats1.add_child(displayINT)
+	$vbox_stats1.add_child(skillsLabel)
+	$vbox_stats1.add_child(displaySkillBlacksmithing)
 
 	#RIGHT SIDE
+	$vbox_stats2.add_child(attributesLabel)
 	$vbox_stats2.add_child(displayDrama)
 	$vbox_stats2.add_child(displayMood)
 	$vbox_stats2.add_child(displayPrestige)
@@ -84,11 +100,17 @@ func _update_stats():
 		displayMana._update_fields("Mana", global.selectedHero.mana)
 	else:
 		displayMana.hide()
+	#stats
 	displayArmor._update_fields("Armor", global.selectedHero.armor)
 	displayDPS._update_fields("DPS", global.selectedHero.dps)
 	displaySTA._update_fields("STA", global.selectedHero.stamina)
-	displayDEF._update_fields("DEF", global.selectedHero.defense)	
+	displayDEF._update_fields("DEF", global.selectedHero.defense)
 	displayINT._update_fields("INT", global.selectedHero.intelligence)
+	
+	#skills
+	displaySkillBlacksmithing._update_fields("Blacksmithing", global.selectedHero.skillBlacksmithing)
+	
+	#attributes
 	displayDrama._update_fields("Drama", global.selectedHero.drama)
 	displayMood._update_fields("Mood", global.selectedHero.mood)
 	displayPrestige._update_fields("Prestige", global.selectedHero.prestige)
