@@ -37,7 +37,7 @@ func make_button_empty():
 	$sprite_hero.texture = null
 	
 func _on_Button_pressed():
-	#distinguish between whether button is on roster or heroSelect menu
+	#distinguish between whether button is on roster or heroSelect menu or blacksmith
 	if (global.currentMenu == "roster"):
 		global.selectedHero = heroData
 		global.currentMenu = "heroPage"
@@ -56,8 +56,19 @@ func _on_Button_pressed():
 		else:
 			global.logger(self, "Hero not available")
 	elif (global.currentMenu == "questConfirm"):
-			global.questButtonID = buttonID
-			global.currentMenu = "selectHeroForQuest"
-			get_tree().change_scene("res://menus/heroSelect.tscn")
+		global.questButtonID = buttonID
+		global.currentMenu = "selectHeroForQuest"
+		get_tree().change_scene("res://menus/heroSelect.tscn")
+	elif (global.currentMenu == "blacksmith"):
+		if (heroData.available):
+			print("assigning hero to blacksmith")
+			#heroData.available = false #this hero is now busy as long as they're at the blacksmith
+			heroData.currentRoom = 4
+			global.blacksmithHero = heroData
+			#todo: figure out where the blacksmith room is in the sequence and use that index
+			global.currentMenu = "main"
+			get_tree().change_scene("res://main.tscn")
+		else:
+			print("hero is busy")
 	else:
 		print("FREAK OUT AND DO NOTHING!!")

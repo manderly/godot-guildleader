@@ -97,6 +97,7 @@ var outsideMaxX = 380
 var outsideMinY = 650
 var outsideMaxY = 820
 
+
 func _ready():
 	$field_name.text = heroName
 	_hide_extended_stats()
@@ -114,6 +115,10 @@ func _start_walking():
 	if (currentRoom == 1): #large interior room
 		walkDestX = rand_range(mainRoomMinX, mainRoomMaxX)
 		walkDestY = rand_range(mainRoomMinY, mainRoomMaxY)
+	elif (currentRoom > 1):
+		walkDestX = rand_range(240, 320)
+		walkDestY = rand_range(global.rooms[currentRoom].roomY + 5, global.rooms[currentRoom].roomY + 40)
+		#print("walkDestY: " + str(walkDestY))
 	else: #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)

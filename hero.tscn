@@ -3,11 +3,11 @@
 [ext_resource path="res://hero.gd" type="Script" id=1]
 [ext_resource path="res://sprites/heroes/body01.png" type="Texture" id=2]
 [ext_resource path="res://sprites/heroes/head01.png" type="Texture" id=3]
-[ext_resource path="res://sprites/heroes/weapon03.png" type="Texture" id=4]
+[ext_resource path="res://sprites/heroes/weaponMain01.png" type="Texture" id=4]
 [ext_resource path="res://sprites/heroes/weaponSecondary02.png" type="Texture" id=5]
 [ext_resource path="res://sprites/heroes/shield01.png" type="Texture" id=6]
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=1]
 
 render_priority = 0
 trail_divisor = 1
@@ -47,12 +47,12 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Spread", "Trail" ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10.1507 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
@@ -126,7 +126,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 2 )
+process_material = SubResource( 1 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -180,7 +180,7 @@ max_lines_visible = -1
 
 position = Vector2( 32.299, 32.1148 )
 scale = Vector2( 1.82893, 2.53462 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 
 [node name="base" type="Node2D" parent="." index="6"]
@@ -223,7 +223,7 @@ z_index = 1
 normal = null
 pressed = null
 bitmask = null
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 shape_centered = true
 shape_visible = true
 passby_press = false

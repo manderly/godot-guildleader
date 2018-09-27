@@ -1,4 +1,5 @@
 extends Node2D
+var roomGenerator = load("res://roomGenerator.gd").new()
 
 var roomData = null
 
@@ -19,25 +20,24 @@ func _on_button_buildRoom_pressed():
 		print(roomData.name)
 		if (roomData.name == "Bedroom"):
 			global.guildCapacity += 2
-			roomToInsert = global.bedroomScene
+			roomGenerator.generate("bedroom")
 		elif (roomData.name == "Blacksmith"):
-			roomToInsert = global.blacksmithScene
+			roomGenerator.generate("blacksmith")
 		elif (roomData.name == "Training"):
-			roomToInsert = global.trainingScene
+			roomGenerator.generate("training")
 		elif (roomData.name == "Vault"):
 			global.vaultSpace += 5
 			global.guildItems.resize(global.vaultSpace) #otherwise, they fall out of sync and errors result
-			roomToInsert = global.vaultScene
+			roomGenerator.generate("vault")
 		elif (roomData.name == "Class"):
 			#Todo: which class you get is random but you can't get the same one twice
 			#for now, it's always the warrior room
-			roomToInsert = global.warriorScene
+			roomGenerator.generate("warrior")
 		else:
-			roomToInsert = global.placeholderRoomScene
+			print("buildNewRoom_roomButton.gd: invalid room selected, cannot generate room data")
 			
 		global.softCurrency -= global.newRoomCost[global.roomCount]
-		#add the new room to the global room array
-		global.roomOrder.insert(global.roomCount, roomToInsert) #second from last so the roof end piece is intact
+		#global.roomOrder.insert(global.rooms, roomToInsert) #second from last so the roof end piece is intact
 		global.roomCount += 1 #can't just re-get the global size, it stays stale at 3
 		get_tree().change_scene("res://main.tscn");
 		#todo: for now, building a room is instant. But eventually, it should be on a timer.

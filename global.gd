@@ -50,8 +50,16 @@ onready var vaultScene = preload("res://rooms/vault.tscn")
 onready var topEdgeScene = preload("res://rooms/topedge.tscn")
 onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")
 onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
+onready var rooms = [] 
 onready var roomCount = roomOrder.size() - 1
 var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+
+#tradeskill rooms
+var blacksmithHero = null
+
+#the x min and max is the same for all rooms
+var roomMinX = 200
+var roomMaxX = 360
 
 #names
 var humanMaleNames = []
@@ -183,7 +191,6 @@ func _ready():
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)
-
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
