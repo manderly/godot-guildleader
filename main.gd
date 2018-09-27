@@ -29,13 +29,13 @@ func _ready():
 		heroGenerator.generate(global.unrecruited, "Warrior")
 	
 		#generate rooms
-		roomGenerator.generate("dummy") #placeholder for front yard (0)
-		roomGenerator.generate("dummy") #placeholder for entrance hallway (1)
-		roomGenerator.generate("bedroom")
-		roomGenerator.generate("bedroom")
-		roomGenerator.generate("blacksmith")
-		roomGenerator.generate("vault")
-		roomGenerator.generate("topEdge")
+		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
+		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
+		roomGenerator.generate("bedroom", false)
+		roomGenerator.generate("bedroom", false)
+		roomGenerator.generate("blacksmith", false)
+		roomGenerator.generate("vault", false)
+		roomGenerator.generate("topEdge", false)
 		global.initDone = true
 	
 	$HUD/vbox_currencies/HBoxContainer/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
@@ -90,7 +90,6 @@ func draw_heroes():
 				heroY = rand_range(mainRoomMinY, mainRoomMaxY)
 				heroScene.set_position(Vector2(heroX, heroY))
 			elif (global.guildRoster[i].currentRoom > 1):
-				print("hero is in room " + str(global.guildRoster[i].currentRoom))
 				heroScene.set_position(Vector2(global.rooms[global.guildRoster[i].currentRoom].roomX + 280, global.rooms[global.guildRoster[i].currentRoom].roomY + 20))
 				
 			add_child(heroScene)
@@ -118,7 +117,7 @@ func draw_rooms():
 		#so we have to know what room we're making before we pick the correct scene
 		var roomScene = null
 		if (global.rooms[i].roomType == "dummy"):
-			print("main.gd: skipping dummy room")
+			pass
 		else:
 			if (global.rooms[i].roomType == "bedroom"):
 				roomScene = preload("res://rooms/bedroom.tscn").instance()
@@ -142,20 +141,19 @@ func draw_rooms():
 			roomScene.set_instance_data(global.rooms[i]) #put data from array into scene
 			roomScene.set_position(Vector2(roomX,roomY))
 			
-			print(global.rooms[i].roomType + " " + str(i) + " x:" + str(roomX) + " y:" + str(roomY))
+			#print(global.rooms[i].roomType + " " + str(i) + " x:" + str(roomX) + " y:" + str(roomY))
 			
 			roomsLayer.add_child(roomScene)
 				
 			if (i == global.rooms.size() - 2): #if (i == global.rooms.size() - 2):
 				roomY -= 192 #for placing the taller-than-a-room top edge piece
-				print("edge piece")
 			else:
 				roomY -= 128
-				print("normal room")
 			
 	#place the "add a room" button above the last placed piece
 	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
 	#display the cost to build a new room
+	print("main.gd: global.roomCount: " + str(global.roomCount))
 	$screen/button_addRoom/field_addRoomButtonLabel.text = "BUILD A NEW ROOM \n" + str(global.newRoomCost[global.roomCount]) + " coins"
 func _on_button_addRoom_pressed():
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")

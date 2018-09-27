@@ -42,17 +42,18 @@ var roomTypeData = null
 var itemData = null
 
 #rooms
-onready var bedroomScene = preload("res://rooms/bedroom.tscn")
-onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
-onready var trainingScene = preload("res://rooms/training.tscn")
-onready var warriorScene = preload("res://rooms/warrior.tscn")
-onready var vaultScene = preload("res://rooms/vault.tscn")
-onready var topEdgeScene = preload("res://rooms/topedge.tscn")
-onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")
-onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
-onready var rooms = [] 
-onready var roomCount = roomOrder.size() - 1
-var newRoomCost = [0, 0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+#todo: delete this stuff later once it's all verified working
+#onready var bedroomScene = preload("res://rooms/bedroom.tscn")
+#onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
+#onready var trainingScene = preload("res://rooms/training.tscn")
+#onready var warriorScene = preload("res://rooms/warrior.tscn")
+#onready var vaultScene = preload("res://rooms/vault.tscn")
+#onready var topEdgeScene = preload("res://rooms/topedge.tscn")
+#onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")
+#onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
+onready var rooms = []
+onready var roomCount = 0
+var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
 
 #tradeskill rooms
 var blacksmithHero = null
