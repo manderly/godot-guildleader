@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	if (global.currentMenu == "selectHeroForQuest"):
 		$field_heroSelectDescription.text = "Choose a hero to go on this quest."
-	elif (global.currentMenu == "blacksmith"):
+	elif (global.currentMenu == "blacksmithing"):
 		$field_heroSelectDescription.text = "Choose a hero to work at the blacksmith. While working at the blacksmith, this hero will increase his or her blacksmithing skills but will not be available for quests or raids."
 		
 	var buttonX = 0
@@ -19,7 +19,7 @@ func _ready():
 		buttonY += 130
 
 func _on_back_button_pressed():
-	if (global.currentMenu == "blacksmith"):
+	if (global.currentMenu == "blacksmithing"):
 		global.currentMenu = "main"
 		get_tree().change_scene("res://main.tscn")
 	else:

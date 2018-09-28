@@ -9,5 +9,8 @@ func _ready():
 		$button_staffCraft.text = "Staff"
 
 func _on_button_staffCraft_pressed():
-	global.currentMenu = "blacksmith"
-	get_tree().change_scene("res://menus/heroSelect.tscn")
+	global.currentMenu = "blacksmithing"
+	if (!global.blacksmithHero):
+		get_tree().change_scene("res://menus/heroSelect.tscn")
+	else:
+		get_tree().change_scene("res://menus/crafting.tscn")

@@ -57,6 +57,9 @@ var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 10
 
 #tradeskill rooms
 var blacksmithHero = null
+var selectedBlacksmithingRecipe = null
+var tailoringHero = null
+var jewelcraftHero = null
 
 #the x min and max is the same for all rooms
 var roomMinX = 200
@@ -77,6 +80,10 @@ var inSwapItemState = false
 var lastItemButtonClicked = null
 var filterVaultByItemSlot = null
 var browsingForSlot = ""
+
+var blacksmithingRecipesData = null #raw json parse 
+var allBlacksmithingRecipes = {} #dictionary with key value pairs representing each recipe 
+var blacksmithingRecipes = [] #access them out of this array elsewhere
 
 func _ready():
 	randomize()
@@ -166,25 +173,15 @@ func _ready():
 	#for now, start the user off with some items (visible in the vault)
 	global.guildItems.append(global.allGameItems["Rusty Broadsword"])
 	global.guildItems.append(global.allGameItems["Novice's Blade"])
-	global.guildItems.append(global.allGameItems["Sparkling Metallic Robe"])
 	
 	#here's a ton more
 	global.guildItems.append(global.allGameItems["Basic Bow"])
 	global.guildItems.append(global.allGameItems["Simple Ring"])
 	global.guildItems.append(global.allGameItems["Silver Ring"])
-	#global.guildItems.append(global.allGameItems["Rusty Knife"])
-	#global.guildItems.append(global.allGameItems["Rusty Old Shield"])
-	global.guildItems.append(global.allGameItems["Simple Chainmail Boots"])
-	#global.guildItems.append(global.allGameItems["Chainmail Coif"])
 	global.guildItems.append(global.allGameItems["Novice's Robe"])
-	global.guildItems.append(global.allGameItems["Simple Grey Robe"])
-	global.guildItems.append(global.allGameItems["Robe of Eternity"])
 	global.guildItems.append(global.allGameItems["Robe of Alexandra"])
-	global.guildItems.append(global.allGameItems["Cracked Wooden Buckler"])
-	global.guildItems.append(global.allGameItems["Crimson Staff"])
 	global.guildItems.append(global.allGameItems["Cloth Shirt"])
 	global.guildItems.append(global.allGameItems["Cloth Pants"])
-	global.guildItems.append(global.allGameItems["Cloth Headband"])
 	global.guildItems.append(global.allGameItems["Tiara of Knowledge"])
 	global.guildItems.append(global.allGameItems["Soft Silk Slippers"])
 	global.guildItems.append(global.allGameItems["Softscale Boots"])
@@ -192,6 +189,31 @@ func _ready():
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)
+	
+	#load tradeskill crafting recipes
+	var blacksmithingRecipesFile = File.new()
+	blacksmithingRecipesFile.open("res://gameData/recipesBlacksmithing.json", blacksmithingRecipesFile.READ)
+	blacksmithingRecipesData = parse_json(blacksmithingRecipesFile.get_as_text())
+	blacksmithingRecipesFile.close()
+	
+	var recipeKey = null #a string, ie: "Sharpening Stone"
+	var recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
+	
+	#want to be able to access like: 
+	#var recipe = find("Sharpening Stone")
+	#then access stats like: item.dps, item.str etc by name 
+	#["Sharpening Stone"]["ingredient1"]
+	
+	#first, make every recipe into an object with the recipe name as the key and all the data as the value
+	for i in range(blacksmithingRecipesData.size()):
+		recipeKey = blacksmithingRecipesData[i]["recipeName"]
+		recipeValue = blacksmithingRecipesData[i]
+		allBlacksmithingRecipes[recipeKey] = recipeValue
+	#second, append each recipe into the array that we'll access them from elsewhere in the game
+		blacksmithingRecipes.append(allBlacksmithingRecipes[recipeKey])
+	
+	if (!global.selectedBlacksmithingRecipe):
+		global.selectedBlacksmithingRecipe = blacksmithingRecipes[0]
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):

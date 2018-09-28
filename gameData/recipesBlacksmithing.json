@@ -1,0 +1,62 @@
+[
+  {
+    "recipeName": "Simple Sharpening Stone",
+    "ingredientOfType": "",
+    "ingredient1": "Rough Stone",
+    "ingredient2": "",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 3,
+    "craftingTime": 5,
+    "result": "Simple Sharpening Stone"
+  },
+  {
+    "recipeName": "Minor Blade Sharpening",
+    "ingredientOfType": "blade",
+    "ingredient1": "Sharpening Stone",
+    "ingredient2": "",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 10,
+    "craftingTime": 1200,
+    "result": "computed"
+  },
+  {
+    "recipeName": "Glimmering Steel Sword",
+    "ingredientOfType": "",
+    "ingredient1": "Small Brick of Ore",
+    "ingredient2": "Small Brick of Ore",
+    "ingredient3": "Leather strip",
+    "ingredient4": "",
+    "noFail": false,
+    "trivial": 20,
+    "craftingTime": 3600,
+    "result": "Glimmering Steel Sword"
+  },
+  {
+    "recipeName": "Deluxe Sharpening Stone",
+    "ingredientOfType": "",
+    "ingredient1": "Rough Diamond",
+    "ingredient2": "Rough Stone",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 25,
+    "craftingTime": 30,
+    "result": "Deluxe Sharpening Stone"
+  },
+  {
+    "recipeName": "Major Blade Sharpening",
+    "ingredientOfType": "blade",
+    "ingredient1": "Deluxe Sharpening Stone",
+    "ingredient2": "",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 35,
+    "craftingTime": 7200,
+    "result": "computed"
+  }
+]

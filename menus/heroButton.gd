@@ -59,9 +59,8 @@ func _on_Button_pressed():
 		global.questButtonID = buttonID
 		global.currentMenu = "selectHeroForQuest"
 		get_tree().change_scene("res://menus/heroSelect.tscn")
-	elif (global.currentMenu == "blacksmith"):
+	elif (global.currentMenu == "blacksmithing"):
 		if (heroData.available):
-			print("assigning hero to blacksmith")
 			#heroData.available = false #this hero is now busy as long as they're at the blacksmith
 			heroData.currentRoom = 4
 			global.blacksmithHero = heroData

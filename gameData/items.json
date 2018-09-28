@@ -2,6 +2,7 @@
   {
     "name": "Novice's Blade",
     "icon": "sword1.png",
+    "itemType": "sword",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -24,6 +25,7 @@
   {
     "name": "Rusty Broadsword",
     "icon": "sword2.png",
+    "itemType": "sword",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -46,6 +48,7 @@
   {
     "name": "Fine Steel Sword",
     "icon": "sword3.png",
+    "itemType": "sword",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -68,6 +71,7 @@
   {
     "name": "Glimmering Steel Sword",
     "icon": "sword1.png",
+    "itemType": "sword",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "uncommon",
@@ -90,6 +94,7 @@
   {
     "name": "Soldier's Blade",
     "icon": "sword4.png",
+    "itemType": "sword",
     "prestige": 1,
     "slot": "mainHand",
     "rarity": "uncommon",
@@ -112,6 +117,7 @@
   {
     "name": "The Princess's Defender",
     "icon": "sword5.png",
+    "itemType": "sword",
     "prestige": 6,
     "slot": "mainHand",
     "rarity": "rare",
@@ -134,6 +140,7 @@
   {
     "name": "Rusty Knife",
     "icon": "dagger1.png",
+    "itemType": "knife",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -156,6 +163,7 @@
   {
     "name": "Fine Steel Dagger",
     "icon": "dagger2.png",
+    "itemType": "knife",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -178,6 +186,7 @@
   {
     "name": "Obsidian Quickblade",
     "icon": "dagger2.png",
+    "itemType": "knife",
     "prestige": 2,
     "slot": "mainHand",
     "rarity": "uncommon",
@@ -200,6 +209,7 @@
   {
     "name": "Tzip's Crooked Dagger",
     "icon": "dagger2.png",
+    "itemType": "knife",
     "prestige": 5,
     "slot": "mainHand",
     "rarity": "rare",
@@ -222,6 +232,7 @@
   {
     "name": "Cracked Wooden Buckler",
     "icon": "shield1.png",
+    "itemType": "shield",
     "prestige": 0,
     "slot": "offHand",
     "rarity": "common",
@@ -244,6 +255,7 @@
   {
     "name": "Reinforced Shield",
     "icon": "shield2.png",
+    "itemType": "shield",
     "prestige": 0,
     "slot": "offHand",
     "rarity": "common",
@@ -266,6 +278,7 @@
   {
     "name": "Heavy Painted Shield",
     "icon": "shield3.png",
+    "itemType": "shield",
     "prestige": 0,
     "slot": "offHand",
     "rarity": "uncommon",
@@ -288,6 +301,7 @@
   {
     "name": "Cracked Staff",
     "icon": "crackedstaff.png",
+    "itemType": "staff",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -310,6 +324,7 @@
   {
     "name": "Staff of Good Intentions",
     "icon": "staff2.png",
+    "itemType": "staff",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "uncommon",
@@ -332,6 +347,7 @@
   {
     "name": "Staff of the Four Winds",
     "icon": "staff3.png",
+    "itemType": "staff",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "uncommon",
@@ -354,6 +370,7 @@
   {
     "name": "Crimson Staff",
     "icon": "staff5.png",
+    "itemType": "staff",
     "prestige": 5,
     "slot": "mainHand",
     "rarity": "rare",
@@ -376,6 +393,7 @@
   {
     "name": "Scepter of the Child King",
     "icon": "staff4.png",
+    "itemType": "staff",
     "prestige": 10,
     "slot": "mainHand",
     "rarity": "epic",
@@ -398,6 +416,7 @@
   {
     "name": "Worn Ringmail Vest",
     "icon": "chest_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -420,6 +439,7 @@
   {
     "name": "Worn Ringmail Leg Guards",
     "icon": "legs_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -442,6 +462,7 @@
   {
     "name": "Worn Ringmail Coif",
     "icon": "head_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -464,6 +485,7 @@
   {
     "name": "Simple Chainmail Vest",
     "icon": "chest_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -486,6 +508,7 @@
   {
     "name": "Simple Chainmail Leggings",
     "icon": "legs_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -508,6 +531,7 @@
   {
     "name": "Simple Chainmail Boots",
     "icon": "feet_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -530,6 +554,7 @@
   {
     "name": "Simple Chainmail Coif",
     "icon": "head_chainmail1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -552,6 +577,7 @@
   {
     "name": "Blackguard's Chainmail Vest",
     "icon": "chest_chainmail2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -574,6 +600,7 @@
   {
     "name": "Blackguard's Chainmail Leggings",
     "icon": "legs_chainmail2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -596,6 +623,7 @@
   {
     "name": "Blackguard's Chainmail Boots",
     "icon": "feet_chainmail2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -618,6 +646,7 @@
   {
     "name": "Blackguard's Chainmail Coif",
     "icon": "head_chainmail2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -640,6 +669,7 @@
   {
     "name": "Simple Ring",
     "icon": "ring1.png",
+    "itemType": "jewelry",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
@@ -662,6 +692,7 @@
   {
     "name": "Silver Ring",
     "icon": "ring2.png",
+    "itemType": "jewelry",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
@@ -684,6 +715,7 @@
   {
     "name": "Simple Earring",
     "icon": "earring1.png",
+    "itemType": "jewelry",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
@@ -706,6 +738,7 @@
   {
     "name": "Ruby Teardrop Necklace",
     "icon": "necklace1.png",
+    "itemType": "jewelry",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "uncommon",
@@ -728,6 +761,7 @@
   {
     "name": "Tiny Sapphire Ring",
     "icon": "ring3.png",
+    "itemType": "jewelry",
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "rare",
@@ -750,6 +784,7 @@
   {
     "name": "Basic Bow",
     "icon": "bow1.png",
+    "itemType": "bow",
     "prestige": 0,
     "slot": "mainHand",
     "rarity": "common",
@@ -772,6 +807,7 @@
   {
     "name": "Cloth Shirt",
     "icon": "chest_cloth1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -794,6 +830,7 @@
   {
     "name": "Cloth Pants",
     "icon": "legs_cloth1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
@@ -816,6 +853,7 @@
   {
     "name": "Cloth Headband",
     "icon": "head_cloth1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -838,6 +876,7 @@
   {
     "name": "Worn Canvas Sandals",
     "icon": "feet_cloth1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -860,6 +899,7 @@
   {
     "name": "Soft Silk Slippers",
     "icon": "feet_cloth2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -882,6 +922,7 @@
   {
     "name": "Caster's Circlet",
     "icon": "head_cloth2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -904,6 +945,7 @@
   {
     "name": "Tiara of Knowledge",
     "icon": "head_cloth3.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
@@ -926,6 +968,7 @@
   {
     "name": "Novice's Robe",
     "icon": "robe0.png",
+    "itemType": "robe",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -948,6 +991,7 @@
   {
     "name": "Simple Grey Robe",
     "icon": "robe1.png",
+    "itemType": "robe",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -970,6 +1014,7 @@
   {
     "name": "Blue Cotton Robe",
     "icon": "robe2.png",
+    "itemType": "robe",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -992,6 +1037,7 @@
   {
     "name": "Sparkling Metallic Robe",
     "icon": "robe3.png",
+    "itemType": "robe",
     "prestige": 5,
     "slot": "chest",
     "rarity": "uncommon",
@@ -1014,6 +1060,7 @@
   {
     "name": "Robe of the Dunes",
     "icon": "robe5.png",
+    "itemType": "robe",
     "prestige": 8,
     "slot": "chest",
     "rarity": "epic",
@@ -1036,6 +1083,7 @@
   {
     "name": "Prestige Robe",
     "icon": "robe4.png",
+    "itemType": "robe",
     "prestige": 12,
     "slot": "chest",
     "rarity": "epic",
@@ -1058,6 +1106,7 @@
   {
     "name": "Robe of Alexandra",
     "icon": "robe6.png",
+    "itemType": "robe",
     "prestige": 10,
     "slot": "chest",
     "rarity": "legendary",
@@ -1080,6 +1129,7 @@
   {
     "name": "Robe of Eternity",
     "icon": "robe7.png",
+    "itemType": "robe",
     "prestige": 10,
     "slot": "chest",
     "rarity": "legendary",
@@ -1102,6 +1152,7 @@
   {
     "name": "Simple Leather Vest",
     "icon": "chest_leather1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
@@ -1124,6 +1175,7 @@
   {
     "name": "Simple Leather Boots",
     "icon": "feet_leather1.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -1146,6 +1198,7 @@
   {
     "name": "Ornate Leather Vest",
     "icon": "chest_leather2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "chest",
     "rarity": "uncommon",
@@ -1168,6 +1221,7 @@
   {
     "name": "Ornate Leather Boots",
     "icon": "feet_leather2.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "uncommon",
@@ -1190,6 +1244,7 @@
   {
     "name": "Watcher's Vest",
     "icon": "chest_leather3.png",
+    "itemType": "armor",
     "prestige": 2,
     "slot": "chest",
     "rarity": "uncommon",
@@ -1212,6 +1267,7 @@
   {
     "name": "Muddy Boots",
     "icon": "feet_leather3.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
@@ -1234,6 +1290,7 @@
   {
     "name": "Softscale Boots",
     "icon": "feet_leather4.png",
+    "itemType": "armor",
     "prestige": 0,
     "slot": "feet",
     "rarity": "uncommon",
@@ -1256,6 +1313,7 @@
   {
     "name": "Seer's Orb",
     "icon": "offhand1.png",
+    "itemType": "shield",
     "prestige": 0,
     "slot": "offHand",
     "rarity": "uncommon",
@@ -1278,6 +1336,7 @@
   {
     "name": "Sharpening Stone",
     "icon": "sharpeningStone.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1300,6 +1359,7 @@
   {
     "name": "Deluxe Sharpening Stone",
     "icon": "deluxeSharpeningStone.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1308,20 +1368,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Tree Tannin",
     "icon": "treeTannin.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1344,6 +1405,7 @@
   {
     "name": "Small Hide",
     "icon": "smallHide.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1352,20 +1414,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Medium Hide",
     "icon": "mediumHide.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1374,20 +1437,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Large Hide",
     "icon": "largeHide.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1396,20 +1460,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Leather Strip",
     "icon": "leatherStrip.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1432,6 +1497,7 @@
   {
     "name": "Leather Swatch",
     "icon": "leatherSwatch.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1454,6 +1520,7 @@
   {
     "name": "Leather Bolt",
     "icon": "leatherBolt.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1476,6 +1543,7 @@
   {
     "name": "Supple Leather Vest",
     "icon": "suppleLeatherVest.png",
+    "itemType": "tradeskill",
     "prestige": 1,
     "slot": "chest",
     "rarity": "uncommon",
@@ -1498,6 +1566,7 @@
   {
     "name": "Supple Leather Boots",
     "icon": "suppleLeatherBoots.png",
+    "itemType": "tradeskill",
     "prestige": 1,
     "slot": "feet",
     "rarity": "uncommon",
@@ -1520,6 +1589,7 @@
   {
     "name": "Tadloc Hide",
     "icon": "tadlocHide.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1542,6 +1612,7 @@
   {
     "name": "Tadloc Skin Boots",
     "icon": "tadlocBoots.png",
+    "itemType": "tradeskill",
     "prestige": 1,
     "slot": "feet",
     "rarity": "uncommon",
@@ -1564,6 +1635,7 @@
   {
     "name": "Unicorn Mane",
     "icon": "unicornMane.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "rare",
@@ -1572,20 +1644,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Unicorn Horn",
     "icon": "unicornHorn.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "rare",
@@ -1594,20 +1667,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Rough Stone",
     "icon": "roughStone.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1616,20 +1690,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Small Brick of Ore",
     "icon": "smallOre.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1638,20 +1713,21 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   },
   {
     "name": "Rough Diamond",
     "icon": "roughDiamond.png",
+    "itemType": "tradeskill",
     "prestige": 0,
     "slot": "tradeskill",
     "rarity": "common",
@@ -1660,15 +1736,15 @@
     "classRestriction3": "",
     "classRestriction4": "",
     "classRestriction5": "",
-    "hpRaw": "",
-    "manaRaw": "",
-    "dps": "",
-    "armor": "",
-    "stamina": "",
-    "defense": "",
-    "intelligence": "",
-    "strength": "",
-    "accuracy": "",
-    "noDrop": ""
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "stamina": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "strength": 0,
+    "accuracy": 0,
+    "noDrop": false
   }
 ]
