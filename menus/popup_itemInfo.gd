@@ -43,50 +43,57 @@ func _set_data(data):
 func _populate_fields():
 	window_title = itemData.name
 	
-	#an item gives armor or dps, but not both
-	if (itemData.dps > 0):
-		$field_armorOrDPS.text = str(itemData.dps) + " DPS"
-	elif (itemData.armor > 0):
-		$field_armorOrDPS.text = str(itemData.armor) + " Armor"
-	else:
-		$field_armorOrDPS.hide()
-		
+	
+
 	$sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
 	$field_slot.text = itemData.slot.capitalize()
-	
-	#there might be multiple class restrictions, so build a string
-	var restrictionsStr = ""
-	for i in range(itemData.classRestrictions.size()):
-		restrictionsStr += itemData.classRestrictions[i] + " "
-	#$field_classes.text = "Class: " + str(itemData.classRestriction).capitalize()
-	$field_classes.text = "Classes: \n" + restrictionsStr.capitalize()
-	
+
 	if (!itemData.noDrop):
 		$field_noDrop.text = "Tradeable"
 	else:
 		$field_noDrop.text = "Binds on equip"
+		
 	
 	#figure out what stats this item gives
-	var stats = []
-	if (itemData.hpRaw > 0):
-		stats.append("+" + str(itemData.hpRaw) + " hp")
+	if (itemData.slot != "tradeskill"):
+		#an item gives armor or dps, but not both
+		if (itemData.dps > 0):
+			$field_armorOrDPS.text = str(itemData.dps) + " DPS"
+		elif (itemData.armor > 0):
+			$field_armorOrDPS.text = str(itemData.armor) + " Armor"
+		else:
+			$field_armorOrDPS.hide()
+			
+		#there might be multiple class restrictions, so build a string
+		var restrictionsStr = ""
+		for i in range(itemData.classRestrictions.size()):
+			restrictionsStr += itemData.classRestrictions[i] + " "
+		#$field_classes.text = "Class: " + str(itemData.classRestriction).capitalize()
+		$field_classes.text = "Classes: \n" + restrictionsStr.capitalize()
 	
-	if (itemData.manaRaw > 0):
-		stats.append("+" + str(itemData.manaRaw) + " mana")
-	
-	if (itemData.stamina > 0):
-		stats.append("+" + str(itemData.stamina) + " STA")
+		var stats = []
+		if (itemData.hpRaw > 0):
+			stats.append("+" + str(itemData.hpRaw) + " hp")
 		
-	if (itemData.defense > 0):
-		stats.append("+" + str(itemData.defense) + " DEF")
+		if (itemData.manaRaw > 0):
+			stats.append("+" + str(itemData.manaRaw) + " mana")
+		
+		if (itemData.stamina > 0):
+			stats.append("+" + str(itemData.stamina) + " STA")
+			
+		if (itemData.defense > 0):
+			stats.append("+" + str(itemData.defense) + " DEF")
+		
+		if (itemData.intelligence > 0):
+			stats.append("+" + str(itemData.intelligence) + " INT")
 	
-	if (itemData.intelligence > 0):
-		stats.append("+" + str(itemData.intelligence) + " INT")
-	
-	#display them (should just be the ones greater than 0)
-	for i in range(stats.size()):
-		get_node("field_stat" + str(i)).text = stats[i]
-		get_node("field_stat" + str(i)).show()
+		#display them (should just be the ones greater than 0)
+		for i in range(stats.size()):
+			get_node("field_stat" + str(i)).text = stats[i]
+			get_node("field_stat" + str(i)).show()
+	else:
+		$field_armorOrDPS.hide()
+		$field_classes.hide()
 	
 func _on_button_trash_pressed():
 	emit_signal("itemDeletedOrMovedToVault")
