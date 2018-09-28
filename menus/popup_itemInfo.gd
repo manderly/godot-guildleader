@@ -42,8 +42,6 @@ func _set_data(data):
 	
 func _populate_fields():
 	window_title = itemData.name
-	
-	
 
 	$sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
 	$field_slot.text = itemData.slot.capitalize()
