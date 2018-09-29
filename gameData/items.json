@@ -1334,7 +1334,7 @@
     "noDrop": false
   },
   {
-    "name": "Sharpening Stone",
+    "name": "Simple Sharpening Stone",
     "icon": "sharpeningStone.png",
     "itemType": "tradeskill",
     "prestige": 0,

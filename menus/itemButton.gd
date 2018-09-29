@@ -63,6 +63,11 @@ func _set_disabled():
 	$Button.modulate = Color(0.5,0.5,0.5,1)
 	$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
 
+func _render_tradeskill(data):
+	itemData = data
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/field_slotName.hide()
+	
 func _on_Button_pressed():
 	print("itemButton.gd: item button pressed")
 	#print("my vault index is: " + str(self.itemVaultIndex))

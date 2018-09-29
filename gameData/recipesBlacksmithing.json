@@ -1,7 +1,7 @@
 [
   {
     "recipeName": "Simple Sharpening Stone",
-    "ingredientOfType": "",
+    "ingredientChoose": "",
     "ingredient1": "Rough Stone",
     "ingredient2": "",
     "ingredient3": "",
@@ -9,35 +9,41 @@
     "noFail": true,
     "trivial": 3,
     "craftingTime": 5,
-    "result": "Simple Sharpening Stone"
+    "result": "Simple Sharpening Stone",
+    "statImproved": "",
+    "statIncrease": ""
   },
   {
     "recipeName": "Minor Blade Sharpening",
-    "ingredientOfType": "blade",
-    "ingredient1": "Sharpening Stone",
+    "ingredientChoose": "blade",
+    "ingredient1": "Simple Sharpening Stone",
     "ingredient2": "",
     "ingredient3": "",
     "ingredient4": "",
     "noFail": true,
     "trivial": 10,
     "craftingTime": 1200,
-    "result": "computed"
+    "result": "computed",
+    "statImproved": "dps",
+    "statIncrease": 1
   },
   {
     "recipeName": "Glimmering Steel Sword",
-    "ingredientOfType": "",
+    "ingredientChoose": "",
     "ingredient1": "Small Brick of Ore",
     "ingredient2": "Small Brick of Ore",
-    "ingredient3": "Leather strip",
+    "ingredient3": "Leather Strip",
     "ingredient4": "",
     "noFail": false,
     "trivial": 20,
     "craftingTime": 3600,
-    "result": "Glimmering Steel Sword"
+    "result": "Glimmering Steel Sword",
+    "statImproved": "",
+    "statIncrease": ""
   },
   {
     "recipeName": "Deluxe Sharpening Stone",
-    "ingredientOfType": "",
+    "ingredientChoose": "",
     "ingredient1": "Rough Diamond",
     "ingredient2": "Rough Stone",
     "ingredient3": "",
@@ -45,11 +51,13 @@
     "noFail": true,
     "trivial": 25,
     "craftingTime": 30,
-    "result": "Deluxe Sharpening Stone"
+    "result": "Deluxe Sharpening Stone",
+    "statImproved": "",
+    "statIncrease": ""
   },
   {
     "recipeName": "Major Blade Sharpening",
-    "ingredientOfType": "blade",
+    "ingredientChoose": "blade",
     "ingredient1": "Deluxe Sharpening Stone",
     "ingredient2": "",
     "ingredient3": "",
@@ -57,6 +65,8 @@
     "noFail": true,
     "trivial": 35,
     "craftingTime": 7200,
-    "result": "computed"
+    "result": "computed",
+    "statImproved": "dps",
+    "statIncrease": 3
   }
 ]
