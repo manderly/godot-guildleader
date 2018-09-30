@@ -68,6 +68,11 @@ func _set_enabled():
 	$Button.modulate = Color(1,1,1,1)
 	$Button/sprite_itemIcon.modulate = Color(1,1,1)
 
+func _render_vault(data):
+	itemData = data
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/field_slotName.text = data.slot
+	
 func _render_tradeskill(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
@@ -106,4 +111,8 @@ func _on_Button_pressed():
 		else:
 			if (global.currentMenu == "heroPage"):
 				global.currentMenu = "vaultViaHeroPage"
-				get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type 
+				get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type
+			elif (global.currentMenu == "blacksmithing"):
+				global.currentMenu = "vaultViaBlacksmith"
+				#go to vault and filter to just the type of item the button was (ie: blade)
+				get_tree().change_scene("res://menus/vault.tscn")

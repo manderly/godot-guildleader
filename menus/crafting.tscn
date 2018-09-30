@@ -51,7 +51,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="label_recipes2" type="Label" parent="." index="2"]
+[node name="label_result" type="Label" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -83,7 +83,7 @@ anchor_bottom = 0.0
 margin_left = 20.0
 margin_top = 290.0
 margin_right = 470.0
-margin_bottom = 480.0
+margin_bottom = 530.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -95,6 +95,9 @@ scroll_horizontal = 0
 scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="vbox" type="VBoxContainer" parent="scroll" index="0"]
 
@@ -114,6 +117,9 @@ size_flags_vertical = 1
 custom_constants/separation = 40
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="button_combine" type="Button" parent="." index="4"]
 
@@ -287,10 +293,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 620.0
-margin_right = 190.0
-margin_bottom = 634.0
+margin_top = 560.0
+margin_right = 480.0
+margin_bottom = 574.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -309,10 +314,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 820.0
-margin_right = 330.0
-margin_bottom = 834.0
+margin_top = 580.0
+margin_right = 480.0
+margin_bottom = 594.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -320,6 +324,27 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "#CRAFTING TIME"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_recipeName" type="Label" parent="recipeData" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 540.0
+margin_right = 480.0
+margin_bottom = 554.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#RECIPE NAME HERE"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0

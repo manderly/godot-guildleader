@@ -78,6 +78,7 @@ var inSwapItemState = false
 var lastItemButtonClicked = null
 var filterVaultByItemSlot = null
 var browsingForSlot = ""
+var browsingForType = ""
 
 var blacksmithingRecipesData = null #raw json parse 
 var allBlacksmithingRecipes = {} #dictionary with key value pairs representing each recipe 

@@ -38,38 +38,43 @@ func _draw_vault_items():
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
 			if (global.guildItems[i]):
-				#print("global.guildItems has an item in this index (" + str(i) + ") it is: " + global.guildItems[i].name)
-				currentButton._set_label(global.guildItems[i].slot)
-				currentButton._set_icon(global.guildItems[i].icon)
-				currentButton._set_data(global.guildItems[i])
+				currentButton._render_vault(global.guildItems[i])
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
 					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
-						currentButton._set_disabled() #script I wrote in itemButton.gd
-						
+						currentButton._set_disabled() #disable button if slot mismatch 
+					
+					#disable if this item isn't a class match 
 					var thisHeroCanWear = false
 					if (global.guildItems[i].classRestrictions[0] == "ANY"):
 						thisHeroCanWear = true
 					else:
-						print("test")
 						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
 						for p in range(global.guildItems[i].classRestrictions.size()):
 							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.heroClass.to_lower()):
 								thisHeroCanWear = true
 					if (!thisHeroCanWear):
-						currentButton._set_disabled() #script I wrote in itemButton.gd 
+						currentButton._set_disabled()
+				elif (global.currentMenu == "vaultViaBlacksmith"):
+					if (global.browsingForType == "blade"):
+						if (global.guildItems[i].itemType != "sword" && global.guildItems[i].itemType != "knife"):
+							currentButton._set_disabled() #disable button if type mismatch 
 			else:
 				currentButton._clear_label()
 				currentButton._clear_icon()
 				currentButton._clear_data()
-				if (global.currentMenu == "vaultViaHeroPage"):
+				if (global.currentMenu == "vaultViaHeroPage" || global.currentMenu == "vaultViaBlacksmith"):
 					currentButton._set_disabled() #disable empty buttons but only when equipping an item onto a hero 
 				#keep vault index intact 
 	
 func _on_button_back_pressed():
+	print(global.currentMenu)
 	if (global.currentMenu == "vaultViaHeroPage"):
 		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")
+	elif (global.currentMenu == "vaultViaBlacksmith"):
+		global.currentMenu = "blacksmithing"
+		get_tree().change_scene("res://menus/crafting.tscn")
 	else:
 		get_tree().change_scene("res://main.tscn")
 	

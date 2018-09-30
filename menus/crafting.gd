@@ -31,11 +31,12 @@ func _ready():
 		$field_description.text = "Bend metal and gemstones into sparkly jewelry with powerful stat bonuses."
 		$field_heroSkill.text = global.jewelcraftHero.heroName + " skill level: " + str(global.jewelcraftHero.skillTailoring)
 
-#todo: genericize to handle any recipe type 
+#todo: genericize to handle any recipe type
 func _update_blacksmithing_ingredients():
-	var recipe = global.selectedBlacksmithingRecipe
-	print(recipe)
+	#called any time the user selects a recipe 
+	var recipe = global.selectedBlacksmithingRecipe #make a local copy so we don't have to use a long reference
 	
+	$recipeData/field_recipeName.text = recipe.recipeName
 	if (recipe.noFail):
 		$recipeData/field_success.text = "No fail"
 	else:
@@ -56,12 +57,14 @@ func _update_blacksmithing_ingredients():
 	
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
+	#decorate the ingredient buttons accordingly 
 	if (recipe.ingredient1 != "blade"):
 		$recipeData/ingredient1._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
 		$recipeData/ingredient1._set_enabled()
 	else:
+		#if the first type is a weapon chooser, set browsingForType
 		$recipeData/ingredient1._clear_tradeskill()
-		#todo: make clickable and open vault and filter to just blade type 
+		global.browsingForType = "blade"
 		
 	if (recipe.ingredient2):
 		$recipeData/ingredient2._render_tradeskill(global.allGameItems[str(recipe.ingredient2)])
