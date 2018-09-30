@@ -61,6 +61,12 @@ var selectedBlacksmithingRecipe = null
 var tailoringHero = null
 var jewelcraftHero = null
 
+#tradeskill stuff - timers, progress flags, etc
+#blacksmithing
+var blacksmithingTimer = null
+var blacksmithingInProgress = false
+var blacksmithingReadyToCollect = false
+
 #the x min and max is the same for all rooms
 var roomMinX = 200
 var roomMaxX = 360
@@ -258,5 +264,27 @@ func _on_questTimer_timeout():
 			
 	emit_signal("quest_complete", currentQuest.name)
 
+#blacksmithing timer
+func _begin_global_blacksmithing_timer(duration):
+	if (!blacksmithingInProgress):
+		print("global.gd - starting blacksmithing timer: " + str(duration))
+		#emit_signal("quest_begun", currentQuest.name)
+		blacksmithingInProgress = true
+		blacksmithingReadyToCollect = false
+		blacksmithingTimer = Timer.new()
+		blacksmithingTimer.set_one_shot(true)
+		blacksmithingTimer.set_wait_time(duration)
+		blacksmithingTimer.connect("timeout", self, "_on_blacksmithingTimer_timeout")
+		blacksmithingTimer.start()
+		add_child(blacksmithingTimer)
+	else:
+		print("global.gd - error: Blacksmithing timer already running")
+
+func _on_blacksmithingTimer_timeout():
+	#this is where the quest's random prizes are determined 
+	global.logger(self, "blacksmithingTimer complete!")
+	blacksmithingInProgress = false
+	blacksmithingReadyToCollect = true
+	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))

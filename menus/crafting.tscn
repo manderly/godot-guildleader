@@ -325,6 +325,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[connection signal="pressed" from="button_combine" to="." method="_on_button_combine_pressed"]
+
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 

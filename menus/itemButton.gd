@@ -62,11 +62,21 @@ func _set_disabled():
 	$Button.disabled = true
 	$Button.modulate = Color(0.5,0.5,0.5,1)
 	$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
+	
+func _set_enabled():
+	$Button.disabled = false
+	$Button.modulate = Color(1,1,1,1)
+	$Button/sprite_itemIcon.modulate = Color(1,1,1)
 
 func _render_tradeskill(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
 	$Button/field_slotName.hide()
+	
+func _clear_tradeskill():
+	_clear_data()
+	_clear_icon()
+	_clear_label()
 	
 func _on_Button_pressed():
 	print("itemButton.gd: item button pressed")

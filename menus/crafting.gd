@@ -1,7 +1,9 @@
 extends Node2D
-
+onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 
 func _ready():
+	add_child(finishNowPopup)
+	
 	if (global.currentMenu == "blacksmithing"):
 		$field_craftingSkillName.text = "Blacksmithing"
 		$field_description.text = "Combine fire and metal to create weapons, armor, and other tradeskill items from ores, metals, and other materials."
@@ -50,26 +52,60 @@ func _update_blacksmithing_ingredients():
 			$recipeData/resultItem.show()
 			$recipeData/label_computed.hide()
 			$recipeData/resultItem._render_tradeskill(global.allGameItems[str(recipe.result)])
-			
-	if (recipe.ingredient1):
+	
+	#every recipe has at least one ingredient
+	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
+	if (recipe.ingredient1 != "blade"):
 		$recipeData/ingredient1._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
+		$recipeData/ingredient1._set_enabled()
 	else:
-		$recipeData/ingredient1._set_disabled()
+		$recipeData/ingredient1._clear_tradeskill()
+		#todo: make clickable and open vault and filter to just blade type 
 		
 	if (recipe.ingredient2):
 		$recipeData/ingredient2._render_tradeskill(global.allGameItems[str(recipe.ingredient2)])
+		$recipeData/ingredient2._set_enabled()
 	else:
+		$recipeData/ingredient2._clear_tradeskill()
 		$recipeData/ingredient2._set_disabled()
 		
 	if (recipe.ingredient3):
 		$recipeData/ingredient3._render_tradeskill(global.allGameItems[str(recipe.ingredient3)])
+		$recipeData/ingredient3._set_enabled()
 	else:
+		$recipeData/ingredient3._clear_tradeskill()
 		$recipeData/ingredient3._set_disabled()
 		
 	if (recipe.ingredient4):
 		$recipeData/ingredient4._render_tradeskill(global.allGameItems[str(recipe.ingredient4)])
+		$recipeData/ingredient4._set_enabled()
 	else:
+		$recipeData/ingredient4._clear_tradeskill()
 		$recipeData/ingredient4._set_disabled()
-
+		
+func _process(delta):
+	#Displays how much time is left on the active recipe 
+	if (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
+		if (global.blacksmithingTimer.time_left < 60):
+			$button_combine.set_text("< 1m")
+			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
+		else:
+			$button_combine.set_text("Long time")
+	elif (!global.blacksmithingInProgress && global.blacksmithingReadyToCollect):
+		$button_combine.set_text("DONE!")
+	else:
+		$button_combine.set_text("ERR!")
+		
 func _on_button_back_pressed():
 	get_tree().change_scene("res://main.tscn")
+
+func _on_button_combine_pressed():
+	if (!global.blacksmithingInProgress):
+		global._begin_global_blacksmithing_timer(global.selectedBlacksmithingRecipe.craftingTime)
+	elif (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
+		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
+		finishNowPopup._set_data("blacksmithing", 5)
+		finishNowPopup.popup()
+		print("crafting.gd: open speed-up popup")
+	elif (!global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
+		print("collect item")

@@ -1,6 +1,7 @@
 extends Node2D
 #questConfirm.gd
 #the screen with the quest details, loot, and the heroes the player has assigned to it 
+var util = load("res://util.gd").new()
 
 func _ready():
 	#quest name, description
@@ -52,15 +53,7 @@ func _process(delta):
 func populate_fields(data):
 	$field_questName.text = data.name
 	$field_questDescription.text = data.text
-	#globalize this into a utility that can be used anywhere
-	var durationForDisplay = null
-	if (data.duration > 3599):
-		durationForDisplay = str(data.duration / 3600) + "h"
-	elif (data.duration > 59):
-		durationForDisplay = str(data.duration / 60) + "m"
-	else:
-		durationForDisplay = str(data.duration) + "s"
-	$field_duration.text = durationForDisplay
+	$field_duration.text = util.format_time(data.duration)
 	
 	if (data.scMin > 0):
 		$hbox_prizes_currency/prizes_coins/field_scRange.text = str(data.scMin) + " - " + str(data.scMax) + " coins"
