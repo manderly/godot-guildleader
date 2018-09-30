@@ -100,7 +100,6 @@ func _populate_fields():
 	
 func _on_button_trash_pressed():
 	emit_signal("itemDeletedOrMovedToVault")
-	#todo: this might need to distinguish between whether we're on the hero page or the vault
 	if (global.currentMenu == "heroPage"):
 		#the current hero is available globally, so get at the item that way
 		#and empty out that part of the hero's equipment object 

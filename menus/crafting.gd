@@ -1,5 +1,6 @@
 extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
+var util = load("res://util.gd").new()
 
 func _ready():
 	add_child(finishNowPopup)
@@ -86,15 +87,11 @@ func _update_blacksmithing_ingredients():
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
-		if (global.blacksmithingTimer.time_left < 60):
-			$button_combine.set_text("< 1m")
-			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
-		else:
-			$button_combine.set_text("Long time")
-	elif (!global.blacksmithingInProgress && global.blacksmithingReadyToCollect):
-		$button_combine.set_text("DONE!")
+		$button_combine.set_text(util.format_time(global.blacksmithingTimer.time_left))
+	elif (global.blacksmithingInProgress && global.blacksmithingReadyToCollect):
+		$button_combine.set_text("COLLECT!")
 	else:
-		$button_combine.set_text("ERR!")
+		$button_combine.set_text("COMBINE")
 		
 func _on_button_back_pressed():
 	get_tree().change_scene("res://main.tscn")
@@ -107,5 +104,10 @@ func _on_button_combine_pressed():
 		finishNowPopup._set_data("blacksmithing", 5)
 		finishNowPopup.popup()
 		print("crafting.gd: open speed-up popup")
-	elif (!global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
-		print("collect item")
+	elif (global.blacksmithingInProgress && global.blacksmithingReadyToCollect):
+		print("collecting item")
+		global.blacksmithingInProgress = false
+		global.blacksmithingReadyToCollect = false
+		util.give_item_guild(global.selectedBlacksmithingRecipe.result)
+	else:
+		print("crafting.gd - got in some weird state")

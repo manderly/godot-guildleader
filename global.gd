@@ -1,6 +1,7 @@
 #global.gd 
 extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
+var util = load("res://util.gd").new()
 
 var softCurrency = 500
 var hardCurrency = 10
@@ -42,15 +43,6 @@ var roomTypeData = null
 var itemData = null
 
 #rooms
-#todo: delete this stuff later once it's all verified working
-#onready var bedroomScene = preload("res://rooms/bedroom.tscn")
-#onready var blacksmithScene = preload("res://rooms/blacksmith.tscn")
-#onready var trainingScene = preload("res://rooms/training.tscn")
-#onready var warriorScene = preload("res://rooms/warrior.tscn")
-#onready var vaultScene = preload("res://rooms/vault.tscn")
-#onready var topEdgeScene = preload("res://rooms/topedge.tscn")
-#onready var placeholderRoomScene = preload("res://rooms/blacksmith.tscn")
-#onready var roomOrder = [bedroomScene, bedroomScene, blacksmithScene, topEdgeScene]
 onready var rooms = []
 onready var roomCount = 0
 var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
@@ -176,25 +168,27 @@ func _ready():
 		#print(global.items)
 	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))
 	
-	#for now, start the user off with some items (visible in the vault)
-	global.guildItems.append(global.allGameItems["Rusty Broadsword"])
-	global.guildItems.append(global.allGameItems["Novice's Blade"])
-	
-	#here's a ton more
-	global.guildItems.append(global.allGameItems["Basic Bow"])
-	global.guildItems.append(global.allGameItems["Simple Ring"])
-	global.guildItems.append(global.allGameItems["Silver Ring"])
-	global.guildItems.append(global.allGameItems["Novice's Robe"])
-	global.guildItems.append(global.allGameItems["Robe of Alexandra"])
-	global.guildItems.append(global.allGameItems["Cloth Shirt"])
-	global.guildItems.append(global.allGameItems["Cloth Pants"])
-	global.guildItems.append(global.allGameItems["Tiara of Knowledge"])
-	global.guildItems.append(global.allGameItems["Soft Silk Slippers"])
-	global.guildItems.append(global.allGameItems["Softscale Boots"])
-	global.guildItems.append(global.allGameItems["Seer's Orb"])
-	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)
+	
+	#for now, start the user off with some items (visible in the vault)
+	util.give_item_guild("Rusty Broadsword")
+	util.give_item_guild("Novice's Blade")
+
+	#here's a ton more for testing purposes 
+	util.give_item_guild("Basic Bow")
+	util.give_item_guild("Simple Ring")
+	util.give_item_guild("Silver Ring")
+	util.give_item_guild("Novice's Robe")
+	util.give_item_guild("Robe of Alexandra")
+	util.give_item_guild("Cloth Shirt")
+	util.give_item_guild("Cloth Pants")
+	util.give_item_guild("Tiara of Knowledge")
+
+	util.give_item_guild("Soft Silk Slippers")
+	util.give_item_guild("Softscale Boots")
+	util.give_item_guild("Seer's Orb")
+
 	
 	#load tradeskill crafting recipes
 	var blacksmithingRecipesFile = File.new()
@@ -283,7 +277,7 @@ func _begin_global_blacksmithing_timer(duration):
 func _on_blacksmithingTimer_timeout():
 	#this is where the quest's random prizes are determined 
 	global.logger(self, "blacksmithingTimer complete!")
-	blacksmithingInProgress = false
+	#blacksmithingInProgress = false
 	blacksmithingReadyToCollect = true
 	
 func logger(script, message):
