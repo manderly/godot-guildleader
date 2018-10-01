@@ -1,7 +1,7 @@
 [
   {
     "recipeName": "Simple Sharpening Stone",
-    "ingredientChoose": "",
+    "ingredientWildcard": "",
     "ingredient1": "Rough Stone",
     "ingredient2": "",
     "ingredient3": "",
@@ -15,9 +15,9 @@
   },
   {
     "recipeName": "Minor Blade Sharpening",
-    "ingredientChoose": "",
-    "ingredient1": "blade",
-    "ingredient2": "Simple Sharpening Stone",
+    "ingredientWildcard": "blade",
+    "ingredient1": "Simple Sharpening Stone",
+    "ingredient2": "",
     "ingredient3": "",
     "ingredient4": "",
     "noFail": true,
@@ -29,7 +29,7 @@
   },
   {
     "recipeName": "Glimmering Steel Sword",
-    "ingredientChoose": "",
+    "ingredientWildcard": "",
     "ingredient1": "Small Brick of Ore",
     "ingredient2": "Small Brick of Ore",
     "ingredient3": "Leather Strip",
@@ -43,7 +43,7 @@
   },
   {
     "recipeName": "Deluxe Sharpening Stone",
-    "ingredientChoose": "",
+    "ingredientWildcard": "",
     "ingredient1": "Rough Diamond",
     "ingredient2": "Rough Stone",
     "ingredient3": "",
@@ -57,9 +57,9 @@
   },
   {
     "recipeName": "Major Blade Sharpening",
-    "ingredientChoose": "",
-    "ingredient1": "blade",
-    "ingredient2": "Deluxe Sharpening Stone",
+    "ingredientWildcard": "blade",
+    "ingredient1": "Deluxe Sharpening Stone",
+    "ingredient2": "",
     "ingredient3": "",
     "ingredient4": "",
     "noFail": true,

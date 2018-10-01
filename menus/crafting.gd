@@ -1,6 +1,10 @@
 extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 var util = load("res://util.gd").new()
+var hasIngredient1 = false
+var hasIngredient2 = false
+var hasIngredient3 = false
+var hasIngredient4 = false
 
 func _ready():
 	add_child(finishNowPopup)
@@ -58,38 +62,91 @@ func _update_blacksmithing_ingredients():
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 
-	if (recipe.ingredient1 != "blade"):
-		global.blacksmithWildcardItem = null
-		$recipeData/ingredient1._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
-		$recipeData/ingredient1._set_enabled()
-	else:
-		#if the first type is a wildcard item, set browsingForType
+		
+	#ingredient wildcard is an itemButton instance 
+	if (recipe.ingredientWildcard):
+		$recipeData/ingredientWildcard.show()
+		$recipeData/ingredientWildcard._set_enabled()
+		global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
 		if (global.blacksmithWildcardItem):
-			$recipeData/ingredient1._render_tradeskill(global.blacksmithWildcardItem)
+			#if the user picked an item to be the wildcard item, show it here 
+			$recipeData/label_choose.hide()
+			$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(global.blacksmithWildcardItem.name)])
 		else:
-			$recipeData/ingredient1._clear_tradeskill()
-			global.browsingForType = recipe.ingredient1 #contains the type, such as "blade" 
+			$recipeData/label_choose.show()
+			$recipeData/ingredientWildcard._clear_tradeskill()
+	else:
+		global.blacksmithWildcardItem = null
+		$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
+		$recipeData/label_choose.hide()
+		$recipeData/ingredientWildcard.hide()
+	
+	#determine which items the player actually has
+	for i in range(global.guildItems.size()):
+		if (global.guildItems[i]):
+			print(recipe.ingredient1)
+			if (global.guildItems[i].name == recipe.ingredient1):
+				hasIngredient1 = true
+			else:
+				hasIngredient1 = false
+			
+			if (global.guildItems[i].name == recipe.ingredient2):
+				print("player owns item 2")
+				hasIngredient2 = true
+			else:
+				hasIngredient2 = false
+				
+			if (global.guildItems[i].name == recipe.ingredient3):
+				print("player owns item 2")
+				hasIngredient3 = true
+			else:
+				hasIngredient3 = false
+			
+			if (global.guildItems[i].name == recipe.ingredient4):
+				print("player owns item 2")
+				hasIngredient4 = true
+			else:
+				hasIngredient4 = false
+			
+	#the rest of these are just display fields with icon and text 
+	if (recipe.ingredient1):
+		$recipeData/ingredient1._render_fields(global.allGameItems[str(recipe.ingredient1)])
+		if (hasIngredient1):
+			$recipeData/ingredient1._set_green()
+		else:
+			$recipeData/ingredient1._set_red()
+	else:
+		$recipeData/ingredient1._clear_fields()
 		
 	if (recipe.ingredient2):
-		$recipeData/ingredient2._render_tradeskill(global.allGameItems[str(recipe.ingredient2)])
-		$recipeData/ingredient2._set_enabled()
+		$recipeData/ingredient2._render_fields(global.allGameItems[str(recipe.ingredient2)])
+		if (hasIngredient2):
+			$recipeData/ingredient2._set_green()
+		else:
+			$recipeData/ingredient2._set_red()
 	else:
-		$recipeData/ingredient2._clear_tradeskill()
-		$recipeData/ingredient2._set_disabled()
+		$recipeData/ingredient2._clear_fields()
 		
 	if (recipe.ingredient3):
-		$recipeData/ingredient3._render_tradeskill(global.allGameItems[str(recipe.ingredient3)])
-		$recipeData/ingredient3._set_enabled()
+		$recipeData/ingredient3._render_fields(global.allGameItems[str(recipe.ingredient3)])
+		if (hasIngredient3):
+			$recipeData/ingredient3._set_green()
+		else:
+			$recipeData/ingredient3._set_red()
 	else:
-		$recipeData/ingredient3._clear_tradeskill()
-		$recipeData/ingredient3._set_disabled()
+		$recipeData/ingredient3._clear_fields()
 		
 	if (recipe.ingredient4):
-		$recipeData/ingredient4._render_tradeskill(global.allGameItems[str(recipe.ingredient4)])
-		$recipeData/ingredient4._set_enabled()
+		$recipeData/ingredient4._render_fields(global.allGameItems[str(recipe.ingredient4)])
+		if (hasIngredient4):
+			$recipeData/ingredient4._set_green()
+		else:
+			$recipeData/ingredient4._set_red()
 	else:
-		$recipeData/ingredient4._clear_tradeskill()
-		$recipeData/ingredient4._set_disabled()
+		$recipeData/ingredient4._clear_fields()
+		
+
+			
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 

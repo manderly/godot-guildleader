@@ -182,14 +182,16 @@ func _ready():
 	util.give_item_guild("Simple Ring")
 	util.give_item_guild("Silver Ring")
 	util.give_item_guild("Novice's Robe")
-	util.give_item_guild("Robe of Alexandra")
-	util.give_item_guild("Cloth Shirt")
-	util.give_item_guild("Cloth Pants")
-	util.give_item_guild("Tiara of Knowledge")
+	#util.give_item_guild("Robe of Alexandra")
+	#util.give_item_guild("Cloth Shirt")
+	#util.give_item_guild("Cloth Pants")
+	#util.give_item_guild("Tiara of Knowledge")
 
-	util.give_item_guild("Soft Silk Slippers")
-	util.give_item_guild("Softscale Boots")
-	util.give_item_guild("Seer's Orb")
+	#util.give_item_guild("Soft Silk Slippers")
+	#util.give_item_guild("Softscale Boots")
+	#util.give_item_guild("Seer's Orb")
+	
+	util.give_item_guild("Rough Stone")
 
 	
 	#load tradeskill crafting recipes
