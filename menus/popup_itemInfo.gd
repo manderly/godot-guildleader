@@ -11,9 +11,13 @@ signal updateStats
 signal clearWildcardButton
 
 func _ready():
+	#we only need the trash button if we're in the vault 
+	$button_trash.hide()
+	
 	print(global.currentMenu)
 	if (global.currentMenu == "vault"):
 		$button_moveItem.text = "Move"
+		$button_trash.show()
 	elif (global.currentMenu == "heroPage"):
 		$button_moveItem.text = "Put in vault"
 	elif (global.currentMenu == "vaultViaHeroPage"):
@@ -26,20 +30,10 @@ func _ready():
 	#don't show move to vault or trash buttons if this hero isn't recruited
 	if (global.selectedHero && !global.selectedHero.recruited):
 		$button_moveItem.hide()
-		$button_trash.hide()
 		
 	#don't show move to vault or trash buttons if this item is on the questConfirm page
 	if (global.currentMenu == "questConfirm"):
 		$button_moveItem.hide()
-		$button_trash.hide()
-	
-	#don't show trash buttons if this item is on a tradeskill page
-	if (global.currentMenu == "vaultViaBlacksmith"):
-		$button_trash.hide()
-		
-	#don't show trash buttons if this item is on a tradeskill page
-	if (global.currentMenu == "blacksmithing"):
-		$button_trash.hide()
 		
 	$field_stat0.hide()
 	$field_stat1.hide()
