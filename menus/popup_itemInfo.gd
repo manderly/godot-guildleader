@@ -1,5 +1,6 @@
 extends WindowDialog
 #popup_itemInfo.gd
+var util = load("res://util.gd").new()
 
 var itemData = null
 var vaultIndex = -1
@@ -7,6 +8,7 @@ var vaultIndex = -1
 signal itemDeletedOrMovedToVault
 signal swappingItemWithAnother
 signal updateStats
+signal clearWildcardButton
 
 func _ready():
 	print(global.currentMenu)
@@ -18,6 +20,8 @@ func _ready():
 		$button_moveItem.text = "Equip"
 	elif (global.currentMenu == "vaultViaBlacksmith"):
 		$button_moveItem.text = "Choose"
+	elif (global.currentMenu == "blacksmithing"):
+		$button_moveItem.text = "Return to vault"
 	
 	#don't show move to vault or trash buttons if this hero isn't recruited
 	if (global.selectedHero && !global.selectedHero.recruited):
@@ -31,6 +35,10 @@ func _ready():
 	
 	#don't show trash buttons if this item is on a tradeskill page
 	if (global.currentMenu == "vaultViaBlacksmith"):
+		$button_trash.hide()
+		
+	#don't show trash buttons if this item is on a tradeskill page
+	if (global.currentMenu == "blacksmithing"):
 		$button_trash.hide()
 		
 	$field_stat0.hide()
@@ -123,11 +131,16 @@ func _on_button_moveItem_pressed():
 		#but it also makes a record of its index so vault.gd can update the button art 
 		self.hide() #hide the popup
 		emit_signal("swappingItemWithAnother") #caught by itemButton.gd 
-	elif(global.currentMenu == "vaultViaBlacksmith"):
+	elif (global.currentMenu == "vaultViaBlacksmith"):
+		#gives the item to the blacksmith 
+		util.give_item_blacksmith(itemData.name)
 		self.hide() #hide the popup
 		global.currentMenu = "blacksmithing"
 		get_tree().change_scene("res://menus/crafting.tscn")
-		print("picked an item for the blacksmith")
+	elif (global.currentMenu == "blacksmithing"):
+		util.remove_item_blacksmith()
+		self.hide()
+		emit_signal("clearWildcardButton")
 	else:
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 

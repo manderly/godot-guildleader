@@ -59,12 +59,16 @@ func _update_blacksmithing_ingredients():
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 
 	if (recipe.ingredient1 != "blade"):
+		global.blacksmithWildcardItem = null
 		$recipeData/ingredient1._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
 		$recipeData/ingredient1._set_enabled()
 	else:
-		#if the first type is a weapon chooser, set browsingForType
-		$recipeData/ingredient1._clear_tradeskill()
-		global.browsingForType = "blade"
+		#if the first type is a wildcard item, set browsingForType
+		if (global.blacksmithWildcardItem):
+			$recipeData/ingredient1._render_tradeskill(global.blacksmithWildcardItem)
+		else:
+			$recipeData/ingredient1._clear_tradeskill()
+			global.browsingForType = recipe.ingredient1 #contains the type, such as "blade" 
 		
 	if (recipe.ingredient2):
 		$recipeData/ingredient2._render_tradeskill(global.allGameItems[str(recipe.ingredient2)])
@@ -97,6 +101,8 @@ func _process(delta):
 		$button_combine.set_text("COMBINE")
 		
 func _on_button_back_pressed():
+	#todo: only clear it if it's not in use being upgraded
+	global.blacksmithWildcardItem = null
 	get_tree().change_scene("res://main.tscn")
 
 func _on_button_combine_pressed():

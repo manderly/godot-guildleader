@@ -12,6 +12,7 @@ func _ready():
 	itemPopup.connect("itemDeletedOrMovedToVault", self, "deletedOrRemoved_callback")
 	itemPopup.connect("swappingItemWithAnother", self, "swapState_callback")
 	itemPopup.connect("updateStats", self, "updateStats_callback") #middleman to pass signal up to heroPage.gd
+	itemPopup.connect("clearWildcardButton", self, "_clear_tradeskill")
 	add_child(itemPopup)
 	
 func updateStats_callback():

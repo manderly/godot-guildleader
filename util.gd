@@ -19,9 +19,6 @@ func give_item_guild(itemNameStr):
 	if (global.allGameItems[itemNameStr]): #make sure this item actually exists in the item records
 		#naive solution: doing this just sticks the new item at the very end of all the empty slots
 		#global.guildItems.append(global.allGameItems[itemNameStr])
-		
-		#this is going to run this loop from 0 - n every time an item is inserted
-		#this could probably be done more efficiently by keeping record of open indices somewhere else
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
 				#finds first open null spot and puts the item there
@@ -32,3 +29,12 @@ func give_item_guild(itemNameStr):
 	
 func give_item_hero(itemNameStr):
 	pass
+	
+func give_item_blacksmith(itemNameStr):
+	if (global.allGameItems[itemNameStr]): #make sure this item actually exists
+		global.blacksmithWildcardItem = global.allGameItems[itemNameStr]
+	#todo: flag it somehow to the user (don't remove it from guild) 
+	
+func remove_item_blacksmith():
+	global.blacksmithWildcardItem = null
+	
