@@ -58,7 +58,7 @@ var jewelcraftHero = null
 var blacksmithingTimer = null
 var blacksmithingInProgress = false
 var blacksmithingReadyToCollect = false
-var blacksmithWildcardItem = null #for blades getting sharpened, armor getting augmented, etc. Holds 1. 
+var blacksmithingWildcardItem = null #for blades getting sharpened, armor getting augmented, etc. Holds 1. 
 
 #the x min and max is the same for all rooms
 var roomMinX = 200

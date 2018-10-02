@@ -32,9 +32,9 @@ func give_item_hero(itemNameStr):
 	
 func give_item_blacksmith(itemNameStr):
 	if (global.allGameItems[itemNameStr]): #make sure this item actually exists
-		global.blacksmithWildcardItem = global.allGameItems[itemNameStr]
+		global.blacksmithingWildcardItem = global.allGameItems[itemNameStr]
 	#todo: flag it somehow to the user (don't remove it from guild) 
 	
 func remove_item_blacksmith():
-	global.blacksmithWildcardItem = null
+	global.blacksmithingWildcardItem = null
 	

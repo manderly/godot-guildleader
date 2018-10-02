@@ -14,7 +14,6 @@ func _ready():
 	#we only need the trash button if we're in the vault 
 	$button_trash.hide()
 	
-	print(global.currentMenu)
 	if (global.currentMenu == "vault"):
 		$button_moveItem.text = "Move"
 		$button_trash.show()
@@ -24,6 +23,8 @@ func _ready():
 		$button_moveItem.text = "Equip"
 	elif (global.currentMenu == "vaultViaBlacksmith"):
 		$button_moveItem.text = "Choose"
+	#todo: "return to vault" is appropriate for a to-be-sharpened item
+	#todo: hide button if the item being viewed isn't actually owned by player (result preview) 
 	elif (global.currentMenu == "blacksmithing"):
 		$button_moveItem.text = "Return to vault"
 	

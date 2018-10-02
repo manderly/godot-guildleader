@@ -5,6 +5,8 @@ var hasIngredient1 = false
 var hasIngredient2 = false
 var hasIngredient3 = false
 var hasIngredient4 = false
+var hasWildcardIngredient = false
+var recipe = null
 
 func _ready():
 	add_child(finishNowPopup)
@@ -38,7 +40,7 @@ func _ready():
 #todo: genericize to handle any recipe type
 func _update_blacksmithing_ingredients():
 	#called any time the user selects a recipe 
-	var recipe = global.selectedBlacksmithingRecipe #make a local copy so we don't have to use a long reference
+	recipe = global.selectedBlacksmithingRecipe #make a local copy so we don't have to use a long reference
 	
 	$recipeData/field_recipeName.text = recipe.recipeName
 	if (recipe.noFail):
@@ -68,15 +70,18 @@ func _update_blacksmithing_ingredients():
 		$recipeData/ingredientWildcard.show()
 		$recipeData/ingredientWildcard._set_enabled()
 		global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
-		if (global.blacksmithWildcardItem):
+		if (global.blacksmithingWildcardItem):
+			hasWildcardIngredient = true
 			#if the user picked an item to be the wildcard item, show it here 
 			$recipeData/label_choose.hide()
-			$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(global.blacksmithWildcardItem.name)])
+			$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(global.blacksmithingWildcardItem.name)])
 		else:
+			hasWildcardIngredient = false
 			$recipeData/label_choose.show()
 			$recipeData/ingredientWildcard._clear_tradeskill()
 	else:
-		global.blacksmithWildcardItem = null
+		global.blacksmithingWildcardItem = null
+		hasWildcardIngredient = false
 		$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
 		$recipeData/label_choose.hide()
 		$recipeData/ingredientWildcard.hide()
@@ -140,9 +145,7 @@ func _update_blacksmithing_ingredients():
 			$recipeData/ingredient4._set_red()
 	else:
 		$recipeData/ingredient4._clear_fields()
-		
 
-			
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
@@ -155,12 +158,33 @@ func _process(delta):
 		
 func _on_button_back_pressed():
 	#todo: only clear it if it's not in use being upgraded
-	global.blacksmithWildcardItem = null
+	global.blacksmithingWildcardItem = null
 	get_tree().change_scene("res://main.tscn")
 
 func _on_button_combine_pressed():
 	if (!global.blacksmithingInProgress):
-		global._begin_global_blacksmithing_timer(global.selectedBlacksmithingRecipe.craftingTime)
+		#Button use case 1: begin blacksmithing timer
+		var readyToCombine = true
+		if (recipe.ingredient1 && !hasIngredient1):
+			readyToCombine = false
+			
+		if (recipe.ingredient2 && !hasIngredient2):
+			readyToCombine = false
+			
+		if (recipe.ingredient3 && !hasIngredient3):
+			readyToCombine = false
+			
+		if (recipe.ingredient4 && !hasIngredient4):
+			readyToCombine = false
+			
+		if (recipe.ingredientWildcard && !hasWildcardIngredient):
+			readyToCombine = false
+
+		if (readyToCombine == false):
+			print("MISSING AN INGREDIENT")
+		else:
+			global._begin_global_blacksmithing_timer(global.selectedBlacksmithingRecipe.craftingTime)
+			
 	elif (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
 		finishNowPopup._set_data("blacksmithing", 5)
