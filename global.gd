@@ -193,7 +193,7 @@ func _ready():
 	
 	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Leather Strip")
-
+	util.give_item_guild("Small Brick of Ore")
 	
 	#load tradeskill crafting recipes
 	var blacksmithingRecipesFile = File.new()

@@ -11,5 +11,5 @@ func _set_data(whatToFinish, costToFinish):
 	pass
 
 func _on_ConfirmationDialog_confirmed():
-	global.blacksmithingInProgress = false
+	global.blacksmithingReadyToCollect = true
 	pass # replace with function body
