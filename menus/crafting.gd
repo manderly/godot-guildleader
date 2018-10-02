@@ -82,31 +82,27 @@ func _update_blacksmithing_ingredients():
 		$recipeData/ingredientWildcard.hide()
 	
 	#determine which items the player actually has
+	hasIngredient1 = false
+	hasIngredient2 = false
+	hasIngredient3 = false
+	hasIngredient4 = false
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i]):
-			print(recipe.ingredient1)
-			if (global.guildItems[i].name == recipe.ingredient1):
-				hasIngredient1 = true
-			else:
-				hasIngredient1 = false
+			if (recipe.ingredient1): #if this recipe has a first ingredient
+				if (global.guildItems[i].name == recipe.ingredient1): #and we found it in the guild vault
+					hasIngredient1 = true #then set to true
 			
-			if (global.guildItems[i].name == recipe.ingredient2):
-				print("player owns item 2")
-				hasIngredient2 = true
-			else:
-				hasIngredient2 = false
+			if (recipe.ingredient2):
+				if (global.guildItems[i].name == recipe.ingredient2):
+					hasIngredient2 = true
 				
-			if (global.guildItems[i].name == recipe.ingredient3):
-				print("player owns item 2")
-				hasIngredient3 = true
-			else:
-				hasIngredient3 = false
-			
-			if (global.guildItems[i].name == recipe.ingredient4):
-				print("player owns item 2")
-				hasIngredient4 = true
-			else:
-				hasIngredient4 = false
+			if (recipe.ingredient3):
+				if (global.guildItems[i].name == recipe.ingredient3):
+					hasIngredient3 = true
+				
+			if (recipe.ingredient4):
+				if (global.guildItems[i].name == recipe.ingredient4):
+					hasIngredient4 = true
 			
 	#the rest of these are just display fields with icon and text 
 	if (recipe.ingredient1):

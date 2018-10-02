@@ -192,6 +192,7 @@ func _ready():
 	#util.give_item_guild("Seer's Orb")
 	
 	util.give_item_guild("Rough Stone")
+	util.give_item_guild("Leather Strip")
 
 	
 	#load tradeskill crafting recipes
