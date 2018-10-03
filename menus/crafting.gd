@@ -179,14 +179,27 @@ func _open_collect_result_popup():
 	else:
 		$finishedItem_dialog/elements/field_skillUp.hide()
 		
-	#todo: crashes when in the sharpen weapon flow 
-	$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(recipe.result)].icon)
+	#todo: crashes when in the sharpen weapon flow
+	if (!global.blacksmithingWildcardItem): 
+		$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(recipe.result)].icon)
+	else: 
+		$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(global.blacksmithingWildcardItem.name)].icon)
 	$finishedItem_dialog/elements/field_itemName.text = global.selectedBlacksmithingRecipe.result
 	$finishedItem_dialog.popup()
 
 func _on_finishedItem_dialog_confirmed():
 	#these things happen when the player dismisses the popup affirmatively
-	util.give_item_guild(global.selectedBlacksmithingRecipe.result)
+	#if the recipe is not "sharpening"
+	if (!global.blacksmithingWildcardItem):
+		#this is a "normal" recipe, not a wildcard item recipe
+		util.give_item_guild(global.selectedBlacksmithingRecipe.result)
+	else:
+		#get the original item out of the all items dictionary
+		var localItem = global.allGameItems[str(global.blacksmithingWildcardItem.name)]
+		localItem.dps += 1 #hardcode to 1 for now 
+		util.give_item_guild(localItem.name) #give the modified item to the guild inventory
+	
+	global.blacksmithingWildcardItem = null
 	global.blacksmithingInProgress = false
 	global.blacksmithingReadyToCollect = false
 	
@@ -230,12 +243,16 @@ func _on_button_combine_pressed():
 			if (recipe.ingredient4):
 				if (global.allGameItems[str(recipe.ingredient4)].consumable):
 					util.remove_item_guild(recipe.ingredient4)
+					
+			if (recipe.ingredientWildcard):
+				if (global.allGameItems[str(global.blacksmithingWildcardItem.name)].consumable):
+					util.remove_item_guild(global.blacksmithingWildcardItem.name)
 				
 			_update_blacksmithing_ingredients()
 				
 	elif (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
-		finishNowPopup._set_data("blacksmithing", 5)
+		finishNowPopup._set_data("blacksmithing", 2)
 		finishNowPopup.popup()
 	elif (global.blacksmithingInProgress && global.blacksmithingReadyToCollect):
 		_open_collect_result_popup()
