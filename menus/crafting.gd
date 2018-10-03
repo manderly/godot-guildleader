@@ -223,7 +223,7 @@ func _on_button_combine_pressed():
 			readyToCombine = false
 
 		if (readyToCombine == false):
-			print("MISSING AN INGREDIENT")
+			$incomplete_dialog.popup()
 		else:
 			global._begin_global_blacksmithing_timer(global.selectedBlacksmithingRecipe.craftingTime)
 			#take ingredients away from player

@@ -232,8 +232,6 @@ align = 1
 
 [node name="recipeData" type="Node2D" parent="." index="8"]
 
-editor/display_folded = true
-
 [node name="label_result" type="Label" parent="recipeData" index="0"]
 
 anchor_left = 0.0
@@ -416,8 +414,33 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="9"]
+[node name="incomplete_dialog" type="AcceptDialog" parent="." index="9"]
 
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_top = 630.0
+margin_right = 420.0
+margin_bottom = 800.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Incomplete recipe!"
+resizable = false
+dialog_text = "You are short some ingredients!"
+dialog_hide_on_ok = true
+_sections_unfolded = [ "Dialog" ]
+
+[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="10"]
+
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
