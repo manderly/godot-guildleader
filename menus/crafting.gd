@@ -88,7 +88,7 @@ func _update_blacksmithing_ingredients():
 		$recipeData/label_choose.hide()
 		$recipeData/ingredientWildcard.hide()
 	
-	#determine which items the player actually has
+	#determine which items the player actually has and display accordingly
 	hasIngredient1 = false
 	hasIngredient2 = false
 	hasIngredient3 = false
@@ -178,6 +178,8 @@ func _open_collect_result_popup():
 		_update_hero_skill_display()
 	else:
 		$finishedItem_dialog/elements/field_skillUp.hide()
+		
+	#todo: crashes when in the sharpen weapon flow 
 	$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(recipe.result)].icon)
 	$finishedItem_dialog/elements/field_itemName.text = global.selectedBlacksmithingRecipe.result
 	$finishedItem_dialog.popup()
@@ -214,7 +216,22 @@ func _on_button_combine_pressed():
 			#take ingredients away from player
 			#todo: some ingredients aren't deleted after one combine - how to distinguish?
 			if (recipe.ingredient1):
-				util.remove_item_guild(recipe.ingredient1)
+				if (global.allGameItems[str(recipe.ingredient1)].consumable):
+					util.remove_item_guild(recipe.ingredient1)
+				
+			if (recipe.ingredient2):
+				if (global.allGameItems[str(recipe.ingredient2)].consumable):
+					util.remove_item_guild(recipe.ingredient2)
+			
+			if (recipe.ingredient3):
+				if (global.allGameItems[str(recipe.ingredient3)].consumable):
+					util.remove_item_guild(recipe.ingredient3)
+				
+			if (recipe.ingredient4):
+				if (global.allGameItems[str(recipe.ingredient4)].consumable):
+					util.remove_item_guild(recipe.ingredient4)
+				
+			_update_blacksmithing_ingredients()
 				
 	elif (global.blacksmithingInProgress && !global.blacksmithingReadyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
@@ -226,3 +243,7 @@ func _on_button_combine_pressed():
 		print("crafting.gd - got in some weird state")
 
 
+func _on_button_dismissHero_pressed():
+	global.blacksmithHero.currentRoom = 1
+	global.blacksmithHero = null
+	get_tree().change_scene("res://main.tscn")

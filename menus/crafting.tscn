@@ -4,7 +4,7 @@
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/crafting_ingredientDisplay.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -205,7 +205,32 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="recipeData" type="Node2D" parent="." index="7"]
+[node name="button_dismissHero" type="Button" parent="." index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 410.0
+margin_top = 150.0
+margin_right = 467.0
+margin_bottom = 170.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Unstaff"
+flat = false
+align = 1
+
+[node name="recipeData" type="Node2D" parent="." index="8"]
 
 editor/display_folded = true
 
@@ -391,7 +416,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="8"]
+[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -470,6 +495,8 @@ _sections_unfolded = [ "custom_colors" ]
 [connection signal="pressed" from="button_combine" to="." method="_on_button_combine_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
+
+[connection signal="pressed" from="button_dismissHero" to="." method="_on_button_dismissHero_pressed"]
 
 [connection signal="confirmed" from="finishedItem_dialog" to="." method="_on_finishedItem_dialog_confirmed"]
 

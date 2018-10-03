@@ -1,4 +1,5 @@
 extends Node
+#util.gd 
 
 func _ready():
 	pass
@@ -28,13 +29,15 @@ func give_item_guild(itemNameStr):
 		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemNameStr)
 	
 func remove_item_guild(itemNameStr):
+	print("util.gd: Removing " + itemNameStr + " from guild's inventory")
 	if (global.allGameItems[itemNameStr]): #make sure this item actually exists in the item records
 		#find the item (loop through all items)
 		#delete it by nulling its index 
 		for i in range(global.guildItems.size()):
-			if (global.guildItems[i].name == itemNameStr):
-				global.guildItems[i] = null
-				break
+			if (global.guildItems[i]): #if we don't null check it'll crash on trying to get .name 
+				if (global.guildItems[i].name == itemNameStr):
+					global.guildItems[i] = null
+					break
 	else:
 		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemNameStr)
 		
