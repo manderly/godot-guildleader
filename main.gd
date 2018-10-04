@@ -127,8 +127,16 @@ func draw_rooms():
 				roomScene = preload("res://rooms/warrior.tscn").instance()
 			elif (global.rooms[i].roomType == "vault"):
 				roomScene = preload("res://rooms/vault.tscn").instance()
+			elif (global.rooms[i].roomType == "alchemy"):
+				roomScene = preload("res://rooms/alchemy.tscn").instance()
 			elif (global.rooms[i].roomType == "blacksmith"):
 				roomScene = preload("res://rooms/blacksmith.tscn").instance()
+			elif (global.rooms[i].roomType == "tailoring"):
+				roomScene = preload("res://rooms/tailoring.tscn").instance()
+			elif (global.rooms[i].roomType == "jewelcraft"):
+				roomScene = preload("res://rooms/jewelcraft.tscn").instance()
+			elif (global.rooms[i].roomType == "fletching"):
+				roomScene = preload("res://rooms/fletching.tscn").instance()
 			elif (global.rooms[i].roomType == "topEdge"):
 				roomScene = preload("res://rooms/topEdge.tscn").instance()
 			else:

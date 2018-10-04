@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	#print a vertically scrolling list of quest buttons
+	#print a vertically scrolling list of room buttons
 	var buttonX = 0
 	var buttonY = 100
 	for i in range(global.roomTypeData.size()):

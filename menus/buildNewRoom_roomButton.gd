@@ -22,8 +22,6 @@ func _on_button_buildRoom_pressed():
 		if (roomData.name == "Bedroom"):
 			global.guildCapacity += 2
 			roomGenerator.generate("bedroom", true)
-		elif (roomData.name == "Blacksmith"):
-			roomGenerator.generate("blacksmith", true)
 		elif (roomData.name == "Training"):
 			roomGenerator.generate("training", true)
 		elif (roomData.name == "Vault"):
@@ -34,6 +32,24 @@ func _on_button_buildRoom_pressed():
 			#Todo: which class you get is random but you can't get the same one twice
 			#for now, it's always the warrior room
 			roomGenerator.generate("warrior", true)
+		elif (roomData.name == "Tradeskill"):
+			print("buildNewRoom_roomButton.gd - building a tradeskill room")
+			var randomTradeskillRoomNum = round(rand_range(0,4))
+			if (randomTradeskillRoomNum == 0):
+				print("blacksmith")
+				roomGenerator.generate("blacksmith", true)
+			elif (randomTradeskillRoomNum == 1):
+				print("tailoring")
+				roomGenerator.generate("tailoring", true)
+			elif (randomTradeskillRoomNum == 2):
+				print("jewelcraft")
+				roomGenerator.generate("jewelcraft", true)
+			elif (randomTradeskillRoomNum == 3):
+				print("alchemy")
+				roomGenerator.generate("alchemy", true)
+			elif (randomTradeskillRoomNum == 4):
+				print("fletching")
+				roomGenerator.generate("fletching", true)
 		else:
 			print("buildNewRoom_roomButton.gd: invalid room selected, cannot generate room data")
 		

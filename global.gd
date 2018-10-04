@@ -47,16 +47,28 @@ onready var rooms = []
 onready var roomCount = 0
 var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
 
-#tradeskill rooms
+#tradeskill flags
+var alchemyHero = null
 var blacksmithHero = null
-var selectedBlacksmithingRecipe = null
-var tailoringHero = null
+var fletchingHero = null
 var jewelcraftHero = null
+var tailoringHero = null
 
-#tradeskill stuff - timers, progress flags, etc
-#blacksmithing
+var selectedAlchemyRecipe = null
+var selectedBlacksmithingRecipe = null
+var selectedFletchingRecipe = null
+var selectedJewelcraftRecipe = null
+var selectedTailoringRecipe = null
+
+var alchemyTimer = null
 var blacksmithingTimer = null
+
+var alchemyInProgress = false
 var blacksmithingInProgress = false
+var fletchingInProgress = false
+var jewelcraftInProgress = false
+var tailoringInProgress = false
+
 var blacksmithingReadyToCollect = false
 var blacksmithingWildcardItem = null #for blades getting sharpened, armor getting augmented, etc. Holds 1. 
 
