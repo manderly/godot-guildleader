@@ -202,27 +202,32 @@ func _on_finishedItem_dialog_confirmed():
 	global.blacksmithingWildcardItem = null
 	global.blacksmithingInProgress = false
 	global.blacksmithingReadyToCollect = false
+	_update_blacksmithing_ingredients()
+	
+func _ingredient_check():
+	var readyToCombine = true
+	if (recipe.ingredient1 && !hasIngredient1):
+		readyToCombine = false
+		
+	if (recipe.ingredient2 && !hasIngredient2):
+		readyToCombine = false
+		
+	if (recipe.ingredient3 && !hasIngredient3):
+		readyToCombine = false
+		
+	if (recipe.ingredient4 && !hasIngredient4):
+		readyToCombine = false
+		
+	if (recipe.ingredientWildcard && !hasWildcardIngredient):
+		readyToCombine = false
+		
+	return readyToCombine
 	
 func _on_button_combine_pressed():
 	if (!global.blacksmithingInProgress):
 		#check if user has ingredients
-		var readyToCombine = true
-		if (recipe.ingredient1 && !hasIngredient1):
-			readyToCombine = false
-			
-		if (recipe.ingredient2 && !hasIngredient2):
-			readyToCombine = false
-			
-		if (recipe.ingredient3 && !hasIngredient3):
-			readyToCombine = false
-			
-		if (recipe.ingredient4 && !hasIngredient4):
-			readyToCombine = false
-			
-		if (recipe.ingredientWildcard && !hasWildcardIngredient):
-			readyToCombine = false
-
-		if (readyToCombine == false):
+		var allIngredientsHere = _ingredient_check()
+		if (allIngredientsHere == false):
 			$incomplete_dialog.popup() #tell the user they don't have all the ingredients
 		else:
 			#otherwise, start the timer and take ingredients from inventory
