@@ -12,11 +12,13 @@ func _ready():
 	add_child(finishNowPopup)
 	if (global.currentMenu == "blacksmithing"):
 		$field_craftingSkillName.text = "Blacksmithing"
-		$field_description.text = "Combine fire and metal to create weapons, armor, and other tradeskill items from ores, metals, and other materials."
+		$field_description.text = "Combine fire and metal to craft weapons and armor from ore, metals, and other materials."
 		#todo: maybe vbox is the wrong container type to use, since the auto spacing doesn't work in this case
+		#print all the available recipes
 		var yVal = 0
 		for i in range(global.blacksmithingRecipes.size()):
 			var recipeButton = preload("res://menus/recipeButton.tscn").instance()
+			recipeButton.set_crafter_skill_level(global.blacksmithHero.skillBlacksmithing)
 			recipeButton.set_recipe_data(global.blacksmithingRecipes[i])
 			recipeButton.set_position(Vector2(0, yVal))
 			recipeButton.connect("updateBlacksmithingRecipe", self, "_update_blacksmithing_ingredients")
