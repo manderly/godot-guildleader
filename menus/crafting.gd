@@ -205,7 +205,7 @@ func _on_finishedItem_dialog_confirmed():
 	
 func _on_button_combine_pressed():
 	if (!global.blacksmithingInProgress):
-		#Button use case 1: begin blacksmithing timer
+		#check if user has ingredients
 		var readyToCombine = true
 		if (recipe.ingredient1 && !hasIngredient1):
 			readyToCombine = false
@@ -223,8 +223,9 @@ func _on_button_combine_pressed():
 			readyToCombine = false
 
 		if (readyToCombine == false):
-			$incomplete_dialog.popup()
+			$incomplete_dialog.popup() #tell the user they don't have all the ingredients
 		else:
+			#otherwise, start the timer and take ingredients from inventory
 			global._begin_global_blacksmithing_timer(global.selectedBlacksmithingRecipe.craftingTime)
 			#take ingredients away from player
 			#todo: some ingredients aren't deleted after one combine - how to distinguish?
@@ -245,7 +246,8 @@ func _on_button_combine_pressed():
 					util.remove_item_guild(recipe.ingredient4)
 					
 			if (recipe.ingredientWildcard):
-				if (global.allGameItems[str(global.blacksmithingWildcardItem.name)].consumable):
+				if (global.allGameItems[str(global.blacksmithingWildcardItem.name)]):
+					#this doesn't seem to be working, there's a duplicate sword generated 
 					util.remove_item_guild(global.blacksmithingWildcardItem.name)
 				
 			_update_blacksmithing_ingredients()
