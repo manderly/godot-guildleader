@@ -21,12 +21,16 @@ func _ready():
 		$button_moveItem.text = "Put in vault"
 	elif (global.currentMenu == "vaultViaHeroPage"):
 		$button_moveItem.text = "Equip"
-	elif (global.currentMenu == "vaultViaBlacksmith"):
-		$button_moveItem.text = "Choose"
-	#todo: "return to vault" is appropriate for a to-be-sharpened item
-	#todo: hide button if the item being viewed isn't actually owned by player (result preview) 
-	elif (global.currentMenu == "blacksmithing"):
-		$button_moveItem.text = "Return to vault"
+	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "jewelcraft"):
+		#if the wildcard slot is empty, then write "choose"
+		if (!global.tradeskills[global.currentMenu].wildcardItem):
+			$button_moveItem.text = "Choose"
+		else:
+			$button_moveItem.text = "Return to vault"
 	
 	#don't show move to vault or trash buttons if this hero isn't recruited
 	if (global.selectedHero && !global.selectedHero.recruited):
@@ -126,17 +130,23 @@ func _on_button_moveItem_pressed():
 		#but it also makes a record of its index so vault.gd can update the button art 
 		self.hide() #hide the popup
 		emit_signal("swappingItemWithAnother") #caught by itemButton.gd 
-	elif (global.currentMenu == "vaultViaBlacksmith"):
-		#gives the item to the blacksmith 
-		util.give_item_blacksmith(itemData.name)
-		self.hide() #hide the popup
-		global.currentMenu = "blacksmithing"
-		get_tree().change_scene("res://menus/crafting.tscn")
-	elif (global.currentMenu == "blacksmithing"):
-		util.remove_item_blacksmith()
-		self.hide()
-		emit_signal("clearWildcardButton")
+	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "jewelcraft"):
+		if (global.tradeskills[global.currentMenu].wildcardItem):
+			#we have an item, so give it back to the vault
+			util.remove_item_tradeskill()
+			self.hide()
+			emit_signal("clearWildcardButton")
+		else:
+			#take the item
+			util.give_item_tradeskill(itemData.name)
+			self.hide() #hide the popup
+			get_tree().change_scene("res://menus/crafting.tscn")
 	else:
+		print("WE ARE IN THIS MENU" + global.currentMenu)
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
 		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 

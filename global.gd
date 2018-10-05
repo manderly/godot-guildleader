@@ -48,29 +48,65 @@ onready var roomCount = 0
 var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
 
 #tradeskill flags
-var alchemyHero = null
-var blacksmithHero = null
-var fletchingHero = null
-var jewelcraftHero = null
-var tailoringHero = null
-
-var selectedAlchemyRecipe = null
-var selectedBlacksmithingRecipe = null
-var selectedFletchingRecipe = null
-var selectedJewelcraftRecipe = null
-var selectedTailoringRecipe = null
-
-var alchemyTimer = null
-var blacksmithingTimer = null
-
-var alchemyInProgress = false
-var blacksmithingInProgress = false
-var fletchingInProgress = false
-var jewelcraftInProgress = false
-var tailoringInProgress = false
-
-var blacksmithingReadyToCollect = false
-var blacksmithingWildcardItem = null #for blades getting sharpened, armor getting augmented, etc. Holds 1. 
+#use: global.tradeskills[global.currentMenu] 
+#example: global.tradeskills["alchemy"].hero
+var tradeskills = {
+	"alchemy": {
+		"hero": null,
+		"timer": null,
+		"inProgress": false,
+		"readyToCollect": false,
+		"wildcardItem": null,
+		"displayName": "Alchemy",
+		"description": "Potions and stuff",
+		"recipes": [],
+		"selectedRecipe": null
+	},
+	"blacksmithing": {
+		"hero": null,
+		"timer": null,
+		"inProgress": false,
+		"readyToCollect": false,
+		"wildcardItem": null,
+		"displayName": "Blacksmithing",
+		"description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials.",
+		"recipes": [],
+		"selectedRecipe": null
+	},
+	"fletching": {
+		"hero": null,
+		"timer": null,
+		"inProgress": false,
+		"readyToCollect": false,
+		"wildcardItem": null,
+		"displayName": "Fletching",
+		"description":"Make arrows and bows",
+		"recipes": [],
+		"selectedRecipe": null
+	},
+	"jewelcraft": {
+		"hero": null,
+		"timer": null,
+		"inProgress": false,
+		"readyToCollect": false,
+		"wildcardItem": null,
+		"displayName": "Jewelcraft",
+		"description":"Bend metal and gemstones into sparkly jewelry with powerful stat bonuses.",
+		"recipes": [],
+		"selectedRecipe": null
+	},
+	"tailoring": {
+		"hero": null,
+		"timer": null,
+		"inProgress": false,
+		"readyToCollect": false,
+		"wildcardItem": null,
+		"displayName": "Tailoring",
+		"description":"Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths.",
+		"recipes": [],
+		"selectedRecipe": null
+	}
+}
 
 #the x min and max is the same for all rooms
 var roomMinX = 200
@@ -227,10 +263,10 @@ func _ready():
 		recipeValue = blacksmithingRecipesData[i]
 		allBlacksmithingRecipes[recipeKey] = recipeValue
 	#second, append each recipe into the array that we'll access them from elsewhere in the game
-		blacksmithingRecipes.append(allBlacksmithingRecipes[recipeKey])
+		tradeskills.blacksmithing.recipes.append(allBlacksmithingRecipes[recipeKey])
 	
-	if (!global.selectedBlacksmithingRecipe):
-		global.selectedBlacksmithingRecipe = blacksmithingRecipes[0]
+	if (!global.tradeskills["blacksmithing"].selectedRecipe):
+		global.tradeskills["blacksmithing"].selectedRecipe = tradeskills.blacksmithing.recipes[0]
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):
@@ -275,27 +311,6 @@ func _on_questTimer_timeout():
 			
 	emit_signal("quest_complete", currentQuest.name)
 
-#blacksmithing timer
-func _begin_global_blacksmithing_timer(duration):
-	if (!blacksmithingInProgress):
-		print("global.gd - starting blacksmithing timer: " + str(duration))
-		#emit_signal("quest_begun", currentQuest.name)
-		blacksmithingInProgress = true
-		blacksmithingReadyToCollect = false
-		blacksmithingTimer = Timer.new()
-		blacksmithingTimer.set_one_shot(true)
-		blacksmithingTimer.set_wait_time(duration)
-		blacksmithingTimer.connect("timeout", self, "_on_blacksmithingTimer_timeout")
-		blacksmithingTimer.start()
-		add_child(blacksmithingTimer)
-	else:
-		print("global.gd - error: Blacksmithing timer already running")
-
-func _on_blacksmithingTimer_timeout():
-	#this is where the quest's random prizes are determined 
-	global.logger(self, "blacksmithingTimer complete!")
-	#blacksmithingInProgress = false
-	blacksmithingReadyToCollect = true
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))

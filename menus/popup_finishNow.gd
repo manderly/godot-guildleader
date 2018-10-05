@@ -15,6 +15,6 @@ func _set_data(whatToFinish, costToFinish):
 func _on_ConfirmationDialog_confirmed():
 	if (global.hardCurrency > 0):
 		global.hardCurrency -= hcCost
-		global.blacksmithingReadyToCollect = true
+		global.tradeskills[global.currentMenu].readyToCollect = true
 	else:
 		print("popup_finishNow.gd: INSUFFICIENT DIAMONDS")

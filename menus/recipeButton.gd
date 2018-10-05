@@ -2,7 +2,7 @@ extends Node2D
 
 var recipeData = null
 var crafterSkill = 0
-signal updateBlacksmithingRecipe
+signal updateRecipe
 
 func _ready():
 	pass
@@ -28,8 +28,8 @@ func set_crafter_skill_level(level):
 	crafterSkill = level
 
 func _on_recipeButton_pressed():
-	if (global.currentMenu == "blacksmithing"):
-		global.selectedBlacksmithingRecipe = recipeData
-		#print("recipeButton.gd: Changed active blacksmithing recipe to: " + str(global.selectedBlacksmithingRecipe))
-		emit_signal("updateBlacksmithingRecipe")
+	global.tradeskills[global.currentMenu].selectedRecipe = recipeData
+	#global.selectedBlacksmithingRecipe = recipeData
+	#print("recipeButton.gd: Changed active blacksmithing recipe to: " + str(global.selectedBlacksmithingRecipe))
+	emit_signal("updateRecipe")
 	

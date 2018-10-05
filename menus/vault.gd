@@ -55,7 +55,7 @@ func _draw_vault_items():
 								thisHeroCanWear = true
 					if (!thisHeroCanWear):
 						currentButton._set_disabled()
-				elif (global.currentMenu == "vaultViaBlacksmith"):
+				elif (global.currentMenu == "blacksmithing"):
 					if (global.browsingForType == "blade"):
 						if (global.guildItems[i].itemType != "sword" && global.guildItems[i].itemType != "knife"):
 							currentButton._set_disabled() #disable button if type mismatch 

@@ -44,11 +44,10 @@ func remove_item_guild(itemNameStr):
 func give_item_hero(itemNameStr):
 	pass
 	
-func give_item_blacksmith(itemNameStr):
+func give_item_tradeskill(itemNameStr):
 	if (global.allGameItems[itemNameStr]): #make sure this item actually exists
-		global.blacksmithingWildcardItem = global.allGameItems[itemNameStr]
-	#todo: flag it somehow to the user (don't remove it from guild) 
+		global.tradeskills[global.currentMenu].wildcardItem = global.allGameItems[itemNameStr]
 	
-func remove_item_blacksmith():
-	global.blacksmithingWildcardItem = null
+func remove_item_tradeskill():
+	global.tradeskills[global.currentMenu].wildcardItem = null
 	

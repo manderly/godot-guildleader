@@ -3,20 +3,20 @@ extends "room.gd"
 #inherits all of room's methods 
 
 func _ready():
-	if (global.blacksmithHero):
+	if (global.tradeskills["blacksmithing"].hero):
 		$button_staffCraft.text = "Craft"
 	else:
 		$button_staffCraft.text = "Staff"
 
 func _on_button_staffCraft_pressed():
 	global.currentMenu = "blacksmithing"
-	if (!global.blacksmithHero):
+	if (!global.tradeskills["blacksmithing"].hero):
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	else:
 		get_tree().change_scene("res://menus/crafting.tscn")
 
 func _process(delta):
-	if (global.blacksmithingInProgress):
+	if (global.tradeskills["blacksmithing"].inProgress):
 		$button_inProgress.show()
 	else:
 		$button_inProgress.hide()

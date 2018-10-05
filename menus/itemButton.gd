@@ -113,8 +113,4 @@ func _on_Button_pressed():
 		else:
 			if (global.currentMenu == "heroPage"):
 				global.currentMenu = "vaultViaHeroPage"
-				get_tree().change_scene("res://menus/vault.tscn")  #todo: filter by item type
-			elif (global.currentMenu == "blacksmithing"):
-				global.currentMenu = "vaultViaBlacksmith"
-				#go to vault and filter to just the type of item the button was (ie: blade)
-				get_tree().change_scene("res://menus/vault.tscn")
+			get_tree().change_scene("res://menus/vault.tscn")

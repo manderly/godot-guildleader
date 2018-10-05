@@ -59,11 +59,15 @@ func _on_Button_pressed():
 		global.questButtonID = buttonID
 		global.currentMenu = "selectHeroForQuest"
 		get_tree().change_scene("res://menus/heroSelect.tscn")
-	elif (global.currentMenu == "blacksmithing"):
+	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "jewelcraft" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "tailoring"):
 		if (heroData.available):
 			#heroData.available = false #this hero is now busy as long as they're at the blacksmith
 			heroData.currentRoom = 4
-			global.blacksmithHero = heroData
+			global.tradeskills[global.currentMenu].hero = heroData
 			#todo: figure out where the blacksmith room is in the sequence and use that index
 			global.currentMenu = "main"
 			get_tree().change_scene("res://main.tscn")
