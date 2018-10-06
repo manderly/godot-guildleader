@@ -1,4 +1,5 @@
 extends Node
+#main.gd
 
 var heroGenerator = load("res://heroGenerator.gd").new()
 var roomGenerator = load("res://roomGenerator.gd").new()
@@ -33,7 +34,6 @@ func _ready():
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("bedroom", false)
-		roomGenerator.generate("blacksmith", false)
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true

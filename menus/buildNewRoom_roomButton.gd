@@ -15,7 +15,6 @@ func set_button_fields(data):
 	
 	#disable this button if no tradeskill rooms are left to build
 	if (roomData.name == "Tradeskill" && global.tradeskillRoomsToBuild.size() == 0):
-		print("no tradeskills left to build")
 		$button_buildRoom.disabled = true
 
 func _on_button_buildRoom_pressed():
