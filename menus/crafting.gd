@@ -20,7 +20,7 @@ func _ready():
 	var yVal = 0
 	for i in range(tradeskill.recipes.size()):
 		var recipeButton = preload("res://menus/recipeButton.tscn").instance()
-		recipeButton.set_crafter_skill_level(tradeskill.hero.skillBlacksmithing)
+		recipeButton.set_crafter_skill_level(tradeskill.hero.skillBlacksmithing) #todo: fix 
 		recipeButton.set_recipe_data(tradeskill.recipes[i])
 		recipeButton.set_position(Vector2(0, yVal))
 		recipeButton.connect("updateRecipe", self, "_update_ingredients")
@@ -45,7 +45,6 @@ func _update_hero_skill_display():
 		
 	$field_heroSkill.text = tradeskill.hero.heroName + " skill level: " + str(tradeskill.hero.skillBlacksmithing)
 		
-#todo: genericize to handle any recipe type
 func _update_ingredients():
 	#called any time the user selects a recipe 
 	recipe = tradeskill.selectedRecipe #make a local copy so we don't have to use a long reference
@@ -58,6 +57,12 @@ func _update_ingredients():
 	
 	$recipeData/field_craftingTime.text = str(recipe.craftingTime) + "s"
 	
+	if (tradeskill.inProgress):
+		print(tradeskill.currentlyCrafting)
+		$recipeData/field_nowCrafting.text = "Now Crafting: " + tradeskill.currentlyCrafting.name
+	else:
+		$recipeData/field_nowCrafting.text = "Now Crafting: Nothing"
+		
 	#result item or stat increase display 
 	if (recipe.result):
 		if (recipe.result == "computed"):
@@ -159,6 +164,7 @@ func _update_ingredients():
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
+		print("time left: " + str(tradeskill.timer.time_left))
 		$button_combine.set_text(util.format_time(tradeskill.timer.time_left))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
@@ -180,35 +186,34 @@ func _open_collect_result_popup():
 	var skillUpRandom = randi()%2+1 #1-2
 	if (skillUpRandom == 2):
 		tradeskill.hero.skillBlacksmithing += 1
-		$finishedItem_dialog/elements/field_skillUp.text = tradeskill.hero.heroName + " became better at THIS SKILL! (" + str(global.tradeskills[global.currentMenu].hero.skillBlacksmithing) + ")"
+		$finishedItem_dialog/elements/field_skillUp.text = tradeskill.hero.heroName + " became better at " + tradeskill.displayName + " (" + str(global.tradeskills[global.currentMenu].hero.skillBlacksmithing) + ")"
 		$finishedItem_dialog/elements/field_skillUp.show()
 		_update_hero_skill_display()
 	else:
 		$finishedItem_dialog/elements/field_skillUp.hide()
-		
-	#todo: crashes when in the sharpen weapon flow
-	if (!tradeskill.wildcardItem): 
-		$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(recipe.result)].icon)
-	else: 
-		$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(tradeskill.wildcardItem.name)].icon)
-	$finishedItem_dialog/elements/field_itemName.text = tradeskill.selectedRecipe.result
+	
+	$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(tradeskill.currentlyCrafting.name)].icon)
+	$finishedItem_dialog/elements/field_itemName.text = tradeskill.currentlyCrafting.name
 	$finishedItem_dialog.popup()
 
 func _on_finishedItem_dialog_confirmed():
-	#these things happen when the player dismisses the popup affirmatively
-	#if the recipe is not "sharpening"
-	if (!tradeskill.wildcardItem):
-		#this is a "normal" recipe, not a wildcard item recipe
-		util.give_item_guild(tradeskill.selectedRecipe.result)
+	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively
+	if (!tradeskill.currentlyCrafting.statImproved):
+		#this was a "normal" recipe, not a wildcard item recipe
+		util.give_item_guild(tradeskill.currentlyCrafting.name)
 	else:
-		#get the original item out of the all items dictionary
-		var localItem = global.allGameItems[str(tradeskill.wildcardItem.name)]
-		localItem.dps += 1 #hardcode to 1 for now 
-		util.give_item_guild(localItem.name) #give the modified item to the guild inventory
-	
+		#this is a "computed" item, use a different util method to give it to the guild with mods
+		util.give_modded_item_guild(
+						tradeskill.currentlyCrafting.name, 
+						tradeskill.currentlyCrafting.statImproved, 
+						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
+
 	tradeskill.wildcardItem = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
+	tradeskill.currentlyCrafting.name = null
+	tradeskill.currentlyCrafting.statImproved = null
+	tradeskill.currentlyCrafting.statIncrease = null
 	_update_ingredients()
 	
 func _ingredient_check():
@@ -240,7 +245,6 @@ func _on_button_combine_pressed():
 			#otherwise, start the timer and take ingredients from inventory
 			_begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 			#take ingredients away from player
-			#todo: some ingredients aren't deleted after one combine - how to distinguish?
 			if (recipe.ingredient1):
 				if (global.allGameItems[str(recipe.ingredient1)].consumable):
 					util.remove_item_guild(recipe.ingredient1)
@@ -258,9 +262,8 @@ func _on_button_combine_pressed():
 					util.remove_item_guild(recipe.ingredient4)
 					
 			if (recipe.ingredientWildcard):
-				if (global.allGameItems[str(global.tradeskills[global.currentMenu].wildcardItem.name)]):
-					#this doesn't seem to be working, there's a duplicate sword generated 
-					util.remove_item_guild(global.tradeskills[global.currentMenu].wildcardItem.name)
+				if (global.allGameItems[str(tradeskill.wildcardItem.name)]):
+					util.remove_item_guild(tradeskill.wildcardItem.name)
 				
 			_update_ingredients()
 				
@@ -273,10 +276,19 @@ func _on_button_combine_pressed():
 	else:
 		print("crafting.gd - got in some weird state")
 		
-#tradeskill timer
 func _begin_tradeskill_timer(duration):
 	if (!tradeskill.inProgress):
-		print("global.gd - starting " + global.currentMenu + " timer: " + str(duration))
+		print("crafting.gd - starting " + global.currentMenu + " timer: " + str(duration))
+		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
+		if (tradeskill.selectedRecipe.result != "computed"):
+			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
+		elif (tradeskill.selectedRecipe.result == "computed"):
+			tradeskill.currentlyCrafting.name = tradeskill.wildcardItem.name
+			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
+			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
+		else:
+			print("crafting.gd - Unknown result type")
+		
 		tradeskill.inProgress = true
 		tradeskill.readyToCollect = false
 		tradeskill.timer = Timer.new()
@@ -284,15 +296,14 @@ func _begin_tradeskill_timer(duration):
 		tradeskill.timer.set_wait_time(duration)
 		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout")
 		tradeskill.timer.start()
+		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
 		add_child(tradeskill.timer)
 	else:
 		print("global.gd - error: " + tradeskill.name + " timer already running")
 
 
 func _on_tradeskillTimer_timeout():
-	#this is where the quest's random prizes are determined 
-	global.logger(self, "tradeskill timer complete!")
-	#blacksmithingInProgress = false
+	global.logger(self, tradeskill.displayName + " timer complete!")
 	tradeskill.readyToCollect = true
 	
 func _on_button_dismissHero_pressed():

@@ -32,6 +32,7 @@ func _ready():
 		#generate rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
+		roomGenerator.generate("blacksmith", false)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("vault", false)

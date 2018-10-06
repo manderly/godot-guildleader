@@ -16,18 +16,31 @@ func format_time(time):
 		
 	return timeFormattedForDisplay
 	
-func give_item_guild(itemNameStr):
-	if (global.allGameItems[itemNameStr]): #make sure this item actually exists in the item records
-		#naive solution: doing this just sticks the new item at the very end of all the empty slots
-		#global.guildItems.append(global.allGameItems[itemNameStr])
+func give_item_guild(itemName): #itemName comes in as a string 
+	if (global.allGameItems[itemName]): #make sure this item actually exists in the item records
+		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
-				#finds first open null spot and puts the item there
-				global.guildItems[i] = global.allGameItems[itemNameStr]
+				global.guildItems[i] = global.allGameItems[itemName]
 				break
 	else:
-		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemNameStr)
-	
+		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
+
+func give_modded_item_guild(itemName, stat, bonusAmount): #itemName comes in as a string 
+	print("giving a modded item to the guild")
+	if (global.allGameItems[itemName]): #make sure this item actually exists in the item records
+		#finds first open null spot and puts the item there
+		for i in range(global.guildItems.size()):
+			if (global.guildItems[i] == null):
+				#todo: modifies ALL instances of this weapon for some reason 
+				global.guildItems[i] = global.allGameItems[itemName].duplicate()
+				#now apply the mods
+				global.guildItems[i][stat] += bonusAmount
+				break
+	else:
+		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
+		
+					
 func remove_item_guild(itemNameStr):
 	print("util.gd: Removing " + itemNameStr + " from guild's inventory")
 	if (global.allGameItems[itemNameStr]): #make sure this item actually exists in the item records

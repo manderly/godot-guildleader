@@ -86,8 +86,6 @@ func _clear_tradeskill():
 	_clear_label()
 	
 func _on_Button_pressed():
-	print("itemButton.gd: item button pressed")
-	#print("my vault index is: " + str(self.itemVaultIndex))
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
 		

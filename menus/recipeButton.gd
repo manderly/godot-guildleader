@@ -29,7 +29,5 @@ func set_crafter_skill_level(level):
 
 func _on_recipeButton_pressed():
 	global.tradeskills[global.currentMenu].selectedRecipe = recipeData
-	#global.selectedBlacksmithingRecipe = recipeData
-	#print("recipeButton.gd: Changed active blacksmithing recipe to: " + str(global.selectedBlacksmithingRecipe))
 	emit_signal("updateRecipe")
 	

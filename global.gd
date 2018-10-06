@@ -61,7 +61,12 @@ var tradeskills = {
 		"displayName": "Alchemy",
 		"description": "Potions and stuff",
 		"recipes": [],
-		"selectedRecipe": null
+		"selectedRecipe": null,
+		"currentlyCrafting": {
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+		}
 	},
 	"blacksmithing": {
 		"hero": null,
@@ -72,7 +77,12 @@ var tradeskills = {
 		"displayName": "Blacksmithing",
 		"description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials.",
 		"recipes": [],
-		"selectedRecipe": null
+		"selectedRecipe": null,
+		"currentlyCrafting": {
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+		}
 	},
 	"fletching": {
 		"hero": null,
@@ -83,7 +93,12 @@ var tradeskills = {
 		"displayName": "Fletching",
 		"description":"Make arrows and bows",
 		"recipes": [],
-		"selectedRecipe": null
+		"selectedRecipe": null,
+		"currentlyCrafting": {
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+		}
 	},
 	"jewelcraft": {
 		"hero": null,
@@ -94,7 +109,12 @@ var tradeskills = {
 		"displayName": "Jewelcraft",
 		"description":"Bend metal and gemstones into sparkly jewelry with powerful stat bonuses.",
 		"recipes": [],
-		"selectedRecipe": null
+		"selectedRecipe": null,
+		"currentlyCrafting": {
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+		}
 	},
 	"tailoring": {
 		"hero": null,
@@ -105,7 +125,12 @@ var tradeskills = {
 		"displayName": "Tailoring",
 		"description":"Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths.",
 		"recipes": [],
-		"selectedRecipe": null
+		"selectedRecipe": null,
+		"currentlyCrafting": {
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+		}
 	}
 }
 
@@ -232,7 +257,7 @@ func _ready():
 	#for now, start the user off with some items (visible in the vault)
 	util.give_item_guild("Rusty Broadsword")
 	util.give_item_guild("Novice's Blade")
-
+	util.give_item_guild("Novice's Blade")
 	#here's a ton more for testing purposes 
 	util.give_item_guild("Basic Bow")
 	util.give_item_guild("Simple Ring")
@@ -247,6 +272,8 @@ func _ready():
 	#util.give_item_guild("Softscale Boots")
 	#util.give_item_guild("Seer's Orb")
 	
+	util.give_item_guild("Rough Stone")
+	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Leather Strip")
 	util.give_item_guild("Small Brick of Ore")
