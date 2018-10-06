@@ -140,7 +140,7 @@ func draw_rooms():
 			elif (global.rooms[i].roomType == "topEdge"):
 				roomScene = preload("res://rooms/topEdge.tscn").instance()
 			else:
-				print("main.gd: unhandled room type found")
+				print("main.gd: unhandled room type found: " + global.rooms[i].roomType)
 			
 			#put the x, y coords into the array data
 			global.rooms[i].setX(roomX)

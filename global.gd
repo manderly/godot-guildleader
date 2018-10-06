@@ -46,6 +46,7 @@ var itemData = null
 onready var rooms = []
 onready var roomCount = 0
 var newRoomCost = [10, 20, 30, 50, 70, 80, 90, 100, 1000, 1000, 1000, 1000, 1000, 1000]
+var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft", "tailoring"] #remove from array as they are built 
 
 #tradeskill flags
 #use: global.tradeskills[global.currentMenu] 

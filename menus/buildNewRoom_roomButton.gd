@@ -12,6 +12,11 @@ func set_button_fields(data):
 	roomData = data
 	$field_description.text = data.description
 	$field_name.text = data.name
+	
+	#disable this button if no tradeskill rooms are left to build
+	if (roomData.name == "Tradeskill" && global.tradeskillRoomsToBuild.size() == 0):
+		print("no tradeskills left to build")
+		$button_buildRoom.disabled = true
 
 func _on_button_buildRoom_pressed():
 	#check if you can afford this new room
@@ -34,22 +39,12 @@ func _on_button_buildRoom_pressed():
 			roomGenerator.generate("warrior", true)
 		elif (roomData.name == "Tradeskill"):
 			print("buildNewRoom_roomButton.gd - building a tradeskill room")
-			var randomTradeskillRoomNum = round(rand_range(0,4))
-			if (randomTradeskillRoomNum == 0):
-				print("blacksmith")
-				roomGenerator.generate("blacksmith", true)
-			elif (randomTradeskillRoomNum == 1):
-				print("tailoring")
-				roomGenerator.generate("tailoring", true)
-			elif (randomTradeskillRoomNum == 2):
-				print("jewelcraft")
-				roomGenerator.generate("jewelcraft", true)
-			elif (randomTradeskillRoomNum == 3):
-				print("alchemy")
-				roomGenerator.generate("alchemy", true)
-			elif (randomTradeskillRoomNum == 4):
-				print("fletching")
-				roomGenerator.generate("fletching", true)
+			print(global.tradeskillRoomsToBuild)
+			var tradeskillRand = round(rand_range(0,global.tradeskillRoomsToBuild.size() - 1))
+			#this syntax is like saying: global.tradeskillRoomsToBuild["blacksmith"]
+			roomGenerator.generate(global.tradeskillRoomsToBuild[tradeskillRand], true)
+			#now remove that room from the array 
+			global.tradeskillRoomsToBuild.remove(tradeskillRand)
 		else:
 			print("buildNewRoom_roomButton.gd: invalid room selected, cannot generate room data")
 		
