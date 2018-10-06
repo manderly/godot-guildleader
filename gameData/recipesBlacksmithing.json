@@ -14,6 +14,20 @@
     "statIncrease": ""
   },
   {
+    "recipeName": "Simple Arrowhead",
+    "ingredientWildcard": "",
+    "ingredient1": "Rough Stone",
+    "ingredient2": "",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 5,
+    "craftingTime": 60,
+    "result": "Simple Arrowhead",
+    "statImproved": "",
+    "statIncrease": ""
+  },
+  {
     "recipeName": "Minor Blade Sharpening",
     "ingredientWildcard": "blade",
     "ingredient1": "Simple Sharpening Stone",

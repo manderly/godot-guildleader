@@ -129,9 +129,23 @@ var filterVaultByItemSlot = null
 var browsingForSlot = ""
 var browsingForType = ""
 
-var blacksmithingRecipesData = null #raw json parse 
+var recipesFile = null
+var recipesData = null #raw json parse 
+
 var allBlacksmithingRecipes = {} #dictionary with key value pairs representing each recipe 
 var blacksmithingRecipes = [] #access them out of this array elsewhere
+
+var allFletchingRecipes = {} #dictionary with key value pairs representing each recipe 
+var fletchingRecipes = [] #access them out of this array elsewhere
+
+var allJewelcraftRecipes = {} #dictionary with key value pairs representing each recipe 
+var jewelcraftRecipes = [] #access them out of this array elsewhere
+
+var allTailoringRecipes = {} #dictionary with key value pairs representing each recipe 
+var tailoringRecipes = [] #access them out of this array elsewhere
+
+var allAlchemyRecipes = {} #dictionary with key value pairs representing each recipe 
+var alchemyRecipes = [] #access them out of this array elsewhere
 
 func _ready():
 	randomize()
@@ -244,10 +258,11 @@ func _ready():
 	util.give_item_guild("Small Brick of Ore")
 	
 	#load tradeskill crafting recipes
-	var blacksmithingRecipesFile = File.new()
-	blacksmithingRecipesFile.open("res://gameData/recipesBlacksmithing.json", blacksmithingRecipesFile.READ)
-	blacksmithingRecipesData = parse_json(blacksmithingRecipesFile.get_as_text())
-	blacksmithingRecipesFile.close()
+	#BLACKSMITHING
+	recipesFile = File.new()
+	recipesFile.open("res://gameData/recipesBlacksmithing.json", recipesFile.READ)
+	recipesData = parse_json(recipesFile.get_as_text())
+	recipesFile.close()
 	
 	var recipeKey = null #a string, ie: "Sharpening Stone"
 	var recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
@@ -258,15 +273,76 @@ func _ready():
 	#["Sharpening Stone"]["ingredient1"]
 	
 	#first, make every recipe into an object with the recipe name as the key and all the data as the value
-	for i in range(blacksmithingRecipesData.size()):
-		recipeKey = blacksmithingRecipesData[i]["recipeName"]
-		recipeValue = blacksmithingRecipesData[i]
+	for i in range(recipesData.size()):
+		recipeKey = recipesData[i]["recipeName"]
+		recipeValue = recipesData[i]
 		allBlacksmithingRecipes[recipeKey] = recipeValue
 	#second, append each recipe into the array that we'll access them from elsewhere in the game
 		tradeskills.blacksmithing.recipes.append(allBlacksmithingRecipes[recipeKey])
 	
 	if (!global.tradeskills["blacksmithing"].selectedRecipe):
 		global.tradeskills["blacksmithing"].selectedRecipe = tradeskills.blacksmithing.recipes[0]
+		
+	# TAILORING 
+	recipesFile = File.new()
+	recipesFile.open("res://gameData/recipesTailoring.json", recipesFile.READ)
+	recipesData = parse_json(recipesFile.get_as_text())
+	recipesFile.close()
+	
+	recipeKey = null #a string, ie: "Sharpening Stone"
+	recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
+
+	
+	#first, make every recipe into an object with the recipe name as the key and all the data as the value
+	for i in range(recipesData.size()):
+		recipeKey = recipesData[i]["recipeName"]
+		recipeValue = recipesData[i]
+		allTailoringRecipes[recipeKey] = recipeValue
+	#second, append each recipe into the array that we'll access them from elsewhere in the game
+		tradeskills.tailoring.recipes.append(allTailoringRecipes[recipeKey])
+	
+	if (!global.tradeskills["tailoring"].selectedRecipe):
+		global.tradeskills["tailoring"].selectedRecipe = tradeskills.tailoring.recipes[0]
+		
+	# JEWELCRAFT 
+	recipesFile = File.new()
+	recipesFile.open("res://gameData/recipesJewelcraft.json", recipesFile.READ)
+	recipesData = parse_json(recipesFile.get_as_text())
+	recipesFile.close()
+	
+	recipeKey = null #a string, ie: "Sharpening Stone"
+	recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
+	
+	#first, make every recipe into an object with the recipe name as the key and all the data as the value
+	for i in range(recipesData.size()):
+		recipeKey = recipesData[i]["recipeName"]
+		recipeValue = recipesData[i]
+		allJewelcraftRecipes[recipeKey] = recipeValue
+	#second, append each recipe into the array that we'll access them from elsewhere in the game
+		tradeskills.jewelcraft.recipes.append(allJewelcraftRecipes[recipeKey])
+	
+	if (!global.tradeskills["jewelcraft"].selectedRecipe):
+		global.tradeskills["jewelcraft"].selectedRecipe = tradeskills.jewelcraft.recipes[0]
+	
+	# FLETCHING 
+	recipesFile = File.new()
+	recipesFile.open("res://gameData/recipesFletching.json", recipesFile.READ)
+	recipesData = parse_json(recipesFile.get_as_text())
+	recipesFile.close()
+	
+	recipeKey = null #a string, ie: "Sharpening Stone"
+	recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
+	
+	#first, make every recipe into an object with the recipe name as the key and all the data as the value
+	for i in range(recipesData.size()):
+		recipeKey = recipesData[i]["recipeName"]
+		recipeValue = recipesData[i]
+		allFletchingRecipes[recipeKey] = recipeValue
+	#second, append each recipe into the array that we'll access them from elsewhere in the game
+		tradeskills.fletching.recipes.append(allFletchingRecipes[recipeKey])
+	
+	if (!global.tradeskills["fletching"].selectedRecipe):
+		global.tradeskills["fletching"].selectedRecipe = tradeskills.fletching.recipes[0]
 	
 func _begin_global_quest_timer(duration):
 	if (!questActive):

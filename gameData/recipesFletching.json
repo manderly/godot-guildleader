@@ -1,0 +1,30 @@
+[
+  {
+    "recipeName": "Handmade Arrow",
+    "ingredientWildcard": "",
+    "ingredient1": "Simple Arrowhead",
+    "ingredient2": "Rough Branch",
+    "ingredient3": "Grey Feather",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 15,
+    "craftingTime": 60,
+    "result": "Handmade Arrow",
+    "statImproved": "",
+    "statIncrease": ""
+  },
+  {
+    "recipeName": "Oak Recurve Bow",
+    "ingredientWildcard": "",
+    "ingredient1": "Oak Branch",
+    "ingredient2": "Hemp Cord",
+    "ingredient3": "",
+    "ingredient4": "",
+    "noFail": true,
+    "trivial": 35,
+    "craftingTime": 600,
+    "result": "Oak Recurve Bow",
+    "statImproved": "",
+    "statIncrease": ""
+  }
+]

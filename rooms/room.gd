@@ -7,6 +7,15 @@ var roomY = 0
 
 func _ready():
 	display_room_name(roomName)
+	if (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "jewelcraft"):
+		if (global.tradeskills[global.currentMenu]["hero"]):
+			$button_staffCraft.text = "Craft"
+		else:
+			$button_staffCraft.text = "Staff"
 
 func display_room_name(nameStr):
 	$field_roomName.text = roomName
@@ -24,3 +33,14 @@ func set_instance_data(data):
 	roomType = data.roomType
 	roomX = data.roomX
 	roomY = data.roomY
+	
+func _process(delta):
+	if (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "jewelcraft"):
+		if (global.tradeskills[global.currentMenu].inProgress):
+			$button_inProgress.show()
+		else:
+			$button_inProgress.hide()
