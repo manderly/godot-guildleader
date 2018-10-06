@@ -111,7 +111,11 @@ func generate(destinationArray, classStr):
 	newHero.baseStamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
 	newHero.baseDefense = global.heroStartingStatData[newHero.heroClass]["defense"]
 	newHero.baseIntelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
+	newHero.baseSkillAlchemy = 0
 	newHero.baseSkillBlacksmithing = 0
+	newHero.baseSkillFletching = 0
+	newHero.baseSkillJewelcraft = 0
+	newHero.baseSkillTailoring = 0
 	newHero.baseDrama = global.heroStartingStatData[newHero.heroClass]["drama"]
 	newHero.baseMood = global.heroStartingStatData[newHero.heroClass]["mood"]
 	newHero.basePrestige = global.heroStartingStatData[newHero.heroClass]["prestige"]

@@ -45,7 +45,7 @@ var itemData = null
 #rooms
 onready var rooms = []
 onready var roomCount = 0
-var newRoomCost = [100, 200, 300, 500, 700, 800, 900, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
+var newRoomCost = [10, 20, 30, 50, 70, 80, 90, 100, 1000, 1000, 1000, 1000, 1000, 1000]
 
 #tradeskill flags
 #use: global.tradeskills[global.currentMenu] 
@@ -132,6 +132,9 @@ var browsingForType = ""
 var recipesFile = null
 var recipesData = null #raw json parse 
 
+var allAlchemyRecipes = {} #dictionary with key value pairs representing each recipe 
+var alchemyRecipes = [] #access them out of this array elsewhere
+
 var allBlacksmithingRecipes = {} #dictionary with key value pairs representing each recipe 
 var blacksmithingRecipes = [] #access them out of this array elsewhere
 
@@ -144,8 +147,7 @@ var jewelcraftRecipes = [] #access them out of this array elsewhere
 var allTailoringRecipes = {} #dictionary with key value pairs representing each recipe 
 var tailoringRecipes = [] #access them out of this array elsewhere
 
-var allAlchemyRecipes = {} #dictionary with key value pairs representing each recipe 
-var alchemyRecipes = [] #access them out of this array elsewhere
+
 
 func _ready():
 	randomize()
@@ -256,6 +258,7 @@ func _ready():
 	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Leather Strip")
 	util.give_item_guild("Small Brick of Ore")
+	util.give_item_guild("Copper Ore")
 	
 	#load tradeskill crafting recipes
 	#BLACKSMITHING

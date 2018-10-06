@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/*.tscn": true,
+			"**/*.tres": true,
+			"**/*.import": true			
+        }
+	}
+}

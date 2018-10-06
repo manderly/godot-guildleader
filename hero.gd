@@ -23,7 +23,11 @@ var baseDps = -1
 var baseStamina = -1
 var baseDefense = -1
 var baseIntelligence = -1
+var baseSkillAlchemy = -1
 var baseSkillBlacksmithing = -1
+var baseSkillFletching = -1
+var baseSkillJewelcraft = -1
+var baseSkillTailoring = -1
 var baseDrama = 0
 var baseMood = 0
 var basePrestige = -1
@@ -38,7 +42,11 @@ var modifiedDps = 0
 var modifiedStamina = 0
 var modifiedDefense = 0
 var modifiedIntelligence = 0
+var modifiedSkillAlchemy = 0
 var modifiedSkillBlacksmithing = 0
+var modifiedSkillFletching = 0
+var modifiedSkillJewelcraft = 0
+var modifiedSkillTailoring = 0
 var modifiedPrestige = 0
 
 #TODO: Buffs - someday, buffs will affect stats, too. 
@@ -51,10 +59,10 @@ var dps = -1
 var stamina = -1
 var defense = -1
 var intelligence = -1
-var skillBlacksmithing = -1
-var skillJewelcraft = -1
-var skillFletching = -1
 var skillAlchemy = -1
+var skillBlacksmithing = -1
+var skillFletching = -1
+var skillJewelcraft = -1
 var skillTailoring = -1
 var drama = 0
 var mood = 0
@@ -160,27 +168,6 @@ func _physics_process(delta):
 func on_click():
 	pass
 
-	
-	#loop through the heroes and find a unique ID to match to 
-	#figure out what hero data we are viewing from the global hero array
-	#print("hero.gd: Recruited status: " + str(self.recruited))
-	
-	
-	#if (self.recruited):
-		#for i in range(global.guildRoster.size()):
-			#if (global.guildRoster[i].heroID == heroID):
-				#global.selectedHero = global.guildRoster[i]
-				#global.currentMenu = "heroPage"
-				##get_tree().change_scene("res://menus/heroPage.tscn")
-				#break
-	#else:
-		#for i in range(global.unrecruited.size()):
-			#if (global.unrecruited[i].heroID == heroID):
-				#global.selectedHero = global.unrecruited[i]
-				#get_tree().change_scene("res://menus/heroPage.tscn")
-				#break
-
-	
 func set_instance_data(data):
 	heroName = data.heroName
 	level = data.level
@@ -217,7 +204,11 @@ func update_hero_stats():
 	modifiedStamina = 0
 	modifiedDefense = 0
 	modifiedIntelligence = 0
+	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
+	modifiedSkillFletching = 0
+	modifiedSkillJewelcraft = 0
+	modifiedSkillTailoring = 0
 	modifiedPrestige = 0
 	
 	#add up all the stats from armor 
@@ -249,7 +240,11 @@ func update_hero_stats():
 	stamina = baseStamina + modifiedStamina
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
+	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
+	skillFletching = baseSkillFletching + modifiedSkillFletching
+	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
+	skillTailoring = baseSkillTailoring + modifiedSkillTailoring
 	prestige = basePrestige + modifiedPrestige
 	drama = "Low"
 	mood = "Happy"

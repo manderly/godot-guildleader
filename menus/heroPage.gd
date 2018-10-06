@@ -14,7 +14,11 @@ var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
 #Skills
+var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillFletching = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillJewelcraft = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillTailoring = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
 #Attributes
 var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -73,7 +77,11 @@ func _ready():
 	$vbox_stats1.add_child(displayDEF)
 	$vbox_stats1.add_child(displayINT)
 	$vbox_stats1.add_child(skillsLabel)
+	$vbox_stats1.add_child(displaySkillAlchemy)
 	$vbox_stats1.add_child(displaySkillBlacksmithing)
+	$vbox_stats1.add_child(displaySkillFletching)
+	$vbox_stats1.add_child(displaySkillJewelcraft)
+	$vbox_stats1.add_child(displaySkillTailoring)
 
 	#RIGHT SIDE
 	$vbox_stats2.add_child(attributesLabel)
@@ -108,7 +116,11 @@ func _update_stats():
 	displayINT._update_fields("INT", global.selectedHero.intelligence)
 	
 	#skills
+	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)
 	displaySkillBlacksmithing._update_fields("Blacksmithing", global.selectedHero.skillBlacksmithing)
+	displaySkillFletching._update_fields("Fletching", global.selectedHero.skillFletching)
+	displaySkillJewelcraft._update_fields("Jewelcraft", global.selectedHero.skillJewelcraft)
+	displaySkillTailoring._update_fields("Tailoring", global.selectedHero.skillTailoring)
 	
 	#attributes
 	displayDrama._update_fields("Drama", global.selectedHero.drama)

@@ -3,7 +3,10 @@ extends "room.gd"
 #inherits all of room's methods 
 
 func _ready():
-	pass
+	if (global.tradeskills["jewelcraft"].hero):
+		$button_staffCraft.text = "Craft"
+	else:
+		$button_staffCraft.text = "Staff"
 
 func _on_button_staffCraft_pressed():
 	global.currentMenu = "jewelcraft"

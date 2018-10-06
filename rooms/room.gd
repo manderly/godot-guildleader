@@ -7,15 +7,6 @@ var roomY = 0
 
 func _ready():
 	display_room_name(roomName)
-	if (global.currentMenu == "blacksmithing" || 
-			global.currentMenu == "tailoring" ||
-			global.currentMenu == "alchemy" ||
-			global.currentMenu == "fletching" ||
-			global.currentMenu == "jewelcraft"):
-		if (global.tradeskills[global.currentMenu]["hero"]):
-			$button_staffCraft.text = "Craft"
-		else:
-			$button_staffCraft.text = "Staff"
 
 func display_room_name(nameStr):
 	$field_roomName.text = roomName
