@@ -22,12 +22,13 @@ func _ready():
 		$scroll/vbox.add_child(heroButton) 
 		buttonY += 130
 
-func _on_back_button_pressed():
+
+func _on_button_back_pressed():
 	if (global.currentMenu == "alchemy" || 
-				global.currentMenu == "blacksmithing" || 
-				global.currentMenu == "fletching" || 
-				global.currentMenu == "jewelcraft" || 
-				global.currentMenu == "tailoring"):
+		global.currentMenu == "blacksmithing" || 
+		global.currentMenu == "fletching" || 
+		global.currentMenu == "jewelcraft" || 
+		global.currentMenu == "tailoring"):
 		global.currentMenu = "main"
 		get_tree().change_scene("res://main.tscn")
 	else:

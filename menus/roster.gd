@@ -18,9 +18,6 @@ func _ready():
 		$scroll_roster/vbox.add_child(heroButton)
 		buttonY += 100
 
-func _on_back_button_pressed():
-	get_tree().change_scene("res://main.tscn")
-
 func _on_button_renameGuild_pressed():
 	get_node("confirm_rename_dialog").popup()
 
@@ -30,3 +27,6 @@ func _on_rename_guild_confirmed():
 	global.guildName = newName
 	#redraw the name display field on the hero page with the new name
 	$field_guildName.text = global.guildName
+
+func _on_button_back_pressed():
+	get_tree().change_scene("res://main.tscn")

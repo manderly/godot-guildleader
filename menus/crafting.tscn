@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/crafting.gd" type="Script" id=1]
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/crafting_ingredientDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -124,32 +125,7 @@ text = "COMBINE"
 flat = false
 align = 1
 
-[node name="button_back" type="Button" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 170.0
-margin_top = 880.0
-margin_right = 320.0
-margin_bottom = 940.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "BACK"
-flat = false
-align = 1
-
-[node name="field_description" type="RichTextLabel" parent="." index="5"]
+[node name="field_description" type="RichTextLabel" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -177,7 +153,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="field_heroSkill" type="RichTextLabel" parent="." index="6"]
+[node name="field_heroSkill" type="RichTextLabel" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -205,7 +181,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="button_dismissHero" type="Button" parent="." index="7"]
+[node name="button_dismissHero" type="Button" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -230,7 +206,7 @@ text = "Unstaff"
 flat = false
 align = 1
 
-[node name="recipeData" type="Node2D" parent="." index="8"]
+[node name="recipeData" type="Node2D" parent="." index="7"]
 
 [node name="label_result" type="Label" parent="recipeData" index="0"]
 
@@ -435,7 +411,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="incomplete_dialog" type="AcceptDialog" parent="." index="9"]
+[node name="incomplete_dialog" type="AcceptDialog" parent="." index="8"]
 
 visible = false
 anchor_left = 0.0
@@ -459,7 +435,7 @@ dialog_text = "You are short some ingredients!"
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="10"]
+[node name="finishedItem_dialog" type="AcceptDialog" parent="." index="9"]
 
 visible = false
 anchor_left = 0.0
@@ -536,12 +512,14 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
-[connection signal="pressed" from="button_combine" to="." method="_on_button_combine_pressed"]
+[node name="button_back" parent="." index="10" instance=ExtResource( 4 )]
 
-[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="button_combine" to="." method="_on_button_combine_pressed"]
 
 [connection signal="pressed" from="button_dismissHero" to="." method="_on_button_dismissHero_pressed"]
 
 [connection signal="confirmed" from="finishedItem_dialog" to="." method="_on_finishedItem_dialog_confirmed"]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 

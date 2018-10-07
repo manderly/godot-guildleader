@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://menus/questConfirm.gd" type="Script" id=1]
 [ext_resource path="res://gui/icons/coin_stack.png" type="Texture" id=2]
 [ext_resource path="res://gui/icons/diamond.png" type="Texture" id=3]
 [ext_resource path="res://gui/scroll_light.png" type="Texture" id=4]
-[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=5]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -19,26 +19,6 @@ margin_left = 22.0
 margin_right = 22.0
 margin_top = 18.0
 margin_bottom = 18.0
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-modulate_color = Color( 1, 1, 1, 1 )
-draw_center = true
-_sections_unfolded = [ "Margin" ]
-
-[sub_resource type="StyleBoxTexture" id=2]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 192, 64 )
-margin_left = 8.0
-margin_right = 8.0
-margin_top = 8.0
-margin_bottom = 8.0
 expand_margin_left = 0.0
 expand_margin_right = 0.0
 expand_margin_top = 0.0
@@ -280,32 +260,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Margin" ]
 
-[node name="button_back" type="Button" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 870.0
-margin_right = 330.0
-margin_bottom = 930.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/normal = SubResource( 2 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Back"
-flat = false
-align = 1
-_sections_unfolded = [ "Margin", "custom_styles" ]
+[node name="button_back" parent="." index="7" instance=ExtResource( 5 )]
 
 [node name="scroll" type="ScrollContainer" parent="." index="8"]
 
@@ -349,6 +304,9 @@ size_flags_vertical = 1
 custom_constants/separation = -1
 alignment = 1
 _sections_unfolded = [ "Grow Direction", "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="button_item1" parent="." index="9" instance=ExtResource( 6 )]
 

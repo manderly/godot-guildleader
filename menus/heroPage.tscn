@@ -1,32 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/heroPage.gd" type="Script" id=1]
 [ext_resource path="res://menus/button_theme.tres" type="Theme" id=2]
 [ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=3]
-[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=4]
-[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=5]
+[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=4]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[sub_resource type="StyleBoxTexture" id=1]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-texture = ExtResource( 4 )
-region_rect = Rect2( 0, 0, 192, 64 )
-margin_left = 8.0
-margin_right = 8.0
-margin_top = 8.0
-margin_bottom = 8.0
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-modulate_color = Color( 1, 1, 1, 1 )
-draw_center = true
-_sections_unfolded = [ "Margin" ]
-
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -174,34 +154,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
 
-[node name="button_back" type="Button" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 141.0
-margin_top = 807.0
-margin_right = 331.0
-margin_bottom = 888.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/normal = SubResource( 1 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Back"
-flat = false
-align = 1
-_sections_unfolded = [ "custom_styles" ]
-
-[node name="centerContainer" type="CenterContainer" parent="." index="7"]
+[node name="centerContainer" type="CenterContainer" parent="." index="6"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -239,7 +192,7 @@ custom_constants/hseparation = 24
 columns = 4
 _sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "custom_constants" ]
 
-[node name="vbox_stats1" type="VBoxContainer" parent="." index="8"]
+[node name="vbox_stats1" type="VBoxContainer" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -259,7 +212,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
-[node name="vbox_stats2" type="VBoxContainer" parent="." index="9"]
+[node name="vbox_stats2" type="VBoxContainer" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -279,7 +232,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="10"]
+[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="9"]
 
 visible = false
 anchor_left = 0.0
@@ -328,7 +281,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="11"]
+[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="10"]
 
 visible = false
 anchor_left = 0.0
@@ -379,7 +332,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="12"]
+[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="11"]
 
 visible = false
 anchor_left = 0.0
@@ -440,9 +393,9 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="confirm_instant_train" index="4"]
 
 position = Vector2( 140.7, 89.5623 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 
-[node name="info_statsLeft_dialog" type="AcceptDialog" parent="." index="13"]
+[node name="info_statsLeft_dialog" type="AcceptDialog" parent="." index="12"]
 
 visible = false
 anchor_left = 0.0
@@ -483,7 +436,7 @@ INT = intelligence. Increase this stat to enlarge your mana pool."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="info_statsRight_dialog" type="AcceptDialog" parent="." index="14"]
+[node name="info_statsRight_dialog" type="AcceptDialog" parent="." index="13"]
 
 visible = false
 anchor_left = 0.0
@@ -515,7 +468,7 @@ Raid Bonus = "
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="." index="15"]
+[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="." index="14"]
 
 visible = false
 anchor_left = 0.0
@@ -540,13 +493,13 @@ Add another bedroom to make room for new recruits."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
+[node name="button_back" parent="." index="15" instance=ExtResource( 5 )]
+
 [connection signal="pressed" from="button_rename" to="." method="_on_button_rename_pressed"]
 
 [connection signal="pressed" from="button_dismiss" to="." method="_on_button_dismiss_pressed"]
 
 [connection signal="pressed" from="button_trainOrRecruit" to="." method="_on_button_train_pressed"]
-
-[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 [connection signal="gui_input" from="vbox_stats1" to="." method="_on_vbox_stats1_gui_input"]
 
@@ -557,5 +510,7 @@ _sections_unfolded = [ "Dialog" ]
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
 
 [connection signal="confirmed" from="confirm_instant_train" to="." method="_on_confirm_instant_train_confirmed"]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 
