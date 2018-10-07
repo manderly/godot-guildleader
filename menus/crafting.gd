@@ -164,7 +164,7 @@ func _update_ingredients():
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
-		print("time left: " + str(tradeskill.timer.time_left))
+		#print("time left: " + str(tradeskill.timer.time_left))
 		$button_combine.set_text(util.format_time(tradeskill.timer.time_left))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
@@ -243,7 +243,7 @@ func _on_button_combine_pressed():
 			$incomplete_dialog.popup() #tell the user they don't have all the ingredients
 		else:
 			#otherwise, start the timer and take ingredients from inventory
-			_begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
+			
 			#take ingredients away from player
 			if (recipe.ingredient1):
 				if (global.allGameItems[str(recipe.ingredient1)].consumable):
@@ -264,7 +264,8 @@ func _on_button_combine_pressed():
 			if (recipe.ingredientWildcard):
 				if (global.allGameItems[str(tradeskill.wildcardItem.name)]):
 					util.remove_item_guild(tradeskill.wildcardItem.name)
-				
+			
+			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 			_update_ingredients()
 				
 	elif (tradeskill.inProgress && !tradeskill.readyToCollect):
@@ -276,35 +277,7 @@ func _on_button_combine_pressed():
 	else:
 		print("crafting.gd - got in some weird state")
 		
-func _begin_tradeskill_timer(duration):
-	if (!tradeskill.inProgress):
-		print("crafting.gd - starting " + global.currentMenu + " timer: " + str(duration))
-		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
-		if (tradeskill.selectedRecipe.result != "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
-		elif (tradeskill.selectedRecipe.result == "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.wildcardItem.name
-			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
-			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
-		else:
-			print("crafting.gd - Unknown result type")
-		
-		tradeskill.inProgress = true
-		tradeskill.readyToCollect = false
-		tradeskill.timer = Timer.new()
-		tradeskill.timer.set_one_shot(true)
-		tradeskill.timer.set_wait_time(duration)
-		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout")
-		tradeskill.timer.start()
-		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
-		add_child(tradeskill.timer)
-	else:
-		print("global.gd - error: " + tradeskill.name + " timer already running")
 
-
-func _on_tradeskillTimer_timeout():
-	global.logger(self, tradeskill.displayName + " timer complete!")
-	tradeskill.readyToCollect = true
 	
 func _on_button_dismissHero_pressed():
 	tradeskill.hero.currentRoom = 1

@@ -160,11 +160,11 @@ var recipesData = null #raw json parse
 var recipeKey = null
 var recipeValue = null
 var allRecipes = {}
-var alchemyRecipes = [] #access them out of this array elsewhere
-var blacksmithingRecipes = [] #access them out of this array elsewhere
-var fletchingRecipes = [] #access them out of this array elsewhere
-var jewelcraftRecipes = [] #access them out of this array elsewhere
-var tailoringRecipes = [] #access them out of this array elsewhere
+#var alchemyRecipes = [] #access them out of this array elsewhere
+#var blacksmithingRecipes = [] #access them out of this array elsewhere
+#var fletchingRecipes = [] #access them out of this array elsewhere
+#var jewelcraftRecipes = [] #access them out of this array elsewhere
+#var tailoringRecipes = [] #access them out of this array elsewhere
 
 func _ready():
 	randomize()
@@ -363,6 +363,41 @@ func _on_questTimer_timeout():
 			
 	emit_signal("quest_complete", currentQuest.name)
 
+func _begin_tradeskill_timer(duration):
+	var tradeskill = global.tradeskills[global.currentMenu]
+	var recipe = tradeskill.selectedRecipe
+	
+	if (!tradeskill.inProgress):
+		print("global.gd - starting " + global.currentMenu + " timer: " + str(duration))
+		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
+		if (tradeskill.selectedRecipe.result != "computed"):
+			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
+		elif (tradeskill.selectedRecipe.result == "computed"):
+			tradeskill.currentlyCrafting.name = tradeskill.wildcardItem.name
+			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
+			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
+		else:
+			print("global.gd - Unknown result type")
+		
+		tradeskill.inProgress = true
+		tradeskill.readyToCollect = false
+		tradeskill.timer = Timer.new()
+		tradeskill.timer.set_one_shot(true)
+		tradeskill.timer.set_wait_time(duration)
+		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout", [global.currentMenu])
+		tradeskill.timer.start()
+		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
+		add_child(tradeskill.timer) #trying to make this global 
+	else:
+		print("global.gd - error: " + tradeskill.name + " timer already running")
+
+
+func _on_tradeskillTimer_timeout(tradeskillStr):
+	print("ending timer: " + tradeskillStr)
+	var tradeskill = global.tradeskills[tradeskillStr]
+	global.logger(self, tradeskill.displayName + " timer complete!")
+	tradeskill.readyToCollect = true
+	print("global.gd - ready to collect: " + tradeskillStr)
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))
