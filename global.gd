@@ -160,11 +160,10 @@ var recipesData = null #raw json parse
 var recipeKey = null
 var recipeValue = null
 var allRecipes = {}
-#var alchemyRecipes = [] #access them out of this array elsewhere
-#var blacksmithingRecipes = [] #access them out of this array elsewhere
-#var fletchingRecipes = [] #access them out of this array elsewhere
-#var jewelcraftRecipes = [] #access them out of this array elsewhere
-#var tailoringRecipes = [] #access them out of this array elsewhere
+
+var colorGreen = Color(.062, .90, .054, 1) #16,230,14 green
+var colorBlue = Color(.070, .313, .945, 1) #18,80,241 blue
+var colorPink = Color(.945, .070, .525, 1) #241,18,134 pink
 
 func _ready():
 	randomize()
@@ -261,8 +260,8 @@ func _ready():
 	#here's a ton more for testing purposes 
 	util.give_item_guild("Basic Bow")
 	util.give_item_guild("Simple Ring")
-	util.give_item_guild("Silver Ring")
-	util.give_item_guild("Novice's Robe")
+	util.give_item_guild("Crimson Staff")
+	util.give_item_guild("Obsidian Quickblade")
 	#util.give_item_guild("Robe of Alexandra")
 	#util.give_item_guild("Cloth Shirt")
 	#util.give_item_guild("Cloth Pants")
@@ -272,7 +271,7 @@ func _ready():
 	#util.give_item_guild("Softscale Boots")
 	#util.give_item_guild("Seer's Orb")
 	
-	util.give_item_guild("Rough Stone")
+	util.give_item_guild("Scepter of the Child King")
 	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Rough Stone")
 	util.give_item_guild("Leather Strip")

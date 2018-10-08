@@ -1,5 +1,7 @@
 extends Node2D
+var util = load("res://util.gd").new()
 
+#recipeButton.gd
 var recipeData = null
 var crafterSkill = 0
 signal updateRecipe
@@ -8,7 +10,7 @@ func _ready():
 	pass
 
 func set_recipe_data(data):
-	$recipeButton.text = data.recipeName + " (" + str(data.trivial) + ") " + str(data.craftingTime) + "s"
+	$recipeButton.text = data.recipeName + " (" + str(data.trivial) + ") "
 	#color the button text according to difficulty of recipe vs. crafter's skill level
 	if (data.trivial < crafterSkill):
 		#this recipe is beneath the crafter's skill level, make it white
@@ -22,6 +24,7 @@ func set_recipe_data(data):
 	else:
 		print("recipeButton.gd - don't know how to color this button")
 		
+	$recipeButton/field_timeToCreate.text = str(util.format_time(data.craftingTime))
 	recipeData = data
 	
 func set_crafter_skill_level(level):

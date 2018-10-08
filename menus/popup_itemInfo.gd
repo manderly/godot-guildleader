@@ -65,7 +65,15 @@ func _populate_fields():
 	else:
 		$field_noDrop.text = "Binds on equip"
 		
-	
+	if (itemData.rarity):
+		$field_rarity.text = str(itemData.rarity).capitalize()
+		if (itemData.rarity == "uncommon"):
+			$field_rarity.add_color_override("font_color", global.colorGreen)
+		elif (itemData.rarity == "rare"):
+			$field_rarity.add_color_override("font_color", global.colorBlue) 
+		elif (itemData.rarity == "epic"):
+			$field_rarity.add_color_override("font_color", global.colorPink) 
+			
 	#figure out what stats this item gives
 	if (itemData.slot != "tradeskill"):
 		#an item gives armor or dps, but not both

@@ -1849,7 +1849,7 @@
   },
   {
     "name": "Copper Ore",
-    "icon": "smallOre.png",
+    "icon": "copperOre.png",
     "itemType": "tradeskill",
     "consumable": true,
     "prestige": 0,
@@ -1873,7 +1873,7 @@
   },
   {
     "name": "Copper Bar",
-    "icon": "sharpeningStone.png",
+    "icon": "copperBar.png",
     "itemType": "tradeskill",
     "consumable": true,
     "prestige": 0,

@@ -25,7 +25,7 @@ func _ready():
 		recipeButton.set_position(Vector2(0, yVal))
 		recipeButton.connect("updateRecipe", self, "_update_ingredients")
 		$scroll/vbox.add_child(recipeButton)
-		yVal += 32
+		yVal += 40
 	_update_ingredients()
 	_update_hero_skill_display()
 	

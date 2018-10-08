@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://menus/popup_itemInfo.gd" type="Script" id=1]
+[ext_resource path="res://gui/styles/item_popup_styles.tres" type="Theme" id=1]
+[ext_resource path="res://menus/popup_itemInfo.gd" type="Script" id=2]
 
 [node name="WindowDialog" type="WindowDialog"]
 
@@ -10,18 +11,20 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 20.0
 margin_right = 340.0
-margin_bottom = 210.0
+margin_bottom = 230.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 1 )
+custom_colors/title_color = Color( 1, 1, 1, 1 )
 popup_exclusive = false
 window_title = "###ITEM NAME"
 resizable = false
-script = ExtResource( 1 )
-_sections_unfolded = [ "Popup" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Popup", "Theme", "custom_styles" ]
 
 [node name="button_trash" type="Button" parent="." index="1"]
 
@@ -29,10 +32,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 260.0
-margin_top = 140.0
-margin_right = 330.0
-margin_bottom = 180.0
+margin_left = 210.0
+margin_top = 170.0
+margin_right = 310.0
+margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -47,6 +50,7 @@ group = null
 text = "TRASH"
 flat = false
 align = 1
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="button_moveItem" type="Button" parent="." index="2"]
 
@@ -54,10 +58,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 140.0
-margin_right = 120.0
-margin_bottom = 180.0
+margin_left = 30.0
+margin_top = 170.0
+margin_right = 140.0
+margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -72,6 +76,7 @@ group = null
 text = "PUT IN VAULT"
 flat = false
 align = 1
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="field_armorOrDPS" type="Label" parent="." index="3"]
 
@@ -79,10 +84,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 90.0
-margin_top = 30.0
-margin_right = 169.0
-margin_bottom = 44.0
+margin_left = 100.0
+margin_top = 40.0
+margin_right = 179.0
+margin_bottom = 54.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -93,6 +98,7 @@ text = "#Armor/DPS"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
 [node name="field_noDrop" type="Label" parent="." index="4"]
 
@@ -100,10 +106,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 250.0
-margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 24.0
+margin_left = 230.0
+margin_top = 20.0
+margin_right = 292.0
+margin_bottom = 34.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -114,17 +120,40 @@ text = "Tradeable"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
-[node name="field_slot" type="Label" parent="." index="5"]
+[node name="field_rarity" type="Label" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 90.0
-margin_top = 10.0
-margin_right = 152.0
-margin_bottom = 24.0
+margin_left = 230.0
+margin_top = 40.0
+margin_right = 292.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#RARITY"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="field_slot" type="Label" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 100.0
+margin_top = 20.0
+margin_right = 162.0
+margin_bottom = 34.0
 rect_pivot_offset = Vector2( 50, -20 )
 rect_clip_content = false
 mouse_filter = 2
@@ -135,17 +164,18 @@ text = "#SLOT"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
-[node name="field_classes" type="Label" parent="." index="6"]
+[node name="field_classes" type="Label" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 90.0
-margin_top = 50.0
-margin_right = 152.0
-margin_bottom = 64.0
+margin_left = 100.0
+margin_top = 60.0
+margin_right = 162.0
+margin_bottom = 74.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -156,38 +186,17 @@ text = "CLASSES:"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
-[node name="field_stat0" type="Label" parent="." index="7"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 80.0
-margin_right = 88.0
-margin_bottom = 94.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "+999 Stat"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Visibility" ]
-
-[node name="field_stat1" type="Label" parent="." index="8"]
+[node name="field_stat0" type="Label" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
+margin_left = 40.0
 margin_top = 100.0
-margin_right = 88.0
+margin_right = 108.0
 margin_bottom = 114.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -195,21 +204,22 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_colors/font_color = Color( 0.247059, 0.152941, 0.101961, 1 )
 text = "+999 Stat"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Theme", "Visibility" ]
 
-[node name="field_stat2" type="Label" parent="." index="9"]
+[node name="field_stat1" type="Label" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
+margin_left = 40.0
 margin_top = 120.0
-margin_right = 88.0
+margin_right = 108.0
 margin_bottom = 134.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -221,37 +231,17 @@ text = "+999 Stat"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme", "Visibility" ]
 
-[node name="field_stat3" type="Label" parent="." index="10"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 120.0
-margin_top = 80.0
-margin_right = 188.0
-margin_bottom = 94.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "+999 Stat"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_stat4" type="Label" parent="." index="11"]
+[node name="field_stat2" type="Label" parent="." index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 120.0
+margin_left = 140.0
 margin_top = 100.0
-margin_right = 188.0
+margin_right = 208.0
 margin_bottom = 114.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -263,16 +253,17 @@ text = "+999 Stat"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
-[node name="field_stat5" type="Label" parent="." index="12"]
+[node name="field_stat3" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 120.0
+margin_left = 140.0
 margin_top = 120.0
-margin_right = 188.0
+margin_right = 208.0
 margin_bottom = 134.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -284,10 +275,56 @@ text = "+999 Stat"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
 
-[node name="sprite_itemIcon" type="Sprite" parent="." index="13"]
+[node name="field_stat4" type="Label" parent="." index="12"]
 
-position = Vector2( 40, 40 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 230.0
+margin_top = 100.0
+margin_right = 298.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "+999 Stat"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="field_stat5" type="Label" parent="." index="13"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 230.0
+margin_top = 120.0
+margin_right = 298.0
+margin_bottom = 134.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "+999 Stat"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="sprite_itemIcon" type="Sprite" parent="." index="14"]
+
+position = Vector2( 50, 50 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="pressed" from="button_trash" to="." method="_on_button_trash_pressed"]
 
