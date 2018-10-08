@@ -39,7 +39,7 @@ func _ready():
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true
 	
-	$HUD/vbox_currencies/HBoxContainer/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
+	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
 	$questMarker1._set_data("guild02")
 	$questMarker2._set_data("guild04")

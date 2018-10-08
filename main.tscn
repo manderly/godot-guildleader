@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -7,18 +7,20 @@
 [ext_resource path="res://gui/square_btn_vault.png" type="Texture" id=5]
 [ext_resource path="res://gui/square_btn_market.png" type="Texture" id=6]
 [ext_resource path="res://gui/square_btn_roster.png" type="Texture" id=7]
-[ext_resource path="res://gui/icons/coin_stack.png" type="Texture" id=8]
-[ext_resource path="res://gui/icons/diamond.png" type="Texture" id=9]
-[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=10]
-[ext_resource path="res://mainCamera.gd" type="Script" id=11]
-[ext_resource path="res://sprites/outside/windowLight.png" type="Texture" id=12]
-[ext_resource path="res://light.png" type="Texture" id=13]
-[ext_resource path="res://sprites/outside/tree2.png" type="Texture" id=14]
-[ext_resource path="res://sprites/outside/tree.png" type="Texture" id=15]
-[ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=16]
-[ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=17]
-[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=18]
-[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=19]
+[ext_resource path="res://gui/bottomBorder.png" type="Texture" id=8]
+[ext_resource path="res://gui/icons/coin_stack_32.png" type="Texture" id=9]
+[ext_resource path="res://gui/icons/diamond_32.png" type="Texture" id=10]
+[ext_resource path="res://gui/icons/capacity_32.png" type="Texture" id=11]
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=12]
+[ext_resource path="res://mainCamera.gd" type="Script" id=13]
+[ext_resource path="res://sprites/outside/windowLight.png" type="Texture" id=14]
+[ext_resource path="res://light.png" type="Texture" id=15]
+[ext_resource path="res://sprites/outside/tree2.png" type="Texture" id=16]
+[ext_resource path="res://sprites/outside/tree.png" type="Texture" id=17]
+[ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=18]
+[ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=19]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=20]
+[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -26,7 +28,7 @@ content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
-texture = ExtResource( 18 )
+texture = ExtResource( 20 )
 region_rect = Rect2( 0, 0, 192, 64 )
 margin_left = 8.0
 margin_right = 8.0
@@ -40,7 +42,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Content Margin", "Margin" ]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -65,9 +67,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 25.0
-margin_top = 834.0
+margin_top = 829.0
 margin_right = 456.0
-margin_bottom = 916.0
+margin_bottom = 911.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -379,53 +381,161 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="vbox_currencies" type="VBoxContainer" parent="HUD" index="1"]
+[node name="NinePatchRect" type="NinePatchRect" parent="HUD" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 25.0
-margin_top = 34.0
-margin_right = 456.0
-margin_bottom = 48.0
+margin_left = -1.0
+margin_top = 918.0
+margin_right = 799.0
+margin_bottom = 978.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+patch_margin_top = 16
+axis_stretch_vertical = 2
+_sections_unfolded = [ "Axis Stretch", "Patch Margin", "Rect" ]
+
+[node name="hbox" type="HBoxContainer" parent="HUD" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 21.0
+margin_top = 927.0
+margin_right = 2396.0
+margin_bottom = 959.0
+rect_min_size = Vector2( 0, 32 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_constants/separation = 8
 alignment = 0
-_sections_unfolded = [ "Margin" ]
-__meta__ = {
-"_edit_lock_": true
-}
+_sections_unfolded = [ "Margin", "Material", "Rect", "Theme", "Visibility", "custom_constants" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/vbox_currencies" index="0"]
+[node name="textureCoins" type="TextureRect" parent="HUD/hbox" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 431.0
-margin_bottom = 14.0
+margin_right = 32.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
+texture = ExtResource( 9 )
+stretch_mode = 3
+_sections_unfolded = [ "Rect" ]
 
-[node name="field_guildCapacity" type="Label" parent="HUD/vbox_currencies/HBoxContainer" index="0"]
+[node name="field_softCurrency" type="Label" parent="HUD/hbox" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 31.0
-margin_bottom = 14.0
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 140.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "999.999.999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect" ]
+
+[node name="textureDiamond" type="TextureRect" parent="HUD/hbox" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 148.0
+margin_top = 1.0
+margin_right = 180.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 10 )
+stretch_mode = 3
+_sections_unfolded = [ "Rect" ]
+
+[node name="field_hardCurrency" type="Label" parent="HUD/hbox" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 188.0
+margin_top = 9.0
+margin_right = 288.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "9999"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="textureCapacity" type="TextureRect" parent="HUD/hbox" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 296.0
+margin_right = 328.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 11 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="field_guildCapacity" type="Label" parent="HUD/hbox" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 336.0
+margin_top = 9.0
+margin_right = 367.0
+margin_bottom = 23.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -437,147 +547,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="sc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 35.0
-margin_right = 215.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 180, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="sprite_softCurrency" type="Sprite" parent="HUD/vbox_currencies/HBoxContainer/sc_container" index="0"]
-
-position = Vector2( 27, 9 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 8 )
-region_rect = Rect2( 64, 64, 64, 64 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
-
-[node name="label_softCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/sc_container" index="1"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 45.0
-margin_top = 6.0
-margin_right = 79.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Gold:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_softCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/sc_container" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 85.0
-margin_top = 6.0
-margin_right = 185.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
-
-[node name="hc_container" type="Container" parent="HUD/vbox_currencies/HBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 219.0
-margin_right = 399.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 180, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="sprite_hardCurrency" type="Sprite" parent="HUD/vbox_currencies/HBoxContainer/hc_container" index="0"]
-
-position = Vector2( -6, 12 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 9 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="label_hardCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/hc_container" index="1"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 11.0
-margin_top = 6.0
-margin_right = 80.0
-margin_bottom = 20.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Diamonds:"
-align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_hardCurrency" type="Label" parent="HUD/vbox_currencies/HBoxContainer/hc_container" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 81.0
-margin_top = 6.0
-margin_right = 181.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Margin", "Rect" ]
-
-[node name="button_collectQuest" type="TextureButton" parent="HUD" index="2"]
+[node name="button_collectQuest" type="TextureButton" parent="HUD" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -630,7 +600,7 @@ max_lines_visible = -1
 
 position = Vector2( 31.1808, -53.0736 )
 mode = 0
-tile_set = ExtResource( 10 )
+tile_set = ExtResource( 12 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -678,7 +648,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
-script = ExtResource( 11 )
+script = ExtResource( 13 )
 _sections_unfolded = [ "Editor", "Offset", "Smoothing" ]
 
 [node name="light2d_window_left" type="Light2D" parent="screen" index="3"]
@@ -686,7 +656,7 @@ _sections_unfolded = [ "Editor", "Offset", "Smoothing" ]
 position = Vector2( 180, 570 )
 enabled = true
 editor_only = false
-texture = ExtResource( 12 )
+texture = ExtResource( 14 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -713,7 +683,7 @@ rotation = -0.000960086
 scale = Vector2( -1, 1 )
 enabled = true
 editor_only = false
-texture = ExtResource( 12 )
+texture = ExtResource( 14 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -739,7 +709,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 208, 685 )
 enabled = true
 editor_only = false
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -764,7 +734,7 @@ shadow_item_cull_mask = 1
 position = Vector2( 300, 680 )
 enabled = true
 editor_only = false
-texture = ExtResource( 13 )
+texture = ExtResource( 15 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -806,102 +776,102 @@ __meta__ = {
 [node name="sprite_tree10" type="Sprite" parent="screen/outside sprites" index="0"]
 
 position = Vector2( 510, 470 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree11" type="Sprite" parent="screen/outside sprites" index="1"]
 
 position = Vector2( 10, 330 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree12" type="Sprite" parent="screen/outside sprites" index="2"]
 
 position = Vector2( 20, 400 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree3" type="Sprite" parent="screen/outside sprites" index="3"]
 
 position = Vector2( 490, 560 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree1" type="Sprite" parent="screen/outside sprites" index="4"]
 
 position = Vector2( 430, 610 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree2" type="Sprite" parent="screen/outside sprites" index="5"]
 
 position = Vector2( 450, 690 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree13" type="Sprite" parent="screen/outside sprites" index="6"]
 
 position = Vector2( 500, 340 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree14" type="Sprite" parent="screen/outside sprites" index="7"]
 
 position = Vector2( 10, 200 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree15" type="Sprite" parent="screen/outside sprites" index="8"]
 
 position = Vector2( 490, 70 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree8" type="Sprite" parent="screen/outside sprites" index="9"]
 
 position = Vector2( 390, 760 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree4" type="Sprite" parent="screen/outside sprites" index="10"]
 
 position = Vector2( 30, 570 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree5" type="Sprite" parent="screen/outside sprites" index="11"]
 
 position = Vector2( 90, 620 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree6" type="Sprite" parent="screen/outside sprites" index="12"]
 
 position = Vector2( 50, 740 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree9" type="Sprite" parent="screen/outside sprites" index="13"]
 
 position = Vector2( 450, 800 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree7" type="Sprite" parent="screen/outside sprites" index="14"]
 
 position = Vector2( 130, 800 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_tree16" type="Sprite" parent="screen/outside sprites" index="15"]
 
 position = Vector2( 510, 130 )
-texture = ExtResource( 14 )
+texture = ExtResource( 16 )
 
 [node name="sprite_shrub1" type="Sprite" parent="screen/outside sprites" index="16"]
 
 position = Vector2( 330, 600 )
-texture = ExtResource( 16 )
+texture = ExtResource( 18 )
 
 [node name="sprite_shrub2" type="Sprite" parent="screen/outside sprites" index="17"]
 
 position = Vector2( 180, 600 )
-texture = ExtResource( 16 )
+texture = ExtResource( 18 )
 
 [node name="sprite_lamp" type="Sprite" parent="screen/outside sprites" index="18"]
 
 position = Vector2( 300, 680 )
-texture = ExtResource( 17 )
+texture = ExtResource( 19 )
 
 [node name="sprite_lamp2" type="Sprite" parent="screen/outside sprites" index="19"]
 
 position = Vector2( 210, 680 )
-texture = ExtResource( 17 )
+texture = ExtResource( 19 )
 
 [node name="button_addRoom" type="Button" parent="screen" index="8"]
 
@@ -964,19 +934,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="questMarker1" parent="." index="2" instance=ExtResource( 19 )]
+[node name="questMarker1" parent="." index="2" instance=ExtResource( 21 )]
 
 margin_left = 120.0
 margin_top = 30.0
 margin_right = 184.0
 margin_bottom = 94.0
 
-[node name="questMarker2" parent="." index="3" instance=ExtResource( 19 )]
+[node name="questMarker2" parent="." index="3" instance=ExtResource( 21 )]
 
-margin_left = 320.0
-margin_top = 920.0
-margin_right = 384.0
-margin_bottom = 984.0
+margin_left = 360.0
+margin_top = 990.0
+margin_right = 424.0
+margin_bottom = 1054.0
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button QUESTS/Quests" to="." method="_on_Quests_pressed"]
 
