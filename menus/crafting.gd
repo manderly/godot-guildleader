@@ -166,12 +166,19 @@ func _process(delta):
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
 		#print("time left: " + str(tradeskill.timer.time_left))
 		$button_combine.set_text(util.format_time(tradeskill.timer.time_left))
+		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
+		#divide time elapsed by time needed to complete
+		print(tradeskill.timer.time_left)
+		print(tradeskill.currentlyCrafting.totalTimeToFinish)
+		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
 		$button_combine.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
+		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	else:
 		$button_combine.set_text("COMBINE")
 		$button_combine.add_color_override("font_color", Color(1, 1, 1, 1)) #white
+
 		
 func _on_button_back_pressed():
 	#todo: only clear it if it's not in use being upgraded
@@ -208,6 +215,7 @@ func _on_finishedItem_dialog_confirmed():
 						tradeskill.currentlyCrafting.statImproved, 
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
 
+	$recipeData/progress_nowCrafting.set_value(0)
 	tradeskill.wildcardItem = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false

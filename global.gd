@@ -66,6 +66,7 @@ var tradeskills = {
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
+			"totalTimeToFinish":""
 		}
 	},
 	"blacksmithing": {
@@ -82,6 +83,7 @@ var tradeskills = {
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
+			"totalTimeToFinish":""
 		}
 	},
 	"fletching": {
@@ -98,6 +100,7 @@ var tradeskills = {
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
+			"totalTimeToFinish":""
 		}
 	},
 	"jewelcraft": {
@@ -114,6 +117,7 @@ var tradeskills = {
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
+			"totalTimeToFinish":""
 		}
 	},
 	"tailoring": {
@@ -130,6 +134,7 @@ var tradeskills = {
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
+			"totalTimeToFinish":""
 		}
 	}
 }
@@ -378,6 +383,7 @@ func _begin_tradeskill_timer(duration):
 		else:
 			print("global.gd - Unknown result type")
 		
+		tradeskill.currentlyCrafting.totalTimeToFinish = duration #make record of how long this recipe needs to finish 
 		tradeskill.inProgress = true
 		tradeskill.readyToCollect = false
 		tradeskill.timer = Timer.new()
