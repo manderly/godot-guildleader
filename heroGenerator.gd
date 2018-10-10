@@ -123,7 +123,7 @@ func generate(destinationArray, classStr):
 	newHero.baseRaidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
 
 	#other aspects of a hero 
-	newHero.available = true
+	newHero.atHome = true
 	newHero.level = 1
 	newHero.xp = 0
 

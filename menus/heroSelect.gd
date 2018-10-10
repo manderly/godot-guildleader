@@ -6,10 +6,10 @@ func _ready():
 	if (global.currentMenu == "selectHeroForQuest"):
 		$field_heroSelectDescription.text = "Choose a hero to go on this quest."
 	elif (global.currentMenu == "alchemy" || 
-				global.currentMenu == "blacksmithing" || 
-				global.currentMenu == "fletching" || 
-				global.currentMenu == "jewelcraft" || 
-				global.currentMenu == "tailoring"):
+			global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "fletching" || 
+			global.currentMenu == "jewelcraft" || 
+			global.currentMenu == "tailoring"):
 		$field_heroSelectDescription.text = "Choose a hero to work at this tradeskill. Crafting recipes will improve this hero's skill at " + global.currentMenu + ". While here, this hero will not be available for quests or raids."
 		
 	var buttonX = 0

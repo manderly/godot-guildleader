@@ -159,7 +159,6 @@ func _update_ingredients():
 			$recipeData/ingredient4._set_red()
 	else:
 		$recipeData/ingredient4._clear_fields()
-
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
@@ -168,8 +167,6 @@ func _process(delta):
 		$button_combine.set_text(util.format_time(tradeskill.timer.time_left))
 		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
 		#divide time elapsed by time needed to complete
-		print(tradeskill.timer.time_left)
-		print(tradeskill.currentlyCrafting.totalTimeToFinish)
 		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
@@ -179,7 +176,6 @@ func _process(delta):
 		$button_combine.set_text("COMBINE")
 		$button_combine.add_color_override("font_color", Color(1, 1, 1, 1)) #white
 
-		
 func _on_button_back_pressed():
 	#todo: only clear it if it's not in use being upgraded
 	tradeskill.wildcardItem = null
@@ -289,5 +285,7 @@ func _on_button_combine_pressed():
 	
 func _on_button_dismissHero_pressed():
 	tradeskill.hero.currentRoom = 1
+	tradeskill.hero.atHome = true
+	tradeskill.hero.staffedTo = ""
 	tradeskill.hero = null
 	get_tree().change_scene("res://main.tscn")

@@ -59,7 +59,8 @@ func _on_button_collectRewards_pressed():
 			#if there's xp overflow, set xp to level total 
 			if (global.questHeroes[i].xp > global.levelXpData[global.questHeroes[i].level].total):
 				global.questHeroes[i].xp = global.levelXpData[global.questHeroes[i].level].total
-			global.questHeroes[i].available = true
+			global.questHeroes[i].atHome = true
+			global.questHeroes[i].staffedTo = ""
 			global.questHeroes[i] = null
 			global.questHeroesPicked -= 1
 	

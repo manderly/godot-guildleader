@@ -8,7 +8,8 @@ var heroClass = "NONE"
 var level = -1
 var xp = -1
 var currentRoom = 0 #outside by default
-var available = true
+var atHome = true
+var staffedTo = ""
 var recruited = false
 var gender = "female"
 

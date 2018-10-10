@@ -80,8 +80,8 @@ func draw_heroes():
 
 	for i in range(global.guildRoster.size()):
 		
-		#only draw heroes who are "available" (ie: at home) 
-		if (global.guildRoster[i].available):
+		#only draw heroes who are "atHome"
+		if (global.guildRoster[i].atHome):
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()

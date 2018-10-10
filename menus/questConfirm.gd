@@ -85,6 +85,10 @@ func _on_button_beginQuest_pressed():
 		if (global.questHeroesPicked < global.currentQuest.groupSize):
 			print("Not enough groupies yet")
 		else:
+			#set everyone to away
+			for i in range(global.questHeroesPicked):
+				global.questHeroes[i].atHome = false
+			
 			global._begin_global_quest_timer(global.currentQuest.duration);
 			get_tree().change_scene("res://main.tscn")
 	#case 2: quest is active but not ready to collect 
@@ -103,7 +107,8 @@ func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
 	for i in range(global.questHeroes.size()):
 		if (global.questHeroes[i] != null):
-			global.questHeroes[i].available = true
+			global.questHeroes[i].atHome = true
+			global.questHeroes[i].staffedTo = ""
 			global.questHeroes[i] = null
 			global.questHeroesPicked -= 1
 	get_tree().change_scene("res://menus/maps/worldmap.tscn")
