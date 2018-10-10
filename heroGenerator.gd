@@ -28,23 +28,23 @@ func generate(destinationArray, classStr):
 	
 	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
-		
-		newHero.give_item("Novice's Robe")
+		#todo: must give an item to every slot or it'll crash (has no way to handle empty slots yet)
+		newHero.give_item("Novice's Robe") #chest
 		newHero.give_item("Simple Ring")
 		newHero.give_item("Cracked Staff")
-		newHero.give_item("Worn Canvas Sandals")
+		newHero.give_item("Worn Canvas Sandals") #feet
+		newHero.give_item("Cloth Pants") #legs
 		
-		#sprites
-		newHero.bodySprite = "body01.png"
+		
 		newHero.weapon1Sprite = "weaponMain01.png"
-		newHero.weapon2Sprite = "weaponSecondary01.png"
+		newHero.weapon2Sprite = "weaponSecondary02.png"
 		newHero.shieldSprite = "none.png"
 		if (randomHead == 1):
-			newHero.headSprite = "head01.png"
+			newHero.headSprite = "human_female_01.png"
 		elif (randomHead == 2):
-			newHero.headSprite = "head02.png"
+			newHero.headSprite = "human_female_02.png"
 		else:
-			newHero.headSprite = "head04.png"
+			newHero.headSprite = "human_female_03.png"
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
@@ -54,15 +54,13 @@ func generate(destinationArray, classStr):
 		newHero.give_item("Simple Chainmail Leggings")
 		newHero.give_item("Simple Chainmail Vest")
 		
-		#sprites
-		newHero.bodySprite = "body04.png"
 		if (randomHead == 1):
-			newHero.headSprite = "head01.png"
+			newHero.headSprite = "human_female_04.png"
 		elif (randomHead == 2):
-			newHero.headSprite = "head02.png"
+			newHero.headSprite = "human_male_01.png"
 		else:
-			newHero.headSprite = "head04.png"
-		newHero.weapon1Sprite = "weaponMain03.png"
+			newHero.headSprite = "human_male_05.png"
+		
 		newHero.weapon2Sprite = "weaponSecondary02.png"
 		
 	elif (classStr == "Warrior"):
@@ -74,14 +72,12 @@ func generate(destinationArray, classStr):
 		newHero.give_item("Worn Ringmail Leg Guards")
 		newHero.give_item("Worn Ringmail Vest")
 		
-		#sprites
-		newHero.bodySprite = "body03.png"
 		if (randomHead == 1):
-			newHero.headSprite = "head01.png"
+			newHero.headSprite = "human_female_04.png"
 		elif (randomHead == 2):
-			newHero.headSprite = "head02.png"
+			newHero.headSprite = "human_male_02.png"
 		elif (randomHead == 3):
-			newHero.headSprite = "head03.png"
+			newHero.headSprite = "human_male_04.png"
 		newHero.weapon1Sprite = "weaponMain03.png"
 		newHero.shieldSprite = "shield01.png"
 	
@@ -91,14 +87,13 @@ func generate(destinationArray, classStr):
 		newHero.give_item("Basic Bow")
 		newHero.give_item("Cloth Shirt")
 		newHero.give_item("Muddy Boots")
+		newHero.give_item("Cloth Pants")
 		
-		#sprites
-		newHero.bodySprite = "body03.png"
 		if (randomHead == 1):
-			newHero.headSprite = "head01.png"
+			newHero.headSprite = "human_female_01.png"
 		else:
-			newHero.headSprite = "head04.png"
-		newHero.weapon1Sprite = "weaponMain02.png" #bow
+			newHero.headSprite = "human_male_05.png"
+		newHero.weapon1Sprite = "bow1.png" #bow
 		newHero.weapon2Sprite = "none.png"
 	else:
 		print("ERROR - BAD HERO CLASS TYPE")

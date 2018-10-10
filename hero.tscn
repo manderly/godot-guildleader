@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://hero.gd" type="Script" id=1]
-[ext_resource path="res://sprites/heroes/body01.png" type="Texture" id=2]
-[ext_resource path="res://sprites/heroes/head01.png" type="Texture" id=3]
-[ext_resource path="res://sprites/heroes/weaponMain01.png" type="Texture" id=4]
-[ext_resource path="res://sprites/heroes/weaponSecondary02.png" type="Texture" id=5]
-[ext_resource path="res://sprites/heroes/shield01.png" type="Texture" id=6]
+[ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=6]
+[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=7]
+[ext_resource path="res://sprites/heroes/weaponSecondary/weaponSecondary01.png" type="Texture" id=8]
+[ext_resource path="res://sprites/heroes/shield/shield1.png" type="Texture" id=9]
 
 [sub_resource type="ParticlesMaterial" id=1]
 
@@ -52,12 +55,86 @@ _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Sprea
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10.1507 )
 
+[sub_resource type="Animation" id=5]
+
+resource_name = "idle"
+length = 1.0
+loop = false
+step = 0.1
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "walk"
+length = 2.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../body/boot1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( -3.83728, 33.5653 ), Vector2( -1.99389, 33.5564 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../body/boot2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 6.05028, 33.5653 ), Vector2( 3.8772, 33.5564 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../body/head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.19915, 1.51968 ), Vector2( 0.19915, 0.350113 ), Vector2( 0.19915, 1.51968 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../body/weapon1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -11.8768, 23.5269 ), Vector2( -11.8768, 23.5269 ), Vector2( -11.8768, 23.5269 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../body/weapon1:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0.0, -6.56508, 0.0 ]
+}
+
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
 
-[node name="hero" type="KinematicBody2D"]
+[node name="hero" type="KinematicBody2D" index="0"]
 
 input_pickable = true
 collision_layer = 2
@@ -178,44 +255,85 @@ max_lines_visible = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 
+visible = false
 position = Vector2( 32.299, 32.1148 )
 scale = Vector2( 1.82893, 2.53462 )
 shape = SubResource( 2 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 
-[node name="base" type="Node2D" parent="." index="6"]
+[node name="animationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+root_node = NodePath("")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 2.0
+anims/idle = SubResource( 5 )
+anims/walk = SubResource( 4 )
+blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
+
+[node name="body" type="Node2D" parent="." index="7"]
 
 position = Vector2( 30.9247, 21.1424 )
+_sections_unfolded = [ "Transform" ]
 
-[node name="body" type="Sprite" parent="base" index="0"]
+[node name="shadow" type="Sprite" parent="body" index="0"]
 
-position = Vector2( 0.257019, 17.4776 )
+position = Vector2( 1.06569, 33.8472 )
 texture = ExtResource( 2 )
 
-[node name="head" type="Sprite" parent="base" index="1"]
+[node name="boot1" type="Sprite" parent="body" index="1"]
 
-position = Vector2( 0.19915, -2.2481 )
+position = Vector2( -3.83728, 33.5653 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Animation" ]
+_sections_unfolded = [ "Animation", "Transform" ]
 
-[node name="weapon1" type="Sprite" parent="base" index="2"]
+[node name="boot2" type="Sprite" parent="body" index="2"]
 
-position = Vector2( -21.5628, 12.5872 )
+position = Vector2( 6.05028, 33.5653 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="legs" type="Sprite" parent="body" index="3"]
+
+position = Vector2( 1.10719, 29.5542 )
 texture = ExtResource( 4 )
 
-[node name="weapon2" type="Sprite" parent="base" index="3"]
+[node name="chest" type="Sprite" parent="body" index="4"]
 
-position = Vector2( 6.27415, 23.5809 )
+position = Vector2( -13.8633, 11.4384 )
 texture = ExtResource( 5 )
+centered = false
 _sections_unfolded = [ "Offset" ]
 
-[node name="shield" type="Sprite" parent="base" index="4"]
+[node name="head" type="Sprite" parent="body" index="5"]
 
-position = Vector2( 18.5158, 18.5158 )
+position = Vector2( 0.19915, 1.19963 )
 texture = ExtResource( 6 )
+_sections_unfolded = [ "Animation" ]
+
+[node name="weapon1" type="Sprite" parent="body" index="6"]
+
+position = Vector2( -11.8768, 23.5269 )
+texture = ExtResource( 7 )
 _sections_unfolded = [ "Offset" ]
 
-[node name="heroButton" type="TouchScreenButton" parent="." index="7"]
+[node name="weapon2" type="Sprite" parent="body" index="7"]
+
+visible = false
+position = Vector2( 1.81135, 27.4281 )
+texture = ExtResource( 8 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="shield" type="Sprite" parent="body" index="8"]
+
+visible = false
+position = Vector2( 18.5158, 18.5158 )
+texture = ExtResource( 9 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="heroButton" type="TouchScreenButton" parent="." index="8"]
 
 position = Vector2( 19.4813, 16.1385 )
 scale = Vector2( 22.8798, 29.0313 )
@@ -231,14 +349,14 @@ action = ""
 visibility_mode = 0
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="idleTimer" type="Timer" parent="." index="8"]
+[node name="idleTimer" type="Timer" parent="." index="9"]
 
 process_mode = 1
 wait_time = 4.0
 one_shot = true
 autostart = false
 
-[node name="touchTimer" type="Timer" parent="." index="9"]
+[node name="touchTimer" type="Timer" parent="." index="10"]
 
 process_mode = 1
 wait_time = 1.0

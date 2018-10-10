@@ -87,6 +87,7 @@ var equipment = {
 #Hero walking vars 
 var walkDestX = -1
 var walkDestY = -1
+var startingX = 1
 var target = Vector2()
 var velocity = Vector2()
 var speed = 20
@@ -94,10 +95,12 @@ var walking = false
 
 #Hero sprite names (todo: should eventually take sprite data from equipment dictionary)
 var headSprite = "head01.png"
-var bodySprite = "body01.png"
+var chestSprite = "body01.png"
 var weapon1Sprite = "weapon01.png"
 var weapon2Sprite = "none.png"
 var shieldSprite = "none.png"
+var legsSprite = "pants04.png"
+var bootSprite = "boots04.png"
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -123,6 +126,7 @@ func _start_idle_timer():
 	
 func _start_walking():
 	walking = true
+	$animationPlayer.play("walk")
 	#print(heroName + " is picking a random destination")
 	#pick a random destination to walk to (in the main room for now)
 	if (currentRoom == 1): #large interior room
@@ -135,7 +139,22 @@ func _start_walking():
 	else: #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)
+	startingX = get_position().x
 	target = Vector2(walkDestX, walkDestY)
+	#flip (or don't flip) the character's body
+	if (startingX < target.x):
+		#print(heroName + " walking RIGHT // started: " + str(startingX) + " // going to:" + str(target.x))
+		#if already facing right (-1), don't do anything
+		#if facing left (1), change to -1
+		if ($body.scale.x == 1):
+			$body.set_scale(Vector2(-1,1))
+	elif (startingX > target.x):
+		#print(heroName + " walking LEFT // started: " + str(startingX) + " // going to:" + str(target.x))
+		#if already facing left (1), don't do anything
+		#if facing right (-1), change to 1 by multiplying -1 
+		if ($body.scale.x == -1):
+			$body.set_scale(Vector2(abs($body.scale.x),1))
+		
 	#_physics_process(delta) handles the rest and determines when the heroes has arrived 
 	
 func _on_Timer_timeout():
@@ -163,6 +182,7 @@ func _physics_process(delta):
 			move_and_slide(velocity)
 		else:
 			#print(heroName + " has arrived at their random destination")
+			$animationPlayer.play("idle")
 			walking = false
 			$idleTimer.start()
 		
@@ -177,22 +197,39 @@ func set_instance_data(data):
 	currentRoom = data.currentRoom
 	recruited = data.recruited
 	heroID = data.heroID
-	headSprite = data.headSprite
-	bodySprite = data.bodySprite
+	headSprite = data.headSprite #sprites are set in heroGenerator.gd
+	#chestSprite = data.equipment.chest.bodySprite
+	#legsSprite = data.equipment.legs.bodySprite
+	#bootSprite = data.equipment.feet.bodySprite
+	equipment = {
+		"mainHand": data.equipment.mainHand,
+		"offHand": data.equipment.mainHand,
+		"jewelry": data.equipment.jewelry,
+		"unknown": null,
+		"head": data.equipment.head,
+		"chest": data.equipment.chest,
+		"legs": data.equipment.legs,
+		"feet": data.equipment.feet
+	}
 	weapon1Sprite = data.weapon1Sprite
 	weapon2Sprite = data.weapon2Sprite
 	shieldSprite = data.shieldSprite
 	
 func _draw_sprites():
-	$base/head.texture = load("res://sprites/heroes/" + headSprite)
-	$base/body.texture = load("res://sprites/heroes/" + bodySprite)
-	$base/weapon1.texture = load("res://sprites/heroes/" + weapon1Sprite)
-	$base/weapon2.texture = load("res://sprites/heroes/" + weapon2Sprite)
-	$base/shield.texture = load("res://sprites/heroes/" + shieldSprite)
+	print(equipment.chest.bodySprite)
+	$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
+	$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
+	$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
+	$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+	$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+	if (equipment.mainHand):
+		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + weapon1Sprite)
+	#$body/weapon2.texture = load("res://sprites/heroes/weaponSecondary/" + weapon2Sprite)
+	#$body/shield.texture = load("res://sprites/heroes/shield/" + heroInstance.equipment.shield.bodySprite)
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():
-	global.logger(self, "updating hero stats to match equipment for: " + heroName)
+	#global.logger(self, "updating hero stats to match equipment for: " + heroName)
 	#add up the stats from the equipment any time equipment is added or removed from hero 
 	#equipment is an object, so to iterate through it I made this array of names 
 	var equipmentSlotNames = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
@@ -232,10 +269,10 @@ func update_hero_stats():
 			#drama and mood are not affected by equipment
 	
 	#finally, update the hero's stats 
-	global.logger(self, "updating hero stats on hero itself")
+	#global.logger(self, "updating hero stats on hero itself")
 	hp = baseHp + modifiedHp
 	mana = baseMana + modifiedMana
-	global.logger(self, "new hp total: " + str(hp))
+	#global.logger(self, "new hp total: " + str(hp))
 	armor = baseArmor + modifiedArmor
 	dps = baseDps + modifiedDps
 	stamina = baseStamina + modifiedStamina
