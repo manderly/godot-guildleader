@@ -266,6 +266,7 @@ func _ready():
 	util.give_item_guild("Basic Bow")
 	util.give_item_guild("Simple Ring")
 	util.give_item_guild("Crimson Staff")
+	util.give_item_guild("Staff of the Four Winds")
 	util.give_item_guild("Obsidian Quickblade")
 	util.give_item_guild("Robe of Alexandra")
 	util.give_item_guild("Simple Grey Robe")
@@ -273,13 +274,8 @@ func _ready():
 	util.give_item_guild("Sparkling Metallic Robe")
 	util.give_item_guild("Robe of the Dunes")
 	util.give_item_guild("Prestige Robe")
-	#util.give_item_guild("Cloth Shirt")
-	#util.give_item_guild("Cloth Pants")
-	#util.give_item_guild("Tiara of Knowledge")
-
-	#util.give_item_guild("Soft Silk Slippers")
-	#util.give_item_guild("Softscale Boots")
-	#util.give_item_guild("Seer's Orb")
+	util.give_item_guild("Softscale Boots")
+	util.give_item_guild("Seer's Orb")
 	
 	util.give_item_guild("Scepter of the Child King")
 	util.give_item_guild("Rough Stone")

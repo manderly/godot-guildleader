@@ -203,7 +203,7 @@ func set_instance_data(data):
 	#bootSprite = data.equipment.feet.bodySprite
 	equipment = {
 		"mainHand": data.equipment.mainHand,
-		"offHand": data.equipment.mainHand,
+		"offHand": data.equipment.offHand,
 		"jewelry": data.equipment.jewelry,
 		"unknown": null,
 		"head": data.equipment.head,
@@ -216,16 +216,45 @@ func set_instance_data(data):
 	shieldSprite = data.shieldSprite
 	
 func _draw_sprites():
-	print(equipment.chest.bodySprite)
+	var none = "res://sprites/heroes/none.png"
+	#everyone has a head, no need to else/if this one 
 	$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
-	$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
-	$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
-	$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-	$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+
+	#heroes can walk around empty-handed, so check that gear actually exists 
 	if (equipment.mainHand):
-		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + weapon1Sprite)
-	#$body/weapon2.texture = load("res://sprites/heroes/weaponSecondary/" + weapon2Sprite)
-	#$body/shield.texture = load("res://sprites/heroes/shield/" + heroInstance.equipment.shield.bodySprite)
+		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + equipment.mainHand.bodySprite)
+	else:
+		$body/weapon1.texture = load(none)
+	
+	#shields are offhand items but they use a different node on the hero body 
+	if (equipment.offHand):
+		if (equipment.offHand.itemType == "shield"):
+			$body/shield.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
+			$body/weapon2.texture = load(none)
+		else:
+			$body/weapon2.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
+			$body/shield.texture = load(none)
+	else:
+		$body/weapon2.texture = load(none)
+		$body/shield.texture = load(none)
+
+	#todo: figure out an elegant way to handle naked characters 
+	if (equipment.chest):
+		$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
+	else:
+		$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
+	
+	if (equipment.legs):
+		$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
+	else:
+		$body/legs.texture = load("res://sprites/heroes/legs/missing.png")
+	
+	if (equipment.feet):
+		$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+		$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+	else:
+		$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
+		$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():

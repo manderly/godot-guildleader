@@ -34,10 +34,6 @@ func generate(destinationArray, classStr):
 		newHero.give_item("Cracked Staff")
 		newHero.give_item("Worn Canvas Sandals") #feet
 		newHero.give_item("Cloth Pants") #legs
-		
-		
-		newHero.weapon1Sprite = "weaponMain01.png"
-		newHero.weapon2Sprite = "weaponSecondary02.png"
 		newHero.shieldSprite = "none.png"
 		if (randomHead == 1):
 			newHero.headSprite = "human_female_01.png"
@@ -51,8 +47,8 @@ func generate(destinationArray, classStr):
 		
 		newHero.give_item("Rusty Knife")
 		newHero.give_item("Muddy Boots")
-		newHero.give_item("Simple Chainmail Leggings")
-		newHero.give_item("Simple Chainmail Vest")
+		newHero.give_item("Blackguard's Chainmail Leggings")
+		newHero.give_item("Blackguard's Chainmail Vest")
 		
 		if (randomHead == 1):
 			newHero.headSprite = "human_female_04.png"
@@ -60,8 +56,6 @@ func generate(destinationArray, classStr):
 			newHero.headSprite = "human_male_01.png"
 		else:
 			newHero.headSprite = "human_male_05.png"
-		
-		newHero.weapon2Sprite = "weaponSecondary02.png"
 		
 	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
@@ -78,7 +72,6 @@ func generate(destinationArray, classStr):
 			newHero.headSprite = "human_male_02.png"
 		elif (randomHead == 3):
 			newHero.headSprite = "human_male_04.png"
-		newHero.weapon1Sprite = "weaponMain03.png"
 		newHero.shieldSprite = "shield01.png"
 	
 	elif (classStr == "Ranger"):

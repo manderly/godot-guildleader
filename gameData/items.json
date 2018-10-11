@@ -352,7 +352,7 @@
   {
     "name": "Staff of Good Intentions",
     "icon": "staff2.png",
-    "bodySprite": "crackedstaff.png",
+    "bodySprite": "staff2.png",
     "itemType": "staff",
     "consumable": false,
     "prestige": 0,
@@ -377,7 +377,7 @@
   {
     "name": "Staff of the Four Winds",
     "icon": "staff3.png",
-    "bodySprite": "crackedstaff.png",
+    "bodySprite": "staff3.png",
     "itemType": "staff",
     "consumable": false,
     "prestige": 0,
@@ -402,7 +402,7 @@
   {
     "name": "Crimson Staff",
     "icon": "staff5.png",
-    "bodySprite": "crackedstaff.png",
+    "bodySprite": "staff5.png",
     "itemType": "staff",
     "consumable": false,
     "prestige": 5,
@@ -427,7 +427,7 @@
   {
     "name": "Scepter of the Child King",
     "icon": "staff4.png",
-    "bodySprite": "crackedstaff.png",
+    "bodySprite": "staff4.png",
     "itemType": "staff",
     "consumable": false,
     "prestige": 10,
@@ -1453,7 +1453,7 @@
     "name": "Seer's Orb",
     "icon": "offhand1.png",
     "bodySprite": "offhand1.png",
-    "itemType": "shield",
+    "itemType": "sword",
     "consumable": false,
     "prestige": 0,
     "slot": "offHand",

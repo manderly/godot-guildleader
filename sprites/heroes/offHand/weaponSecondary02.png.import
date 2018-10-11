@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shield01.png-c23d7c55666630535c09d97de43294c0.stex"
+path="res://.import/weaponSecondary02.png-9bff88771cf18bcc378843ea425734d9.stex"
 
 [deps]
 
-source_file="res://sprites/heroes/shield/shield01.png"
-dest_files=[ "res://.import/shield01.png-c23d7c55666630535c09d97de43294c0.stex" ]
+source_file="res://sprites/heroes/offHand/weaponSecondary02.png"
+dest_files=[ "res://.import/weaponSecondary02.png-9bff88771cf18bcc378843ea425734d9.stex" ]
 
 [params]
 
@@ -16,7 +16,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

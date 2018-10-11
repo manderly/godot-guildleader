@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/offhand1.png-50ef43846b473368cc5da62f76122c0d.stex"
+path="res://.import/staff4.png-10aa6ffa1e5c4b8afd6a9231acd63b01.stex"
 
 [deps]
 
-source_file="res://sprites/heroes/weaponSecondary/offhand1.png"
-dest_files=[ "res://.import/offhand1.png-50ef43846b473368cc5da62f76122c0d.stex" ]
+source_file="res://sprites/heroes/weaponMain/staff4.png"
+dest_files=[ "res://.import/staff4.png-10aa6ffa1e5c4b8afd6a9231acd63b01.stex" ]
 
 [params]
 
