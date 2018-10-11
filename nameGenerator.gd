@@ -7,12 +7,6 @@ const title = ["the Brave","of the Moths","the Wave Caller","the Hasty","the Idi
 const guildNames = ["Faith and Fury", "Keepers of the Night", "Metal and Might", "Swords and Storms", "Magic and Mayhem", "Unconquered Legacy", "The Unbreakables", "Fires of Destiny", "Dark Destiny", "Keepers of Lore", "Old Guard Outlaws", "Midnight Empire", "The Silver Blade", "The Riverlords", "Visions of Victory", "Anomaly", "Dawn Soldiers", "Heroes of the Sword", "Mercenaries of the Coast", "High Crusaders", "Society of Nobles", "The Stonefists", "Forsaken Blades", "The Promised Ones", "Searing Force", "Stoneguard", "Guardians of the Keep", "Wisdom", "Mead and Maidens", "The Unfavored Sons", "Heirs of Fortune", "Darkbane", "The Lost Company", "Riders of the Dawn", "Truth and Honor", "The Great Dividers", "The Planeswalkers", "The Ancients", "Thunderforce", "Lightstalkers", "Unseen Order", "Chaosbringers", "Skunk Queens", "Dragonhunters", "Steel and Fury"]
 
 static func generate(gender):
-	#old way of building a name out of phonemes (resulted in a lot of weird and sometimes inappropriate stuff)
-	#var startRand = round(rand_range(0, startPhoneme.size() - 1))
-	#var middleRand = round(rand_range(0, middlePhoneme.size() - 1))
-	#var endRand = round(rand_range(0, endPhoneme.size() - 1))
-	#var lastRand = round(rand_range(0, lastName.size() - 1))
-	#var completeName = startPhoneme[startRand] + middlePhoneme[middleRand] + endPhoneme[endRand] + space + lastName[lastRand]
 	var firstRand = null
 	var lastRand = round(rand_range(0, lastName.size() - 1))
 	var completeName = null

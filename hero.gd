@@ -148,12 +148,19 @@ func _start_walking():
 		#if facing left (1), change to -1
 		if ($body.scale.x == 1):
 			$body.set_scale(Vector2(-1,1))
+			$body/weapon1.offset.x = 20
+			$body/weapon2.offset.x = -20
+			$body/shield.offset.x = -28
+			$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 	elif (startingX > target.x):
 		#print(heroName + " walking LEFT // started: " + str(startingX) + " // going to:" + str(target.x))
 		#if already facing left (1), don't do anything
 		#if facing right (-1), change to 1 by multiplying -1 
 		if ($body.scale.x == -1):
 			$body.set_scale(Vector2(abs($body.scale.x),1))
+			$body/weapon1.offset.x = 0
+			$body/weapon2.offset.x = 0
+			$body/shield.offset.x = 0
 		
 	#_physics_process(delta) handles the rest and determines when the heroes has arrived 
 	
