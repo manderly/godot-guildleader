@@ -17,8 +17,6 @@ func set_hero_data(data):
 	populate_fields(heroData)
 
 func populate_fields(data):
-	print("data.atHome = " + str(data.atHome))
-	print("data.staffedTo = " + data.staffedTo)
 	$field_heroName.text = data.heroName
 	$field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)

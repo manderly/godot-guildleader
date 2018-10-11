@@ -52,7 +52,7 @@ func _ready():
 		
 		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
 		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
-		heroInventoryButton._set_slot(heroEquipmentSlotNames[i])
+		heroInventoryButton._set_slot(heroEquipmentSlots[i])
 		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
 		
 		#only set icon if the hero actually has an item in this slot, otherwise empty
