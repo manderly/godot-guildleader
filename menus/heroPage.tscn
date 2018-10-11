@@ -16,10 +16,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 378.0
-margin_top = 84.0
-margin_right = 458.0
-margin_bottom = 117.0
+margin_left = 367.0
+margin_top = 106.0
+margin_right = 447.0
+margin_bottom = 139.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -41,10 +41,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 378.0
-margin_top = 134.0
-margin_right = 458.0
-margin_bottom = 167.0
+margin_left = 367.0
+margin_top = 156.0
+margin_right = 447.0
+margin_bottom = 189.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -66,10 +66,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 175.0
-margin_top = 33.0
-margin_right = 429.0
-margin_bottom = 48.0
+margin_left = 3.0
+margin_top = 19.0
+margin_right = 480.0
+margin_bottom = 34.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -77,12 +77,10 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "### HERO NAME HERE ######"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="field_levelAndClass" type="Label" parent="." index="3"]
 
@@ -90,10 +88,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 175.0
-margin_top = 52.0
-margin_right = 357.0
-margin_bottom = 67.0
+margin_top = 38.0
+margin_right = 480.0
+margin_bottom = 53.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -101,6 +98,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "X CLASS"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -111,10 +109,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 175.0
-margin_top = 72.0
-margin_right = 362.0
-margin_bottom = 87.0
+margin_left = 149.0
+margin_top = 68.0
+margin_right = 336.0
+margin_bottom = 83.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -122,11 +120,37 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "XXX/YYY xp"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_trainOrRecruit" type="Button" parent="." index="5"]
+[node name="progress_xp" type="ProgressBar" parent="." index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 147.0
+margin_top = 85.0
+margin_right = 337.0
+margin_bottom = 101.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+
+[node name="button_trainOrRecruit" type="Button" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -154,7 +178,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
 
-[node name="centerContainer" type="CenterContainer" parent="." index="6"]
+[node name="centerContainer" type="CenterContainer" parent="." index="7"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -192,7 +216,7 @@ custom_constants/hseparation = 24
 columns = 4
 _sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "custom_constants" ]
 
-[node name="vbox_stats1" type="VBoxContainer" parent="." index="7"]
+[node name="vbox_stats1" type="VBoxContainer" parent="." index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -212,7 +236,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
-[node name="vbox_stats2" type="VBoxContainer" parent="." index="8"]
+[node name="vbox_stats2" type="VBoxContainer" parent="." index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -232,7 +256,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="9"]
+[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="10"]
 
 visible = false
 anchor_left = 0.0
@@ -281,7 +305,7 @@ caret_blink = false
 caret_blink_speed = 0.65
 caret_position = 0
 
-[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="10"]
+[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="11"]
 
 visible = false
 anchor_left = 0.0
@@ -332,7 +356,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="11"]
+[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="12"]
 
 visible = false
 anchor_left = 0.0
@@ -395,7 +419,7 @@ __meta__ = {
 position = Vector2( 140.7, 89.5623 )
 texture = ExtResource( 4 )
 
-[node name="info_statsLeft_dialog" type="AcceptDialog" parent="." index="12"]
+[node name="info_statsLeft_dialog" type="AcceptDialog" parent="." index="13"]
 
 visible = false
 anchor_left = 0.0
@@ -436,7 +460,7 @@ INT = intelligence. Increase this stat to enlarge your mana pool."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="info_statsRight_dialog" type="AcceptDialog" parent="." index="13"]
+[node name="info_statsRight_dialog" type="AcceptDialog" parent="." index="14"]
 
 visible = false
 anchor_left = 0.0
@@ -468,7 +492,7 @@ Raid Bonus = "
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="." index="14"]
+[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="." index="15"]
 
 visible = false
 anchor_left = 0.0
@@ -493,7 +517,7 @@ Add another bedroom to make room for new recruits."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="15" instance=ExtResource( 5 )]
+[node name="button_back" parent="." index="16" instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="button_rename" to="." method="_on_button_rename_pressed"]
 

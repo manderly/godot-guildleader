@@ -35,11 +35,20 @@ func _ready():
 	statsLabel.text = "Stats"
 	attributesLabel.text = "Attributes"
 	skillsLabel.text = "Skills"
+	
+	#draw the hero
+	var heroScene = preload("res://hero.tscn").instance()
+	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
+	heroScene._draw_sprites()
+	heroScene.set_position(Vector2(20, 20))
+	heroScene._just_for_display(true)
+	add_child(heroScene)
 
 	#hide dismiss and rename buttons if this hero isn't a recruited hero
 	if (!global.selectedHero.recruited):
 		$button_rename.hide()
 		$button_dismiss.hide()
+		$progress_xp.hide()
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
@@ -96,6 +105,7 @@ func populate_fields(data):
 	$field_heroName.text = data.heroName
 	$field_levelAndClass.text = str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
+	$progress_xp.set_value(100 * (data.xp / global.levelXpData[data.level].total))
 	if (data.recruited):
 		$button_trainOrRecruit.text = "Train to next level"
 	else:
@@ -213,6 +223,7 @@ func _on_confirm_instant_train_confirmed():
 		#todo: refactor the redrawing of fields into something less case-by-case
 		$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
 		$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
+		$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
 	else: 
 		print("heroPage.gd: not enough diamonds")
 

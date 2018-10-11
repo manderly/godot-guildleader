@@ -13,6 +13,9 @@ var staffedTo = ""
 var recruited = false
 var gender = "female"
 
+#for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
+var justForDisplay = false
+
 #Hero base stats come from external spreadsheet data
 #These are first set when a hero is randomly generated in heroGenerator.gd
 
@@ -71,6 +74,7 @@ var prestige = -1
 var groupBonus = "none"
 var raidBonus = "none"
 
+
 #This hero's items (equipment)
 #to access: heroInstance.equipment.mainHand
 var equipment = {
@@ -115,15 +119,21 @@ var outsideMaxY = 820
 
 
 func _ready():
-	$field_name.text = heroName
+	$field_name.text = ""
 	_hide_extended_stats()
-	if (atHome && staffedTo == ""):
-		_start_idle_timer()
-
+	if (!justForDisplay):
+		$field_name.text = heroName
+		if (atHome && staffedTo == ""):
+			_start_idle_timer()
+		
+func _just_for_display(walkBool):
+	justForDisplay = walkBool
+	
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
-	$idleTimer.set_wait_time(rand_range(5, 15))
-	$idleTimer.start() #walk when the timer expires
+	if (!justForDisplay):
+		$idleTimer.set_wait_time(rand_range(5, 15))
+		$idleTimer.start() #walk when the timer expires
 	
 func _start_walking():
 	walking = true
