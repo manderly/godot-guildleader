@@ -117,7 +117,8 @@ var outsideMaxY = 820
 func _ready():
 	$field_name.text = heroName
 	_hide_extended_stats()
-	_start_idle_timer()
+	if (atHome && staffedTo == ""):
+		_start_idle_timer()
 
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
@@ -132,10 +133,6 @@ func _start_walking():
 	if (currentRoom == 1): #large interior room
 		walkDestX = rand_range(mainRoomMinX, mainRoomMaxX)
 		walkDestY = rand_range(mainRoomMinY, mainRoomMaxY)
-	elif (currentRoom > 1):
-		walkDestX = rand_range(240, 320)
-		walkDestY = rand_range(global.rooms[currentRoom].roomY + 5, global.rooms[currentRoom].roomY + 40)
-		#print("walkDestY: " + str(walkDestY))
 	else: #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)
@@ -204,6 +201,8 @@ func set_instance_data(data):
 	currentRoom = data.currentRoom
 	recruited = data.recruited
 	heroID = data.heroID
+	atHome = data.atHome
+	staffedTo = data.staffedTo
 	headSprite = data.headSprite #sprites are set in heroGenerator.gd
 	#chestSprite = data.equipment.chest.bodySprite
 	#legsSprite = data.equipment.legs.bodySprite

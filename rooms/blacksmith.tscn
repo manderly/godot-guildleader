@@ -7,7 +7,7 @@
 [ext_resource path="res://sprites/forge/anvil.png" type="Texture" id=5]
 [ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -97,6 +97,7 @@ group = null
 text = "Staff"
 flat = false
 align = 1
+_sections_unfolded = [ "Rect" ]
 
 [node name="button_inProgress" parent="." index="6" instance=ExtResource( 6 )]
 

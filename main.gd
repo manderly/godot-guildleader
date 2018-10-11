@@ -48,8 +48,6 @@ func _ready():
 	draw_rooms()
 	
 func _on_Quests_pressed():
-	#global.currentMenu = "quests"
-	#get_tree().change_scene("res://menus/questSelect.tscn");
 	global.currentMenu = "quests"
 	get_tree().change_scene("res://menus/maps/worldmap.tscn");
 
@@ -81,18 +79,13 @@ func draw_heroes():
 	for i in range(global.guildRoster.size()):
 		
 		#only draw heroes who are "atHome"
-		if (global.guildRoster[i].atHome):
+		if (global.guildRoster[i].atHome && global.guildRoster[i].staffedTo == ""):
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
-				
-			if (global.guildRoster[i].currentRoom == 1):
-				heroX = rand_range(mainRoomMinX, mainRoomMaxX)
-				heroY = rand_range(mainRoomMinY, mainRoomMaxY)
-				heroScene.set_position(Vector2(heroX, heroY))
-			elif (global.guildRoster[i].currentRoom > 1):
-				heroScene.set_position(Vector2(global.rooms[global.guildRoster[i].currentRoom].roomX + 280, global.rooms[global.guildRoster[i].currentRoom].roomY + 20))
-				
+			heroX = rand_range(mainRoomMinX, mainRoomMaxX)
+			heroY = rand_range(mainRoomMinY, mainRoomMaxY)
+			heroScene.set_position(Vector2(heroX, heroY))
 			add_child(heroScene)
 	
 	#draw unrecruited heroes outside the base
