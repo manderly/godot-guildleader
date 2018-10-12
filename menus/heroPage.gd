@@ -186,7 +186,6 @@ func _on_button_dismiss_pressed():
 
 func _on_rename_dialogue_confirmed():
 	var newName = $confirm_rename_dialog/LineEdit.text
-	print("heropage.gd: Renamed hero to: " + newName)
 	global.selectedHero.heroName = newName
 	#redraw the name display field on the hero page with the new name
 	$field_heroName.text = global.selectedHero.heroName

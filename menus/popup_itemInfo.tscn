@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://gui/styles/item_popup_styles.tres" type="Theme" id=1]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://menus/popup_itemInfo.gd" type="Script" id=2]
 
 [node name="WindowDialog" type="WindowDialog"]

@@ -3,10 +3,10 @@
 [ext_resource path="res://menus/vault.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/menu-title-banner.png" type="Texture" id=3]
-[ext_resource path="res://gui/styles/item_popup_styles.tres" type="Theme" id=4]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Theme" id=4]
+[sub_resource type="Theme" id=1]
 
 
 [node name="Node2D" type="Node2D"]
@@ -158,7 +158,7 @@ _sections_unfolded = [ "Margin", "Rect", "Size Flags", "custom_constants" ]
 
 [node name="button_back" parent="." index="6" instance=ExtResource( 5 )]
 
-theme = SubResource( 4 )
+theme = SubResource( 1 )
 _sections_unfolded = [ "Margin", "Theme", "custom_styles" ]
 
 [connection signal="pressed" from="button_quickSort" to="." method="_on_button_quickSort_pressed"]

@@ -24,12 +24,22 @@ func populate_fields(data):
 		$field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "quest"):
 		$field_available.text = "Ready to go!"
+		if (global.currentMenu == "selectHeroForQuest"):
+			$Button.set_disabled(true)
 	elif (data.atHome && data.staffedTo != ""): #to catch tradeskills 
 		$field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
 		$Button.set_disabled(true)
 	elif (!data.atHome && data.staffedTo == "quest"): #heroes aren't unavailable until quest begins
 		$field_available.text = "Away (Quest)"
 		$Button.set_disabled(true)
+		
+	#draw the hero
+	var heroScene = preload("res://hero.tscn").instance()
+	heroScene.set_instance_data(data) #put data from array into scene 
+	heroScene._draw_sprites()
+	heroScene.set_position(Vector2(14, 6))
+	heroScene._just_for_display(true)
+	add_child(heroScene)
 
 		
 func make_button_empty():
@@ -37,7 +47,6 @@ func make_button_empty():
 	$field_levelAndClass.text = ""
 	$field_xp.text = ""
 	$field_available.text = ""
-	$sprite_hero.texture = null
 	
 func _on_Button_pressed():
 	#distinguish between whether button is on roster or heroSelect menu or blacksmith
@@ -46,14 +55,23 @@ func _on_Button_pressed():
 		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "selectHeroForQuest"):
-		heroData.staffedTo = "quest"
+		print(global.questHeroesPicked)
+		print(heroData.atHome)
+		print(heroData.staffedTo)
 		#first, free up whoever is already in that spot (if anyone) 
 		if (global.questHeroes[global.questButtonID]):
 			global.questHeroes[global.questButtonID].atHome = true
-		#assign this hero to this spot in the questHeroes array  
-		global.questHeroes[global.questButtonID] = heroData
-		global.questHeroesPicked += 1
-		global.currentMenu = "questConfirm"
+			global.questHeroes[global.questButtonID].staffedTo = ""
+			global.questHeroesPicked -= 1
+		
+		#next, confirm this specific hero is available
+		if (heroData.atHome == true && heroData.staffedTo == ""): 
+			global.questHeroes[global.questButtonID] = heroData
+			global.questHeroes[global.questButtonID].staffedTo = "quest"
+			global.questHeroesPicked += 1
+			global.currentMenu = "questConfirm"
+		else:
+			print("can't pick this hero")
 		get_tree().change_scene("res://menus/questConfirm.tscn")
 	elif (global.currentMenu == "questConfirm"):
 		global.questButtonID = buttonID

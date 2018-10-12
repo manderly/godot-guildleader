@@ -1,30 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://menus/heroButton.gd" type="Script" id=1]
-[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=2]
-[ext_resource path="res://characters/wizard-female-1.png" type="Texture" id=3]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=2]
 
-[sub_resource type="StyleBoxTexture" id=1]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
-texture = ExtResource( 2 )
-region_rect = Rect2( 0, 0, 192, 64 )
-margin_left = 8.0
-margin_right = 8.0
-margin_top = 8.0
-margin_bottom = 8.0
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-modulate_color = Color( 1, 1, 1, 1 )
-draw_center = true
-_sections_unfolded = [ "Margin" ]
-
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -44,14 +23,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/normal = SubResource( 1 )
+theme = ExtResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 flat = false
 align = 1
-_sections_unfolded = [ "custom_styles" ]
+_sections_unfolded = [ "Theme" ]
 
 [node name="field_heroName" type="Label" parent="." index="1"]
 
@@ -59,21 +38,21 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 102.0
-margin_top = 14.0
-margin_right = 204.0
-margin_bottom = 35.0
+margin_left = 76.0
+margin_top = 15.0
+margin_right = 233.0
+margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "HERO_NAME"
+text = "#HERO NAME AND TITLE"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Mouse" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="field_levelAndClass" type="Label" parent="." index="2"]
 
@@ -81,21 +60,21 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 103.0
-margin_top = 31.0
-margin_right = 231.0
-margin_bottom = 52.0
+margin_left = 76.0
+margin_top = 33.0
+margin_right = 219.0
+margin_bottom = 54.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "LEVEL X CLASSNAME"
+text = "#LEVEL N CLASS NAME"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Mouse" ]
+_sections_unfolded = [ "Mouse", "Rect" ]
 
 [node name="field_xp" type="Label" parent="." index="3"]
 
@@ -125,10 +104,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 104.0
-margin_top = 52.0
-margin_right = 268.0
-margin_bottom = 66.0
+margin_left = 76.0
+margin_top = 51.0
+margin_right = 240.0
+margin_bottom = 65.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -139,12 +118,7 @@ text = "#STATUS"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Mouse", "Size Flags" ]
-
-[node name="sprite_hero" type="Sprite" parent="." index="5"]
-
-position = Vector2( 36.1613, 39.4784 )
-texture = ExtResource( 3 )
+_sections_unfolded = [ "Mouse", "Rect", "Size Flags" ]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
