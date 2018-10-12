@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://rooms/blacksmith.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://sprites/forge/furnace.png" type="Texture" id=4]
 [ext_resource path="res://sprites/forge/anvil.png" type="Texture" id=5]
 [ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=6]
+[ext_resource path="res://light.png" type="Texture" id=7]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -100,6 +101,31 @@ align = 1
 _sections_unfolded = [ "Rect" ]
 
 [node name="button_inProgress" parent="." index="6" instance=ExtResource( 6 )]
+
+[node name="Light2D" type="Light2D" parent="." index="7"]
+
+position = Vector2( 317.26, 54.7683 )
+enabled = true
+editor_only = false
+texture = ExtResource( 7 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 0.482147, 0.0664063, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
 

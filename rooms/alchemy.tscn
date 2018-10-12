@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://rooms/alchemy.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/forge/wall_tools.png" type="Texture" id=3]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/alchemy/shelves.png" type="Texture" id=4]
+[ext_resource path="res://light.png" type="Texture" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,10 +40,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 204.0
-margin_top = 68.0
-margin_right = 404.0
-margin_bottom = 82.0
+margin_left = 103.0
+margin_top = 10.0
+margin_right = 303.0
+margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -56,12 +57,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="sprite_wallTools" type="Sprite" parent="." index="2"]
-
-position = Vector2( 251.318, 23.6893 )
-texture = ExtResource( 3 )
-
-[node name="button_staffCraft" type="Button" parent="." index="3"]
+[node name="button_staffCraft" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -86,7 +82,38 @@ text = "Staff"
 flat = false
 align = 1
 
-[node name="button_inProgress" parent="." index="4" instance=ExtResource( 4 )]
+[node name="button_inProgress" parent="." index="3" instance=ExtResource( 3 )]
+
+[node name="sprite_shelves" type="Sprite" parent="." index="4"]
+
+position = Vector2( 332.106, 34.6249 )
+texture = ExtResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="sprite_shelves" index="0"]
+
+position = Vector2( 17.2786, -18.7812 )
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.0926971, 0.949219, 0.14623, 1 )
+energy = 1.0
+mode = 0
+range_height = 10.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range" ]
 
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
 
