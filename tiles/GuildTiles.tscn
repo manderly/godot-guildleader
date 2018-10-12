@@ -473,146 +473,78 @@ __meta__ = {
 
 [node name="Room" type="Node" parent="Walls" index="0"]
 
-editor/display_folded = true
+[node name="guild_wall_north_edge" type="Sprite" parent="Walls/Room" index="0"]
 
-[node name="Wall_TL" type="Sprite" parent="Walls/Room" index="0"]
-
-position = Vector2( 176, 256 )
+position = Vector2( 320, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 192, 0, 32, 32 )
+region_rect = Rect2( 256, 0, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_TM" type="Sprite" parent="Walls/Room" index="1"]
+[node name="guild_wall_north1" type="Sprite" parent="Walls/Room" index="1"]
 
-position = Vector2( 224, 256 )
+position = Vector2( 352, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 240, 0, 32, 32 )
+region_rect = Rect2( 320, 0, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_TR" type="Sprite" parent="Walls/Room" index="2"]
+[node name="guild_wall_north2" type="Sprite" parent="Walls/Room" index="2"]
 
-position = Vector2( 272, 256 )
+position = Vector2( 384, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 320, 0, 32, 32 )
+region_rect = Rect2( 288, 0, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_BL" type="Sprite" parent="Walls/Room" index="3"]
+[node name="guild_NEcorner" type="Sprite" parent="Walls/Room" index="3"]
 
-position = Vector2( 176, 208 )
+position = Vector2( 416, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 384, 0, 32, 32 )
+region_rect = Rect2( 384, 0, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_BM_1" type="Sprite" parent="Walls/Room" index="4"]
+[node name="guild_NWcorner" type="Sprite" parent="Walls/Room" index="4"]
 
-position = Vector2( 224, 208 )
+position = Vector2( 272, 160 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 416, 0, 32, 32 )
+region_rect = Rect2( 192, 0, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_BM_2" type="Sprite" parent="Walls/Room" index="5"]
+[node name="guild_wall_west" type="Sprite" parent="Walls/Room" index="5"]
 
 position = Vector2( 272, 208 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 448, 0, 32, 32 )
+region_rect = Rect2( 192, 64, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Wall_BR" type="Sprite" parent="Walls/Room" index="6"]
+[node name="guild_wall_east1" type="Sprite" parent="Walls/Room" index="6"]
 
-position = Vector2( 320, 208 )
+position = Vector2( 416, 208 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 512, 0, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Wall_BR_2" type="Sprite" parent="Walls/Room" index="7"]
-
-position = Vector2( 320, 256 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 512, 32, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Wall_BR_3" type="Sprite" parent="Walls/Room" index="8"]
-
-position = Vector2( 320, 256 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 512, 32, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Wall_LM" type="Sprite" parent="Walls/Room" index="9"]
-
-position = Vector2( 176, 304 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 192, 32, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Wall_RM" type="Sprite" parent="Walls/Room" index="10"]
-
-position = Vector2( 272, 304 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 320, 32, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="bedroom_window_east" type="Sprite" parent="Walls/Room" index="11"]
-
-position = Vector2( 384, 224 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 288, 32, 32, 64 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="bedroom_door_west" type="Sprite" parent="Walls/Room" index="12"]
-
-position = Vector2( 448, 224 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 224, 32, 32, 64 )
+region_rect = Rect2( 384, 96, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -848,12 +780,14 @@ shape = SubResource( 5 )
 
 [node name="Blacksmith room" type="Node" parent="Walls" index="2"]
 
+editor/display_folded = true
+
 [node name="blacksmith_NWcorner" type="Sprite" parent="Walls/Blacksmith room" index="0"]
 
 position = Vector2( 240, 576 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 96, 320, 32, 32 )
+region_rect = Rect2( 96, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -861,10 +795,10 @@ __meta__ = {
 
 [node name="blacksmith_wall_west1" type="Sprite" parent="Walls/Blacksmith room" index="1"]
 
-position = Vector2( 240, 608 )
+position = Vector2( 240, 624 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 96, 352, 32, 32 )
+region_rect = Rect2( 96, 384, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -872,10 +806,10 @@ __meta__ = {
 
 [node name="blacksmith_wall_west2" type="Sprite" parent="Walls/Blacksmith room" index="2"]
 
-position = Vector2( 240, 640 )
+position = Vector2( 240, 656 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 96, 384, 32, 32 )
+region_rect = Rect2( 96, 416, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -886,7 +820,7 @@ __meta__ = {
 position = Vector2( 272, 576 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 128, 320, 32, 32 )
+region_rect = Rect2( 128, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -897,7 +831,7 @@ __meta__ = {
 position = Vector2( 304, 576 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 160, 320, 32, 32 )
+region_rect = Rect2( 160, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -908,7 +842,7 @@ __meta__ = {
 position = Vector2( 336, 576 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 192, 320, 32, 32 )
+region_rect = Rect2( 192, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -919,7 +853,7 @@ __meta__ = {
 position = Vector2( 368, 576 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 224, 320, 32, 32 )
+region_rect = Rect2( 224, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -927,18 +861,7 @@ __meta__ = {
 
 [node name="blacksmith_wall_east1" type="Sprite" parent="Walls/Blacksmith room" index="7"]
 
-position = Vector2( 368, 608 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 224, 352, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="blacksmith_wall_east2" type="Sprite" parent="Walls/Blacksmith room" index="8"]
-
-position = Vector2( 368, 640 )
+position = Vector2( 368, 624 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 224, 384, 32, 32 )
@@ -947,20 +870,20 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="blacksmith_floor1" type="Sprite" parent="Walls/Blacksmith room" index="9"]
+[node name="blacksmith_wall_east2" type="Sprite" parent="Walls/Blacksmith room" index="8"]
 
-position = Vector2( 304, 608 )
+position = Vector2( 368, 656 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 160, 352, 32, 32 )
+region_rect = Rect2( 224, 416, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="blacksmith_floor2" type="Sprite" parent="Walls/Blacksmith room" index="10"]
+[node name="blacksmith_floor1" type="Sprite" parent="Walls/Blacksmith room" index="9"]
 
-position = Vector2( 304, 640 )
+position = Vector2( 304, 624 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 160, 384, 32, 32 )
@@ -969,12 +892,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="blacksmith_door" type="Sprite" parent="Walls/Blacksmith room" index="11"]
+[node name="blacksmith_floor2" type="Sprite" parent="Walls/Blacksmith room" index="10"]
 
-position = Vector2( 272, 624 )
+position = Vector2( 304, 656 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 128, 352, 32, 64 )
+region_rect = Rect2( 160, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="blacksmith_door" type="Sprite" parent="Walls/Blacksmith room" index="11"]
+
+position = Vector2( 272, 640 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 384, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -982,10 +916,10 @@ __meta__ = {
 
 [node name="blacksmith_window" type="Sprite" parent="Walls/Blacksmith room" index="12"]
 
-position = Vector2( 336, 624 )
+position = Vector2( 336, 640 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 192, 352, 32, 64 )
+region_rect = Rect2( 192, 384, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -993,12 +927,14 @@ __meta__ = {
 
 [node name="vault room" type="Node" parent="Walls" index="3"]
 
+editor/display_folded = true
+
 [node name="vault_NWcorner" type="Sprite" parent="Walls/vault room" index="0"]
 
-position = Vector2( 240, 688 )
+position = Vector2( 240, 720 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 256, 320, 32, 32 )
+region_rect = Rect2( 256, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1006,18 +942,7 @@ __meta__ = {
 
 [node name="vault_wall_west1" type="Sprite" parent="Walls/vault room" index="1"]
 
-position = Vector2( 240, 720 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 256, 352, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="vault_wall_west2" type="Sprite" parent="Walls/vault room" index="2"]
-
-position = Vector2( 240, 752 )
+position = Vector2( 240, 768 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 256, 384, 32, 32 )
@@ -1026,12 +951,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="vault_wall_north1" type="Sprite" parent="Walls/vault room" index="3"]
+[node name="vault_wall_west2" type="Sprite" parent="Walls/vault room" index="2"]
 
-position = Vector2( 272, 688 )
+position = Vector2( 240, 800 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 288, 320, 32, 32 )
+region_rect = Rect2( 256, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_wall_north1" type="Sprite" parent="Walls/vault room" index="3"]
+
+position = Vector2( 272, 720 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1039,10 +975,10 @@ __meta__ = {
 
 [node name="vault_wall_north2" type="Sprite" parent="Walls/vault room" index="4"]
 
-position = Vector2( 304, 688 )
+position = Vector2( 304, 720 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 320, 320, 32, 32 )
+region_rect = Rect2( 320, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1050,10 +986,10 @@ __meta__ = {
 
 [node name="vault_wall_north3" type="Sprite" parent="Walls/vault room" index="5"]
 
-position = Vector2( 336, 688 )
+position = Vector2( 336, 720 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 352, 320, 32, 32 )
+region_rect = Rect2( 352, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1061,10 +997,10 @@ __meta__ = {
 
 [node name="vault_NEcorner" type="Sprite" parent="Walls/vault room" index="6"]
 
-position = Vector2( 368, 688 )
+position = Vector2( 368, 720 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 384, 320, 32, 32 )
+region_rect = Rect2( 384, 320, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1072,18 +1008,7 @@ __meta__ = {
 
 [node name="vault_wall_east1" type="Sprite" parent="Walls/vault room" index="7"]
 
-position = Vector2( 368, 720 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 384, 352, 32, 32 )
-_sections_unfolded = [ "Region" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="vault_wall_east2" type="Sprite" parent="Walls/vault room" index="8"]
-
-position = Vector2( 368, 752 )
+position = Vector2( 368, 768 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 384, 384, 32, 32 )
@@ -1092,20 +1017,20 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="vault_floor1" type="Sprite" parent="Walls/vault room" index="9"]
+[node name="vault_wall_east2" type="Sprite" parent="Walls/vault room" index="8"]
 
-position = Vector2( 304, 720 )
+position = Vector2( 368, 800 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 320, 352, 32, 32 )
+region_rect = Rect2( 384, 416, 32, 32 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="vault_floor2" type="Sprite" parent="Walls/vault room" index="10"]
+[node name="vault_floor1" type="Sprite" parent="Walls/vault room" index="9"]
 
-position = Vector2( 304, 752 )
+position = Vector2( 304, 768 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 320, 384, 32, 32 )
@@ -1114,12 +1039,23 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="vault_door" type="Sprite" parent="Walls/vault room" index="11"]
+[node name="vault_floor2" type="Sprite" parent="Walls/vault room" index="10"]
 
-position = Vector2( 272, 736 )
+position = Vector2( 304, 800 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 288, 352, 32, 64 )
+region_rect = Rect2( 320, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="vault_door" type="Sprite" parent="Walls/vault room" index="11"]
+
+position = Vector2( 272, 784 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 384, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
@@ -1127,10 +1063,157 @@ __meta__ = {
 
 [node name="vault_window" type="Sprite" parent="Walls/vault room" index="12"]
 
-position = Vector2( 336, 736 )
+position = Vector2( 336, 784 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 352, 352, 32, 64 )
+region_rect = Rect2( 352, 384, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom" type="Node" parent="Walls" index="4"]
+
+editor/display_folded = true
+
+[node name="bedroom_NWcorner" type="Sprite" parent="Walls/bedroom" index="0"]
+
+position = Vector2( 240, 864 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 320, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_north1" type="Sprite" parent="Walls/bedroom" index="1"]
+
+position = Vector2( 272, 864 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 320, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_north2" type="Sprite" parent="Walls/bedroom" index="2"]
+
+position = Vector2( 304, 864 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 320, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_north3" type="Sprite" parent="Walls/bedroom" index="3"]
+
+position = Vector2( 336, 864 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 320, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_NEcorner" type="Sprite" parent="Walls/bedroom" index="4"]
+
+position = Vector2( 368, 864 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 544, 320, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_east1" type="Sprite" parent="Walls/bedroom" index="5"]
+
+position = Vector2( 368, 912 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 544, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_east2" type="Sprite" parent="Walls/bedroom" index="6"]
+
+position = Vector2( 368, 944 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 544, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_west1" type="Sprite" parent="Walls/bedroom" index="7"]
+
+position = Vector2( 240, 912 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_wall_west2" type="Sprite" parent="Walls/bedroom" index="8"]
+
+position = Vector2( 240, 944 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 416, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_floor1" type="Sprite" parent="Walls/bedroom" index="9"]
+
+position = Vector2( 304, 912 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 384, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_floor2" type="Sprite" parent="Walls/bedroom" index="10"]
+
+position = Vector2( 304, 944 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 416, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_door" type="Sprite" parent="Walls/bedroom" index="11"]
+
+position = Vector2( 272, 928 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 448, 384, 32, 64 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_window" type="Sprite" parent="Walls/bedroom" index="12"]
+
+position = Vector2( 336, 928 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 384, 32, 64 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true

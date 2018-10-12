@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://rooms/jewelcraft.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/forge/wall_tools.png" type="Texture" id=3]
-[ext_resource path="res://sprites/forge/furnace.png" type="Texture" id=4]
-[ext_resource path="res://sprites/forge/anvil.png" type="Texture" id=5]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=6]
+[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -29,7 +26,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 25, 0, 4, 25, 0, 5, 25, 0, 6, 87, 0, 7, 90, 0, 8, 90, 0, 9, 90, 0, 10, 90, 0, 11, 90, 0, 12, 93, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 25, 0, 65540, 25, 0, 65541, 23, 0, 65542, 98, 0, 65543, 96, 0, 65544, 96, 0, 65545, 96, 0, 65546, 96, 0, 65547, 96, 0, 65548, 95, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 18, 0, 131076, 25, 0, 131077, 25, 0, 131079, 97, 0, 131080, 97, 0, 131081, 97, 0, 131082, 97, 0, 131083, 97, 0, 131084, 99, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 25, 0, 196612, 23, 0, 196613, 25, 0, 196614, 88, 0, 196615, 96, 0, 196616, 96, 0, 196617, 96, 0, 196618, 96, 0, 196619, 96, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0 )
+tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 127, 0, 4, 25, 0, 5, 87, 0, 6, 92, 0, 7, 90, 0, 8, 90, 0, 9, 90, 0, 10, 90, 0, 11, 90, 0, 12, 93, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 127, 0, 65540, 25, 0, 65541, 113, 0, 65542, 115, 0, 65543, 117, 0, 65544, 116, 0, 65545, 115, 0, 65546, 116, 0, 65547, 117, 0, 65548, 114, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 127, 0, 131076, 25, 0, 131077, 98, 0, 131078, 97, 0, 131079, 97, 0, 131080, 97, 0, 131081, 97, 0, 131082, 97, 0, 131083, 97, 0, 131084, 99, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 127, 0, 196612, 23, 0, 196614, 97, 0, 196615, 96, 0, 196616, 96, 0, 196617, 96, 0, 196618, 96, 0, 196619, 96, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0, 262144, 78, 0, 262145, 78, 0, 262146, 84, 0, 262147, 127, 0, 262148, 22, 0, 262149, 88, 0, 262150, 97, 0, 262151, 96, 0, 262152, 97, 0, 262153, 96, 0, 262154, 97, 0, 262155, 96, 0, 262156, 94, 0, 262157, 83, 0, 262158, 78, 0, 262159, 78, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
@@ -41,10 +38,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 204.0
-margin_top = 68.0
-margin_right = 404.0
-margin_bottom = 82.0
+margin_left = 100.0
+margin_top = 5.0
+margin_right = 300.0
+margin_bottom = 19.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -58,31 +55,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="sprite_wallTools" type="Sprite" parent="." index="2"]
-
-position = Vector2( 251.318, 23.6893 )
-texture = ExtResource( 3 )
-
-[node name="sprite_furnace" type="Sprite" parent="." index="3"]
-
-position = Vector2( 313.739, 21.5546 )
-texture = ExtResource( 4 )
-
-[node name="sprite_anvil" type="Sprite" parent="." index="4"]
-
-position = Vector2( 342.589, 104.29 )
-texture = ExtResource( 5 )
-
-[node name="button_staffCraft" type="Button" parent="." index="5"]
+[node name="button_staffCraft" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 215.0
-margin_top = 99.0
-margin_right = 256.0
-margin_bottom = 123.0
+margin_left = 182.0
+margin_top = 129.0
+margin_right = 223.0
+margin_bottom = 153.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -98,7 +80,7 @@ text = "Staff"
 flat = false
 align = 1
 
-[node name="button_inProgress" parent="." index="6" instance=ExtResource( 6 )]
+[node name="button_inProgress" parent="." index="3" instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
 

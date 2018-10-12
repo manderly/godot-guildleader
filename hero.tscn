@@ -188,6 +188,7 @@ _sections_unfolded = [ "Size Flags" ]
 
 [node name="Particles2D" type="Particles2D" parent="." index="2"]
 
+visible = false
 position = Vector2( 9.68694, 21.5928 )
 emitting = true
 amount = 8
