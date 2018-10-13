@@ -11,13 +11,13 @@ func update_currency(sc, hc):
 
 func _ready():
 	global.connect("quest_complete", self, "_on_quest_complete")
-	
+	$button_collectQuest.hide()
 	#only show quest button if quest is actually active (active = counting down AND/OR ready to collect)
-	if (!global.questActive):
-		$button_collectQuest.hide()
-	else:
+	#if (!global.questActive):
+		#$button_collectQuest.hide()
+	#else:
 		#quest is active, show the button
-		$button_collectQuest.show()
+		#$button_collectQuest.show()
 	
 func _on_quest_complete(name):
 	#quest is done, button sits ready to click until collected by player 

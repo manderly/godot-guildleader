@@ -28,7 +28,12 @@ func _ready():
 		#Generate unrecruited heroes
 		heroGenerator.generate(global.unrecruited, "Ranger")
 		heroGenerator.generate(global.unrecruited, "Warrior")
-	
+
+		#Generate a few more guildmates for quest testing
+		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		heroGenerator.generate(global.guildRoster, "Ranger")
+		heroGenerator.generate(global.guildRoster, "Wizard")
+
 		#generate rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
@@ -60,17 +65,18 @@ func _on_Roster_pressed():
 	get_tree().change_scene("res://menus/roster.tscn");
 	
 func _process(delta):
+	pass
 	#Displays how much time is left on the active quest 
-	if (global.questActive && !global.questReadyToCollect):
-		if (global.questTimer.time_left < 60):
-			$HUD/button_collectQuest/field_questCountdown.set_text("< 1m")
+	#if (global.questActive && !global.questReadyToCollect):
+		#if (global.questTimer.time_left < 60):
+			#$HUD/button_collectQuest/field_questCountdown.set_text("< 1m")
 			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
-		else:
-			$HUD/button_collectQuest/field_questCountdown.set_text("Long time")
-	elif (!global.questActive && global.questReadyToCollect):
-		$HUD/button_collectQuest/field_questCountdown.set_text("DONE!")
-	else:
-		$HUD/button_collectQuest/field_questCountdown.set_text("ERR!")
+		#else:
+			#$HUD/button_collectQuest/field_questCountdown.set_text("Long time")
+	#elif (!global.questActive && global.questReadyToCollect):
+		#$HUD/button_collectQuest/field_questCountdown.set_text("DONE!")
+	#else:
+		#$HUD/button_collectQuest/field_questCountdown.set_text("ERR!")
 	
 func draw_heroes():
 	var heroX = -1

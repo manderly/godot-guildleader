@@ -55,20 +55,18 @@ func _on_Button_pressed():
 		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "selectHeroForQuest"):
-		print(global.questHeroesPicked)
+		var currentQuest = global.questData[global.selectedQuestID]
 		print(heroData.atHome)
 		print(heroData.staffedTo)
 		#first, free up whoever is already in that spot (if anyone) 
-		if (global.questHeroes[global.questButtonID]):
-			global.questHeroes[global.questButtonID].atHome = true
-			global.questHeroes[global.questButtonID].staffedTo = ""
-			global.questHeroesPicked -= 1
+		if (currentQuest.heroes[global.questButtonID]):
+			currentQuest.heroes[global.questButtonID].atHome = true
+			currentQuest.heroes[global.questButtonID].staffedTo = ""
 		
 		#next, confirm this specific hero is available
 		if (heroData.atHome == true && heroData.staffedTo == ""): 
-			global.questHeroes[global.questButtonID] = heroData
-			global.questHeroes[global.questButtonID].staffedTo = "quest"
-			global.questHeroesPicked += 1
+			currentQuest.heroes[global.questButtonID] = heroData
+			currentQuest.heroes[global.questButtonID].staffedTo = "quest"
 			global.currentMenu = "questConfirm"
 		else:
 			print("can't pick this hero")

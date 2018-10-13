@@ -15,6 +15,6 @@ func _get_quest_id():
 	return questId
 
 func _on_questMarkerButton_pressed():
-	global.currentQuest = global.questData[questId]
+	global.selectedQuestID = questId #so we know which specific quest to display in questConfirm
 	global.currentMenu = "questConfirm"
 	get_tree().change_scene("res://menus/questConfirm.tscn")

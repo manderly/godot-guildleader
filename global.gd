@@ -21,20 +21,20 @@ var unformattedQuestData = null
 var questData = {}
 
 #active quest
-var questTimer = null
-var currentQuest = null
-var questHeroes = [null, null, null, null, null, null]
-var questHeroesPicked = 0 #workaround for having to declare the array at-size 
+#var questTimer = null
+#var currentQuest = null
+#var questHeroes = [null, null, null, null, null, null]
+#var questHeroesPicked = 0 #workaround for having to declare the array at-size 
 var questButtonID = null
-var questActive = false
-var questReadyToCollect = false
+var selectedQuestID = null #used by quest confirm to pass data to correct quest sub-object in questData object
+#var questActive = false
+#var questReadyToCollect = false
 #set these with random results when the quest is completed, then clear them out for next use
-var questPrizeSC = 0
-var questPrizeHC = 0
-var questPrizeItem1 = null
-var questPrizeItem2 = null
-var winItemRandom = 0
-
+#var questPrizeSC = 0
+#var questPrizeHC = 0
+#var questPrizeItem1 = null
+#var questPrizeItem2 = null
+#var winItemRandom = 0
 var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
@@ -187,8 +187,22 @@ func _ready():
 	for i in range(unformattedQuestData.size()):
 		questKey = unformattedQuestData[i]["questId"]
 		questValue = unformattedQuestData[i]
+		questValue.heroes = [null, null, null]
+		questValue.timer = null
+		questValue.inProgress = false
+		questValue.readyToCollect = false
+		questValue.timesRun = 0
+		questValue.lootWon = {
+			"questPrizeSC":0,
+			"questPrizeHC":0,
+			"questPrizeItem1":null,
+			"questPrizeItem2":null
+		}
+		#loot won is filled in when the quest is completed and held in the object until collected, then it is nulled out for re-use
 		global.questData[questKey] = questValue
-		#to set a quest: global.currentQuest = global.questData["forest01"]
+		
+	#todo: refactor into a concurrent quest system so many quests can run simultaneously provided the player has enough heroes 
+	#to set a quest: global.currentQuest = global.questData["forest01"]
 	
 	#Load room type data and save it to a global var
 	var roomTypeFile = File.new()
@@ -323,31 +337,34 @@ func _ready():
 
 	if (!global.tradeskills["tailoring"].selectedRecipe):
 		global.tradeskills["tailoring"].selectedRecipe = tradeskills.tailoring.recipes[0]
-
-	
-func _begin_global_quest_timer(duration):
-	if (!questActive):
+		
+func _begin_global_quest_timer(duration, questID):
+	#starting quest timer 
+	print("starting quest timer for this quest: " + questID)
+	var quest = global.questData[questID]
+	if (!quest.inProgress):
 		print("starting quest timer: " + str(duration))
 		#emit_signal("quest_begun", currentQuest.name)
-		questActive = true
-		questReadyToCollect = false
-		questTimer = Timer.new()
-		questTimer.set_one_shot(true)
-		questTimer.set_wait_time(duration)
-		questTimer.connect("timeout", self, "_on_questTimer_timeout")
-		questTimer.start()
-		add_child(questTimer)
+		quest.inProgress = true
+		quest.readyToCollect = false
+		quest.timer = Timer.new()
+		quest.timer.set_one_shot(true)
+		quest.timer.set_wait_time(duration)
+		quest.timer.connect("timeout", self, "_on_questTimer_timeout", [questID])
+		quest.timer.start()
+		add_child(quest.timer)
 	else:
 		print("error: quest already running")
 	
-func _on_questTimer_timeout():
+func _on_questTimer_timeout(questID):
 	#this is where the quest's random prizes are determined 
-	global.logger(self, "Quest timer complete! Finished this quest: " + currentQuest.name)
-	questActive = false
-	questReadyToCollect = true
-	questPrizeSC = round(rand_range(currentQuest.scMin, currentQuest.scMax))
-	if (currentQuest.hcMin != 0 && currentQuest.hcMax != 0):
-		questPrizeHC = round(rand_range(currentQuest.hcMin, currentQuest.hcMax))
+	global.logger(self, "Quest timer complete! Finished this quest: " + questID)
+	var quest = global.questData[questID]
+	quest.inProgress = false
+	quest.readyToCollect = true
+	quest.lootWon.questPrizeSC = round(rand_range(quest.scMin, quest.scMax))
+	if (quest.hcMin != 0 && quest.hcMax != 0):
+		quest.lootWon.questPrizeHC = round(rand_range(quest.hcMin, quest.hcMax))
 	
 	#this is just its NAME, not the item itself
 	
@@ -357,16 +374,17 @@ func _on_questTimer_timeout():
 	#Roll 1-100 (again)
 	#If number is <= than item2Chance, give item2
 	
-	if (currentQuest.item1):
+	var winItemRandom = 0
+	if (quest.item1):
 		winItemRandom = randi()%100+1 #1-100
-		if (winItemRandom <= currentQuest.item1Chance):
-			questPrizeItem1 = currentQuest.item1 
-	if (currentQuest.item2):
+		if (winItemRandom <= quest.item1Chance):
+			quest.lootWon.questPrizeItem1 = quest.item1 
+	if (quest.item2):
 		winItemRandom = randi()%100+1 #1-100
-		if (winItemRandom <= currentQuest.item2Chance):
-			questPrizeItem2 = currentQuest.item2
+		if (winItemRandom <= quest.item2Chance):
+			quest.lootWon.questPrizeItem2 = quest.item2
 			
-	emit_signal("quest_complete", currentQuest.name)
+	emit_signal("quest_complete", quest.name)
 
 func _begin_tradeskill_timer(duration):
 	var tradeskill = global.tradeskills[global.currentMenu]

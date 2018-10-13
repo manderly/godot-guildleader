@@ -42,7 +42,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Content Margin", "Margin" ]
 
-[node name="main" type="Node"]
+[node name="main" type="Node" index="0"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -936,10 +936,10 @@ __meta__ = {
 
 [node name="questMarker1" parent="." index="2" instance=ExtResource( 21 )]
 
-margin_left = 120.0
-margin_top = 30.0
-margin_right = 184.0
-margin_bottom = 94.0
+margin_left = 92.0
+margin_top = -3.0
+margin_right = 156.0
+margin_bottom = 61.0
 
 [node name="questMarker2" parent="." index="3" instance=ExtResource( 21 )]
 
