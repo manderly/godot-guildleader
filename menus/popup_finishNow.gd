@@ -16,5 +16,8 @@ func _on_ConfirmationDialog_confirmed():
 	if (global.hardCurrency > 0):
 		global.hardCurrency -= hcCost
 		global.tradeskills[global.currentMenu].readyToCollect = true
+		global.tradeskills[global.currentMenu].timer.stop()
+		#global.tradeskills[global.currentMenu].timer.set_wait_time(0)
+		#global.tradeskills[global.currentMenu].timer.paused = true
 	else:
 		print("popup_finishNow.gd: INSUFFICIENT DIAMONDS")

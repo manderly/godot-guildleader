@@ -173,7 +173,7 @@ func _process(delta):
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
 		$button_combine.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
-		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
+		$recipeData/progress_nowCrafting.set_value(100)
 	else:
 		$button_combine.set_text("COMBINE")
 		$button_combine.add_color_override("font_color", Color(1, 1, 1, 1)) #white
@@ -221,6 +221,7 @@ func _on_finishedItem_dialog_confirmed():
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
 
 	$recipeData/progress_nowCrafting.set_value(0)
+	tradeskill.timer.stop()
 	tradeskill.wildcardItem = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
