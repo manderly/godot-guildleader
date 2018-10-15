@@ -243,6 +243,8 @@ func _ready():
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
 		itemValue["itemID"] = -1
+		itemValue["improved"] = false
+		itemValue["improvement"] = ""
 		global.allGameItems[itemKey] = itemValue
 		var classRestrictionsArray = []
 		classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)
@@ -256,8 +258,6 @@ func _ready():
 			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
 			
 		global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
-		#print(global.items)
-	#print("DPS test:" + str(global.allGameItems["Rusty Broadsword"]["dps"]))
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)
@@ -330,11 +330,8 @@ func _ready():
 		
 func _begin_global_quest_timer(duration, questID):
 	#starting quest timer 
-	print("starting quest timer for this quest: " + questID)
 	var quest = global.questData[questID]
 	if (!quest.inProgress):
-		print("starting quest timer: " + str(duration))
-		#emit_signal("quest_begun", currentQuest.name)
 		quest.inProgress = true
 		quest.readyToCollect = false
 		quest.timer = Timer.new()
@@ -381,7 +378,6 @@ func _begin_tradeskill_timer(duration):
 	var recipe = tradeskill.selectedRecipe
 	
 	if (!tradeskill.inProgress):
-		print("global.gd - starting " + global.currentMenu + " timer: " + str(duration))
 		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
 		if (tradeskill.selectedRecipe.result != "computed"):
 			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
@@ -407,11 +403,8 @@ func _begin_tradeskill_timer(duration):
 
 
 func _on_tradeskillTimer_timeout(tradeskillStr):
-	print("ending timer: " + tradeskillStr)
 	var tradeskill = global.tradeskills[tradeskillStr]
-	global.logger(self, tradeskill.displayName + " timer complete!")
 	tradeskill.readyToCollect = true
-	print("global.gd - ready to collect: " + tradeskillStr)
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))

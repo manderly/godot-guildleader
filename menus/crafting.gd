@@ -252,6 +252,7 @@ func _on_button_combine_pressed():
 	if (!tradeskill.inProgress):
 		#check if user has ingredients
 		var allIngredientsHere = _ingredient_check()
+			
 		if (allIngredientsHere == false):
 			$incomplete_dialog.popup() #tell the user they don't have all the ingredients
 		else:

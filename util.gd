@@ -30,14 +30,16 @@ func give_item_guild(itemName): #itemName comes in as a string
 
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 
 	print("giving a modded item to the guild")
+	var moddedItem = global.tradeskills[tradeskill].wildcardItem
+	moddedItem[stat] += bonusAmount
+	moddedItem["improved"] = true
+	moddedItem["improvement"] = "(+" + str(bonusAmount) + " " + stat + ")"
+	moddedItem.name = "Improved " + moddedItem.name
+	
 	#finds first open null spot and moves the item from the tradeskill bucket back into the array
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i] == null):
-			global.guildItems[i] = global.tradeskills[tradeskill].wildcardItem
-			#now apply the mods and flag it as improved
-			global.guildItems[i][stat] += bonusAmount
-			global.guildItems[i].improved = true
-			global.guildItems[i].name = "Improved " + itemName
+			global.guildItems[i] = moddedItem
 			break
 		
 		

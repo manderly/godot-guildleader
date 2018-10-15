@@ -3,7 +3,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://menus/popup_itemInfo.gd" type="Script" id=2]
 
-[node name="WindowDialog" type="WindowDialog"]
+[node name="WindowDialog" type="WindowDialog" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -321,7 +321,51 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
-[node name="sprite_itemIcon" type="Sprite" parent="." index="14"]
+[node name="field_improved" type="Label" parent="." index="14"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 37.0
+margin_top = 148.0
+margin_right = 115.0
+margin_bottom = 162.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#IMPROVED"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="field_itemID" type="Label" parent="." index="15"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = 59.0
+margin_right = 94.0
+margin_bottom = 73.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#ID"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="sprite_itemIcon" type="Sprite" parent="." index="16"]
 
 position = Vector2( 50, 50 )
 _sections_unfolded = [ "Transform" ]

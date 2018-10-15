@@ -73,7 +73,16 @@ func _populate_fields():
 			$field_rarity.add_color_override("font_color", global.colorBlue) 
 		elif (itemData.rarity == "epic"):
 			$field_rarity.add_color_override("font_color", global.colorPink) 
+	
+	if (itemData.improved):
+		$field_improved.text = "Improved " + itemData.improvement
+	else:
+		$field_improved.hide()
 			
+	if (itemData.itemID):
+		$field_itemID.text = str(itemData.itemID)
+		$field_itemID.add_color_override("font_color", global.colorPink) 
+		
 	#figure out what stats this item gives
 	if (itemData.slot != "tradeskill"):
 		#an item gives armor or dps, but not both
