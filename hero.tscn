@@ -55,7 +55,7 @@ _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Sprea
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10.1507 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 
 resource_name = "idle"
 length = 1.0
@@ -129,7 +129,7 @@ tracks/4/keys = {
 "values": [ 0.0, -6.56508, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
@@ -268,7 +268,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 2.0
-anims/idle = SubResource( 5 )
+anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
@@ -339,7 +339,7 @@ z_index = 1
 normal = null
 pressed = null
 bitmask = null
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 shape_centered = true
 shape_visible = true
 passby_press = false

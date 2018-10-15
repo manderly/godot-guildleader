@@ -21,26 +21,15 @@ var unformattedQuestData = null
 var questData = {}
 
 #active quest
-#var questTimer = null
-#var currentQuest = null
-#var questHeroes = [null, null, null, null, null, null]
-#var questHeroesPicked = 0 #workaround for having to declare the array at-size 
 var questButtonID = null
 var selectedQuestID = null #used by quest confirm to pass data to correct quest sub-object in questData object
-#var questActive = false
-#var questReadyToCollect = false
-#set these with random results when the quest is completed, then clear them out for next use
-#var questPrizeSC = 0
-#var questPrizeHC = 0
-#var questPrizeItem1 = null
-#var questPrizeItem2 = null
-#var winItemRandom = 0
 var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
 
 var roomTypeData = null
 var itemData = null
+var nextItemID = 100
 
 #rooms
 onready var rooms = []
@@ -253,6 +242,7 @@ func _ready():
 	for i in range(itemData.size()):
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
+		itemValue["itemID"] = -1
 		global.allGameItems[itemKey] = itemValue
 		var classRestrictionsArray = []
 		classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)

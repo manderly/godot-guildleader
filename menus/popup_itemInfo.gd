@@ -150,7 +150,7 @@ func _on_button_moveItem_pressed():
 			emit_signal("clearWildcardButton")
 		else:
 			#take the item
-			util.give_item_tradeskill(itemData.name)
+			util.give_item_tradeskill(itemData.itemID)
 			self.hide() #hide the popup
 			get_tree().change_scene("res://menus/crafting.tscn")
 	else:

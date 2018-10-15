@@ -58,8 +58,11 @@ func _update_ingredients():
 	$recipeData/field_craftingTime.text = str(recipe.craftingTime) + "s"
 	
 	if (tradeskill.inProgress):
-		print(tradeskill.currentlyCrafting)
-		$recipeData/field_nowCrafting.text = "Now Crafting: " + tradeskill.currentlyCrafting.name
+		var itemName = tradeskill.currentlyCrafting.name
+		if (tradeskill.wildcardItem):
+			$recipeData/field_nowCrafting.text = "Now Crafting: Improved " + itemName
+		else:
+			$recipeData/field_nowCrafting.text = "Now Crafting: " + itemName
 	else:
 		$recipeData/field_nowCrafting.text = "Now Crafting: Nothing"
 		
@@ -80,7 +83,6 @@ func _update_ingredients():
 		
 	#ingredient wildcard is an itemButton instance 
 	if (recipe.ingredientWildcard):
-		print("crafting.gd - this recipe has a wildcard ingredient")
 		$recipeData/ingredientWildcard.show()
 		$recipeData/ingredientWildcard._set_enabled()
 		global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
@@ -196,7 +198,12 @@ func _open_collect_result_popup():
 		$finishedItem_dialog/elements/field_skillUp.hide()
 	
 	$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(tradeskill.currentlyCrafting.name)].icon)
-	$finishedItem_dialog/elements/field_itemName.text = tradeskill.currentlyCrafting.name
+	#since we don't actually create the item until it is collected,
+	#we can't use its final name yet. This "fakes" it - 
+	if (tradeskill.wildcardItem):
+		$finishedItem_dialog/elements/field_itemName.text = "Improved " + tradeskill.currentlyCrafting.name
+	else:
+		$finishedItem_dialog/elements/field_itemName.text = tradeskill.currentlyCrafting.name
 	$finishedItem_dialog.popup()
 
 func _on_finishedItem_dialog_confirmed():
@@ -205,9 +212,11 @@ func _on_finishedItem_dialog_confirmed():
 		#this was a "normal" recipe, not a wildcard item recipe
 		util.give_item_guild(tradeskill.currentlyCrafting.name)
 	else:
+		
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
-						tradeskill.currentlyCrafting.name, 
+						tradeskill.currentlyCrafting.name,
+						global.currentMenu, 
 						tradeskill.currentlyCrafting.statImproved, 
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
 
@@ -248,26 +257,26 @@ func _on_button_combine_pressed():
 		else:
 			#otherwise, start the timer and take ingredients from inventory
 			
-			#take ingredients away from player
+			#take ingredients away from player by name (these are fungible, just take the first instance)
 			if (recipe.ingredient1):
 				if (global.allGameItems[str(recipe.ingredient1)].consumable):
-					util.remove_item_guild(recipe.ingredient1)
+					util.remove_item_guild_by_name(recipe.ingredient1)
 				
 			if (recipe.ingredient2):
 				if (global.allGameItems[str(recipe.ingredient2)].consumable):
-					util.remove_item_guild(recipe.ingredient2)
+					util.remove_item_guild_by_name(recipe.ingredient2)
 			
 			if (recipe.ingredient3):
 				if (global.allGameItems[str(recipe.ingredient3)].consumable):
-					util.remove_item_guild(recipe.ingredient3)
+					util.remove_item_guild_by_name(recipe.ingredient3)
 				
 			if (recipe.ingredient4):
 				if (global.allGameItems[str(recipe.ingredient4)].consumable):
-					util.remove_item_guild(recipe.ingredient4)
+					util.remove_item_guild_by_name(recipe.ingredient4)
 					
+			#todo: refactor to use ID, these are specific items 
 			if (recipe.ingredientWildcard):
-				if (global.allGameItems[str(tradeskill.wildcardItem.name)]):
-					util.remove_item_guild(tradeskill.wildcardItem.name)
+				util.remove_item_guild_by_id(tradeskill.wildcardItem.itemID)
 			
 			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 			_update_ingredients()

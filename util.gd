@@ -21,45 +21,52 @@ func give_item_guild(itemName): #itemName comes in as a string
 		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
-				global.guildItems[i] = global.allGameItems[itemName]
+				global.guildItems[i] = global.allGameItems[itemName].duplicate() #make a new instance
+				global.guildItems[i].itemID = global.nextItemID
+				global.nextItemID += 1
 				break
 	else:
 		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
 
-func give_modded_item_guild(itemName, stat, bonusAmount): #itemName comes in as a string 
+func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 
 	print("giving a modded item to the guild")
-	if (global.allGameItems[itemName]): #make sure this item actually exists in the item records
-		#finds first open null spot and puts the item there
-		for i in range(global.guildItems.size()):
-			if (global.guildItems[i] == null):
-				#todo: modifies ALL instances of this weapon for some reason 
-				global.guildItems[i] = global.allGameItems[itemName].duplicate()
-				#now apply the mods
-				global.guildItems[i][stat] += bonusAmount
-				break
-	else:
-		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
+	#finds first open null spot and moves the item from the tradeskill bucket back into the array
+	for i in range(global.guildItems.size()):
+		if (global.guildItems[i] == null):
+			global.guildItems[i] = global.tradeskills[tradeskill].wildcardItem
+			#now apply the mods and flag it as improved
+			global.guildItems[i][stat] += bonusAmount
+			global.guildItems[i].improved = true
+			global.guildItems[i].name = "Improved " + itemName
+			break
 		
+		
+func remove_item_guild_by_name(itemNameStr):
+	#remove first usage of this item by name
+	var removeIdx = global.guildItems.find(itemNameStr)
+	if (removeIdx):
+		global.guildItems.remove(removeIdx)
 					
-func remove_item_guild(itemNameStr):
-	print("util.gd: Removing " + itemNameStr + " from guild's inventory")
-	if (global.allGameItems[itemNameStr]): #make sure this item actually exists in the item records
-		#find the item (loop through all items)
-		#delete it by nulling its index 
-		for i in range(global.guildItems.size()):
-			if (global.guildItems[i]): #if we don't null check it'll crash on trying to get .name 
-				if (global.guildItems[i].name == itemNameStr):
-					global.guildItems[i] = null
-					break
-	else:
-		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemNameStr)
+func remove_item_guild_by_id(itemID):
+	print("util.gd: Removing itemID " + str(itemID) + " from guild's inventory")
+	#delete it by nulling its index
+	for i in range(global.guildItems.size()):
+		if (global.guildItems[i]):
+			if (global.guildItems[i].itemID == itemID): 
+				global.guildItems[i] = null
 		
 func give_item_hero(itemNameStr):
 	pass
 	
-func give_item_tradeskill(itemNameStr):
-	if (global.allGameItems[itemNameStr]): #make sure this item actually exists
-		global.tradeskills[global.currentMenu].wildcardItem = global.allGameItems[itemNameStr]
+func give_item_tradeskill(itemID):
+	#we have the item ID, which we can find in the guildItems array
+	for i in range(global.guildItems.size()):
+		if (global.guildItems[i]):
+			if (global.guildItems[i].itemID == itemID):
+				#we found the item with the matching ID
+				global.tradeskills[global.currentMenu].wildcardItem = global.guildItems[i]
+				#remove from guildItems (because the tradeskill will hold it for now)
+				global.guildItems[i] = null
 	
 func remove_item_tradeskill():
 	global.tradeskills[global.currentMenu].wildcardItem = null
