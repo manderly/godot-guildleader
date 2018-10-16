@@ -55,7 +55,7 @@ func _update_ingredients():
 	else:
 		$recipeData/field_success.text = "Chance to fail"
 	
-	$recipeData/field_craftingTime.text = str(recipe.craftingTime) + "s"
+	$recipeData/field_craftingTime.text = util.format_time(recipe.craftingTime)
 	
 	if (tradeskill.inProgress):
 		var itemName = tradeskill.currentlyCrafting.name
@@ -76,6 +76,7 @@ func _update_ingredients():
 			$recipeData/resultItem.show()
 			$recipeData/label_computed.hide()
 			$recipeData/resultItem._render_tradeskill(global.allGameItems[str(recipe.result)])
+			$recipeData/resultItem._hide_popup_buttons(true)
 	
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)

@@ -11,35 +11,6 @@ signal updateStats
 signal clearWildcardButton
 
 func _ready():
-	#we only need the trash button if we're in the vault 
-	$button_trash.hide()
-	
-	if (global.currentMenu == "vault"):
-		$button_moveItem.text = "Move"
-		$button_trash.show()
-	elif (global.currentMenu == "heroPage"):
-		$button_moveItem.text = "Put in vault"
-	elif (global.currentMenu == "vaultViaHeroPage"):
-		$button_moveItem.text = "Equip"
-	elif (global.currentMenu == "blacksmithing" || 
-			global.currentMenu == "alchemy" ||
-			global.currentMenu == "fletching" ||
-			global.currentMenu == "tailoring" ||
-			global.currentMenu == "jewelcraft"):
-		#if the wildcard slot is empty, then write "choose"
-		if (!global.tradeskills[global.currentMenu].wildcardItem):
-			$button_moveItem.text = "Choose"
-		else:
-			$button_moveItem.text = "Return to vault"
-	
-	#don't show move to vault or trash buttons if this hero isn't recruited
-	if (global.selectedHero && !global.selectedHero.recruited):
-		$button_moveItem.hide()
-		
-	#don't show move to vault or trash buttons if this item is on the questConfirm page
-	if (global.currentMenu == "questConfirm"):
-		$button_moveItem.hide()
-		
 	$field_stat0.hide()
 	$field_stat1.hide()
 	$field_stat2.hide()
@@ -53,6 +24,7 @@ func _set_vault_index(idx):
 func _set_data(data):
 	itemData = data
 	_populate_fields()
+	_draw_buttons()
 	
 func _populate_fields():
 	window_title = itemData.name
@@ -124,6 +96,43 @@ func _populate_fields():
 		$field_armorOrDPS.hide()
 		$field_classes.hide()
 	
+func _draw_buttons():
+	#we only need the trash button if we're in the vault 
+	$button_trash.hide()
+	if (global.currentMenu == "vault"):
+		$button_moveItem.text = "Move"
+		$button_trash.show()
+	elif (global.currentMenu == "heroPage"):
+		$button_moveItem.text = "Put in vault"
+	elif (global.currentMenu == "vaultViaHeroPage"):
+		$button_moveItem.text = "Equip"
+	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "alchemy" ||
+			global.currentMenu == "fletching" ||
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "jewelcraft"):
+		#if the wildcard slot is empty, then write "choose"
+		if (!global.tradeskills[global.currentMenu].wildcardItem):
+			$button_moveItem.text = "Choose"
+		else:
+			$button_moveItem.text = "Return to vault"
+	
+	#don't show move to vault or trash buttons if this hero isn't recruited
+	if (global.selectedHero && !global.selectedHero.recruited):
+		$button_moveItem.hide()
+		
+	#don't show move to vault or trash buttons if this item is on the questConfirm page
+	if (global.currentMenu == "questConfirm"):
+		$button_moveItem.hide()
+	
+func _hide_buttons(hideBool):
+	if (hideBool):
+		$button_trash.hide()
+		$button_moveItem.hide()
+	else:
+		$button_trash.show()
+		$button_moveItem.show()
+		
 func _on_button_trash_pressed():
 	emit_signal("itemDeletedOrMovedToVault")
 	if (global.currentMenu == "heroPage"):

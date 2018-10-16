@@ -4,6 +4,7 @@ onready var itemPopup = preload("res://menus/popup_itemInfo.tscn").instance()
 var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
 var itemSlot = null #used on heroPage to know what to filter by
+var hideButtons = false
 
 signal updateSourceButtonArt
 signal updateStatsOnHeroPage
@@ -85,6 +86,10 @@ func _clear_tradeskill():
 	_clear_icon()
 	_clear_label()
 	
+	
+func _hide_popup_buttons(hideBool):
+	hideButtons = hideBool
+	
 func _on_Button_pressed():
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
@@ -107,6 +112,7 @@ func _on_Button_pressed():
 		if (itemData):
 			itemPopup._set_data(itemData)
 			itemPopup._set_vault_index(itemVaultIndex)
+			itemPopup._hide_buttons(hideButtons) #pass boolean 
 			itemPopup.popup()
 		else:
 			if (global.currentMenu == "heroPage"):
