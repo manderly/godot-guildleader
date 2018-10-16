@@ -68,5 +68,11 @@ func give_item_tradeskill(itemID):
 				global.guildItems[i] = null
 	
 func remove_item_tradeskill():
+	#finds first open null spot and moves the item from the tradeskill bucket back into the array
+	for i in range(global.guildItems.size()):
+		if (global.guildItems[i] == null):
+			global.guildItems[i] = global.tradeskills[global.currentMenu].wildcardItem
+			break
+	#empties the wildcardItem bucket 
 	global.tradeskills[global.currentMenu].wildcardItem = null
 	

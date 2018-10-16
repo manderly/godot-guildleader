@@ -174,7 +174,6 @@ func _on_button_moveItem_pressed():
 			self.hide() #hide the popup
 			get_tree().change_scene("res://menus/crafting.tscn")
 	else:
-		print("WE ARE IN THIS MENU" + global.currentMenu)
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
 		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 

@@ -91,7 +91,6 @@ func _update_ingredients():
 			#if the user picked an item to be the wildcard item, show it here 
 			$recipeData/label_choose.hide()
 			$recipeData/ingredientWildcard._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
-			#$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(tradeskill.wildcardItem.name)])
 		else:
 			hasWildcardIngredient = false
 			$recipeData/label_choose.show()
