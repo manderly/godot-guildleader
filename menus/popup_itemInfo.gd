@@ -51,6 +51,7 @@ func _populate_fields():
 	else:
 		$field_improved.hide()
 			
+	print("popup_itemInfo.gd - itemID: " + str(itemData.itemID))
 	if (itemData.itemID):
 		$field_itemID.text = str(itemData.itemID)
 		$field_itemID.add_color_override("font_color", global.colorPink) 
@@ -97,8 +98,17 @@ func _populate_fields():
 		$field_classes.hide()
 	
 func _draw_buttons():
+	#must be called after data is set
+	
 	#we only need the trash button if we're in the vault 
 	$button_trash.hide()
+	
+	#items we don't own (items that are previews, items that belong to unrecruited heroes, etc)
+	#have a -1 ID. In this case, we can't "move" the item or trash it so hide those buttons.
+	if (itemData.itemID == -1):
+		$button_moveItem.hide()
+		
+	#the wording on the button varies with context 
 	if (global.currentMenu == "vault"):
 		$button_moveItem.text = "Move"
 		$button_trash.show()
@@ -124,14 +134,6 @@ func _draw_buttons():
 	#don't show move to vault or trash buttons if this item is on the questConfirm page
 	if (global.currentMenu == "questConfirm"):
 		$button_moveItem.hide()
-	
-func _hide_buttons(hideBool):
-	if (hideBool):
-		$button_trash.hide()
-		$button_moveItem.hide()
-	else:
-		$button_trash.show()
-		$button_moveItem.show()
 		
 func _on_button_trash_pressed():
 	emit_signal("itemDeletedOrMovedToVault")
@@ -167,7 +169,7 @@ func _on_button_moveItem_pressed():
 			self.hide()
 			emit_signal("clearWildcardButton")
 		else:
-			#take the item
+			#take the item and "give" it to the tradeskill wildcard item bucket
 			util.give_item_tradeskill(itemData.itemID)
 			self.hide() #hide the popup
 			get_tree().change_scene("res://menus/crafting.tscn")

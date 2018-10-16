@@ -56,9 +56,6 @@ func remove_item_guild_by_id(itemID):
 		if (global.guildItems[i]):
 			if (global.guildItems[i].itemID == itemID): 
 				global.guildItems[i] = null
-		
-func give_item_hero(itemNameStr):
-	pass
 	
 func give_item_tradeskill(itemID):
 	#we have the item ID, which we can find in the guildItems array
@@ -66,7 +63,7 @@ func give_item_tradeskill(itemID):
 		if (global.guildItems[i]):
 			if (global.guildItems[i].itemID == itemID):
 				#we found the item with the matching ID
-				global.tradeskills[global.currentMenu].wildcardItem = global.guildItems[i]
+				global.tradeskills[global.currentMenu].wildcardItem = global.guildItems[i].duplicate()
 				#remove from guildItems (because the tradeskill will hold it for now)
 				global.guildItems[i] = null
 	
