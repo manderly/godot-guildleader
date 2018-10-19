@@ -6,11 +6,13 @@ func _ready():
 	# Initialization here
 	pass
 
-func _set_data(whatToFinish, costToFinish):
+func _set_data(whatToFinish, costToFinish, optionalString=""):
 	#save these as local vars so the confirmation dialog can access them 
 	print("popup_finishNow.gd - cost to finish " + whatToFinish + ": " + str(costToFinish))
 	hcCost = costToFinish
-	dialog_text = "Finish now for " + str(hcCost) + " diamonds?"
+	if (optionalString != ""):
+		optionalString = optionalString + "\n"
+	dialog_text = optionalString + "Finish now for " + str(hcCost) + " diamonds?"
 
 func _on_ConfirmationDialog_confirmed():
 	if (global.hardCurrency > 0):

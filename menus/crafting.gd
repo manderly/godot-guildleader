@@ -291,12 +291,18 @@ func _on_button_combine_pressed():
 		_open_collect_result_popup()
 	else:
 		print("crafting.gd - got in some weird state")
-		
-
 	
 func _on_button_dismissHero_pressed():
-	tradeskill.hero.currentRoom = 1
-	tradeskill.hero.atHome = true
-	tradeskill.hero.staffedTo = ""
-	tradeskill.hero = null
-	get_tree().change_scene("res://main.tscn")
+	#first, see if a recipe is active
+	if (tradeskill.inProgress && !tradeskill.readyToCollect):
+		finishNowPopup._set_data("Tradeskill", 2, "You cannot unstaff while crafting is in progress")
+		finishNowPopup.popup()
+	elif (tradeskill.inProgress && tradeskill.readyToCollect):
+		#todo: make global error popup
+		print("Collect results before unstaffing")
+	else:
+		tradeskill.hero.currentRoom = 1
+		tradeskill.hero.atHome = true
+		tradeskill.hero.staffedTo = ""
+		tradeskill.hero = null
+		get_tree().change_scene("res://main.tscn")
