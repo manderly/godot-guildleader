@@ -102,33 +102,10 @@ func _update_ingredients():
 		$recipeData/label_choose.hide()
 		$recipeData/ingredientWildcard.hide()
 	
-	#determine which items the player actually has and display accordingly
-	hasIngredient1 = false
-	hasIngredient2 = false
-	hasIngredient3 = false
-	hasIngredient4 = false
-	for i in range(global.guildItems.size()):
-		if (global.guildItems[i]):
-			if (recipe.ingredient1): #if this recipe has a first ingredient
-				if (global.guildItems[i].name == recipe.ingredient1): #and we found it in the guild vault
-					hasIngredient1 = true #then set to true
-			
-			if (recipe.ingredient2):
-				if (global.guildItems[i].name == recipe.ingredient2):
-					hasIngredient2 = true
-				
-			if (recipe.ingredient3):
-				if (global.guildItems[i].name == recipe.ingredient3):
-					hasIngredient3 = true
-				
-			if (recipe.ingredient4):
-				if (global.guildItems[i].name == recipe.ingredient4):
-					hasIngredient4 = true
-			
-	#the rest of these are just display fields with icon and text 
-	if (recipe.ingredient1):
+	#determine which ingredients to display and whether the text is red or green 
+	if (recipe.ingredient1): #if this recipe has a first ingredient
 		$recipeData/ingredient1._render_fields(global.allGameItems[str(recipe.ingredient1)])
-		if (hasIngredient1):
+		if (global.tradeskillItemsDictionary[recipe.ingredient1].count > 0): #and we have it in the tradeskill items dictionary
 			$recipeData/ingredient1._set_green()
 		else:
 			$recipeData/ingredient1._set_red()
@@ -137,7 +114,7 @@ func _update_ingredients():
 		
 	if (recipe.ingredient2):
 		$recipeData/ingredient2._render_fields(global.allGameItems[str(recipe.ingredient2)])
-		if (hasIngredient2):
+		if (global.tradeskillItemsDictionary[recipe.ingredient2].count > 0): 
 			$recipeData/ingredient2._set_green()
 		else:
 			$recipeData/ingredient2._set_red()
@@ -146,16 +123,16 @@ func _update_ingredients():
 		
 	if (recipe.ingredient3):
 		$recipeData/ingredient3._render_fields(global.allGameItems[str(recipe.ingredient3)])
-		if (hasIngredient3):
+		if (global.tradeskillItemsDictionary[recipe.ingredient3].count > 0):
 			$recipeData/ingredient3._set_green()
 		else:
 			$recipeData/ingredient3._set_red()
 	else:
 		$recipeData/ingredient3._clear_fields()
 		
-	if (recipe.ingredient4):
+	if (recipe.ingredient4): 
 		$recipeData/ingredient4._render_fields(global.allGameItems[str(recipe.ingredient4)])
-		if (hasIngredient4):
+		if (global.tradeskillItemsDictionary[recipe.ingredient4].count > 0): 
 			$recipeData/ingredient4._set_green()
 		else:
 			$recipeData/ingredient4._set_red()
