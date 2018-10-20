@@ -142,6 +142,8 @@ signal quest_complete
 #items inventory / vault
 var allGameItems = {}
 var guildItems = []
+var tradeskillItemsSeen = [] #keep track of all the tradeskill items we've encountered, never remove
+var tradeskillItemsDictionary = {} #keep count of tradeskill items and their counts here
 var swapItemSourceIdx = null
 var inSwapItemState = false
 var lastItemButtonClicked = null
@@ -158,6 +160,7 @@ var allRecipes = {}
 var colorGreen = Color(.062, .90, .054, 1) #16,230,14 green
 var colorBlue = Color(.070, .313, .945, 1) #18,80,241 blue
 var colorPink = Color(.945, .070, .525, 1) #241,18,134 pink
+var colorWhite = Color(1, 1, 1, 1) #white
 
 func _ready():
 	randomize()
@@ -239,6 +242,7 @@ func _ready():
 	#var item = find("Rusty Broadsword")
 	#then access stats like: item.dps, item.str etc by name 
 	#["Rusty Broadsword"]["dps"]
+	
 	for i in range(itemData.size()):
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
@@ -246,18 +250,29 @@ func _ready():
 		itemValue["improved"] = false
 		itemValue["improvement"] = ""
 		global.allGameItems[itemKey] = itemValue
-		var classRestrictionsArray = []
-		classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)
-		if (global.allGameItems[itemKey].classRestriction2 != ""):
-			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction2)
-		if (global.allGameItems[itemKey].classRestriction3 != ""):
-			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction3)
-		if (global.allGameItems[itemKey].classRestriction4 != ""):
-			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction4)
-		if (global.allGameItems[itemKey].classRestriction5 != ""):
-			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
+		
+		#if it's a tradeskill item, put it in the tradeskill items dictionary
+		if (itemValue["itemType"] == "tradeskill"):
+			tradeskillItemsDictionary[itemKey] = {
+				"count": 0,
+				"name":itemKey,
+				"icon":itemValue.icon,
+				"seen":false
+				}
+		else:	
+			#do class restrictions 
+			var classRestrictionsArray = []
+			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)
+			if (global.allGameItems[itemKey].classRestriction2 != ""):
+				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction2)
+			if (global.allGameItems[itemKey].classRestriction3 != ""):
+				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction3)
+			if (global.allGameItems[itemKey].classRestriction4 != ""):
+				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction4)
+			if (global.allGameItems[itemKey].classRestriction5 != ""):
+				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
 			
-		global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
+			global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)

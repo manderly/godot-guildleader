@@ -1,23 +1,27 @@
 extends Node2D
 
-var itemsInCurrentRow = 0
-var itemsPerRow = 6
-var rowsToDraw = 0 #calculate this based on vault space 
 var buttonArray = []
+
+onready var gridEquipment = $Panel/TabContainer/Equipment
+onready var gridTradeskillItems = $Panel/TabContainer/Resources
 
 func _ready():
 	#display inventory size and capacity
 	$field_guildInventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
+	
+	#equipment tab
 	_position_vault_buttons()
 	
 	if (global.currentMenu == "vaultViaHeroPage"):
 		global.logger(self, "Browsing for: " + global.selectedHero.heroClass + " " + str(global.browsingForSlot))
 	
+	#tradeskill tab
+	_draw_tradeskill_items()
+	
 func _position_vault_buttons():
 	#this method handles the STRUCTURE of the buttons
 	#it places the empty buttons in the correct hboxes
 	#use _draw_vault_items() to put icons and data into buttons
-	rowsToDraw = global.vaultSpace / 6  #example: if the player is entitled to 24 spaces, then 24 / 6 = 4 rows
 	
 	#draw all the rows, and if there happens to be an item in the corresponding guildItems array, add its data 
 	for i in range(global.vaultSpace):
@@ -26,7 +30,7 @@ func _position_vault_buttons():
 		var itemButton = preload("res://menus/itemButton.tscn").instance()
 		itemButton._set_vault_index(i)
 		itemButton.connect("updateSourceButtonArt", self, "_draw_vault_items")
-		$centerContainer/grid.add_child(itemButton)
+		gridEquipment.add_child(itemButton)
 		buttonArray.append(itemButton)
 		
 	_draw_vault_items()
@@ -37,7 +41,7 @@ func _draw_vault_items():
 		var currentButton = null
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
-			if (global.guildItems[i]):
+			if (global.guildItems[i] && global.guildItems[i].itemType != "tradeskill"):
 				currentButton._render_vault(global.guildItems[i])
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
@@ -68,6 +72,16 @@ func _draw_vault_items():
 				if (global.currentMenu == "vaultViaHeroPage" || global.currentMenu == "vaultViaBlacksmith"):
 					currentButton._set_disabled() #disable empty buttons but only when equipping an item onto a hero 
 				#keep vault index intact 
+
+func _draw_tradeskill_items():
+	#these are on their own tab now
+	print(global.tradeskillItemsSeen) #array of item names
+	for i in range(global.tradeskillItemsSeen.size()):
+		var tradeskillItemDisplay = preload("res://menus/crafting_ingredientDisplay.tscn").instance()
+		var itemName = global.tradeskillItemsSeen[i]
+		tradeskillItemDisplay._display_in_vault(global.tradeskillItemsDictionary[itemName])
+		gridTradeskillItems.add_child(tradeskillItemDisplay)
+	
 	
 func _on_button_back_pressed():
 	print(global.currentMenu)

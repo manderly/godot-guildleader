@@ -17,7 +17,8 @@ func format_time(time):
 	return timeFormattedForDisplay
 	
 func give_item_guild(itemName): #itemName comes in as a string 
-	if (global.allGameItems[itemName]): #make sure this item actually exists in the item records
+	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType != "tradeskill"): 
+		#make sure this item actually exists in the item records
 		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
@@ -25,9 +26,16 @@ func give_item_guild(itemName): #itemName comes in as a string
 				global.guildItems[i].itemID = global.nextItemID
 				global.nextItemID += 1
 				break
+	elif (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "tradeskill"):
+		if (!global.tradeskillItemsDictionary[itemName].seen):
+			global.tradeskillItemsSeen.append(itemName)
+			global.tradeskillItemsDictionary[itemName].seen = true
+		#either way, increase the count
+		global.tradeskillItemsDictionary[itemName].count += 1
 	else:
 		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
-
+	
+	
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 
 	print("giving a modded item to the guild")
 	var moddedItem = global.tradeskills[tradeskill].wildcardItem
