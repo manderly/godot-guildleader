@@ -149,11 +149,11 @@ func _process(delta):
 		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_combine.set_text("COLLECT!")
-		$button_combine.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
+		$button_combine.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
 		$recipeData/progress_nowCrafting.set_value(100)
 	else:
 		$button_combine.set_text("COMBINE")
-		$button_combine.add_color_override("font_color", Color(1, 1, 1, 1)) #white
+		$button_combine.add_color_override("font_color", global.colorWhite) #white
 
 func _on_button_back_pressed():
 	#todo: only clear it if it's not in use being upgraded
@@ -209,16 +209,16 @@ func _on_finishedItem_dialog_confirmed():
 	
 func _ingredient_check():
 	var readyToCombine = true
-	if (recipe.ingredient1 && !hasIngredient1):
+	if (recipe.ingredient1 && global.tradeskillItemsDictionary[recipe.ingredient1].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient2 && !hasIngredient2):
+	if (recipe.ingredient2 && global.tradeskillItemsDictionary[recipe.ingredient2].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient3 && !hasIngredient3):
+	if (recipe.ingredient3 && global.tradeskillItemsDictionary[recipe.ingredient3].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient4 && !hasIngredient4):
+	if (recipe.ingredient4 && global.tradeskillItemsDictionary[recipe.ingredient4].count == 0):
 		readyToCombine = false
 		
 	if (recipe.ingredientWildcard && !hasWildcardIngredient):
@@ -238,22 +238,23 @@ func _on_button_combine_pressed():
 			
 			#take ingredients away from player by name (these are fungible, just take the first instance)
 			if (recipe.ingredient1):
-				if (global.allGameItems[str(recipe.ingredient1)].consumable):
-					util.remove_item_guild_by_name(recipe.ingredient1)
+				if (global.tradeskillItemsDictionary[recipe.ingredient1].consumable):
+					global.tradeskillItemsDictionary[recipe.ingredient1].count -= 1
+					#util.remove_item_guild_by_name(recipe.ingredient1)
 				
 			if (recipe.ingredient2):
-				if (global.allGameItems[str(recipe.ingredient2)].consumable):
-					util.remove_item_guild_by_name(recipe.ingredient2)
+				if (global.tradeskillItemsDictionary[recipe.ingredient2].consumable):
+					global.tradeskillItemsDictionary[recipe.ingredient2].count -= 1
 			
 			if (recipe.ingredient3):
-				if (global.allGameItems[str(recipe.ingredient3)].consumable):
-					util.remove_item_guild_by_name(recipe.ingredient3)
+				if (global.tradeskillItemsDictionary[recipe.ingredient3].consumable):
+					global.tradeskillItemsDictionary[recipe.ingredient3].count -= 1
 				
 			if (recipe.ingredient4):
-				if (global.allGameItems[str(recipe.ingredient4)].consumable):
-					util.remove_item_guild_by_name(recipe.ingredient4)
+				if (global.tradeskillItemsDictionary[recipe.ingredient4].consumable):
+					global.tradeskillItemsDictionary[recipe.ingredient4].count -= 1
 					
-			#todo: refactor to use ID, these are specific items 
+			#todo: refactor to use ID, these are specific items from the vault
 			if (recipe.ingredientWildcard):
 				util.remove_item_guild_by_id(tradeskill.wildcardItem.itemID)
 			

@@ -2,38 +2,34 @@
 
 [ext_resource path="res://menus/crafting_ingredientDisplay.gd" type="Script" id=1]
 
-[node name="Node2D" type="Node2D" index="0"]
-
-script = ExtResource( 1 )
-_sections_unfolded = [ "Z Index" ]
-
-[node name="Container" type="Container" parent="." index="0"]
+[node name="Container" type="Container"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
+margin_right = 160.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 160, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Margin", "Rect" ]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Rect", "Z Index" ]
 
-[node name="field_name" type="Label" parent="Container" index="0"]
+[node name="field_name" type="Label" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 30.0
-margin_top = 10.0
+margin_top = 7.0
 margin_right = 200.0
-margin_bottom = 30.0
+margin_bottom = 27.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -47,7 +43,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
-[node name="sprite_icon" type="Sprite" parent="Container" index="1"]
+[node name="sprite_icon" type="Sprite" parent="." index="1"]
 
 position = Vector2( 14.6289, 15.0877 )
 scale = Vector2( 0.4, 0.4 )
