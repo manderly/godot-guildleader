@@ -247,7 +247,7 @@ func _ready():
 	for i in range(itemData.size()):
 		itemKey = itemData[i]["name"]
 		itemValue = itemData[i]
-		itemValue["itemID"] = -1
+		itemValue["itemID"] = -1 #ID isn't assigned until we actually give this item to the guild or a hero
 		itemValue["improved"] = false
 		itemValue["improvement"] = ""
 		global.allGameItems[itemKey] = itemValue

@@ -15,7 +15,8 @@ func format_time(time):
 		timeFormattedForDisplay = str(round(time)) + "s"
 		
 	return timeFormattedForDisplay
-	
+
+#check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
 	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType != "tradeskill"): 
 		#make sure this item actually exists in the item records

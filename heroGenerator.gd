@@ -36,33 +36,33 @@ func generate(destinationArray, classStr):
 	
 	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
-		newHero.give_item("Novice's Robe") #chest
-		newHero.give_item("Simple Ring")
-		newHero.give_item("Cracked Staff")
-		newHero.give_item("Worn Canvas Sandals") #feet
-		newHero.give_item("Cloth Pants") #legs
+		newHero.give_new_item("Novice's Robe") #chest
+		newHero.give_new_item("Simple Ring")
+		newHero.give_new_item("Cracked Staff")
+		newHero.give_new_item("Worn Canvas Sandals") #feet
+		newHero.give_new_item("Cloth Pants") #legs
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
-		newHero.give_item("Rusty Knife")
-		newHero.give_item("Muddy Boots")
-		newHero.give_item("Blackguard's Chainmail Leggings")
-		newHero.give_item("Blackguard's Chainmail Vest")
+		newHero.give_new_item("Rusty Knife")
+		newHero.give_new_item("Muddy Boots")
+		newHero.give_new_item("Blackguard's Chainmail Leggings")
+		newHero.give_new_item("Blackguard's Chainmail Vest")
 
 	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
-		newHero.give_item("Rusty Broadsword")
-		newHero.give_item("Reinforced Shield")
-		newHero.give_item("Muddy Boots")
-		newHero.give_item("Worn Ringmail Leg Guards")
-		newHero.give_item("Worn Ringmail Vest")
+		newHero.give_new_item("Rusty Broadsword")
+		newHero.give_new_item("Reinforced Shield")
+		newHero.give_new_item("Muddy Boots")
+		newHero.give_new_item("Worn Ringmail Leg Guards")
+		newHero.give_new_item("Worn Ringmail Vest")
 	
 	elif (classStr == "Ranger"):
 		newHero.heroClass = "Ranger"
-		newHero.give_item("Basic Bow")
-		newHero.give_item("Cloth Shirt")
-		newHero.give_item("Muddy Boots")
-		newHero.give_item("Cloth Pants")
+		newHero.give_new_item("Basic Bow")
+		newHero.give_new_item("Cloth Shirt")
+		newHero.give_new_item("Muddy Boots")
+		newHero.give_new_item("Cloth Pants")
 		
 	else:
 		print("ERROR - BAD HERO CLASS TYPE")
@@ -100,16 +100,18 @@ func generate(destinationArray, classStr):
 		newHero.level = randi()%3+1
 		var gearRand1 = randi()%3+1
 		
-		newHero.give_item("Muddy Boots") #everyone should start with shoes of some kind...
+		#todo: may be a bad idea to generate these items with IDs since the user doesn't own them yet
+		#IDs are really just for items the player owns 
+		newHero.give_new_item("Muddy Boots") #everyone should start with shoes of some kind...
 
 		if (gearRand1 == 1):
-			newHero.give_item("Cloth Shirt")
-			newHero.give_item("Worn Canvas Sandals")
+			newHero.give_new_item("Cloth Shirt")
+			newHero.give_new_item("Worn Canvas Sandals")
 		elif (gearRand1 == 2):
-			newHero.give_item("Simple Ring")
+			newHero.give_new_item("Simple Ring")
 		else:
-			newHero.give_item("Cloth Shirt")
-			newHero.give_item("Simple Ring")
+			newHero.give_new_item("Cloth Shirt")
+			newHero.give_new_item("Simple Ring")
 	
 	newHero.update_hero_stats() #calculate hp, mana, etc.
 	destinationArray.append(newHero)

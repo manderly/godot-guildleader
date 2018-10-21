@@ -114,8 +114,10 @@ func _draw_buttons():
 		$button_trash.show()
 	elif (global.currentMenu == "heroPage"):
 		$button_moveItem.text = "Put in vault"
+		$button_moveItem.show()
 	elif (global.currentMenu == "vaultViaHeroPage"):
 		$button_moveItem.text = "Equip"
+		$button_moveItem.show()
 	elif (global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "alchemy" ||
 			global.currentMenu == "fletching" ||
@@ -124,8 +126,10 @@ func _draw_buttons():
 		#if the wildcard slot is empty, then write "choose"
 		if (!global.tradeskills[global.currentMenu].wildcardItem):
 			$button_moveItem.text = "Choose"
+			$button_moveItem.show()
 		else:
 			$button_moveItem.text = "Return to vault"
+			$button_moveItem.show()
 	
 	#don't show move to vault or trash buttons if this hero isn't recruited
 	if (global.selectedHero && !global.selectedHero.recruited):
@@ -196,8 +200,8 @@ func _on_button_moveItem_pressed():
 		#Use case 2: the player is moving this item from the vault to a hero 
 		elif (global.selectedHero["equipment"][itemData.slot] == null):
 			#put it in the hero's equipment slot
-			var vaultItemName = global.guildItems[vaultIndex].name
-			global.selectedHero.give_item(vaultItemName)
+			var vaultItem = global.guildItems[vaultIndex]
+			global.selectedHero.give_existing_item(vaultItem)
 			global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
 			global.selectedHero.update_hero_stats() #recalculate hero stats
 			#go back to hero page

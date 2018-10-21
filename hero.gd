@@ -332,14 +332,20 @@ func update_hero_stats():
 	drama = "Low"
 	mood = "Happy"
 
-func give_item(itemNameStr):
-	#This method replaced this code in main.gd:
-	#newHero.equipment["chest"] = global.allGameItems["Novice's Robe"]
-	#To use: hero.give_item("Item Name Here") where item is a known item in global.allGameItems
-	
-	#gets the item out of allGameItems by name, and puts it in the hero's correct equip. slot
-	equipment[global.allGameItems[itemNameStr].slot] = global.allGameItems[itemNameStr]
+#this method generates a brand new instance of the item, it's an equivalent
+#to the method used in util.gd to give new items to the guild
+func give_new_item(itemNameStr): 
+	#To use: hero.give_item("Item Name Here")
+	#hero.give_item("item name here", false) #for items from the vault 
+	var newItem = global.allGameItems[itemNameStr].duplicate() #make a new instance from the big book of items
+	newItem.itemID = global.nextItemID
+	global.nextItemID += 1
+	equipment[newItem.slot] = newItem #now give it to the matching equipment slot on this hero
 
+func give_existing_item(item): #takes the actual item (use with vault)
+	#hero.give_existing_item(actualItemObject)
+	equipment[item.slot] = item
+	
 #if we release before 300ms is up, it's a short press - just show the hero name and stop their walking
 #if we release after 300ms is up, it's a long press - open the hero page 
 func _open_hero_page():
