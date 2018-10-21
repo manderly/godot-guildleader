@@ -115,9 +115,11 @@ func _draw_buttons():
 	elif (global.currentMenu == "heroPage"):
 		$button_moveItem.text = "Put in vault"
 		$button_moveItem.show()
+		$button_trash.show()
 	elif (global.currentMenu == "vaultViaHeroPage"):
 		$button_moveItem.text = "Equip"
 		$button_moveItem.show()
+		$button_trash.show()
 	elif (global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "alchemy" ||
 			global.currentMenu == "fletching" ||
