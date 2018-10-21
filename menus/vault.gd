@@ -2,12 +2,13 @@ extends Node2D
 
 var buttonArray = []
 
-onready var gridEquipment = $Panel/TabContainer/Equipment
-onready var gridTradeskillItems = $Panel/TabContainer/Resources
+onready var gridEquipment = $VBoxContainer/CenterContainer/TabContainer/Equipment
+onready var gridTradeskillItems = $VBoxContainer/CenterContainer/TabContainer/Resources
+onready var inventoryCapacity = $VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
 
 func _ready():
 	#display inventory size and capacity
-	$field_guildInventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
+	inventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
 	
 	#equipment tab
 	_position_vault_buttons()
