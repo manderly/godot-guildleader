@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiles/alchemy_tiles.png" type="Texture" id=1]
+
+[node name="Node" type="Node" index="0"]
+
+[node name="alchemy" type="Sprite" parent="." index="0"]
+
+position = Vector2( -0.487671, 0 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 14, 32 )
+
+
