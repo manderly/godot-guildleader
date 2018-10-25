@@ -1,6 +1,5 @@
 extends Node2D
 #room.gd - shared by all rooms
-var util = load("res://util.gd").new()
 
 var roomName = "Default Room Name" #filled in by constructor 
 var roomType = "type is a string" #training, bedroom, etc 

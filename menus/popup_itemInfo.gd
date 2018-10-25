@@ -1,6 +1,5 @@
 extends WindowDialog
 #popup_itemInfo.gd
-var util = load("res://util.gd").new()
 
 var itemData = null
 var vaultIndex = -1

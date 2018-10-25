@@ -1,7 +1,6 @@
 extends Node2D
 #crafting.gd
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
-var util = load("res://util.gd").new()
 var hasIngredient1 = false
 var hasIngredient2 = false
 var hasIngredient3 = false

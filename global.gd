@@ -1,7 +1,6 @@
 #global.gd 
 extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
-var util = load("res://util.gd").new()
 
 var softCurrency = 500
 var hardCurrency = 10
