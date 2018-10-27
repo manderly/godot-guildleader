@@ -1,0 +1,405 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/harvestingConfirm.gd" type="Script" id=1]
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
+[ext_resource path="res://sprites/harvestNodes/harvest_copperOre.png" type="Texture" id=4]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 24, 0, 1, 23, 0, 2, 19, 0, 3, 22, 0, 4, 22, 0, 5, 22, 0, 6, 23, 0, 7, 23, 0, 8, 23, 0, 9, 22, 0, 10, 22, 0, 11, 23, 0, 12, 22, 0, 13, 23, 0, 14, 22, 0, 65536, 19, 0, 65537, 18, 0, 65538, 22, 0, 65539, 22, 0, 65540, 22, 0, 65541, 22, 0, 65542, 22, 0, 65543, 22, 0, 65544, 22, 0, 65545, 22, 0, 65546, 22, 0, 65547, 22, 0, 65548, 22, 0, 65549, 22, 0, 65550, 22, 0, 131072, 22, 0, 131073, 23, 0, 131074, 23, 0, 131075, 22, 0, 131076, 22, 0, 131077, 22, 0, 131078, 22, 0, 131079, 22, 0, 131080, 22, 0, 131081, 22, 0, 131082, 22, 0, 131083, 22, 0, 131084, 22, 0, 131085, 22, 0, 131086, 22, 0, 196608, 23, 0, 196609, 22, 0, 196610, 22, 0, 196611, 133, 0, 196612, 133, 0, 196613, 133, 0, 196614, 133, 0, 196615, 133, 0, 196616, 133, 0, 196617, 133, 0, 196618, 133, 0, 196619, 133, 0, 196620, 133, 0, 196621, 22, 0, 196622, 22, 0, 262144, 22, 0, 262145, 23, 0, 262146, 22, 0, 262147, 133, 0, 262148, 133, 0, 262149, 133, 0, 262150, 133, 0, 262151, 133, 0, 262152, 133, 0, 262153, 133, 0, 262154, 133, 0, 262155, 133, 0, 262156, 133, 0, 262157, 22, 0, 262158, 22, 0, 327680, 22, 0, 327681, 22, 0, 327682, 22, 0, 327683, 133, 0, 327684, 133, 0, 327685, 133, 0, 327686, 133, 0, 327687, 133, 0, 327688, 133, 0, 327689, 133, 0, 327690, 133, 0, 327691, 133, 0, 327692, 133, 0, 327693, 22, 0, 327694, 22, 0, 393216, 22, 0, 393217, 22, 0, 393218, 23, 0, 393219, 133, 0, 393220, 133, 0, 393221, 133, 0, 393222, 133, 0, 393223, 133, 0, 393224, 133, 0, 393225, 133, 0, 393226, 133, 0, 393227, 133, 0, 393228, 133, 0, 393229, 22, 0, 393230, 22, 0, 458752, 22, 0, 458753, 22, 0, 458754, 22, 0, 458755, 133, 0, 458756, 133, 0, 458757, 133, 0, 458758, 133, 0, 458759, 133, 0, 458760, 133, 0, 458761, 133, 0, 458762, 133, 0, 458763, 133, 0, 458764, 133, 0, 458765, 23, 0, 458766, 22, 0, 524288, 22, 0, 524289, 22, 0, 524290, 22, 0, 524291, 133, 0, 524292, 133, 0, 524293, 133, 0, 524294, 133, 0, 524295, 133, 0, 524296, 133, 0, 524297, 133, 0, 524298, 133, 0, 524299, 133, 0, 524300, 133, 0, 524301, 22, 0, 524302, 21, 0, 589824, 22, 0, 589825, 22, 0, 589826, 22, 0, 589827, 133, 0, 589828, 133, 0, 589829, 133, 0, 589830, 133, 0, 589831, 133, 0, 589832, 133, 0, 589833, 133, 0, 589834, 133, 0, 589835, 133, 0, 589836, 133, 0, 589837, 22, 0, 589838, 22, 0, 655360, 22, 0, 655361, 23, 0, 655362, 24, 0, 655363, 133, 0, 655364, 133, 0, 655365, 133, 0, 655366, 133, 0, 655367, 133, 0, 655368, 133, 0, 655369, 133, 0, 655370, 133, 0, 655371, 133, 0, 655372, 133, 0, 655373, 19, 0, 655374, 22, 0, 720896, 23, 0, 720897, 22, 0, 720898, 22, 0, 720899, 133, 0, 720900, 133, 0, 720901, 133, 0, 720902, 133, 0, 720903, 133, 0, 720904, 133, 0, 720905, 133, 0, 720906, 133, 0, 720907, 133, 0, 720908, 133, 0, 720909, 22, 0, 720910, 23, 0, 786432, 22, 0, 786433, 22, 0, 786434, 22, 0, 786435, 22, 0, 786436, 22, 0, 786437, 22, 0, 786438, 22, 0, 786439, 22, 0, 786440, 22, 0, 786441, 22, 0, 786442, 22, 0, 786443, 22, 0, 786444, 22, 0, 786445, 22, 0, 786446, 22, 0, 851968, 22, 0, 851969, 22, 0, 851970, 24, 0, 851971, 22, 0, 851972, 22, 0, 851973, 22, 0, 851974, 22, 0, 851975, 22, 0, 851976, 22, 0, 851977, 22, 0, 851978, 24, 0, 851979, 22, 0, 851980, 22, 0, 851981, 24, 0, 851982, 22, 0, 917504, 22, 0, 917505, 22, 0, 917506, 22, 0, 917507, 22, 0, 917508, 22, 0, 917509, 22, 0, 917510, 22, 0, 917511, 22, 0, 917512, 22, 0, 917513, 22, 0, 917514, 22, 0, 917515, 22, 0, 917516, 22, 0, 917517, 22, 0, 917518, 22, 0, 983040, 22, 0, 983041, 22, 0, 983042, 24, 0, 983043, 22, 0, 983044, 22, 0, 983045, 22, 0, 983046, 22, 0, 983047, 24, 0, 983048, 22, 0, 983049, 22, 0, 983050, 22, 0, 983051, 22, 0, 983052, 22, 0, 983053, 22, 0, 983054, 22, 0, 1048576, 22, 0, 1048577, 22, 0, 1048578, 22, 0, 1048579, 22, 0, 1048580, 22, 0, 1048581, 22, 0, 1048582, 22, 0, 1048583, 22, 0, 1048584, 22, 0, 1048585, 22, 0, 1048586, 24, 0, 1048587, 22, 0, 1048588, 22, 0, 1048589, 22, 0, 1048590, 22, 0, 1114112, 22, 0, 1114113, 22, 0, 1114114, 22, 0, 1114115, 22, 0, 1114116, 24, 0, 1114117, 22, 0, 1114118, 22, 0, 1114119, 22, 0, 1114120, 22, 0, 1114121, 22, 0, 1114122, 22, 0, 1114123, 22, 0, 1114124, 22, 0, 1114125, 22, 0, 1114126, 22, 0, 1179648, 22, 0, 1179649, 22, 0, 1179650, 22, 0, 1179651, 22, 0, 1179652, 24, 0, 1179653, 22, 0, 1179654, 22, 0, 1179655, 23, 0, 1179656, 24, 0, 1179657, 22, 0, 1179658, 22, 0, 1179659, 24, 0, 1179660, 24, 0, 1179661, 22, 0, 1179662, 22, 0, 1245184, 24, 0, 1245185, 22, 0, 1245186, 22, 0, 1245187, 22, 0, 1245188, 22, 0, 1245189, 22, 0, 1245190, 22, 0, 1245191, 22, 0, 1245192, 22, 0, 1245193, 22, 0, 1245194, 22, 0, 1245195, 22, 0, 1245196, 22, 0, 1245197, 22, 0, 1245198, 22, 0, 1310720, 22, 0, 1310721, 22, 0, 1310722, 22, 0, 1310723, 24, 0, 1310724, 22, 0, 1310725, 22, 0, 1310726, 22, 0, 1310727, 22, 0, 1310728, 22, 0, 1310729, 23, 0, 1310730, 22, 0, 1310731, 22, 0, 1310732, 22, 0, 1310733, 22, 0, 1310734, 22, 0, 1376256, 22, 0, 1376257, 22, 0, 1376258, 22, 0, 1376259, 22, 0, 1376260, 22, 0, 1376261, 22, 0, 1376262, 22, 0, 1376263, 22, 0, 1376264, 22, 0, 1376265, 22, 0, 1376266, 22, 0, 1376267, 24, 0, 1376268, 23, 0, 1376269, 24, 0, 1376270, 22, 0, 1441792, 22, 0, 1441793, 22, 0, 1441794, 22, 0, 1441795, 22, 0, 1441796, 22, 0, 1441797, 22, 0, 1441798, 22, 0, 1441799, 22, 0, 1441800, 22, 0, 1441801, 22, 0, 1441802, 22, 0, 1441803, 22, 0, 1441804, 22, 0, 1441805, 22, 0, 1441806, 22, 0, 1507328, 22, 0, 1507329, 22, 0, 1507330, 22, 0, 1507331, 22, 0, 1507332, 22, 0, 1507333, 22, 0, 1507334, 22, 0, 1507335, 22, 0, 1507336, 22, 0, 1507337, 22, 0, 1507338, 22, 0, 1507339, 22, 0, 1507340, 22, 0, 1507341, 22, 0, 1507342, 22, 0, 1572864, 22, 0, 1572865, 22, 0, 1572866, 22, 0, 1572867, 22, 0, 1572868, 22, 0, 1572869, 22, 0, 1572870, 22, 0, 1572871, 22, 0, 1572872, 22, 0, 1572873, 22, 0, 1572874, 22, 0, 1572875, 22, 0, 1572876, 22, 0, 1572877, 22, 0, 1572878, 22, 0, 1638400, 22, 0, 1638401, 22, 0, 1638402, 23, 0, 1638403, 22, 0, 1638404, 22, 0, 1638405, 22, 0, 1638406, 22, 0, 1638407, 22, 0, 1638408, 22, 0, 1638409, 22, 0, 1638410, 22, 0, 1638411, 22, 0, 1638412, 22, 0, 1638413, 22, 0, 1638414, 22, 0, 1703936, 22, 0, 1703937, 22, 0, 1703938, 22, 0, 1703939, 22, 0, 1703940, 22, 0, 1703941, 22, 0, 1703942, 22, 0, 1703943, 22, 0, 1703944, 22, 0, 1703945, 22, 0, 1703946, 22, 0, 1703947, 22, 0, 1703948, 22, 0, 1703949, 23, 0, 1703950, 22, 0, 1769472, 22, 0, 1769473, 22, 0, 1769474, 22, 0, 1769475, 22, 0, 1769476, 23, 0, 1769477, 22, 0, 1769478, 22, 0, 1769479, 22, 0, 1769480, 24, 0, 1769481, 22, 0, 1769482, 22, 0, 1769483, 22, 0, 1769484, 22, 0, 1769485, 22, 0, 1769486, 22, 0, 1835008, 22, 0, 1835009, 22, 0, 1835010, 22, 0, 1835011, 22, 0, 1835012, 22, 0, 1835013, 22, 0, 1835014, 22, 0, 1835015, 22, 0, 1835016, 24, 0, 1835017, 22, 0, 1835018, 24, 0, 1835019, 22, 0, 1835020, 22, 0, 1835021, 24, 0, 1835022, 22, 0, 1900544, 22, 0, 1900545, 22, 0, 1900546, 22, 0, 1900547, 22, 0, 1900548, 22, 0, 1900549, 22, 0, 1900550, 22, 0, 1900551, 22, 0, 1900552, 22, 0, 1900553, 22, 0, 1900554, 24, 0, 1900555, 22, 0, 1900556, 22, 0, 1900557, 22, 0, 1900558, 22, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 10.0
+margin_right = 480.0
+margin_bottom = 436.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 3 )
+_sections_unfolded = [ "Margin", "Rect", "Theme" ]
+
+[node name="centerContainer" type="CenterContainer" parent="MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_right = 480.0
+margin_bottom = 426.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 162.0
+margin_top = 93.0
+margin_right = 309.0
+margin_bottom = 333.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="field_nodeName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 147.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#NODE NAME"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer" index="1"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 147.0
+margin_bottom = 82.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="1"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 68.0
+margin_right = 147.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="field_duration" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 79.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#DURATION"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_yield" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 79.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#YIELD"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_skill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 79.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#SKILL"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="button_pickHero" type="Button" parent="MarginContainer/centerContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 86.0
+margin_right = 147.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "PICK HERO"
+flat = false
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer" index="3"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 128.0
+margin_right = 147.0
+margin_bottom = 160.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="field_heroName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 147.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#HERO NAME"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_heroSkill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 147.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#HERO SKILL"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="button_begin" type="Button" parent="MarginContainer/centerContainer/VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 164.0
+margin_right = 147.0
+margin_bottom = 202.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "BEGIN"
+flat = false
+align = 1
+
+[node name="field_timeRemaining" type="Label" parent="MarginContainer/centerContainer/VBoxContainer" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 206.0
+margin_right = 147.0
+margin_bottom = 220.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#TIME REMAINING"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/centerContainer/VBoxContainer" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 224.0
+margin_right = 147.0
+margin_bottom = 240.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+
+[node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
+
+[node name="quest_finish_now_dialog" type="ConfirmationDialog" parent="." index="3"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 80.0
+margin_top = 550.0
+margin_right = 420.0
+margin_bottom = 730.0
+rect_min_size = Vector2( 200, 70 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Finish quest now"
+resizable = false
+dialog_text = "Finish quest now for 1 diamond?"
+dialog_hide_on_ok = true
+_sections_unfolded = [ "Dialog" ]
+
+[connection signal="pressed" from="MarginContainer/centerContainer/VBoxContainer/button_pickHero" to="." method="_on_button_pickHero_pressed"]
+
+[connection signal="pressed" from="MarginContainer/centerContainer/VBoxContainer/button_begin" to="." method="_on_button_beginHarvesting_pressed"]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
+
+[connection signal="confirmed" from="quest_finish_now_dialog" to="." method="_on_quest_finish_now_dialog_confirmed"]
+
+

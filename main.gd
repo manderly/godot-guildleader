@@ -46,9 +46,6 @@ func _ready():
 	
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
-	$questMarker1._set_data("guild02")
-	$questMarker2._set_data("guild04")
-	
 	draw_heroes()
 	draw_rooms()
 	

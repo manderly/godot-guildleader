@@ -180,7 +180,7 @@ func update_hero_stats():
 	modifiedMana = 0
 	modifiedArmor = 0
 	modifiedDps = 0
-	modifiedStamina = 0
+	modifiedStrength = 0
 	modifiedDefense = 0
 	modifiedIntelligence = 0
 	modifiedSkillAlchemy = 0
@@ -188,6 +188,7 @@ func update_hero_stats():
 	modifiedSkillFletching = 0
 	modifiedSkillJewelcraft = 0
 	modifiedSkillTailoring = 0
+	modifiedSkillHarvesting = 0
 	modifiedPrestige = 0
 	
 	#add up all the stats from armor 
@@ -200,7 +201,7 @@ func update_hero_stats():
 			modifiedMana += equip.manaRaw
 			modifiedArmor += equip.armor
 			modifiedDps += equip.dps
-			modifiedStamina += equip.stamina
+			modifiedStrength += equip.strength
 			modifiedDefense += equip.defense
 			modifiedIntelligence += equip.intelligence
 			modifiedPrestige += equip.prestige
@@ -216,7 +217,7 @@ func update_hero_stats():
 	#global.logger(self, "new hp total: " + str(hp))
 	armor = baseArmor + modifiedArmor
 	dps = baseDps + modifiedDps
-	stamina = baseStamina + modifiedStamina
+	strength = baseStrength + modifiedStrength
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
@@ -224,6 +225,7 @@ func update_hero_stats():
 	skillFletching = baseSkillFletching + modifiedSkillFletching
 	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
 	skillTailoring = baseSkillTailoring + modifiedSkillTailoring
+	skillHarvesting = baseSkillHarvesting + modifiedSkillHarvesting
 	prestige = basePrestige + modifiedPrestige
 	drama = "Low"
 	mood = "Happy"

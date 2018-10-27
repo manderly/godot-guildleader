@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://sprites/icons/quest_marker.png" type="Texture" id=1]
-[ext_resource path="res://menus/maps/questMarkerButton.gd" type="Script" id=2]
+[ext_resource path="res://menus/maps/campNode.gd" type="Script" id=2]
 
-[node name="questMarkerButton" type="TextureButton"]
+[node name="campNodeButton" type="TextureButton"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -26,7 +26,7 @@ texture_normal = ExtResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Material", "Textures" ]
 
-[node name="label_questName" type="Label" parent="." index="0"]
+[node name="field_campName" type="Label" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -42,12 +42,12 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "#QUEST NAME"
+text = "#CAMP NAME"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="pressed" from="." to="." method="_on_questMarkerButton_pressed"]
+[connection signal="pressed" from="." to="." method="_on_campNodeButton_pressed"]
 
 

@@ -1,0 +1,74 @@
+[
+  {
+    "lootTableName": "ratLoot01",
+    "item1": "Rat Ear",
+    "item1Chance": 20,
+    "item2": "Novice's Blade",
+    "item2Chance": 1,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "ratLootBoss",
+    "item1": "Rat Ear",
+    "item1Chance": 20,
+    "item2": "Simple Ring",
+    "item2Chance": 5,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "spiderLoot01",
+    "item1": "Spider Web",
+    "item1Chance": 10,
+    "item2": "Novice's Blade",
+    "item2Chance": 1,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "spiderLootBoss",
+    "item1": "Spider Web",
+    "item1Chance": 10,
+    "item2": "Ruby Teardrop Necklace",
+    "item2Chance": 5,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "testUber",
+    "item1": "Tzip's Crooked Dagger",
+    "item1Chance": 35,
+    "item2": "Crimson Staff",
+    "item2Chance": 20,
+    "scMin": 50,
+    "scMax": 200
+  },
+  {
+    "lootTableName": "wolfLoot01",
+    "item1": "Small Hide",
+    "item1Chance": 10,
+    "item2": "null",
+    "item2Chance": 0,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "goblinLoot01",
+    "item1": "Soft Silk Slippers",
+    "item1Chance": 10,
+    "item2": "Novice's Blade",
+    "item2Chance": 10,
+    "scMin": 5,
+    "scMax": 100
+  },
+  {
+    "lootTableName": "gobinLootBoss",
+    "item1": "Fine Steel Sword",
+    "item1Chance": 10,
+    "item2": "Heavy Painted Shield",
+    "item2Chance": 10,
+    "scMin": 50,
+    "scMax": 200
+  }
+]

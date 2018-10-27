@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -20,7 +20,6 @@
 [ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=18]
 [ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=19]
 [ext_resource path="res://gui/chiselbutton.png" type="Texture" id=20]
-[ext_resource path="res://menus/maps/questMarkerButton.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -42,7 +41,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Content Margin", "Margin" ]
 
-[node name="main" type="Node" index="0"]
+[node name="main" type="Node"]
 
 script = ExtResource( 1 )
 __meta__ = {
@@ -52,7 +51,6 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="." index="0"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -62,7 +60,6 @@ script = ExtResource( 2 )
 
 [node name="hbox_bottomBar" type="HBoxContainer" parent="HUD" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -136,7 +133,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Quests"
+text = "Map"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -196,7 +193,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "X"
+text = "Quests"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -933,20 +930,6 @@ _sections_unfolded = [ "Material", "Mouse", "Visibility", "custom_fonts", "custo
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="questMarker1" parent="." index="2" instance=ExtResource( 21 )]
-
-margin_left = 92.0
-margin_top = -3.0
-margin_right = 156.0
-margin_bottom = 61.0
-
-[node name="questMarker2" parent="." index="3" instance=ExtResource( 21 )]
-
-margin_left = 360.0
-margin_top = 990.0
-margin_right = 424.0
-margin_bottom = 1054.0
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button QUESTS/Quests" to="." method="_on_Quests_pressed"]
 

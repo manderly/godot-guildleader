@@ -1,0 +1,35 @@
+[
+  {
+    "harvestingId": "harvesting_forest_tannin",
+    "name": "Tree Tannin",
+    "minSkill": 0,
+    "repeatable": true,
+    "timeToHarvest": 3600,
+    "prizeItem1": "Tree Tannin",
+    "minQuantity": 1,
+    "maxQuantity": 3,
+    "icon": "harvest_treeTannin.png"
+  },
+  {
+    "harvestingId": "harvesting_forest_roughStone",
+    "name": "Rough Stone",
+    "minSkill": 0,
+    "repeatable": true,
+    "timeToHarvest": 600,
+    "prizeItem1": "Rough Stone",
+    "minQuantity": 1,
+    "maxQuantity": 3,
+    "icon": "harvest_roughStone.png"
+  },
+  {
+    "harvestingId": "harvesting_forest_copperOre",
+    "name": "Copper Ore",
+    "minSkill": 0,
+    "repeatable": true,
+    "timeToHarvest": 7200,
+    "prizeItem1": "Copper Ore",
+    "minQuantity": 1,
+    "maxQuantity": 3,
+    "icon": "harvest_copperOre.png"
+  }
+]

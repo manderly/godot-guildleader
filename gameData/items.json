@@ -1,5 +1,28 @@
 [
   {
+    "name": "null",
+    "icon": "",
+    "bodySprite": "",
+    "itemType": "",
+    "consumable": "",
+    "prestige": "",
+    "slot": "",
+    "rarity": "",
+    "classRestriction1": "",
+    "classRestriction2": "",
+    "classRestriction3": "",
+    "classRestriction4": "",
+    "classRestriction5": "",
+    "hpRaw": "",
+    "manaRaw": "",
+    "dps": "",
+    "armor": "",
+    "strength": "",
+    "defense": "",
+    "intelligence": "",
+    "noDrop": ""
+  },
+  {
     "name": "Novice's Blade",
     "icon": "sword1.png",
     "bodySprite": "sword1.png",
@@ -17,11 +40,9 @@
     "manaRaw": 0,
     "dps": 2,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -42,11 +63,9 @@
     "manaRaw": 0,
     "dps": 3,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -67,11 +86,9 @@
     "manaRaw": 0,
     "dps": 4,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -92,11 +109,9 @@
     "manaRaw": 0,
     "dps": 5,
     "armor": 0,
-    "stamina": 1,
+    "strength": 1,
     "defense": 1,
     "intelligence": 0,
-    "strength": 1,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -117,11 +132,9 @@
     "manaRaw": 0,
     "dps": 8,
     "armor": 0,
-    "stamina": 1,
+    "strength": 1,
     "defense": 0,
     "intelligence": 0,
-    "strength": 1,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -142,11 +155,9 @@
     "manaRaw": 0,
     "dps": 9,
     "armor": 0,
-    "stamina": 3,
+    "strength": 3,
     "defense": 3,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -167,11 +178,9 @@
     "manaRaw": 0,
     "dps": 2,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -192,11 +201,9 @@
     "manaRaw": 0,
     "dps": 4,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -217,11 +224,9 @@
     "manaRaw": 0,
     "dps": 8,
     "armor": 0,
-    "stamina": 2,
+    "strength": 2,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -242,11 +247,9 @@
     "manaRaw": 0,
     "dps": 15,
     "armor": 0,
-    "stamina": 3,
+    "strength": 3,
     "defense": 3,
     "intelligence": 0,
-    "strength": 5,
-    "accuracy": 3,
     "noDrop": true
   },
   {
@@ -267,11 +270,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 10,
-    "stamina": 0,
+    "strength": 0,
     "defense": 1,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -292,11 +293,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 18,
-    "stamina": 1,
+    "strength": 1,
     "defense": 2,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -317,11 +316,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 26,
-    "stamina": 4,
+    "strength": 4,
     "defense": 8,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -342,11 +339,9 @@
     "manaRaw": 2,
     "dps": 1,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -367,11 +362,9 @@
     "manaRaw": 5,
     "dps": 2,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 1,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -392,11 +385,9 @@
     "manaRaw": 10,
     "dps": 5,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 5,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -417,11 +408,9 @@
     "manaRaw": 25,
     "dps": 15,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 12,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -442,11 +431,9 @@
     "manaRaw": 75,
     "dps": 25,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 15,
     "intelligence": 15,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -467,11 +454,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 4,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -492,11 +477,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 4,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -517,11 +500,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -542,11 +523,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -567,11 +546,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -592,11 +569,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -617,11 +592,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -642,11 +615,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 5,
-    "stamina": 1,
+    "strength": 1,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -667,11 +638,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 5,
-    "stamina": 1,
+    "strength": 1,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -692,11 +661,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 4,
-    "stamina": 0,
+    "strength": 0,
     "defense": 1,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -717,11 +684,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 1,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -733,7 +698,7 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -742,11 +707,9 @@
     "manaRaw": 2,
     "dps": 0,
     "armor": 1,
-    "stamina": 2,
+    "strength": 2,
     "defense": 2,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -758,7 +721,7 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -767,11 +730,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 1,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -783,7 +744,7 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -792,11 +753,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -808,7 +767,7 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -817,11 +776,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 1,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -833,7 +790,7 @@
     "prestige": 0,
     "slot": "jewelry",
     "rarity": "uncommon",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -842,11 +799,9 @@
     "manaRaw": 2,
     "dps": 0,
     "armor": 1,
-    "stamina": 2,
+    "strength": 2,
     "defense": 2,
     "intelligence": 2,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -867,11 +822,9 @@
     "manaRaw": 15,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 4,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -892,11 +845,9 @@
     "manaRaw": 0,
     "dps": 3,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -908,7 +859,7 @@
     "prestige": 0,
     "slot": "chest",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -917,11 +868,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -933,7 +882,7 @@
     "prestige": 0,
     "slot": "legs",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -942,11 +891,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -958,7 +905,7 @@
     "prestige": 0,
     "slot": "head",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -967,11 +914,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -983,7 +928,7 @@
     "prestige": 0,
     "slot": "feet",
     "rarity": "common",
-    "classRestriction1": "ANY",
+    "classRestriction1": "any",
     "classRestriction2": "",
     "classRestriction3": "",
     "classRestriction4": "",
@@ -992,11 +937,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1017,11 +960,9 @@
     "manaRaw": 1,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1042,11 +983,9 @@
     "manaRaw": 5,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 3,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1067,11 +1006,9 @@
     "manaRaw": 10,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 15,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1092,11 +1029,9 @@
     "manaRaw": 5,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1117,11 +1052,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 5,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1142,11 +1075,9 @@
     "manaRaw": 5,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 2,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1167,11 +1098,9 @@
     "manaRaw": 50,
     "dps": 0,
     "armor": 10,
-    "stamina": 2,
+    "strength": 2,
     "defense": 0,
     "intelligence": 10,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -1192,11 +1121,9 @@
     "manaRaw": 100,
     "dps": 0,
     "armor": 20,
-    "stamina": 3,
+    "strength": 3,
     "defense": 5,
     "intelligence": 16,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -1217,11 +1144,9 @@
     "manaRaw": 140,
     "dps": 0,
     "armor": 20,
-    "stamina": 3,
+    "strength": 3,
     "defense": 8,
     "intelligence": 20,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -1242,11 +1167,9 @@
     "manaRaw": 150,
     "dps": 0,
     "armor": 25,
-    "stamina": 5,
+    "strength": 5,
     "defense": 15,
     "intelligence": 30,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -1267,11 +1190,9 @@
     "manaRaw": 100,
     "dps": 0,
     "armor": 25,
-    "stamina": 5,
+    "strength": 5,
     "defense": 15,
     "intelligence": 25,
-    "strength": 0,
-    "accuracy": 5,
     "noDrop": true
   },
   {
@@ -1292,11 +1213,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1317,11 +1236,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1342,11 +1259,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 4,
-    "stamina": 1,
+    "strength": 1,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1367,11 +1282,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 3,
-    "stamina": 1,
+    "strength": 1,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1392,11 +1305,9 @@
     "manaRaw": 10,
     "dps": 0,
     "armor": 8,
-    "stamina": 2,
+    "strength": 2,
     "defense": 2,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": true
   },
   {
@@ -1417,11 +1328,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 2,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1442,11 +1351,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 5,
-    "stamina": 1,
+    "strength": 1,
     "defense": 1,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1467,11 +1374,9 @@
     "manaRaw": 5,
     "dps": 0,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 2,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1492,11 +1397,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1517,11 +1420,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1542,11 +1443,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1567,11 +1466,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1592,11 +1489,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1617,11 +1512,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1642,11 +1535,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1667,11 +1558,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1692,11 +1581,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1717,11 +1604,9 @@
     "manaRaw": 5,
     "dps": 0,
     "armor": 6,
-    "stamina": 1,
+    "strength": 1,
     "defense": 1,
     "intelligence": 0,
-    "strength": 1,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1742,11 +1627,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 5,
-    "stamina": 1,
+    "strength": 1,
     "defense": 1,
     "intelligence": 0,
-    "strength": 1,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1767,11 +1650,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1792,11 +1673,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 2,
+    "strength": 2,
     "defense": 2,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1817,11 +1696,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1842,11 +1719,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1867,11 +1742,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1892,11 +1765,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1917,11 +1788,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1942,11 +1811,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1967,11 +1834,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -1992,11 +1857,9 @@
     "manaRaw": 0,
     "dps": 1,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2017,11 +1880,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2042,11 +1903,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2067,11 +1926,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2092,11 +1949,9 @@
     "manaRaw": 0,
     "dps": 5,
     "armor": 1,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2117,11 +1972,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2142,11 +1995,9 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
-    "strength": 0,
-    "accuracy": 0,
     "noDrop": false
   },
   {
@@ -2167,11 +2018,78 @@
     "manaRaw": 0,
     "dps": 0,
     "armor": 0,
-    "stamina": 0,
+    "strength": 0,
     "defense": 0,
     "intelligence": 0,
+    "noDrop": false
+  },
+  {
+    "name": "Rat Ear",
+    "icon": "leatherStrip.png",
+    "bodySprite": "novis",
+    "itemType": "quest",
+    "consumable": false,
+    "prestige": 0,
+    "slot": "quest",
+    "rarity": "common",
+    "classRestriction1": "any",
+    "classRestriction2": "",
+    "classRestriction3": "",
+    "classRestriction4": "",
+    "classRestriction5": "",
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
     "strength": 0,
-    "accuracy": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "noDrop": false
+  },
+  {
+    "name": "Spider Web",
+    "icon": "leatherStrip.png",
+    "bodySprite": "novis",
+    "itemType": "quest",
+    "consumable": false,
+    "prestige": 0,
+    "slot": "quest",
+    "rarity": "common",
+    "classRestriction1": "any",
+    "classRestriction2": "",
+    "classRestriction3": "",
+    "classRestriction4": "",
+    "classRestriction5": "",
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "strength": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "noDrop": false
+  },
+  {
+    "name": "Rat King Head",
+    "icon": "leatherStrip.png",
+    "bodySprite": "novis",
+    "itemType": "quest",
+    "consumable": false,
+    "prestige": 0,
+    "slot": "quest",
+    "rarity": "common",
+    "classRestriction1": "any",
+    "classRestriction2": "",
+    "classRestriction3": "",
+    "classRestriction4": "",
+    "classRestriction5": "",
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "strength": 0,
+    "defense": 0,
+    "intelligence": 0,
     "noDrop": false
   }
 ]

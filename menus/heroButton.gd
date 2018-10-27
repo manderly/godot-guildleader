@@ -89,5 +89,19 @@ func _on_Button_pressed():
 			get_tree().change_scene("res://main.tscn")
 		else:
 			print("hero is busy")
+	elif (global.currentMenu == "harvesting"):
+		var currentHarvestNode = global.harvestingData[global.selectedHarvestingID]
+		#first, free up whoever is already in that spot (if anyone) 
+		if (currentHarvestNode.hero):
+			currentHarvestNode.hero.atHome = true
+			currentHarvestNode.hero.staffedTo = ""
+		#next, confirm this specific hero is available
+		if (heroData.atHome == true && heroData.staffedTo == ""): 
+			currentHarvestNode.hero = heroData
+			currentHarvestNode.hero.staffedTo = "harvesting"
+			global.currentMenu = "forest"
+		else:
+			print("can't pick this hero")
+		get_tree().change_scene("res://menus/harvestingConfirm.tscn")
 	else:
 		print("heroButton.gd - weird state")

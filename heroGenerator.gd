@@ -72,7 +72,7 @@ func generate(destinationArray, classStr):
 	newHero.baseMana = global.heroStartingStatData[newHero.heroClass]["mana"]
 	newHero.baseDps = global.heroStartingStatData[newHero.heroClass]["dps"]
 	newHero.baseArmor = 0
-	newHero.baseStamina = global.heroStartingStatData[newHero.heroClass]["stamina"]
+	newHero.baseStrength = global.heroStartingStatData[newHero.heroClass]["strength"]
 	newHero.baseDefense = global.heroStartingStatData[newHero.heroClass]["defense"]
 	newHero.baseIntelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
 	newHero.baseSkillAlchemy = 0
@@ -80,6 +80,7 @@ func generate(destinationArray, classStr):
 	newHero.baseSkillFletching = 0
 	newHero.baseSkillJewelcraft = 0
 	newHero.baseSkillTailoring = 0
+	newHero.baseSkillHarvesting = 0
 	newHero.baseDrama = global.heroStartingStatData[newHero.heroClass]["drama"]
 	newHero.baseMood = global.heroStartingStatData[newHero.heroClass]["mood"]
 	newHero.basePrestige = global.heroStartingStatData[newHero.heroClass]["prestige"]

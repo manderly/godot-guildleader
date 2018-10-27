@@ -9,7 +9,7 @@ var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayMana = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayArmor = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayDPS = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-var displaySTA = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySTR = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
@@ -19,6 +19,7 @@ var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.ts
 var displaySkillFletching = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillJewelcraft = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillTailoring = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillHarvesting = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
 #Attributes
 var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -82,7 +83,7 @@ func _ready():
 	$vbox_stats1.add_child(displayMana)
 	$vbox_stats1.add_child(displayArmor)
 	$vbox_stats1.add_child(displayDPS)
-	$vbox_stats1.add_child(displaySTA)
+	$vbox_stats1.add_child(displaySTR)
 	$vbox_stats1.add_child(displayDEF)
 	$vbox_stats1.add_child(displayINT)
 	$vbox_stats1.add_child(skillsLabel)
@@ -91,6 +92,7 @@ func _ready():
 	$vbox_stats1.add_child(displaySkillFletching)
 	$vbox_stats1.add_child(displaySkillJewelcraft)
 	$vbox_stats1.add_child(displaySkillTailoring)
+	$vbox_stats1.add_child(displaySkillHarvesting)
 
 	#RIGHT SIDE
 	$vbox_stats2.add_child(attributesLabel)
@@ -121,7 +123,7 @@ func _update_stats():
 	#stats
 	displayArmor._update_fields("Armor", global.selectedHero.armor)
 	displayDPS._update_fields("DPS", global.selectedHero.dps)
-	displaySTA._update_fields("STA", global.selectedHero.stamina)
+	displaySTR._update_fields("STR", global.selectedHero.strength)
 	displayDEF._update_fields("DEF", global.selectedHero.defense)
 	displayINT._update_fields("INT", global.selectedHero.intelligence)
 	
@@ -131,6 +133,7 @@ func _update_stats():
 	displaySkillFletching._update_fields("Fletching", global.selectedHero.skillFletching)
 	displaySkillJewelcraft._update_fields("Jewelcraft", global.selectedHero.skillJewelcraft)
 	displaySkillTailoring._update_fields("Tailoring", global.selectedHero.skillTailoring)
+	displaySkillHarvesting._update_fields("Harvesting", global.selectedHero.skillHarvesting)
 	
 	#attributes
 	displayDrama._update_fields("Drama", global.selectedHero.drama)

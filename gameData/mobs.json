@@ -1,0 +1,112 @@
+[
+  {
+    "mobName": "null",
+    "lootTable": "",
+    "level": "",
+    "hp": "",
+    "mana": "",
+    "dps": "",
+    "strength": "",
+    "defense": ""
+  },
+  {
+    "mobName": "Small Rat",
+    "lootTable": "ratLoot01",
+    "level": 1,
+    "hp": 30,
+    "mana": 0,
+    "dps": 3,
+    "strength": 3,
+    "defense": 2
+  },
+  {
+    "mobName": "Large Rat",
+    "lootTable": "ratLoot01",
+    "level": 2,
+    "hp": 40,
+    "mana": 0,
+    "dps": 4,
+    "strength": 4,
+    "defense": 2
+  },
+  {
+    "mobName": "Infected Rat",
+    "lootTable": "ratLootBoss",
+    "level": 3,
+    "hp": 60,
+    "mana": 0,
+    "dps": 5,
+    "strength": 5,
+    "defense": 4
+  },
+  {
+    "mobName": "Small Spider",
+    "lootTable": "spiderLoot01",
+    "level": 1,
+    "hp": 30,
+    "mana": 0,
+    "dps": 3,
+    "strength": 6,
+    "defense": 1
+  },
+  {
+    "mobName": "Big Spider",
+    "lootTable": "spiderLoot01",
+    "level": 1,
+    "hp": 50,
+    "mana": 0,
+    "dps": 4,
+    "strength": 7,
+    "defense": 1
+  },
+  {
+    "mobName": "Spider King",
+    "lootTable": "spiderLootBoss",
+    "level": 2,
+    "hp": 90,
+    "mana": 0,
+    "dps": 5,
+    "strength": 8,
+    "defense": 2
+  },
+  {
+    "mobName": "Aggressive Wolf",
+    "lootTable": "wolfLoot01",
+    "level": 2,
+    "hp": 120,
+    "mana": 0,
+    "dps": 3,
+    "strength": 8,
+    "defense": 2
+  },
+  {
+    "mobName": "Goblin Bandit",
+    "lootTable": "goblinLoot01",
+    "level": 2,
+    "hp": 120,
+    "mana": 0,
+    "dps": 4,
+    "strength": 5,
+    "defense": 4
+  },
+  {
+    "mobName": "Goblin Rogue",
+    "lootTable": "goblinLoot01",
+    "level": 3,
+    "hp": 140,
+    "mana": 0,
+    "dps": 5,
+    "strength": 5,
+    "defense": 5
+  },
+  {
+    "mobName": "Ragron, the Goblin Outlaw",
+    "lootTable": "gobinLootBoss",
+    "level": 4,
+    "hp": 250,
+    "mana": 0,
+    "dps": 8,
+    "strength": 6,
+    "defense": 8
+  }
+]

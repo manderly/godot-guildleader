@@ -1,7 +1,6 @@
 extends Node2D
 #questConfirm.gd
-#the screen with the quest details, loot, and the heroes the player has assigned to it 
-var util = load("res://util.gd").new()
+#the screen with the quest details, loot, and the hero the player has assigned to it 
 
 onready var field_duration = $field_duration
 onready var field_questName = $MarginContainer/centerContainer/vbox/centerTitleBanner/field_questName
@@ -134,3 +133,4 @@ func _on_quest_finish_now_dialog_confirmed():
 	else:
 		#todo: need a global insufficient funds popup
 		print("insufficient funds")
+

@@ -16,19 +16,33 @@ var guildCapacity = 4 #each bedroom adds +2 capacity
 
 var unrecruited = []
 
+#Quests
 var unformattedQuestData = null
 var questData = {}
 
 #active quest
 var questButtonID = null
 var selectedQuestID = null #used by quest confirm to pass data to correct quest sub-object in questData object
-var initDone = false
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
+
+#Harvesting (resource nodes placed on maps)
+var unformattedHarvestingData = null
+var harvestingData = {}
+var selectedHarvestingID = null
+
+#Camps
+var unformattedCampData = null
+var campData = {}
+var selectedCampID = null #used by quest confirm to pass data to correct quest sub-object in questData object
+
+var currentCamp = null
 
 var roomTypeData = null
 var itemData = null
 var nextItemID = 100
+
+var initDone = false
 
 #rooms
 onready var rooms = []
@@ -167,6 +181,7 @@ func _ready():
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 	
+	#Todo: Quests are getting refactored, but keep this for mining / harvesting jobs 
 	#Load quest data
 	var questFile = File.new()
 	questFile.open("res://gameData/quests.json", questFile.READ)
@@ -192,9 +207,45 @@ func _ready():
 		}
 		#loot won is filled in when the quest is completed and held in the object until collected, then it is nulled out for re-use
 		global.questData[questKey] = questValue
-		
-	#todo: refactor into a concurrent quest system so many quests can run simultaneously provided the player has enough heroes 
-	#to set a quest: global.currentQuest = global.questData["forest01"]
+	
+	#Load harvesting data (structurally similar to how Quests used to work)
+	var harvestingFile = File.new()
+	harvestingFile.open("res://gameData/harvesting.json", harvestingFile.READ)
+	var unformattedHarvestingData = parse_json(harvestingFile.get_as_text())
+	harvestingFile.close()
+	
+	#so we can access harvesting by ID 
+	var harvestingKey = null #a string, ie: "harvesting_copperOre"
+	var harvestingValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
+	for data in unformattedHarvestingData:
+		harvestingKey = data["harvestingId"]
+		harvestingValue = data
+		harvestingValue.hero = null
+		harvestingValue.timer = null
+		harvestingValue.inProgress = false
+		harvestingValue.readyToCollect = false
+		harvestingValue.timesRun = 0
+		harvestingValue.lootWon = {
+			"prizeItem1":null,
+			"prizeQuantity":0
+		}
+		global.harvestingData[harvestingKey] = harvestingValue
+	
+	#Load camp data
+	var campFile = File.new()
+	campFile.open("res://gameData/camps.json", campFile.READ)
+	var unformattedCampData = parse_json(campFile.get_as_text())
+	campFile.close()
+	
+	#now reformat so we can access camps by ID
+	var campKey = null
+	var campValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
+	for data in unformattedCampData:
+		campKey = data["campId"]
+		campValue = data
+		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
+		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
+		global.campData[campKey] = campValue
 	
 	#Load room type data and save it to a global var
 	var roomTypeFile = File.new()
@@ -358,7 +409,32 @@ func _begin_global_quest_timer(duration, questID):
 		add_child(quest.timer)
 	else:
 		print("error: quest already running")
-	
+		
+func _begin_harvesting_timer(duration, harvestNodeID):
+	#starting quest timer 
+	var harvestNode = global.harvestingData[harvestNodeID]
+	if (!harvestNode.inProgress):
+		harvestNode.inProgress = true
+		harvestNode.readyToCollect = false
+		harvestNode.timer = Timer.new()
+		harvestNode.timer.set_one_shot(true)
+		harvestNode.timer.set_wait_time(duration)
+		harvestNode.timer.connect("timeout", self, "_on_harvestingTimer_timeout", [harvestNodeID])
+		harvestNode.timer.start()
+		add_child(harvestNode.timer)
+	else:
+		print("error: harvestNode already running")
+		
+func _on_harvestingTimer_timeout(harvestNodeID):
+	#this is where the harvest's random prizes are determined 
+	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
+	var harvestNode = global.harvestingData[harvestNodeID]
+	harvestNode.inProgress = false
+	harvestNode.readyToCollect = true
+	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
+			
+	emit_signal("harvesting_complete", harvestNode.prizeItem1)
+		
 func _on_questTimer_timeout(questID):
 	#this is where the quest's random prizes are determined 
 	global.logger(self, "Quest timer complete! Finished this quest: " + questID)
