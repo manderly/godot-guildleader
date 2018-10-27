@@ -1,6 +1,8 @@
 extends Node2D
 #crafting.gd
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
+onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
+
 var hasIngredient1 = false
 var hasIngredient2 = false
 var hasIngredient3 = false
@@ -11,6 +13,8 @@ var tradeskill = null
 
 func _ready():
 	add_child(finishNowPopup)
+	add_child(finishedItemPopup)
+	
 	tradeskill = global.tradeskills[global.currentMenu] #tradeskill object defined in global.gd
 	$field_craftingSkillName.text = tradeskill.displayName
 	$field_description.text = tradeskill.description
@@ -160,27 +164,27 @@ func _on_button_back_pressed():
 	get_tree().change_scene("res://main.tscn")
 
 func _open_collect_result_popup():
-	#todo: skill-up chance should use a more sophisticated formula
-	#for now, it's just a 50/50 chance that you get a skill-up on combine
-	
-	#determine skillup and decorate the popup
-	var skillUpRandom = randi()%2+1 #1-2
-	if (skillUpRandom == 2):
-		tradeskill.hero.skillBlacksmithing += 1
-		$finishedItem_dialog/elements/field_skillUp.text = tradeskill.hero.heroName + " became better at " + tradeskill.displayName + " (" + str(global.tradeskills[global.currentMenu].hero.skillBlacksmithing) + ")"
-		$finishedItem_dialog/elements/field_skillUp.show()
+	#determine if we get a skillup and show or hide skillup text accordingly 
+	var skillPath = "skill"+tradeskill.displayName
+	if (util.determine_if_skill_up_happens(tradeskill.hero[skillPath], tradeskill.selectedRecipe.trivial)): #pass current skill, pass trivial level
+		tradeskill.hero[skillPath] += 1
+		finishedItemPopup._set_skill_up(tradeskill.hero, tradeskill.displayName)
 		_update_hero_skill_display()
 	else:
-		$finishedItem_dialog/elements/field_skillUp.hide()
+		finishedItemPopup._show_skill_up_text(false)
+		
+	finishedItemPopup._set_icon(global.allGameItems[str(tradeskill.currentlyCrafting.name)].icon)
 	
-	$finishedItem_dialog/elements/sprite_icon.texture = load("res://sprites/items/" + global.allGameItems[str(tradeskill.currentlyCrafting.name)].icon)
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
+	var itemNameStr = ""
 	if (tradeskill.wildcardItem):
-		$finishedItem_dialog/elements/field_itemName.text = "Improved " + tradeskill.currentlyCrafting.name
+		itemNameStr = "Improved " + tradeskill.currentlyCrafting.name
 	else:
-		$finishedItem_dialog/elements/field_itemName.text = tradeskill.currentlyCrafting.name
-	$finishedItem_dialog.popup()
+		itemNameStr = tradeskill.currentlyCrafting.name
+	
+	finishedItemPopup._set_item_name(itemNameStr)
+	finishedItemPopup.popup()
 
 func _on_finishedItem_dialog_confirmed():
 	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively

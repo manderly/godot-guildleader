@@ -1,6 +1,8 @@
 extends Node2D
 #harvestingConfirm.gd
 #the screen with the harvesting details, loot, and the hero the player has assigned to it 
+onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
+onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
 
 onready var field_duration = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_duration
 onready var field_skill = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_skill
@@ -16,7 +18,8 @@ onready var progressBar = $MarginContainer/centerContainer/VBoxContainer/Progres
 var currentHarvest = null
 
 func _ready():
-	#quest name, description
+	add_child(finishNowPopup)
+	add_child(finishedItemPopup)
 	currentHarvest = global.harvestingData[global.selectedHarvestingID]
 	populate_fields(currentHarvest)
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
@@ -38,23 +41,28 @@ func _process(delta):
 		#divide time elapsed by time needed to complete
 		#progressBar.set_value(100 * ((currentHarvest.currentlyCrafting.totalTimeToFinish - currentHarvest.timer.time_left) / currentHarvest.currentlyCrafting.totalTimeToFinish))
 		progressBar.set_value(100 * ((currentHarvest.timeToHarvest - currentHarvest.timer.time_left) / currentHarvest.timeToHarvest))
-		
+		buttonBeginHarvest.text = "FINISH NOW"
 	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
-		buttonBeginHarvest.text = "COLLECT PRIZES"
+		buttonBeginHarvest.text = "COLLECT"
 		#just kick player to collection screen automatically
 		get_tree().change_scene("res://menus/harvestComplete.tscn")
+	elif (currentHarvest.inProgress && currentHarvest.readyToCollect):
+		buttonBeginHarvest.text = "COLLECT!"
+		#buttonBeginHarvest.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
+		progressBar.set_value(100)
 	else:
 		field_timeRemaining.set_text("Harvest not started")
 	
 func populate_fields(data):
 	field_nodeName.text = data.name
 	field_duration.text = "Time to harvest: " + str(util.format_time(data.timeToHarvest))
+	field_skill.text = "Harvesting skill required: " + str(data.minSkill)
+	field_yield.text = "Yield: " + str(data.minQuantity) + " - " + str(data.maxQuantity)
+
 	if (data.hero):
-		field_skill.text = "Harvesting skill required: " + str(data.minSkill)
-		field_yield.text = "Yield: " + str(data.minQuantity) + " - " + str(data.maxQuantity)
 		field_heroName.text = data.hero.heroName
-		field_heroSkill.text = "Harvesting skill: " + str(data.hero.skillHarvesting)
+		_update_hero_skill_display()
 	else:
 		field_heroName.text = ""
 		field_heroSkill.text = ""
@@ -62,6 +70,9 @@ func populate_fields(data):
 	if (currentHarvest.inProgress):
 		button_pickHero.set_disabled(true)
 
+func _update_hero_skill_display():
+	field_heroSkill.text = "Harvesting skill: " + str(currentHarvest.hero.skillHarvesting)
+	
 func _on_button_beginHarvesting_pressed():
 	#this button lets you either begin the harvest or finish it early for HC
 	#case 1: Begin harvest (no quest active, nothing ready to collect)
@@ -79,16 +90,28 @@ func _on_button_beginHarvesting_pressed():
 			get_tree().change_scene("res://menus/forest.tscn")
 	#case 2: quest is active but not ready to collect 
 	#todo: see if this can be done by just checking the status of the timer instead?
-	elif (currentHarvest.inProgress && !currentHarvest.readyToCollect): #quest is ready to collect
-		#todo: this is just set up on a global level for now, but ideally it'll be quest-specific 
-		get_node("quest_finish_now_dialog").popup()
-	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
-		#this is on the button, but really it should just kick you to the done screen automatically
-		get_tree().change_scene("res://menus/harvestingComplete.tscn")
+	elif (currentHarvest.inProgress && !currentHarvest.readyToCollect):
+		finishNowPopup._set_data("Harvesting", 2)
+		finishNowPopup.popup()
+	elif (currentHarvest.inProgress && currentHarvest.readyToCollect):
+		_open_collect_result_popup()
 	else:
 		#bug: we get into this state if we let the quest finish while sitting on the questConfirm page 
 		print("harvestingConfirm.gd error - not sure what state we're in")
 
+func _open_collect_result_popup():
+	#determine if we get a skillup and show or hide skillup text accordingly 
+	if (util.determine_if_skill_up_happens(currentHarvest.hero.skillHarvesting, currentHarvest.minSkill+20)): #pass current skill, pass trivial level
+		currentHarvest.hero.skillHarvesting += 1
+		finishedItemPopup._set_skill_up(currentHarvest.hero, "Harvesting")
+		_update_hero_skill_display()
+	else:
+		finishedItemPopup._show_skill_up_text(false)
+		
+	finishedItemPopup._set_icon(currentHarvest.icon)
+	finishedItemPopup._set_item_name(currentHarvest.prizeItem1)
+	finishedItemPopup.popup()
+	
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
 	if (!currentHarvest.inProgress && !currentHarvest.readyToCollect):
@@ -103,7 +126,7 @@ func _on_harvesting_finish_now_dialog_confirmed():
 	if (global.hardCurrency > 0):
 		global.hardCurrency -= 1
 		currentHarvest.timer.stop()
-		global._on_harvestingTimer_timeout(currentHarvest.questId)
+		global._on_harvestingTimer_timeout(currentHarvest.harvestingId)
 		get_tree().change_scene("res://menus/harvestingComplete.tscn")
 	else:
 		#todo: need a global insufficient funds popup

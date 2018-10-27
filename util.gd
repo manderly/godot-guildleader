@@ -16,6 +16,17 @@ func format_time(time):
 		
 	return timeFormattedForDisplay
 
+func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current skill, pass trivial level
+	var skillUpHappened = false
+	#only attempt to skill up if the recipe trivial is higher than current skill level 
+	if (heroSkillLevel < trivialLevel):
+		#just a 50/50 chance for now
+		var skillUpRandom = randi()%2+1 #1-2
+		if (skillUpRandom == 2):
+			skillUpHappened = true
+	
+	return skillUpHappened
+	
 #check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
 	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType != "tradeskill"): 
