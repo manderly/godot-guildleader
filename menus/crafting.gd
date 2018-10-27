@@ -160,11 +160,6 @@ func _process(delta):
 		$button_combine.set_text("COMBINE")
 		$button_combine.add_color_override("font_color", global.colorWhite) #white
 
-func _on_button_back_pressed():
-	#todo: only clear it if it's not in use being upgraded
-	tradeskill.wildcardItem = null
-	get_tree().change_scene("res://main.tscn")
-
 func _open_collect_result_popup():
 	#determine if we get a skillup and show or hide skillup text accordingly 
 	var skillPath = "skill"+tradeskill.displayName
@@ -289,3 +284,7 @@ func _on_button_dismissHero_pressed():
 		tradeskill.hero.staffedTo = ""
 		tradeskill.hero = null
 		get_tree().change_scene("res://main.tscn")
+		
+func _on_button_back_pressed():
+	tradeskill.wildcardItem = null
+	get_tree().change_scene("res://main.tscn")

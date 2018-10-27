@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://menus/maps/forest.gd" type="Script" id=1]
 [ext_resource path="res://tiles/forest_tiles.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://gui/scroll_light.png" type="Texture" id=9]
 [ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menus/maps/harvestingNode.tscn" type="PackedScene" id=11]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -32,7 +33,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -188,5 +189,9 @@ margin_left = 287.0
 margin_top = 430.0
 margin_right = 351.0
 margin_bottom = 494.0
+
+[node name="button_back" parent="." index="8" instance=ExtResource( 12 )]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 
