@@ -18,6 +18,7 @@ onready var progressBar = $MarginContainer/centerContainer/VBoxContainer/Progres
 var currentHarvest = null
 
 func _ready():
+	finishedItemPopup.connect("collectItem", self, "harvestItem_callback")
 	add_child(finishNowPopup)
 	add_child(finishedItemPopup)
 	currentHarvest = global.harvestingData[global.selectedHarvestingID]
@@ -111,6 +112,14 @@ func _open_collect_result_popup():
 	finishedItemPopup._set_icon(currentHarvest.icon)
 	finishedItemPopup._set_item_name(currentHarvest.prizeItem1)
 	finishedItemPopup.popup()
+	
+func harvestItem_callback():
+	#accept the harvested item and give it to guild inventory 
+	util.give_item_guild(currentHarvest.prizeItem1) #todo: QUANTITIES NOT ACCOUNTED FOR YET 
+	progressBar.set_value(0)
+	currentHarvest.timer.stop()
+	currentHarvest.inProgress = false
+	currentHarvest.readyToCollect = false
 	
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons

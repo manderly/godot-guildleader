@@ -4,6 +4,8 @@ extends AcceptDialog
 onready var itemNameField = $elements/field_itemName
 onready var skillUpField = $elements/field_skillUp
 
+signal collectItem
+
 func _ready():
 	pass
 
@@ -23,3 +25,6 @@ func _show_skill_up_text(showBool):
 	
 func _set_icon(iconPath):
 	$elements/sprite_icon.texture = load("res://sprites/items/" + iconPath)
+
+func _on_finishedItem_dialog_confirmed():
+	emit_signal("collectItem")

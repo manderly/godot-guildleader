@@ -12,6 +12,8 @@ var recipe = null
 var tradeskill = null 
 
 func _ready():
+	finishedItemPopup.connect("collectItem", self, "tradeskillItem_callback")
+	
 	add_child(finishNowPopup)
 	add_child(finishedItemPopup)
 	
@@ -186,7 +188,7 @@ func _open_collect_result_popup():
 	finishedItemPopup._set_item_name(itemNameStr)
 	finishedItemPopup.popup()
 
-func _on_finishedItem_dialog_confirmed():
+func tradeskillItem_callback():
 	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively
 	if (!tradeskill.currentlyCrafting.statImproved):
 		#this was a "normal" recipe, not a wildcard item recipe
