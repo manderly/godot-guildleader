@@ -1,5 +1,7 @@
 extends Control
 
+onready var field_nodeName = $field_nodeName
+
 var harvestingId = null
 var harvestingData = null
 
@@ -9,10 +11,13 @@ func _ready():
 func _set_data(idStr):
 	harvestingId = idStr
 	harvestingData = global.harvestingData[idStr]
+	_populate_fields()
+	
+func _populate_fields():
+	field_nodeName.text = harvestingData.name
 	
 func _get_harvesting_id():
 	return harvestingId
-
 
 func _on_TextureButton_pressed():
 	global.selectedHarvestingID = harvestingId #so we know which specific harvesting info to display in harvestConfirm

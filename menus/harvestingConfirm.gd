@@ -21,6 +21,7 @@ func _ready():
 	finishedItemPopup.connect("collectItem", self, "harvestItem_callback")
 	add_child(finishNowPopup)
 	add_child(finishedItemPopup)
+	
 	currentHarvest = global.harvestingData[global.selectedHarvestingID]
 	populate_fields(currentHarvest)
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
@@ -120,6 +121,7 @@ func harvestItem_callback():
 	currentHarvest.timer.stop()
 	currentHarvest.inProgress = false
 	currentHarvest.readyToCollect = false
+	buttonBeginHarvest.text = "BEGIN"
 	
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
