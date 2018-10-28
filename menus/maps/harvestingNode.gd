@@ -23,4 +23,4 @@ func _get_harvesting_id():
 func _on_TextureButton_pressed():
 	global.selectedHarvestingID = harvestingId #so we know which specific harvesting info to display in harvestConfirm
 	global.currentMenu = "harvestingConfirm"
-	get_tree().change_scene("res://menus/harvestingConfirm.tscn")
+	get_tree().change_scene("res://menus/harvesting.tscn")

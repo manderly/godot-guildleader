@@ -47,8 +47,6 @@ func _process(delta):
 	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
 		buttonBeginHarvest.text = "COLLECT"
-		#just kick player to collection screen automatically
-		get_tree().change_scene("res://menus/harvestComplete.tscn")
 	elif (currentHarvest.inProgress && currentHarvest.readyToCollect):
 		buttonBeginHarvest.text = "COLLECT!"
 		#buttonBeginHarvest.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow

@@ -2,7 +2,7 @@
   {
     "campId": "test999",
     "name": "XP fest for lots of XP!!!",
-    "text": "\"This is a test quest that gives loads of XP so Mandi doesn't have to wait long while testing!\"",
+    "description": "\"This is a test quest that gives loads of XP so Mandi doesn't have to wait long while testing!\"",
     "level": 1,
     "mob1": "null",
     "mob2": "null",
@@ -11,7 +11,7 @@
   {
     "campId": "test09",
     "name": "Rats in the Cellar",
-    "text": "Farmer Brownwheat needs help clearing rats from his cellar. It's not glamorous work, but it pays in real coin and you can keep any treasure you find!",
+    "description": "Farmer Brownwheat needs help clearing rats from his cellar. It's not glamorous work, but it pays in real coin and you can keep any treasure you find!",
     "level": 1,
     "mob1": "null",
     "mob2": "null",
@@ -20,7 +20,7 @@
   {
     "campId": "test10",
     "name": "The Rat King",
-    "text": "Farmer Brownwheat placed a bounty of 50 coins on the gigantic rat that's been ruining his crops.",
+    "description": "Farmer Brownwheat placed a bounty of 50 coins on the gigantic rat that's been ruining his crops.",
     "level": 1,
     "mob1": "null",
     "mob2": "null",
@@ -29,7 +29,7 @@
   {
     "campId": "goblin01",
     "name": "Cleaning out the Goblin Caves",
-    "text": "Venture into the musty goblin caves to the east and collect any treasure they might be hoarding.",
+    "description": "Venture into the musty goblin caves to the east and collect any treasure they might be hoarding.",
     "level": 2,
     "mob1": "null",
     "mob2": "null",
@@ -38,7 +38,7 @@
   {
     "campId": "goblin02",
     "name": "The Goblin Warlord's Treasure Hoard",
-    "text": "Journey to the depths of the goblin caves and find the Goblin Warlord's treasure hoard.",
+    "description": "Journey to the depths of the goblin caves and find the Goblin Warlord's treasure hoard.",
     "level": 2,
     "mob1": "null",
     "mob2": "null",
@@ -47,7 +47,7 @@
   {
     "campId": "camp_guild01",
     "name": "Guildhall Cellars",
-    "text": "The guildhall's vaults are full of rats! Set up camp and kill as many as you can.",
+    "description": "The guildhall's vaults are full of rats! Set up camp and kill as many as you can.",
     "level": 1,
     "mob1": "Small Rat",
     "mob2": "Large Rat",
@@ -56,7 +56,7 @@
   {
     "campId": "camp_guild02",
     "name": "Spiders in the Hallways",
-    "text": "The guildhall's main corridor is full of spiders. Kill 20 of them and report back to the guild leader.",
+    "description": "The guildhall's main corridor is full of spiders. Kill 20 of them and report back to the guild leader.",
     "level": 1,
     "mob1": "Small Spider",
     "mob2": "Big Spider",
@@ -65,7 +65,7 @@
   {
     "campId": "camp_guild03",
     "name": "The Guildhall Rat King",
-    "text": "Find the rat king and bring proof of his demise to the guild leader.",
+    "description": "Find the rat king and bring proof of his demise to the guild leader.",
     "level": 1,
     "mob1": "Small Spider",
     "mob2": "Big Spider",
@@ -74,7 +74,7 @@
   {
     "campId": "camp_forest01",
     "name": "Wolves of Tackbank Forest",
-    "text": "Large, overly aggressive wolves patrol the entrance to the Tackbank Forest. Defeat as many as you can and establish your guild as defenders of the realm.",
+    "description": "Large, overly aggressive wolves patrol the entrance to the Tackbank Forest. Defeat as many as you can and establish your guild as defenders of the realm.",
     "level": 2,
     "mob1": "Aggressive Wolf",
     "mob2": "null",
@@ -83,7 +83,7 @@
   {
     "campId": "camp_forest02",
     "name": "Goblin Outlaws",
-    "text": "Thin the ranks of the goblin outlaws taking up hiding in the Tackbank Forest. ",
+    "description": "Thin the ranks of the goblin outlaws taking up hiding in the Tackbank Forest. ",
     "level": 2,
     "mob1": "",
     "mob2": "",
@@ -92,7 +92,7 @@
   {
     "campId": "camp_forest03",
     "name": "Hungry Spiders",
-    "text": "An evil wizard cloned thousands of spiders. Set up camp and reduce their numbers.",
+    "description": "An evil wizard cloned thousands of spiders. Set up camp and reduce their numbers.",
     "level": 3,
     "mob1": "Small Spider",
     "mob2": "Big Spider",
@@ -101,7 +101,7 @@
   {
     "campId": "camp_forest04",
     "name": "Direwolves and Dreadwolves",
-    "text": "Venture deeper into the Tackbank Forest in search of direwolves and dreadwolves. They are larger and meaner than typical wolves, and defeating them will make the forest safer for passersby.",
+    "description": "Venture deeper into the Tackbank Forest in search of direwolves and dreadwolves. They are larger and meaner than typical wolves, and defeating them will make the forest safer for passersby.",
     "level": 2,
     "mob1": "",
     "mob2": "",
@@ -110,7 +110,7 @@
   {
     "campId": "camp_forest05",
     "name": "Escorting the Market Carts",
-    "text": "Ever since the Tackbank Forest was overrun by overly aggressive wolves, market carts have been avoiding the route. Help out by escorting a trade cart through the forest, and defeat any wolves you encounter.",
+    "description": "Ever since the Tackbank Forest was overrun by overly aggressive wolves, market carts have been avoiding the route. Help out by escorting a trade cart through the forest, and defeat any wolves you encounter.",
     "level": 2,
     "mob1": "",
     "mob2": "",
@@ -119,7 +119,7 @@
   {
     "campId": "camp_forest06",
     "name": "Collecting Firewood",
-    "text": "Collect a couple carts worth of firewood and sell it at the nearby villages to line the guild's pockets a bit.",
+    "description": "Collect a couple carts worth of firewood and sell it at the nearby villages to line the guild's pockets a bit.",
     "level": 2,
     "mob1": "",
     "mob2": "",
@@ -128,7 +128,7 @@
   {
     "campId": "camp_forest07",
     "name": "The Unicorn of Tackbank Forest",
-    "text": "Legend tells of a shimmering white unicorn in the Tackbank Forest. Odds are you won't find it, but it might be worth a look.",
+    "description": "Legend tells of a shimmering white unicorn in the Tackbank Forest. Odds are you won't find it, but it might be worth a look.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -137,7 +137,7 @@
   {
     "campId": "camp_forest08",
     "name": "The Fairy Queen Kingpin",
-    "text": "One of the Goblin thieves gave up some information in exchange for sparing his life: they're working for Nareen, the Fairy Queen. Find Nareen and defeat her.",
+    "description": "One of the Goblin thieves gave up some information in exchange for sparing his life: they're working for Nareen, the Fairy Queen. Find Nareen and defeat her.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -146,7 +146,7 @@
   {
     "campId": "camp_coast01",
     "name": "The Tadloc Threat",
-    "text": "Tadlocs are raiding nearby farms and villages! Head out to their encampments on the shore and thin their numbers.",
+    "description": "Tadlocs are raiding nearby farms and villages! Head out to their encampments on the shore and thin their numbers.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -155,7 +155,7 @@
   {
     "campId": "camp_coast02",
     "name": "Kelp Sandwich FAST QUEST",
-    "text": "Some text here",
+    "description": "Some text here",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -164,7 +164,7 @@
   {
     "campId": "camp_coast03",
     "name": "Sand Gets Everywhere",
-    "text": "Some text here",
+    "description": "Some text here",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -173,7 +173,7 @@
   {
     "campId": "camp_coast04",
     "name": "Clams and Cockles",
-    "text": "Collect clams and cockles to sell at the nearest market. The bigger ones fetch a pretty penny if you bring 'em in fresh.",
+    "description": "Collect clams and cockles to sell at the nearest market. The bigger ones fetch a pretty penny if you bring 'em in fresh.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -182,7 +182,7 @@
   {
     "campId": "camp_coast05",
     "name": "Song of the Sirens",
-    "text": "Some text here",
+    "description": "Some text here",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -191,7 +191,7 @@
   {
     "campId": "camp_coast06",
     "name": "The Tadloc King",
-    "text": "The Tadloc King has ordered his underlings to raid every nearby farm and village. Defeat the Tadloc King and put an end to the terror.",
+    "description": "The Tadloc King has ordered his underlings to raid every nearby farm and village. Defeat the Tadloc King and put an end to the terror.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -200,7 +200,7 @@
   {
     "campId": "camp_coast07",
     "name": "Captain Smellybeard's Booty",
-    "text": "Legend has it that Captain Smellybeard met his demise off the Shoach Coast. Defeat his ghost so that his spirit can enter the Otherrealm, and return with anything you find in the ship's cargo hold.",
+    "description": "Legend has it that Captain Smellybeard met his demise off the Shoach Coast. Defeat his ghost so that his spirit can enter the Otherrealm, and return with anything you find in the ship's cargo hold.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -209,7 +209,7 @@
   {
     "campId": "camp_coast08",
     "name": "The Blacksand Caverns",
-    "text": "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns, root out the Tadlocs, and return with any treasures you find.",
+    "description": "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns, root out the Tadlocs, and return with any treasures you find.",
     "level": 3,
     "mob1": "",
     "mob2": "",
@@ -218,7 +218,7 @@
   {
     "campId": "camp_falls01",
     "name": "The Phantoms of Feshah Falls",
-    "text": "Feshah Falls is haunted by the spirits of those who drowned in Feshah River. Go to the falls and free 8 spirits.",
+    "description": "Feshah Falls is haunted by the spirits of those who drowned in Feshah River. Go to the falls and free 8 spirits.",
     "level": 2,
     "mob1": "",
     "mob2": "",

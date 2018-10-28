@@ -102,6 +102,6 @@ func _on_Button_pressed():
 			global.currentMenu = "forest"
 		else:
 			print("can't pick this hero")
-		get_tree().change_scene("res://menus/harvestingConfirm.tscn")
+		get_tree().change_scene("res://menus/harvesting.tscn")
 	else:
-		print("heroButton.gd - weird state")
+		print("heroButton.gd - can't figure out where to go!")
