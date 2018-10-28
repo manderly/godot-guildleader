@@ -138,7 +138,7 @@ func _on_harvesting_finish_now_dialog_confirmed():
 		global.hardCurrency -= 1
 		currentHarvest.timer.stop()
 		global._on_harvestingTimer_timeout(currentHarvest.harvestingId)
-		get_tree().change_scene("res://menus/harvestingComplete.tscn")
+		#get_tree().change_scene("res://menus/harvestingComplete.tscn")
 	else:
 		#todo: need a global insufficient funds popup
 		print("insufficient funds")

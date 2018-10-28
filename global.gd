@@ -429,11 +429,10 @@ func _on_harvestingTimer_timeout(harvestNodeID):
 	#this is where the harvest's random prizes are determined 
 	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
 	var harvestNode = global.harvestingData[harvestNodeID]
-	harvestNode.inProgress = false
 	harvestNode.readyToCollect = true
 	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
 			
-	emit_signal("harvesting_complete", harvestNode.prizeItem1)
+	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
 		
 func _on_questTimer_timeout(questID):
 	#this is where the quest's random prizes are determined 

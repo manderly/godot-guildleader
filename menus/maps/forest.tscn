@@ -33,7 +33,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -190,7 +190,14 @@ margin_top = 430.0
 margin_right = 351.0
 margin_bottom = 494.0
 
-[node name="button_back" parent="." index="8" instance=ExtResource( 12 )]
+[node name="harvestingNode2" parent="." index="8" instance=ExtResource( 11 )]
+
+margin_left = 55.0
+margin_top = 528.0
+margin_right = 119.0
+margin_bottom = 592.0
+
+[node name="button_back" parent="." index="9" instance=ExtResource( 12 )]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
