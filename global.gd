@@ -34,6 +34,8 @@ var selectedHarvestingID = null
 #Camps
 var unformattedCampData = null
 var campData = {}
+
+var campButtonID = null
 var selectedCampID = null #used by quest confirm to pass data to correct quest sub-object in questData object
 
 var currentCamp = null
@@ -244,6 +246,7 @@ func _ready():
 		campKey = data["campId"]
 		campValue = data
 		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
+		campValue.campHeroesSelected = 0
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
 		global.campData[campKey] = campValue
 	

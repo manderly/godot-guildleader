@@ -103,5 +103,27 @@ func _on_Button_pressed():
 		else:
 			print("can't pick this hero")
 		get_tree().change_scene("res://menus/harvesting.tscn")
+	elif (global.currentMenu == "camp"):
+		global.campButtonID = buttonID
+		global.currentMenu = "selectHeroForCamp"
+		get_tree().change_scene("res://menus/heroSelect.tscn")
+	elif (global.currentMenu == "selectHeroForCamp"):
+		var currentCamp = global.campData[global.selectedCampID]
+		print("global.campButtonID: " + str(global.campButtonID))
+		#first, free up whoever is already in that spot (if anyone) 
+		if (currentCamp.heroes[global.campButtonID]):
+			currentCamp.heroes[global.campButtonID].atHome = true
+			currentCamp.heroes[global.campButtonID].staffedTo = ""
+			currentCamp.campHeroesSelected -= 1
+		
+		#next, confirm this specific hero is available
+		if (heroData.atHome == true && heroData.staffedTo == ""): 
+			currentCamp.heroes[global.campButtonID] = heroData
+			currentCamp.heroes[global.campButtonID].staffedTo = "camp"
+			currentCamp.campHeroesSelected += 1
+			global.currentMenu = "camp"
+		else:
+			print("can't pick this hero")
+		get_tree().change_scene("res://menus/maps/camp.tscn")
 	else:
 		print("heroButton.gd - can't figure out where to go!")

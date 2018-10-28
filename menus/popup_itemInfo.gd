@@ -79,8 +79,8 @@ func _populate_fields():
 		if (itemData.manaRaw > 0):
 			stats.append("+" + str(itemData.manaRaw) + " mana")
 		
-		if (itemData.stamina > 0):
-			stats.append("+" + str(itemData.stamina) + " STA")
+		if (itemData.strength > 0):
+			stats.append("+" + str(itemData.strength) + " STR")
 			
 		if (itemData.defense > 0):
 			stats.append("+" + str(itemData.defense) + " DEF")
