@@ -56,8 +56,6 @@ func _on_Button_pressed():
 		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "selectHeroForQuest"):
 		var currentQuest = global.questData[global.selectedQuestID]
-		print(heroData.atHome)
-		print(heroData.staffedTo)
 		#first, free up whoever is already in that spot (if anyone) 
 		if (currentQuest.heroes[global.questButtonID]):
 			currentQuest.heroes[global.questButtonID].atHome = true
@@ -109,7 +107,6 @@ func _on_Button_pressed():
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	elif (global.currentMenu == "selectHeroForCamp"):
 		var currentCamp = global.campData[global.selectedCampID]
-		print("global.campButtonID: " + str(global.campButtonID))
 		#first, free up whoever is already in that spot (if anyone) 
 		if (currentCamp.heroes[global.campButtonID]):
 			currentCamp.heroes[global.campButtonID].atHome = true

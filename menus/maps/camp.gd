@@ -7,7 +7,6 @@ onready var field_classesNeeded = $MarginContainer/CenterContainer/VBoxContainer
 onready var campData = null
 
 func _ready():
-	print(global.campData[global.selectedCampID])
 	campData = global.campData[global.selectedCampID]
 	_populate_fields()
 	
@@ -69,3 +68,22 @@ func _calculate_recommended_classes():
 		classesNeededString = "This group looks well-balanced!"
 		
 	return classesNeededString
+
+func _on_button_startCampShort_pressed():
+	_start_camp(1200)
+
+func _on_button_startCampMedium_pressed():
+	_start_camp(3600)
+
+func _on_button_joinCampLong_pressed():
+	_start_camp(7200)
+	
+func _start_camp(duration):
+	campData.inProgress = true
+	campData.readyToCollect = false
+	campData.timer = Timer.new()
+	campData.timer.set_one_shot(true)
+	campData.timer.set_wait_time(duration)
+	campData.timer.connect("timeout", self, "_on_campTimer_timeout", [campData.campId])
+	campData.timer.start()
+	get_tree().change_scene("res://menus/maps/forest.tscn")

@@ -495,6 +495,9 @@ func _begin_tradeskill_timer(duration):
 	else:
 		print("global.gd - error: " + tradeskill.name + " timer already running")
 
+func _on_campTimer_timeout(campID):
+	var camp = global.campData[campID]
+	camp.readyToCollect = true
 
 func _on_tradeskillTimer_timeout(tradeskillStr):
 	var tradeskill = global.tradeskills[tradeskillStr]
