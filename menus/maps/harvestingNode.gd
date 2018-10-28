@@ -1,7 +1,7 @@
 extends Control
 
 onready var field_nodeName = $field_nodeName
-
+onready var textureButton = $TextureButton
 var harvestingId = null
 var harvestingData = null
 
@@ -15,6 +15,7 @@ func _set_data(idStr):
 	
 func _populate_fields():
 	field_nodeName.text = harvestingData.name
+	textureButton.texture_normal = load("res://sprites/harvestNodes/" + harvestingData.icon)
 	
 func _get_harvesting_id():
 	return harvestingId
