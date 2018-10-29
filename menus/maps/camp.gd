@@ -8,11 +8,21 @@ onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContain
 onready var button_startCampMedium = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium
 onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong
 
+onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/ProgressBar
+
 onready var campData = null
 
 func _ready():
 	campData = global.campData[global.selectedCampID]
 	_populate_fields()
+	
+func _process(delta):
+	if (!campData.inProgress && !campData.readyToCollect):
+		progressBar.set_value(0)
+	elif (campData.inProgress && !campData.readyToCollect):
+		progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
+	elif (campData.inProgress && campData.readyToCollect):
+		progressBar.set_value(100)
 	
 func _populate_fields():
 	field_campName.text = campData.name
@@ -84,13 +94,26 @@ func _on_button_startCampMedium_pressed():
 
 func _on_button_joinCampLong_pressed():
 	_start_camp(campData.durationLong)
-	
+
+
 func _start_camp(duration):
-	campData.inProgress = true
-	campData.readyToCollect = false
-	campData.timer = Timer.new()
-	campData.timer.set_one_shot(true)
-	campData.timer.set_wait_time(duration)
-	campData.timer.connect("timeout", self, "_on_campTimer_timeout", [campData.campId])
-	campData.timer.start()
-	get_tree().change_scene("res://menus/maps/forest.tscn")
+	#this button lets you either begin the harvest or finish it early for HC
+	#case 1: Begin harvest (no quest active, nothing ready to collect)
+	print(campData.inProgress)
+	print(campData.readyToCollect)
+	if (!campData.inProgress && !campData.readyToCollect):
+		if (campData.heroes[3] == null):
+			#todo: need a popup here
+			print("Need to staff someone")
+		else:
+			#set everyone to away
+			for hero in campData.heroes:
+				hero.atHome = false
+			
+		#start the timer attached to the quest object over in global
+		#it has to be done there, or else will be wiped from memory when we close this particular menu
+		campData.selectedDuration = duration
+		global._begin_camp_timer(duration, campData.campId)
+	else:
+		#bug: we get into this state if we let the quest finish while sitting on the questConfirm page 
+		print("camp.gd error - unhandled state")

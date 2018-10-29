@@ -246,7 +246,12 @@ func _ready():
 		campKey = data["campId"]
 		campValue = data
 		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
+		campValue.timer = null
+		campValue.inProgress = false
+		campValue.readyToCollect = false
+		campValue.timesRun = 0
 		campValue.campHeroesSelected = 0
+		campValue.selectedDuration = 0
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
 		global.campData[campKey] = campValue
 	
@@ -414,7 +419,7 @@ func _begin_global_quest_timer(duration, questID):
 		print("error: quest already running")
 		
 func _begin_harvesting_timer(duration, harvestNodeID):
-	#starting quest timer 
+	#starting harvest timer 
 	var harvestNode = global.harvestingData[harvestNodeID]
 	if (!harvestNode.inProgress):
 		harvestNode.inProgress = true
@@ -434,9 +439,30 @@ func _on_harvestingTimer_timeout(harvestNodeID):
 	var harvestNode = global.harvestingData[harvestNodeID]
 	harvestNode.readyToCollect = true
 	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
-			
 	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
-		
+
+func _begin_camp_timer(duration, campID):
+	print("starting camp timer")
+	#starting camp timer 
+	var camp = global.campData[campID]
+	if (!camp.inProgress):
+		camp.inProgress = true
+		camp.readyToCollect = false
+		camp.timer = Timer.new()
+		camp.timer.set_one_shot(true)
+		camp.timer.set_wait_time(duration)
+		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
+		camp.timer.start()
+		add_child(camp.timer) 
+	else:
+		print("error: camp already running")
+
+func _on_campTimer_timeout(campID):
+	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
+	var camp = global.campData[campID]
+	camp.inProgress = false
+	camp.readyToCollect = true
+	
 func _on_questTimer_timeout(questID):
 	#this is where the quest's random prizes are determined 
 	global.logger(self, "Quest timer complete! Finished this quest: " + questID)
@@ -491,13 +517,9 @@ func _begin_tradeskill_timer(duration):
 		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout", [global.currentMenu])
 		tradeskill.timer.start()
 		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
-		add_child(tradeskill.timer) #trying to make this global 
+		add_child(tradeskill.timer) 
 	else:
 		print("global.gd - error: " + tradeskill.name + " timer already running")
-
-func _on_campTimer_timeout(campID):
-	var camp = global.campData[campID]
-	camp.readyToCollect = true
 
 func _on_tradeskillTimer_timeout(tradeskillStr):
 	var tradeskill = global.tradeskills[tradeskillStr]
