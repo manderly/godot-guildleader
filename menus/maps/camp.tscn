@@ -359,7 +359,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_joinCampLong" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="2"]
+[node name="button_startCampLong" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -390,7 +390,7 @@ _sections_unfolded = [ "Rect" ]
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium" to="." method="_on_button_startCampMedium_pressed"]
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_joinCampLong" to="." method="_on_button_joinCampLong_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong" to="." method="_on_button_joinCampLong_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

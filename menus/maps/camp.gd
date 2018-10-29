@@ -4,6 +4,10 @@ onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/fiel
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
 onready var field_classesNeeded = $MarginContainer/CenterContainer/VBoxContainer/field_classesNeeded
 
+onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort
+onready var button_startCampMedium = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium
+onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong
+
 onready var campData = null
 
 func _ready():
@@ -13,6 +17,9 @@ func _ready():
 func _populate_fields():
 	field_campName.text = campData.name
 	field_campDescription.text = campData.description
+	button_startCampShort.text = "JOIN CAMP: " + str(util.format_time(campData.durationShort))
+	button_startCampMedium.text = "JOIN CAMP: " + str(util.format_time(campData.durationMedium))
+	button_startCampLong.text ="JOIN CAMP: " + str(util.format_time(campData.durationLong))
 	
 	#hero buttons
 	#create X number of hero buttons to hold selected heroes for this specific quest
@@ -59,9 +66,9 @@ func _calculate_recommended_classes():
 	
 	var classesNeededString = "This group could use "
 	if (classesObj.healer == 0):
-		classesNeededString += "at least healer."
+		classesNeededString += "a healer."
 	elif (classesObj.tank == 0):
-		classesNeededString += "at least one tank."
+		classesNeededString += "a tank."
 	elif (classesObj.dps == 0):
 		classesNeededString += "at least one DPS."
 	else:
@@ -70,13 +77,13 @@ func _calculate_recommended_classes():
 	return classesNeededString
 
 func _on_button_startCampShort_pressed():
-	_start_camp(1200)
+	_start_camp(campData.durationShort)
 
 func _on_button_startCampMedium_pressed():
-	_start_camp(3600)
+	_start_camp(campData.durationMedium)
 
 func _on_button_joinCampLong_pressed():
-	_start_camp(7200)
+	_start_camp(campData.durationLong)
 	
 func _start_camp(duration):
 	campData.inProgress = true
