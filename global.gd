@@ -252,6 +252,7 @@ func _ready():
 		campValue.timesRun = 0
 		campValue.campHeroesSelected = 0
 		campValue.selectedDuration = 0
+		campValue.enableButton = ""
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
 		global.campData[campKey] = campValue
 	

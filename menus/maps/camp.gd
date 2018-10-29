@@ -2,7 +2,7 @@ extends Node2D
 
 onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/field_campName
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
-onready var field_classesNeeded = $MarginContainer/CenterContainer/VBoxContainer/field_classesNeeded
+onready var field_tipsOrProgress = $MarginContainer/CenterContainer/VBoxContainer/field_tipsOrProgress
 
 onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort
 onready var button_startCampMedium = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium
@@ -15,15 +15,39 @@ onready var campData = null
 func _ready():
 	campData = global.campData[global.selectedCampID]
 	_populate_fields()
+	_enable_and_disable_duration_buttons()
 	
 func _process(delta):
 	if (!campData.inProgress && !campData.readyToCollect):
+		field_tipsOrProgress.text = "#TIPS HERE"
 		progressBar.set_value(0)
 	elif (campData.inProgress && !campData.readyToCollect):
+		field_tipsOrProgress.text = str(util.format_time(campData.timer.time_left))
 		progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
 	elif (campData.inProgress && campData.readyToCollect):
+		field_tipsOrProgress.text = "DONE!"
 		progressBar.set_value(100)
-	
+
+func _enable_and_disable_duration_buttons():
+	var finishNowStr = "Finish Now"
+	if (campData.inProgress):
+		button_startCampShort.disabled = true
+		button_startCampMedium.disabled = true
+		button_startCampLong.disabled = true
+		if (campData.enableButton == "short"): #short, medium, long as string
+			button_startCampShort.disabled = false
+			button_startCampShort.text = finishNowStr
+		elif (campData.enableButton == "medium"):
+			button_startCampMedium.disabled = false
+			button_startCampMedium.text = finishNowStr
+		elif (campData.enableButton == "long"):
+			button_startCampLong.disabled = false
+			button_startCampLong.text = finishNowStr
+	else:
+		button_startCampShort.disabled = false
+		button_startCampMedium.disabled = false
+		button_startCampLong.disabled = false
+		
 func _populate_fields():
 	field_campName.text = campData.name
 	field_campDescription.text = campData.description
@@ -50,7 +74,7 @@ func _populate_fields():
 	#don't make class recommendations until the player has picked a few heroes
 	if (campData.campHeroesSelected >= 3):
 		var classMakeupString = _calculate_recommended_classes()
-		field_classesNeeded.text = classMakeupString
+		field_tipsOrProgress.text = classMakeupString
 		
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/maps/forest.tscn")
@@ -87,20 +111,18 @@ func _calculate_recommended_classes():
 	return classesNeededString
 
 func _on_button_startCampShort_pressed():
-	_start_camp(campData.durationShort)
+	_start_camp(campData.durationShort, "short")
 
 func _on_button_startCampMedium_pressed():
-	_start_camp(campData.durationMedium)
+	_start_camp(campData.durationMedium, "medium")
 
 func _on_button_joinCampLong_pressed():
-	_start_camp(campData.durationLong)
+	_start_camp(campData.durationLong, "long")
 
 
-func _start_camp(duration):
+func _start_camp(duration, enableButtonStr):
 	#this button lets you either begin the harvest or finish it early for HC
 	#case 1: Begin harvest (no quest active, nothing ready to collect)
-	print(campData.inProgress)
-	print(campData.readyToCollect)
 	if (!campData.inProgress && !campData.readyToCollect):
 		if (campData.heroes[3] == null):
 			#todo: need a popup here
@@ -113,7 +135,8 @@ func _start_camp(duration):
 		#start the timer attached to the quest object over in global
 		#it has to be done there, or else will be wiped from memory when we close this particular menu
 		campData.selectedDuration = duration
+		campData.enableButton = enableButtonStr
 		global._begin_camp_timer(duration, campData.campId)
+		_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	else:
-		#bug: we get into this state if we let the quest finish while sitting on the questConfirm page 
 		print("camp.gd error - unhandled state")
