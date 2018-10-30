@@ -51,7 +51,8 @@ func _get_rand_between(bottom, top):
 	var randNum = randi()%top+bottom #1-100, 5-10, 600-1900, etc 
 	return randNum
 	
-func _calculate_battle_outcome():
+func _calculate_battle_outcome(heroes):
+	print(heroes)
 	var newBattle = {
 		"heroes":null,
 		"mobs":null,
@@ -79,13 +80,14 @@ func _calculate_battle_outcome():
 	
 	return newBattle
 	
-func calculate_encounter_outcome(duration):
+func calculate_encounter_outcome(camp): #pass in the entire camp object
+	print(camp)
 	#use duration to determine how many encounters (battles) happen
 	#duration comes in as seconds, so divide by 60 to make it 1 encounter per minute
-	var encounterQuantity = duration / 60
+	var encounterQuantity = camp.selectedDuration / 60
 	for encounter in encounterQuantity:
 		#generate N battles and save their outcomes 
-		var battleOutcome = _calculate_battle_outcome()
+		var battleOutcome = _calculate_battle_outcome(camp.heroes)
 		encounterOutcome.battleRecord.append(battleOutcome.winner)
 		encounterOutcome.lootTotal.append(battleOutcome["loot"])
 		encounterOutcome.scTotal += battleOutcome["sc"]

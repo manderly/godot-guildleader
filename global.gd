@@ -181,8 +181,6 @@ var colorYellow = Color(.93, .913, .25, 1) #yellow
 
 func _ready():
 	randomize()
-	var campOutcome = encounterGenerator.calculate_encounter_outcome(240)
-	print(campOutcome)
 	
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
@@ -464,6 +462,7 @@ func _begin_camp_timer(duration, campID):
 
 func _on_campTimer_timeout(campID):
 	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
+	#todo: may want to do partial progress on camp
 	var camp = global.campData[campID]
 	camp.inProgress = false
 	camp.readyToCollect = true

@@ -28,5 +28,8 @@ func _on_ConfirmationDialog_confirmed():
 		elif (finishingThis == "Harvesting"):
 			global.harvestingData[global.selectedHarvestingID].readyToCollect = true
 			global.harvestingData[global.selectedHarvestingID].timer.stop()
+		elif (finishingThis == "Camp"):
+			global.campData[global.selectedCampID].readyToCollect = true
+			global.campData[global.selectedCampID].timer.stop()
 	else:
 		print("popup_finishNow.gd: INSUFFICIENT DIAMONDS")

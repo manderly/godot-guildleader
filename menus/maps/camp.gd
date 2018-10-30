@@ -1,5 +1,9 @@
 extends Node2D
 
+var encounterGenerator = load("res://encounterGenerator.gd").new()
+
+onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
+
 onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/field_campName
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
 onready var field_tipsOrProgress = $MarginContainer/CenterContainer/VBoxContainer/field_tipsOrProgress
@@ -14,6 +18,7 @@ onready var campData = null
 
 func _ready():
 	campData = global.campData[global.selectedCampID]
+	add_child(finishNowPopup)
 	_populate_fields()
 	_enable_and_disable_duration_buttons()
 	
@@ -138,5 +143,13 @@ func _start_camp(duration, enableButtonStr):
 		campData.enableButton = enableButtonStr
 		global._begin_camp_timer(duration, campData.campId)
 		_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
+	elif (campData.inProgress && !campData.readyToCollect):
+		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
+		finishNowPopup._set_data("Camp", 1)
+		finishNowPopup.popup()
+	elif (campData.inProgress && campData.readyToCollect):
+		#generate rewards
+		var campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
+		print (campOutcome)
 	else:
 		print("camp.gd error - unhandled state")
