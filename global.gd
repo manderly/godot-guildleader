@@ -1,6 +1,7 @@
 #global.gd 
 extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
+var encounterGenerator = load("res://encounterGenerator.gd").new()
 
 var softCurrency = 500
 var hardCurrency = 10
@@ -180,6 +181,9 @@ var colorYellow = Color(.93, .913, .25, 1) #yellow
 
 func _ready():
 	randomize()
+	var campOutcome = encounterGenerator.calculate_encounter_outcome(240)
+	print(campOutcome)
+	
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 	
