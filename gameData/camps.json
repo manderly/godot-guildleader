@@ -125,9 +125,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Goblin Bandit",
+    "mob2": "Goblin Rogue",
+    "mob3": "Ragron, the Goblin Outlaw"
   },
   {
     "campId": "camp_forest03",

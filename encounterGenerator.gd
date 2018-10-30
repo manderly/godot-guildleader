@@ -9,6 +9,7 @@ extends Node
 # - the number of battles to generate
 # - the heroes involved and their stats
 # - the enemies involved and their stats
+# -- a camp has three mob types associated with it, and those can come as singletons or groups for each battle
 
 # calculates:
 # - winner/loser of each encounter based on formulas found within 
@@ -42,6 +43,8 @@ var encounterOutcome = {
 	"hcTotal":0
 }
 
+#todo: track how much xp each hero gets individually for display later 
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -51,44 +54,46 @@ func _get_rand_between(bottom, top):
 	var randNum = randi()%top+bottom #1-100, 5-10, 600-1900, etc 
 	return randNum
 	
-func _calculate_battle_outcome(heroes):
-	print(heroes)
+func _calculate_battle_outcome(heroes, mobs):
 	var newBattle = {
-		"heroes":null,
-		"mobs":null,
+		#contains actual hero objects and actual mob objects
+		"heroes":heroes,
+		"mobs":mobs,
 		"winner":"",
 		"loot":null,
 		"sc":0,
-		"hc":0
+		"hc":0,
+		"xp:":0
 	}
-	
-	newBattle.heroes = "Hero names here"
-	newBattle.mobs = "Mob names here"
 
 	var outcomeNum = _get_rand_between(1, 2)
 	var winnerStr = ""
 	if (outcomeNum == 1):
 		winnerStr = "heroes"
-		newBattle.loot = "Rusty Broadsword" #todo: randomly win loot 
+		newBattle.loot = "Rusty Broadsword" #todo: randomly win loot
+		newBattle.xp = 15 #todo: formulaize this
+		for hero in newBattle.heroes:
+			hero.give_xp(15)
+		newBattle.sc = _get_rand_between(1, 100)
+		newBattle.hc = _get_rand_between(0, 2)
 	else:
 		winnerStr = "mobs"
-	
+		newBattle.xp = 1
+		#todo: determine if a hero dies
+		newBattle.sc = 0
+		newBattle.hc = 0
+		
 	newBattle.winner = winnerStr
-
-	newBattle.sc = _get_rand_between(1, 100)
-	newBattle.hc = _get_rand_between(0, 2)
-	
 	return newBattle
 	
 func calculate_encounter_outcome(camp): #pass in the entire camp object
-	print(camp)
 	#use duration to determine how many encounters (battles) happen
 	#duration comes in as seconds, so divide by 60 to make it 1 encounter per minute
 	var encounterQuantity = camp.selectedDuration / 60
 	for encounter in encounterQuantity:
 		#generate N battles and save their outcomes 
-		var battleOutcome = _calculate_battle_outcome(camp.heroes)
-		encounterOutcome.battleRecord.append(battleOutcome.winner)
+		var battleOutcome = _calculate_battle_outcome(camp.heroes, camp.mobs)
+		encounterOutcome.battleRecord.append(battleOutcome)
 		encounterOutcome.lootTotal.append(battleOutcome["loot"])
 		encounterOutcome.scTotal += battleOutcome["sc"]
 		encounterOutcome.hcTotal += battleOutcome["hc"]

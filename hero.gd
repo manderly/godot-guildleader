@@ -290,3 +290,10 @@ func _on_heroButton_released():
 func _on_touchTimer_timeout():
 	#touch timer timed out 
 	$touchTimer.stop()
+
+func send_home():
+	atHome = true
+	staffedTo = ""
+	
+func give_xp(xpNum):
+	xp += xpNum

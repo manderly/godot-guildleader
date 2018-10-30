@@ -31,6 +31,10 @@ func _process(delta):
 		progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
 	elif (campData.inProgress && campData.readyToCollect):
 		field_tipsOrProgress.text = "DONE!"
+		#todo: make it so only the correct button changes to collect 
+		button_startCampShort.text = "COLLECT"
+		button_startCampMedium.text = "COLLECT"
+		button_startCampLong.text = "COLLECT"
 		progressBar.set_value(100)
 
 func _enable_and_disable_duration_buttons():
@@ -149,7 +153,9 @@ func _start_camp(duration, enableButtonStr):
 		finishNowPopup.popup()
 	elif (campData.inProgress && campData.readyToCollect):
 		#generate rewards
-		var campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
-		print (campOutcome)
+		campData.campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
+		get_tree().change_scene("res://menus/maps/campResults.tscn")
+		
+
 	else:
 		print("camp.gd error - unhandled state")

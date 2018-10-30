@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://menus/maps/camp.gd" type="Script" id=1]
+[ext_resource path="res://menus/maps/campResults.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -59,7 +59,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 480.0
-margin_bottom = 842.0
+margin_bottom = 728.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -76,9 +76,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 16.0
-margin_right = 456.0
-margin_bottom = 842.0
+margin_left = 53.0
+margin_top = 57.0
+margin_right = 419.0
+margin_bottom = 671.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -94,7 +95,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 440.0
+margin_right = 366.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -119,7 +120,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
-margin_right = 440.0
+margin_right = 366.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 200, 120 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -141,70 +142,16 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="label_prizes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
+[node name="label_heroes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 158.0
+margin_top = 372.0
 margin_right = 440.0
-margin_bottom = 188.0
-rect_min_size = Vector2( 0, 30 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0.949219, 0.875698, 0.748993, 1 )
-text = "RARE DROPS"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 192.0
-margin_right = 440.0
-margin_bottom = 292.0
-rect_min_size = Vector2( 0, 100 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-_sections_unfolded = [ "Rect" ]
-
-[node name="prizeBox1" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="0" instance=ExtResource( 4 )]
-
-margin_left = 148.0
-margin_right = 218.0
-
-[node name="prizeBox2" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="1" instance=ExtResource( 4 )]
-
-margin_left = 222.0
-margin_right = 292.0
-
-[node name="label_heroes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 296.0
-margin_right = 440.0
-margin_bottom = 326.0
+margin_bottom = 402.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -221,15 +168,16 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
+[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 330.0
+margin_top = 296.0
 margin_right = 440.0
-margin_bottom = 690.0
+margin_bottom = 656.0
 rect_min_size = Vector2( 440, 360 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -240,15 +188,15 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+[node name="CAMP RESULTS" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 694.0
-margin_right = 440.0
-margin_bottom = 724.0
+margin_top = 158.0
+margin_right = 366.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -257,7 +205,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "#DIFFICULTY ESTIMATE"
+text = "CAMP RESULTS"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -265,137 +213,208 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 728.0
-margin_right = 440.0
-margin_bottom = 758.0
-rect_min_size = Vector2( 0, 30 )
+margin_top = 192.0
+margin_right = 366.0
+margin_bottom = 392.0
+rect_min_size = Vector2( 0, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "#THIS CAMP COULD USE...."
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
-
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 762.0
-margin_right = 440.0
-margin_bottom = 778.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 0
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-percent_visible = true
+size_flags_vertical = 1
+scroll_horizontal_enabled = true
+scroll_horizontal = 0
+scroll_vertical_enabled = true
+scroll_vertical = 0
+scroll_deadzone = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 782.0
-margin_right = 440.0
-margin_bottom = 842.0
-rect_min_size = Vector2( 0, 60 )
+margin_right = 144.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/separation = 15
+alignment = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 144.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
+text = "HERO NAME GOT N XP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 144.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
+text = "HERO NAME GOT N XP"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 396.0
+margin_right = 366.0
+margin_bottom = 434.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="button_detailedCombatLog" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 90.0
+margin_right = 275.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "View detailed combat log"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="label_prizes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 438.0
+margin_right = 366.0
+margin_bottom = 468.0
+rect_min_size = Vector2( 0, 30 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.949219, 0.875698, 0.748993, 1 )
+text = "YOU FOUND THESE ITEMS:"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 472.0
+margin_right = 366.0
+margin_bottom = 572.0
+rect_min_size = Vector2( 0, 100 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 alignment = 1
-_sections_unfolded = [ "Rect", "custom_constants" ]
-
-[node name="button_startCampShort" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 20.0
-margin_right = 143.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 120, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "JOIN CAMP: 1hr"
-flat = false
-align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_startCampMedium" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="1"]
+[node name="prizeBox1" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="0" instance=ExtResource( 4 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 158.0
-margin_right = 281.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 120, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "JOIN CAMP: 3hr"
-flat = false
-align = 1
-_sections_unfolded = [ "Rect" ]
+[node name="prizeBox2" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="1" instance=ExtResource( 4 )]
 
-[node name="button_startCampLong" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer" index="2"]
+margin_left = 74.0
+margin_right = 144.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="prizeBox3" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="2" instance=ExtResource( 4 )]
+
+margin_left = 148.0
+margin_right = 218.0
+
+[node name="prizeBox4" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="3" instance=ExtResource( 4 )]
+
+margin_left = 222.0
+margin_right = 292.0
+
+[node name="prizeBox5" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="4" instance=ExtResource( 4 )]
+
 margin_left = 296.0
-margin_right = 419.0
-margin_bottom = 60.0
-rect_min_size = Vector2( 120, 0 )
+margin_right = 366.0
+
+[node name="button_collect" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 576.0
+margin_right = 366.0
+margin_bottom = 614.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -407,18 +426,13 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "JOIN CAMP: 6hr"
+text = "COLLECT PRIZES & SEND HEROES HOME"
 flat = false
 align = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
 
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort" to="." method="_on_button_startCampShort_pressed"]
-
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium" to="." method="_on_button_startCampMedium_pressed"]
-
-[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong" to="." method="_on_button_joinCampLong_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/button_collect" to="." method="_on_button_collect_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

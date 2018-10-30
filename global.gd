@@ -1,6 +1,11 @@
 #global.gd 
+
+#todo: localization support
+# [{'EN': {'craftingButtonText': 'Crafting'}}, {'JP': {'craftingButtonText': 'Tsukurimono'}} 
+
 extends Node
 var nameGenerator = load("res://nameGenerator.gd").new()
+var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
 var softCurrency = 500
@@ -16,6 +21,10 @@ var guildRoster = []
 var guildCapacity = 4 #each bedroom adds +2 capacity 
 
 var unrecruited = []
+
+#Mobs
+var unformattedMobData = null
+var mobData = {}
 
 #Quests
 var unformattedQuestData = null
@@ -248,6 +257,10 @@ func _ready():
 		campKey = data["campId"]
 		campValue = data
 		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
+		campValue.mobs = []
+		campValue.mobs.append(mobGenerator.get_mob(campValue.mob1)) #these are coming in null for uknown reasons 
+		campValue.mobs.append(mobGenerator.get_mob(campValue.mob2))
+		campValue.mobs.append(mobGenerator.get_mob(campValue.mob3))
 		campValue.timer = null
 		campValue.inProgress = false
 		campValue.readyToCollect = false
@@ -255,8 +268,10 @@ func _ready():
 		campValue.campHeroesSelected = 0
 		campValue.selectedDuration = 0
 		campValue.enableButton = ""
+		campValue.campOutcome = {}
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
 		global.campData[campKey] = campValue
+		print(global.campData[campKey].mobs)
 	
 	#Load room type data and save it to a global var
 	var roomTypeFile = File.new()
@@ -405,6 +420,21 @@ func _ready():
 
 	if (!global.tradeskills["tailoring"].selectedRecipe):
 		global.tradeskills["tailoring"].selectedRecipe = tradeskills.tailoring.recipes[0]
+		
+	#Load mob data (mobs are a lot like items, they have names and stats and we access them by their name) 
+	var mobsFile = File.new()
+	mobsFile.open("res://gameData/mobs.json", mobsFile.READ)
+	unformattedMobData = parse_json(mobsFile.get_as_text())
+	mobsFile.close()
+	var mobKey = null #a string, ie: "Tadloc Grunt"
+	var mobValue = null #another dictionary, ie: {dps:4, str:5}
+
+	for mob in unformattedMobData:
+		if (mob):
+			mobKey = mob["mobName"]
+			mobValue = mob
+			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
+			global.mobData[mobKey] = mobValue
 		
 func _begin_global_quest_timer(duration, questID):
 	#starting quest timer 
