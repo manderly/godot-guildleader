@@ -208,6 +208,7 @@ func _ready():
 			mobKey = mob["mobName"]
 			mobValue = mob
 			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
+			mobValue.dead = false
 			global.mobData[mobKey] = mobValue
 			
 	#Todo: Quests are getting refactored, but keep this for mining / harvesting jobs 
@@ -377,20 +378,20 @@ func _ready():
 	util.give_item_guild("Rusty Broadsword")
 	util.give_item_guild("Novice's Blade")
 	util.give_item_guild("Novice's Blade")
-	#here's a ton more for testing purposes 
+	#here's some uber loot for testing purposes 
 	util.give_item_guild("Basic Bow")
 	util.give_item_guild("Simple Ring")
 	util.give_item_guild("Crimson Staff")
 	util.give_item_guild("Staff of the Four Winds")
 	util.give_item_guild("Obsidian Quickblade")
 	util.give_item_guild("Robe of Alexandra")
-	util.give_item_guild("Simple Grey Robe")
-	util.give_item_guild("Blue Cotton Robe")
 	util.give_item_guild("Sparkling Metallic Robe")
 	util.give_item_guild("Robe of the Dunes")
 	util.give_item_guild("Prestige Robe")
 	util.give_item_guild("Softscale Boots")
 	util.give_item_guild("Seer's Orb")
+	util.give_item_guild("Bladestorm")
+	util.give_item_guild("Bladestorm")
 	
 	util.give_item_guild("Scepter of the Child King")
 	util.give_item_guild("Rough Stone")

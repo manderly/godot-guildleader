@@ -57,7 +57,6 @@ func _get_rand_between(firstVal, secondVal):
 	if (secondVal < firstVal): #figure out which value is lower (ie: if we pass (8,0) we can't use them as-is) 
 		bottom = secondVal
 		top = firstVal
-	print("getting random between " + str(bottom) + " and " + str(top))	
 	var randNum = randi()%int(top)+int(bottom) #1-100, 5-10, 600-1900, etc
 	return randNum
 	
@@ -66,7 +65,8 @@ func _calculate_entity_score(entities):
 	#super rudimentary right now, it just sums hp
 	var hpTotal = 0
 	for entity in entities:
-		hpTotal += entity.hp
+		if (!entity.dead):
+			hpTotal += entity.hp
 	return hpTotal
 	
 func _get_battle_mobs(mobs):
@@ -86,9 +86,13 @@ func _get_battle_mobs(mobs):
 	
 func _calculate_battle_outcome(heroes, mobTable):
 	var randomMobs = _get_battle_mobs(mobTable)
+	var livingHeroes = []
+	for hero in heroes:
+		if (!hero.dead):
+			livingHeroes.append(hero)
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
-		"heroes":heroes,
+		"heroes":livingHeroes,
 		"mobs":randomMobs,
 		"winner":"",
 		"loot":null,
@@ -98,7 +102,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 	}
 	
 	#determine which mobs are gonna fight in this battle
-	var heroScore = _calculate_entity_score(heroes)
+	var heroScore = _calculate_entity_score(newBattle.heroes)
 	var mobScore = _calculate_entity_score(randomMobs)
 	print("heroScore: " + str(heroScore) + " mobScore: " + str(mobScore))
 	#now figure out which is lower
@@ -111,7 +115,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 		if (outcomeNum <= heroScore):
 			#heroes win
 			newBattle.winner = "heroes"
-			newBattle.loot = "Rusty Broadsword" #todo: randomly win loot
+			newBattle.loot = "Rusty Broadsword" #todo: randomly win loot based on loot tables
 			newBattle.xp = 15 #todo: formulaize this
 			for hero in newBattle.heroes:
 				hero.give_xp(15)
@@ -121,7 +125,16 @@ func _calculate_battle_outcome(heroes, mobTable):
 			#mobs win
 			newBattle.winner = "mobs"
 			newBattle.xp = 1
-			#todo: determine if a hero dies
+			#determine if a hero dies 
+			#todo: move this to its own function
+			#todo: the cap should grow with the mob level
+			for hero in newBattle.heroes:
+				if (!hero.dead):
+					var defenseRoll = _get_rand_between(0, 20)
+					if (defenseRoll > hero.defense):
+						#hero dies
+						hero.dead = true
+						print(hero.heroName + " died")
 			newBattle.sc = 0
 			newBattle.hc = 0
 	elif (heroScore > mobScore): #ie: heroes are 100 and mobs are 20
@@ -137,7 +150,16 @@ func _calculate_battle_outcome(heroes, mobTable):
 			#mobs win
 			newBattle.winner = "mobs"
 			newBattle.xp = 1
-			#todo: determine if a hero dies
+			#determine if a hero dies 
+			#todo: move this to its own function
+			#todo: the cap should grow with the mob level
+			for hero in newBattle.heroes:
+				if (!hero.dead):
+					var defenseRoll = _get_rand_between(0, 20)
+					if (defenseRoll > hero.defense):
+						#hero dies
+						hero.dead = true
+						print(hero.heroName + " died")
 			newBattle.sc = 0
 			newBattle.hc = 0
 		else:
@@ -146,6 +168,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 			newBattle.xp = 15 #todo: formulaize this
 			for hero in newBattle.heroes:
 				hero.give_xp(15)
+				print(hero.heroName + "got xp: " + str(newBattle.xp))
 			newBattle.sc = _get_rand_between(1, 100)
 			newBattle.hc = _get_rand_between(0, 2)
 

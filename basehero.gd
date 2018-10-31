@@ -12,6 +12,7 @@ var atHome = true
 var staffedTo = ""
 var recruited = false
 var gender = "female"
+var dead = false
 
 #Hero base stats come from external spreadsheet data
 #These are first set when a hero is randomly generated in heroGenerator.gd

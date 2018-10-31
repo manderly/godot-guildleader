@@ -106,6 +106,7 @@ func set_instance_data(data):
 	heroClass = data.heroClass
 	currentRoom = data.currentRoom
 	recruited = data.recruited
+	dead = data.dead
 	heroID = data.heroID
 	atHome = data.atHome
 	staffedTo = data.staffedTo

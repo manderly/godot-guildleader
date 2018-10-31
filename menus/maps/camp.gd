@@ -153,6 +153,8 @@ func _start_camp(duration, enableButtonStr):
 		finishNowPopup.popup()
 	elif (campData.inProgress && campData.readyToCollect):
 		#generate rewards
+		#todo: put this somewhere else, it shouldn't be on the "collect" button because
+		#the player can back out of the next page and re-run this code 
 		campData.campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
 		get_tree().change_scene("res://menus/maps/campResults.tscn")
 		
