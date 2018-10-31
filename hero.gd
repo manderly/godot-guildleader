@@ -298,3 +298,15 @@ func send_home():
 	
 func give_xp(xpNum):
 	xp += xpNum
+	
+func melee_attack():
+	var rawDmg = (equipment["mainHand"].dps * strength) / 2
+	var roll = randi()%20+1 #(roll between 1-20)
+	if (roll == 1):
+		print("miss!")
+		rawDmg = 0
+	elif (roll == 20):
+		print("Critical hit! Double damage!")
+		rawDmg *= 2
+	print("Returning this raw damage: " + str(rawDmg))
+	return rawDmg

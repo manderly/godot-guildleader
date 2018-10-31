@@ -208,6 +208,8 @@ func _ready():
 			mobKey = mob["mobName"]
 			mobValue = mob
 			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
+			mobValue.hpCurrent = mobValue.hp
+			mobValue.manaCurrent = mobValue.mana
 			mobValue.dead = false
 			global.mobData[mobKey] = mobValue
 			

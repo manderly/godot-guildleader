@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=2]
+
+[resource]
+
+Label/colors/Labels = Color( 0.94902, 0.87451, 0.741176, 1 )
+_sections_unfolded = [ "Label", "Label/colors" ]
+

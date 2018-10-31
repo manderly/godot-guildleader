@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/maps/campResults.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
-[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=4]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui_styles/beigeLabels.tres" type="Theme" id=4]
+[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -205,7 +206,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "CAMP RESULTS"
+text = "CAMP RESULTS SUMMARY"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -215,7 +216,6 @@ _sections_unfolded = [ "Rect", "custom_colors" ]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -230,12 +230,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 4 )
 scroll_horizontal_enabled = true
 scroll_horizontal = 0
 scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer" index="0"]
 
@@ -243,7 +244,6 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 144.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -253,50 +253,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="Label" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 144.0
-margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "HERO NAME GOT N XP"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
-
-[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 144.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "HERO NAME GOT N XP"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_colors" ]
+_sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
 
@@ -384,24 +341,24 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="prizeBox1" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="0" instance=ExtResource( 4 )]
+[node name="prizeBox1" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="0" instance=ExtResource( 5 )]
 
-[node name="prizeBox2" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="1" instance=ExtResource( 4 )]
+[node name="prizeBox2" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="1" instance=ExtResource( 5 )]
 
 margin_left = 74.0
 margin_right = 144.0
 
-[node name="prizeBox3" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="2" instance=ExtResource( 4 )]
+[node name="prizeBox3" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="2" instance=ExtResource( 5 )]
 
 margin_left = 148.0
 margin_right = 218.0
 
-[node name="prizeBox4" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="3" instance=ExtResource( 4 )]
+[node name="prizeBox4" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="3" instance=ExtResource( 5 )]
 
 margin_left = 222.0
 margin_right = 292.0
 
-[node name="prizeBox5" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="4" instance=ExtResource( 4 )]
+[node name="prizeBox5" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="4" instance=ExtResource( 5 )]
 
 margin_left = 296.0
 margin_right = 366.0
@@ -430,7 +387,7 @@ text = "COLLECT PRIZES & SEND HEROES HOME"
 flat = false
 align = 1
 
-[node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
+[node name="button_back" parent="." index="2" instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/button_collect" to="." method="_on_button_collect_pressed"]
 

@@ -56,7 +56,9 @@ var modifiedPrestige = 0
 #TODO: Buffs - someday, buffs will affect stats, too. 
 
 #FINAL STATS - combine base and modified stats. For now, default to -1 until the math is done.  
+var hpCurrent = -1
 var hp = -1
+var manaCurrent = -1
 var mana = -1
 var armor = -1
 var dps = -1

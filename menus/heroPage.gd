@@ -115,9 +115,9 @@ func populate_fields(data):
 	_update_stats()
 	
 func _update_stats():
-	displayHP._update_fields("HP", global.selectedHero.hp)
+	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
-		displayMana._update_fields("Mana", global.selectedHero.mana)
+		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
 	else:
 		displayMana.hide()
 	#stats
