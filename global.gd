@@ -194,6 +194,22 @@ func _ready():
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 	
+	#Load mob data (mobs are a lot like items, they have names and stats and we access them by their name)
+	#but we don't need instances of them like we do heroes, they don't really persist the way heroes do
+	var mobsFile = File.new()
+	mobsFile.open("res://gameData/mobs.json", mobsFile.READ)
+	unformattedMobData = parse_json(mobsFile.get_as_text())
+	mobsFile.close()
+	var mobKey = null #a string, ie: "Tadloc Grunt"
+	var mobValue = null #another dictionary, ie: {dps:4, str:5}
+
+	for mob in unformattedMobData:
+		if (mob):
+			mobKey = mob["mobName"]
+			mobValue = mob
+			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
+			global.mobData[mobKey] = mobValue
+			
 	#Todo: Quests are getting refactored, but keep this for mining / harvesting jobs 
 	#Load quest data
 	var questFile = File.new()
@@ -258,9 +274,12 @@ func _ready():
 		campValue = data
 		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
 		campValue.mobs = []
-		campValue.mobs.append(mobGenerator.get_mob(campValue.mob1)) #these are coming in null for uknown reasons 
-		campValue.mobs.append(mobGenerator.get_mob(campValue.mob2))
-		campValue.mobs.append(mobGenerator.get_mob(campValue.mob3))
+		if (campValue.mob1):
+			campValue.mobs.append(mobGenerator.get_mob(campValue.mob1))
+		if (campValue.mob2):
+			campValue.mobs.append(mobGenerator.get_mob(campValue.mob2))
+		if (campValue.mob3):
+			campValue.mobs.append(mobGenerator.get_mob(campValue.mob3))
 		campValue.timer = null
 		campValue.inProgress = false
 		campValue.readyToCollect = false
@@ -271,7 +290,6 @@ func _ready():
 		campValue.campOutcome = {}
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
 		global.campData[campKey] = campValue
-		print(global.campData[campKey].mobs)
 	
 	#Load room type data and save it to a global var
 	var roomTypeFile = File.new()
@@ -421,20 +439,7 @@ func _ready():
 	if (!global.tradeskills["tailoring"].selectedRecipe):
 		global.tradeskills["tailoring"].selectedRecipe = tradeskills.tailoring.recipes[0]
 		
-	#Load mob data (mobs are a lot like items, they have names and stats and we access them by their name) 
-	var mobsFile = File.new()
-	mobsFile.open("res://gameData/mobs.json", mobsFile.READ)
-	unformattedMobData = parse_json(mobsFile.get_as_text())
-	mobsFile.close()
-	var mobKey = null #a string, ie: "Tadloc Grunt"
-	var mobValue = null #another dictionary, ie: {dps:4, str:5}
 
-	for mob in unformattedMobData:
-		if (mob):
-			mobKey = mob["mobName"]
-			mobValue = mob
-			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
-			global.mobData[mobKey] = mobValue
 		
 func _begin_global_quest_timer(duration, questID):
 	#starting quest timer 

@@ -6,5 +6,4 @@ func _ready():
 	pass
 	
 func get_mob(mobName):
-	#return global.mobData[mobName].instance()
-	pass
+	return global.mobData[mobName]

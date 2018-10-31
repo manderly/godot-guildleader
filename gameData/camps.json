@@ -8,9 +8,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "null",
-    "mob2": "null",
-    "mob3": "null"
+    "mob1": "Small Rat",
+    "mob2": "Large Rat",
+    "mob3": "Infected Rat"
   },
   {
     "campId": "test09",
@@ -21,9 +21,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "null",
-    "mob2": "null",
-    "mob3": "null"
+    "mob1": "Small Rat",
+    "mob2": "Large Rat",
+    "mob3": "Infected Rat"
   },
   {
     "campId": "test10",
@@ -34,9 +34,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "null",
-    "mob2": "null",
-    "mob3": "null"
+    "mob1": "Small Rat",
+    "mob2": "Large Rat",
+    "mob3": "Infected Rat"
   },
   {
     "campId": "goblin01",
@@ -47,9 +47,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "null",
-    "mob2": "null",
-    "mob3": "null"
+    "mob1": "Small Rat",
+    "mob2": "Large Rat",
+    "mob3": "Infected Rat"
   },
   {
     "campId": "goblin02",
@@ -60,9 +60,9 @@
     "durationMedium": 3600,
     "durationLong": 21600,
     "groupSize": 4,
-    "mob1": "null",
-    "mob2": "null",
-    "mob3": "null"
+    "mob1": "Small Rat",
+    "mob2": "Large Rat",
+    "mob3": "Infected Rat"
   },
   {
     "campId": "camp_guild01",
