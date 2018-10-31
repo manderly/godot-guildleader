@@ -43,8 +43,6 @@ var encounterOutcome = {
 	"lootTotal":[],
 	"scTotal":0,
 	"hcTotal":0,
-	"heroWins":0,
-	"mobWins":0,
 	"summary":[]
 }
 
@@ -98,12 +96,22 @@ func _calculate_average_level(entities):
 	return average
 
 func _get_target_entity(targets):
-	print("PICKING FROM: " + str(targets))
 	if (targets.size()):
 		var target = targets[randi()%targets.size()]
 		return target
 	else: 
 		print("ERROR: NOTHING TO PICK FROM")
+
+#modifies the current newBattle object directly
+func _target_mob_dies(targetMob, newBattle):
+	targetMob.dead = true
+	print(targetMob.mobName + " died!")
+	for hero in newBattle.heroes:
+		hero.give_xp(15) #todo: formula someday 
+	newBattle.mobs.erase(targetMob)
+	print("awarding SC and HC loot for this mob")
+	newBattle.sc = _get_rand_between(1, 100)
+	newBattle.hc = _get_rand_between(0, 2)
 	
 func _calculate_battle_outcome(heroes, mobTable):
 	#a battle continues until all mobs (or all heroes) are dead
@@ -128,38 +136,30 @@ func _calculate_battle_outcome(heroes, mobTable):
 		"rawBattleLog":[]
 	}
 	
-	while (randomMobs.size() > 0):
+	while (newBattle.mobs.size() > 0):
 		print("living mobs: " + str(randomMobs.size()))
 		var targetMob = null
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
-		for hero in livingHeroes:
+		for hero in newBattle.heroes:
 			if (!hero.dead):
 				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
-					targetMob = _get_target_entity(randomMobs)
+					targetMob = _get_target_entity(newBattle.mobs)
 					print(hero.heroName + " is going to attack " + targetMob.mobName)
 					var unmodifiedDamage = hero.melee_attack()
 					targetMob.hpCurrent -= unmodifiedDamage
 					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
-						targetMob.dead = true
-						print(targetMob.mobName + " died!")
-						#todo: give everyone xp 
-						randomMobs.remove(targetMob)
+						_target_mob_dies(targetMob, newBattle)
 						if (randomMobs.size() == 0):
 							break
 				elif (hero.heroClass == "Wizard"):
 					#nuke
 					targetMob = _get_target_entity(randomMobs)
-					print("What is targetMob? " + str(targetMob))
 					var nukeDmg = hero.level * hero.intelligence
 					print(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
 					targetMob.hpCurrent -= nukeDmg
-					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
-						targetMob.dead = true
-						print(targetMob.mobName + " died!")
-						#todo: give everyone xp 
-						randomMobs.erase(targetMob)
+						_target_mob_dies(targetMob, newBattle)
 						if (randomMobs.size() == 0):
 							break
 				elif (hero.heroClass == "Cleric"):
@@ -195,82 +195,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 					print(targetHero.heroName + " died!")
 			else:
 				print("this mob is dead")
-		
-	#get average hero level and average mob level
-	var averageHeroLevel = _calculate_average_level(livingHeroes) 
-	var averageMobLevel = _calculate_average_level(randomMobs)
-	print("averageHeroLevel: " + str(averageHeroLevel))
-	print("averageMobLevel: " + str(averageMobLevel))
-	
-	var heroScore = _calculate_entity_score(newBattle.heroes)
-	var mobScore = _calculate_entity_score(randomMobs)
-	print("heroScore: " + str(heroScore) + " mobScore: " + str(mobScore))
-	#now figure out which is lower
-	var outcomeNum = 0
-	if (heroScore <= mobScore): #ie: heroes are 50 and mobs are 80
-		#heroes have a chance based on the gulf between their score and mob score
-		#heroes win if outcome is 0-50 in this case
-		outcomeNum = _get_rand_between(0, mobScore)
-		print("Heroes are weaker. outcomeNum: " + str(outcomeNum))
-		if (outcomeNum <= heroScore):
-			#heroes win
-			newBattle.winner = "heroes"
-			newBattle.loot = "Rusty Broadsword" #todo: randomly win loot based on loot tables
-			newBattle.xp = 15 #todo: formulaize this
-			for hero in newBattle.heroes:
-				hero.give_xp(15)
-			newBattle.sc = _get_rand_between(1, 100)
-			newBattle.hc = _get_rand_between(0, 2)
-		else:
-			#mobs "win" (they don't, but we roll to see if a hero dies) 
-			newBattle.winner = "mobs"
-			newBattle.xp = 1
-			#determine if a hero dies 
-			#todo: move this to its own function
-			#todo: the cap should grow with the mob level
-			for hero in newBattle.heroes:
-				if (!hero.dead):
-					var defenseRoll = _get_rand_between(0, 20)
-					if (defenseRoll > hero.defense):
-						#hero dies
-						hero.dead = true
-						print(hero.heroName + " died")
-			newBattle.sc = 0
-			newBattle.hc = 0
-	elif (heroScore > mobScore): #ie: heroes are 100 and mobs are 20
-		#we want the mobs to still have a tiny chance, but heroes should win most of the time here
-		#heroes win if outcome is 21-100 in this case, lose if outcome is 0-20
-		#but since the heroes are higher level, we get a level modifier as well (this is rudimentary for now)
-		#the level modifier is just +10 to the roll outcome to make it more likely heroes win in cases like
-		#heroes 100, mobs 50. Heroes should definitely stomp the mobs in this case. 
-		outcomeNum = _get_rand_between(0, heroScore)
-		outcomeNum += 10
-		print("Mobs are weaker. outcomeNum: " + str(outcomeNum))
-		if (outcomeNum <= mobScore):
-			#mobs win
-			newBattle.winner = "mobs"
-			newBattle.xp = 1
-			#determine if a hero dies 
-			#todo: move this to its own function
-			#todo: the cap should grow with the mob level
-			for hero in newBattle.heroes:
-				if (!hero.dead):
-					var defenseRoll = _get_rand_between(0, 20)
-					if (defenseRoll > hero.defense):
-						#hero dies
-						hero.dead = true
-						print(hero.heroName + " died")
-			newBattle.sc = 0
-			newBattle.hc = 0
-		else:
-			newBattle.winner = "heroes"
-			newBattle.loot = "Rusty Broadsword" #todo: randomly win loot
-			newBattle.xp = 15 #todo: formulaize this
-			for hero in newBattle.heroes:
-				hero.give_xp(15)
-				print(hero.heroName + "got xp: " + str(newBattle.xp))
-			newBattle.sc = _get_rand_between(1, 100)
-			newBattle.hc = _get_rand_between(0, 2)
+
 
 	return newBattle
 
@@ -285,17 +210,12 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	for encounter in encounterQuantity:
 		var battleOutcome = _calculate_battle_outcome(camp.heroes, camp.mobs)
 		encounterOutcome.battleRecord.append(battleOutcome)
-		if (battleOutcome.winner == "heroes"):
-			encounterOutcome.heroWins += 1
-		else:
-			encounterOutcome.mobWins += 1
 		encounterOutcome.lootTotal.append(battleOutcome["loot"])
 		encounterOutcome.scTotal += battleOutcome["sc"]
 		encounterOutcome.hcTotal += battleOutcome["hc"]
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
 	encounterOutcome.summary.append("There were " + str(encounterQuantity) + " battles.")
-	encounterOutcome.summary.append("Heroes won " + str(encounterOutcome.heroWins) + " battles and enemies won " + str(encounterOutcome.mobWins) + " battles.")
 	for hero in camp.heroes:
-			if (hero.dead):
-				encounterOutcome.summary.append(hero.heroName + " was knocked unconscious.")
+		if (hero):
+			encounterOutcome.summary.append(hero.heroName + " is still alive.")
 	return encounterOutcome
