@@ -45,6 +45,8 @@ var encounterOutcome = {
 	"hcTotal":0,
 	"summary":[]
 }
+var heroesClone = []
+	
 
 #todo: track how much xp each hero gets individually for display later 
 
@@ -105,13 +107,14 @@ func _get_target_entity(targets):
 #modifies the current newBattle object directly
 func _target_mob_dies(targetMob, newBattle):
 	targetMob.dead = true
-	print(targetMob.mobName + " died!")
+	newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
 	for hero in newBattle.heroes:
-		hero.give_xp(15) #todo: formula someday 
+		hero.give_xp(15) #todo: formula someday
+		newBattle.rawBattleLog.append(hero.heroName + " got " + str(15) + " xp.")
 	newBattle.mobs.erase(targetMob)
-	print("awarding SC and HC loot for this mob")
 	newBattle.sc = _get_rand_between(1, 100)
 	newBattle.hc = _get_rand_between(0, 2)
+	newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins and " + str(newBattle.hc) + " diamonds") 
 	
 func _calculate_battle_outcome(heroes, mobTable):
 	#a battle continues until all mobs (or all heroes) are dead
@@ -121,12 +124,9 @@ func _calculate_battle_outcome(heroes, mobTable):
 	#figure out which mobs and which heroes are going to participate in this fight
 	var randomMobs = _get_battle_mobs(mobTable)
 	var livingHeroes = []
-	for hero in heroes:
-		if (hero && !hero.dead):
-			livingHeroes.append(hero)
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
-		"heroes":livingHeroes,
+		"heroes":heroes,
 		"mobs":randomMobs,
 		"winner":"",
 		"loot":null,
@@ -136,12 +136,11 @@ func _calculate_battle_outcome(heroes, mobTable):
 		"rawBattleLog":[]
 	}
 	
-	while (newBattle.mobs.size() > 0):
-		print("living mobs: " + str(randomMobs.size()))
+	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
 		var targetMob = null
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
 		for hero in newBattle.heroes:
-			if (!hero.dead):
+			if (hero && !hero.dead):
 				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
 					targetMob = _get_target_entity(newBattle.mobs)
 					print(hero.heroName + " is going to attack " + targetMob.mobName)
@@ -150,21 +149,21 @@ func _calculate_battle_outcome(heroes, mobTable):
 					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
-						if (randomMobs.size() == 0):
+						if (newBattle.mobs.size() == 0):
 							break
 				elif (hero.heroClass == "Wizard"):
 					#nuke
-					targetMob = _get_target_entity(randomMobs)
+					targetMob = _get_target_entity(newBattle.mobs)
 					var nukeDmg = hero.level * hero.intelligence
 					print(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
 					targetMob.hpCurrent -= nukeDmg
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
-						if (randomMobs.size() == 0):
+						if (newBattle.mobs.size() == 0):
 							break
 				elif (hero.heroClass == "Cleric"):
 					#heal ALL heroes in party
-					for partyMember in livingHeroes:
+					for partyMember in newBattle.heroes:
 						if (!partyMember.dead):
 							print(hero.heroName + " restores 5 hitpoints to everyone, including: " + partyMember.heroName)
 							partyMember.hpCurrent += 5
@@ -172,8 +171,8 @@ func _calculate_battle_outcome(heroes, mobTable):
 								partyMember.hpCurrent = partyMember.hp #cannot exceed max 
 				elif (hero.heroClass == "Druid"):
 					#can nuke or heal, for now druid just heals lowest hp hero 
-					var lowestHPhero = livingHeroes[0]
-					for partyMember in livingHeroes:
+					var lowestHPhero = newBattle.heroes[0]
+					for partyMember in newBattle.heroes:
 						if (!partyMember.dead && partyMember.hpCurrent < lowestHPhero.hpCurrent):
 							lowestHPhero = partyMember
 					#now we know which hero is in most need of healing
@@ -181,20 +180,22 @@ func _calculate_battle_outcome(heroes, mobTable):
 					lowestHPhero.hpCurrent += 15
 					if (lowestHPhero.hpCurrent > lowestHPhero.hp):
 						lowestHPhero.hpCurrent = (lowestHPhero.hp + 5) #give a litle extra on top
-			else:
-				print("this hero is dead")
-				
-		for mob in randomMobs:
-			var targetHero = _get_target_entity(livingHeroes)
-			if (!mob.dead):
+		
+		#now the mobs get a turn, but only if there's some heroes left
+		for mob in newBattle.mobs:
+			#var heroesToFight = _get_target_entity(newBattle.heroes)
+			if (newBattle.heroes.size() > 0):
+				#this mob's target (randomly picked for now)
+				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
 				print(mob.mobName + " is going to attack " + targetHero.heroName)
 				var unmodifiedDamage = mob.dps * mob.strength * mob.level
 				targetHero.hpCurrent -= unmodifiedDamage
-				if targetHero.hpCurrent == 0:
+				if (targetHero.hpCurrent <= 0):
 					targetHero.dead = true
+					newBattle.heroes.erase(targetHero)
 					print(targetHero.heroName + " died!")
 			else:
-				print("this mob is dead")
+				print("no heroes left to fight, battle is over")
 
 
 	return newBattle
@@ -206,9 +207,13 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	var encounterQuantity = camp.selectedDuration / 60
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
+	heroesClone = []
+	for t in camp.heroes:
+		if (t):
+			heroesClone.append(t)
 	
 	for encounter in encounterQuantity:
-		var battleOutcome = _calculate_battle_outcome(camp.heroes, camp.mobs)
+		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
 		encounterOutcome.battleRecord.append(battleOutcome)
 		encounterOutcome.lootTotal.append(battleOutcome["loot"])
 		encounterOutcome.scTotal += battleOutcome["sc"]
