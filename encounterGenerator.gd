@@ -79,7 +79,7 @@ func _get_battle_mobs(mobs):
 	var mobAssortment = []
 	#eventually, we'll pass in a min and max quantity of mobs
 	#but for now, 1-3 mobs will do
-	var battleMobsQuantity = _get_rand_between(1, 5)
+	var battleMobsQuantity = _get_rand_between(1, 2)
 	#now figure out which mobs those are, exactly
 	#todo: use rarities as designed in the data sheet (right now they are all equally likely) 
 	var randomMob = null
@@ -110,6 +110,8 @@ func _target_mob_dies(targetMob, newBattle):
 	newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
 	for hero in newBattle.heroes:
 		hero.give_xp(15) #todo: formula someday
+		if (hero.xp > global.levelXpData[hero.level].total):
+			hero.xp = global.levelXpData[hero.level].total
 		newBattle.rawBattleLog.append(hero.heroName + " got " + str(15) + " xp.")
 	newBattle.mobs.erase(targetMob)
 	newBattle.sc = _get_rand_between(1, 100)
@@ -123,7 +125,6 @@ func _calculate_battle_outcome(heroes, mobTable):
 	
 	#figure out which mobs and which heroes are going to participate in this fight
 	var randomMobs = _get_battle_mobs(mobTable)
-	var livingHeroes = []
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
 		"heroes":heroes,
