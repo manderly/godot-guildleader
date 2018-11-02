@@ -36,6 +36,39 @@ var baseMood = 0
 var basePrestige = -1
 var baseGroupBonus = "none"
 var baseRaidBonus = "none" 
+	
+var classLevelModifiers = {
+	"Warrior":{
+		"hp":1.75,
+		"mana":1,
+		"strength":1.2,
+		"defense":1.4
+		},
+	"Rogue":{
+		"hp":1.5,
+		"mana":1,
+		"strength":1.2,
+		"defense":1.3
+		},
+	"Ranger":{
+		"hp":1.8,
+		"mana":1,
+		"strength":1.2,
+		"defense":1.3
+		},
+	"Wizard":{
+		"hp":1.55,
+		"mana":1.58,
+		"strength":1,
+		"defense":1
+		},
+	"Cleric":{
+		"hp":1.3,
+		"mana":1.6,
+		"strength":1,
+		"defense":1.4
+		}
+}
 
 #EQUIPMENT MODIFIED STATS - the total from the hero's worn items (equipment dictionary further down)
 var modifiedHp = 0

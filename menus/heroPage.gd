@@ -105,9 +105,6 @@ func _ready():
 	
 func populate_fields(data):
 	$field_heroName.text = data.heroName
-	$field_levelAndClass.text = str(data.level) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
-	$progress_xp.set_value(100 * (data.xp / global.levelXpData[data.level].total))
 	if (data.recruited):
 		$button_trainOrRecruit.text = "Train to next level"
 	else:
@@ -115,6 +112,10 @@ func populate_fields(data):
 	_update_stats()
 	
 func _update_stats():
+	print("hero's hp should be: " + str(global.selectedHero.hp))
+	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
+	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
+	$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
@@ -147,8 +148,7 @@ func _on_button_train_pressed():
 		if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
-			global.selectedHero.xp = 0
-			global.selectedHero.level += 1
+			global.selectedHero.level_up()
 		else: 
 			$confirm_instant_train.popup()
 			
@@ -220,12 +220,12 @@ func _on_confirm_instant_train_confirmed():
 		#todo: this should be on a timer and the hero is unavailable while training
 		#also, only one hero can train up at a time
 		global.hardCurrency -= 1
-		global.selectedHero.xp = 0
-		global.selectedHero.level += 1
+		global.selectedHero.level_up()
 		#todo: refactor the redrawing of fields into something less case-by-case
-		$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
-		$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
-		$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
+		#$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
+		#$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
+		#$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
+		_update_stats()
 	else: 
 		print("heroPage.gd: not enough diamonds")
 

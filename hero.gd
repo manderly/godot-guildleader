@@ -299,6 +299,15 @@ func send_home():
 func give_xp(xpNum):
 	xp += xpNum
 	
+func level_up():
+	xp = int(0)
+	level += int(1)
+	baseHp = int(round(baseHp * classLevelModifiers[heroClass].hp))
+	baseMana = int(round(baseMana * classLevelModifiers[heroClass].mana))
+	baseStrength = int(round(baseStrength * classLevelModifiers[heroClass].strength))
+	baseDefense = int(round(baseDefense * classLevelModifiers[heroClass].defense))
+	update_hero_stats()
+	
 func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2
 	var roll = randi()%20+1 #(roll between 1-20)
