@@ -80,6 +80,10 @@ func _render_tradeskill(data):
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
 	$Button/field_slotName.hide()
 	
+func _render_camp_loot(data):
+	itemData = data
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/field_slotName.hide()
 	
 func _clear_tradeskill():
 	_clear_data()

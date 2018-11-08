@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/maps/campResults.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
 [ext_resource path="res://gui_styles/beigeLabels.tres" type="Theme" id=4]
-[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=6]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -77,9 +76,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 53.0
+margin_left = 98.0
 margin_top = 57.0
-margin_right = 419.0
+margin_right = 374.0
 margin_bottom = 671.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -96,7 +95,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -121,7 +120,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 154.0
 rect_min_size = Vector2( 200, 120 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -196,7 +195,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 158.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 188.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -221,7 +220,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 192.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 392.0
 rect_min_size = Vector2( 0, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -262,7 +261,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 396.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 434.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -278,8 +277,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 90.0
-margin_right = 275.0
+margin_left = 45.0
+margin_right = 230.0
 margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -304,7 +303,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 438.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 468.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -329,7 +328,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 472.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 572.0
 rect_min_size = Vector2( 0, 100 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -341,28 +340,6 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="prizeBox1" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="0" instance=ExtResource( 5 )]
-
-[node name="prizeBox2" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="1" instance=ExtResource( 5 )]
-
-margin_left = 74.0
-margin_right = 144.0
-
-[node name="prizeBox3" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="2" instance=ExtResource( 5 )]
-
-margin_left = 148.0
-margin_right = 218.0
-
-[node name="prizeBox4" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="3" instance=ExtResource( 5 )]
-
-margin_left = 222.0
-margin_right = 292.0
-
-[node name="prizeBox5" parent="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2" index="4" instance=ExtResource( 5 )]
-
-margin_left = 296.0
-margin_right = 366.0
-
 [node name="button_collect" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
 
 anchor_left = 0.0
@@ -370,7 +347,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 576.0
-margin_right = 366.0
+margin_right = 276.0
 margin_bottom = 614.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -387,7 +364,7 @@ text = "COLLECT PRIZES & SEND HEROES HOME"
 flat = false
 align = 1
 
-[node name="button_back" parent="." index="2" instance=ExtResource( 6 )]
+[node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/button_collect" to="." method="_on_button_collect_pressed"]
 

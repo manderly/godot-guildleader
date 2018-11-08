@@ -3,19 +3,30 @@ extends Node2D
 onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/field_campName
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
 onready var field_resultsScrollBox = $MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer
+onready var field_lootItems = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2
 
 var campData = null
+var battlePrint = false
 
 func _ready():
 	campData = global.campData[global.selectedCampID]
 	#print(campData.campOutcome)
-	for event in campData.campOutcome.battleRecord:
-		print(event)
+	if (battlePrint):
+		for event in campData.campOutcome.battleRecord:
+			print(event)
 	_populate_fields()
 
 func _populate_fields():
 	field_campName.text = campData.name
 	field_campDescription.text = campData.description
+	#create item boxes for each item won
+	for itemName in campData.campOutcome.lootedItems:
+		print("Item name: " + itemName)
+		var itemBox = preload("res://menus/itemButton.tscn").instance()
+		var itemData = global.allGameItems[str(itemName)]
+		itemBox._render_camp_loot(itemData)
+		field_lootItems.add_child(itemBox)
+		
 	for event in campData.campOutcome.summary:
 		var eventText = Label.new()
 		eventText.text = str(event)

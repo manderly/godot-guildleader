@@ -26,6 +26,10 @@ var unrecruited = []
 var unformattedMobData = null
 var mobData = {}
 
+#Loot tables
+var unformattedLootTablesData = null
+var lootTables = {}
+
 #Quests
 var unformattedQuestData = null
 var questData = {}
@@ -213,6 +217,22 @@ func _ready():
 			mobValue.dead = false
 			global.mobData[mobKey] = mobValue
 			
+	
+	#Load loot table data
+	var lootTablesFile = File.new()
+	lootTablesFile.open("res://gameData/lootTables.json", lootTablesFile.READ)
+	unformattedLootTablesData = parse_json(lootTablesFile.get_as_text())
+	lootTablesFile.close()
+	var lootTableKey = null #a string, ie: ratLoot01
+	var lootTableValue = null #another dictionary, ie: {item1: itemname, item1Chance: 20}
+	
+	for lootTable in unformattedLootTablesData:
+		if (lootTable):
+			lootTableKey = lootTable["lootTableName"]
+			lootTableValue = lootTable
+			#add anything else to lootTableValue here, 
+			global.lootTables[lootTableKey] = lootTableValue
+	
 	#Todo: Quests are getting refactored, but keep this for mining / harvesting jobs 
 	#Load quest data
 	var questFile = File.new()
