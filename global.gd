@@ -35,10 +35,10 @@ var unformattedQuestData = null
 var questData = {}
 var allGameQuests = {}
 var activeQuests = []
+var selectedQuestID = ""
 
 #active quest
 var questButtonID = null
-var selectedQuestID = null #used by quest confirm to pass data to correct quest sub-object in questData object
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
 
@@ -175,6 +175,8 @@ var allGameItems = {}
 var guildItems = []
 var tradeskillItemsSeen = [] #keep track of all the tradeskill items we've encountered, never remove
 var tradeskillItemsDictionary = {} #keep count of tradeskill items and their counts here
+var questItemsSeen = [] #keep track of all the quest items we've encountered, todo: player can remove
+var questItemsDictionary = {} #keep count of quest items and their counts here
 var swapItemSourceIdx = null
 var inSwapItemState = false
 var lastItemButtonClicked = null
@@ -255,6 +257,7 @@ func _ready():
 	util.give_quest("test09")
 	util.give_quest("test10")
 	util.give_quest("azuricite_quest01")
+	global.selectedQuestID = "test09"
 	
 	#Load harvesting data (structurally similar to how Quests used to work)
 	var harvestingFile = File.new()
@@ -369,6 +372,14 @@ func _ready():
 		if (itemValue["itemType"] == "tradeskill"):
 			tradeskillItemsDictionary[itemKey] = {
 				"count": 0,
+				"name":itemKey,
+				"icon":itemValue.icon,
+				"seen":false,
+				"consumable":itemValue.consumable
+				}
+		elif (itemValue["itemType"] == "quest"): #or put it in the quest items dictionary
+			questItemsDictionary[itemKey] = {
+				"count":0,
 				"name":itemKey,
 				"icon":itemValue.icon,
 				"seen":false,

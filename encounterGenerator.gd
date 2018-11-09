@@ -84,9 +84,10 @@ func _get_battle_mobs(mobs):
 	#now figure out which mobs those are, exactly
 	#todo: use rarities as designed in the data sheet (right now they are all equally likely) 
 	var randomMob = null
+	print(mobs)
 	for i in battleMobsQuantity:
-		var randMobNum = _get_rand_between(1, 3) #never picks 2 if you pass it (0,2)
-		randomMob = mobs[randMobNum - 1]
+		var randMobNum = _get_rand_between(1,3) #never picks 2 if you pass it (0,2) (1,3)
+		randomMob = mobs[randMobNum - 1] #[-1]
 		mobAssortment.append(randomMob)
 	return mobAssortment
 

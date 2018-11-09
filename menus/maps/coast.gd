@@ -5,11 +5,11 @@ extends Node2D
 # var b = "textvar"
 
 func _ready():
-	$questMarker1._set_data("coast01")
-	$questMarker2._set_data("coast02")
-	$questMarker3._set_data("coast03")
-	$questMarker4._set_data("coast04")
-	$questMarker5._set_data("coast05")
-	$questMarker6._set_data("coast06")
-	$questMarker7._set_data("coast07")
-	$questMarker8._set_data("coast08")
+	$questMarker1._set_data("camp_coast01")
+	$questMarker2._set_data("camp_coast02")
+	$questMarker3._set_data("camp_coast03")
+	$questMarker4._set_data("camp_coast04")
+	$questMarker5._set_data("camp_coast05")
+	$questMarker6._set_data("camp_coast06")
+	$questMarker7._set_data("camp_coast07")
+	$questMarker8._set_data("camp_coast08")

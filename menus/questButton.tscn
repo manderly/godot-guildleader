@@ -3,7 +3,7 @@
 [ext_resource path="res://menus/questButton.gd" type="Script" id=1]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -56,6 +56,6 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="pressed" from="questButton" to="." method="_on_recipeButton_pressed"]
+[connection signal="pressed" from="questButton" to="." method="_on_questButton_pressed"]
 
 

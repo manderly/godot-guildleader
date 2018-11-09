@@ -29,8 +29,23 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	
 #check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
-	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType != "tradeskill"): 
+	print("getting this item: " + itemName)
+	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "tradeskill"):
+		if (!global.tradeskillItemsDictionary[itemName].seen):
+			global.tradeskillItemsSeen.append(itemName)
+			global.tradeskillItemsDictionary[itemName].seen = true
+		#either way, increase the count
+		global.tradeskillItemsDictionary[itemName].count += 1
+	elif (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "quest"):
+		if (!global.questItemsDictionary[itemName].seen):
+			global.questItemsSeen.append(itemName)
+			global.questItemsDictionary[itemName].seen = true
+		#either way, increase the count
+		global.questItemsDictionary[itemName].count += 1
+	else:
 		#make sure this item actually exists in the item records
+		if (!global.allGameItems[itemName]):
+			print("ERROR! Make sure this item name exists: " + itemName)
 		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
@@ -38,14 +53,6 @@ func give_item_guild(itemName): #itemName comes in as a string
 				global.guildItems[i].itemID = global.nextItemID
 				global.nextItemID += 1
 				break
-	elif (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "tradeskill"):
-		if (!global.tradeskillItemsDictionary[itemName].seen):
-			global.tradeskillItemsSeen.append(itemName)
-			global.tradeskillItemsDictionary[itemName].seen = true
-		#either way, increase the count
-		global.tradeskillItemsDictionary[itemName].count += 1
-	else:
-		print("util.gd - ITEM NOT FOUND! ERROR! Check the spelling of: " + itemName)
 	
 	
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 

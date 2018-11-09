@@ -4,6 +4,7 @@ var buttonArray = []
 
 onready var gridEquipment = $VBoxContainer/CenterContainer/TabContainer/Equipment
 onready var gridTradeskillItems = $VBoxContainer/CenterContainer/TabContainer/Resources
+onready var gridQuestItems = $VBoxContainer/CenterContainer/TabContainer/Quest_Items
 onready var inventoryCapacity = $VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
 
 func _ready():
@@ -16,8 +17,9 @@ func _ready():
 	if (global.currentMenu == "vaultViaHeroPage"):
 		global.logger(self, "Browsing for: " + global.selectedHero.heroClass + " " + str(global.browsingForSlot))
 	
-	#tradeskill tab
+	#tradeskill tab and quest tab
 	_draw_tradeskill_items()
+	_draw_quest_items()
 	
 func _position_vault_buttons():
 	#this method handles the STRUCTURE of the buttons
@@ -42,7 +44,7 @@ func _draw_vault_items():
 		var currentButton = null
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
-			if (global.guildItems[i] && global.guildItems[i].itemType != "tradeskill"):
+			if (global.guildItems[i] && global.guildItems[i].itemType != "tradeskill" && global.guildItems[i].itemType != "quest"):
 				currentButton._render_vault(global.guildItems[i])
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
@@ -82,6 +84,15 @@ func _draw_tradeskill_items():
 		var itemName = global.tradeskillItemsSeen[i]
 		tradeskillItemDisplay._display_in_vault(global.tradeskillItemsDictionary[itemName])
 		gridTradeskillItems.add_child(tradeskillItemDisplay)
+
+func _draw_quest_items():
+	#these are on their own tab now
+	print(global.questItemsSeen) #array of item names
+	for item in global.questItemsSeen:
+		var questItemDisplay = preload("res://menus/crafting_ingredientDisplay.tscn").instance()
+		var itemName = item
+		questItemDisplay._display_in_vault(global.questItemsDictionary[itemName])
+		gridQuestItems.add_child(questItemDisplay)
 	
 	
 func _on_button_back_pressed():

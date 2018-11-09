@@ -56,7 +56,7 @@ func _populate_fields():
 		$field_itemID.add_color_override("font_color", global.colorPink) 
 		
 	#figure out what stats this item gives
-	if (itemData.slot != "tradeskill"):
+	if (itemData.slot != "tradeskill" && itemData.slot != "quest"):
 		#an item gives armor or dps, but not both
 		if (itemData.dps > 0):
 			$field_armorOrDPS.text = str(itemData.dps) + " DPS"

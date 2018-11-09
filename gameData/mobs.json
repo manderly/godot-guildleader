@@ -110,7 +110,7 @@
     "defense": 8
   },
   {
-    "mobName": "Fresh Recruit",
+    "mobName": "Lowly Smuggler",
     "lootTable": "pirateLoot01",
     "level": 8,
     "hp": 200,
@@ -118,6 +118,16 @@
     "dps": 3,
     "strength": 3,
     "defense": 5
+  },
+  {
+    "mobName": "Smuggler Captain",
+    "lootTable": "pirateLoot01",
+    "level": 10,
+    "hp": 300,
+    "mana": 0,
+    "dps": 5,
+    "strength": 4,
+    "defense": 4
   },
   {
     "mobName": "Old Scallywag ",

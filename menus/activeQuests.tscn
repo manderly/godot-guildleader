@@ -5,7 +5,7 @@
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -160,7 +160,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="field_campDescription" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
+[node name="field_questDescription" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -182,7 +182,7 @@ visible_characters = -1
 percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
-text = "# CAMP DESCRIPTION"
+text = "# QUEST DESCRIPTION"
 scroll_active = true
 scroll_following = false
 selection_enabled = false
