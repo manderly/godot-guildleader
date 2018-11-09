@@ -252,6 +252,8 @@ func _ready():
 		global.allGameQuests[questKey] = questValue
 	#now we have all the quest data as a dictionary
 	#give quests to the player like if they were items
+	util.give_quest("test09")
+	util.give_quest("test10")
 	util.give_quest("azuricite_quest01")
 	
 	#Load harvesting data (structurally similar to how Quests used to work)

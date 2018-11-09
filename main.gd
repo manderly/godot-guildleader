@@ -49,9 +49,13 @@ func _ready():
 	draw_heroes()
 	draw_rooms()
 	
+func _on_Map_pressed():
+	global.currentMenu = "worldmap"
+	get_tree().change_scene("res://menus/maps/worldmap.tscn");
+	
 func _on_Quests_pressed():
 	global.currentMenu = "quests"
-	get_tree().change_scene("res://menus/maps/worldmap.tscn");
+	get_tree().change_scene("res://menus/activeQuests.tscn");
 
 func _on_Vault_pressed():
 	global.currentMenu = "vault"

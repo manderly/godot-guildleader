@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://menus/recipeButton.gd" type="Script" id=1]
+[ext_resource path="res://menus/questButton.gd" type="Script" id=1]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=2]
 
 [node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
-[node name="recipeButton" type="Button" parent="." index="0"]
+[node name="questButton" type="Button" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -28,12 +28,12 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "#RECIPE NAME AND TRIVIAL"
+text = "#QUEST NAME"
 flat = false
 align = 0
 _sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="field_timeToCreate" type="Label" parent="recipeButton" index="0"]
+[node name="field_progressPercent" type="Label" parent="questButton" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -49,13 +49,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "60s"
+text = "#00%"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="pressed" from="recipeButton" to="." method="_on_recipeButton_pressed"]
+[connection signal="pressed" from="questButton" to="." method="_on_recipeButton_pressed"]
 
 
