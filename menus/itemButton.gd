@@ -85,6 +85,11 @@ func _render_camp_loot(data):
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
 	$Button/field_slotName.hide()
 	
+func _render_quest_prize(data):
+	itemData = data
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/field_slotName.hide()
+	
 func _clear_tradeskill():
 	_clear_data()
 	_clear_icon()

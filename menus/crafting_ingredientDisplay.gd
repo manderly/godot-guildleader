@@ -12,6 +12,10 @@ func _display_in_vault(ingredientData):
 	_set_white()
 	$sprite_icon.texture = load("res://sprites/items/" + ingredientData.icon)
 	
+func _render_as_quest_component(itemData, quantity):
+	$field_name.text = itemData.name + " x" + str(quantity)
+	$sprite_icon.texture = load("res://sprites/items/" + itemData.icon)
+	
 func _clear_fields():
 	$field_name.text = ""
 	$sprite_icon.texture = null
