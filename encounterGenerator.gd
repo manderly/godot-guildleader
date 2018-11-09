@@ -120,15 +120,15 @@ func _target_mob_dies(targetMob, newBattle):
 		
 	#give loot (randomly determined from loot table)
 	var lootTable = global.lootTables[targetMob.lootTable]
-	#print(lootTable)
-	#see if we get item1
+	
+	#determine the upper limit based on how long the camp is expected to last
+	#shorter camps have a slightly greater chance of dropping items
+	#longer camps have a slightly lower chance of dropping items 
 	if (_get_rand_between(0, 100) < lootTable.item1Chance):
-		print("Looted this item: " + lootTable.item1)
 		newBattle.rawBattleLog.append("Looted this item: " + lootTable.item1)
 		newBattle.loot.append(lootTable.item1)
 		
 	if (_get_rand_between(0, 100) < lootTable.item2Chance):
-		print("Looted this item: " + lootTable.item2)
 		newBattle.rawBattleLog.append("Looted this item: " + lootTable.item2)
 		newBattle.loot.append(lootTable.item2)
 			
@@ -235,7 +235,10 @@ func _calculate_battle_outcome(heroes, mobTable):
 func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#use duration to determine how many encounters (battles) happen
 	#duration comes in as seconds, so divide by 60 to make it 1 encounter per minute
-	var encounterQuantity = camp.selectedDuration / 60
+	#or 120 to make it 1 encounter every 2 mins, etc.
+	#remember that an encounter has several mobs in it
+	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
+	var encounterQuantity = camp.selectedDuration / 300
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	heroesClone = []

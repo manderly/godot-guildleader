@@ -9,7 +9,7 @@ var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
 var softCurrency = 500
-var hardCurrency = 10
+var hardCurrency = 500
 var currentMenu = "main"
 var vaultSpace = 25 #should be a multiple of 5
 var guildName = "" 

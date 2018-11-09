@@ -74,20 +74,20 @@
   {
     "lootTableName": "pirateLoot01",
     "item1": "Durable Alloy Sword",
-    "item1Chance": 2,
+    "item1Chance": 5,
     "item2": "Stillwater Pirate Banner",
-    "item2Chance": 2,
+    "item2Chance": 7,
     "scMin": 10,
-    "scMax": 200
+    "scMax": 25
   },
   {
     "lootTableName": "pirateLoot02",
     "item1": "Pirate's Dagger",
-    "item1Chance": 3,
+    "item1Chance": 5,
     "item2": "Stillwater Pirate Banner",
-    "item2Chance": 2,
+    "item2Chance": 8,
     "scMin": 10,
-    "scMax": 300
+    "scMax": 60
   },
   {
     "lootTableName": "pirateLoot03",
@@ -96,6 +96,6 @@
     "item2": "Stillwater Pirate Banner",
     "item2Chance": 10,
     "scMin": 10,
-    "scMax": 600
+    "scMax": 100
   }
 ]
