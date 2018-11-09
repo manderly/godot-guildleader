@@ -235,8 +235,8 @@
   },
   {
     "campId": "camp_coast03",
-    "name": "Sand Gets Everywhere",
-    "description": "Some text here",
+    "name": "Stillwater Pirates",
+    "description": "Rumor has it the Stillwater Pirates have expanded their smuggling operation to the Shoach Coast.",
     "level": 3,
     "durationShort": 300,
     "durationMedium": 3600,

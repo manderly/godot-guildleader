@@ -364,8 +364,8 @@
     "questId": "quest_coast03",
     "preReq": "",
     "repeatable": true,
-    "name": "Sand Gets Everywhere",
-    "text": "Some text here",
+    "name": "Stillwater Pirates",
+    "text": "Rumor has it the Stillwater Pirates have expanded their smuggling operation to the Shoach Coast.",
     "prestige": 5,
     "prizeItem1": "Fine Steel Dagger",
     "scPrize": 250,
@@ -492,5 +492,24 @@
     "reqItem3Quantity": "",
     "reqItem4": "",
     "reqItem4Quantity": ""
+  },
+  {
+    "questId": "azuricite_quest01",
+    "preReq": "",
+    "repeatable": true,
+    "name": "Banners of the Stillwater Pirates",
+    "text": "I hate the Stillwater Pirates but I love collecting rocks. If you bring me one of their banners, I'll trade you this rare bit of Azuricite for it.",
+    "prestige": 5,
+    "prizeItem1": "Azuricite Helm",
+    "scPrize": 0,
+    "hcPrize": 0,
+    "reqItem1": "Stillwater Pirate Banner",
+    "reqItem1Quantity": 1,
+    "reqItem2": "null",
+    "reqItem2Quantity": 0,
+    "reqItem3": "null",
+    "reqItem3Quantity": 0,
+    "reqItem4": "null",
+    "reqItem4Quantity": 0
   }
 ]

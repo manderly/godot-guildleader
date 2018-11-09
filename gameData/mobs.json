@@ -108,5 +108,45 @@
     "dps": 8,
     "strength": 6,
     "defense": 8
+  },
+  {
+    "mobName": "Fresh Recruit",
+    "lootTable": "pirateLoot01",
+    "level": 8,
+    "hp": 200,
+    "mana": 0,
+    "dps": 3,
+    "strength": 3,
+    "defense": 5
+  },
+  {
+    "mobName": "Old Scallywag ",
+    "lootTable": "pirateLoot01",
+    "level": 8,
+    "hp": 200,
+    "mana": 0,
+    "dps": 2,
+    "strength": 3,
+    "defense": 5
+  },
+  {
+    "mobName": "Deck Swabbie",
+    "lootTable": "pirateLoot02",
+    "level": 9,
+    "hp": 200,
+    "mana": 0,
+    "dps": 3,
+    "strength": 2,
+    "defense": 5
+  },
+  {
+    "mobName": "Captain Smellybeard",
+    "lootTable": "pirateLoot03",
+    "level": 12,
+    "hp": 500,
+    "mana": 0,
+    "dps": 5,
+    "strength": 3,
+    "defense": 5
   }
 ]

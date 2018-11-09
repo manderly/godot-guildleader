@@ -64,11 +64,38 @@
   },
   {
     "lootTableName": "gobinLootBoss",
-    "item1": "Fine Steel Sword",
+    "item1": "Durable Alloy Sword",
     "item1Chance": 10,
     "item2": "Heavy Painted Shield",
     "item2Chance": 10,
     "scMin": 50,
     "scMax": 200
+  },
+  {
+    "lootTableName": "pirateLoot01",
+    "item1": "Durable Alloy Sword",
+    "item1Chance": 10,
+    "item2": "Stillwater Pirate Banner",
+    "item2Chance": 5,
+    "scMin": 150,
+    "scMax": 300
+  },
+  {
+    "lootTableName": "pirateLoot02",
+    "item1": "Pirate's Dagger",
+    "item1Chance": 10,
+    "item2": "Stillwater Pirate Banner",
+    "item2Chance": 5,
+    "scMin": 300,
+    "scMax": 500
+  },
+  {
+    "lootTableName": "pirateLoot03",
+    "item1": "Obsidian Quickblade",
+    "item1Chance": 5,
+    "item2": "Stillwater Pirate Banner",
+    "item2Chance": 35,
+    "scMin": 600,
+    "scMax": 999
   }
 ]

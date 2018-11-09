@@ -33,6 +33,8 @@ var lootTables = {}
 #Quests
 var unformattedQuestData = null
 var questData = {}
+var allGameQuests = {}
+var activeQuests = []
 
 #active quest
 var questButtonID = null
@@ -233,7 +235,6 @@ func _ready():
 			#add anything else to lootTableValue here, 
 			global.lootTables[lootTableKey] = lootTableValue
 	
-	#Todo: Quests are getting refactored, but keep this for mining / harvesting jobs 
 	#Load quest data
 	var questFile = File.new()
 	questFile.open("res://gameData/quests.json", questFile.READ)
@@ -243,22 +244,15 @@ func _ready():
 	#so we can access quests by ID 
 	var questKey = null #a string, ie: "forest01"
 	var questValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
-	for i in range(unformattedQuestData.size()):
-		questKey = unformattedQuestData[i]["questId"]
-		questValue = unformattedQuestData[i]
-		questValue.heroes = [null, null, null]
-		questValue.timer = null
-		questValue.inProgress = false
-		questValue.readyToCollect = false
+	for quest in unformattedQuestData:
+		questKey = quest["questId"]
+		questValue = quest
 		questValue.timesRun = 0
-		questValue.lootWon = {
-			"questPrizeSC":0,
-			"questPrizeHC":0,
-			"questPrizeItem1":null,
-			"questPrizeItem2":null
-		}
 		#loot won is filled in when the quest is completed and held in the object until collected, then it is nulled out for re-use
-		global.questData[questKey] = questValue
+		global.allGameQuests[questKey] = questValue
+	#now we have all the quest data as a dictionary
+	#give quests to the player like if they were items
+	util.give_quest("azuricite_quest01")
 	
 	#Load harvesting data (structurally similar to how Quests used to work)
 	var harvestingFile = File.new()

@@ -96,3 +96,6 @@ func remove_item_tradeskill():
 	#empties the wildcardItem bucket 
 	global.tradeskills[global.currentMenu].wildcardItem = null
 	
+func give_quest(questID):
+	var newQuestInstance = global.allGameQuests[questID].duplicate()
+	global.activeQuests.append(newQuestInstance)
