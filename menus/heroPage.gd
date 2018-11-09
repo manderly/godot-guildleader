@@ -149,6 +149,7 @@ func _on_button_train_pressed():
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
 			global.selectedHero.level_up()
+			_update_stats()
 		else: 
 			$confirm_instant_train.popup()
 			

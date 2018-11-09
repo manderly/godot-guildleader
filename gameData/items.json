@@ -162,8 +162,8 @@
   },
   {
     "name": "Bladestorm",
-    "icon": "sword5.png",
-    "bodySprite": "sword1.png",
+    "icon": "sword6.png",
+    "bodySprite": "sword6.png",
     "itemType": "sword",
     "consumable": false,
     "prestige": 10,
@@ -186,7 +186,7 @@
   {
     "name": "Rusty Knife",
     "icon": "dagger1.png",
-    "bodySprite": "sword1.png",
+    "bodySprite": "dagger1.png",
     "itemType": "knife",
     "consumable": false,
     "prestige": 0,
@@ -209,7 +209,7 @@
   {
     "name": "Fine Steel Dagger",
     "icon": "dagger2.png",
-    "bodySprite": "sword1.png",
+    "bodySprite": "dagger2.png",
     "itemType": "knife",
     "consumable": false,
     "prestige": 0,
@@ -232,7 +232,7 @@
   {
     "name": "Obsidian Quickblade",
     "icon": "dagger2.png",
-    "bodySprite": "sword1.png",
+    "bodySprite": "dagger2.png",
     "itemType": "knife",
     "consumable": false,
     "prestige": 2,
@@ -254,8 +254,8 @@
   },
   {
     "name": "Tzip's Crooked Dagger",
-    "icon": "dagger2.png",
-    "bodySprite": "sword1.png",
+    "icon": "dagger3.png",
+    "bodySprite": "dagger3.png",
     "itemType": "knife",
     "consumable": false,
     "prestige": 5,

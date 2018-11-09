@@ -42,6 +42,8 @@ func _on_button_collect_pressed():
 		if (hero):
 			hero.send_home()
 	
+	global.softCurrency += campData.campOutcome.scTotal
+	
 	campData.heroes = [null, null, null, null]
 	campData.inProgress = false
 	campData.readyToCollect = false
