@@ -33,8 +33,8 @@ func _populate_fields():
 		field_resultsScrollBox.add_child(eventText)
 
 func _on_button_collect_pressed():
-	#todo: iterate through campData.campOutcome.lootTotal and give those items to guild
-	for lootName in campData.campOutcome.lootTotal:
+	#todo: iterate through campData.campOutcome.lootedItems and give those items to guild
+	for lootName in campData.campOutcome.lootedItems:
 		if (lootName): #because some entries are null
 			util.give_item_guild(lootName)
 		

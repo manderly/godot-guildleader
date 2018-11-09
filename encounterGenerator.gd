@@ -119,7 +119,7 @@ func _target_mob_dies(targetMob, newBattle):
 		
 	#give loot (randomly determined from loot table)
 	var lootTable = global.lootTables[targetMob.lootTable]
-	print(lootTable)
+	#print(lootTable)
 	#see if we get item1
 	if (_get_rand_between(0, 100) < lootTable.item1Chance):
 		print("Looted this item: " + lootTable.item1)
