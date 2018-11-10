@@ -35,6 +35,7 @@ func _populate_fields():
 		var itemIconAndCountDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemData = global.allGameItems[str(itemName)]
 		itemIconAndCountDisplay._render_stacked_item(itemData, lootDictionaryWithCounts[itemName])
+		itemIconAndCountDisplay._set_white()
 		field_lootItems.add_child(itemIconAndCountDisplay)
 		
 	for event in campData.campOutcome.summary:
