@@ -6,7 +6,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -253,7 +253,7 @@ tab_align = 1
 tabs_visible = true
 _sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="Equipment" type="GridContainer" parent="VBoxContainer/CenterContainer/TabContainer" index="0"]
+[node name="Equipment" type="ScrollContainer" parent="VBoxContainer/CenterContainer/TabContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -263,15 +263,37 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
-rect_min_size = Vector2( 420, 400 )
+rect_min_size = Vector2( 0, 500 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+scroll_horizontal_enabled = true
+scroll_horizontal = 0
+scroll_vertical_enabled = true
+scroll_vertical = 0
+scroll_deadzone = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Grid" type="GridContainer" parent="VBoxContainer/CenterContainer/TabContainer/Equipment" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 420.0
+margin_bottom = 900.0
+rect_min_size = Vector2( 420, 900 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/vseparation = 24
-custom_constants/hseparation = 24
+custom_constants/vseparation = 18
+custom_constants/hseparation = 18
 columns = 5
 _sections_unfolded = [ "Margin", "Rect", "custom_constants" ]
 

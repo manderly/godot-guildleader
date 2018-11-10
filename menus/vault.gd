@@ -2,7 +2,7 @@ extends Node2D
 
 var buttonArray = []
 
-onready var gridEquipment = $VBoxContainer/CenterContainer/TabContainer/Equipment
+onready var gridEquipment = $VBoxContainer/CenterContainer/TabContainer/Equipment/Grid
 onready var gridTradeskillItems = $VBoxContainer/CenterContainer/TabContainer/Resources
 onready var gridQuestItems = $VBoxContainer/CenterContainer/TabContainer/Quest_Items
 onready var inventoryCapacity = $VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
