@@ -321,7 +321,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
+[node name="vbox_prizes" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0

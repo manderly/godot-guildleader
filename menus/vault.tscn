@@ -277,7 +277,7 @@ scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="Grid" type="GridContainer" parent="VBoxContainer/CenterContainer/TabContainer/Equipment" index="2"]
+[node name="Grid" type="GridContainer" parent="VBoxContainer/CenterContainer/TabContainer/Equipment" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

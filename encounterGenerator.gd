@@ -42,7 +42,7 @@ var battlePrint = false
 #populate sc and hc with totals of currency won 
 var encounterOutcome = {
 	"battleRecord":[],
-	"lootedItems":[],
+	"lootedItemsNames":[], #just the names, no dupes 
 	"scTotal":0,
 	"hcTotal":0,
 	"summary":[]
@@ -84,7 +84,6 @@ func _get_battle_mobs(mobs):
 	#now figure out which mobs those are, exactly
 	#todo: use rarities as designed in the data sheet (right now they are all equally likely) 
 	var randomMob = null
-	print(mobs)
 	for i in battleMobsQuantity:
 		var randMobNum = _get_rand_between(1,3) #never picks 2 if you pass it (0,2) (1,3)
 		randomMob = mobs[randMobNum - 1] #[-1]
@@ -133,7 +132,8 @@ func _target_mob_dies(targetMob, newBattle):
 		newBattle.loot.append(lootTable.item2)
 			
 	var scAmount = _get_rand_between(lootTable.scMin, lootTable.scMax)
-	print("looted this much SC: " + str(scAmount))
+	if (battlePrint):
+		print("looted this much SC: " + str(scAmount))
 	newBattle.rawBattleLog.append("looted this much SC: " + str(scAmount))
 	#append coins somewhere on newBattle
 
@@ -156,7 +156,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 		"heroes":heroes,
 		"mobs":randomMobs,
 		"winner":"",
-		"loot":[],
+		"loot":[], #item name strings 
 		"sc":0,
 		"hc":0,
 		"xp:":0,
@@ -249,9 +249,8 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	for encounter in encounterQuantity:
 		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
 		encounterOutcome.battleRecord.append(battleOutcome)
-		for loot in battleOutcome["loot"]:
-			encounterOutcome.lootedItems.append(loot)
-		#encounterOutcome.lootedItems.append(battleOutcome["loot"]) #replaced by above 2 lines
+		for lootName in battleOutcome["loot"]:
+			encounterOutcome.lootedItemsNames.append(lootName)
 		encounterOutcome.scTotal += battleOutcome["sc"]
 		encounterOutcome.hcTotal += battleOutcome["hc"]
 	#the summary is shown on the results page, but there is also a more detailed battle log to view

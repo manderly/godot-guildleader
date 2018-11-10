@@ -24,7 +24,6 @@ func _ready():
 	
 func _process(delta):
 	if (!campData.inProgress && !campData.readyToCollect):
-		field_tipsOrProgress.text = "#TIPS HERE"
 		progressBar.set_value(0)
 	elif (campData.inProgress && !campData.readyToCollect):
 		field_tipsOrProgress.text = str(util.format_time(campData.timer.time_left))
@@ -36,6 +35,7 @@ func _process(delta):
 		button_startCampMedium.text = "COLLECT"
 		button_startCampLong.text = "COLLECT"
 		progressBar.set_value(100)
+
 
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
@@ -60,6 +60,7 @@ func _enable_and_disable_duration_buttons():
 func _populate_fields():
 	field_campName.text = campData.name
 	field_campDescription.text = campData.description
+	
 	button_startCampShort.text = "JOIN CAMP: " + str(util.format_time(campData.durationShort))
 	button_startCampMedium.text = "JOIN CAMP: " + str(util.format_time(campData.durationMedium))
 	button_startCampLong.text ="JOIN CAMP: " + str(util.format_time(campData.durationLong))
@@ -80,10 +81,12 @@ func _populate_fields():
 		$MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons.add_child(heroButton) 
 		buttonY += 80
 	
-	#don't make class recommendations until the player has picked a few heroes
+		#don't make class recommendations until the player has picked a few heroes
 	if (campData.campHeroesSelected >= 3):
+		print("calculating recommendations...")
 		var classMakeupString = _calculate_recommended_classes()
 		field_tipsOrProgress.text = classMakeupString
+
 		
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/maps/forest.tscn")
@@ -117,6 +120,7 @@ func _calculate_recommended_classes():
 	else:
 		classesNeededString = "This group looks well-balanced!"
 		
+	print(classesNeededString)
 	return classesNeededString
 
 func _on_button_startCampShort_pressed():

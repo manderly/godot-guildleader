@@ -3,7 +3,7 @@ extends Node2D
 onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/field_campName
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
 onready var field_resultsScrollBox = $MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer
-onready var field_lootItems = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer2
+onready var field_lootItems = $MarginContainer/CenterContainer/VBoxContainer/vbox_prizes
 
 var campData = null
 var battlePrint = false
@@ -19,13 +19,23 @@ func _ready():
 func _populate_fields():
 	field_campName.text = campData.name
 	field_campDescription.text = campData.description
+	
 	#create item boxes for each item won
-	for itemName in campData.campOutcome.lootedItems:
-		print("Item name: " + itemName)
-		var itemBox = preload("res://menus/itemButton.tscn").instance()
+	print(campData.campOutcome.lootedItemsNames)
+	var lootDictionaryWithCounts = {} #to track counts
+	var uniqueLootNames = [] #to control how many unique items we actually display 
+	for itemName in campData.campOutcome.lootedItemsNames:
+		if (lootDictionaryWithCounts.has(itemName)):
+			lootDictionaryWithCounts[itemName] += 1
+		else:
+			lootDictionaryWithCounts[itemName] = 1
+			uniqueLootNames.append(itemName)
+		
+	for itemName in uniqueLootNames:
+		var itemIconAndCountDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemData = global.allGameItems[str(itemName)]
-		itemBox._render_camp_loot(itemData)
-		field_lootItems.add_child(itemBox)
+		itemIconAndCountDisplay._render_stacked_item(itemData, lootDictionaryWithCounts[itemName])
+		field_lootItems.add_child(itemIconAndCountDisplay)
 		
 	for event in campData.campOutcome.summary:
 		var eventText = Label.new()
@@ -34,7 +44,8 @@ func _populate_fields():
 
 func _on_button_collect_pressed():
 	#todo: iterate through campData.campOutcome.lootedItems and give those items to guild
-	for lootName in campData.campOutcome.lootedItems:
+	for lootName in campData.campOutcome.lootedItemsNames:
+		#todo: test that it accounts for multiples of same item 
 		if (lootName): #because some entries are null
 			util.give_item_guild(lootName)
 		
