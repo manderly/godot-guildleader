@@ -4,6 +4,12 @@ extends Node
 func _ready():
 	pass
 
+func prepare_unformatted_data_from_file(filenameStr):
+	var dataFile = File.new()
+	dataFile.open("res://gameData/"+filenameStr, dataFile.READ)
+	global.unformattedData = parse_json(dataFile.get_as_text())
+	dataFile.close()
+	
 #use: util.format_time(timeData) 
 func format_time(time):
 	var timeFormattedForDisplay = null
@@ -106,3 +112,4 @@ func remove_item_tradeskill():
 func give_quest(questID):
 	var newQuestInstance = global.allGameQuests[questID].duplicate()
 	global.activeQuests.append(newQuestInstance)
+	

@@ -22,38 +22,30 @@ var guildCapacity = 4 #each bedroom adds +2 capacity
 
 var unrecruited = []
 
-#Mobs
-var unformattedMobData = null
+#Filereading
+var unformattedData = null
+
+#Global tables (mob, loot, quest, etc)
 var mobData = {}
-
-#Loot tables
-var unformattedLootTablesData = null
 var lootTables = {}
-
-#Quests
-var unformattedQuestData = null
 var questData = {}
+var harvestingData = {}
+var allRecipes = {}
+
+var selectedHarvestingID = null
+
 var allGameQuests = {}
 var activeQuests = []
 var selectedQuestID = ""
 
-#active quest
 var questButtonID = null
 var levelXpData = null #from json 
 var heroStartingStatData = null #from json
 
-#Harvesting (resource nodes placed on maps)
-var unformattedHarvestingData = null
-var harvestingData = {}
-var selectedHarvestingID = null
-
-#Camps
-var unformattedCampData = null
+#camp data
 var campData = {}
-
 var campButtonID = null
 var selectedCampID = null #used by quest confirm to pass data to correct quest sub-object in questData object
-
 var currentCamp = null
 
 var roomTypeData = null
@@ -184,12 +176,6 @@ var filterVaultByItemSlot = null
 var browsingForSlot = ""
 var browsingForType = ""
 
-var recipesFile = null
-var recipesData = null #raw json parse 
-var recipeKey = null
-var recipeValue = null
-var allRecipes = {}
-
 var colorGreen = Color(.062, .90, .054, 1) #16,230,14 green
 var colorBlue = Color(.070, .313, .945, 1) #18,80,241 blue
 var colorPink = Color(.945, .070, .525, 1) #241,18,134 pink
@@ -202,56 +188,42 @@ func _ready():
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 	
-	#Load mob data (mobs are a lot like items, they have names and stats and we access them by their name)
+	#Prepare to load game data. These use global.unformattedData
+	var key = null #a string, ie: "Tadloc Grunt"
+	var value = null #another dictionary, ie: {dps:4, str:5}
+	
+	###### Load mob data ######
+	#(mobs are a lot like items, they have names and stats and we access them by their name)
 	#but we don't need instances of them like we do heroes, they don't really persist the way heroes do
-	var mobsFile = File.new()
-	mobsFile.open("res://gameData/mobs.json", mobsFile.READ)
-	unformattedMobData = parse_json(mobsFile.get_as_text())
-	mobsFile.close()
-	var mobKey = null #a string, ie: "Tadloc Grunt"
-	var mobValue = null #another dictionary, ie: {dps:4, str:5}
-
-	for mob in unformattedMobData:
+	util.prepare_unformatted_data_from_file("mobs.json")
+	for mob in global.unformattedData:
 		if (mob):
-			mobKey = mob["mobName"]
-			mobValue = mob
+			key = mob["mobName"]
+			value = mob
 			#add anything else to mobValue here, ie: mobValue["someNewStatNotInData"] = 5
-			mobValue.hpCurrent = mobValue.hp
-			mobValue.manaCurrent = mobValue.mana
-			mobValue.dead = false
-			global.mobData[mobKey] = mobValue
-			
+			value.hpCurrent = value.hp
+			value.manaCurrent = value.mana
+			value.dead = false
+			global.mobData[key] = value
 	
-	#Load loot table data
-	var lootTablesFile = File.new()
-	lootTablesFile.open("res://gameData/lootTables.json", lootTablesFile.READ)
-	unformattedLootTablesData = parse_json(lootTablesFile.get_as_text())
-	lootTablesFile.close()
-	var lootTableKey = null #a string, ie: ratLoot01
-	var lootTableValue = null #another dictionary, ie: {item1: itemname, item1Chance: 20}
-	
-	for lootTable in unformattedLootTablesData:
+	###### Load loot table data ######
+	util.prepare_unformatted_data_from_file("lootTables.json")
+	for lootTable in global.unformattedData:
 		if (lootTable):
-			lootTableKey = lootTable["lootTableName"]
-			lootTableValue = lootTable
-			#add anything else to lootTableValue here, 
-			global.lootTables[lootTableKey] = lootTableValue
+			key = lootTable["lootTableName"] #key: a string, ie: ratLoot01
+			value = lootTable  #value: another dictionary, ie: {item1: itemname, item1Chance: 20}
+			#add anything else to value here, 
+			global.lootTables[key] = value
 	
-	#Load quest data
-	var questFile = File.new()
-	questFile.open("res://gameData/quests.json", questFile.READ)
-	var unformattedQuestData = parse_json(questFile.get_as_text())
-	questFile.close()
-	
-	#so we can access quests by ID 
-	var questKey = null #a string, ie: "forest01"
-	var questValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
-	for quest in unformattedQuestData:
-		questKey = quest["questId"]
-		questValue = quest
-		questValue.timesRun = 0
+	###### Load quest data ######
+	util.prepare_unformatted_data_from_file("quests.json")
+	#Access quests by id, ie: "forest01"
+	for quest in global.unformattedData:
+		key = quest["questId"] #a string, ie: "forest01"
+		value = quest #another dictionary, ie: {prize1:"prize name", heroes:3}
+		value.timesRun = 0
 		#loot won is filled in when the quest is completed and held in the object until collected, then it is nulled out for re-use
-		global.allGameQuests[questKey] = questValue
+		global.allGameQuests[key] = value
 	#now we have all the quest data as a dictionary
 	#give quests to the player like if they were items
 	util.give_quest("test09")
@@ -259,146 +231,109 @@ func _ready():
 	util.give_quest("azuricite_quest01")
 	global.selectedQuestID = "test09"
 	
-	#Load harvesting data (structurally similar to how Quests used to work)
-	var harvestingFile = File.new()
-	harvestingFile.open("res://gameData/harvesting.json", harvestingFile.READ)
-	var unformattedHarvestingData = parse_json(harvestingFile.get_as_text())
-	harvestingFile.close()
-	
-	#so we can access harvesting by ID 
-	var harvestingKey = null #a string, ie: "harvesting_copperOre"
-	var harvestingValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
-	for data in unformattedHarvestingData:
-		harvestingKey = data["harvestingId"]
-		harvestingValue = data
-		harvestingValue.hero = null
-		harvestingValue.timer = null
-		harvestingValue.inProgress = false
-		harvestingValue.readyToCollect = false
-		harvestingValue.timesRun = 0
-		harvestingValue.lootWon = {
+	###### Load harvesting node data ######
+	#Access harvest node by id
+	util.prepare_unformatted_data_from_file("harvesting.json")
+	for data in global.unformattedData:
+		key = data["harvestingId"] #a string, ie: "harvesting_copperOre"
+		value = data #another dictionary, ie: {prize1:"prize name", heroes:3}
+		value.hero = null
+		value.timer = null
+		value.inProgress = false
+		value.readyToCollect = false
+		value.timesRun = 0
+		value.lootWon = {
 			"prizeItem1":null,
 			"prizeQuantity":0
 		}
-		global.harvestingData[harvestingKey] = harvestingValue
+		global.harvestingData[key] = value
 	
-	#Load camp data
-	var campFile = File.new()
-	campFile.open("res://gameData/camps.json", campFile.READ)
-	var unformattedCampData = parse_json(campFile.get_as_text())
-	campFile.close()
-	
-	#now reformat so we can access camps by ID
-	var campKey = null
-	var campValue = null #another dictionary, ie: {prize1:"prize name", heroes:3}
-	for data in unformattedCampData:
-		campKey = data["campId"]
-		campValue = data
-		campValue.heroes = [null, null, null, null] #hardcode to 4 for now?
-		campValue.mobs = []
-		if (campValue.mob1):
-			campValue.mobs.append(mobGenerator.get_mob(campValue.mob1))
-		if (campValue.mob2):
-			campValue.mobs.append(mobGenerator.get_mob(campValue.mob2))
-		if (campValue.mob3):
-			campValue.mobs.append(mobGenerator.get_mob(campValue.mob3))
-		campValue.timer = null
-		campValue.inProgress = false
-		campValue.readyToCollect = false
-		campValue.timesRun = 0
-		campValue.campHeroesSelected = 0
-		campValue.selectedDuration = 0
-		campValue.enableButton = ""
-		campValue.campOutcome = {}
+	###### Load camp data ######
+	util.prepare_unformatted_data_from_file("camps.json")
+	for data in global.unformattedData:
+		key = data["campId"]
+		value = data
+		value.heroes = [null, null, null, null] #hardcode to 4 for now?
+		value.mobs = []
+		if (value.mob1):
+			value.mobs.append(mobGenerator.get_mob(value.mob1))
+		if (value.mob2):
+			value.mobs.append(mobGenerator.get_mob(value.mob2))
+		if (value.mob3):
+			value.mobs.append(mobGenerator.get_mob(value.mob3))
+		value.timer = null
+		value.inProgress = false
+		value.readyToCollect = false
+		value.timesRun = 0
+		value.campHeroesSelected = 0
+		value.selectedDuration = 0
+		value.enableButton = ""
+		value.campOutcome = {}
 		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
-		global.campData[campKey] = campValue
+		global.campData[key] = value
 	
-	#Load room type data and save it to a global var
-	var roomTypeFile = File.new()
-	roomTypeFile.open("res://gameData/roomTypes.json", roomTypeFile.READ)
-	roomTypeData = parse_json(roomTypeFile.get_as_text())
-	roomTypeFile.close()
+	###### Load room type data ######
+	util.prepare_unformatted_data_from_file("roomTypes.json")
+	roomTypeData = global.unformattedData
 	
-	#Load hero level data 
-	var levelXpFile = File.new()
-	levelXpFile.open("res://gameData/levelXpData.json", levelXpFile.READ)
-	levelXpData = parse_json(levelXpFile.get_as_text())
-	levelXpFile.close()
+	###### Load hero level data ######
+	util.prepare_unformatted_data_from_file("levelXpData.json")
+	levelXpData = global.unformattedData
 	
-	#Load hero stat data
-	var heroStatsFile = File.new()
-	heroStatsFile.open("res://gameData/heroStats.json", heroStatsFile.READ)
-	heroStartingStatData = parse_json(heroStatsFile.get_as_text())
-	heroStatsFile.close()
-	heroStartingStatData = heroStartingStatData[0]
-	#print(heroStatData)
+	###### Load hero stat data ######
 	#access an individual class's stats like this: 
-	#print(str(heroStartingStatData[0].rogue)) 
 	#print(str(heroStartingStatData[0]["rogue"]["defense"]))
+	util.prepare_unformatted_data_from_file("heroStats.json")
+	heroStartingStatData = global.unformattedData[0]
 	
-	#load names
-	var humanMaleNamesFile = File.new()
-	humanMaleNamesFile.open("res://gameData/names/humanMale.json", humanMaleNamesFile.READ)
-	humanMaleNames = parse_json(humanMaleNamesFile.get_as_text())
-	humanMaleNamesFile.close()
+	###### Load hero names ######
+	util.prepare_unformatted_data_from_file("names/humanMale.json")
+	humanMaleNames = global.unformattedData
+	util.prepare_unformatted_data_from_file("names/humanFemale.json")
+	humanFemaleNames = global.unformattedData
 	
-	var humanFemaleNamesFile = File.new()
-	humanFemaleNamesFile.open("res://gameData/names/humanFemale.json", humanFemaleNamesFile.READ)
-	humanFemaleNames = parse_json(humanFemaleNamesFile.get_as_text())
-	humanFemaleNamesFile.close()
+	###### Load items ######
+	util.prepare_unformatted_data_from_file("items.json")
+	#Access like: var item = global.allGameItems("Rusty Broadsword")
 	
-	#Load game item data
-	var itemsFile = File.new()
-	itemsFile.open("res://gameData/items.json", itemsFile.READ)
-	itemData = parse_json(itemsFile.get_as_text())
-	itemsFile.close()
-	var itemKey = null #a string, ie: "Rusty Broadsword"
-	var itemValue = null #another dictionary, ie: {dps:4, str:5}
-	
-	#want to be able to access like: 
-	#var item = find("Rusty Broadsword")
-	#then access stats like: item.dps, item.str etc by name 
-	#["Rusty Broadsword"]["dps"]
-	
-	for i in range(itemData.size()):
-		itemKey = itemData[i]["name"]
-		itemValue = itemData[i]
-		itemValue["itemID"] = -1 #ID isn't assigned until we actually give this item to the guild or a hero
-		itemValue["improved"] = false
-		itemValue["improvement"] = ""
-		global.allGameItems[itemKey] = itemValue
+	for item in global.unformattedData:
+		key = item["name"] #a string, ie: "Rusty Broadsword"
+		value = item #another dictionary, ie: {dps:4, str:5}
+		value["itemID"] = -1 #ID isn't assigned until we actually give this item to the guild or a hero
+		value["improved"] = false
+		value["improvement"] = ""
+		global.allGameItems[key] = value
 		
 		#if it's a tradeskill item, put it in the tradeskill items dictionary
-		if (itemValue["itemType"] == "tradeskill"):
-			tradeskillItemsDictionary[itemKey] = {
+		if (value["itemType"] == "tradeskill"):
+			tradeskillItemsDictionary[key] = {
 				"count": 0,
-				"name":itemKey,
-				"icon":itemValue.icon,
+				"name":key,
+				"icon":value.icon,
 				"seen":false,
-				"consumable":itemValue.consumable
+				"consumable":value.consumable
 				}
-		elif (itemValue["itemType"] == "quest"): #or put it in the quest items dictionary
-			questItemsDictionary[itemKey] = {
+		elif (value["itemType"] == "quest"): #or put it in the quest items dictionary
+			questItemsDictionary[key] = {
 				"count":0,
-				"name":itemKey,
-				"icon":itemValue.icon,
+				"name":key,
+				"icon":value.icon,
 				"seen":false,
-				"consumable":itemValue.consumable
+				"consumable":value.consumable
 				}
 		else:	
-			#do class restrictions 
 			var classRestrictionsArray = []
-			classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction1)
-			if (global.allGameItems[itemKey].classRestriction2 != ""):
-				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction2)
-			if (global.allGameItems[itemKey].classRestriction3 != ""):
-				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction3)
-			if (global.allGameItems[itemKey].classRestriction4 != ""):
-				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction4)
-			if (global.allGameItems[itemKey].classRestriction5 != ""):
-				classRestrictionsArray.append(global.allGameItems[itemKey].classRestriction5)
+			classRestrictionsArray.append(global.allGameItems[key].classRestriction1)
+			if (global.allGameItems[key].classRestriction2 != ""):
+				classRestrictionsArray.append(global.allGameItems[key].classRestriction2)
+			if (global.allGameItems[key].classRestriction3 != ""):
+				classRestrictionsArray.append(global.allGameItems[key].classRestriction3)
+			if (global.allGameItems[key].classRestriction4 != ""):
+				classRestrictionsArray.append(global.allGameItems[key].classRestriction4)
+			if (global.allGameItems[key].classRestriction5 != ""):
+				classRestrictionsArray.append(global.allGameItems[key].classRestriction5)
 			
-			global.allGameItems[itemKey].classRestrictions = classRestrictionsArray
+			global.allGameItems[key].classRestrictions = classRestrictionsArray
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.guildItems.resize(vaultSpace)
@@ -429,29 +364,18 @@ func _ready():
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
 	
-	#load tradeskill crafting recipes
-	recipesFile = File.new()
-	recipesFile.open("res://gameData/recipes.json", recipesFile.READ)
-	recipesData = parse_json(recipesFile.get_as_text())
-	recipesFile.close()
-	
-	recipeKey = null #a string, ie: "Sharpening Stone"
-	recipeValue = null #another dictionary, ie: {name:"name", ingredient1:"some thing"}
-	
-	#want to be able to access like: 
-	#var recipe = find("Sharpening Stone")
-	#then access stats like: item.dps, item.str etc by name 
-	#["Sharpening Stone"]["ingredient1"]
+	###### Load tradeskill crafting recipes ######
+	util.prepare_unformatted_data_from_file("recipes.json")
 	
 	#first, make every recipe into an object with the recipe name as the key and all the data as the value
-	for i in range(recipesData.size()):
-		recipeKey = recipesData[i]["recipeName"]
-		recipeValue = recipesData[i]
+	for recipe in global.unformattedData:
+		key = recipe["recipeName"]  #a string, ie: "Sharpening Stone"
+		value = recipe #another dictionary, ie: {name:"name", ingredient1:"some thing"}
 		#add this data to the key in allRecipes
-		allRecipes[recipeKey] = recipeValue
+		allRecipes[key] = value
 		#second, append each recipe into the array that we'll access them from elsewhere in the game
 		#this syntax is like: tradeskills["blacksmithing"].recipes.append(...)
-		tradeskills[recipesData[i].tradeskill].recipes.append(allRecipes[recipeKey])
+		tradeskills[recipe.tradeskill].recipes.append(allRecipes[key])
 		
 	#set a default recipe for each tradeskill
 	if (!global.tradeskills["alchemy"].selectedRecipe):

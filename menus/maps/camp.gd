@@ -157,7 +157,22 @@ func _start_camp(duration, enableButtonStr):
 		#the player can back out of the next page and re-run this code 
 		campData.campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
 		get_tree().change_scene("res://menus/maps/campResults.tscn")
-		
-
 	else:
 		print("camp.gd error - unhandled state")
+
+func _on_button_autoPickHeroes_pressed():
+	#for each empty hero slot
+	for i in range(campData.heroes.size()):
+		if (campData.heroes[i] == null):
+			print("found an empty slot")
+			#for hero in global.guildRoster:
+				#if (hero.available && hero.heroClass == "Wizard"):
+					#campData.heroes.append(hero) #in progress 
+			
+				#heroButton.populate_fields(campData.heroes[i])
+	#iterate through the available heroes
+	#try to pick these archetypes: (tank), (healer), (dps), (dps)
+	#try to pick heroes who need xp
+	#try to pick high level heroes
+	#only pick as many as are needed (skip taken spots)
+	pass # replace with function body

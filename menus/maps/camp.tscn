@@ -6,7 +6,7 @@
 [ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -59,7 +59,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 480.0
-margin_bottom = 842.0
+margin_bottom = 884.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -78,7 +78,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 16.0
 margin_right = 456.0
-margin_bottom = 842.0
+margin_bottom = 884.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -221,7 +221,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -229,7 +229,49 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 330.0
 margin_right = 440.0
-margin_bottom = 690.0
+margin_bottom = 368.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="button_autoPickHeroes" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 153.0
+margin_right = 286.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Auto-pick heroes"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 372.0
+margin_right = 440.0
+margin_bottom = 732.0
 rect_min_size = Vector2( 440, 360 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -240,15 +282,15 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 694.0
+margin_top = 736.0
 margin_right = 440.0
-margin_bottom = 724.0
+margin_bottom = 766.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -265,15 +307,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 728.0
+margin_top = 770.0
 margin_right = 440.0
-margin_bottom = 758.0
+margin_bottom = 800.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -290,15 +332,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 762.0
+margin_top = 804.0
 margin_right = 440.0
-margin_bottom = 778.0
+margin_bottom = 820.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -314,15 +356,15 @@ exp_edit = false
 rounded = false
 percent_visible = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 782.0
+margin_top = 824.0
 margin_right = 440.0
-margin_bottom = 842.0
+margin_bottom = 884.0
 rect_min_size = Vector2( 0, 60 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -413,6 +455,8 @@ align = 1
 _sections_unfolded = [ "Rect" ]
 
 [node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CenterContainer/button_autoPickHeroes" to="." method="_on_button_autoPickHeroes_pressed"]
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort" to="." method="_on_button_startCampShort_pressed"]
 
