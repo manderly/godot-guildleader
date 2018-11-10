@@ -3,6 +3,11 @@ extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
 
+onready var ingredient1Display = $recipeData/ingredient1
+onready var ingredient2Display = $recipeData/ingredient2
+onready var ingredient3Display = $recipeData/ingredient3
+onready var ingredient4Display = $recipeData/ingredient4
+
 var hasIngredient1 = false
 var hasIngredient2 = false
 var hasIngredient3 = false
@@ -108,41 +113,53 @@ func _update_ingredients():
 		$recipeData/ingredientWildcard.hide()
 	
 	#determine which ingredients to display and whether the text is red or green 
-	if (recipe.ingredient1): #if this recipe has a first ingredient
-		$recipeData/ingredient1._render_fields(global.allGameItems[str(recipe.ingredient1)])
-		if (global.tradeskillItemsDictionary[recipe.ingredient1].count > 0): #and we have it in the tradeskill items dictionary
-			$recipeData/ingredient1._set_green()
+	if (recipe.ingredient1): #if this quest has a fourth required component
+		var ingredientName = global.allGameItems[str(recipe.ingredient1)]
+		var quantityNeeded = recipe.ingredient1Quantity
+		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient1].count
+		ingredient1Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
+		if (playerHas >= quantityNeeded):
+			ingredient1Display._set_green()
 		else:
-			$recipeData/ingredient1._set_red()
+			ingredient1Display._set_red()
 	else:
-		$recipeData/ingredient1._clear_fields()
+		ingredient1Display._clear_fields()
 		
-	if (recipe.ingredient2):
-		$recipeData/ingredient2._render_fields(global.allGameItems[str(recipe.ingredient2)])
-		if (global.tradeskillItemsDictionary[recipe.ingredient2].count > 0): 
-			$recipeData/ingredient2._set_green()
+	if (recipe.ingredient2): #if this quest has a fourth required component
+		var ingredientName = global.allGameItems[str(recipe.ingredient2)]
+		var quantityNeeded = recipe.ingredient2Quantity
+		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient2].count
+		ingredient2Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
+		if (playerHas >= quantityNeeded):
+			ingredient2Display._set_green()
 		else:
-			$recipeData/ingredient2._set_red()
+			ingredient2Display._set_red()
 	else:
-		$recipeData/ingredient2._clear_fields()
+		ingredient2Display._clear_fields()
 		
-	if (recipe.ingredient3):
-		$recipeData/ingredient3._render_fields(global.allGameItems[str(recipe.ingredient3)])
-		if (global.tradeskillItemsDictionary[recipe.ingredient3].count > 0):
-			$recipeData/ingredient3._set_green()
+	if (recipe.ingredient3): #if this quest has a fourth required component
+		var ingredientName = global.allGameItems[str(recipe.ingredient3)]
+		var quantityNeeded = recipe.ingredient3Quantity
+		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient3].count
+		ingredient3Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
+		if (playerHas >= quantityNeeded):
+			ingredient3Display._set_green()
 		else:
-			$recipeData/ingredient3._set_red()
+			ingredient3Display._set_red()
 	else:
-		$recipeData/ingredient3._clear_fields()
+		ingredient3Display._clear_fields()
 		
-	if (recipe.ingredient4): 
-		$recipeData/ingredient4._render_fields(global.allGameItems[str(recipe.ingredient4)])
-		if (global.tradeskillItemsDictionary[recipe.ingredient4].count > 0): 
-			$recipeData/ingredient4._set_green()
+	if (recipe.ingredient4): #if this quest has a fourth required component
+		var ingredientName = global.allGameItems[str(recipe.ingredient4)]
+		var quantityNeeded = recipe.ingredient4Quantity
+		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient4].count
+		ingredient4Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
+		if (playerHas >= quantityNeeded):
+			ingredient4Display._set_green()
 		else:
-			$recipeData/ingredient4._set_red()
+			ingredient4Display._set_red()
 	else:
-		$recipeData/ingredient4._clear_fields()
+		ingredient4Display._clear_fields()
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 

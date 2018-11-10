@@ -13,8 +13,14 @@ func _display_in_vault(ingredientData):
 	_set_white()
 	$sprite_icon.texture = load("res://sprites/items/" + ingredientData.icon)
 	
-func _render_as_quest_component(itemData, quantity):
+func _render_stacked_item(itemData, quantity):
 	$field_name.text = itemData.name + " x" + str(quantity)
+	$sprite_icon.texture = load("res://sprites/items/" + itemData.icon)
+
+func _render_stacked_item_with_total(itemData, quantity, total):
+	if (total > 999):
+		total = "999+"
+	$field_name.text = itemData.name + " x" + str(quantity) + " (" + str(total) + ")"
 	$sprite_icon.texture = load("res://sprites/items/" + itemData.icon)
 	
 func _clear_fields():

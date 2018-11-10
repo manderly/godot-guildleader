@@ -8,7 +8,6 @@
 [ext_resource path="res://menus/smallItemDisplay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=7]
 
-
 [node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )

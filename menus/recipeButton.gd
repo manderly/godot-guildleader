@@ -10,7 +10,7 @@ func _ready():
 	pass
 
 func set_recipe_data(data):
-	$recipeButton.text = data.recipeName + " (" + str(data.trivial) + ") "
+	$recipeButton.text = data.recipeName + " [" + str(data.trivial) + "]"
 	#color the button text according to difficulty of recipe vs. crafter's skill level
 	if (data.trivial < crafterSkill):
 		#this recipe is beneath the crafter's skill level, make it white

@@ -37,7 +37,7 @@ func _change_displayed_quest():
 func _update_components_display():
 	#determine which ingredients to display and whether the text is red or green
 	if (quest.reqItem1): #if this quest has a first required component
-		component1Display._render_as_quest_component(global.allGameItems[str(quest.reqItem1)], quest.reqItem1Quantity) #pass: itemData, item count 
+		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem1)], quest.reqItem1Quantity) #pass: itemData, item count 
 		if (global.questItemsDictionary[quest.reqItem1].count >= quest.reqItem1Quantity): #and we have it in the quest items dictionary
 			component1Display._set_green()
 		else:
@@ -46,7 +46,7 @@ func _update_components_display():
 		component1Display._clear_fields()
 		
 	if (quest.reqItem2): #if this quest has a second required component
-		component1Display._render_as_quest_component(global.allGameItems[str(quest.reqItem2)], quest.reqItem2Quantity)
+		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem2)], quest.reqItem2Quantity)
 		if (global.questItemsDictionary[quest.reqItem2].count >= quest.reqItem2Quantity): #and we have it in the quest items dictionary
 			component2Display._set_green()
 		else:
@@ -55,7 +55,7 @@ func _update_components_display():
 		component2Display._clear_fields()
 		
 	if (quest.reqItem3): #if this quest has a third required component
-		component1Display._render_as_quest_component(global.allGameItems[str(quest.reqItem3)], quest.reqItem3Quantity)
+		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem3)], quest.reqItem3Quantity)
 		if (global.questItemsDictionary[quest.reqItem3].count >= quest.reqItem3Quantity): #and we have it in the quest items dictionary
 			component3Display._set_green()
 		else:
@@ -64,7 +64,7 @@ func _update_components_display():
 		component3Display._clear_fields()
 		
 	if (quest.reqItem4): #if this quest has a fourth required component
-		component1Display._render_as_quest_component(global.allGameItems[str(quest.reqItem4)], quest.reqItem4Quantity)
+		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem4)], quest.reqItem4Quantity)
 		if (global.questItemsDictionary[quest.reqItem4].count >= quest.reqItem4Quantity): #and we have it in the quest items dictionary
 			component4Display._set_green()
 		else:
