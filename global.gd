@@ -17,6 +17,9 @@ var guildName = ""
 var nextHeroID = 100
 
 var selectedHero = null #which hero to show on heroPage
+var levelXpData = null #from json 
+var heroStartingStatData = null #from json
+
 var guildRoster = []
 var guildCapacity = 4 #each bedroom adds +2 capacity 
 
@@ -31,19 +34,17 @@ var lootTables = {}
 var questData = {}
 var harvestingData = {}
 var allRecipes = {}
+var campData = {}
+var allGameQuests = {}
 
 var selectedHarvestingID = null
 
-var allGameQuests = {}
 var activeQuests = []
 var selectedQuestID = ""
 
 var questButtonID = null
-var levelXpData = null #from json 
-var heroStartingStatData = null #from json
 
 #camp data
-var campData = {}
 var campButtonID = null
 var selectedCampID = null #used by quest confirm to pass data to correct quest sub-object in questData object
 var currentCamp = null

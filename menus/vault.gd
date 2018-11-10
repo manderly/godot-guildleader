@@ -80,7 +80,7 @@ func _draw_tradeskill_items():
 	#these are on their own tab now
 	print(global.tradeskillItemsSeen) #array of item names
 	for i in range(global.tradeskillItemsSeen.size()):
-		var tradeskillItemDisplay = preload("res://menus/crafting_ingredientDisplay.tscn").instance()
+		var tradeskillItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = global.tradeskillItemsSeen[i]
 		tradeskillItemDisplay._display_in_vault(global.tradeskillItemsDictionary[itemName])
 		gridTradeskillItems.add_child(tradeskillItemDisplay)
@@ -89,7 +89,7 @@ func _draw_quest_items():
 	#these are on their own tab now
 	print(global.questItemsSeen) #array of item names
 	for item in global.questItemsSeen:
-		var questItemDisplay = preload("res://menus/crafting_ingredientDisplay.tscn").instance()
+		var questItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = item
 		questItemDisplay._display_in_vault(global.questItemsDictionary[itemName])
 		gridQuestItems.add_child(questItemDisplay)

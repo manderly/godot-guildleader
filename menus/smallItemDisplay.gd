@@ -1,4 +1,5 @@
 extends Container
+#smallItemDisplay.gd 
 
 func _ready():
 	pass

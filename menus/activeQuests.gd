@@ -36,7 +36,6 @@ func _change_displayed_quest():
 	
 func _update_components_display():
 	#determine which ingredients to display and whether the text is red or green
-	print(quest.reqItem1)
 	if (quest.reqItem1): #if this quest has a first required component
 		component1Display._render_as_quest_component(global.allGameItems[str(quest.reqItem1)], quest.reqItem1Quantity) #pass: itemData, item count 
 		if (global.questItemsDictionary[quest.reqItem1].count >= quest.reqItem1Quantity): #and we have it in the quest items dictionary
