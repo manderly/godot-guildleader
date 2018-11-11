@@ -51,9 +51,9 @@ func _draw_vault_items():
 					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
 						currentButton._set_disabled() #disable button if slot mismatch 
 					
-					#disable if this item isn't a class match 
+					#disable if this item isn't a class match but also allow for "any" 
 					var thisHeroCanWear = false
-					if (global.guildItems[i].classRestrictions[0] == "ANY"):
+					if (global.guildItems[i].classRestrictions[0] == "any"):
 						thisHeroCanWear = true
 					else:
 						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
