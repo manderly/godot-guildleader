@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/maps/coast.gd" type="Script" id=1]
 [ext_resource path="res://tiles/coast_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/scroll_light.png" type="Texture" id=4]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -25,7 +26,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -135,5 +136,9 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_styles" ]
+
+[node name="button_back" parent="." index="11" instance=ExtResource( 5 )]
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
 

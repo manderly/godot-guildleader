@@ -13,3 +13,6 @@ func _ready():
 	$questMarker6._set_data("camp_coast06")
 	$questMarker7._set_data("camp_coast07")
 	$questMarker8._set_data("camp_coast08")
+
+func _on_button_back_pressed():
+	get_tree().change_scene("res://menus/maps/worldmap.tscn")
