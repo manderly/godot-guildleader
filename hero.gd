@@ -14,6 +14,8 @@ var outsideMaxY = 820
 #for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
 var justForDisplay = false
 
+var battlePrint = false
+
 func _ready():
 	$field_name.text = ""
 	_hide_extended_stats()
@@ -34,7 +36,6 @@ func _start_idle_timer():
 func _start_walking():
 	walking = true
 	$animationPlayer.play("walk")
-	#print(heroName + " is picking a random destination")
 	#pick a random destination to walk to (in the main room for now)
 	if (currentRoom == 1): #large interior room
 		walkDestX = rand_range(mainRoomMinX, mainRoomMaxX)
@@ -300,7 +301,6 @@ func give_xp(xpNum):
 	
 func make_level(levelNum):
 	if (levelNum > 1):
-		print("hero.gd: Leveling up to " + str(levelNum))
 		for level in range(levelNum):
 			level_up()
 	
@@ -317,10 +317,13 @@ func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2
 	var roll = randi()%20+1 #(roll between 1-20)
 	if (roll == 1):
-		print("miss!")
+		if (battlePrint):
+			print("miss!")
 		rawDmg = 0
 	elif (roll == 20):
-		print("Critical hit! Double damage!")
+		if (battlePrint):
+			print("Critical hit! Double damage!")
 		rawDmg *= 2
-	print("Returning this raw damage: " + str(rawDmg))
+	if (battlePrint):
+		print("Returning this raw damage: " + str(rawDmg))
 	return rawDmg

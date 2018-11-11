@@ -35,7 +35,6 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	
 #check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
-	print("getting this item: " + itemName)
 	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "tradeskill"):
 		if (!global.tradeskillItemsDictionary[itemName].seen):
 			global.tradeskillItemsSeen.append(itemName)
