@@ -95,9 +95,6 @@ func _physics_process(delta):
 			$animationPlayer.play("idle")
 			walking = false
 			$idleTimer.start()
-		
-func on_click():
-	pass
 
 func set_instance_data(data):
 	heroName = data.heroName
@@ -273,20 +270,22 @@ func _show_extended_stats():
 	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
 	
 func _on_heroButton_pressed():
-	if (walking):
-		walking = false
-	$touchTimer.set_wait_time(0.5)
-	$touchTimer.start()
+	if (!justForDisplay):
+		if (walking):
+			walking = false
+		$touchTimer.set_wait_time(0.5)
+		$touchTimer.start()
 
 func _on_heroButton_released():
-	if $touchTimer.is_stopped():
-		#long press detected
-		_open_hero_page()
-	else:
-		#short press detected
-		_show_extended_stats()
-		$idleTimer.set_wait_time(5)
-		$idleTimer.start()
+	if (!justForDisplay):
+		if $touchTimer.is_stopped():
+			#long press detected
+			_open_hero_page()
+		else:
+			#short press detected
+			_show_extended_stats()
+			$idleTimer.set_wait_time(5)
+			$idleTimer.start()
 		
 func _on_touchTimer_timeout():
 	#touch timer timed out 
