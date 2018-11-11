@@ -1,6 +1,7 @@
 extends Node2D
 #questConfirm.gd
 #the screen with the quest details, loot, and the hero the player has assigned to it 
+#probably deprecated? last touched 11/10/18
 
 onready var field_duration = $field_duration
 onready var field_questName = $MarginContainer/centerContainer/vbox/centerTitleBanner/field_questName

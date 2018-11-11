@@ -3,9 +3,8 @@ extends Node2D
 #use this menu to pick a hero to assign to a quest
 
 func _ready():
-	if (global.currentMenu == "selectHeroForQuest"):
-		$field_heroSelectDescription.text = "Choose a hero to go on this quest."
-	elif (global.currentMenu == "alchemy" || 
+	print("currentMenu is: " + global.currentMenu)
+	if (global.currentMenu == "alchemy" || 
 			global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "fletching" || 
 			global.currentMenu == "jewelcraft" || 
@@ -13,6 +12,8 @@ func _ready():
 		$field_heroSelectDescription.text = "Choose a hero to work at this tradeskill. Crafting recipes will improve this hero's skill at " + global.currentMenu + ". While here, this hero will not be available for quests or raids."
 	elif (global.currentMenu == "harvesting"):
 		$field_heroSelectDescription.text = "Choose a hero to harvest this resource."
+	elif (global.currentMenu == "selectHeroForCamp"):
+		$field_heroSelectDescription.text = "Choose a hero to camp this location."
 	else:
 		$field_heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
 		
@@ -38,6 +39,7 @@ func _on_button_back_pressed():
 	elif (global.currentMenu == "harvesting"):
 		#todo: return to correct map 
 		get_tree().change_scene("res://menus/maps/forest.tscn")
+	elif (global.currentMenu == "selectHeroForCamp"):
+		get_tree().change_scene("res://menus/maps/camp.tscn")
 	else:
-		global.currentMenu = "questConfirm"
-		get_tree().change_scene("res://menus/questConfirm.tscn")
+		print("heroSelect.gd - back not handled") 

@@ -1,4 +1,5 @@
 extends Node2D
+#camp.gd
 
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 

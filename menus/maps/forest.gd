@@ -1,6 +1,8 @@
 extends Node2D
+#forest.gd 
 
 func _ready():
+	global.returnToMap = "forest"
 	$campNode1._set_data("camp_forest01")
 	$campNode2._set_data("camp_forest02")
 	$campNode3._set_data("camp_forest03")

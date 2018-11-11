@@ -1,10 +1,8 @@
 extends Node2D
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+#coast.gd
 
 func _ready():
+	global.returnToMap = "coast"
 	$questMarker1._set_data("camp_coast01")
 	$questMarker2._set_data("camp_coast02")
 	$questMarker3._set_data("camp_coast03")

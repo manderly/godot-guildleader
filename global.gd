@@ -54,6 +54,7 @@ var itemData = null
 var nextItemID = 100
 
 var initDone = false
+var returnToMap = ""
 
 #rooms
 onready var rooms = []

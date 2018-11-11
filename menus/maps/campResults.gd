@@ -61,6 +61,8 @@ func _on_button_collect_pressed():
 	campData.readyToCollect = false
 	campData.campOutcome = {}
 	
-	get_tree().change_scene("res://menus/maps/forest.tscn")
-		
-	pass # replace with function body
+	if (global.returnToMap == "forest"):
+		get_tree().change_scene("res://menus/maps/forest.tscn")
+	elif (global.returnToMap == "coast"):
+		get_tree().change_scene("res://menus/maps/coast.tscn")
+	
