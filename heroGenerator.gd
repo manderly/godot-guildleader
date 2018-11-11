@@ -75,6 +75,14 @@ func generate(destinationArray, classStr):
 		newHero.give_new_item("Muddy Boots")
 		newHero.give_new_item("Cloth Pants")
 		
+	elif (classStr == "Cleric"):
+		newHero.heroClass = "Cleric"
+		newHero.give_new_item("Sacred Mace of Tun'dn")
+		newHero.give_new_item("Shield of the Righteous")
+		newHero.give_new_item("Cloth Shirt")
+		newHero.give_new_item("Muddy Boots")
+		newHero.give_new_item("Cloth Pants")
+		
 	else:
 		print("ERROR - BAD HERO CLASS TYPE")
 

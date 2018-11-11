@@ -32,7 +32,7 @@ func _ready():
 		#Generate a few more guildmates for quest testing
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Ranger")
-		heroGenerator.generate(global.guildRoster, "Wizard")
+		heroGenerator.generate(global.guildRoster, "Cleric")
 
 		#generate rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
