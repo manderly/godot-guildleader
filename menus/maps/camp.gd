@@ -138,20 +138,23 @@ func _start_camp(duration, enableButtonStr):
 	#this button lets you either begin the harvest or finish it early for HC
 	#case 1: Begin harvest (no quest active, nothing ready to collect)
 	if (!campData.inProgress && !campData.readyToCollect):
-		if (campData.heroes[3] == null):
-			#todo: need a popup here
-			print("Need to staff someone")
-		else:
+		var haveEnoughHeroes = true
+		for slot in campData.heroes:
+			if (slot == null):
+				#todo: need a popup telling the player they need 4 heroes 
+				haveEnoughHeroes = false
+				break
+		
+		if (haveEnoughHeroes):
 			#set everyone to away
 			for hero in campData.heroes:
 				hero.atHome = false
-			
-		#start the timer attached to the quest object over in global
-		#it has to be done there, or else will be wiped from memory when we close this particular menu
-		campData.selectedDuration = duration
-		campData.enableButton = enableButtonStr
-		global._begin_camp_timer(duration, campData.campId)
-		_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
+			#start the timer attached to the quest object over in global
+			#it has to be done there, or else will be wiped from memory when we close this particular menu
+			campData.selectedDuration = duration
+			campData.enableButton = enableButtonStr
+			global._begin_camp_timer(duration, campData.campId)
+			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
 		finishNowPopup._set_data("Camp", 1)
