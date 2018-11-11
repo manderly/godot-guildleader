@@ -294,6 +294,41 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="entry rug" type="Node" parent="Floor" index="2"]
+
+[node name="rug_lower_left" type="Sprite" parent="Floor/entry rug" index="0"]
+
+position = Vector2( 121.607, 264.543 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 128, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="rug_lower_edge" type="Sprite" parent="Floor/entry rug" index="1"]
+
+position = Vector2( 157.695, 264.543 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 128, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="rug_lower_right" type="Sprite" parent="Floor/entry rug" index="2"]
+
+position = Vector2( 193.295, 264.543 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 128, 32, 32 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
 [node name="Walls" type="Node" parent="." index="2"]
 
 [node name="Rooms" type="Node" parent="Walls" index="0"]
