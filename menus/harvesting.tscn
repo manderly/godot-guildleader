@@ -6,7 +6,7 @@
 [ext_resource path="res://sprites/harvestNodes/harvest_copperOre.png" type="Texture" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -108,7 +108,6 @@ max_lines_visible = -1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -124,7 +123,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="0"]
+[node name="icon_nodeGraphic" type="TextureRect" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0

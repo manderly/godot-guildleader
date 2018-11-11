@@ -14,6 +14,7 @@ onready var button_pickHero = $MarginContainer/centerContainer/VBoxContainer/but
 onready var buttonBeginHarvest = $MarginContainer/centerContainer/VBoxContainer/button_begin
 onready var field_timeRemaining = $MarginContainer/centerContainer/VBoxContainer/field_timeRemaining
 onready var progressBar = $MarginContainer/centerContainer/VBoxContainer/ProgressBar
+onready var nodeGraphic = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/icon_nodeGraphic
 
 var currentHarvest = null
 
@@ -59,7 +60,8 @@ func populate_fields(data):
 	field_duration.text = "Time to harvest: " + str(util.format_time(data.timeToHarvest))
 	field_skill.text = "Harvesting skill required: " + str(data.minSkill)
 	field_yield.text = "Yield: " + str(data.minQuantity) + " - " + str(data.maxQuantity)
-
+	nodeGraphic.texture = load("res://sprites/harvestNodes/" + data.icon)
+	
 	if (data.hero):
 		field_heroName.text = data.hero.heroName
 		_update_hero_skill_display()

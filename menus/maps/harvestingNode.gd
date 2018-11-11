@@ -1,4 +1,5 @@
 extends Control
+#harvestingNode.gd 
 
 onready var field_nodeName = $field_nodeName
 onready var textureButton = $TextureButton
