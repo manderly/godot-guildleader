@@ -312,6 +312,8 @@ func level_up():
 	baseStrength = int(round(baseStrength * classLevelModifiers[heroClass].strength))
 	baseDefense = int(round(baseDefense * classLevelModifiers[heroClass].defense))
 	update_hero_stats()
+	hpCurrent = hp #refill hp and mana when leveling up 
+	manaCurrent = mana  
 	
 func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2
