@@ -298,6 +298,12 @@ func send_home():
 func give_xp(xpNum):
 	xp += xpNum
 	
+func make_level(levelNum):
+	if (levelNum > 1):
+		print("hero.gd: Leveling up to " + str(levelNum))
+		for level in range(levelNum):
+			level_up()
+	
 func level_up():
 	xp = int(0)
 	level += int(1)

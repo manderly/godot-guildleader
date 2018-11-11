@@ -109,7 +109,8 @@ func generate(destinationArray, classStr):
 	else: #this is an unrecruited hero
 		newHero.currentRoom = 0
 		newHero.recruited = false
-		newHero.level = randi()%3+1
+		var randLevel = randi()%3+1
+		newHero.make_level(randLevel)
 		var gearRand1 = randi()%3+1
 		
 		#todo: may be a bad idea to generate these items with IDs since the user doesn't own them yet
