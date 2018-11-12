@@ -84,9 +84,10 @@ func _update_ingredients():
 			$recipeData/label_computed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
 		else:
 			$recipeData/resultItem.show()
+			$recipeData/resultItem._set_info_popup_buttons(false, false, "none")
 			$recipeData/label_computed.hide()
 			$recipeData/resultItem._render_tradeskill(global.allGameItems[str(recipe.result)])
-	
+			
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 
@@ -100,15 +101,17 @@ func _update_ingredients():
 			hasWildcardIngredient = true
 			#if the user picked an item to be the wildcard item, show it here 
 			$recipeData/label_choose.hide()
+			$recipeData/ingredientWildcard._set_info_popup_buttons(true, false, "Return to vault")
 			$recipeData/ingredientWildcard._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
 		else:
 			hasWildcardIngredient = false
+			$recipeData/ingredientWildcard._set_info_popup_buttons(true, false, "Choose")
 			$recipeData/label_choose.show()
 			$recipeData/ingredientWildcard._clear_tradeskill()
 	else:
 		tradeskill.wildcardItem = null
 		hasWildcardIngredient = false
-		$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
+		#$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
 		$recipeData/label_choose.hide()
 		$recipeData/ingredientWildcard.hide()
 	

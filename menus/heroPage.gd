@@ -63,8 +63,14 @@ func _ready():
 		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
 		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
 		heroInventoryButton._set_slot(heroEquipmentSlots[i])
+		if (global.selectedHero && !global.selectedHero.recruited):
+			#don't show move to vault or trash buttons if this hero isn't recruited
+			heroInventoryButton._set_info_popup_buttons(false, false, "none")
+		else:
+			#show buttons and give the option to put item in vault if hero is recruited
+			heroInventoryButton._set_info_popup_buttons(true, true, "Put in vault")
+			
 		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
-		
 		#only set icon if the hero actually has an item in this slot, otherwise empty
 		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
 		if (global.selectedHero["equipment"][slot] != null):

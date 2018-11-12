@@ -23,7 +23,6 @@ func _set_vault_index(idx):
 func _set_data(data):
 	itemData = data
 	_populate_fields()
-	_draw_buttons()
 	
 func _populate_fields():
 	window_title = itemData.name
@@ -95,51 +94,19 @@ func _populate_fields():
 	else:
 		$field_armorOrDPS.hide()
 		$field_classes.hide()
-	
-func _draw_buttons():
-	#must be called after data is set
-	
-	#we only need the trash button if we're in the vault 
-	$button_trash.hide()
-	
-	#items we don't own (items that are previews, items that belong to unrecruited heroes, etc)
-	#have a -1 ID. In this case, we can't "move" the item or trash it so hide those buttons.
-	if (itemData.itemID == -1):
-		$button_moveItem.hide()
 		
-	#the wording on the button varies with context 
-	if (global.currentMenu == "vault"):
-		$button_moveItem.text = "Move"
+func _set_buttons(showActionButton, showTrashButton, actionButtonStr):
+	if (showActionButton):
+		$button_action.show()
+		$button_action.text = actionButtonStr
+	else:
+		$button_action.hide()
+		
+	if (showTrashButton):
 		$button_trash.show()
-	elif (global.currentMenu == "heroPage"):
-		$button_moveItem.text = "Put in vault"
-		$button_moveItem.show()
-		$button_trash.show()
-	elif (global.currentMenu == "vaultViaHeroPage"):
-		$button_moveItem.text = "Equip"
-		$button_moveItem.show()
-		$button_trash.show()
-	elif (global.currentMenu == "blacksmithing" || 
-			global.currentMenu == "alchemy" ||
-			global.currentMenu == "fletching" ||
-			global.currentMenu == "tailoring" ||
-			global.currentMenu == "jewelcraft"):
-		#if the wildcard slot is empty, then write "choose"
-		if (!global.tradeskills[global.currentMenu].wildcardItem):
-			$button_moveItem.text = "Choose"
-			$button_moveItem.show()
-		else:
-			$button_moveItem.text = "Return to vault"
-			$button_moveItem.show()
+	else:
+		$button_trash.hide()
 	
-	#don't show move to vault or trash buttons if this hero isn't recruited
-	if (global.selectedHero && !global.selectedHero.recruited):
-		$button_moveItem.hide()
-		
-	#don't show move to vault or trash buttons if this item is on the questConfirm page
-	if (global.currentMenu == "questConfirm"):
-		$button_moveItem.hide()
-		
 func _on_button_trash_pressed():
 	emit_signal("itemDeletedOrMovedToVault")
 	if (global.currentMenu == "heroPage"):

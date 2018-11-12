@@ -28,14 +28,23 @@ func _position_vault_buttons():
 	
 	#draw all the rows, and if there happens to be an item in the corresponding guildItems array, add its data 
 	for i in range(global.vaultSpace):
-		#futile attempt to get buttons to all save their indexes 
-		#var itemButton = preload("res://menus/itemButton.tscn").new()
 		var itemButton = preload("res://menus/itemButton.tscn").instance()
 		itemButton._set_vault_index(i)
 		itemButton.connect("updateSourceButtonArt", self, "_draw_vault_items")
 		gridEquipment.add_child(itemButton)
 		buttonArray.append(itemButton)
-		
+			
+		if (global.currentMenu == "vaultViaHeroPage"):
+			itemButton._set_info_popup_buttons(true, true, "Equip")
+		elif (global.currentMenu == "alchemy" ||
+			global.currentMenu == "blacksmithing" ||
+			global.currentMenu == "jewelcraft" ||
+			global.currentMenu == "tailoring" ||
+			global.currentMenu == "fletching"):
+			#must have come from a crafting page
+			itemButton._set_info_popup_buttons(true, true, "Select")
+		else:
+			itemButton._set_info_popup_buttons(true, true, "Move")
 	_draw_vault_items()
 	
 func _draw_vault_items():
@@ -45,6 +54,7 @@ func _draw_vault_items():
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
 			if (global.guildItems[i] && global.guildItems[i].itemType != "tradeskill" && global.guildItems[i].itemType != "quest"):
+				#normal item 
 				currentButton._render_vault(global.guildItems[i])
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match

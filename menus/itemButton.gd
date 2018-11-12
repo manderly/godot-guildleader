@@ -5,6 +5,10 @@ var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
 var itemSlot = null #used on heroPage to know what to filter by
 
+var showActionButton = false
+var showTrashButton = false
+var actionButtonStr = "no string set!"
+
 signal updateSourceButtonArt
 signal updateStatsOnHeroPage
 
@@ -94,7 +98,11 @@ func _clear_tradeskill():
 	_clear_data()
 	_clear_icon()
 	_clear_label()
-	
+
+func _set_info_popup_buttons(actButton, trashButton, string):
+	showActionButton = actButton
+	showTrashButton = trashButton
+	actionButtonStr = string
 	
 func _on_Button_pressed():
 	if (global.inSwapItemState):
@@ -118,6 +126,7 @@ func _on_Button_pressed():
 		if (itemData):
 			itemPopup._set_data(itemData)
 			itemPopup._set_vault_index(itemVaultIndex)
+			itemPopup._set_buttons(showActionButton, showTrashButton, actionButtonStr)
 			itemPopup.popup()
 		else:
 			if (global.currentMenu == "heroPage"):
