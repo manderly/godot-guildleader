@@ -25,7 +25,8 @@ func _set_data(data):
 	_populate_fields()
 	
 func _populate_fields():
-	window_title = itemData.name
+	#window_title = itemData.name #old way that puts title outside the art for some reason
+	$field_itemName.text = itemData.name
 
 	$sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
 	$field_slot.text = itemData.slot.capitalize()
