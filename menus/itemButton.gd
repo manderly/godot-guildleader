@@ -18,6 +18,7 @@ func _ready():
 	itemPopup.connect("swappingItemWithAnother", self, "swapState_callback")
 	itemPopup.connect("updateStats", self, "updateStats_callback") #middleman to pass signal up to heroPage.gd
 	itemPopup.connect("clearWildcardButton", self, "_clear_tradeskill")
+	$Button/field_vaultIdx.hide() #for debug purposes, shows the item's index 
 	add_child(itemPopup)
 	
 func updateStats_callback():
