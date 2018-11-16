@@ -80,6 +80,16 @@
     "defense": 2
   },
   {
+    "mobName": "Direwolf",
+    "lootTable": "wolfLoot02",
+    "level": 3,
+    "hp": 180,
+    "mana": 0,
+    "dps": 0,
+    "strength": 10,
+    "defense": 3
+  },
+  {
     "mobName": "Goblin Bandit",
     "lootTable": "goblinLoot01",
     "level": 2,

@@ -113,8 +113,8 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Aggressive Wolf",
-    "mob2": "null",
-    "mob3": "null"
+    "mob2": "Aggressive Wolf",
+    "mob3": "Direwolf"
   },
   {
     "campId": "camp_forest02",

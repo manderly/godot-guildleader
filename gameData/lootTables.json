@@ -4,7 +4,7 @@
     "item1": "Rat Ear",
     "item1Chance": 2,
     "item2": "Novice's Blade",
-    "item2Chance": 1,
+    "item2Chance": 2,
     "scMin": 0,
     "scMax": 0
   },
@@ -22,7 +22,7 @@
     "item1": "Spider Web",
     "item1Chance": 10,
     "item2": "Novice's Blade",
-    "item2Chance": 1,
+    "item2Chance": 2,
     "scMin": 0,
     "scMax": 0
   },
@@ -47,18 +47,27 @@
   {
     "lootTableName": "wolfLoot01",
     "item1": "Small Hide",
-    "item1Chance": 10,
-    "item2": "null",
-    "item2Chance": 0,
+    "item1Chance": 4,
+    "item2": "Medium Hide",
+    "item2Chance": 2,
+    "scMin": 0,
+    "scMax": 0
+  },
+  {
+    "lootTableName": "wolfLoot02",
+    "item1": "Medium Hide",
+    "item1Chance": 5,
+    "item2": "Silver Ring",
+    "item2Chance": 2,
     "scMin": 0,
     "scMax": 0
   },
   {
     "lootTableName": "goblinLoot01",
     "item1": "Soft Silk Slippers",
-    "item1Chance": 10,
+    "item1Chance": 2,
     "item2": "Novice's Blade",
-    "item2Chance": 10,
+    "item2Chance": 2,
     "scMin": 5,
     "scMax": 100
   },
@@ -67,7 +76,7 @@
     "item1": "Durable Alloy Sword",
     "item1Chance": 2,
     "item2": "Heavy Painted Shield",
-    "item2Chance": 10,
+    "item2Chance": 5,
     "scMin": 10,
     "scMax": 150
   },

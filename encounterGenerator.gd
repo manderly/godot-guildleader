@@ -44,7 +44,6 @@ var encounterOutcome = {
 	"battleRecord":[],
 	"lootedItemsNames":[], #just the names, no dupes 
 	"scTotal":0,
-	"hcTotal":0,
 	"summary":[]
 }
 var heroesClone = []
@@ -63,6 +62,7 @@ func _get_rand_between(firstVal, secondVal):
 	if (secondVal < firstVal): #figure out which value is lower (ie: if we pass (8,0) we can't use them as-is) 
 		bottom = secondVal
 		top = firstVal
+	
 	var randNum = randi()%int(top)+int(bottom) #1-100, 5-10, 600-1900, etc
 	return randNum
 	
@@ -130,19 +130,22 @@ func _target_mob_dies(targetMob, newBattle):
 	if (_get_rand_between(0, 100) < lootTable.item2Chance):
 		newBattle.rawBattleLog.append("Looted this item: " + lootTable.item2)
 		newBattle.loot.append(lootTable.item2)
-			
-	var scAmount = _get_rand_between(lootTable.scMin, lootTable.scMax)
-	if (battlePrint):
-		print("looted this much SC: " + str(scAmount))
-	newBattle.rawBattleLog.append("looted this much SC: " + str(scAmount))
-	#append coins somewhere on newBattle
-
+		
+	#Determine how much SC the player looted from this mob
+	#Not every mob drops money, so don't roll a random if this mob is moneyless 
+	newBattle.hc = _get_rand_between(0, 2)
+	if (lootTable.scMax > 0):
+		var scAmount = _get_rand_between(lootTable.scMin, lootTable.scMax)
+		if (battlePrint):
+			print("looted this much SC: " + str(scAmount))
+		newBattle.rawBattleLog.append("looted this much SC: " + str(scAmount))
+		newBattle.sc = scAmount
+	else:
+		newBattle.sc = 0
 	
 	#delete this mob from the current fight
 	newBattle.mobs.erase(targetMob)
-	newBattle.sc = _get_rand_between(1, 100)
-	newBattle.hc = _get_rand_between(0, 2)
-	newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins and " + str(newBattle.hc) + " diamonds") 
+	newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
 func _calculate_battle_outcome(heroes, mobTable):
 	#a battle continues until all mobs (or all heroes) are dead
@@ -164,16 +167,19 @@ func _calculate_battle_outcome(heroes, mobTable):
 	}
 	
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
-		var targetMob = null
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
 		for hero in newBattle.heroes:
+			var targetMob = null
+			targetMob = _get_target_entity(newBattle.mobs)
+		
 			if (hero && !hero.dead):
 				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
-					targetMob = _get_target_entity(newBattle.mobs)
+					#targetMob = _get_target_entity(newBattle.mobs)
 					if (battlePrint):
 						print(hero.heroName + " is going to attack " + targetMob.mobName)
 					var unmodifiedDamage = hero.melee_attack()
-					targetMob.hpCurrent -= unmodifiedDamage
+					#print("unmodified damage:" + str(unmodifiedDamage))
+					targetMob.hpCurrent -= int(unmodifiedDamage)
 					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
@@ -181,11 +187,10 @@ func _calculate_battle_outcome(heroes, mobTable):
 							break
 				elif (hero.heroClass == "Wizard"):
 					#nuke
-					targetMob = _get_target_entity(newBattle.mobs)
 					var nukeDmg = hero.level * hero.intelligence
 					if (battlePrint):
 						print(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
-					targetMob.hpCurrent -= nukeDmg
+					targetMob.hpCurrent -= int(nukeDmg)
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
 						if (newBattle.mobs.size() == 0):
@@ -252,7 +257,6 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 		for lootName in battleOutcome["loot"]:
 			encounterOutcome.lootedItemsNames.append(lootName)
 		encounterOutcome.scTotal += battleOutcome["sc"]
-		encounterOutcome.hcTotal += battleOutcome["hc"]
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
 	encounterOutcome.summary.append("There were " + str(encounterQuantity) + " battles.")
 	for hero in camp.heroes:
