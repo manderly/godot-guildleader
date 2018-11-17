@@ -295,6 +295,19 @@ func _on_touchTimer_timeout():
 func send_home():
 	atHome = true
 	staffedTo = ""
+
+func get_archetype():
+	#returns string dps, tank, healer
+	var archetype = ""
+	if (heroClass == "Wizard" || heroClass == "Ranger" || heroClass == "Rogue" || heroClass == "Monk"):
+		archetype = "dps"
+	elif (heroClass == "Paladin" || heroClass == "Warrior"):
+		archetype = "tank"
+	elif (heroClass == "Cleric" || heroClass == "Druid"):
+		archetype = "healer"
+	else:
+		archetype = "ERROR"
+	return archetype
 	
 func give_xp(xpNum):
 	xp += xpNum

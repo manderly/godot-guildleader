@@ -17,6 +17,12 @@ onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/Progres
 
 onready var campData = null
 
+var haveAlready = {
+	"healer":0,
+	"dps":0,
+	"tank":0
+}
+
 func _ready():
 	campData = global.campData[global.selectedCampID]
 	add_child(finishNowPopup)
@@ -93,35 +99,16 @@ func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/maps/forest.tscn")
 
 func _calculate_recommended_classes():
-	#set up object to count the archetypes we have picked 
-	var classesObj = {
-		"dps":0,
-		"tank":0,
-		"healer":0
-	}
-	#loop through the heroes we have 
-	for hero in campData.heroes:
-		if (hero):
-			if (hero.heroClass == "Warrior" || hero.heroClass == "Paladin"):
-				classesObj.tank += 1
-			
-			if (hero.heroClass == "Rogue" || hero.heroClass == "Wizard" || hero.heroClass == "Ranger" || hero.heroClass == "Druid"):
-				classesObj.dps += 1
-			
-			if (hero.heroClass == "Cleric" || hero.heroClass == "Druid"):
-				classesObj.healer += 1
-	
+	calc_class_balance()
 	var classesNeededString = "This group could use "
-	if (classesObj.healer == 0):
+	if (haveAlready.healer == 0):
 		classesNeededString += "a healer."
-	elif (classesObj.tank == 0):
+	elif (haveAlready.tank == 0):
 		classesNeededString += "a tank."
-	elif (classesObj.dps == 0):
+	elif (haveAlready.dps == 0):
 		classesNeededString += "at least one DPS."
 	else:
 		classesNeededString = "This group looks well-balanced!"
-		
-	print(classesNeededString)
 	return classesNeededString
 
 func _on_button_startCampShort_pressed():
@@ -167,17 +154,62 @@ func _start_camp(duration, enableButtonStr):
 		get_tree().change_scene("res://menus/maps/campResults.tscn")
 	else:
 		print("camp.gd error - unhandled state")
+		
+		
+func calc_class_balance():
+	#zero it out
+	haveAlready = {
+		"healer":0,
+		"dps":0,
+		"tank":0
+	}
+	
+	for hero in campData.heroes:
+		if (hero != null):
+			if (hero.get_archetype() == "healer"):
+				haveAlready.healer += 1
+			elif (hero.get_archetype() == "tank"):
+				haveAlready.tank += 1
+			elif (hero.get_archetype() == "dps"):
+				haveAlready.dps += 1
 
 func _on_button_autoPickHeroes_pressed():
+	calc_class_balance() #make sure the class balance obj is up to date
+		
 	#for each empty hero slot
 	for i in range(campData.heroes.size()):
 		if (campData.heroes[i] == null):
-			print("found an empty slot")
-			#for hero in global.guildRoster:
-				#if (hero.available && hero.heroClass == "Wizard"):
-					#campData.heroes.append(hero) #in progress 
+			#todo: sort heroes by xp first (want low xp heroes) 
+			#look through all the available heroes
+			for hero in global.guildRoster:
+				if (hero.atHome == true && hero.staffedTo == ""):
+					if (haveAlready.healer == 0 && hero.get_archetype() == "healer"):
+						#todo: code duplication in heroSelect Button code
+						campData.heroes[i] = hero #in progress
+						campData.heroes[i].staffedTo = "Camp"
+						campData.campHeroesSelected += 1
+						haveAlready.healer += 1
+						break
+					
+					if (haveAlready.tank == 0 && hero.get_archetype() == "tank"):
+						#todo: code duplication in heroSelect Button code
+						campData.heroes[i] = hero #in progress
+						campData.heroes[i].staffedTo = "Camp"
+						campData.campHeroesSelected += 1
+						haveAlready.tank += 1
+						break
+					
+					if (haveAlready.dps < 2 && hero.get_archetype() == "dps"):
+						#todo: code duplication in heroSelect Button code
+						campData.heroes[i] = hero #in progress
+						campData.heroes[i].staffedTo = "Camp"
+						campData.campHeroesSelected += 1
+						haveAlready.dps += 1
+						break
+						
+	_populate_fields()		
 			
-				#heroButton.populate_fields(campData.heroes[i])
+	#heroButton.populate_fields(campData.heroes[i])
 	#iterate through the available heroes
 	#try to pick these archetypes: (tank), (healer), (dps), (dps)
 	#try to pick heroes who need xp
