@@ -44,9 +44,11 @@ var encounterOutcome = {
 	"battleRecord":[],
 	"lootedItemsNames":[], #just the names, no dupes 
 	"scTotal":0,
-	"summary":[]
+	"summary":[],
+	"detailedPlayByPlay":[]
 }
 var heroesClone = []
+var battleNumber = 1
 
 #todo: track how much xp each hero gets individually for display later 
 
@@ -108,14 +110,20 @@ func _get_target_entity(targets):
 #modifies the current newBattle object directly
 func _target_mob_dies(targetMob, newBattle):
 	targetMob.dead = true
-	newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
+	encounterOutcome.detailedPlayByPlay.append(targetMob.mobName + " was defeated!")
+	#newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
 	
 	#give xp
+	var xp = 15 #todo: some fancy formula here
+	
 	for hero in newBattle.heroes:
-		hero.give_xp(15) #todo: formula someday
+		hero.give_xp(xp/newBattle.heroes.size()) #todo: formula someday
 		if (hero.xp > global.levelXpData[hero.level].total):
 			hero.xp = global.levelXpData[hero.level].total
-		newBattle.rawBattleLog.append(hero.heroName + " got " + str(15) + " xp.")
+			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " is full xp and ready to train.")
+		else:
+			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
+
 		
 	#give loot (randomly determined from loot table)
 	var lootTable = global.lootTables[targetMob.lootTable]
@@ -124,11 +132,13 @@ func _target_mob_dies(targetMob, newBattle):
 	#shorter camps have a slightly greater chance of dropping items
 	#longer camps have a slightly lower chance of dropping items 
 	if (_get_rand_between(0, 100) < lootTable.item1Chance):
-		newBattle.rawBattleLog.append("Looted this item: " + lootTable.item1)
+		#newBattle.rawBattleLog.append("Looted this item: " + lootTable.item1)
+		encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
 		newBattle.loot.append(lootTable.item1)
 		
 	if (_get_rand_between(0, 100) < lootTable.item2Chance):
-		newBattle.rawBattleLog.append("Looted this item: " + lootTable.item2)
+		#newBattle.rawBattleLog.append("Looted this item: " + lootTable.item2)
+		encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item2)
 		newBattle.loot.append(lootTable.item2)
 		
 	#Determine how much SC the player looted from this mob
@@ -136,24 +146,32 @@ func _target_mob_dies(targetMob, newBattle):
 	newBattle.hc = _get_rand_between(0, 2)
 	if (lootTable.scMax > 0):
 		var scAmount = _get_rand_between(lootTable.scMin, lootTable.scMax)
-		if (battlePrint):
-			print("looted this much SC: " + str(scAmount))
-		newBattle.rawBattleLog.append("looted this much SC: " + str(scAmount))
+		encounterOutcome.detailedPlayByPlay.append("Looted " + str(scAmount) + " coins.")
+		#newBattle.rawBattleLog.append("Looted this much SC: " + str(scAmount))
 		newBattle.sc = scAmount
 	else:
 		newBattle.sc = 0
 	
 	#delete this mob from the current fight
 	newBattle.mobs.erase(targetMob)
-	newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
+	#encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
+	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
 func _calculate_battle_outcome(heroes, mobTable):
+	encounterOutcome.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
 	#a battle continues until all mobs (or all heroes) are dead
 	#if all heroes die, the encounter is over
 	#if all mobs die, the encounter goes onto the next battle 
 	
 	#figure out which mobs and which heroes are going to participate in this fight
 	var randomMobs = _get_battle_mobs(mobTable)
+	if (randomMobs.size() > 1):
+		encounterOutcome.detailedPlayByPlay.append(str(randomMobs.size()) + " enemies enter the fight.")
+	else:
+		encounterOutcome.detailedPlayByPlay.append(str(randomMobs.size()) + " enemy enters the fight.")
+	for mob in randomMobs:
+		encounterOutcome.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + ")")
+	
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
 		"heroes":heroes,
@@ -174,12 +192,10 @@ func _calculate_battle_outcome(heroes, mobTable):
 		
 			if (hero && !hero.dead):
 				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
-					#targetMob = _get_target_entity(newBattle.mobs)
-					if (battlePrint):
-						print(hero.heroName + " is going to attack " + targetMob.mobName)
 					var unmodifiedDamage = hero.melee_attack()
-					#print("unmodified damage:" + str(unmodifiedDamage))
 					targetMob.hpCurrent -= int(unmodifiedDamage)
+					encounterOutcome.detailedPlayByPlay.append(hero.heroName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
+					#todo: mob's defense roll 
 					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
@@ -188,8 +204,8 @@ func _calculate_battle_outcome(heroes, mobTable):
 				elif (hero.heroClass == "Wizard"):
 					#nuke
 					var nukeDmg = hero.level * hero.intelligence
-					if (battlePrint):
-						print(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
+					#todo: save roll for mob
+					encounterOutcome.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
 					targetMob.hpCurrent -= int(nukeDmg)
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
@@ -197,11 +213,13 @@ func _calculate_battle_outcome(heroes, mobTable):
 							break
 				elif (hero.heroClass == "Cleric"):
 					#heal ALL heroes in party
+					var healAmount = 16 #todo: fancy formula
 					for partyMember in newBattle.heroes:
 						if (!partyMember.dead):
-							if (battlePrint):
-								print(hero.heroName + " restores 5 hitpoints to everyone, including: " + partyMember.heroName)
-							partyMember.hpCurrent += 5
+							encounterOutcome.detailedPlayByPlay.append(hero.heroName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroName + "!")
+							#if (battlePrint):
+								#print(hero.heroName + " restores 5 hitpoints to everyone, including: " + partyMember.heroName)
+							partyMember.hpCurrent += healAmount
 							if (partyMember.hpCurrent > partyMember.hp):
 								partyMember.hpCurrent = partyMember.hp #cannot exceed max 
 				elif (hero.heroClass == "Druid"):
@@ -222,18 +240,22 @@ func _calculate_battle_outcome(heroes, mobTable):
 			if (newBattle.heroes.size() > 0):
 				#this mob's target (randomly picked for now)
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
-				if (battlePrint):
-					print(mob.mobName + " is going to attack " + targetHero.heroName)
 				var unmodifiedDamage = mob.dps * mob.strength * mob.level
 				targetHero.hpCurrent -= unmodifiedDamage
+				encounterOutcome.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroName + " for " + str(unmodifiedDamage) + " points of damage")
 				if (targetHero.hpCurrent <= 0):
 					targetHero.dead = true
+					encounterOutcome.detailedPlayByPlay.append(targetHero.heroName + " died!")
 					newBattle.heroes.erase(targetHero)
-					print(targetHero.heroName + " died!")
+					if (newBattle.heroes.size() == 0):
+						encounterOutcome.detailedPlayByPlay.append("Total party wipe!")
+						break
 			else:
-				print("no heroes left to fight, battle is over")
+				encounterOutcome.detailedPlayByPlay.append("Total party wipe!")
+				print("no heroes left to fight, the encounter is over")
+				break
 
-
+	battleNumber += 1
 	return newBattle
 
 			
@@ -243,7 +265,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#or 120 to make it 1 encounter every 2 mins, etc.
 	#remember that an encounter has several mobs in it
 	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
-	var encounterQuantity = camp.selectedDuration / 300
+	var encounterQuantity = camp.selectedDuration / 600
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	heroesClone = []
@@ -252,14 +274,25 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 			heroesClone.append(t)
 	
 	for encounter in encounterQuantity:
-		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
-		encounterOutcome.battleRecord.append(battleOutcome)
-		for lootName in battleOutcome["loot"]:
-			encounterOutcome.lootedItemsNames.append(lootName)
-		encounterOutcome.scTotal += battleOutcome["sc"]
+		while (heroesClone.size() > 0):
+			var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
+			encounterOutcome.battleRecord.append(battleOutcome)
+			
+			for lootName in battleOutcome.loot:
+				encounterOutcome.lootedItemsNames.append(lootName)
+		
+			encounterOutcome.scTotal += battleOutcome["sc"]
+	
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
-	encounterOutcome.summary.append("There were " + str(encounterQuantity) + " battles.")
+	if (battleNumber == 1):
+		encounterOutcome.detailedPlayByPlay.append("There was " + str(battleNumber) + " battle.")
+		encounterOutcome.summary.append("There was " + str(battleNumber) + " battle.")
+	else:
+		encounterOutcome.detailedPlayByPlay.append("There were " + str(battleNumber) + " battles.")
+		encounterOutcome.summary.append("There were " + str(battleNumber) + " battles.")
+		
 	for hero in camp.heroes:
 		if (hero):
 			encounterOutcome.summary.append(hero.heroName + " is still alive.")
+					
 	return encounterOutcome
