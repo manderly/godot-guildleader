@@ -165,10 +165,12 @@ func _start_camp(duration, enableButtonStr):
 	#case 1: Begin harvest (no quest active, nothing ready to collect)
 	if (!campData.inProgress && !campData.readyToCollect):
 		var haveEnoughHeroes = true
+		print(campData.heroes)
 		for slot in campData.heroes:
 			if (slot == null):
 				#todo: need a popup telling the player they need 4 heroes 
 				haveEnoughHeroes = false
+				print("camp.gd - not enough heroes")
 				break
 		
 		if (haveEnoughHeroes):

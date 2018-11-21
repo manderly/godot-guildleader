@@ -2,9 +2,9 @@
   {
     "lootTableName": "batLoot01",
     "item1": "Bat Wing",
-    "item1Chance": 2,
+    "item1Chance": 10,
     "item2": "Bat Wing",
-    "item2Chance": 2,
+    "item2Chance": 3,
     "scMin": 0,
     "scMax": 0
   },

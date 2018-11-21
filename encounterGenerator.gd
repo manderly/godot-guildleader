@@ -115,10 +115,12 @@ func _target_mob_dies(targetMob, newBattle):
 	#newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
 	
 	#give xp
-	var xp = 15 #todo: some fancy formula here
+	#todo: some fancy formula here
+	#for now, just use the mob's level x 2 x 2 again
+	var xp = ((targetMob.level * int(2)) * int(2) + 15)
 	
 	for hero in newBattle.heroes:
-		hero.give_xp(xp/newBattle.heroes.size()) #todo: formula someday
+		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
 		if (hero.xp > global.levelXpData[hero.level].total):
 			hero.xp = global.levelXpData[hero.level].total
 			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " is full xp and ready to train.")
@@ -160,6 +162,13 @@ func _target_mob_dies(targetMob, newBattle):
 	
 func _calculate_battle_outcome(heroes, mobTable):
 	encounterOutcome.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
+	#regen heroes
+	#todo: better regen formula
+	for hero in heroes:
+		hero.hpCurrent += (_get_rand_between(1,10))
+		if (hero.hpCurrent > hero.hp):
+			hero.hpCurrent = hero.hp
+	
 	#a battle continues until all mobs (or all heroes) are dead
 	#if all heroes die, the encounter is over
 	#if all mobs die, the encounter goes onto the next battle 
@@ -172,7 +181,9 @@ func _calculate_battle_outcome(heroes, mobTable):
 		encounterOutcome.detailedPlayByPlay.append(str(randomMobs.size()) + " enemy enters the fight.")
 	for mob in randomMobs:
 		encounterOutcome.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
-	
+	for hero in heroes:
+		encounterOutcome.detailedPlayByPlay.append(">" + hero.heroName + " (Level " + str(hero.level) + " " + hero.heroClass + " HP: " + str(hero.hpCurrent) + ")")
+		
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
 		"heroes":heroes,

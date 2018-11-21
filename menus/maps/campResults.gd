@@ -63,7 +63,9 @@ func _on_button_collect_pressed():
 	
 	global.softCurrency += campData.campOutcome.scTotal
 	
-	campData.heroes = [null, null, null, null]
+	campData.heroes = []
+	for slot in campData.groupSize:
+		campData.heroes.append(null)
 	campData.inProgress = false
 	campData.readyToCollect = false
 	campData.campOutcome = {}
