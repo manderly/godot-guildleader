@@ -225,7 +225,7 @@ func _on_button_autoPickHeroes_pressed():
 					if (haveAlready.healer == 0 && hero.get_archetype() == "healer"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
-						campData.heroes[i].staffedTo = "Camp"
+						campData.heroes[i].staffedTo = "camp"
 						campData.campHeroesSelected += 1
 						haveAlready.healer += 1
 						break
@@ -233,7 +233,7 @@ func _on_button_autoPickHeroes_pressed():
 					if (haveAlready.tank == 0 && hero.get_archetype() == "tank"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
-						campData.heroes[i].staffedTo = "Camp"
+						campData.heroes[i].staffedTo = "camp"
 						campData.campHeroesSelected += 1
 						haveAlready.tank += 1
 						break
@@ -241,7 +241,7 @@ func _on_button_autoPickHeroes_pressed():
 					if (haveAlready.dps < 2 && hero.get_archetype() == "dps"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
-						campData.heroes[i].staffedTo = "Camp"
+						campData.heroes[i].staffedTo = "camp"
 						campData.campHeroesSelected += 1
 						haveAlready.dps += 1
 						break

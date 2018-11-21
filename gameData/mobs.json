@@ -7,7 +7,8 @@
     "mana": "",
     "dps": "",
     "strength": "",
-    "defense": ""
+    "defense": "",
+    "baseResist": ""
   },
   {
     "mobName": "Small Rat",
@@ -17,7 +18,8 @@
     "mana": 0,
     "dps": 3,
     "strength": 3,
-    "defense": 2
+    "defense": 2,
+    "baseResist": 2
   },
   {
     "mobName": "Large Rat",
@@ -27,7 +29,8 @@
     "mana": 0,
     "dps": 4,
     "strength": 4,
-    "defense": 2
+    "defense": 2,
+    "baseResist": 2
   },
   {
     "mobName": "Infected Rat",
@@ -37,7 +40,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 5,
-    "defense": 4
+    "defense": 4,
+    "baseResist": 2
   },
   {
     "mobName": "Weak Forest Bat",
@@ -47,7 +51,8 @@
     "mana": 0,
     "dps": 2,
     "strength": 2,
-    "defense": 2
+    "defense": 2,
+    "baseResist": 2
   },
   {
     "mobName": "Rabid Forest Bat",
@@ -57,7 +62,8 @@
     "mana": 0,
     "dps": 3,
     "strength": 3,
-    "defense": 2
+    "defense": 2,
+    "baseResist": 2
   },
   {
     "mobName": "Aggressive Wolf",
@@ -67,7 +73,8 @@
     "mana": 0,
     "dps": 3,
     "strength": 5,
-    "defense": 4
+    "defense": 4,
+    "baseResist": 4
   },
   {
     "mobName": "Direwolf",
@@ -77,7 +84,8 @@
     "mana": 0,
     "dps": 4,
     "strength": 7,
-    "defense": 6
+    "defense": 6,
+    "baseResist": 2
   },
   {
     "mobName": "Small Spider",
@@ -87,7 +95,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 5,
-    "defense": 1
+    "defense": 1,
+    "baseResist": 2
   },
   {
     "mobName": "Big Spider",
@@ -97,7 +106,8 @@
     "mana": 0,
     "dps": 7,
     "strength": 7,
-    "defense": 2
+    "defense": 2,
+    "baseResist": 2
   },
   {
     "mobName": "Spider King",
@@ -107,7 +117,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 8,
-    "defense": 3
+    "defense": 3,
+    "baseResist": 6
   },
   {
     "mobName": "Dreadwolf",
@@ -117,7 +128,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 9,
-    "defense": 8
+    "defense": 8,
+    "baseResist": 5
   },
   {
     "mobName": "Fairie Defender",
@@ -127,7 +139,8 @@
     "mana": 0,
     "dps": 4,
     "strength": 3,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 9
   },
   {
     "mobName": "Elite Fairie Guard",
@@ -137,7 +150,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 3,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 9
   },
   {
     "mobName": "Yizma the Fairie Queen",
@@ -147,7 +161,8 @@
     "mana": 0,
     "dps": 6,
     "strength": 4,
-    "defense": 9
+    "defense": 9,
+    "baseResist": 12
   },
   {
     "mobName": "Goblin Bandit",
@@ -157,7 +172,8 @@
     "mana": 0,
     "dps": 4,
     "strength": 5,
-    "defense": 4
+    "defense": 4,
+    "baseResist": 5
   },
   {
     "mobName": "Goblin Rogue",
@@ -167,7 +183,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 5,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 5
   },
   {
     "mobName": "Ragron, the Goblin Outlaw",
@@ -177,7 +194,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 6,
-    "defense": 8
+    "defense": 8,
+    "baseResist": 6
   },
   {
     "mobName": "Lowly Smuggler",
@@ -187,7 +205,8 @@
     "mana": 0,
     "dps": 3,
     "strength": 3,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 5
   },
   {
     "mobName": "Smuggler Captain",
@@ -197,7 +216,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 4,
-    "defense": 4
+    "defense": 4,
+    "baseResist": 5
   },
   {
     "mobName": "Old Scallywag ",
@@ -207,7 +227,8 @@
     "mana": 0,
     "dps": 2,
     "strength": 3,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 5
   },
   {
     "mobName": "Deck Swabbie",
@@ -217,7 +238,8 @@
     "mana": 0,
     "dps": 3,
     "strength": 2,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 5
   },
   {
     "mobName": "Captain Smellybeard",
@@ -227,7 +249,8 @@
     "mana": 0,
     "dps": 5,
     "strength": 3,
-    "defense": 5
+    "defense": 5,
+    "baseResist": 12
   },
   {
     "mobName": "Scuttling Crab",
@@ -237,7 +260,8 @@
     "mana": 0,
     "dps": 6,
     "strength": 6,
-    "defense": 6
+    "defense": 6,
+    "baseResist": 4
   },
   {
     "mobName": "Hulking Crab",
@@ -247,7 +271,8 @@
     "mana": 0,
     "dps": 7,
     "strength": 7,
-    "defense": 7
+    "defense": 7,
+    "baseResist": 4
   },
   {
     "mobName": "Sir Pinch",
@@ -257,7 +282,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 8,
-    "defense": 8
+    "defense": 8,
+    "baseResist": 5
   },
   {
     "mobName": "Tadloc Grunt",
@@ -267,7 +293,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 6,
-    "defense": 6
+    "defense": 6,
+    "baseResist": 5
   },
   {
     "mobName": "Tadloc Raider",
@@ -277,7 +304,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 7,
-    "defense": 7
+    "defense": 7,
+    "baseResist": 5
   },
   {
     "mobName": "Tadloc Scrapper",
@@ -287,7 +315,8 @@
     "mana": 0,
     "dps": 9,
     "strength": 9,
-    "defense": 9
+    "defense": 9,
+    "baseResist": 5
   },
   {
     "mobName": "Tidewater Bone Squire",
@@ -297,7 +326,8 @@
     "mana": 0,
     "dps": 10,
     "strength": 10,
-    "defense": 10
+    "defense": 10,
+    "baseResist": 10
   },
   {
     "mobName": "Tidewater Bone Knight",
@@ -307,7 +337,8 @@
     "mana": 0,
     "dps": 11,
     "strength": 11,
-    "defense": 11
+    "defense": 11,
+    "baseResist": 10
   },
   {
     "mobName": "Tidewater Bone Champion",
@@ -317,7 +348,8 @@
     "mana": 0,
     "dps": 12,
     "strength": 12,
-    "defense": 12
+    "defense": 12,
+    "baseResist": 10
   },
   {
     "mobName": "Burgor the Tadloc King",
@@ -327,7 +359,8 @@
     "mana": 0,
     "dps": 10,
     "strength": 10,
-    "defense": 10
+    "defense": 10,
+    "baseResist": 12
   },
   {
     "mobName": "Tadloc Brawler",
@@ -337,7 +370,8 @@
     "mana": 0,
     "dps": 9,
     "strength": 9,
-    "defense": 9
+    "defense": 9,
+    "baseResist": 5
   },
   {
     "mobName": "Tadloc Farseer",
@@ -347,7 +381,8 @@
     "mana": 0,
     "dps": 9,
     "strength": 9,
-    "defense": 9
+    "defense": 9,
+    "baseResist": 5
   },
   {
     "mobName": "Tadloc Spelunker",
@@ -357,7 +392,8 @@
     "mana": 0,
     "dps": 8,
     "strength": 8,
-    "defense": 8
+    "defense": 8,
+    "baseResist": 5
   },
   {
     "mobName": "Wargrun the Fierce",
@@ -367,7 +403,8 @@
     "mana": 0,
     "dps": 11,
     "strength": 11,
-    "defense": 11
+    "defense": 11,
+    "baseResist": 8
   },
   {
     "mobName": "Spectral Siren",
@@ -377,7 +414,8 @@
     "mana": 0,
     "dps": 45,
     "strength": 35,
-    "defense": 35
+    "defense": 35,
+    "baseResist": 9
   },
   {
     "mobName": "Spectral Songstress",
@@ -387,7 +425,8 @@
     "mana": 0,
     "dps": 55,
     "strength": 35,
-    "defense": 35
+    "defense": 35,
+    "baseResist": 10
   },
   {
     "mobName": "Lela the Irresistable",
@@ -397,6 +436,7 @@
     "mana": 0,
     "dps": 75,
     "strength": 35,
-    "defense": 35
+    "defense": 35,
+    "baseResist": 13
   }
 ]

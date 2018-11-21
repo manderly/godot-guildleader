@@ -204,9 +204,42 @@ func _calculate_battle_outcome(heroes, mobTable):
 				elif (hero.heroClass == "Wizard"):
 					#nuke
 					var nukeDmg = hero.level * hero.intelligence
-					#todo: save roll for mob
-					encounterOutcome.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage")
-					targetMob.hpCurrent -= int(nukeDmg)
+					
+					#mob's save roll is based on level difference between hero and mob
+					#if mob > hero, mob has a greater chance to resist
+					#if mob < hero, mob has a lesser chance to resist
+					var mobBaseResist = targetMob.baseResist #out of 20
+					
+					if (hero.level > targetMob.level):
+						mobBaseResist -= (hero.level - targetMob.level)
+						if mobBaseResist < 1:
+							mobBaseResist = 1
+					elif (hero.level < targetMob.level):
+						mobBaseResist += (targetMob.level - hero.level)
+						if mobBaseResist > 19:
+							mobBaseResist = 19
+
+					#now roll to see if the mob resists some of the spell dmg
+					var resistRoll = _get_rand_between(0, 20)
+					if (resistRoll <= mobBaseResist):
+						#mob resists the nuke
+						#but how bad is the resist?
+						#only get a full resist if the mob is higher level than the player
+						if (targetMob.level > hero.level):
+							#full resist
+							encounterOutcome.detailedPlayByPlay.append(hero.heroName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
+						else:
+							#partial resist because hero is higher level than mob
+							var resistRand = _get_rand_between(1, targetMob.baseResist+1)
+							var modifiedNukeDmg = (nukeDmg / resistRand)
+		
+							encounterOutcome.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+							targetMob.hpCurrent -= int(modifiedNukeDmg)
+					else:
+						#full damage
+						encounterOutcome.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+						targetMob.hpCurrent -= int(nukeDmg)
+					
 					if targetMob.hpCurrent <= 0:
 						_target_mob_dies(targetMob, newBattle)
 						if (newBattle.mobs.size() == 0):
@@ -265,7 +298,16 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#or 120 to make it 1 encounter every 2 mins, etc.
 	#remember that an encounter has several mobs in it
 	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
-	var battleQuantity = camp.selectedDuration / 600
+	
+	var battleQuantity = 0
+	#lower level camps have slightly shorter durations to be more exciting
+	
+	#camps that last 1 hour or less have a 
+	#higher spawn rate to encourage frequent play
+	if (camp.selectedDuration <= 3600):
+		battleQuantity = camp.selectedDuration / 400
+	else:
+		battleQuantity = camp.selectedDuration / 600
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	
@@ -293,8 +335,14 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 		encounterOutcome.detailedPlayByPlay.append("There were " + str(battleNumber) + " battles.")
 		encounterOutcome.summary.append("There were " + str(battleNumber) + " battles.")
 		
-	for hero in camp.heroes:
-		if (hero):
-			encounterOutcome.summary.append(hero.heroName + " is still alive.")
-					
+	for hero in heroesClone:
+		#hero.xp = global.levelXpData[hero.level].total
+		if (hero && hero.xp == global.levelXpData[hero.level].total):
+			encounterOutcome.summary.append(hero.heroName + " is ready to train!")
+		else:
+			encounterOutcome.summary.append(hero.heroName + " survived!")
+			
+	if (heroesClone.size() == 0):
+		encounterOutcome.summary.append("Total party wipe!")
+		
 	return encounterOutcome

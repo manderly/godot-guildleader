@@ -116,7 +116,6 @@ func _on_Button_pressed():
 			currentCamp.heroes[global.campButtonID].atHome = true
 			currentCamp.heroes[global.campButtonID].staffedTo = ""
 			currentCamp.campHeroesSelected -= 1
-		
 		#next, confirm this specific hero is available
 		if (heroData.atHome == true && heroData.staffedTo == ""):
 			currentCamp.heroes[global.campButtonID] = heroData
