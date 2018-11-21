@@ -89,6 +89,7 @@ func _get_battle_mobs(mobs):
 	for i in battleMobsQuantity:
 		var randMobNum = _get_rand_between(1,3) #never picks 2 if you pass it (0,2) (1,3)
 		randomMob = mobs[randMobNum - 1] #[-1]
+		randomMob.hpCurrent = randomMob.hp #reset HP 
 		mobAssortment.append(randomMob)
 	return mobAssortment
 
@@ -170,7 +171,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 	else:
 		encounterOutcome.detailedPlayByPlay.append(str(randomMobs.size()) + " enemy enters the fight.")
 	for mob in randomMobs:
-		encounterOutcome.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + ")")
+		encounterOutcome.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
 	
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
