@@ -42,24 +42,23 @@ func generate(destinationArray, classStr):
 		#newHero.give_new_item("Tiny Sapphire Ring")
 		newHero.give_new_item("Worn Canvas Sandals") #feet
 		newHero.give_new_item("Cloth Pants") #legs
-		newHero.give_new_item("Sparkling Metallic Robe") #chest
+		newHero.give_new_item("Novice's Robe") #chest
 		newHero.give_new_item("Simple Ring")
 		newHero.give_new_item("Cracked Staff")
-		#newHero.give_new_item("Worn Canvas Sandals") #feet
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
 		newHero.give_new_item("Rusty Knife")
 		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Blackguard's Chainmail Leggings")
-		newHero.give_new_item("Blackguard's Chainmail Vest")
+		newHero.give_new_item("Worn Ringmail Leg Guards")
+		newHero.give_new_item("Worn Ringmail Vest")
 
 	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
 		#twink warrior
-		newHero.give_new_item("Glimmering Steel Sword")
+		#newHero.give_new_item("Glimmering Steel Sword")
 		
-		#newHero.give_new_item("Rusty Broadsword")
+		newHero.give_new_item("Rusty Broadsword")
 		newHero.give_new_item("Reinforced Shield")
 		newHero.give_new_item("Muddy Boots")
 		newHero.give_new_item("Worn Ringmail Leg Guards")
@@ -74,8 +73,11 @@ func generate(destinationArray, classStr):
 		
 	elif (classStr == "Cleric"):
 		newHero.heroClass = "Cleric"
-		newHero.give_new_item("Sacred Mace of Tun'dn")
-		newHero.give_new_item("Shield of the Righteous")
+		#twink cleric
+		#newHero.give_new_item("Sacred Mace of Tun'dn")
+		#newHero.give_new_item("Shield of the Righteous")
+		newHero.give_new_item("Rusty Mace")
+		newHero.give_new_item("Reinforced Shield")
 		newHero.give_new_item("Cloth Shirt")
 		newHero.give_new_item("Muddy Boots")
 		newHero.give_new_item("Cloth Pants")

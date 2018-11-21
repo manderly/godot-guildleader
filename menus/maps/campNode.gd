@@ -11,6 +11,16 @@ func _set_data(idStr):
 	campData = global.campData[idStr]
 	$field_campName.text = campData.name
 	
+	var lowEndRange = 1
+	var highEndRange = 50
+	if (campData.level > 1):
+		lowEndRange = campData.level - 1
+	
+	if (campData.level < 50):
+		highEndRange = campData.level + 2
+		
+	$field_levelRange.text = "(" + str(lowEndRange) + " - " + str(highEndRange) + ")"
+	
 func _get_camp_id():
 	return campId
 

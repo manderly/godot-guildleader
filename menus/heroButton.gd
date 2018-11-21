@@ -17,6 +17,7 @@ func set_hero_data(data):
 	populate_fields(heroData)
 
 func populate_fields(data):
+	print(str(data))
 	$field_heroName.text = data.heroName
 	$field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
@@ -24,8 +25,8 @@ func populate_fields(data):
 		$field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
 		$field_available.text = "Ready to go!"
-		if (global.currentMenu == "selectHeroForQuest"):
-			$Button.set_disabled(true)
+		#if (global.currentMenu == "selectHeroForQuest"):
+			#$Button.set_disabled(true)
 	elif (data.atHome && data.staffedTo != ""): #to catch tradeskills 
 		$field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
 		$Button.set_disabled(true)
@@ -117,9 +118,8 @@ func _on_Button_pressed():
 			currentCamp.campHeroesSelected -= 1
 		
 		#next, confirm this specific hero is available
-		if (heroData.atHome == true && heroData.staffedTo == ""): 
+		if (heroData.atHome == true && heroData.staffedTo == ""):
 			currentCamp.heroes[global.campButtonID] = heroData
-			currentCamp.heroes[global.campButtonID].atHome = false
 			currentCamp.heroes[global.campButtonID].staffedTo = "camp"
 			currentCamp.campHeroesSelected += 1
 			global.currentMenu = "camp"

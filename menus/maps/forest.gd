@@ -6,6 +6,10 @@ func _ready():
 	$campNode1._set_data("camp_forest01")
 	$campNode2._set_data("camp_forest02")
 	$campNode3._set_data("camp_forest03")
+	$campNode4._set_data("camp_forest04")
+	$campNode5._set_data("camp_forest05")
+	$campNode6._set_data("camp_forest06")
+	$campNode7._set_data("camp_forest07")
 
 	$harvestingNode1._set_data("harvesting_forest_copperOre")
 	$harvestingNode2._set_data("harvesting_forest_roughStone")

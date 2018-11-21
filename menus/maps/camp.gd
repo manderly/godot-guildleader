@@ -6,7 +6,9 @@ var encounterGenerator = load("res://encounterGenerator.gd").new()
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 
 onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/field_campName
+onready var field_reccLevelRange = $MarginContainer/CenterContainer/VBoxContainer/field_recc
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
+onready var field_difficultyEstimate = $MarginContainer/CenterContainer/VBoxContainer/field_difficultyEstimate
 onready var field_tipsOrProgress = $MarginContainer/CenterContainer/VBoxContainer/field_tipsOrProgress
 
 onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort
@@ -25,6 +27,7 @@ var haveAlready = {
 
 func _ready():
 	campData = global.campData[global.selectedCampID]
+		
 	add_child(finishNowPopup)
 	_populate_fields()
 	_enable_and_disable_duration_buttons()
@@ -66,6 +69,16 @@ func _enable_and_disable_duration_buttons():
 		
 func _populate_fields():
 	field_campName.text = campData.name
+	
+	var lowEndRange = 1
+	var highEndRange = 50
+	if (campData.level > 1):
+		lowEndRange = campData.level - 1
+	
+	if (campData.level < 50):
+		highEndRange = campData.level + 2
+		
+	field_reccLevelRange.text = "Recommended level range: " + str(lowEndRange) + " - " + str(highEndRange)
 	field_campDescription.text = campData.description
 	
 	button_startCampShort.text = "JOIN CAMP: " + str(util.format_time(campData.durationShort))
@@ -91,6 +104,8 @@ func _populate_fields():
 		#don't make class recommendations until the player has picked a few heroes
 	if (campData.campHeroesSelected >= 3):
 		print("calculating recommendations...")
+		var difficultyString = _calculate_estimated_difficulty()
+		field_difficultyEstimate.text = difficultyString
 		var classMakeupString = _calculate_recommended_classes()
 		field_tipsOrProgress.text = classMakeupString
 
@@ -98,6 +113,31 @@ func _populate_fields():
 func _on_button_back_pressed():
 	get_tree().change_scene("res://menus/maps/forest.tscn")
 
+func _calculate_estimated_difficulty():
+	var estimate = "Looks like an even fight"
+	var heroAverageLevel = 0
+	var heroLevelSum = 0
+	for hero in campData.heroes:
+		if (hero):
+			heroLevelSum += hero.level
+	heroAverageLevel = heroLevelSum/campData.heroes.size()
+	if (heroAverageLevel - 5 > campData.level):
+		estimate = "Looks like an easy fight." #green con
+	elif (heroAverageLevel > campData.level):
+		estimate = "Looks like it's in your favor." #blue con
+	elif (heroAverageLevel == campData.level): 
+		estimate = "Looks like an even fight" #white con
+	elif (heroAverageLevel + 5 < campData.level):
+		estimate = "They're gonna mop the floor with you!" #red con
+	elif (heroAverageLevel < campData.level):
+		estimate = "Looks like a tough fight." #yellow con
+	#get hero average level
+	#get recommended level range
+	#compare the two
+	#communicate estimate to player
+	return estimate
+	
+	
 func _calculate_recommended_classes():
 	calc_class_balance()
 	var classesNeededString = "This group could use "
@@ -119,7 +159,6 @@ func _on_button_startCampMedium_pressed():
 
 func _on_button_joinCampLong_pressed():
 	_start_camp(campData.durationLong, "long")
-
 
 func _start_camp(duration, enableButtonStr):
 	#this button lets you either begin the harvest or finish it early for HC
@@ -215,4 +254,3 @@ func _on_button_autoPickHeroes_pressed():
 	#try to pick heroes who need xp
 	#try to pick high level heroes
 	#only pick as many as are needed (skip taken spots)
-	pass # replace with function body

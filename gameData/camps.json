@@ -9,8 +9,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "test09",
@@ -22,8 +23,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "test10",
@@ -35,8 +37,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "goblin01",
@@ -48,8 +51,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "goblin02",
@@ -61,8 +65,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "camp_guild01",
@@ -74,8 +79,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Rat",
-    "mob2": "Large Rat",
-    "mob3": "Infected Rat"
+    "mob2": "Small Rat",
+    "mob3": "Large Rat",
+    "rareMob": "Infected Rat"
   },
   {
     "campId": "camp_guild02",
@@ -87,8 +93,9 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Spider",
-    "mob2": "Big Spider",
-    "mob3": "null"
+    "mob2": "Small Spider",
+    "mob3": "Big Spider",
+    "rareMob": "Big Spider"
   },
   {
     "campId": "camp_guild03",
@@ -100,216 +107,219 @@
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Small Spider",
-    "mob2": "Big Spider",
-    "mob3": "Spider King"
+    "mob2": "Small Spider",
+    "mob3": "Big Spider",
+    "rareMob": "Spider King"
   },
   {
     "campId": "camp_forest01",
+    "name": "Rabid Bats",
+    "description": "Overgrown bats scare passersby on the outskirts of the Tackbank Forest. Thinning their numbers is the perfect task for new adventurers.",
+    "level": 1,
+    "durationShort": 3600,
+    "durationMedium": 10800,
+    "durationLong": 25200,
+    "groupSize": 2,
+    "mob1": "Weak Forest Bat",
+    "mob2": "Weak Forest Bat",
+    "mob3": "Weak Forest Bat",
+    "rareMob": "Rabid Forest Bat"
+  },
+  {
+    "campId": "camp_forest02",
     "name": "Wolves of Tackbank Forest",
     "description": "Large, overly aggressive wolves patrol the entrance to the Tackbank Forest. Defeat as many as you can and establish your guild as defenders of the realm.",
     "level": 2,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
-    "groupSize": 4,
+    "groupSize": 2,
     "mob1": "Aggressive Wolf",
     "mob2": "Aggressive Wolf",
-    "mob3": "Direwolf"
-  },
-  {
-    "campId": "camp_forest02",
-    "name": "Goblin Outlaws",
-    "description": "Thin the ranks of the goblin outlaws taking up hiding in the Tackbank Forest. ",
-    "level": 2,
-    "durationShort": 3600,
-    "durationMedium": 10800,
-    "durationLong": 25200,
-    "groupSize": 4,
-    "mob1": "Goblin Bandit",
-    "mob2": "Goblin Rogue",
-    "mob3": "Ragron, the Goblin Outlaw"
+    "mob3": "Aggressive Wolf",
+    "rareMob": "Direwolf"
   },
   {
     "campId": "camp_forest03",
-    "name": "Hungry Spiders",
-    "description": "An evil wizard cloned thousands of spiders. Set up camp and reduce their numbers.",
+    "name": "Spider Caverns",
+    "description": "Big and small, but mostly big. This elaborate cavern system is home to thousands of bloodthirsty spiders.",
     "level": 3,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
-    "groupSize": 4,
+    "groupSize": 3,
     "mob1": "Small Spider",
-    "mob2": "Big Spider",
-    "mob3": "Spider King"
+    "mob2": "Small Spider",
+    "mob3": "Big Spider",
+    "rareMob": "Spider King"
   },
   {
     "campId": "camp_forest04",
-    "name": "Direwolves and Dreadwolves",
-    "description": "Venture deeper into the Tackbank Forest in search of direwolves and dreadwolves. They are larger and meaner than typical wolves, and defeating them will make the forest safer for passersby.",
-    "level": 2,
+    "name": "Goblin Outlaws",
+    "description": "You'll know them by their makeshift tents and foul stench. The only good goblin is a dead goblin.",
+    "level": 4,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
-    "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "groupSize": 3,
+    "mob1": "Goblin Bandit",
+    "mob2": "Goblin Bandit",
+    "mob3": "Goblin Rogue",
+    "rareMob": "Ragron, the Goblin Outlaw"
   },
   {
     "campId": "camp_forest05",
-    "name": "Escorting the Market Carts",
-    "description": "Ever since the Tackbank Forest was overrun by overly aggressive wolves, market carts have been avoiding the route. Help out by escorting a trade cart through the forest, and defeat any wolves you encounter.",
-    "level": 2,
+    "name": "Direwolves and Dreadwolves",
+    "description": "Dreadwolves are larger and meaner than typical wolves, and defeating them will make the forest safer for passersby.",
+    "level": 5,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Direwolf",
+    "mob2": "Direwolf",
+    "mob3": "Direwolf",
+    "rareMob": "Dreadwolf"
   },
   {
     "campId": "camp_forest06",
-    "name": "Collecting Firewood",
-    "description": "Collect a couple carts worth of firewood and sell it at the nearby villages to line the guild's pockets a bit.",
-    "level": 2,
+    "name": "The Fairie Guard",
+    "description": "Formidable foes, these fairies are. Engage in battle and prove your worthiness.",
+    "level": 5,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Fairie Defender",
+    "mob2": "Fairie Defender",
+    "mob3": "Fairie Defender",
+    "rareMob": "Elite Fairie Guard"
   },
   {
     "campId": "camp_forest07",
-    "name": "The Unicorn of Tackbank Forest",
-    "description": "Legend tells of a shimmering white unicorn in the Tackbank Forest. Odds are you won't find it, but it might be worth a look.",
-    "level": 3,
+    "name": "Yizma the Fairie Queen",
+    "description": "A wicked fairie queen lures adventurers to their doom deep in the Tackbank Forest. Seek her out and claim her treasure for yourself.",
+    "level": 7,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
-  },
-  {
-    "campId": "camp_forest08",
-    "name": "The Fairy Queen Kingpin",
-    "description": "One of the Goblin thieves gave up some information in exchange for sparing his life: they're working for Nareen, the Fairy Queen. Find Nareen and defeat her.",
-    "level": 3,
-    "durationShort": 3600,
-    "durationMedium": 10800,
-    "durationLong": 25200,
-    "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Fairie Defender",
+    "mob2": "Elite Fairie Guard",
+    "mob3": "Elite Fairie Guard",
+    "rareMob": "Yizma the Fairie Queen"
   },
   {
     "campId": "camp_coast01",
-    "name": "The Tadloc Threat",
-    "description": "Tadlocs are raiding nearby farms and villages! Head out to their encampments on the shore and thin their numbers.",
-    "level": 3,
+    "name": "Shoach Crabs",
+    "description": "Test your mettle against these overgrown crabs.",
+    "level": 6,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Scuttling Crab",
+    "mob2": "Scuttling Crab",
+    "mob3": "Scuttling Crab",
+    "rareMob": "Hulking Crab"
   },
   {
     "campId": "camp_coast02",
-    "name": "Kelp Sandwich FAST QUEST",
-    "description": "Some text here",
-    "level": 3,
+    "name": "The Tadloc Threat",
+    "description": "Tadlocs are raiding nearby farms and villages! Head out to their encampments on the shore and thin their numbers.",
+    "level": 7,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Tadloc Grunt",
+    "mob2": "Tadloc Raider",
+    "mob3": "Tadloc Raider",
+    "rareMob": "Tadloc Raider"
   },
   {
     "campId": "camp_coast03",
+    "name": "The Tadloc King",
+    "description": "The Tadloc King has ordered his underlings to raid every nearby farm and village. Defeat the Tadloc King and put an end to the terror.",
+    "level": 8,
+    "durationShort": 3600,
+    "durationMedium": 10800,
+    "durationLong": 25200,
+    "groupSize": 4,
+    "mob1": "Tadloc Brawler",
+    "mob2": "Tadloc Brawler",
+    "mob3": "Tadloc Brawler",
+    "rareMob": "Burgor the Tadloc King"
+  },
+  {
+    "campId": "camp_coast04",
     "name": "Stillwater Pirates",
-    "description": "Rumor has it the Stillwater Pirates have expanded their smuggling operation to the Shoach Coast.",
-    "level": 3,
+    "description": "Rumor has it the Stillwater Pirates have expanded their smuggling operation to the Shoach Coast. Snuff them out and take their treasure for yourself.",
+    "level": 9,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Lowly Smuggler",
     "mob2": "Lowly Smuggler",
-    "mob3": "Smuggler Captain"
-  },
-  {
-    "campId": "camp_coast04",
-    "name": "Clams and Cockles",
-    "description": "Collect clams and cockles to sell at the nearest market. The bigger ones fetch a pretty penny if you bring 'em in fresh.",
-    "level": 3,
-    "durationShort": 3600,
-    "durationMedium": 10800,
-    "durationLong": 25200,
-    "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob3": "Lowly Smuggler",
+    "rareMob": "Smuggler Captain"
   },
   {
     "campId": "camp_coast05",
-    "name": "Song of the Sirens",
-    "description": "Some text here",
-    "level": 3,
+    "name": "Tidewater Skeletons",
+    "description": "Restless undead patrol the coastline and pull adventurers into the undertow.",
+    "level": 11,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Tidewater Bone Squire",
+    "mob2": "Tidewater Bone Squire",
+    "mob3": "Tidewater Bone Knight",
+    "rareMob": "Tidewater Bone Champion"
   },
   {
     "campId": "camp_coast06",
-    "name": "The Tadloc King",
-    "description": "The Tadloc King has ordered his underlings to raid every nearby farm and village. Defeat the Tadloc King and put an end to the terror.",
-    "level": 3,
+    "name": "Tadlocs of Blacksand Caverns",
+    "description": "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns, root out the Tadlocs, and return with any treasures you find.",
+    "level": 13,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Tadloc Brawler",
+    "mob2": "Tadloc Spelunker",
+    "mob3": "Tadloc Spelunker",
+    "rareMob": "Tadloc Farseer"
   },
   {
     "campId": "camp_coast07",
     "name": "Captain Smellybeard's Booty",
     "description": "Legend has it that Captain Smellybeard met his demise off the Shoach Coast. Defeat his ghost so that his spirit can enter the Otherrealm, and return with anything you find in the ship's cargo hold.",
-    "level": 3,
+    "level": 16,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
     "mob1": "Old Scallywag ",
     "mob2": "Deck Swabbie",
-    "mob3": "Captain Smellybeard"
+    "mob3": "Deck Swabbie",
+    "rareMob": "Captain Smellybeard"
   },
   {
     "campId": "camp_coast08",
-    "name": "The Blacksand Caverns",
-    "description": "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns, root out the Tadlocs, and return with any treasures you find.",
-    "level": 3,
+    "name": "Spectre Rock",
+    "description": "Ghostly sirens lure adventurers to their deaths on this mysterious rock. Can you resist their tempting call?",
+    "level": 35,
     "durationShort": 3600,
     "durationMedium": 10800,
     "durationLong": 25200,
     "groupSize": 4,
-    "mob1": "",
-    "mob2": "",
-    "mob3": ""
+    "mob1": "Spectral Siren",
+    "mob2": "Spectral Siren",
+    "mob3": "Spectral Songstress",
+    "rareMob": "Lela the Irresistable"
   },
   {
     "campId": "camp_falls01",
@@ -322,6 +332,7 @@
     "groupSize": 4,
     "mob1": "",
     "mob2": "",
-    "mob3": ""
+    "mob3": "",
+    "rareMob": ""
   }
 ]

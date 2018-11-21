@@ -265,23 +265,25 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#or 120 to make it 1 encounter every 2 mins, etc.
 	#remember that an encounter has several mobs in it
 	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
-	var encounterQuantity = camp.selectedDuration / 600
+	var battleQuantity = camp.selectedDuration / 600
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
+	
 	heroesClone = []
 	for t in camp.heroes:
 		if (t):
 			heroesClone.append(t)
 	
-	for encounter in encounterQuantity:
-		while (heroesClone.size() > 0):
-			var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
-			encounterOutcome.battleRecord.append(battleOutcome)
-			
-			for lootName in battleOutcome.loot:
-				encounterOutcome.lootedItemsNames.append(lootName)
+	var battlesComplete = 0
+	while (battlesComplete < battleQuantity && heroesClone.size() > 0):
+		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
+		battlesComplete += 1
+		encounterOutcome.battleRecord.append(battleOutcome)
 		
-			encounterOutcome.scTotal += battleOutcome["sc"]
+		for lootName in battleOutcome.loot:
+			encounterOutcome.lootedItemsNames.append(lootName)
+	
+		encounterOutcome.scTotal += battleOutcome["sc"]
 	
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
 	if (battleNumber == 1):

@@ -40,54 +40,114 @@
     "defense": 4
   },
   {
-    "mobName": "Small Spider",
-    "lootTable": "spiderLoot01",
+    "mobName": "Weak Forest Bat",
+    "lootTable": "batLoot01",
     "level": 1,
-    "hp": 30,
+    "hp": 55,
+    "mana": 0,
+    "dps": 2,
+    "strength": 2,
+    "defense": 2
+  },
+  {
+    "mobName": "Rabid Forest Bat",
+    "lootTable": "batLoot01",
+    "level": 2,
+    "hp": 95,
     "mana": 0,
     "dps": 3,
-    "strength": 6,
-    "defense": 1
-  },
-  {
-    "mobName": "Big Spider",
-    "lootTable": "spiderLoot01",
-    "level": 1,
-    "hp": 50,
-    "mana": 0,
-    "dps": 4,
-    "strength": 7,
-    "defense": 1
-  },
-  {
-    "mobName": "Spider King",
-    "lootTable": "spiderLootBoss",
-    "level": 2,
-    "hp": 90,
-    "mana": 0,
-    "dps": 5,
-    "strength": 8,
+    "strength": 3,
     "defense": 2
   },
   {
     "mobName": "Aggressive Wolf",
     "lootTable": "wolfLoot01",
     "level": 2,
-    "hp": 120,
+    "hp": 95,
     "mana": 0,
     "dps": 3,
-    "strength": 8,
-    "defense": 2
+    "strength": 5,
+    "defense": 4
   },
   {
     "mobName": "Direwolf",
     "lootTable": "wolfLoot02",
     "level": 3,
-    "hp": 180,
+    "hp": 125,
     "mana": 0,
-    "dps": 0,
-    "strength": 10,
+    "dps": 4,
+    "strength": 7,
+    "defense": 6
+  },
+  {
+    "mobName": "Small Spider",
+    "lootTable": "spiderLoot01",
+    "level": 2,
+    "hp": 75,
+    "mana": 0,
+    "dps": 5,
+    "strength": 5,
+    "defense": 1
+  },
+  {
+    "mobName": "Big Spider",
+    "lootTable": "spiderLoot01",
+    "level": 3,
+    "hp": 95,
+    "mana": 0,
+    "dps": 7,
+    "strength": 7,
+    "defense": 2
+  },
+  {
+    "mobName": "Spider King",
+    "lootTable": "spiderLootBoss",
+    "level": 4,
+    "hp": 115,
+    "mana": 0,
+    "dps": 8,
+    "strength": 8,
     "defense": 3
+  },
+  {
+    "mobName": "Dreadwolf",
+    "lootTable": "spiderLoot01",
+    "level": 4,
+    "hp": 200,
+    "mana": 0,
+    "dps": 5,
+    "strength": 9,
+    "defense": 8
+  },
+  {
+    "mobName": "Fairie Defender",
+    "lootTable": "fairyLoot01",
+    "level": 6,
+    "hp": 200,
+    "mana": 0,
+    "dps": 4,
+    "strength": 3,
+    "defense": 5
+  },
+  {
+    "mobName": "Elite Fairie Guard",
+    "lootTable": "fairyLoot02",
+    "level": 7,
+    "hp": 250,
+    "mana": 0,
+    "dps": 5,
+    "strength": 3,
+    "defense": 5
+  },
+  {
+    "mobName": "Yizma the Fairie Queen",
+    "lootTable": "fairyLootBoss",
+    "level": 8,
+    "hp": 350,
+    "mana": 0,
+    "dps": 6,
+    "strength": 4,
+    "defense": 9
   },
   {
     "mobName": "Goblin Bandit",
@@ -168,5 +228,175 @@
     "dps": 5,
     "strength": 3,
     "defense": 5
+  },
+  {
+    "mobName": "Scuttling Crab",
+    "lootTable": "crabLoot01",
+    "level": 6,
+    "hp": 200,
+    "mana": 0,
+    "dps": 6,
+    "strength": 6,
+    "defense": 6
+  },
+  {
+    "mobName": "Hulking Crab",
+    "lootTable": "crabLoot01",
+    "level": 7,
+    "hp": 225,
+    "mana": 0,
+    "dps": 7,
+    "strength": 7,
+    "defense": 7
+  },
+  {
+    "mobName": "Sir Pinch",
+    "lootTable": "crabLootBoss",
+    "level": 9,
+    "hp": 350,
+    "mana": 0,
+    "dps": 8,
+    "strength": 8,
+    "defense": 8
+  },
+  {
+    "mobName": "Tadloc Grunt",
+    "lootTable": "tadlocLoot01",
+    "level": 6,
+    "hp": 225,
+    "mana": 0,
+    "dps": 8,
+    "strength": 6,
+    "defense": 6
+  },
+  {
+    "mobName": "Tadloc Raider",
+    "lootTable": "tadlocLoot02",
+    "level": 7,
+    "hp": 250,
+    "mana": 0,
+    "dps": 8,
+    "strength": 7,
+    "defense": 7
+  },
+  {
+    "mobName": "Tadloc Scrapper",
+    "lootTable": "tadlocLoot03",
+    "level": 8,
+    "hp": 280,
+    "mana": 0,
+    "dps": 9,
+    "strength": 9,
+    "defense": 9
+  },
+  {
+    "mobName": "Tidewater Bone Squire",
+    "lootTable": "skeletonLoot01",
+    "level": 10,
+    "hp": 400,
+    "mana": 0,
+    "dps": 10,
+    "strength": 10,
+    "defense": 10
+  },
+  {
+    "mobName": "Tidewater Bone Knight",
+    "lootTable": "skeletonLoot01",
+    "level": 11,
+    "hp": 425,
+    "mana": 0,
+    "dps": 11,
+    "strength": 11,
+    "defense": 11
+  },
+  {
+    "mobName": "Tidewater Bone Champion",
+    "lootTable": "skeletonLootBoss",
+    "level": 12,
+    "hp": 450,
+    "mana": 0,
+    "dps": 12,
+    "strength": 12,
+    "defense": 12
+  },
+  {
+    "mobName": "Burgor the Tadloc King",
+    "lootTable": "tadlocLootBoss",
+    "level": 10,
+    "hp": 450,
+    "mana": 0,
+    "dps": 10,
+    "strength": 10,
+    "defense": 10
+  },
+  {
+    "mobName": "Tadloc Brawler",
+    "lootTable": "caveTadloc01",
+    "level": 12,
+    "hp": 320,
+    "mana": 0,
+    "dps": 9,
+    "strength": 9,
+    "defense": 9
+  },
+  {
+    "mobName": "Tadloc Farseer",
+    "lootTable": "caveTadloc02",
+    "level": 13,
+    "hp": 350,
+    "mana": 0,
+    "dps": 9,
+    "strength": 9,
+    "defense": 9
+  },
+  {
+    "mobName": "Tadloc Spelunker",
+    "lootTable": "caveTadloc01",
+    "level": 12,
+    "hp": 300,
+    "mana": 0,
+    "dps": 8,
+    "strength": 8,
+    "defense": 8
+  },
+  {
+    "mobName": "Wargrun the Fierce",
+    "lootTable": "tadlocLootBoss",
+    "level": 14,
+    "hp": 450,
+    "mana": 0,
+    "dps": 11,
+    "strength": 11,
+    "defense": 11
+  },
+  {
+    "mobName": "Spectral Siren",
+    "lootTable": "sirenLoot01",
+    "level": 34,
+    "hp": 11000,
+    "mana": 0,
+    "dps": 45,
+    "strength": 35,
+    "defense": 35
+  },
+  {
+    "mobName": "Spectral Songstress",
+    "lootTable": "sirenLoot02",
+    "level": 36,
+    "hp": 12000,
+    "mana": 0,
+    "dps": 55,
+    "strength": 35,
+    "defense": 35
+  },
+  {
+    "mobName": "Lela the Irresistable",
+    "lootTable": "sirenLootBoss",
+    "level": 38,
+    "hp": 15000,
+    "mana": 0,
+    "dps": 75,
+    "strength": 35,
+    "defense": 35
   }
 ]

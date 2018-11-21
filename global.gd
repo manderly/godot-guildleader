@@ -255,7 +255,10 @@ func _ready():
 	for data in global.unformattedData:
 		key = data["campId"]
 		value = data
-		value.heroes = [null, null, null, null] #hardcode to 4 for now?
+		#breaks manual selection if done in camp.gd 
+		value.heroes = []
+		for hero in value.groupSize:
+			value.heroes.append(null)
 		value.mobs = []
 		if (value.mob1):
 			value.mobs.append(mobGenerator.get_mob(value.mob1))

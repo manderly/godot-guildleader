@@ -5,7 +5,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -58,7 +58,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 480.0
-margin_bottom = 746.0
+margin_bottom = 780.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -77,7 +77,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 16.0
 margin_right = 456.0
-margin_bottom = 746.0
+margin_bottom = 780.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -111,7 +111,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="field_campDescription" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer" index="1"]
+[node name="field_recc" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -119,7 +119,32 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 34.0
 margin_right = 440.0
-margin_bottom = 154.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
+text = "#RECOMMENDED LEVELS: X - Y"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="field_campDescription" type="RichTextLabel" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 68.0
+margin_right = 440.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 200, 120 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
@@ -140,15 +165,15 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Rect" ]
 
-[node name="label_heroes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="2"]
+[node name="label_heroes" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 158.0
+margin_top = 192.0
 margin_right = 440.0
-margin_bottom = 188.0
+margin_bottom = 222.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -165,15 +190,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="3"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 192.0
+margin_top = 226.0
 margin_right = 440.0
-margin_bottom = 230.0
+margin_bottom = 264.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -207,15 +232,15 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="4"]
+[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 234.0
+margin_top = 268.0
 margin_right = 440.0
-margin_bottom = 594.0
+margin_bottom = 628.0
 rect_min_size = Vector2( 440, 360 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -226,32 +251,7 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 598.0
-margin_right = 440.0
-margin_bottom = 628.0
-rect_min_size = Vector2( 0, 30 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
-text = "#DIFFICULTY ESTIMATE"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect", "custom_colors" ]
-
-[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -268,6 +268,31 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
+text = "#DIFFICULTY ESTIMATE"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_colors" ]
+
+[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 666.0
+margin_right = 440.0
+margin_bottom = 696.0
+rect_min_size = Vector2( 0, 30 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 0.94902, 0.87451, 0.745098, 1 )
 text = "Recommended classes: 1 tank, 1 healer, 2 DPS"
 align = 1
 valign = 1
@@ -276,15 +301,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 666.0
+margin_top = 700.0
 margin_right = 440.0
-margin_bottom = 682.0
+margin_bottom = 716.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -300,15 +325,15 @@ exp_edit = false
 rounded = false
 percent_visible = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 686.0
+margin_top = 720.0
 margin_right = 440.0
-margin_bottom = 746.0
+margin_bottom = 780.0
 rect_min_size = Vector2( 0, 60 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
