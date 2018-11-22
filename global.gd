@@ -94,6 +94,7 @@ var tradeskills = {
 		"recipes": [],
 		"selectedRecipe": null,
 		"currentlyCrafting": {
+			"wildcardItem":false,
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",

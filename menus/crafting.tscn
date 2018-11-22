@@ -1,14 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/crafting.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/menu-title-banner.png" type="Texture" id=3]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=4]
-[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui/border_box.png" type="Texture" id=5]
 [ext_resource path="res://menus/smallItemDisplay.tscn" type="PackedScene" id=6]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menus/itemButton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://gui/styles/chiselbutton.tres" type="StyleBox" id=8]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=9]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -80,7 +82,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "RECIPE LIST:"
+text = "RECIPES"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -96,7 +98,7 @@ anchor_bottom = 0.0
 margin_left = 20.0
 margin_top = 220.0
 margin_right = 470.0
-margin_bottom = 460.0
+margin_bottom = 440.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -109,9 +111,6 @@ scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
 _sections_unfolded = [ "Rect" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="vbox" type="VBoxContainer" parent="scroll" index="0"]
 
@@ -131,36 +130,8 @@ size_flags_vertical = 1
 custom_constants/separation = 40
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
-__meta__ = {
-"_edit_lock_": true
-}
 
-[node name="button_combine" type="Button" parent="." index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 310.0
-margin_top = 780.0
-margin_right = 450.0
-margin_bottom = 830.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "COMBINE"
-flat = false
-align = 1
-
-[node name="field_description" type="RichTextLabel" parent="." index="6"]
+[node name="field_description" type="RichTextLabel" parent="." index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -188,7 +159,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="field_heroSkill" type="RichTextLabel" parent="." index="7"]
+[node name="field_heroSkill" type="RichTextLabel" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -216,7 +187,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="button_dismissHero" type="Button" parent="." index="8"]
+[node name="button_dismissHero" type="Button" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -241,168 +212,230 @@ text = "Unstaff"
 flat = false
 align = 1
 
-[node name="recipeData" type="Node2D" parent="." index="9"]
+[node name="recipeData" type="Node2D" parent="." index="8"]
 
-[node name="label_result" type="Label" parent="recipeData" index="0"]
+[node name="label_ingredients" type="Label" parent="recipeData" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 460.0
-margin_right = 480.0
-margin_bottom = 500.0
+margin_left = -2.0
+margin_top = 459.0
+margin_right = 478.0
+margin_bottom = 489.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "SELECTED RECIPE:"
+text = "#RECIPE NAME# INGREDIENTS"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="label_result2" type="Label" parent="recipeData" index="1"]
+[node name="components_bg" type="NinePatchRect" parent="recipeData" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 590.0
-margin_right = 480.0
-margin_bottom = 620.0
+margin_left = 14.0
+margin_top = 489.0
+margin_right = 465.0
+margin_bottom = 626.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "COMPONENTS:"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Patch Margin", "Pause", "Rect", "Size Flags", "Theme", "Visibility" ]
 
-[node name="field_recipeName" type="Label" parent="recipeData" index="2"]
+[node name="hbox_ingredients" type="HBoxContainer" parent="recipeData" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
+margin_left = 43.0
 margin_top = 510.0
-margin_right = 480.0
-margin_bottom = 524.0
+margin_right = 277.0
+margin_bottom = 609.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "#RECIPE NAME HERE"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+size_flags_vertical = 1
+alignment = 0
 
-[node name="field_success" type="Label" parent="recipeData" index="3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="recipeData/hbox_ingredients" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 530.0
-margin_right = 480.0
-margin_bottom = 544.0
+margin_right = 160.0
+margin_bottom = 99.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 2
+mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "#CHANCE OF SUCCESS"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+size_flags_vertical = 1
+custom_constants/separation = -7
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
 
-[node name="field_craftingTime" type="Label" parent="recipeData" index="4"]
+[node name="ingredient1" parent="recipeData/hbox_ingredients/VBoxContainer" index="0" instance=ExtResource( 6 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 150.0
-margin_top = 550.0
-margin_right = 480.0
-margin_bottom = 564.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "#CRAFTING TIME"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+[node name="ingredient2" parent="recipeData/hbox_ingredients/VBoxContainer" index="1" instance=ExtResource( 6 )]
 
-[node name="ingredientWildcard" parent="recipeData" index="5" instance=ExtResource( 5 )]
+margin_top = 23.0
+margin_bottom = 53.0
 
-margin_left = 230.0
-margin_top = 660.0
-margin_right = 300.0
-margin_bottom = 760.0
+[node name="ingredient3" parent="recipeData/hbox_ingredients/VBoxContainer" index="2" instance=ExtResource( 6 )]
 
-[node name="ingredient1" parent="recipeData" index="6" instance=ExtResource( 6 )]
+margin_top = 46.0
+margin_bottom = 76.0
 
-margin_left = 12.0
-margin_top = 650.0
-margin_right = 172.0
-margin_bottom = 680.0
+[node name="ingredient4" parent="recipeData/hbox_ingredients/VBoxContainer" index="3" instance=ExtResource( 6 )]
 
-[node name="ingredient2" parent="recipeData" index="7" instance=ExtResource( 6 )]
-
-margin_left = 10.0
-margin_top = 671.0
-margin_right = 170.0
-margin_bottom = 701.0
-
-[node name="ingredient3" parent="recipeData" index="8" instance=ExtResource( 6 )]
-
-margin_left = 10.0
-margin_top = 696.0
-margin_right = 10.0
-margin_bottom = 696.0
-
-[node name="ingredient4" parent="recipeData" index="9" instance=ExtResource( 6 )]
-
-margin_left = 10.0
-margin_top = 720.0
-margin_right = 10.0
-margin_bottom = 720.0
+margin_top = 69.0
+margin_bottom = 99.0
 _sections_unfolded = [ "Rect", "Transform", "Z Index" ]
 
-[node name="resultItem" parent="recipeData" index="10" instance=ExtResource( 5 )]
+[node name="ingredientWildcard" parent="recipeData/hbox_ingredients" index="1" instance=ExtResource( 7 )]
 
-margin_left = 70.0
-margin_top = 500.0
-margin_right = 140.0
-margin_bottom = 600.0
+margin_left = 322.0
+margin_top = -1.0
+margin_right = 392.0
+margin_bottom = 98.0
+_sections_unfolded = [ "Anchor", "Rect", "Size Flags", "Transform" ]
 
-[node name="label_computed" type="Label" parent="recipeData" index="11"]
+[node name="label_choose" type="Label" parent="recipeData/hbox_ingredients/ingredientWildcard" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 50.0
-margin_top = 520.0
-margin_right = 160.0
-margin_bottom = 550.0
+margin_left = 7.0
+margin_top = 27.0
+margin_right = 57.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Choose"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="recipeData" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 61.0
+margin_top = 643.0
+margin_right = 421.0
+margin_bottom = 865.0
+rect_min_size = Vector2( 360, 160 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 13
+alignment = 1
+_sections_unfolded = [ "Rect", "custom_constants" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="recipeData/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 360.0
+rect_min_size = Vector2( 120, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="field_nowCrafting" type="Label" parent="recipeData/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 13.0
+margin_right = 360.0
+margin_bottom = 27.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "NOW CRAFTING:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CenterContainer2" type="CenterContainer" parent="recipeData/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 40.0
+margin_right = 360.0
+margin_bottom = 120.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="resultItem" parent="recipeData/VBoxContainer/CenterContainer2" index="0" instance=ExtResource( 7 )]
+
+margin_left = 145.0
+margin_right = 215.0
+margin_bottom = 80.0
+
+[node name="label_computed" type="Label" parent="recipeData/VBoxContainer/CenterContainer2/resultItem" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 85.0
+margin_top = 25.0
+margin_right = 159.0
+margin_bottom = 39.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -416,59 +449,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="label_choose" type="Label" parent="recipeData" index="12"]
+[node name="progress_nowCrafting" type="ProgressBar" parent="recipeData/VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 240.0
-margin_top = 690.0
-margin_right = 290.0
-margin_bottom = 704.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Choose"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="field_nowCrafting" type="Label" parent="recipeData" index="13"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 780.0
-margin_right = 310.0
-margin_bottom = 794.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "#now crafting: recipe name"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="progress_nowCrafting" type="ProgressBar" parent="recipeData" index="14"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 800.0
-margin_right = 290.0
-margin_bottom = 816.0
+margin_top = 133.0
+margin_right = 360.0
+margin_bottom = 149.0
+rect_min_size = Vector2( 160, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -483,9 +473,36 @@ value = 0.0
 exp_edit = false
 rounded = true
 percent_visible = true
-_sections_unfolded = [ "Percent" ]
+_sections_unfolded = [ "Percent", "Rect" ]
 
-[node name="incomplete_dialog" type="AcceptDialog" parent="." index="10"]
+[node name="button_combine" type="Button" parent="recipeData/VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 162.0
+margin_right = 360.0
+margin_bottom = 222.0
+rect_min_size = Vector2( 120, 60 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/normal = ExtResource( 8 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "COMBINE"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect", "Textures", "custom_styles" ]
+
+[node name="incomplete_dialog" type="AcceptDialog" parent="." index="9"]
 
 visible = false
 anchor_left = 0.0
@@ -509,11 +526,11 @@ dialog_text = "You are short some ingredients!"
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="11" instance=ExtResource( 7 )]
-
-[connection signal="pressed" from="button_combine" to="." method="_on_button_combine_pressed"]
+[node name="button_back" parent="." index="10" instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="button_dismissHero" to="." method="_on_button_dismissHero_pressed"]
+
+[connection signal="pressed" from="recipeData/VBoxContainer/button_combine" to="." method="_on_button_combine_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

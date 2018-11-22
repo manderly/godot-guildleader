@@ -3,10 +3,21 @@ extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
 
-onready var ingredient1Display = $recipeData/ingredient1
-onready var ingredient2Display = $recipeData/ingredient2
-onready var ingredient3Display = $recipeData/ingredient3
-onready var ingredient4Display = $recipeData/ingredient4
+onready var ingredient1Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient1
+onready var ingredient2Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient2
+onready var ingredient3Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient3
+onready var ingredient4Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient4
+
+onready var combineButton = $recipeData/VBoxContainer/button_combine
+onready var progressBar = $recipeData/VBoxContainer/progress_nowCrafting
+
+onready var nowCrafting = $recipeData/VBoxContainer/field_nowCrafting
+
+onready var labelComputed = $recipeData/VBoxContainer/CenterContainer2/resultItem/label_computed
+onready var resultItemBox = $recipeData/VBoxContainer/CenterContainer2/resultItem
+onready var wildcardItemBox = $recipeData/hbox_ingredients/ingredientWildcard
+onready var labelChoose = $recipeData/hbox_ingredients/ingredientWildcard/label_choose
+onready var recipeName = $recipeData/label_ingredients
 
 var hasIngredient1 = false
 var hasIngredient2 = false
@@ -59,61 +70,68 @@ func _update_ingredients():
 	#called any time the user selects a recipe 
 	recipe = tradeskill.selectedRecipe #make a local copy so we don't have to use a long reference
 	
-	$recipeData/field_recipeName.text = recipe.recipeName
-	if (recipe.noFail):
-		$recipeData/field_success.text = "No fail"
-	else:
-		$recipeData/field_success.text = "Chance to fail"
+	recipeName.text = "Selected recipe: " + recipe.recipeName
+	#if (recipe.noFail):
+	#	$recipeData/field_success.text = "No fail"
+	#else:
+	#	$recipeData/field_success.text = "Chance to fail"
 	
-	$recipeData/field_craftingTime.text = util.format_time(recipe.craftingTime)
+	#$recipeData/field_craftingTime.text = util.format_time(recipe.craftingTime)
 	
 	if (tradeskill.inProgress):
 		var itemName = tradeskill.currentlyCrafting.name
-		if (tradeskill.wildcardItem):
-			$recipeData/field_nowCrafting.text = "Now Crafting: Improved " + itemName
+		if (tradeskill.currentlyCrafting.wildcardItem):
+			nowCrafting.text = "Now Crafting: Improved " + itemName
 		else:
-			$recipeData/field_nowCrafting.text = "Now Crafting: " + itemName
+			nowCrafting.text = "Now Crafting: " + itemName
 	else:
-		$recipeData/field_nowCrafting.text = "Now Crafting: Nothing"
+		nowCrafting.text = "You will get: "
 		
 	#result item or stat increase display 
-	if (recipe.result):
-		if (recipe.result == "computed"):
-			$recipeData/resultItem.hide()
-			$recipeData/label_computed.show()
-			$recipeData/label_computed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
+	var resultItem = null
+	resultItemBox.show()
+	resultItemBox._set_info_popup_buttons(false, false, "none")
+	
+	if (recipe.result == "computed"):
+		labelComputed.show()
+		labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
+		if (global.tradeskills[global.currentMenu].wildcardItem):
+			resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
 		else:
-			$recipeData/resultItem.show()
-			$recipeData/resultItem._set_info_popup_buttons(false, false, "none")
-			$recipeData/label_computed.hide()
-			$recipeData/resultItem._render_tradeskill(global.allGameItems[str(recipe.result)])
+			resultItemBox._clear_tradeskill()
+			
+	elif (recipe.result):
+		labelComputed.hide()
+		resultItemBox._render_tradeskill(global.allGameItems[str(recipe.result)])
+	
 			
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 
 		
 	#ingredient wildcard is an itemButton instance 
+	#This is for viewing a RECIPE, not for viewing something in progress?
 	if (recipe.ingredientWildcard):
-		$recipeData/ingredientWildcard.show()
-		$recipeData/ingredientWildcard._set_enabled()
+		wildcardItemBox.show()
+		wildcardItemBox._set_enabled()
 		global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
 		if (tradeskill.wildcardItem):
 			hasWildcardIngredient = true
 			#if the user picked an item to be the wildcard item, show it here 
-			$recipeData/label_choose.hide()
-			$recipeData/ingredientWildcard._set_info_popup_buttons(true, false, "Return to vault")
-			$recipeData/ingredientWildcard._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
+			labelChoose.hide()
+			wildcardItemBox._set_info_popup_buttons(true, false, "Return to vault")
+			wildcardItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
 		else:
 			hasWildcardIngredient = false
-			$recipeData/ingredientWildcard._set_info_popup_buttons(true, false, "Choose")
-			$recipeData/label_choose.show()
-			$recipeData/ingredientWildcard._clear_tradeskill()
+			wildcardItemBox._set_info_popup_buttons(true, false, "Choose")
+			labelChoose.show()
+			wildcardItemBox._clear_tradeskill()
 	else:
 		tradeskill.wildcardItem = null
 		hasWildcardIngredient = false
-		#$recipeData/ingredientWildcard._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
-		$recipeData/label_choose.hide()
-		$recipeData/ingredientWildcard.hide()
+		#wildcardItemBox._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
+		labelChoose.hide()
+		wildcardItemBox.hide()
 	
 	#determine which ingredients to display and whether the text is red or green 
 	if (recipe.ingredient1): #if this quest has a fourth required component
@@ -168,17 +186,17 @@ func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
 		#print("time left: " + str(tradeskill.timer.time_left))
-		$button_combine.set_text(util.format_time(tradeskill.timer.time_left))
+		combineButton.set_text(util.format_time(tradeskill.timer.time_left))
 		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
 		#divide time elapsed by time needed to complete
-		$recipeData/progress_nowCrafting.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
+		progressBar.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
-		$button_combine.set_text("COLLECT!")
-		$button_combine.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
-		$recipeData/progress_nowCrafting.set_value(100)
+		combineButton.set_text("COLLECT!")
+		combineButton.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
+		progressBar.set_value(100)
 	else:
-		$button_combine.set_text("COMBINE")
-		$button_combine.add_color_override("font_color", global.colorWhite) #white
+		combineButton.set_text("COMBINE")
+		combineButton.add_color_override("font_color", global.colorWhite) #white
 
 func _open_collect_result_popup():
 	#determine if we get a skillup and show or hide skillup text accordingly 
@@ -195,7 +213,7 @@ func _open_collect_result_popup():
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
 	var itemNameStr = ""
-	if (tradeskill.wildcardItem):
+	if (tradeskill.currentlyCrafting.wildcardItem):
 		itemNameStr = "Improved " + tradeskill.currentlyCrafting.name
 	else:
 		itemNameStr = tradeskill.currentlyCrafting.name
@@ -217,12 +235,13 @@ func tradeskillItem_callback():
 						tradeskill.currentlyCrafting.statImproved, 
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
 
-	$recipeData/progress_nowCrafting.set_value(0)
+	progressBar.set_value(0)
 	tradeskill.timer.stop()
 	tradeskill.wildcardItem = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
 	tradeskill.currentlyCrafting.name = null
+	tradeskill.currentlyCrafting.wildcardItem = false
 	tradeskill.currentlyCrafting.statImproved = null
 	tradeskill.currentlyCrafting.statIncrease = null
 	_update_ingredients()
@@ -276,6 +295,7 @@ func _on_button_combine_pressed():
 					
 			#todo: refactor to use ID, these are specific items from the vault
 			if (recipe.ingredientWildcard):
+				tradeskill.currentlyCrafting.wildcardItem = true
 				util.remove_item_guild_by_id(tradeskill.wildcardItem.itemID)
 			
 			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
