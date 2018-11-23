@@ -1,21 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://menus/heroButton.gd" type="Script" id=1]
-[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=2]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
+[ext_resource path="res://menus/heroButton.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
-
-script = ExtResource( 1 )
-
-[node name="Button" type="Button" parent="." index="0"]
+[node name="Button" type="Button" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1.0
-margin_right = 426.0
-margin_bottom = 78.0
+margin_right = 430.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 430, 80 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -23,25 +19,42 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = ExtResource( 2 )
+theme = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 flat = false
 align = 1
-_sections_unfolded = [ "Theme" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="field_heroName" type="Label" parent="." index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 76.0
-margin_top = 15.0
-margin_right = 233.0
-margin_bottom = 36.0
+margin_left = 80.0
+margin_top = 14.0
+margin_right = 237.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="field_heroName" type="Label" parent="VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 157.0
+margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -54,16 +67,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse", "Rect" ]
 
-[node name="field_levelAndClass" type="Label" parent="." index="2"]
+[node name="field_levelAndClass" type="Label" parent="VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 76.0
-margin_top = 33.0
-margin_right = 219.0
-margin_bottom = 54.0
+margin_top = 18.0
+margin_right = 157.0
+margin_bottom = 32.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -76,7 +88,28 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse", "Rect" ]
 
-[node name="field_xp" type="Label" parent="." index="3"]
+[node name="field_available" type="Label" parent="VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 157.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#STATUS"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Mouse", "Rect", "Size Flags" ]
+
+[node name="field_xp" type="Label" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -98,28 +131,6 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse" ]
 
-[node name="field_available" type="Label" parent="." index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 76.0
-margin_top = 51.0
-margin_right = 240.0
-margin_bottom = 65.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "#STATUS"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Mouse", "Rect", "Size Flags" ]
-
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="." to="." method="_on_Button_pressed"]
 
 

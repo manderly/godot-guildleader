@@ -1,6 +1,9 @@
-extends Node2D
+extends Button
 #heroButton.gd
 #Wide yellow button used in heroSelect, questConfirm, and roster
+
+#don't use onready var shortcuts here, it just doesn't work at all 11/23/18 
+#possible fix: remake from scratch because Button root used to be Node2D 
 
 #refactor to use global.selectedHero?
 var heroData = null
@@ -13,28 +16,28 @@ func set_button_id(i):
 	buttonID = i
 	
 func set_hero_data(data):
+	print(data)
 	heroData = data
 	populate_fields(heroData)
 
 func populate_fields(data):
-	print(str(data))
-	$field_heroName.text = data.heroName
-	$field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
+	$VBoxContainer/field_heroName.text = "Bob" #data.heroName
+	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
 	if (data.atHome && data.staffedTo == ""):
-		$field_available.text = "Available"
+		$VBoxContainer/field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
-		$field_available.text = "Ready to go!"
+		$VBoxContainer/field_available.text = "Ready to go!"
 		#if (global.currentMenu == "selectHeroForQuest"):
 			#$Button.set_disabled(true)
 	elif (data.atHome && data.staffedTo != ""): #to catch tradeskills 
-		$field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
-		$Button.set_disabled(true)
+		$VBoxContainer/field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
+		self.set_disabled(true)
 	elif (!data.atHome && data.staffedTo == "quest"): #heroes aren't unavailable until quest begins
-		$field_available.text = "Away (Quest)"
-		$Button.set_disabled(true)
+		$VBoxContainer/field_available.text = "Away (Quest)"
+		self.set_disabled(true)
 	else:
-		$field_available.text = "###BAD STATE"
+		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
 		
 	#draw the hero
@@ -47,10 +50,10 @@ func populate_fields(data):
 
 		
 func make_button_empty():
-	$field_heroName.text = "SELECT A HERO"
-	$field_levelAndClass.text = ""
+	$VBoxContainer/field_heroName.text = "SELECT A HERO"
+	$VBoxContainer/field_levelAndClass.text = ""
 	$field_xp.text = ""
-	$field_available.text = ""
+	$VBoxContainer/field_available.text = ""
 	
 func _on_Button_pressed():
 	#distinguish between whether button is on roster or heroSelect menu or blacksmith
