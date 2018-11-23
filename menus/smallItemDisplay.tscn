@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/smallItemDisplay.gd" type="Script" id=1]
 
-[node name="Container" type="Container"]
+[node name="Container" type="Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -18,7 +18,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Rect", "Z Index" ]
+_sections_unfolded = [ "Grow Direction", "Rect", "Z Index" ]
 
 [node name="field_name" type="Label" parent="." index="0"]
 

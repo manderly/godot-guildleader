@@ -3,10 +3,17 @@ extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
 
-onready var ingredient1Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient1
-onready var ingredient2Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient2
-onready var ingredient3Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient3
-onready var ingredient4Display = $recipeData/hbox_ingredients/VBoxContainer/ingredient4
+onready var tradeskillName = $VBoxContainer/field_craftingSkillName
+onready var staffedHeroNameAndSkill = $VBoxContainer/CenterContainer/HBoxContainer/field_heroSkill
+onready var tradeskillDescription = $VBoxContainer/field_description
+
+onready var ingredient1Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient1
+onready var ingredient2Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient2
+onready var ingredient3Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient3
+onready var ingredient4Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient4
+
+onready var labelTime = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2/label_time
+onready var labelFailNoFail = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2/label_failNoFail
 
 onready var combineButton = $recipeData/VBoxContainer/button_combine
 onready var progressBar = $recipeData/VBoxContainer/progress_nowCrafting
@@ -25,28 +32,30 @@ var hasIngredient3 = false
 var hasIngredient4 = false
 var hasWildcardIngredient = false
 var recipe = null
-var tradeskill = null 
+var tradeskill = null
+
+var recipeButtonGroup
 
 func _ready():
+	recipeButtonGroup = ButtonGroup.new()
+	
 	finishedItemPopup.connect("collectItem", self, "tradeskillItem_callback")
 	
 	add_child(finishNowPopup)
 	add_child(finishedItemPopup)
 	
 	tradeskill = global.tradeskills[global.currentMenu] #tradeskill object defined in global.gd
-	$field_craftingSkillName.text = tradeskill.displayName
-	$field_description.text = tradeskill.description
+	tradeskillName.text = tradeskill.displayName
+	tradeskillDescription.text = tradeskill.description
 	#todo: maybe vbox is the wrong container type to use, since the auto spacing doesn't work in this case
 	#print all the available recipes
-	var yVal = 0
 	for i in range(tradeskill.recipes.size()):
 		var recipeButton = preload("res://menus/recipeButton.tscn").instance()
 		recipeButton.set_crafter_skill_level(tradeskill.hero.skillBlacksmithing) #todo: fix 
 		recipeButton.set_recipe_data(tradeskill.recipes[i])
-		recipeButton.set_position(Vector2(0, yVal))
+		recipeButton.set_button_group(recipeButtonGroup)
 		recipeButton.connect("updateRecipe", self, "_update_ingredients")
 		$scroll/vbox.add_child(recipeButton)
-		yVal += 40
 	_update_ingredients()
 	_update_hero_skill_display()
 	
@@ -64,7 +73,7 @@ func _update_hero_skill_display():
 	elif (global.currentMenu == "fletching"):
 		skillNum = tradeskill.hero.skillFletching
 		
-	$field_heroSkill.text = tradeskill.hero.heroName + " skill level: " + str(tradeskill.hero.skillBlacksmithing)
+	staffedHeroNameAndSkill.text = tradeskill.hero.heroName + " skill level: " + str(tradeskill.hero.skillBlacksmithing)
 		
 func _update_ingredients():
 	#called any time the user selects a recipe 
@@ -72,6 +81,12 @@ func _update_ingredients():
 	
 	recipeName.text = "Selected recipe: " + recipe.recipeName
 
+	labelTime.text = str(util.format_time(recipe.craftingTime))
+	if (recipe.noFail):
+		labelFailNoFail.text = "No fail"
+	else:
+		labelFailNoFail.text = "Chance to fail"
+	
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 

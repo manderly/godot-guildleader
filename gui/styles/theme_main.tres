@@ -147,5 +147,5 @@ WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = SubResource( 6 )
-_sections_unfolded = [ "Button", "Button/colors", "Button/constants", "Button/fonts", "Button/styles", "Label", "Label/colors", "Panel", "Panel/styles", "PopupMenu", "PopupMenu/styles", "Resource", "RichTextLabel", "RichTextLabel/styles", "WindowDialog", "WindowDialog/colors", "WindowDialog/constants", "WindowDialog/fonts", "WindowDialog/icons", "WindowDialog/styles" ]
+_sections_unfolded = [ "Button", "Button/colors", "Button/constants", "Button/fonts", "Button/styles", "Label", "Label/colors", "Panel", "Panel/styles", "PopupMenu", "PopupMenu/styles", "Resource", "RichTextLabel", "RichTextLabel/styles", "WindowDialog/colors", "WindowDialog/constants", "WindowDialog/fonts", "WindowDialog/icons", "WindowDialog/styles" ]
 

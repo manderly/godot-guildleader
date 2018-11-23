@@ -2,7 +2,7 @@
 
 [ext_resource path="res://menus/popup_finishedItem.gd" type="Script" id=1]
 
-[node name="finishedItem_dialog" type="AcceptDialog"]
+[node name="finishedItem_dialog" type="AcceptDialog" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
