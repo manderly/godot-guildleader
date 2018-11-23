@@ -316,33 +316,12 @@ _sections_unfolded = [ "Rect", "Transform", "Z Index" ]
 
 [node name="ingredientWildcard" parent="recipeData/hbox_ingredients" index="1" instance=ExtResource( 7 )]
 
-margin_left = 322.0
-margin_top = -1.0
-margin_right = 392.0
-margin_bottom = 98.0
+visible = false
+margin_left = -162.0
+margin_top = -9.0
+margin_right = -92.0
+margin_bottom = 90.0
 _sections_unfolded = [ "Anchor", "Rect", "Size Flags", "Transform" ]
-
-[node name="label_choose" type="Label" parent="recipeData/hbox_ingredients/ingredientWildcard" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 7.0
-margin_top = 27.0
-margin_right = 57.0
-margin_bottom = 41.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "Choose"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="recipeData" index="3"]
 
@@ -445,6 +424,28 @@ size_flags_vertical = 4
 text = "#computed"
 align = 1
 valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="label_choose" type="Label" parent="recipeData/VBoxContainer/CenterContainer2/resultItem" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 9.0
+margin_top = 27.0
+margin_right = 59.0
+margin_bottom = 41.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Choose"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

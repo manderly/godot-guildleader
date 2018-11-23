@@ -16,7 +16,7 @@ onready var nowCrafting = $recipeData/VBoxContainer/field_nowCrafting
 onready var labelComputed = $recipeData/VBoxContainer/CenterContainer2/resultItem/label_computed
 onready var resultItemBox = $recipeData/VBoxContainer/CenterContainer2/resultItem
 onready var wildcardItemBox = $recipeData/hbox_ingredients/ingredientWildcard
-onready var labelChoose = $recipeData/hbox_ingredients/ingredientWildcard/label_choose
+onready var labelChoose = $recipeData/VBoxContainer/CenterContainer2/resultItem/label_choose
 onready var recipeName = $recipeData/label_ingredients
 
 var hasIngredient1 = false
@@ -71,67 +71,10 @@ func _update_ingredients():
 	recipe = tradeskill.selectedRecipe #make a local copy so we don't have to use a long reference
 	
 	recipeName.text = "Selected recipe: " + recipe.recipeName
-	#if (recipe.noFail):
-	#	$recipeData/field_success.text = "No fail"
-	#else:
-	#	$recipeData/field_success.text = "Chance to fail"
-	
-	#$recipeData/field_craftingTime.text = util.format_time(recipe.craftingTime)
-	
-	if (tradeskill.inProgress):
-		var itemName = tradeskill.currentlyCrafting.name
-		if (tradeskill.currentlyCrafting.wildcardItem):
-			nowCrafting.text = "Now Crafting: Improved " + itemName
-		else:
-			nowCrafting.text = "Now Crafting: " + itemName
-	else:
-		nowCrafting.text = "You will get: "
-		
-	#result item or stat increase display 
-	var resultItem = null
-	resultItemBox.show()
-	resultItemBox._set_info_popup_buttons(false, false, "none")
-	
-	if (recipe.result == "computed"):
-		labelComputed.show()
-		labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
-		if (global.tradeskills[global.currentMenu].wildcardItem):
-			resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
-		else:
-			resultItemBox._clear_tradeskill()
-			
-	elif (recipe.result):
-		labelComputed.hide()
-		resultItemBox._render_tradeskill(global.allGameItems[str(recipe.result)])
-	
-			
+
 	#every recipe has at least one ingredient
 	#but some recipes let you pick what that ingredient actually is (ie: a sword for sharpening)
 	#decorate the ingredient buttons accordingly 
-		
-	#ingredient wildcard is an itemButton instance 
-	#This is for viewing a RECIPE, not for viewing something in progress?
-	if (recipe.ingredientWildcard):
-		wildcardItemBox.show()
-		wildcardItemBox._set_enabled()
-		global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
-		if (tradeskill.wildcardItem):
-			hasWildcardIngredient = true
-			#if the user picked an item to be the wildcard item, show it here 
-			labelChoose.hide()
-			wildcardItemBox._set_info_popup_buttons(true, false, "Return to vault")
-			wildcardItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
-		else:
-			hasWildcardIngredient = false
-			wildcardItemBox._set_info_popup_buttons(true, false, "Choose")
-			labelChoose.show()
-			wildcardItemBox._clear_tradeskill()
-	else:
-		tradeskill.wildcardItem = null
-		hasWildcardIngredient = false
-		#wildcardItemBox._render_tradeskill(global.allGameItems[str(recipe.ingredient1)])
-		labelChoose.hide()
-		wildcardItemBox.hide()
 	
 	#determine which ingredients to display and whether the text is red or green 
 	if (recipe.ingredient1): #if this quest has a fourth required component
@@ -182,6 +125,61 @@ func _update_ingredients():
 	else:
 		ingredient4Display._clear_fields()
 		
+	#results area
+	if (tradeskill.inProgress):
+		var itemName = tradeskill.currentlyCrafting.name
+		if (tradeskill.currentlyCrafting.moddingAnItem):
+			nowCrafting.text = "Now Crafting: Improved " + itemName
+			labelComputed.show()
+			labelChoose.hide()
+			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
+			resultItemBox._render_tradeskill(global.allGameItems[itemName])
+		else:
+			nowCrafting.text = "Now Crafting: " + itemName
+	else:
+		#not crafting (not inProgress), just browsng
+		nowCrafting.text = "You will get: "
+	
+		if (recipe.ingredientWildcard):
+			#this recipe requires the player to "choose" the result item 
+			global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
+			if (tradeskill.wildcardItem):
+				#the player already picked an "on deck" wildcard item
+				hasWildcardIngredient = true
+				labelChoose.hide()
+				resultItemBox._set_info_popup_buttons(true, false, "Return to vault")
+				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
+			else:
+				hasWildcardIngredient = false
+				resultItemBox._set_info_popup_buttons(true, false, "Choose")
+				labelChoose.show()
+				resultItemBox._clear_tradeskill()
+		else:
+			#this recipe doesn't require the player to pick an item to modify
+			tradeskill.wildcardItem = null
+			hasWildcardIngredient = false
+			labelChoose.hide()
+		
+		
+		
+		if (recipe.result == "computed"):
+			labelComputed.show()
+			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
+			if (global.tradeskills[global.currentMenu].wildcardItem):
+				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
+			else:
+				resultItemBox._clear_tradeskill()
+				
+		elif (recipe.result):
+			labelComputed.hide()
+			resultItemBox._render_tradeskill(global.allGameItems[str(recipe.result)])
+		
+	#result item or stat increase display 
+	#var resultItem = null
+	#resultItemBox.show()
+	#resultItemBox._set_info_popup_buttons(false, false, "none")
+	
+		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
@@ -213,7 +211,7 @@ func _open_collect_result_popup():
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
 	var itemNameStr = ""
-	if (tradeskill.currentlyCrafting.wildcardItem):
+	if (tradeskill.currentlyCrafting.moddingAnItem):
 		itemNameStr = "Improved " + tradeskill.currentlyCrafting.name
 	else:
 		itemNameStr = tradeskill.currentlyCrafting.name
@@ -227,7 +225,6 @@ func tradeskillItem_callback():
 		#this was a "normal" recipe, not a wildcard item recipe
 		util.give_item_guild(tradeskill.currentlyCrafting.name)
 	else:
-		
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
 						tradeskill.currentlyCrafting.name,
@@ -241,7 +238,8 @@ func tradeskillItem_callback():
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
 	tradeskill.currentlyCrafting.name = null
-	tradeskill.currentlyCrafting.wildcardItem = false
+	tradeskill.currentlyCrafting.moddingAnItem = false
+	tradeskill.currentlyCrafting.wildcardItem = null
 	tradeskill.currentlyCrafting.statImproved = null
 	tradeskill.currentlyCrafting.statIncrease = null
 	_update_ingredients()
@@ -295,7 +293,8 @@ func _on_button_combine_pressed():
 					
 			#todo: refactor to use ID, these are specific items from the vault
 			if (recipe.ingredientWildcard):
-				tradeskill.currentlyCrafting.wildcardItem = true
+				tradeskill.currentlyCrafting.moddingAnItem = true
+				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItem
 				util.remove_item_guild_by_id(tradeskill.wildcardItem.itemID)
 			
 			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
