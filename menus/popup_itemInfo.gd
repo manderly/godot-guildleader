@@ -136,7 +136,7 @@ func _on_button_moveItem_pressed():
 			global.currentMenu == "fletching" ||
 			global.currentMenu == "tailoring" ||
 			global.currentMenu == "jewelcraft"):
-		if (global.tradeskills[global.currentMenu].wildcardItem):
+		if (global.tradeskills[global.currentMenu].wildcardItemOnDeck):
 			#we have an item, so give it back to the vault
 			util.remove_item_tradeskill()
 			self.hide()

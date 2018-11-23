@@ -132,7 +132,7 @@ func _update_ingredients():
 			nowCrafting.text = "Now Crafting: Improved " + itemName
 			labelComputed.show()
 			labelChoose.hide()
-			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
+			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
 			resultItemBox._render_tradeskill(global.allGameItems[itemName])
 		else:
 			nowCrafting.text = "Now Crafting: " + itemName
@@ -143,12 +143,12 @@ func _update_ingredients():
 		if (recipe.ingredientWildcard):
 			#this recipe requires the player to "choose" the result item 
 			global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
-			if (tradeskill.wildcardItem):
+			if (tradeskill.wildcardItemOnDeck):
 				#the player already picked an "on deck" wildcard item
 				hasWildcardIngredient = true
 				labelChoose.hide()
 				resultItemBox._set_info_popup_buttons(true, false, "Return to vault")
-				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
+				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItemOnDeck)
 			else:
 				hasWildcardIngredient = false
 				resultItemBox._set_info_popup_buttons(true, false, "Choose")
@@ -156,15 +156,15 @@ func _update_ingredients():
 				resultItemBox._clear_tradeskill()
 		else:
 			#this recipe doesn't require the player to pick an item to modify
-			tradeskill.wildcardItem = null
+			tradeskill.wildcardItemOnDeck = null
 			hasWildcardIngredient = false
 			labelChoose.hide()
 		
 		if (recipe.result == "computed"):
 			labelComputed.show()
 			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
-			if (global.tradeskills[global.currentMenu].wildcardItem):
-				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItem)
+			if (global.tradeskills[global.currentMenu].wildcardItemOnDeck):
+				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItemOnDeck)
 			else:
 				resultItemBox._clear_tradeskill()
 				
@@ -226,7 +226,7 @@ func tradeskillItem_callback():
 
 	progressBar.set_value(0)
 	tradeskill.timer.stop()
-	tradeskill.wildcardItem = null
+	tradeskill.wildcardItemOnDeck = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
 	tradeskill.currentlyCrafting.name = null
@@ -250,7 +250,7 @@ func _ingredient_check():
 	if (recipe.ingredient4 && global.tradeskillItemsDictionary[recipe.ingredient4].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredientWildcard && !hasWildcardIngredient):
+	if (recipe.ingredientWildcard && !tradeskill.wildcardItemOnDeck):
 		readyToCombine = false
 		
 	return readyToCombine
@@ -283,12 +283,11 @@ func _on_button_combine_pressed():
 				if (global.tradeskillItemsDictionary[recipe.ingredient4].consumable):
 					global.tradeskillItemsDictionary[recipe.ingredient4].count -= 1
 					
-			#todo: refactor to use ID, these are specific items from the vault
 			if (recipe.ingredientWildcard):
 				tradeskill.currentlyCrafting.moddingAnItem = true
-				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItem
-				util.remove_item_guild_by_id(tradeskill.wildcardItem.itemID)
-			
+				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItemOnDeck
+				tradeskill.wildcardItemOnDeck = null
+				
 			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 			_update_ingredients()
 				
@@ -317,5 +316,12 @@ func _on_button_dismissHero_pressed():
 		get_tree().change_scene("res://main.tscn")
 		
 func _on_button_back_pressed():
-	tradeskill.wildcardItem = null
+	if (tradeskill.wildcardItemOnDeck):
+		#putting an item "on deck" to mod but not actually starting the
+		#crafting promise should return that on deck item to the guild vault
+		util.remove_item_tradeskill()
+		
+		#util.give_item_guild(tradeskill.wildcardItemOnDeck)
+		#tradeskill.wildcardItemOnDeck = null
+	
 	get_tree().change_scene("res://main.tscn")

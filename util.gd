@@ -91,11 +91,12 @@ func remove_item_guild_by_id(itemID):
 	
 func give_item_tradeskill(itemID):
 	#we have the item ID, which we can find in the guildItems array
+	print("util.gd: Giving itemID " + str(itemID) + " to tradeskill.wildcardItemOnDeck")
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i]):
 			if (global.guildItems[i].itemID == itemID):
 				#we found the item with the matching ID
-				global.tradeskills[global.currentMenu].wildcardItem = global.guildItems[i].duplicate()
+				global.tradeskills[global.currentMenu].wildcardItemOnDeck = global.guildItems[i].duplicate()
 				#remove from guildItems (because the tradeskill will hold it for now)
 				global.guildItems[i] = null
 	
@@ -103,10 +104,10 @@ func remove_item_tradeskill():
 	#finds first open null spot and moves the item from the tradeskill bucket back into the array
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i] == null):
-			global.guildItems[i] = global.tradeskills[global.currentMenu].wildcardItem
+			global.guildItems[i] = global.tradeskills[global.currentMenu].wildcardItemOnDeck
 			break
-	#empties the wildcardItem bucket 
-	global.tradeskills[global.currentMenu].wildcardItem = null
+	#empties the wildcardItemOnDeck bucket 
+	global.tradeskills[global.currentMenu].wildcardItemOnDeck = null
 	
 func give_quest(questID):
 	var newQuestInstance = global.allGameQuests[questID].duplicate()

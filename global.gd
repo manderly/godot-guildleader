@@ -71,7 +71,7 @@ var tradeskills = {
 		"timer": null,
 		"inProgress": false,
 		"readyToCollect": false,
-		"wildcardItem": null,
+		"wildcardItemOnDeck": null,
 		"displayName": "Alchemy",
 		"description": "Potions and stuff",
 		"recipes": [],
@@ -88,7 +88,7 @@ var tradeskills = {
 		"timer": null,
 		"inProgress": false,
 		"readyToCollect": false,
-		"wildcardItem": null,
+		"wildcardItemOnDeck": null,
 		"displayName": "Blacksmithing",
 		"description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials.",
 		"recipes": [],
@@ -107,12 +107,14 @@ var tradeskills = {
 		"timer": null,
 		"inProgress": false,
 		"readyToCollect": false,
-		"wildcardItem": null,
+		"wildcardItemOnDeck": null,
 		"displayName": "Fletching",
 		"description":"Make arrows and bows",
 		"recipes": [],
 		"selectedRecipe": null,
 		"currentlyCrafting": {
+			"moddingAnItem":false,
+			"wildcardItem":null,
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
@@ -124,12 +126,14 @@ var tradeskills = {
 		"timer": null,
 		"inProgress": false,
 		"readyToCollect": false,
-		"wildcardItem": null,
+		"wildcardItemOnDeck": null,
 		"displayName": "Jewelcraft",
 		"description":"Bend metal and gemstones into sparkly jewelry with powerful stat bonuses.",
 		"recipes": [],
 		"selectedRecipe": null,
 		"currentlyCrafting": {
+			"moddingAnItem":false,
+			"wildcardItem":null,
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
@@ -141,12 +145,14 @@ var tradeskills = {
 		"timer": null,
 		"inProgress": false,
 		"readyToCollect": false,
-		"wildcardItem": null,
+		"wildcardItemOnDeck": null,
 		"displayName": "Tailoring",
 		"description":"Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths.",
 		"recipes": [],
 		"selectedRecipe": null,
 		"currentlyCrafting": {
+			"moddingAnItem":false,
+			"wildcardItem":null,
 			"name":"",
 			"statImproved":"",
 			"statIncrease":"",
@@ -502,7 +508,7 @@ func _begin_tradeskill_timer(duration):
 		if (tradeskill.selectedRecipe.result != "computed"):
 			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
 		elif (tradeskill.selectedRecipe.result == "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.wildcardItem.name
+			tradeskill.currentlyCrafting.name = tradeskill.currentlyCrafting.wildcardItem.name
 			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
 			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
 		else:
