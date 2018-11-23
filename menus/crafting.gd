@@ -160,8 +160,6 @@ func _update_ingredients():
 			hasWildcardIngredient = false
 			labelChoose.hide()
 		
-		
-		
 		if (recipe.result == "computed"):
 			labelComputed.show()
 			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
@@ -173,12 +171,6 @@ func _update_ingredients():
 		elif (recipe.result):
 			labelComputed.hide()
 			resultItemBox._render_tradeskill(global.allGameItems[str(recipe.result)])
-		
-	#result item or stat increase display 
-	#var resultItem = null
-	#resultItemBox.show()
-	#resultItemBox._set_info_popup_buttons(false, false, "none")
-	
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
