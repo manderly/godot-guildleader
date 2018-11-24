@@ -21,7 +21,7 @@ func set_hero_data(data):
 	populate_fields(heroData)
 
 func populate_fields(data):
-	$VBoxContainer/field_heroName.text = "Bob" #data.heroName
+	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
 	if (data.atHome && data.staffedTo == ""):
@@ -36,10 +36,15 @@ func populate_fields(data):
 	elif (!data.atHome && data.staffedTo == "quest"): #heroes aren't unavailable until quest begins
 		$VBoxContainer/field_available.text = "Away (Quest)"
 		self.set_disabled(true)
+	elif(!data.atHome && data.staffedTo == "camp"):
+		$VBoxContainer/field_available.text = "Away (Camp)"
+		self.set_disabled(true)
 	else:
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
-		
+	
+	$ProgressBar.set_value(100 * (data.xp / global.levelXpData[data.level].total))
+	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
 	heroScene.set_instance_data(data) #put data from array into scene 
@@ -115,18 +120,22 @@ func _on_Button_pressed():
 	elif (global.currentMenu == "selectHeroForCamp"):
 		var currentCamp = global.campData[global.selectedCampID]
 		#first, free up whoever is already in that spot (if anyone) 
+		print(currentCamp.heroes[global.campButtonID])
+		
 		if (currentCamp.heroes[global.campButtonID]):
 			currentCamp.heroes[global.campButtonID].atHome = true
 			currentCamp.heroes[global.campButtonID].staffedTo = ""
 			currentCamp.campHeroesSelected -= 1
+			
 		#next, confirm this specific hero is available
-		if (heroData.atHome == true && heroData.staffedTo == ""):
+		if (heroData.atHome && heroData.staffedTo == ""):
 			currentCamp.heroes[global.campButtonID] = heroData
 			currentCamp.heroes[global.campButtonID].staffedTo = "camp"
 			currentCamp.campHeroesSelected += 1
 			global.currentMenu = "camp"
 		else:
 			print("can't pick this hero")
+		global.currentMenu = "camp"
 		get_tree().change_scene("res://menus/maps/camp.tscn")
 	else:
 		print("heroButton.gd - can't figure out where to go!")

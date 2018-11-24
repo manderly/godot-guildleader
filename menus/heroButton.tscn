@@ -3,7 +3,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://menus/heroButton.gd" type="Script" id=2]
 
-[node name="Button" type="Button" index="0"]
+[node name="Button" type="Button"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -130,6 +130,33 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Mouse" ]
+
+[node name="ProgressBar" type="ProgressBar" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 334.0
+margin_top = 31.0
+margin_right = 414.0
+margin_bottom = 47.0
+rect_min_size = Vector2( 80, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
+_sections_unfolded = [ "Percent", "Rect" ]
 
 [connection signal="pressed" from="." to="." method="_on_Button_pressed"]
 

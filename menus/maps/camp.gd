@@ -11,6 +11,7 @@ onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContain
 onready var field_difficultyEstimate = $MarginContainer/CenterContainer/VBoxContainer/field_difficultyEstimate
 onready var field_tipsOrProgress = $MarginContainer/CenterContainer/VBoxContainer/field_tipsOrProgress
 
+onready var button_autoPickHeroes = $MarginContainer/CenterContainer/VBoxContainer/CenterContainer/button_autoPickHeroes
 onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort
 onready var button_startCampMedium = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium
 onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong
@@ -18,6 +19,7 @@ onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContaine
 onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/ProgressBar
 
 onready var campData = null
+onready var heroButtons = []
 
 var haveAlready = {
 	"healer":0,
@@ -29,6 +31,7 @@ func _ready():
 	campData = global.campData[global.selectedCampID]
 		
 	add_child(finishNowPopup)
+	_draw_hero_buttons()
 	_populate_fields()
 	_enable_and_disable_duration_buttons()
 	
@@ -50,6 +53,7 @@ func _process(delta):
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
 	if (campData.inProgress):
+		button_autoPickHeroes.disabled = true
 		button_startCampShort.disabled = true
 		button_startCampMedium.disabled = true
 		button_startCampLong.disabled = true
@@ -66,6 +70,14 @@ func _enable_and_disable_duration_buttons():
 		button_startCampShort.disabled = false
 		button_startCampMedium.disabled = false
 		button_startCampLong.disabled = false
+		
+func _draw_hero_buttons():
+	#create X number of hero buttons to hold selected heroes for this specific quest
+	for i in range(campData.heroes.size()):
+		var heroButton = preload("res://menus/heroButton.tscn").instance()
+		heroButton.set_button_id(i)
+		heroButtons.append(heroButton)
+		$MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons.add_child(heroButton) 
 		
 func _populate_fields():
 	field_campName.text = campData.name
@@ -85,21 +97,15 @@ func _populate_fields():
 	button_startCampMedium.text = "JOIN CAMP: " + str(util.format_time(campData.durationMedium))
 	button_startCampLong.text ="JOIN CAMP: " + str(util.format_time(campData.durationLong))
 	
-	#hero buttons
-	#create X number of hero buttons to hold selected heroes for this specific quest
-	var buttonX = 0
-	var buttonY = 0
-	for i in range(campData.groupSize):
-		var heroButton = preload("res://menus/heroButton.tscn").instance()
-		if (campData.heroes[i] != null):
-			heroButton.populate_fields(campData.heroes[i])
+	#FILL IN EXISTING hero buttons
+	for i in campData.heroes.size():
+		var hero = campData.heroes[i]
+		if (hero):
+			#get the same-indexed hero button instance and fill it in
+			heroButtons[i].populate_fields(hero)
 		else:
-			heroButton.make_button_empty()
-			
-		heroButton.set_button_id(i)
-		heroButton.set_position(Vector2(buttonX, buttonY))
-		$MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons.add_child(heroButton) 
-		buttonY += 80
+			#get the same-indexed hero button and empty it out 
+			heroButtons[i].make_button_empty()
 	
 		#don't make class recommendations until the player has picked a few heroes
 	if (campData.campHeroesSelected >= 3):
@@ -111,6 +117,11 @@ func _populate_fields():
 
 		
 func _on_button_back_pressed():
+	if (!campData.inProgress):
+		for i in campData.heroes.size():
+			if (campData.heroes[i]):
+				campData.heroes[i].send_home() #send this specific hero home
+				campData.heroes[i] = null #and null his spot 
 	get_tree().change_scene("res://menus/maps/forest.tscn")
 
 func _calculate_estimated_difficulty():
@@ -220,6 +231,7 @@ func _on_button_autoPickHeroes_pressed():
 	#for each empty hero slot
 	for i in range(campData.heroes.size()):
 		if (campData.heroes[i] == null):
+			print("found a null spot to fill in!")
 			#todo: sort heroes by xp first (want low xp heroes) 
 			#look through all the available heroes
 			for hero in global.guildRoster:
