@@ -28,8 +28,6 @@ func _ready():
 	pass
 
 func populate_heroes(heroes):
-	#how many heroes total?
-	var heroesTotal = heroes.size()
 	
 	for i in heroes.size():
 		var heroScene = preload("res://hero.tscn").instance()

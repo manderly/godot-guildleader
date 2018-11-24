@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wizard-female-2.png-70ec43e02e9fece60d5df006e466d341.stex"
+path="res://.import/bat_02.png-c1d4a29a221b04e4293f209c68f2a079.stex"
 
 [deps]
 
-source_file="res://characters/wizard-female-2.png"
-dest_files=[ "res://.import/wizard-female-2.png-70ec43e02e9fece60d5df006e466d341.stex" ]
+source_file="res://sprites/mobs/bat/bat_02.png"
+dest_files=[ "res://.import/bat_02.png-c1d4a29a221b04e4293f209c68f2a079.stex" ]
 
 [params]
 

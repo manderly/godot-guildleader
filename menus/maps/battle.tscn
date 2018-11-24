@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/maps/battle.gd" type="Script" id=1]
 [ext_resource path="res://tiles/forest_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://sprites/mobs/rat and bat spritesheet calciumtrice.png" type="Texture" id=3]
+[ext_resource path="res://sprites/mobs/bat/bat_01.png" type="Texture" id=4]
+[ext_resource path="res://sprites/mobs/bat/bat_02.png" type="Texture" id=5]
+[ext_resource path="res://sprites/mobs/bat/bat_03.png" type="Texture" id=6]
+[ext_resource path="res://sprites/mobs/bat/bat_04.png" type="Texture" id=7]
+[ext_resource path="res://sprites/mobs/bat/bat_05.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+_sections_unfolded = [ "Resource" ]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -26,5 +42,22 @@ collision_mask = 1
 occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0 )
+
+[node name="SpriteFromSheet" type="Sprite" parent="." index="1"]
+
+position = Vector2( 367.962, 102.086 )
+texture = ExtResource( 3 )
+vframes = 10
+hframes = 10
+frame = 50
+region_rect = Rect2( 0, 0, 31, 44 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="bat" type="AnimatedSprite" parent="." index="2"]
+
+position = Vector2( 337.555, 129.338 )
+frames = SubResource( 1 )
+animation = "default"
+playing = true
 
 

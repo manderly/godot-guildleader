@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hero_sprite_2.png-772b22c0710f5864c0aeb7ec20a8b8a1.stex"
+path="res://.import/bat_01.png-9c7fde96376d11f40ad4af4df0c3072f.stex"
 
 [deps]
 
-source_file="res://characters/hero_sprite_2.png"
-dest_files=[ "res://.import/hero_sprite_2.png-772b22c0710f5864c0aeb7ec20a8b8a1.stex" ]
+source_file="res://sprites/mobs/bat/bat_01.png"
+dest_files=[ "res://.import/bat_01.png-9c7fde96376d11f40ad4af4df0c3072f.stex" ]
 
 [params]
 
