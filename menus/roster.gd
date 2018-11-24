@@ -2,22 +2,37 @@ extends Node2D
 #roster.gd
 #makes a long list of every hero in the player's guild
 #individual heroes can be clicked on to go to their hero page 
-onready var field_prestige = $VBoxContainer/field_prestige
-onready var field_guildMemberCount = $VBoxContainer/field_guildMemberCount
-onready var field_guildName = $VBoxContainer/field_guildName
+onready var field_prestige = $vbox_guildInfo/VBoxContainer/field_prestige
+onready var field_guildMemberCount = $vbox_guildInfo/VBoxContainer/field_guildMemberCount
+onready var field_guildName = $vbox_guildInfo/VBoxContainer/field_guildName
+
+onready var field_tankCount = $vbox_guildInfo/vbox_bottomBox/HBoxContainer/vbox_classCounts/label_tankCount
+onready var field_dpsCount = $vbox_guildInfo/vbox_bottomBox/HBoxContainer/vbox_classCounts/label_dpsCount
+onready var field_supportCount = $vbox_guildInfo/vbox_bottomBox/HBoxContainer/vbox_classCounts/label_supportCount
 
 func _ready():
 	field_guildName.text = global.guildName
 	field_guildMemberCount.text = "Members: " + str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	field_prestige.text = " Prestige: " + str(0)
 	
+	var archetypes = {
+		"tank":0,
+		"dps":0,
+		"healer":0	
+	}
+	
 	#draw a hero button for each hero in the roster
 	for i in range(global.guildRoster.size()):
-		#print(global.guildRoster[i]) #print all heroes (debug)
+		archetypes[global.guildRoster[i].get_archetype()] += 1
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		heroButton.set_hero_data(global.guildRoster[i])
 		#heroButton.set_position(Vector2(buttonX, buttonY))
 		$scroll_roster/vbox.add_child(heroButton)
+	
+	#update counts
+	field_tankCount.text = "Tanks: " + str(archetypes["tank"])
+	field_dpsCount.text = "DPS: " + str(archetypes["dps"])
+	field_supportCount.text = "Support: " + str(archetypes["healer"])
 
 func _on_button_renameGuild_pressed():
 	get_node("confirm_rename_dialog").popup()
