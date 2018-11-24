@@ -27,6 +27,10 @@ func _ready():
 func _just_for_display(walkBool):
 	justForDisplay = walkBool
 	
+func _battle_scene(walkBool):
+	justForDisplay = walkBool
+	$field_name.text = heroName
+	
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
 	if (!justForDisplay):
@@ -70,10 +74,10 @@ func _start_walking():
 	
 func face_right():
 	$body.set_scale(Vector2(-1,1))
-	$body/weapon1.offset.x = 20
-	$body/weapon2.offset.x = -20
-	$body/shield.offset.x = -28
-	$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
+	#$body/weapon1.offset.x = 20
+	#$body/weapon2.offset.x = -20
+	#$body/shield.offset.x = -28
+	#$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 			
 func _on_Timer_timeout():
 	#idleTimer is up, time to start walking!

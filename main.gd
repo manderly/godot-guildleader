@@ -23,10 +23,10 @@ func _ready():
 	if (!global.initDone):
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Warrior")
-		#heroGenerator.generate(global.guildRoster, "Rogue")
+		heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
-		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		#heroGenerator.generate(global.guildRoster, "Ranger")
+		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		heroGenerator.generate(global.guildRoster, "Ranger")
 		
 		#Generate unrecruited heroes
 		heroGenerator.generate(global.unrecruited, "Cleric")

@@ -33,6 +33,8 @@ func _ready():
 	campData = global.campData[global.selectedCampID]
 	if (!campData.inProgress):
 		$battleScene.hide()
+	else:
+		$battleScene.populate_heroes(campData.heroes)
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -269,9 +271,3 @@ func _on_button_autoPickHeroes_pressed():
 						
 	_populate_fields()		
 			
-	#heroButton.populate_fields(campData.heroes[i])
-	#iterate through the available heroes
-	#try to pick these archetypes: (tank), (healer), (dps), (dps)
-	#try to pick heroes who need xp
-	#try to pick high level heroes
-	#only pick as many as are needed (skip taken spots)

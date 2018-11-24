@@ -6,7 +6,7 @@
 [ext_resource path="res://menus/maps/battle.tscn" type="PackedScene" id=4]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
