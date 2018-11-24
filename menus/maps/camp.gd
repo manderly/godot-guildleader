@@ -16,6 +16,8 @@ onready var button_startCampShort = $MarginContainer/CenterContainer/VBoxContain
 onready var button_startCampMedium = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium
 onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampLong
 
+onready var vbox_heroButtons = $MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons
+
 onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/ProgressBar
 
 onready var campData = null
@@ -29,6 +31,8 @@ var haveAlready = {
 
 func _ready():
 	campData = global.campData[global.selectedCampID]
+	if (!campData.inProgress):
+		$battleScene.hide()
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -176,7 +180,6 @@ func _start_camp(duration, enableButtonStr):
 	#case 1: Begin harvest (no quest active, nothing ready to collect)
 	if (!campData.inProgress && !campData.readyToCollect):
 		var haveEnoughHeroes = true
-		print(campData.heroes)
 		for slot in campData.heroes:
 			if (slot == null):
 				#todo: need a popup telling the player they need 4 heroes 
@@ -193,6 +196,10 @@ func _start_camp(duration, enableButtonStr):
 			campData.selectedDuration = duration
 			campData.enableButton = enableButtonStr
 			global._begin_camp_timer(duration, campData.campId)
+			$battleScene.populate_heroes(campData.heroes)
+			#todo: populate enemies 
+			#todo: play out the fight scene 
+			$battleScene.show()
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 

@@ -68,6 +68,13 @@ func _start_walking():
 		
 	#_physics_process(delta) handles the rest and determines when the heroes has arrived 
 	
+func face_right():
+	$body.set_scale(Vector2(-1,1))
+	$body/weapon1.offset.x = 20
+	$body/weapon2.offset.x = -20
+	$body/shield.offset.x = -28
+	$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
+			
 func _on_Timer_timeout():
 	#idleTimer is up, time to start walking!
 	_hide_extended_stats()

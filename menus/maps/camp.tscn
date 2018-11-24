@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/maps/camp.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menus/maps/battle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -35,6 +36,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="." index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -423,7 +425,11 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_back" parent="." index="2" instance=ExtResource( 4 )]
+[node name="battleScene" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 17.2991, 320.033 )
+
+[node name="button_back" parent="." index="3" instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CenterContainer/button_autoPickHeroes" to="." method="_on_button_autoPickHeroes_pressed"]
 
