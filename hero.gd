@@ -142,6 +142,7 @@ func set_instance_data(data):
 	weapon1Sprite = data.weapon1Sprite
 	weapon2Sprite = data.weapon2Sprite
 	shieldSprite = data.shieldSprite
+	savedPosition = data.savedPosition
 	
 func _draw_sprites():
 	var none = "res://sprites/heroes/none.png"
@@ -308,6 +309,9 @@ func _on_heroButton_released():
 func _on_touchTimer_timeout():
 	#touch timer timed out 
 	$touchTimer.stop()
+	
+func save_position(pos):
+	savedPosition = pos
 
 func send_home():
 	atHome = true

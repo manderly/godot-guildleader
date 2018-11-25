@@ -14,6 +14,8 @@ var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
 
+var onscreenHeroes = []
+
 func _ready():
 	global.currentMenu = "main"
 	randomize()
@@ -50,19 +52,41 @@ func _ready():
 	draw_heroes()
 	draw_rooms()
 	
+func _save_hero_locations():
+	#save the x and y of every hero currently on the screen
+	for heroScene in onscreenHeroes:
+		#have to match to hero data
+		#todo: this seems really sloppy but I can't figure how else
+		#to pass data from the scene to the actual data array 
+		for heroData in global.guildRoster:
+			if (heroScene.heroName == heroData.heroName):
+				heroData.save_position(heroScene.get_position())
+				#get the scene's position and feed it back into the hero data
+		
+		for heroData in global.unrecruited:
+			if (heroScene.heroName == heroData.heroName):
+				heroData.save_position(heroScene.get_position())
+				
+		#todo: need some way to modify matching hero data via the scene that 
+		#represents the hero... maybe? 
+	
 func _on_Map_pressed():
+	_save_hero_locations()
 	global.currentMenu = "worldmap"
 	get_tree().change_scene("res://menus/maps/worldmap.tscn");
 	
 func _on_Quests_pressed():
+	_save_hero_locations()
 	global.currentMenu = "quests"
 	get_tree().change_scene("res://menus/activeQuests.tscn");
 
 func _on_Vault_pressed():
+	_save_hero_locations()
 	global.currentMenu = "vault"
 	get_tree().change_scene("res://menus/vault.tscn");
 	
 func _on_Roster_pressed():
+	_save_hero_locations()
 	global.currentMenu = "roster"
 	get_tree().change_scene("res://menus/roster.tscn");
 	
@@ -83,7 +107,8 @@ func _process(delta):
 func draw_heroes():
 	var heroX = -1
 	var heroY = -1
-
+	onscreenHeroes = []
+	
 	for i in range(global.guildRoster.size()):
 		
 		#only draw heroes who are "atHome"
@@ -91,22 +116,35 @@ func draw_heroes():
 			var heroScene = preload("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
-			heroX = rand_range(mainRoomMinX, mainRoomMaxX)
-			heroY = rand_range(mainRoomMinY, mainRoomMaxY)
+			
+			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
+			if (global.guildRoster[i].savedPosition.x == -1):
+				heroX = rand_range(mainRoomMinX, mainRoomMaxX)
+				heroY = rand_range(mainRoomMinY, mainRoomMaxY)
+			else:
+				heroX = global.guildRoster[i].savedPosition.x #rand_range(mainRoomMinX, mainRoomMaxX)
+				heroY = global.guildRoster[i].savedPosition.y #rand_range(mainRoomMinY, mainRoomMaxY)
+			
 			heroScene.set_position(Vector2(heroX, heroY))
-			heroScene.set_display_params(true, true) #walking, show name 
+			heroScene.set_display_params(true, true) #walking, show name
+			onscreenHeroes.append(heroScene)
 			add_child(heroScene)
 	
 	#draw unrecruited heroes outside the base
 	for i in range(global.unrecruited.size()):
-		heroX = rand_range(150, 380)
-		heroY = rand_range(650, 820)
-	
+		if (global.unrecruited[i].savedPosition.x == -1):
+			heroX = rand_range(150, 380)
+			heroY = rand_range(650, 820)
+		else:
+			heroX = global.unrecruited[i].savedPosition.x #rand_range(150, 380)
+			heroY = global.unrecruited[i].savedPosition.y #rand_range(650, 820)
+			
 		var heroScene = preload("res://hero.tscn").instance()
 		heroScene.set_position(Vector2(heroX, heroY))
 		heroScene.set_instance_data(global.unrecruited[i])
 		heroScene._draw_sprites()
-		heroScene.set_display_params(true, true) #walking, show name 
+		heroScene.set_display_params(true, true) #walking, show name
+		onscreenHeroes.append(heroScene)
 		add_child(heroScene)
 
 func draw_rooms():
@@ -165,8 +203,9 @@ func draw_rooms():
 	#place the "add a room" button above the last placed piece
 	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
 	#display the cost to build a new room
-	print("main.gd: global.roomCount: " + str(global.roomCount))
+	#print("main.gd: global.roomCount: " + str(global.roomCount))
 	$screen/button_addRoom/field_addRoomButtonLabel.text = "BUILD A NEW ROOM \n" + str(global.newRoomCost[global.roomCount]) + " coins"
+
 func _on_button_addRoom_pressed():
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")
 
