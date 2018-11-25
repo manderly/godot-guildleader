@@ -40,7 +40,7 @@ func set_display_params(walkBool, nameBool):
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
 	if (walkable):
-		$idleTimer.set_wait_time(rand_range(5, 15))
+		$idleTimer.set_wait_time(rand_range(3, 15))
 		$idleTimer.start() #walk when the timer expires
 	
 func _start_walking():
@@ -53,7 +53,20 @@ func _start_walking():
 	else: #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)
+	
 	startingX = get_position().x
+	startingY = get_position().y
+	
+	if (abs(startingX - walkDestX) < 5):
+		#print(abs(startingX - walkDestX))
+		#print("starting x and destination x are very close")
+		walkDestX += 5
+		
+	if (abs(startingY - walkDestY) < 5):
+		#print(abs(startingX - walkDestX))
+		#print("starting x and destination x are very close")
+		walkDestY += 5
+	
 	target = Vector2(walkDestX, walkDestY)
 	#flip (or don't flip) the character's body
 	if (startingX < target.x):
@@ -107,13 +120,25 @@ func _physics_process(delta):
 	if (walking):
 		velocity = (target - position).normalized() * speed
 		if (target - position).length() > 10:
-			move_and_slide(velocity)
+			#move_and_slide(velocity) #last good but doesn't stop walking
+			var collision_info = move_and_collide(velocity * delta)
+			if collision_info:
+				#print(collision_info.collider.heroName)
+				_stop_walking()
 		else:
-			#print(heroName + " has arrived at their random destination")
-			$animationPlayer.play("idle")
-			walking = false
-			$idleTimer.start()
+			_stop_walking()
+			
+    #var collision_info = move_and_collide(direction.normalized() * speed * delta)
+    #if collision_info:
+      #  collision_info.collider.queue_free()
 
+func _stop_walking():
+	target = get_position()
+	velocity = 0
+	$animationPlayer.play("idle")
+	walking = false
+	$idleTimer.start()
+	
 func set_instance_data(data):
 	heroName = data.heroName
 	level = data.level

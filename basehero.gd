@@ -129,6 +129,7 @@ var equipment = {
 var walkDestX = -1
 var walkDestY = -1
 var startingX = 1
+var startingY = 1
 var target = Vector2()
 var velocity = Vector2()
 var speed = 20

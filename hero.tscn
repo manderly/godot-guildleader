@@ -53,7 +53,7 @@ _sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Sprea
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10.1507 )
+extents = Vector2( 27.3423, 32.2133 )
 
 [sub_resource type="Animation" id=3]
 
@@ -134,10 +134,10 @@ tracks/4/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
 
-[node name="hero" type="KinematicBody2D"]
+[node name="hero" type="KinematicBody2D" index="0"]
 
 input_pickable = true
-collision_layer = 2
+collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
@@ -255,11 +255,9 @@ max_lines_visible = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 
-visible = false
-position = Vector2( 32.299, 32.1148 )
-scale = Vector2( 1.82893, 2.53462 )
+position = Vector2( 32.7649, 30.8304 )
 shape = SubResource( 2 )
-_sections_unfolded = [ "Material", "Pause", "Visibility" ]
+_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
 [node name="animationPlayer" type="AnimationPlayer" parent="." index="6"]
 
@@ -277,6 +275,9 @@ _sections_unfolded = [ "Playback Options" ]
 
 position = Vector2( 30.9247, 21.1424 )
 _sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="shadow" type="Sprite" parent="body" index="0"]
 

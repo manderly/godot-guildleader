@@ -27,14 +27,14 @@ func _ready():
 		heroGenerator.generate(global.guildRoster, "Warrior")
 		heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
-		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		heroGenerator.generate(global.guildRoster, "Ranger")
+		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		#heroGenerator.generate(global.guildRoster, "Ranger")
 		
 		#Generate unrecruited heroes
 		heroGenerator.generate(global.unrecruited, "Cleric")
-		heroGenerator.generate(global.unrecruited, "Rogue")
-		heroGenerator.generate(global.unrecruited, "Ranger")
-		heroGenerator.generate(global.unrecruited, "Warrior")
+		#heroGenerator.generate(global.unrecruited, "Rogue")
+		#heroGenerator.generate(global.unrecruited, "Ranger")
+		#heroGenerator.generate(global.unrecruited, "Warrior")
 
 		#generate rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
