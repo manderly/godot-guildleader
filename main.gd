@@ -10,6 +10,33 @@ var mainRoomMaxX = 360
 var mainRoomMinY = 250
 var mainRoomMaxY = 410
 
+var spawnLocs = {
+	"0":{
+		"x":120,
+		"y":250
+		},
+	"1":{
+		"x":220,
+		"y":280
+		},
+	"2":{
+		"x":320,
+		"y":250
+		},
+	"3":{
+		"x":140,
+		"y":350
+		},
+	"4":{
+		"x":240,
+		"y":380
+		},
+	"5":{
+		"x":340,
+		"y":350
+		},
+	}
+
 var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
@@ -27,8 +54,9 @@ func _ready():
 		heroGenerator.generate(global.guildRoster, "Warrior")
 		heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
-		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		#heroGenerator.generate(global.guildRoster, "Ranger")
+		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		heroGenerator.generate(global.guildRoster, "Ranger")
+		heroGenerator.generate(global.guildRoster, "Cleric")
 		
 		#Generate unrecruited heroes
 		heroGenerator.generate(global.unrecruited, "Cleric")
@@ -119,8 +147,10 @@ func draw_heroes():
 			
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
 			if (global.guildRoster[i].savedPosition.x == -1):
-				heroX = rand_range(mainRoomMinX, mainRoomMaxX)
-				heroY = rand_range(mainRoomMinY, mainRoomMaxY)
+				heroX = spawnLocs[str(i)]["x"]
+				heroY = spawnLocs[str(i)]["y"]
+				#heroX = rand_range(mainRoomMinX, mainRoomMaxX)
+				#heroY = rand_range(mainRoomMinY, mainRoomMaxY)
 			else:
 				heroX = global.guildRoster[i].savedPosition.x #rand_range(mainRoomMinX, mainRoomMaxX)
 				heroY = global.guildRoster[i].savedPosition.y #rand_range(mainRoomMinY, mainRoomMaxY)
