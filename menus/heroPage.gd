@@ -42,7 +42,7 @@ func _ready():
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(20, 20))
-	heroScene._just_for_display(true)
+	heroScene.set_display_params(false, false) #walking, show name 
 	add_child(heroScene)
 
 	#hide dismiss and rename buttons if this hero isn't a recruited hero

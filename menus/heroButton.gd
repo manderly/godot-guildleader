@@ -50,7 +50,7 @@ func populate_fields(data):
 	heroScene.set_instance_data(data) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(14, 6))
-	heroScene._just_for_display(true)
+	heroScene.set_display_params(false, false) #walking, name displayed
 	add_child(heroScene)
 
 		

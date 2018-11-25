@@ -34,7 +34,7 @@ func _ready():
 	if (!campData.inProgress):
 		$battleScene.hide()
 	else:
-		$battleScene.populate_heroes(campData.heroes)
+		_camp_in_progress()
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -55,6 +55,12 @@ func _process(delta):
 		button_startCampLong.text = "COLLECT"
 		progressBar.set_value(100)
 
+func _camp_in_progress():
+	$battleScene.show()
+	$battleScene.populate_heroes(campData.heroes)
+	field_difficultyEstimate.text = "Camp in progress..."
+	for button in heroButtons:
+		button.hide()
 
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
@@ -198,10 +204,10 @@ func _start_camp(duration, enableButtonStr):
 			campData.selectedDuration = duration
 			campData.enableButton = enableButtonStr
 			global._begin_camp_timer(duration, campData.campId)
-			$battleScene.populate_heroes(campData.heroes)
+			_camp_in_progress()
 			#todo: populate enemies 
-			#todo: play out the fight scene 
-			$battleScene.show()
+			#todo: play out the fight scene ?
+			
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 

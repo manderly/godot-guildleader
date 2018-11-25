@@ -12,28 +12,34 @@ var outsideMinY = 650
 var outsideMaxY = 820
 
 #for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
-var justForDisplay = false
+var walkable = false
+var showName = true
 
 var battlePrint = false
 
+#three possible ways to display a hero sprite:
+#walking with name
+#icon with name
+#icon with no name
+
 func _ready():
-	$field_name.text = ""
 	_hide_extended_stats()
-	if (!justForDisplay):
-		$field_name.text = heroName
+	if (walkable):
 		if (atHome && staffedTo == ""):
 			_start_idle_timer()
-		
-func _just_for_display(walkBool):
-	justForDisplay = walkBool
 	
-func _battle_scene(walkBool):
-	justForDisplay = walkBool
-	$field_name.text = heroName
+	if (showName):
+		$field_name.text = heroName
+	else:
+		$field_name.text = ""
+		
+func set_display_params(walkBool, nameBool):
+	walkable = walkBool
+	showName = nameBool
 	
 func _start_idle_timer():
 	#idle for this random period of time and then start walking
-	if (!justForDisplay):
+	if (walkable):
 		$idleTimer.set_wait_time(rand_range(5, 15))
 		$idleTimer.start() #walk when the timer expires
 	
@@ -282,14 +288,14 @@ func _show_extended_stats():
 	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
 	
 func _on_heroButton_pressed():
-	if (!justForDisplay):
+	if (walkable):
 		if (walking):
 			walking = false
 		$touchTimer.set_wait_time(0.5)
 		$touchTimer.start()
 
 func _on_heroButton_released():
-	if (!justForDisplay):
+	if (walkable):
 		if $touchTimer.is_stopped():
 			#long press detected
 			_open_hero_page()

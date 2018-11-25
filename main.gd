@@ -94,6 +94,7 @@ func draw_heroes():
 			heroX = rand_range(mainRoomMinX, mainRoomMaxX)
 			heroY = rand_range(mainRoomMinY, mainRoomMaxY)
 			heroScene.set_position(Vector2(heroX, heroY))
+			heroScene.set_display_params(true, true) #walking, show name 
 			add_child(heroScene)
 	
 	#draw unrecruited heroes outside the base
@@ -105,6 +106,7 @@ func draw_heroes():
 		heroScene.set_position(Vector2(heroX, heroY))
 		heroScene.set_instance_data(global.unrecruited[i])
 		heroScene._draw_sprites()
+		heroScene.set_display_params(true, true) #walking, show name 
 		add_child(heroScene)
 
 func draw_rooms():

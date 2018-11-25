@@ -338,7 +338,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 			encounterOutcome.lootedItemsNames.append(lootName)
 	
 		encounterOutcome.scTotal += battleOutcome["sc"]
-	
+			
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
 	if (battleNumber == 1):
 		encounterOutcome.detailedPlayByPlay.append("There was " + str(battleNumber) + " battle.")

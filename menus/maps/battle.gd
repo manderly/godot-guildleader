@@ -28,13 +28,12 @@ func _ready():
 	pass
 
 func populate_heroes(heroes):
-	
 	for i in heroes.size():
 		var heroScene = preload("res://hero.tscn").instance()
 		heroScene.set_instance_data(heroes[i]) #put data from array into scene 
 		heroScene._draw_sprites()
 		heroScene.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 		heroScene.face_right()
-		heroScene._battle_scene(true)
+		heroScene.set_display_params(false, true) #walking, show name 
 		
 		add_child(heroScene)

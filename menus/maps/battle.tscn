@@ -58,6 +58,7 @@ _sections_unfolded = [ "Animation", "Region" ]
 position = Vector2( 337.555, 129.338 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 4
 playing = true
 
 
