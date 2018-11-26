@@ -13,7 +13,8 @@ var staffedTo = ""
 var recruited = false
 var gender = "female"
 var dead = false
-var savedPosition = Vector2(-1,-1)
+var savedPositionX = -1
+var savedPositionY = -1
 
 #Hero base stats come from external spreadsheet data
 #These are first set when a hero is randomly generated in heroGenerator.gd

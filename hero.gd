@@ -102,7 +102,18 @@ func _on_Timer_timeout():
 	#idleTimer is up, time to start walking!
 	_hide_extended_stats()
 	_start_walking()
-#
+
+func save_current_position():
+	#this works on the hero SCENE, but we have to pass it to the hero DATA
+	for i in global.guildRoster.size():
+		#pair hero scene to hero in data array
+		if (global.guildRoster[i].heroName == heroName):
+			global.guildRoster[i].savedPositionX = get_position().x
+			global.guildRoster[i].savedPositionY = get_position().y
+	#todo: is there some smarter way to do this? I wanted to just set
+	#the variables on this hero instance but it has to be done in the roster array 
+	
+	
 func save():
 	print("Saving this hero! " + heroName + " level " + str(level) + " " + heroClass)
 	var saved_hero_data = {
@@ -210,7 +221,8 @@ func set_instance_data(data):
 	weapon1Sprite = data.weapon1Sprite
 	weapon2Sprite = data.weapon2Sprite
 	shieldSprite = data.shieldSprite
-	savedPosition = data.savedPosition
+	savedPositionX = data.savedPositionX
+	savedPositionY = data.savedPositionY
 	
 func _draw_sprites():
 	var none = "res://sprites/heroes/none.png"
@@ -377,9 +389,6 @@ func _on_heroButton_released():
 func _on_touchTimer_timeout():
 	#touch timer timed out 
 	$touchTimer.stop()
-	
-func save_position(pos):
-	savedPosition = pos
 
 func send_home():
 	atHome = true

@@ -83,21 +83,8 @@ func _ready():
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen
-	for heroScene in onscreenHeroes:
-		#have to match to hero data
-		#todo: this seems really sloppy but I can't figure how else
-		#to pass data from the scene to the actual data array 
-		for heroData in global.guildRoster:
-			if (heroScene.heroName == heroData.heroName):
-				heroData.save_position(heroScene.get_position())
-				#get the scene's position and feed it back into the hero data
-		
-		for heroData in global.unrecruited:
-			if (heroScene.heroName == heroData.heroName):
-				heroData.save_position(heroScene.get_position())
-				
-		#todo: need some way to modify matching hero data via the scene that 
-		#represents the hero... maybe? 
+	for hero in onscreenHeroes:
+		hero.save_current_position()
 	
 func _on_Map_pressed():
 	_save_hero_locations()
@@ -146,14 +133,17 @@ func draw_heroes():
 			heroScene._draw_sprites()
 			
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
-			if (global.guildRoster[i].savedPosition.x == -1):
+			print(global.guildRoster[i].savedPositionX)
+			if (global.guildRoster[i].savedPositionX == -1):
+				print("using initial location")
 				heroX = spawnLocs[str(i)]["x"]
 				heroY = spawnLocs[str(i)]["y"]
 				#heroX = rand_range(mainRoomMinX, mainRoomMaxX)
 				#heroY = rand_range(mainRoomMinY, mainRoomMaxY)
 			else:
-				heroX = global.guildRoster[i].savedPosition.x #rand_range(mainRoomMinX, mainRoomMaxX)
-				heroY = global.guildRoster[i].savedPosition.y #rand_range(mainRoomMinY, mainRoomMaxY)
+				print("using saved location")
+				heroX = global.guildRoster[i].savedPositionX #rand_range(mainRoomMinX, mainRoomMaxX)
+				heroY = global.guildRoster[i].savedPositionY #rand_range(mainRoomMinY, mainRoomMaxY)
 			
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
@@ -162,12 +152,12 @@ func draw_heroes():
 	
 	#draw unrecruited heroes outside the base
 	for i in range(global.unrecruited.size()):
-		if (global.unrecruited[i].savedPosition.x == -1):
+		if (global.unrecruited[i].savedPositionX == -1):
 			heroX = rand_range(150, 380)
 			heroY = rand_range(650, 820)
 		else:
-			heroX = global.unrecruited[i].savedPosition.x #rand_range(150, 380)
-			heroY = global.unrecruited[i].savedPosition.y #rand_range(650, 820)
+			heroX = global.unrecruited[i].savedPositionX #rand_range(150, 380)
+			heroY = global.unrecruited[i].savedPositionY #rand_range(650, 820)
 			
 		var heroScene = preload("res://hero.tscn").instance()
 		heroScene.set_position(Vector2(heroX, heroY))
@@ -271,8 +261,6 @@ func load_game():
 	
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
-		#print("freeing:")
-		print(i) #prints the [KinematicBody... stuff
 		i.queue_free()
 		
 	save_game.open("user://save_game.save", File.READ)
@@ -292,7 +280,7 @@ func load_game():
 			#add hero to stage
 			get_node(current_line["parent"]).add_child(new_object)
 	
-	save_game.close()	
+	save_game.close()
 	#global.initDone = current_line.initDone
 	#global.guildName = current_line.guildName
 	#global.guildRoster = current_line.guildRoster
