@@ -103,6 +103,49 @@ func _on_Timer_timeout():
 	_hide_extended_stats()
 	_start_walking()
 #
+func save():
+	print("Saving this hero! " + heroName + " level " + str(level) + " " + heroClass)
+	var saved_hero_data = {
+		"filename":get_filename(), #res://hero.tscn
+		"parent":get_parent().get_path(),
+		"heroID":heroID,
+		"heroName":heroName,
+		"heroClass":heroClass,
+		"level":level,
+		"xp":xp,
+		"walkable":walkable,
+		"currentRoom":currentRoom,
+		"atHome":atHome,
+		"staffedTo":staffedTo,
+		"recruited":recruited,
+		"gender":gender,
+		"dead":dead,
+		"savedPositionX":get_position().x,#savedPosition.x,
+		"savedPositionY":get_position().y,#savedPosition.y,
+		"hpCurrent":hpCurrent,
+		"hp":hp,
+		"manaCurrent":manaCurrent,
+		"mana":mana,
+		"armor":armor,
+		"dps":dps,
+		"strength":strength,
+		"defense":defense,
+		"intelligence":intelligence,
+		"skillAlchemy":skillAlchemy,
+		"skillBlacksmithing":skillBlacksmithing,
+		"skillFletching":skillFletching,
+		"skillJewelcraft":skillJewelcraft,
+		"skillTailoring":skillTailoring,
+		"skillHarvesting":skillHarvesting,
+		"drama":drama,
+		"mood":mood,
+		"prestige":prestige,
+		"groupBonus":groupBonus,
+		"raidBonus":raidBonus,
+		"equipment":equipment
+	}
+	return saved_hero_data
+	
 func _input_event(viewport, event, shape_idx):
 	pass
 	#print("old input event triggered")

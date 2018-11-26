@@ -8,6 +8,9 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
+#save state group
+var SaveGroup
+
 var softCurrency = 500
 var hardCurrency = 500
 var currentMenu = "main"
@@ -405,7 +408,8 @@ func _ready():
 
 	if (!global.tradeskills["tailoring"].selectedRecipe):
 		global.tradeskills["tailoring"].selectedRecipe = tradeskills.tailoring.recipes[0]
-		
+	
+	add_to_group("SaveGroup")
 
 		
 func _begin_global_quest_timer(duration, questID):

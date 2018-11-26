@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -11,15 +11,16 @@
 [ext_resource path="res://gui/icons/coin_stack_32.png" type="Texture" id=9]
 [ext_resource path="res://gui/icons/diamond_32.png" type="Texture" id=10]
 [ext_resource path="res://gui/icons/capacity_32.png" type="Texture" id=11]
-[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=12]
-[ext_resource path="res://mainCamera.gd" type="Script" id=13]
-[ext_resource path="res://sprites/outside/windowLight.png" type="Texture" id=14]
-[ext_resource path="res://light.png" type="Texture" id=15]
-[ext_resource path="res://sprites/outside/tree2.png" type="Texture" id=16]
-[ext_resource path="res://sprites/outside/tree.png" type="Texture" id=17]
-[ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=18]
-[ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=19]
-[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=20]
+[ext_resource path="res://icon.png" type="Texture" id=12]
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=13]
+[ext_resource path="res://mainCamera.gd" type="Script" id=14]
+[ext_resource path="res://sprites/outside/windowLight.png" type="Texture" id=15]
+[ext_resource path="res://light.png" type="Texture" id=16]
+[ext_resource path="res://sprites/outside/tree2.png" type="Texture" id=17]
+[ext_resource path="res://sprites/outside/tree.png" type="Texture" id=18]
+[ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=19]
+[ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=20]
+[ext_resource path="res://gui/chiselbutton.png" type="Texture" id=21]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -27,7 +28,7 @@ content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
-texture = ExtResource( 20 )
+texture = ExtResource( 21 )
 region_rect = Rect2( 0, 0, 192, 64 )
 margin_left = 8.0
 margin_right = 8.0
@@ -51,7 +52,6 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="." index="0"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -81,6 +81,7 @@ _sections_unfolded = [ "custom_constants" ]
 
 [node name="vbox button MAP" type="VBoxContainer" parent="HUD/hbox_bottomBar" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -142,6 +143,7 @@ max_lines_visible = -1
 
 [node name="vbox button QUESTS" type="VBoxContainer" parent="HUD/hbox_bottomBar" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -202,6 +204,7 @@ max_lines_visible = -1
 
 [node name="vbox button VAULT" type="VBoxContainer" parent="HUD/hbox_bottomBar" index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -262,6 +265,7 @@ max_lines_visible = -1
 
 [node name="vbox button ROSTER" type="VBoxContainer" parent="HUD/hbox_bottomBar" index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -322,6 +326,7 @@ max_lines_visible = -1
 
 [node name="vbox button MARKET" type="VBoxContainer" parent="HUD/hbox_bottomBar" index="4"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -545,16 +550,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="button_collectQuest" type="TextureButton" parent="HUD" index="3"]
+[node name="button_saveGame" type="TextureButton" parent="HUD" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 400.0
-margin_top = 10.0
-margin_right = 464.0
-margin_bottom = 74.0
+margin_left = 420.0
+margin_top = 13.0
+margin_right = 484.0
+margin_bottom = 77.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -566,28 +571,73 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 12 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect", "Textures" ]
 
-[node name="field_questCountdown" type="Label" parent="HUD/button_collectQuest" index="0"]
+[node name="Label" type="Label" parent="HUD/button_saveGame" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 10.0
-margin_top = 70.0
-margin_right = 60.0
-margin_bottom = 84.0
+margin_left = 5.0
+margin_top = 69.0
+margin_right = 59.0
+margin_bottom = 83.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "99"
+text = "SAVE"
 align = 1
-valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="button_loadGame" type="TextureButton" parent="HUD" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 420.0
+margin_top = 109.0
+margin_right = 484.0
+margin_bottom = 173.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 12 )
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Textures" ]
+
+[node name="Label" type="Label" parent="HUD/button_loadGame" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 5.0
+margin_top = 69.0
+margin_right = 59.0
+margin_bottom = 83.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "LOAD"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -598,7 +648,7 @@ max_lines_visible = -1
 
 position = Vector2( 31.1808, -53.0736 )
 mode = 0
-tile_set = ExtResource( 12 )
+tile_set = ExtResource( 13 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -623,6 +673,7 @@ __meta__ = {
 
 [node name="mainCamera" type="Camera2D" parent="screen" index="2"]
 
+position = Vector2( 3, 0 )
 offset = Vector2( 16, 0 )
 anchor_mode = 0
 rotating = false
@@ -646,7 +697,7 @@ drag_margin_bottom = 1.0
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", "Visibility" ]
 
 [node name="light2d_window_left" type="Light2D" parent="screen" index="3"]
@@ -654,7 +705,7 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Offset", "Smoothing", 
 position = Vector2( 180, 570 )
 enabled = true
 editor_only = false
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -681,7 +732,7 @@ rotation = -0.000960086
 scale = Vector2( -1, 1 )
 enabled = true
 editor_only = false
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -707,7 +758,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( 208, 685 )
 enabled = true
 editor_only = false
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -732,7 +783,7 @@ shadow_item_cull_mask = 1
 position = Vector2( 300, 680 )
 enabled = true
 editor_only = false
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 1, 1, 1, 1 )
@@ -754,7 +805,6 @@ shadow_item_cull_mask = 1
 
 [node name="outside sprites" type="Container" parent="screen" index="7"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -774,102 +824,102 @@ __meta__ = {
 [node name="sprite_tree10" type="Sprite" parent="screen/outside sprites" index="0"]
 
 position = Vector2( 510, 470 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree11" type="Sprite" parent="screen/outside sprites" index="1"]
 
 position = Vector2( 10, 330 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree12" type="Sprite" parent="screen/outside sprites" index="2"]
 
 position = Vector2( 20, 400 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree3" type="Sprite" parent="screen/outside sprites" index="3"]
 
 position = Vector2( 490, 560 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree1" type="Sprite" parent="screen/outside sprites" index="4"]
 
 position = Vector2( 430, 610 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree2" type="Sprite" parent="screen/outside sprites" index="5"]
 
 position = Vector2( 450, 690 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree13" type="Sprite" parent="screen/outside sprites" index="6"]
 
 position = Vector2( 500, 340 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree14" type="Sprite" parent="screen/outside sprites" index="7"]
 
 position = Vector2( 10, 200 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree15" type="Sprite" parent="screen/outside sprites" index="8"]
 
 position = Vector2( 490, 70 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree8" type="Sprite" parent="screen/outside sprites" index="9"]
 
 position = Vector2( 390, 760 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree4" type="Sprite" parent="screen/outside sprites" index="10"]
 
 position = Vector2( 30, 570 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree5" type="Sprite" parent="screen/outside sprites" index="11"]
 
 position = Vector2( 90, 620 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="sprite_tree6" type="Sprite" parent="screen/outside sprites" index="12"]
 
 position = Vector2( 50, 740 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree9" type="Sprite" parent="screen/outside sprites" index="13"]
 
 position = Vector2( 450, 800 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree7" type="Sprite" parent="screen/outside sprites" index="14"]
 
 position = Vector2( 130, 800 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_tree16" type="Sprite" parent="screen/outside sprites" index="15"]
 
 position = Vector2( 510, 130 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="sprite_shrub1" type="Sprite" parent="screen/outside sprites" index="16"]
 
 position = Vector2( 330, 600 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 
 [node name="sprite_shrub2" type="Sprite" parent="screen/outside sprites" index="17"]
 
 position = Vector2( 180, 600 )
-texture = ExtResource( 18 )
+texture = ExtResource( 19 )
 
 [node name="sprite_lamp" type="Sprite" parent="screen/outside sprites" index="18"]
 
 position = Vector2( 300, 680 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="sprite_lamp2" type="Sprite" parent="screen/outside sprites" index="19"]
 
 position = Vector2( 210, 680 )
-texture = ExtResource( 19 )
+texture = ExtResource( 20 )
 
 [node name="button_addRoom" type="Button" parent="screen" index="8"]
 
@@ -940,7 +990,9 @@ __meta__ = {
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button MARKET/Guild" to="." method="_on_Roster_pressed"]
 
-[connection signal="pressed" from="HUD/button_collectQuest" to="HUD" method="_on_button_collectQuest_pressed"]
+[connection signal="pressed" from="HUD/button_saveGame" to="." method="_on_button_saveGame_pressed"]
+
+[connection signal="pressed" from="HUD/button_loadGame" to="." method="_on_button_loadGame_pressed"]
 
 [connection signal="pressed" from="screen/button_addRoom" to="." method="_on_button_addRoom_pressed"]
 

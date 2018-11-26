@@ -48,6 +48,7 @@ func _ready():
 	randomize()
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 	
+	#load_game()
 	# Generate default guildmembers and default rooms
 	if (!global.initDone):
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
@@ -74,7 +75,7 @@ func _ready():
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true
-	
+		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
 	draw_heroes()
@@ -138,7 +139,6 @@ func draw_heroes():
 	onscreenHeroes = []
 	
 	for i in range(global.guildRoster.size()):
-		
 		#only draw heroes who are "atHome"
 		if (global.guildRoster[i].atHome && global.guildRoster[i].staffedTo == ""):
 			var heroScene = preload("res://hero.tscn").instance()
@@ -239,4 +239,68 @@ func draw_rooms():
 func _on_button_addRoom_pressed():
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")
 
+func save_global_vars():
+	print("main.gd: saving these global vars")
+	var save_dict = {
+		"initDone":global.initDone,
+        "guildName":global.guildName,
+		"softCurrency":global.softCurrency,
+		"hardCurrency":global.hardCurrency
+		}
+	print(save_dict)
+	return save_dict
 
+func save_game():
+	print("main.gd: using save_game() to write save file")
+	var save_game = File.new()
+	save_game.open("user://save_game.save", File.WRITE)
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in save_nodes:
+		#save each of the heroes
+		var node_data = i.call("save") 
+		save_game.store_line(to_json(node_data)) #still has its name here
+	#also save the global vars
+	#save_game.store_line(to_json(save_global_vars()))
+	save_game.close()
+	
+func load_game():
+	var save_game = File.new()
+	if not save_game.file_exists("user://save_game.save"):
+		print('ERROR! No save file exists!')
+		return # Error! We don't have a save to load.
+	
+	var save_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in save_nodes:
+		#print("freeing:")
+		print(i) #prints the [KinematicBody... stuff
+		i.queue_free()
+		
+	save_game.open("user://save_game.save", File.READ)
+	while not save_game.eof_reached():
+		var current_line = parse_json(save_game.get_line())
+		if (current_line):
+			#make a new hero instance
+			var new_object = load(current_line["filename"]).instance() 
+			#vector2 isn't supported in json so we blow it out into 
+			#separate x and y values and then recreate it as a vector2
+			new_object.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
+			for i in current_line.keys():
+				if (i):
+					if (i == "filename" or i == "parent" or i == "savedPositionX" or i == "savedPositionY"):
+						continue
+					new_object.set(i, current_line[i])
+			#add hero to stage
+			get_node(current_line["parent"]).add_child(new_object)
+	
+	save_game.close()	
+	#global.initDone = current_line.initDone
+	#global.guildName = current_line.guildName
+	#global.guildRoster = current_line.guildRoster
+	#global.softCurrency = current_line.softCurrency
+	#global.hardCurrency = current_line.hardCurrency
+
+func _on_button_saveGame_pressed():
+	save_game()
+	
+func _on_button_loadGame_pressed():
+	load_game()
