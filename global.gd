@@ -8,8 +8,6 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
-#save state group
-var SaveGroup
 
 var softCurrency = 500
 var hardCurrency = 500
@@ -537,3 +535,16 @@ func _on_tradeskillTimer_timeout(tradeskillStr):
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))
+	
+func save():
+	var save_object = {
+			"filename":"res://global.gd", #res://hero.tscn
+			"parent":get_parent().get_path(),
+			"guildName":guildName,
+			"tradeskills":tradeskills,
+			"softCurrency":softCurrency,
+			"hardCurrency":hardCurrency,
+			"initDone":initDone,
+			"nextHeroID":nextHeroID,
+		}
+	return save_object 

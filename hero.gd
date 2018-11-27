@@ -1,4 +1,5 @@
 extends "basehero.gd"
+#hero.gd
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -155,6 +156,9 @@ func save():
 		"raidBonus":raidBonus,
 		"equipment":equipment
 	}
+	print(saved_hero_data.heroName)
+	print(saved_hero_data.hpCurrent)
+	print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
 	
 func _input_event(viewport, event, shape_idx):

@@ -35,6 +35,14 @@ var spawnLocs = {
 		"x":340,
 		"y":350
 		},
+	"6":{
+		"x":1,
+		"y":2
+		},
+	"7":{
+		"x":10,
+		"y":20
+		},
 	}
 
 var questTimeLeft = -1
@@ -44,26 +52,31 @@ onready var roomsLayer = $screen/rooms
 var onscreenHeroes = []
 
 func _ready():
+	#load_game()
+	
 	global.currentMenu = "main"
 	randomize()
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 	
-	#load_game()
+	var global_vars = get_node("/root/global")
+	global_vars.add_to_group("PersistGlobals")
+		
 	# Generate default guildmembers and default rooms
 	if (!global.initDone):
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Warrior")
-		heroGenerator.generate(global.guildRoster, "Rogue")
+		#heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
-		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		heroGenerator.generate(global.guildRoster, "Ranger")
-		heroGenerator.generate(global.guildRoster, "Cleric")
+		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+		#heroGenerator.generate(global.guildRoster, "Ranger")
+		#heroGenerator.generate(global.guildRoster, "Cleric")
 		
 		#Generate unrecruited heroes
 		heroGenerator.generate(global.unrecruited, "Cleric")
 		#heroGenerator.generate(global.unrecruited, "Rogue")
 		#heroGenerator.generate(global.unrecruited, "Ranger")
 		#heroGenerator.generate(global.unrecruited, "Warrior")
+		
 
 		#generate rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
@@ -75,6 +88,8 @@ func _ready():
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true
+	else:
+		print("loaded game")
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
@@ -133,7 +148,6 @@ func draw_heroes():
 			heroScene._draw_sprites()
 			
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
-			print(global.guildRoster[i].savedPositionX)
 			if (global.guildRoster[i].savedPositionX == -1):
 				print("using initial location")
 				heroX = spawnLocs[str(i)]["x"]
@@ -246,11 +260,8 @@ func save_game():
 	save_game.open("user://save_game.save", File.WRITE)
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
-		#save each of the heroes
 		var node_data = i.call("save") 
-		save_game.store_line(to_json(node_data)) #still has its name here
-	#also save the global vars
-	#save_game.store_line(to_json(save_global_vars()))
+		save_game.store_line(to_json(node_data))
 	save_game.close()
 	
 func load_game():
@@ -259,28 +270,70 @@ func load_game():
 		print('ERROR! No save file exists!')
 		return # Error! We don't have a save to load.
 	
-	var save_nodes = get_tree().get_nodes_in_group("Persist")
-	for i in save_nodes:
+	#save_nodes is an array 
+	var saved_heroes = get_tree().get_nodes_in_group("Persist") 
+		
+	for i in saved_heroes:
 		i.queue_free()
 		
+	#clear it out so we don't get dupes
+	global.guildRoster = []
+	global.unrecruited = []
+	#don't queue_free on PersistGlobals group 
+	
 	save_game.open("user://save_game.save", File.READ)
 	while not save_game.eof_reached():
 		var current_line = parse_json(save_game.get_line())
 		if (current_line):
 			#make a new hero instance
-			var new_object = load(current_line["filename"]).instance() 
-			#vector2 isn't supported in json so we blow it out into 
-			#separate x and y values and then recreate it as a vector2
-			new_object.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
-			for i in current_line.keys():
-				if (i):
-					if (i == "filename" or i == "parent" or i == "savedPositionX" or i == "savedPositionY"):
+			#make this handle heroes specifically (to distinguish from other objects)
+			if (current_line["filename"] == "res://hero.tscn"):
+				var restored_hero = load("res://hero.gd").new()
+				#var restored_hero = load(current_line["filename"]).instance()
+				
+				#build the hero's params back in
+				for key in current_line.keys():
+					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
 						continue
-					new_object.set(i, current_line[i])
-			#add hero to stage
-			get_node(current_line["parent"]).add_child(new_object)
-	
+					print("setting this key:" + str(key))
+					print("to this value: " + str(current_line[key]))
+					restored_hero.set(key, current_line[key])
+				
+				#position this hero (or at least load it with coordinates)
+				restored_hero.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
+				
+				#append it into the correct array 
+				if (restored_hero.recruited):
+					global.guildRoster.append(restored_hero)
+				elif (!restored_hero.recruited):
+					global.unrecruited.append(restored_hero)
+				else:
+					print("main.gd: can't place this object")
+				
+				#add child 
+				#get_node(current_line["parent"]).add_child(restored_hero)
+			
+			if (current_line["filename"] == "res://global.gd"):
+				var new_object = load(current_line["filename"])
+				print("PROCESSING SAVED GLOBALS")
+				#build the hero's params back in
+				for key in current_line.keys():
+					if (key):
+						if (key == "filename" or key == "parent"):
+							continue
+						print("setting this key:" + str(key))
+						print("to this value: " + str(current_line[key]))
+						new_object.set(key, current_line[key])
+				new_object.guildRoster = [] #egads, this seems dangerous!
+				new_object.unrecruited = [] #egads, this too
+				get_node(current_line["parent"]).add_child(new_object)
+						
+							
 	save_game.close()
+	draw_heroes()
+
+	
+	
 	#global.initDone = current_line.initDone
 	#global.guildName = current_line.guildName
 	#global.guildRoster = current_line.guildRoster

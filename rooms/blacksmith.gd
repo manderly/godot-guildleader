@@ -22,13 +22,15 @@ func _on_button_staffCraft_pressed():
 		get_tree().change_scene("res://menus/crafting.tscn")
 
 func _process(delta):
-	if (global.tradeskills["blacksmithing"].inProgress && !global.tradeskills["blacksmithing"].readyToCollect):
-		$button_inProgress.show()
-		$button_inProgress/field_timeRemaining.text = util.format_time(global.tradeskills["blacksmithing"].timer.time_left)
-	elif (global.tradeskills["blacksmithing"].inProgress && global.tradeskills["blacksmithing"].readyToCollect):
-		$button_inProgress/field_timeRemaining.text = "DONE"
-	else:
-		$button_inProgress.hide()
+	#race condition? with loading save data 
+#	if (global.tradeskills["blacksmithing"].inProgress && !global.tradeskills["blacksmithing"].readyToCollect):
+#		$button_inProgress.show()
+#		$button_inProgress/field_timeRemaining.text = util.format_time(global.tradeskills["blacksmithing"].timer.time_left)
+#	elif (global.tradeskills["blacksmithing"].inProgress && global.tradeskills["blacksmithing"].readyToCollect):
+#		$button_inProgress/field_timeRemaining.text = "DONE"
+#	else:
+#		$button_inProgress.hide()
+	pass
 
 func _on_button_inProgress_pressed():
 	global.currentMenu = "blacksmithing"
