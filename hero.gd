@@ -116,6 +116,18 @@ func save_current_position():
 	
 	
 func save():
+	var thisHero = self
+	if (thisHero.recruited):
+		for hero in global.guildRoster:
+			if (heroID == hero.heroID):
+				thisHero = hero
+	elif (!thisHero.recruited):
+		for hero in global.unrecruited:
+			if (heroID == hero.heroID):
+				thisHero = hero
+			
+	print('rosterHero ID: ' + String(thisHero.heroID))
+			
 	print("Saving this hero! " + heroName + " level " + str(level) + " " + heroClass)
 	var saved_hero_data = {
 		"filename":get_filename(), #res://hero.tscn
@@ -128,37 +140,37 @@ func save():
 		"walkable":walkable,
 		"currentRoom":currentRoom,
 		"atHome":atHome,
-		"staffedTo":staffedTo,
-		"recruited":recruited,
-		"gender":gender,
+		"staffedTo":thisHero.staffedTo,
+		"recruited":thisHero.recruited,
+		"gender":thisHero.gender,
 		"dead":dead,
 		"savedPositionX":get_position().x,#savedPosition.x,
 		"savedPositionY":get_position().y,#savedPosition.y,
-		"hpCurrent":hpCurrent,
-		"hp":hp,
-		"manaCurrent":manaCurrent,
-		"mana":mana,
-		"armor":armor,
-		"dps":dps,
-		"strength":strength,
-		"defense":defense,
-		"intelligence":intelligence,
-		"skillAlchemy":skillAlchemy,
-		"skillBlacksmithing":skillBlacksmithing,
-		"skillFletching":skillFletching,
-		"skillJewelcraft":skillJewelcraft,
-		"skillTailoring":skillTailoring,
-		"skillHarvesting":skillHarvesting,
-		"drama":drama,
-		"mood":mood,
-		"prestige":prestige,
-		"groupBonus":groupBonus,
-		"raidBonus":raidBonus,
-		"equipment":equipment,
-		"headSprite":headSprite #armor sprites should be derived from equipment 
+		"hpCurrent":thisHero.hpCurrent,
+		"hp":thisHero.hp,
+		"manaCurrent":thisHero.manaCurrent,
+		"mana":thisHero.mana,
+		"armor":thisHero.armor,
+		"dps":thisHero.dps,
+		"strength":thisHero.strength,
+		"defense":thisHero.defense,
+		"intelligence":thisHero.intelligence,
+		"skillAlchemy":thisHero.skillAlchemy,
+		"skillBlacksmithing":thisHero.skillBlacksmithing,
+		"skillFletching":thisHero.skillFletching,
+		"skillJewelcraft":thisHero.skillJewelcraft,
+		"skillTailoring":thisHero.skillTailoring,
+		"skillHarvesting":thisHero.skillHarvesting,
+		"drama":thisHero.drama,
+		"mood":thisHero.mood,
+		"prestige":thisHero.prestige,
+		"groupBonus":thisHero.groupBonus,
+		"raidBonus":thisHero.raidBonus,
+		"equipment":thisHero.equipment,
+		"headSprite":thisHero.headSprite #armor sprites should be derived from equipment 
 	}
-	print(saved_hero_data.heroName)
-	print(saved_hero_data.hpCurrent)
+	print('heroName' + saved_hero_data.heroName)
+	print('baseHp' + String(thisHero.baseHp))
 	print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
 	

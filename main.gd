@@ -65,7 +65,7 @@ func _ready():
 	if (!global.initDone):
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Warrior")
-		#heroGenerator.generate(global.guildRoster, "Rogue")
+		heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
 		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		#heroGenerator.generate(global.guildRoster, "Ranger")
@@ -298,6 +298,7 @@ func load_game():
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
 						continue
+					print(String(key) + ', ' + String(current_line[key]))
 					restored_hero.set(key, current_line[key])
 				
 				#position this hero (or at least load it with coordinates)
