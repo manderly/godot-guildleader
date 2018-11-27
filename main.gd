@@ -77,8 +77,7 @@ func _ready():
 		#heroGenerator.generate(global.unrecruited, "Ranger")
 		#heroGenerator.generate(global.unrecruited, "Warrior")
 		
-
-		#generate rooms
+		#generate starting rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
 		roomGenerator.generate("blacksmith", false)
@@ -143,7 +142,7 @@ func draw_heroes():
 	for i in range(global.guildRoster.size()):
 		#only draw heroes who are "atHome"
 		if (global.guildRoster[i].atHome && global.guildRoster[i].staffedTo == ""):
-			var heroScene = preload("res://hero.tscn").instance()
+			var heroScene = load("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
 			
@@ -173,7 +172,7 @@ func draw_heroes():
 			heroX = global.unrecruited[i].savedPositionX #rand_range(150, 380)
 			heroY = global.unrecruited[i].savedPositionY #rand_range(650, 820)
 			
-		var heroScene = preload("res://hero.tscn").instance()
+		var heroScene = load("res://hero.tscn").instance()
 		heroScene.set_position(Vector2(heroX, heroY))
 		heroScene.set_instance_data(global.unrecruited[i])
 		heroScene._draw_sprites()
@@ -182,11 +181,14 @@ func draw_heroes():
 		add_child(heroScene)
 
 func draw_rooms():
+	print('drawing rooms!')
+	print(global.rooms)
 	#the room data is kept in global.rooms 
 	#use that data to draw the instances into main.tscn 
 	var roomX = -1
 	var roomY = 43
 	for i in range(global.rooms.size()):
+		print("drawing this room: " + str(global.rooms[i].roomName))
 		#rooms are different from heroes
 		#heroes, all of them share one scene (hero.tscn)
 		#rooms, they're all their own individual scenes
@@ -196,25 +198,25 @@ func draw_rooms():
 			pass
 		else:
 			if (global.rooms[i].roomType == "bedroom"):
-				roomScene = preload("res://rooms/bedroom.tscn").instance()
+				roomScene = load("res://rooms/bedroom.tscn").instance()
 			elif (global.rooms[i].roomType == "training"):
-				roomScene = preload("res://rooms/training.tscn").instance()
+				roomScene = load("res://rooms/training.tscn").instance()
 			elif (global.rooms[i].roomType == "warrior"):
-				roomScene = preload("res://rooms/warrior.tscn").instance()
+				roomScene = load("res://rooms/warrior.tscn").instance()
 			elif (global.rooms[i].roomType == "vault"):
-				roomScene = preload("res://rooms/vault.tscn").instance()
+				roomScene = load("res://rooms/vault.tscn").instance()
 			elif (global.rooms[i].roomType == "alchemy"):
-				roomScene = preload("res://rooms/alchemy.tscn").instance()
+				roomScene = load("res://rooms/alchemy.tscn").instance()
 			elif (global.rooms[i].roomType == "blacksmith"):
-				roomScene = preload("res://rooms/blacksmith.tscn").instance()
+				roomScene = load("res://rooms/blacksmith.tscn").instance()
 			elif (global.rooms[i].roomType == "tailoring"):
-				roomScene = preload("res://rooms/tailoring.tscn").instance()
+				roomScene = load("res://rooms/tailoring.tscn").instance()
 			elif (global.rooms[i].roomType == "jewelcraft"):
-				roomScene = preload("res://rooms/jewelcraft.tscn").instance()
+				roomScene = load("res://rooms/jewelcraft.tscn").instance()
 			elif (global.rooms[i].roomType == "fletching"):
-				roomScene = preload("res://rooms/fletching.tscn").instance()
+				roomScene = load("res://rooms/fletching.tscn").instance()
 			elif (global.rooms[i].roomType == "topEdge"):
-				roomScene = preload("res://rooms/topEdge.tscn").instance()
+				roomScene = load("res://rooms/topEdge.tscn").instance()
 			else:
 				print("main.gd: unhandled room type found: " + global.rooms[i].roomType)
 			
@@ -271,21 +273,24 @@ func load_game():
 		return # Error! We don't have a save to load.
 	
 	#save_nodes is an array 
-	var saved_heroes = get_tree().get_nodes_in_group("Persist") 
-		
-	for i in saved_heroes:
+	var saved_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in saved_nodes:
 		i.queue_free()
+
 		
 	#clear it out so we don't get dupes
 	global.guildRoster = []
 	global.unrecruited = []
+	global.rooms = []
+	
 	#don't queue_free on PersistGlobals group 
 	
 	save_game.open("user://save_game.save", File.READ)
 	while not save_game.eof_reached():
 		var current_line = parse_json(save_game.get_line())
 		if (current_line):
-			#make a new hero instance
+			
+			#LOAD HEROES
 			#make this handle heroes specifically (to distinguish from other objects)
 			if (current_line["filename"] == "res://hero.tscn"):
 				var restored_hero = load("res://hero.gd").new()
@@ -295,8 +300,6 @@ func load_game():
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
 						continue
-					print("setting this key:" + str(key))
-					print("to this value: " + str(current_line[key]))
 					restored_hero.set(key, current_line[key])
 				
 				#position this hero (or at least load it with coordinates)
@@ -309,36 +312,34 @@ func load_game():
 					global.unrecruited.append(restored_hero)
 				else:
 					print("main.gd: can't place this object")
-				
-				#add child 
-				#get_node(current_line["parent"]).add_child(restored_hero)
 			
+			#LOAD GLOBAL VARS
 			if (current_line["filename"] == "res://global.gd"):
 				var new_object = load(current_line["filename"])
 				print("PROCESSING SAVED GLOBALS")
 				#build the hero's params back in
 				for key in current_line.keys():
-					if (key):
-						if (key == "filename" or key == "parent"):
-							continue
-						print("setting this key:" + str(key))
-						print("to this value: " + str(current_line[key]))
-						new_object.set(key, current_line[key])
+					if (key == "filename" or key == "parent"):
+						continue
+					new_object.set(key, current_line[key])
+				#new_object.rooms = []
 				new_object.guildRoster = [] #egads, this seems dangerous!
 				new_object.unrecruited = [] #egads, this too
 				get_node(current_line["parent"]).add_child(new_object)
-						
-							
+				
+			#LOAD ROOMS	?
+			if (current_line["filename"] == "res://rooms/*.tscn"):
+				var restored_room = load("res://rooms/room.gd").new()
+				print("PROCESSING SAVED ROOM SCENE")
+				for key in current_line.keys():
+					if (key == "filename" or key == "parent"):
+						continue
+					print("setting " + str(key) + " " + str(current_line[key]))
+					restored_room.set(key, current_line[key])
+				global.rooms.append(restored_room)
 	save_game.close()
 	draw_heroes()
-
-	
-	
-	#global.initDone = current_line.initDone
-	#global.guildName = current_line.guildName
-	#global.guildRoster = current_line.guildRoster
-	#global.softCurrency = current_line.softCurrency
-	#global.hardCurrency = current_line.hardCurrency
+	draw_rooms()
 
 func _on_button_saveGame_pressed():
 	save_game()

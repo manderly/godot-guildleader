@@ -26,3 +26,14 @@ func set_instance_data(data):
 	roomX = data.roomX
 	roomY = data.roomY
 	
+func save():
+	print("saving this room:" + str(get_filename()))
+	var room_save_data = {
+		"filename":"res://rooms/*.tscn", #get_filename(), #"res://rooms/tailoring.tscn"
+		"parent":get_parent().get_path(),
+		"roomName":roomName,
+		"roomType":roomType,
+		"roomX":roomX,
+		"roomY":roomY	
+	}
+	return room_save_data

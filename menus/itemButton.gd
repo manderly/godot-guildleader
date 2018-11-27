@@ -1,6 +1,7 @@
 extends Control
+#itemButton.gd
 
-onready var itemPopup = preload("res://menus/popup_itemInfo.tscn").instance()
+onready var itemPopup = load("res://menus/popup_itemInfo.tscn").instance()
 var itemData = null
 var itemVaultIndex = -1 #only needed when this button is used on the vault page 
 var itemSlot = null #used on heroPage to know what to filter by

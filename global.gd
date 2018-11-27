@@ -546,5 +546,7 @@ func save():
 			"hardCurrency":hardCurrency,
 			"initDone":initDone,
 			"nextHeroID":nextHeroID,
+			"rooms":rooms,
+			"roomCount":roomCount
 		}
 	return save_object 
