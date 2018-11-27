@@ -3,7 +3,12 @@ extends "room.gd"
 #inherits all of room's methods 
 
 func _ready():
+	draw_hero_and_button()
+
+func draw_hero_and_button():
+	print(global.tradeskills["blacksmithing"].hero)
 	if (global.tradeskills["blacksmithing"].hero):
+		print("Blacksmithing has a hero, creating his scene...")
 		$button_staffCraft.text = "Craft"
 		#draw the hero
 		var heroScene = preload("res://hero.tscn").instance()
@@ -13,7 +18,7 @@ func _ready():
 		add_child(heroScene)
 	else:
 		$button_staffCraft.text = "Staff"
-
+	
 func _on_button_staffCraft_pressed():
 	global.currentMenu = "blacksmithing"
 	if (!global.tradeskills["blacksmithing"].hero):

@@ -3,6 +3,9 @@ extends "room.gd"
 #inherits all of room's methods 
 
 func _ready():
+	draw_hero_and_button()
+
+func draw_hero_and_button():
 	if (global.tradeskills["tailoring"].hero):
 		$button_staffCraft.text = "Craft"
 		#draw the hero

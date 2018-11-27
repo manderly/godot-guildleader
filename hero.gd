@@ -154,7 +154,8 @@ func save():
 		"prestige":prestige,
 		"groupBonus":groupBonus,
 		"raidBonus":raidBonus,
-		"equipment":equipment
+		"equipment":equipment,
+		"headSprite":headSprite #armor sprites should be derived from equipment 
 	}
 	print(saved_hero_data.heroName)
 	print(saved_hero_data.hpCurrent)

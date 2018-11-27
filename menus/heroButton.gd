@@ -16,7 +16,6 @@ func set_button_id(i):
 	buttonID = i
 	
 func set_hero_data(data):
-	print(data)
 	heroData = data
 	populate_fields(heroData)
 
@@ -93,6 +92,8 @@ func _on_Button_pressed():
 		if (heroData.atHome && heroData.staffedTo == ""):
 			heroData.staffedTo = global.currentMenu
 			heroData.currentRoom = 4
+			print("heroButton.gd heroData:")
+			print(str(heroData))
 			global.tradeskills[global.currentMenu].hero = heroData
 			#todo: figure out where the blacksmith room is in the sequence and use that index
 			global.currentMenu = "main"

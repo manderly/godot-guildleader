@@ -4,3 +4,6 @@ extends "room.gd"
 
 func _ready():
 	pass
+
+func draw_hero_and_button():
+	pass

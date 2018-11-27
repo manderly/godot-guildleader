@@ -34,6 +34,6 @@ func save():
 		"roomName":roomName,
 		"roomType":roomType,
 		"roomX":roomX,
-		"roomY":roomY	
+		"roomY":roomY
 	}
 	return room_save_data

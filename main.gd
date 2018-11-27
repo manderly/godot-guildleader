@@ -140,12 +140,13 @@ func draw_heroes():
 	onscreenHeroes = []
 	
 	for i in range(global.guildRoster.size()):
-		#only draw heroes who are "atHome"
+		#draw heroes who are "atHome"
 		if (global.guildRoster[i].atHome && global.guildRoster[i].staffedTo == ""):
+			#we only need to make a new instance if this hero
+			#is "wandering" the guildhall
 			var heroScene = load("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
-			
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
 			if (global.guildRoster[i].savedPositionX == -1):
 				print("using initial location")
@@ -162,7 +163,7 @@ func draw_heroes():
 			heroScene.set_display_params(true, true) #walking, show name
 			onscreenHeroes.append(heroScene)
 			add_child(heroScene)
-	
+			
 	#draw unrecruited heroes outside the base
 	for i in range(global.unrecruited.size()):
 		if (global.unrecruited[i].savedPositionX == -1):
@@ -181,14 +182,11 @@ func draw_heroes():
 		add_child(heroScene)
 
 func draw_rooms():
-	print('drawing rooms!')
-	print(global.rooms)
 	#the room data is kept in global.rooms 
 	#use that data to draw the instances into main.tscn 
 	var roomX = -1
 	var roomY = 43
 	for i in range(global.rooms.size()):
-		print("drawing this room: " + str(global.rooms[i].roomName))
 		#rooms are different from heroes
 		#heroes, all of them share one scene (hero.tscn)
 		#rooms, they're all their own individual scenes
@@ -330,14 +328,33 @@ func load_game():
 			#LOAD ROOMS	?
 			if (current_line["filename"] == "res://rooms/*.tscn"):
 				var restored_room = load("res://rooms/room.gd").new()
-				print("PROCESSING SAVED ROOM SCENE")
+				#print("PROCESSING SAVED ROOM SCENE")
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent"):
 						continue
-					print("setting " + str(key) + " " + str(current_line[key]))
+					#print("setting " + str(key) + " " + str(current_line[key]))
 					restored_room.set(key, current_line[key])
 				global.rooms.append(restored_room)
 	save_game.close()
+	
+	#populate tradeskills object
+	#had to do this down here because we need both heroes and tradeskills loaded
+	#to do this operation
+	
+	#this seems really cumbersome, is there some way to just ask each
+	#tradeskill who belongs to it and hand over the correct hero instance?
+	for hero in global.guildRoster:
+		print(hero.heroName + " is staffed to: " + hero.staffedTo)
+		if (hero.staffedTo == "blacksmithing"):
+			global.tradeskills["blacksmithing"].hero = hero
+		elif (hero.staffedTo == "alchemy"):
+			global.tradeskills["alchemy"].hero = hero
+		elif (hero.staffedTo == "tailoring"):
+			global.tradeskills["tailoring"].hero = hero
+		elif (hero.staffedTo == "fletching"):
+			global.tradeskills["fletching"].hero = hero
+		elif (hero.staffedTo == "jewelcraft"):
+			global.tradeskills["jewelcraft"].hero = hero	
 	draw_heroes()
 	draw_rooms()
 
