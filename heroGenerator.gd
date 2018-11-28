@@ -22,9 +22,6 @@ func generate(destinationArray, classStr):
 	if (randomGender == 1):
 		newHero.gender = "male"
 	
-	#random name 
-	#todo: pass species in addition to gender 
-	newHero.heroName = nameGenerator.generate(newHero.gender)
 	#random head (these are gendered mostly so we don't end up with bearded ladies)
 	if (newHero.gender == "female"):
 		newHero.headSprite = humanFemaleHeads[randi() % humanFemaleHeads.size()]
@@ -81,9 +78,19 @@ func generate(destinationArray, classStr):
 		newHero.give_new_item("Cloth Shirt")
 		newHero.give_new_item("Muddy Boots")
 		newHero.give_new_item("Cloth Pants")
-		
+
+	elif (classStr == "Druid"):
+		newHero.heroClass = "Druid"
+		newHero.give_new_item("Cloth Shirt")
+		newHero.give_new_item("Muddy Boots")
+		newHero.give_new_item("Cloth Pants")		
+			
 	else:
 		print("ERROR - BAD HERO CLASS TYPE")
+		
+	#random name 
+	#todo: pass species in addition to gender 
+	newHero.heroName = nameGenerator.generate(newHero.gender, newHero.heroClass)
 
 	#assign stats accordingly
 	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]

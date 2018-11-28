@@ -69,7 +69,13 @@ var classLevelModifiers = {
 		"mana":1.6,
 		"strength":1,
 		"defense":1.4
-		}
+		},
+	"Druid":{
+		"hp":1.2,
+		"mana":1.6,
+		"strength":1,
+		"defense":1.2
+		},
 }
 
 #EQUIPMENT MODIFIED STATS - the total from the hero's worn items (equipment dictionary further down)

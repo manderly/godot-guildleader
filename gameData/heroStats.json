@@ -64,6 +64,45 @@
       "groupBonus": 0,
       "raidBonus": 0,
       "dps": 0
+    },
+    "Druid": {
+      "hp": 10,
+      "mana": 20,
+      "strength": 6,
+      "defense": 8,
+      "intelligence": 18,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0,
+      "dps": 0
+    },
+    "Paladin": {
+      "hp": 18,
+      "mana": 15,
+      "strength": 17,
+      "defense": 20,
+      "intelligence": 14,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0,
+      "dps": 0
+    },
+    "Necromancer": {
+      "hp": 10,
+      "mana": 20,
+      "strength": 6,
+      "defense": 8,
+      "intelligence": 18,
+      "drama": 0,
+      "mood": 10,
+      "prestige": 0,
+      "groupBonus": 0,
+      "raidBonus": 0,
+      "dps": 0
     }
   }
 ]

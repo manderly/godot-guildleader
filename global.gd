@@ -169,6 +169,9 @@ var roomMaxX = 360
 #names
 var humanMaleNames = []
 var humanFemaleNames = []
+var surnamesHuman = []
+var surnamesNature = []
+var surnamesRogue = []
 
 #signal quest_begun
 signal quest_complete
@@ -305,7 +308,13 @@ func _ready():
 	humanMaleNames = global.unformattedData
 	util.prepare_unformatted_data_from_file("names/humanFemale.json")
 	humanFemaleNames = global.unformattedData
-	
+	util.prepare_unformatted_data_from_file("names/surnamesHuman.json")
+	surnamesHuman = global.unformattedData
+	util.prepare_unformatted_data_from_file("names/surnamesNature.json")
+	surnamesNature = global.unformattedData
+	util.prepare_unformatted_data_from_file("names/surnamesRogue.json")
+	surnamesRogue = global.unformattedData
+		
 	###### Load items ######
 	util.prepare_unformatted_data_from_file("items.json")
 	#Access like: var item = global.allGameItems("Rusty Broadsword")

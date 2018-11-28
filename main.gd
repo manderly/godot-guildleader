@@ -68,13 +68,14 @@ func _ready():
 		heroGenerator.generate(global.guildRoster, "Rogue")
 		#Generate a few more guildmates for quest testing
 		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		#heroGenerator.generate(global.guildRoster, "Ranger")
+		heroGenerator.generate(global.guildRoster, "Ranger")
 		#heroGenerator.generate(global.guildRoster, "Cleric")
 		
 		#Generate unrecruited heroes
-		heroGenerator.generate(global.unrecruited, "Cleric")
+		#heroGenerator.generate(global.unrecruited, "Cleric")
 		#heroGenerator.generate(global.unrecruited, "Rogue")
-		#heroGenerator.generate(global.unrecruited, "Ranger")
+		heroGenerator.generate(global.unrecruited, "Ranger")
+		heroGenerator.generate(global.unrecruited, "Druid")
 		#heroGenerator.generate(global.unrecruited, "Warrior")
 		
 		#generate starting rooms
@@ -149,11 +150,8 @@ func draw_heroes():
 			heroScene._draw_sprites()
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
 			if (global.guildRoster[i].savedPositionX == -1):
-				print("using initial location")
 				heroX = spawnLocs[str(i)]["x"]
 				heroY = spawnLocs[str(i)]["y"]
-				#heroX = rand_range(mainRoomMinX, mainRoomMaxX)
-				#heroY = rand_range(mainRoomMinY, mainRoomMaxY)
 			else:
 				print("using saved location")
 				heroX = global.guildRoster[i].savedPositionX #rand_range(mainRoomMinX, mainRoomMaxX)
