@@ -6,19 +6,19 @@ extends Node2D
 var heroPositions = {
 	"0":{
 		"x":25,
-		"y":100
+		"y":120
 		},
 	"1":{
 		"x":100,
-		"y":110
+		"y":130
 		},
 	"2":{
 		"x":50,
-		"y":160
+		"y":170
 		},
 	"3":{
 		"x":125,
-		"y":170
+		"y":180
 		},
 	}
 
@@ -37,3 +37,6 @@ func populate_heroes(heroes):
 		heroScene.set_display_params(false, true) #walking, show name 
 		
 		add_child(heroScene)
+		
+func set_background(filename):
+	$TextureRect.texture = load(filename)

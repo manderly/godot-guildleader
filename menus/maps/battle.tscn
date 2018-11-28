@@ -1,59 +1,45 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/maps/battle.gd" type="Script" id=1]
-[ext_resource path="res://tiles/forest_tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/mobs/rat and bat spritesheet calciumtrice.png" type="Texture" id=3]
-[ext_resource path="res://sprites/mobs/bat/bat_01.png" type="Texture" id=4]
-[ext_resource path="res://sprites/mobs/bat/bat_02.png" type="Texture" id=5]
-[ext_resource path="res://sprites/mobs/bat/bat_03.png" type="Texture" id=6]
-[ext_resource path="res://sprites/mobs/bat/bat_04.png" type="Texture" id=7]
-[ext_resource path="res://sprites/mobs/bat/bat_05.png" type="Texture" id=8]
+[ext_resource path="res://menus/maps/battleBackgrounds/forest01.png" type="Texture" id=2]
+[ext_resource path="res://sprites/mobs/bat/bat_01.png" type="Texture" id=3]
+[ext_resource path="res://sprites/mobs/bat/bat_02.png" type="Texture" id=4]
+[ext_resource path="res://sprites/mobs/bat/bat_03.png" type="Texture" id=5]
+[ext_resource path="res://sprites/mobs/bat/bat_04.png" type="Texture" id=6]
+[ext_resource path="res://sprites/mobs/bat/bat_05.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="TileMap" type="TileMap" parent="." index="0"]
+[node name="TextureRect" type="TextureRect" parent="." index="0"]
 
-mode = 0
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 64, 64 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
-format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 196608, 4, 0, 196609, 4, 0, 196610, 4, 0, 196611, 4, 0, 196612, 4, 0, 196613, 4, 0, 196614, 4, 0 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 448.0
+margin_bottom = 256.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+stretch_mode = 0
 
-[node name="SpriteFromSheet" type="Sprite" parent="." index="1"]
-
-position = Vector2( 367.962, 102.086 )
-texture = ExtResource( 3 )
-vframes = 10
-hframes = 10
-frame = 50
-region_rect = Rect2( 0, 0, 31, 44 )
-_sections_unfolded = [ "Animation", "Region" ]
-
-[node name="bat" type="AnimatedSprite" parent="." index="2"]
+[node name="bat" type="AnimatedSprite" parent="." index="1"]
 
 position = Vector2( 337.555, 129.338 )
 frames = SubResource( 1 )

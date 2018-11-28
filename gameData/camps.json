@@ -11,7 +11,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "test09",
@@ -25,7 +26,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "test10",
@@ -39,7 +41,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "goblin01",
@@ -53,7 +56,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "goblin02",
@@ -67,7 +71,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_guild01",
@@ -81,7 +86,8 @@
     "mob1": "Small Rat",
     "mob2": "Small Rat",
     "mob3": "Large Rat",
-    "rareMob": "Infected Rat"
+    "rareMob": "Infected Rat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_guild02",
@@ -95,7 +101,8 @@
     "mob1": "Small Spider",
     "mob2": "Small Spider",
     "mob3": "Big Spider",
-    "rareMob": "Big Spider"
+    "rareMob": "Big Spider",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_guild03",
@@ -109,7 +116,8 @@
     "mob1": "Small Spider",
     "mob2": "Small Spider",
     "mob3": "Big Spider",
-    "rareMob": "Spider King"
+    "rareMob": "Spider King",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_forest01",
@@ -123,7 +131,8 @@
     "mob1": "Weak Forest Bat",
     "mob2": "Weak Forest Bat",
     "mob3": "Weak Forest Bat",
-    "rareMob": "Rabid Forest Bat"
+    "rareMob": "Rabid Forest Bat",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_forest02",
@@ -137,7 +146,8 @@
     "mob1": "Aggressive Wolf",
     "mob2": "Aggressive Wolf",
     "mob3": "Aggressive Wolf",
-    "rareMob": "Direwolf"
+    "rareMob": "Direwolf",
+    "bgFilepath": "forest02.png"
   },
   {
     "campId": "camp_forest03",
@@ -151,7 +161,8 @@
     "mob1": "Small Spider",
     "mob2": "Small Spider",
     "mob3": "Big Spider",
-    "rareMob": "Spider King"
+    "rareMob": "Spider King",
+    "bgFilepath": "forest03.png"
   },
   {
     "campId": "camp_forest04",
@@ -165,7 +176,8 @@
     "mob1": "Goblin Bandit",
     "mob2": "Goblin Bandit",
     "mob3": "Goblin Rogue",
-    "rareMob": "Ragron, the Goblin Outlaw"
+    "rareMob": "Ragron, the Goblin Outlaw",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_forest05",
@@ -179,7 +191,8 @@
     "mob1": "Direwolf",
     "mob2": "Direwolf",
     "mob3": "Direwolf",
-    "rareMob": "Dreadwolf"
+    "rareMob": "Dreadwolf",
+    "bgFilepath": "forest01.png"
   },
   {
     "campId": "camp_forest06",
@@ -193,7 +206,8 @@
     "mob1": "Fairie Defender",
     "mob2": "Fairie Defender",
     "mob3": "Fairie Defender",
-    "rareMob": "Elite Fairie Guard"
+    "rareMob": "Elite Fairie Guard",
+    "bgFilepath": "forest07.png"
   },
   {
     "campId": "camp_forest07",
@@ -207,7 +221,8 @@
     "mob1": "Fairie Defender",
     "mob2": "Elite Fairie Guard",
     "mob3": "Elite Fairie Guard",
-    "rareMob": "Yizma the Fairie Queen"
+    "rareMob": "Yizma the Fairie Queen",
+    "bgFilepath": "forest07.png"
   },
   {
     "campId": "camp_coast01",
@@ -221,7 +236,8 @@
     "mob1": "Scuttling Crab",
     "mob2": "Scuttling Crab",
     "mob3": "Scuttling Crab",
-    "rareMob": "Hulking Crab"
+    "rareMob": "Hulking Crab",
+    "bgFilepath": "coast01.png"
   },
   {
     "campId": "camp_coast02",
@@ -235,7 +251,8 @@
     "mob1": "Tadloc Grunt",
     "mob2": "Tadloc Raider",
     "mob3": "Tadloc Raider",
-    "rareMob": "Tadloc Raider"
+    "rareMob": "Tadloc Raider",
+    "bgFilepath": "coast02.png"
   },
   {
     "campId": "camp_coast03",
@@ -249,7 +266,8 @@
     "mob1": "Tadloc Brawler",
     "mob2": "Tadloc Brawler",
     "mob3": "Tadloc Brawler",
-    "rareMob": "Burgor the Tadloc King"
+    "rareMob": "Burgor the Tadloc King",
+    "bgFilepath": "coast03.png"
   },
   {
     "campId": "camp_coast04",
@@ -263,7 +281,8 @@
     "mob1": "Lowly Smuggler",
     "mob2": "Lowly Smuggler",
     "mob3": "Lowly Smuggler",
-    "rareMob": "Smuggler Captain"
+    "rareMob": "Smuggler Captain",
+    "bgFilepath": "coast04.png"
   },
   {
     "campId": "camp_coast05",
@@ -277,7 +296,8 @@
     "mob1": "Tidewater Bone Squire",
     "mob2": "Tidewater Bone Squire",
     "mob3": "Tidewater Bone Knight",
-    "rareMob": "Tidewater Bone Champion"
+    "rareMob": "Tidewater Bone Champion",
+    "bgFilepath": "coast01.png"
   },
   {
     "campId": "camp_coast06",
@@ -291,7 +311,8 @@
     "mob1": "Tadloc Brawler",
     "mob2": "Tadloc Spelunker",
     "mob3": "Tadloc Spelunker",
-    "rareMob": "Tadloc Farseer"
+    "rareMob": "Tadloc Farseer",
+    "bgFilepath": "coast06.png"
   },
   {
     "campId": "camp_coast07",
@@ -305,7 +326,8 @@
     "mob1": "Old Scallywag ",
     "mob2": "Deck Swabbie",
     "mob3": "Deck Swabbie",
-    "rareMob": "Captain Smellybeard"
+    "rareMob": "Captain Smellybeard",
+    "bgFilepath": "coast01.png"
   },
   {
     "campId": "camp_coast08",
@@ -319,7 +341,8 @@
     "mob1": "Spectral Siren",
     "mob2": "Spectral Siren",
     "mob3": "Spectral Songstress",
-    "rareMob": "Lela the Irresistable"
+    "rareMob": "Lela the Irresistable",
+    "bgFilepath": "coast08.png"
   },
   {
     "campId": "camp_falls01",
@@ -333,6 +356,7 @@
     "mob1": "",
     "mob2": "",
     "mob3": "",
-    "rareMob": ""
+    "rareMob": "",
+    "bgFilepath": ""
   }
 ]

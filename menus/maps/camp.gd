@@ -58,6 +58,7 @@ func _process(delta):
 func _camp_in_progress():
 	$battleScene.show()
 	$battleScene.populate_heroes(campData.heroes)
+	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
 	field_difficultyEstimate.text = "Camp in progress..."
 	for button in heroButtons:
 		button.hide()
