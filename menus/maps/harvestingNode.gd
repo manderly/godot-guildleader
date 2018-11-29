@@ -11,7 +11,7 @@ func _ready():
 
 func _set_data(idStr):
 	harvestingId = idStr
-	harvestingData = global.harvestingData[idStr]
+	harvestingData = global.activeHarvestingData[idStr]
 	_populate_fields()
 	
 func _populate_fields():

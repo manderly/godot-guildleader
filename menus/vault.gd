@@ -92,7 +92,7 @@ func _draw_tradeskill_items():
 	for i in range(global.tradeskillItemsSeen.size()):
 		var tradeskillItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = global.tradeskillItemsSeen[i]
-		tradeskillItemDisplay._display_in_vault(global.tradeskillItemsDictionary[itemName])
+		tradeskillItemDisplay._display_in_vault(global.playerTradeskillItems[itemName])
 		gridTradeskillItems.add_child(tradeskillItemDisplay)
 
 func _draw_quest_items():
@@ -101,7 +101,7 @@ func _draw_quest_items():
 	for item in global.questItemsSeen:
 		var questItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = item
-		questItemDisplay._display_in_vault(global.questItemsDictionary[itemName])
+		questItemDisplay._display_in_vault(global.playerQuestItems[itemName])
 		gridQuestItems.add_child(questItemDisplay)
 	
 	

@@ -34,4 +34,4 @@ func _set_red():
 	$field_name.add_color_override("font_color", Color(.94, .0078, .0078, 1)) #242,2,2,1 green
 	
 func _set_white():
-	$field_name.add_color_override("font_color", global.colorWhite) #242,2,2,1 green
+	$field_name.add_color_override("font_color", staticData.colorWhite) #242,2,2,1 green

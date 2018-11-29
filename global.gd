@@ -273,7 +273,7 @@ func _ready():
 		
 func _begin_harvesting_timer(duration, harvestNodeID):
 	#starting harvest timer 
-	var harvestNode = global.harvestingData[harvestNodeID]
+	var harvestNode = global.activeHarvestingData[harvestNodeID]
 	if (!harvestNode.inProgress):
 		harvestNode.inProgress = true
 		harvestNode.readyToCollect = false
@@ -289,7 +289,7 @@ func _begin_harvesting_timer(duration, harvestNodeID):
 func _on_harvestingTimer_timeout(harvestNodeID):
 	#this is where the harvest's random prizes are determined 
 	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
-	var harvestNode = global.harvestingData[harvestNodeID]
+	var harvestNode = global.activeHarvestingData[harvestNodeID]
 	harvestNode.readyToCollect = true
 	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
 	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
@@ -297,7 +297,7 @@ func _on_harvestingTimer_timeout(harvestNodeID):
 func _begin_camp_timer(duration, campID):
 	print("starting camp timer")
 	#starting camp timer 
-	var camp = global.campData[campID]
+	var camp = global.activeCampData[campID]
 	if (!camp.inProgress):
 		camp.inProgress = true
 		camp.readyToCollect = false
@@ -313,19 +313,19 @@ func _begin_camp_timer(duration, campID):
 func _on_campTimer_timeout(campID):
 	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
 	#todo: may want to do partial progress on camp
-	var camp = global.campData[campID]
+	var camp = global.activeCampData[campID]
 	camp.inProgress = false
 	camp.readyToCollect = true
 	
-func _on_questTimer_timeout(questID):
+#func _on_questTimer_timeout(questID):
 	#this is where the quest's random prizes are determined 
-	global.logger(self, "Quest timer complete! Finished this quest: " + questID)
-	var quest = global.questData[questID]
-	quest.inProgress = false
-	quest.readyToCollect = true
-	quest.lootWon.questPrizeSC = round(rand_range(quest.scMin, quest.scMax))
-	if (quest.hcMin != 0 && quest.hcMax != 0):
-		quest.lootWon.questPrizeHC = round(rand_range(quest.hcMin, quest.hcMax))
+	#global.logger(self, "Quest timer complete! Finished this quest: " + questID)
+	#var quest = global.questData[questID]
+	#quest.inProgress = false
+	#quest.readyToCollect = true
+	#quest.lootWon.questPrizeSC = round(rand_range(quest.scMin, quest.scMax))
+	#if (quest.hcMin != 0 && quest.hcMax != 0):
+	#	quest.lootWon.questPrizeHC = round(rand_range(quest.hcMin, quest.hcMax))
 	
 	#this is just its NAME, not the item itself
 	
@@ -335,17 +335,17 @@ func _on_questTimer_timeout(questID):
 	#Roll 1-100 (again)
 	#If number is <= than item2Chance, give item2
 	
-	var winItemRandom = 0
-	if (quest.item1):
-		winItemRandom = randi()%100+1 #1-100
-		if (winItemRandom <= quest.item1Chance):
-			quest.lootWon.questPrizeItem1 = quest.item1 
-	if (quest.item2):
-		winItemRandom = randi()%100+1 #1-100
-		if (winItemRandom <= quest.item2Chance):
-			quest.lootWon.questPrizeItem2 = quest.item2
+	#var winItemRandom = 0
+	#if (quest.item1):
+	#	winItemRandom = randi()%100+1 #1-100
+	#	if (winItemRandom <= quest.item1Chance):
+	#		quest.lootWon.questPrizeItem1 = quest.item1 
+	#if (quest.item2):
+	#	winItemRandom = randi()%100+1 #1-100
+	#	if (winItemRandom <= quest.item2Chance):
+	#		quest.lootWon.questPrizeItem2 = quest.item2
 			
-	emit_signal("quest_complete", quest.name)
+	#emit_signal("quest_complete", quest.name)
 
 func _begin_tradeskill_timer(duration):
 	var tradeskill = global.tradeskills[global.currentMenu]

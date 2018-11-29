@@ -39,7 +39,7 @@ func _populate_fields():
 	if (itemData.rarity):
 		$field_rarity.text = str(itemData.rarity).capitalize()
 		if (itemData.rarity == "uncommon"):
-			$field_rarity.add_color_override("font_color", statcData.colorGreen)
+			$field_rarity.add_color_override("font_color", staticData.colorGreen)
 		elif (itemData.rarity == "rare"):
 			$field_rarity.add_color_override("font_color", staticData.colorBlue) 
 		elif (itemData.rarity == "epic"):

@@ -11,7 +11,7 @@ var campData = null
 var battlePrint = false
 
 func _ready():
-	campData = global.campData[global.selectedCampID]
+	campData = global.activeCampData[global.selectedCampID]
 	#print(campData.campOutcome)
 	if (battlePrint):
 		for event in campData.campOutcome.battleRecord:
@@ -35,7 +35,7 @@ func _populate_fields():
 		
 	for itemName in uniqueLootNames:
 		var itemIconAndCountDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
-		var itemData = global.allGameItems[str(itemName)]
+		var itemData = staticData.allItemData[str(itemName)]
 		itemIconAndCountDisplay._render_stacked_item(itemData, lootDictionaryWithCounts[itemName])
 		itemIconAndCountDisplay._set_white()
 		field_lootItems.add_child(itemIconAndCountDisplay)
@@ -75,6 +75,5 @@ func _on_button_collect_pressed():
 	elif (global.returnToMap == "coast"):
 		get_tree().change_scene("res://menus/maps/coast.tscn")
 	
-
 func _on_button_detailedCombatLog_pressed():
 	campLogPopup.popup()

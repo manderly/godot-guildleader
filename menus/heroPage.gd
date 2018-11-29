@@ -120,8 +120,8 @@ func populate_fields(data):
 func _update_stats():
 	print("hero's hp should be: " + str(global.selectedHero.hp))
 	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
-	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
-	$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
+	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.allLevelXpData[global.selectedHero.level].total)
+	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.allLevelXpData[global.selectedHero.level].total))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))

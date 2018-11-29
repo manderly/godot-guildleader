@@ -22,7 +22,7 @@ func set_hero_data(data):
 func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.xp) + "/" + str(global.levelXpData[data.level].total)
+	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.allLevelXpData[data.level].total)
 	if (data.atHome && data.staffedTo == ""):
 		$VBoxContainer/field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
@@ -42,7 +42,7 @@ func populate_fields(data):
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
 	
-	$ProgressBar.set_value(100 * (data.xp / global.levelXpData[data.level].total))
+	$ProgressBar.set_value(100 * (data.xp / staticData.allLevelXpData[data.level].total))
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
@@ -66,7 +66,7 @@ func _on_Button_pressed():
 		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")
 	elif (global.currentMenu == "selectHeroForQuest"):
-		var currentQuest = global.questData[global.selectedQuestID]
+		var currentQuest = staticData.allQuestData[global.selectedQuestID]
 		#first, free up whoever is already in that spot (if anyone) 
 		if (currentQuest.heroes[global.questButtonID]):
 			currentQuest.heroes[global.questButtonID].atHome = true
@@ -101,7 +101,7 @@ func _on_Button_pressed():
 		else:
 			print("hero is busy")
 	elif (global.currentMenu == "harvesting"):
-		var currentHarvestNode = global.harvestingData[global.selectedHarvestingID]
+		var currentHarvestNode = global.activeHarvestingData[global.selectedHarvestingID]
 		#first, free up whoever is already in that spot (if anyone) 
 		if (currentHarvestNode.hero):
 			currentHarvestNode.hero.atHome = true
@@ -119,7 +119,7 @@ func _on_Button_pressed():
 		global.currentMenu = "selectHeroForCamp"
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	elif (global.currentMenu == "selectHeroForCamp"):
-		var currentCamp = global.campData[global.selectedCampID]
+		var currentCamp = global.activeCampData[global.selectedCampID]
 		#first, free up whoever is already in that spot (if anyone) 
 		print(currentCamp.heroes[global.campButtonID])
 		
