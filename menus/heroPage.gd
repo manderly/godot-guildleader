@@ -151,7 +151,7 @@ func _update_stats():
 	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
-		if (global.selectedHero.xp == global.levelXpData[global.selectedHero.level].total):
+		if (global.selectedHero.xp == staticData.allLevelXpData[global.selectedHero.level].total):
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
 			global.selectedHero.level_up()

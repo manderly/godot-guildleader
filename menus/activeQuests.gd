@@ -27,18 +27,18 @@ func _ready():
 
 func _change_displayed_quest():
 	#coded with the expectation that every quest gives exactly 1 prize item (and not 0 or 2)
-	quest = global.allGameQuests[global.selectedQuestID] #local copy 
+	quest = staticData.allQuestData[global.selectedQuestID] #local copy 
 	field_questName.text = quest.name
 	field_questDescription.text = quest.text
-	var itemData = global.allGameItems[str(quest.prizeItem1)]
+	var itemData = staticData.allItemData[str(quest.prizeItem1)]
 	prizeBox._render_quest_prize(itemData)
 	_update_components_display()
 	
 func _update_components_display():
 	#determine which ingredients to display and whether the text is red or green
 	if (quest.reqItem1): #if this quest has a first required component
-		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem1)], quest.reqItem1Quantity) #pass: itemData, item count 
-		if (global.questItemsDictionary[quest.reqItem1].count >= quest.reqItem1Quantity): #and we have it in the quest items dictionary
+		component1Display._render_stacked_item(staticData.allItemData[str(quest.reqItem1)], quest.reqItem1Quantity) #pass: itemData, item count 
+		if (global.playerQuestItems[quest.reqItem1].count >= quest.reqItem1Quantity): #and we have it in the quest items dictionary
 			component1Display._set_green()
 		else:
 			component1Display._set_red()
@@ -46,8 +46,8 @@ func _update_components_display():
 		component1Display._clear_fields()
 		
 	if (quest.reqItem2): #if this quest has a second required component
-		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem2)], quest.reqItem2Quantity)
-		if (global.questItemsDictionary[quest.reqItem2].count >= quest.reqItem2Quantity): #and we have it in the quest items dictionary
+		component1Display._render_stacked_item(staticData.allItemData[str(quest.reqItem2)], quest.reqItem2Quantity)
+		if (global.playerQuestItems[quest.reqItem2].count >= quest.reqItem2Quantity): #and we have it in the quest items dictionary
 			component2Display._set_green()
 		else:
 			component2Display._set_red()
@@ -55,8 +55,8 @@ func _update_components_display():
 		component2Display._clear_fields()
 		
 	if (quest.reqItem3): #if this quest has a third required component
-		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem3)], quest.reqItem3Quantity)
-		if (global.questItemsDictionary[quest.reqItem3].count >= quest.reqItem3Quantity): #and we have it in the quest items dictionary
+		component1Display._render_stacked_item(staticData.allItemData[str(quest.reqItem3)], quest.reqItem3Quantity)
+		if (global.playerQuestItems[quest.reqItem3].count >= quest.reqItem3Quantity): #and we have it in the quest items dictionary
 			component3Display._set_green()
 		else:
 			component3Display._set_red()
@@ -64,8 +64,8 @@ func _update_components_display():
 		component3Display._clear_fields()
 		
 	if (quest.reqItem4): #if this quest has a fourth required component
-		component1Display._render_stacked_item(global.allGameItems[str(quest.reqItem4)], quest.reqItem4Quantity)
-		if (global.questItemsDictionary[quest.reqItem4].count >= quest.reqItem4Quantity): #and we have it in the quest items dictionary
+		component1Display._render_stacked_item(staticData.allItemData[str(quest.reqItem4)], quest.reqItem4Quantity)
+		if (global.playerQuestItems[quest.reqItem4].count >= quest.reqItem4Quantity): #and we have it in the quest items dictionary
 			component4Display._set_green()
 		else:
 			component4Display._set_red()
@@ -79,16 +79,16 @@ func _on_button_completeQuest_pressed():
 	util.give_item_guild(quest.prizeItem1)
 	#take the components
 	if (quest.reqItem1):
-		global.questItemsDictionary[quest.reqItem1].count -= quest.reqItem1Quantity
+		global.playerQuestItems[quest.reqItem1].count -= quest.reqItem1Quantity
 	
 	if (quest.reqItem2):
-		global.questItemsDictionary[quest.reqItem2].count -= quest.reqItem2Quantity
+		global.playerQuestItems[quest.reqItem2].count -= quest.reqItem2Quantity
 	
 	if (quest.reqItem3):
-		global.questItemsDictionary[quest.reqItem3].count -= quest.reqItem3Quantity
+		global.playerQuestItems[quest.reqItem3].count -= quest.reqItem3Quantity
 	
 	if (quest.reqItem4):
-		global.questItemsDictionary[quest.reqItem4].count -= quest.reqItem4Quantity
+		global.playerQuestItems[quest.reqItem4].count -= quest.reqItem4Quantity
 			
 	#update display - cancel quest? remove from active? 
 	_update_components_display()
