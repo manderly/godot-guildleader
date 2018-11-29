@@ -432,6 +432,10 @@ func make_level(levelNum):
 		for level in range(levelNum):
 			level_up()
 	
+func restore_hp_mana():
+	hpCurrent = hp
+	manaCurrent = mana
+	
 func level_up():
 	xp = int(0)
 	level += int(1)

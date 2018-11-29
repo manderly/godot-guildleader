@@ -58,7 +58,9 @@ func _on_button_collect_pressed():
 			util.give_item_guild(lootName)
 		
 	for hero in campData.heroes:
+		#this should have all of them, not just the "live" ones 
 		if (hero):
+			hero.restore_hp_mana()
 			hero.send_home()
 	
 	global.softCurrency += campData.campOutcome.scTotal
