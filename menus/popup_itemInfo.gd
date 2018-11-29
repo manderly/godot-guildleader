@@ -39,11 +39,11 @@ func _populate_fields():
 	if (itemData.rarity):
 		$field_rarity.text = str(itemData.rarity).capitalize()
 		if (itemData.rarity == "uncommon"):
-			$field_rarity.add_color_override("font_color", global.colorGreen)
+			$field_rarity.add_color_override("font_color", statcData.colorGreen)
 		elif (itemData.rarity == "rare"):
-			$field_rarity.add_color_override("font_color", global.colorBlue) 
+			$field_rarity.add_color_override("font_color", staticData.colorBlue) 
 		elif (itemData.rarity == "epic"):
-			$field_rarity.add_color_override("font_color", global.colorPink) 
+			$field_rarity.add_color_override("font_color", staticData.colorPink) 
 	
 	if (itemData.improved):
 		$field_improved.text = "Improved " + itemData.improvement
@@ -53,7 +53,7 @@ func _populate_fields():
 	print("popup_itemInfo.gd - itemID: " + str(itemData.itemID))
 	if (itemData.itemID):
 		$field_itemID.text = str(itemData.itemID)
-		$field_itemID.add_color_override("font_color", global.colorPink) 
+		$field_itemID.add_color_override("font_color", staticData.colorPink) 
 		
 	#figure out what stats this item gives
 	if (itemData.slot != "tradeskill" && itemData.slot != "quest"):

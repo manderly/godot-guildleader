@@ -7,8 +7,9 @@ func _ready():
 func prepare_unformatted_data_from_file(filenameStr):
 	var dataFile = File.new()
 	dataFile.open("res://gameData/"+filenameStr, dataFile.READ)
-	global.unformattedData = parse_json(dataFile.get_as_text())
+	var unformattedData = parse_json(dataFile.get_as_text())
 	dataFile.close()
+	return unformattedData
 	
 #use: util.format_time(timeData) 
 func format_time(time):
@@ -35,26 +36,27 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	
 #check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
-	if (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "tradeskill"):
-		if (!global.tradeskillItemsDictionary[itemName].seen):
+	if (staticData.allItemData[itemName] && staticData.allItemData[itemName].itemType == "tradeskill"):
+		if (!global.playerTradeskillItems[itemName].seen):
+			# might be this now: global.playerTradeskillItems
 			global.tradeskillItemsSeen.append(itemName)
-			global.tradeskillItemsDictionary[itemName].seen = true
+			global.playerTradeskillItems[itemName].seen = true
 		#either way, increase the count
-		global.tradeskillItemsDictionary[itemName].count += 1
-	elif (global.allGameItems[itemName] && global.allGameItems[itemName].itemType == "quest"):
-		if (!global.questItemsDictionary[itemName].seen):
+		global.playerTradeskillItems[itemName].count += 1
+	elif (staticData.allItemData[itemName] && staticData.allItemData[itemName].itemType == "quest"):
+		if (!global.playerQuestItems[itemName].seen):
 			global.questItemsSeen.append(itemName)
-			global.questItemsDictionary[itemName].seen = true
+			global.playerQuestItems[itemName].seen = true
 		#either way, increase the count
-		global.questItemsDictionary[itemName].count += 1
+		global.playerQuestItems[itemName].count += 1
 	else:
 		#make sure this item actually exists in the item records
-		if (!global.allGameItems[itemName]):
+		if (!staticData.allItemData[itemName]):
 			print("ERROR! Make sure this item name exists: " + itemName)
 		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
-				global.guildItems[i] = global.allGameItems[itemName].duplicate() #make a new instance
+				global.guildItems[i] = staticData.allItemData[itemName].duplicate() #make a new instance
 				global.guildItems[i].itemID = global.nextItemID
 				global.nextItemID += 1
 				break
@@ -110,6 +112,6 @@ func remove_item_tradeskill():
 	global.tradeskills[global.currentMenu].wildcardItemOnDeck = null
 	
 func give_quest(questID):
-	var newQuestInstance = global.allGameQuests[questID].duplicate()
+	var newQuestInstance = staticData.allQuestData[questID].duplicate()
 	global.activeQuests.append(newQuestInstance)
 	

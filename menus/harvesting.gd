@@ -23,7 +23,7 @@ func _ready():
 	add_child(finishNowPopup)
 	add_child(finishedItemPopup)
 	
-	currentHarvest = global.harvestingData[global.selectedHarvestingID]
+	currentHarvest = global.activeHarvestingData[global.selectedHarvestingID]
 	populate_fields(currentHarvest)
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
 		buttonBeginHarvest.text = "Finish now"

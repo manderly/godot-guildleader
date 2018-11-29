@@ -349,7 +349,7 @@ func update_hero_stats():
 func give_new_item(itemNameStr): 
 	#To use: hero.give_item("Item Name Here")
 	#hero.give_item("item name here", false) #for items from the vault 
-	var newItem = global.allGameItems[itemNameStr].duplicate() #make a new instance from the big book of items
+	var newItem = staticData.allItemData[itemNameStr].duplicate() #make a new instance from the big book of items
 	newItem.itemID = global.nextItemID
 	global.nextItemID += 1
 	equipment[newItem.slot] = newItem #now give it to the matching equipment slot on this hero

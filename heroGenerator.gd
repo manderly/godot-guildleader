@@ -92,25 +92,26 @@ func generate(destinationArray, classStr):
 	#todo: pass species in addition to gender 
 	newHero.heroName = nameGenerator.generate(newHero.gender, newHero.heroClass)
 
+	var startingStats = staticData.allHeroStartingStatData[newHero.heroClass]
 	#assign stats accordingly
-	newHero.baseHp = global.heroStartingStatData[newHero.heroClass]["hp"]
-	newHero.baseMana = global.heroStartingStatData[newHero.heroClass]["mana"]
-	newHero.baseDps = global.heroStartingStatData[newHero.heroClass]["dps"]
+	newHero.baseHp = startingStats["hp"]
+	newHero.baseMana = startingStats["mana"]
+	newHero.baseDps = startingStats["dps"]
 	newHero.baseArmor = 0
-	newHero.baseStrength = global.heroStartingStatData[newHero.heroClass]["strength"]
-	newHero.baseDefense = global.heroStartingStatData[newHero.heroClass]["defense"]
-	newHero.baseIntelligence = global.heroStartingStatData[newHero.heroClass]["intelligence"]
+	newHero.baseStrength = startingStats["strength"]
+	newHero.baseDefense = startingStats["defense"]
+	newHero.baseIntelligence = startingStats["intelligence"]
 	newHero.baseSkillAlchemy = 0
 	newHero.baseSkillBlacksmithing = 0
 	newHero.baseSkillFletching = 0
 	newHero.baseSkillJewelcraft = 0
 	newHero.baseSkillTailoring = 0
 	newHero.baseSkillHarvesting = 0
-	newHero.baseDrama = global.heroStartingStatData[newHero.heroClass]["drama"]
-	newHero.baseMood = global.heroStartingStatData[newHero.heroClass]["mood"]
-	newHero.basePrestige = global.heroStartingStatData[newHero.heroClass]["prestige"]
-	newHero.baseGroupBonus = global.heroStartingStatData[newHero.heroClass]["groupBonus"]
-	newHero.baseRaidBonus = global.heroStartingStatData[newHero.heroClass]["raidBonus"]
+	newHero.baseDrama = startingStats["drama"]
+	newHero.baseMood = startingStats["mood"]
+	newHero.basePrestige = startingStats["prestige"]
+	newHero.baseGroupBonus = startingStats["groupBonus"]
+	newHero.baseRaidBonus = startingStats["raidBonus"]
 
 	#other aspects of a hero 
 	newHero.atHome = true

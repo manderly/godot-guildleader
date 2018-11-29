@@ -47,9 +47,9 @@
     "mobName": "Weak Forest Bat",
     "lootTable": "batLoot01",
     "level": 1,
-    "hp": 55,
+    "hp": 30,
     "mana": 0,
-    "dps": 2,
+    "dps": 1,
     "strength": 2,
     "defense": 2,
     "baseResist": 2
@@ -58,9 +58,9 @@
     "mobName": "Rabid Forest Bat",
     "lootTable": "batLoot01",
     "level": 2,
-    "hp": 95,
+    "hp": 55,
     "mana": 0,
-    "dps": 3,
+    "dps": 2,
     "strength": 3,
     "defense": 2,
     "baseResist": 2

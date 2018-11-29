@@ -8,7 +8,7 @@ func _ready():
 
 func _set_data(idStr):
 	campId = idStr
-	campData = global.campData[idStr]
+	campData = global.activeCampData[idStr]
 	$field_campName.text = campData.name
 	
 	var lowEndRange = 1

@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 global="*res://global.gd"
 util="*res://util.gd"
+staticData="*res://staticData.gd"
 
 [display]
 

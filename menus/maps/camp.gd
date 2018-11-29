@@ -30,7 +30,7 @@ var haveAlready = {
 }
 
 func _ready():
-	campData = global.campData[global.selectedCampID]
+	campData = global.activeCampData[global.selectedCampID]
 	if (!campData.inProgress):
 		$battleScene.hide()
 	else:

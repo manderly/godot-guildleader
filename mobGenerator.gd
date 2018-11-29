@@ -6,4 +6,4 @@ func _ready():
 	pass
 	
 func get_mob(mobName):
-	return global.mobData[mobName]
+	return staticData.allMobData[mobName]
