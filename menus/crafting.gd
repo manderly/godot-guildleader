@@ -93,9 +93,9 @@ func _update_ingredients():
 	
 	#determine which ingredients to display and whether the text is red or green 
 	if (recipe.ingredient1): #if this quest has a fourth required component
-		var ingredientName = global.allGameItems[str(recipe.ingredient1)]
+		var ingredientName = staticData.allItemData[str(recipe.ingredient1)]
 		var quantityNeeded = recipe.ingredient1Quantity
-		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient1].count
+		var playerHas = global.playerTradeskillItems[recipe.ingredient1].count
 		ingredient1Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
 		if (playerHas >= quantityNeeded):
 			ingredient1Display._set_green()
@@ -105,9 +105,9 @@ func _update_ingredients():
 		ingredient1Display._clear_fields()
 		
 	if (recipe.ingredient2): #if this quest has a fourth required component
-		var ingredientName = global.allGameItems[str(recipe.ingredient2)]
+		var ingredientName = staticData.allItemData[str(recipe.ingredient2)]
 		var quantityNeeded = recipe.ingredient2Quantity
-		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient2].count
+		var playerHas = global.playerTradeskillItems[recipe.ingredient2].count
 		ingredient2Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
 		if (playerHas >= quantityNeeded):
 			ingredient2Display._set_green()
@@ -117,9 +117,9 @@ func _update_ingredients():
 		ingredient2Display._clear_fields()
 		
 	if (recipe.ingredient3): #if this quest has a fourth required component
-		var ingredientName = global.allGameItems[str(recipe.ingredient3)]
+		var ingredientName = staticData.allItemData[str(recipe.ingredient3)]
 		var quantityNeeded = recipe.ingredient3Quantity
-		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient3].count
+		var playerHas = global.playerTradeskillItems[recipe.ingredient3].count
 		ingredient3Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
 		if (playerHas >= quantityNeeded):
 			ingredient3Display._set_green()
@@ -129,9 +129,9 @@ func _update_ingredients():
 		ingredient3Display._clear_fields()
 		
 	if (recipe.ingredient4): #if this quest has a fourth required component
-		var ingredientName = global.allGameItems[str(recipe.ingredient4)]
+		var ingredientName = staticData.allItemData[str(recipe.ingredient4)]
 		var quantityNeeded = recipe.ingredient4Quantity
-		var playerHas = global.tradeskillItemsDictionary[recipe.ingredient4].count
+		var playerHas = global.playerTradeskillItems[recipe.ingredient4].count
 		ingredient4Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
 		if (playerHas >= quantityNeeded):
 			ingredient4Display._set_green()
@@ -148,7 +148,7 @@ func _update_ingredients():
 			labelComputed.show()
 			labelChoose.hide()
 			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
-			resultItemBox._render_tradeskill(global.allGameItems[itemName])
+			resultItemBox._render_tradeskill(staticData.allItemData[itemName])
 		else:
 			nowCrafting.text = "Now Crafting: " + itemName
 	else:
@@ -185,7 +185,7 @@ func _update_ingredients():
 				
 		elif (recipe.result):
 			labelComputed.hide()
-			resultItemBox._render_tradeskill(global.allGameItems[str(recipe.result)])
+			resultItemBox._render_tradeskill(staticData.allItemData[str(recipe.result)])
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
@@ -197,11 +197,11 @@ func _process(delta):
 		progressBar.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		combineButton.set_text("COLLECT!")
-		combineButton.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
+		combineButton.add_color_override("font_color", staticData.colorYellow) #239, 233, 64 yellow
 		progressBar.set_value(100)
 	else:
 		combineButton.set_text("COMBINE")
-		combineButton.add_color_override("font_color", global.colorWhite) #white
+		combineButton.add_color_override("font_color", staticData.colorWhite) #white
 
 func _open_collect_result_popup():
 	#determine if we get a skillup and show or hide skillup text accordingly 
@@ -213,7 +213,7 @@ func _open_collect_result_popup():
 	else:
 		finishedItemPopup._show_skill_up_text(false)
 		
-	finishedItemPopup._set_icon(global.allGameItems[str(tradeskill.currentlyCrafting.name)].icon)
+	finishedItemPopup._set_icon(staticData.allItemData[str(tradeskill.currentlyCrafting.name)].icon)
 	
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
@@ -253,16 +253,16 @@ func tradeskillItem_callback():
 	
 func _ingredient_check():
 	var readyToCombine = true
-	if (recipe.ingredient1 && global.tradeskillItemsDictionary[recipe.ingredient1].count == 0):
+	if (recipe.ingredient1 && global.playerTradeskillItems[recipe.ingredient1].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient2 && global.tradeskillItemsDictionary[recipe.ingredient2].count == 0):
+	if (recipe.ingredient2 && global.playerTradeskillItems[recipe.ingredient2].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient3 && global.tradeskillItemsDictionary[recipe.ingredient3].count == 0):
+	if (recipe.ingredient3 && global.playerTradeskillItems[recipe.ingredient3].count == 0):
 		readyToCombine = false
 		
-	if (recipe.ingredient4 && global.tradeskillItemsDictionary[recipe.ingredient4].count == 0):
+	if (recipe.ingredient4 && global.playerTradeskillItems[recipe.ingredient4].count == 0):
 		readyToCombine = false
 		
 	if (recipe.ingredientWildcard && !tradeskill.wildcardItemOnDeck):
@@ -282,21 +282,21 @@ func _on_button_combine_pressed():
 			
 			#take ingredients away from player by name (these are fungible, just take the first instance)
 			if (recipe.ingredient1):
-				if (global.tradeskillItemsDictionary[recipe.ingredient1].consumable):
-					global.tradeskillItemsDictionary[recipe.ingredient1].count -= 1
+				if (global.playerTradeskillItems[recipe.ingredient1].consumable):
+					global.playerTradeskillItems[recipe.ingredient1].count -= 1
 					#util.remove_item_guild_by_name(recipe.ingredient1)
 				
 			if (recipe.ingredient2):
-				if (global.tradeskillItemsDictionary[recipe.ingredient2].consumable):
-					global.tradeskillItemsDictionary[recipe.ingredient2].count -= 1
+				if (global.playerTradeskillItems[recipe.ingredient2].consumable):
+					global.playerTradeskillItems[recipe.ingredient2].count -= 1
 			
 			if (recipe.ingredient3):
-				if (global.tradeskillItemsDictionary[recipe.ingredient3].consumable):
-					global.tradeskillItemsDictionary[recipe.ingredient3].count -= 1
+				if (global.playerTradeskillItems[recipe.ingredient3].consumable):
+					global.playerTradeskillItems[recipe.ingredient3].count -= 1
 				
 			if (recipe.ingredient4):
-				if (global.tradeskillItemsDictionary[recipe.ingredient4].consumable):
-					global.tradeskillItemsDictionary[recipe.ingredient4].count -= 1
+				if (global.playerTradeskillItems[recipe.ingredient4].consumable):
+					global.playerTradeskillItems[recipe.ingredient4].count -= 1
 					
 			if (recipe.ingredientWildcard):
 				tradeskill.currentlyCrafting.moddingAnItem = true

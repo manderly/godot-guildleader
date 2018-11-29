@@ -1,0 +1,27 @@
+[
+  {
+    "tradeskill": "alchemy",
+    "displayName": "Alchemy",
+    "description": "Potions and stuff"
+  },
+  {
+    "tradeskill": "blacksmithing",
+    "displayName": "Blacksmithing",
+    "description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials."
+  },
+  {
+    "tradeskill": "fletching",
+    "displayName": "Fletching",
+    "description": "Make arrows and bows"
+  },
+  {
+    "tradeskill": "jewelcraft",
+    "displayName": "Jewelcraft",
+    "description": "Bend metal and gemstones into sparkly jewelry with powerful stat bonuses."
+  },
+  {
+    "tradeskill": "tailoring",
+    "displayName": "Tailoring",
+    "description": "Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths."
+  }
+]

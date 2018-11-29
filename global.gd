@@ -62,101 +62,8 @@ var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft"
 #tradeskill flags
 #use: global.tradeskills[global.currentMenu] 
 #example: global.tradeskills["alchemy"].hero
-var tradeskills = {
-	"alchemy": {
-		"hero": null,
-		"timer": null,
-		"inProgress": false,
-		"readyToCollect": false,
-		"wildcardItemOnDeck": null,
-		"displayName": "Alchemy",
-		"description": "Potions and stuff",
-		"recipes": [],
-		"selectedRecipe": null,
-		"currentlyCrafting": {
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-	},
-	"blacksmithing": {
-		"hero": null,
-		"timer": null,
-		"inProgress": false,
-		"readyToCollect": false,
-		"wildcardItemOnDeck": null,
-		"displayName": "Blacksmithing",
-		"description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials.",
-		"recipes": [],
-		"selectedRecipe": null,
-		"currentlyCrafting": {
-			"moddingAnItem":false,
-			"wildcardItem":null,
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-	},
-	"fletching": {
-		"hero": null,
-		"timer": null,
-		"inProgress": false,
-		"readyToCollect": false,
-		"wildcardItemOnDeck": null,
-		"displayName": "Fletching",
-		"description":"Make arrows and bows",
-		"recipes": [],
-		"selectedRecipe": null,
-		"currentlyCrafting": {
-			"moddingAnItem":false,
-			"wildcardItem":null,
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-	},
-	"jewelcraft": {
-		"hero": null,
-		"timer": null,
-		"inProgress": false,
-		"readyToCollect": false,
-		"wildcardItemOnDeck": null,
-		"displayName": "Jewelcraft",
-		"description":"Bend metal and gemstones into sparkly jewelry with powerful stat bonuses.",
-		"recipes": [],
-		"selectedRecipe": null,
-		"currentlyCrafting": {
-			"moddingAnItem":false,
-			"wildcardItem":null,
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-	},
-	"tailoring": {
-		"hero": null,
-		"timer": null,
-		"inProgress": false,
-		"readyToCollect": false,
-		"wildcardItemOnDeck": null,
-		"displayName": "Tailoring",
-		"description":"Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths.",
-		"recipes": [],
-		"selectedRecipe": null,
-		"currentlyCrafting": {
-			"moddingAnItem":false,
-			"wildcardItem":null,
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-	}
-}
+var tradeskills = {} #build this object later 
+
 
 #the x min and max is the same for all rooms
 var roomMinX = 200
@@ -184,13 +91,37 @@ func _ready():
 	
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
-	
-	#load all the static data 
-	staticData._load_static_data()
-	
+
 	#Prepare to load game data. These use unformattedData
 	var key = null #a string, ie: "Tadloc Grunt"
 	var value = null #another dictionary, ie: {dps:4, str:5}
+	
+	###### Load tradeskill data ######
+	unformattedData = util.prepare_unformatted_data_from_file("tradeskills.json")
+	print(unformattedData)
+	for data in unformattedData:
+		key = data["tradeskill"] #a string, ie: "alchemy"
+		value = data #another dictionary
+		#hero, timer, etc. are not part of the data as it came in and are added here
+		value.hero = null
+		value.timer = null
+		value.inProgress = false
+		value.readyToCollect = false
+		value.wildcardItemOnDeck = null
+		value.recipes = []
+		value.selectedRecipe = null
+		value.currentlyCrafting = {
+			"moddingAnItem":false,
+			"wildcardItem":null,
+			"name":"",
+			"statImproved":"",
+			"statIncrease":"",
+			"totalTimeToFinish":""
+		}
+		tradeskills[key] = value
+		
+	#load all the static data 
+	staticData._load_static_data()
 	
 	###### Load harvesting node data ######
 	#Access harvest node by id
@@ -316,36 +247,6 @@ func _on_campTimer_timeout(campID):
 	var camp = global.activeCampData[campID]
 	camp.inProgress = false
 	camp.readyToCollect = true
-	
-#func _on_questTimer_timeout(questID):
-	#this is where the quest's random prizes are determined 
-	#global.logger(self, "Quest timer complete! Finished this quest: " + questID)
-	#var quest = global.questData[questID]
-	#quest.inProgress = false
-	#quest.readyToCollect = true
-	#quest.lootWon.questPrizeSC = round(rand_range(quest.scMin, quest.scMax))
-	#if (quest.hcMin != 0 && quest.hcMax != 0):
-	#	quest.lootWon.questPrizeHC = round(rand_range(quest.hcMin, quest.hcMax))
-	
-	#this is just its NAME, not the item itself
-	
-	#Determine if player won item1 (generally more common) or item2 (generally more rare)
-	#Roll 1-100
-	#If number is <= than item1Chance, give item1
-	#Roll 1-100 (again)
-	#If number is <= than item2Chance, give item2
-	
-	#var winItemRandom = 0
-	#if (quest.item1):
-	#	winItemRandom = randi()%100+1 #1-100
-	#	if (winItemRandom <= quest.item1Chance):
-	#		quest.lootWon.questPrizeItem1 = quest.item1 
-	#if (quest.item2):
-	#	winItemRandom = randi()%100+1 #1-100
-	#	if (winItemRandom <= quest.item2Chance):
-	#		quest.lootWon.questPrizeItem2 = quest.item2
-			
-	#emit_signal("quest_complete", quest.name)
 
 func _begin_tradeskill_timer(duration):
 	var tradeskill = global.tradeskills[global.currentMenu]
