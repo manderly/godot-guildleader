@@ -187,6 +187,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
 		"heroes":heroes,
+		"startMobsSprites":[],
 		"mobs":randomMobs,
 		"winner":"",
 		"loot":[], #item name strings 
@@ -195,6 +196,9 @@ func _calculate_battle_outcome(heroes, mobTable):
 		"xp:":0,
 		"rawBattleLog":[]
 	}
+	
+	for mob in newBattle.mobs:
+		newBattle.startMobsSprites.append(mob.sprite)
 	
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
@@ -301,6 +305,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 				break
 
 	battleNumber += 1
+	print(newBattle)
 	return newBattle
 
 			
@@ -312,14 +317,8 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
 	
 	var battleQuantity = 0
-	#lower level camps have slightly shorter durations to be more exciting
-	
-	#camps that last 1 hour or less have a 
-	#higher spawn rate to encourage frequent play
-	if (camp.selectedDuration <= 3600):
-		battleQuantity = camp.selectedDuration / 400
-	else:
-		battleQuantity = camp.selectedDuration / 600
+
+	battleQuantity = camp.selectedDuration / (camp.pullRate * 100)
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	
@@ -340,21 +339,21 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 		encounterOutcome.scTotal += battleOutcome["sc"]
 			
 	#the summary is shown on the results page, but there is also a more detailed battle log to view
-	if (battleNumber == 1):
-		encounterOutcome.detailedPlayByPlay.append("There was " + str(battleNumber) + " battle.")
-		encounterOutcome.summary.append("There was " + str(battleNumber) + " battle.")
+	if (battleNumber == 1 or battleNumber == 2):
+		encounterOutcome.detailedPlayByPlay.append("There was 1 battle.")
+		encounterOutcome.summary.append("There was 1 battle.")
 	else:
-		encounterOutcome.detailedPlayByPlay.append("There were " + str(battleNumber) + " battles.")
+		encounterOutcome.detailedPlayByPlay.append("There were " + str(battleNumber - 1) + " battles.")
 		encounterOutcome.summary.append("There were " + str(battleNumber) + " battles.")
-		
-	for hero in heroesClone:
-		#hero.xp = global.levelXpData[hero.level].total
-		if (hero && hero.xp == staticData.allLevelXpData[hero.level].total):
-			encounterOutcome.summary.append(hero.heroName + " is ready to train!")
-		else:
-			encounterOutcome.summary.append(hero.heroName + " survived!")
-			
+	
 	if (heroesClone.size() == 0):
 		encounterOutcome.summary.append("Total party wipe!")
+	else:
+		for hero in heroesClone:
+		#hero.xp = global.levelXpData[hero.level].total
+			if (hero && hero.xp == staticData.allLevelXpData[hero.level].total):
+				encounterOutcome.summary.append(hero.heroName + " is ready to train!")
+			else:
+				encounterOutcome.summary.append(hero.heroName + " survived!")
 		
 	return encounterOutcome

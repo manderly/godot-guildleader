@@ -58,6 +58,12 @@ func _process(delta):
 func _camp_in_progress():
 	$battleScene.show()
 	$battleScene.populate_heroes(campData.heroes)
+	
+	#for now, just take the sprites in the first one
+	#for battleRecord in campData.campOutcome.battleRecord:
+	#for sprite in campData.campOutcome.battleRecord[0].startMobsSprites:
+	#	print(sprite)
+	$battleScene.populate_mobs(campData.campOutcome.battleRecord[0].startMobsSprites)
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
 	field_difficultyEstimate.text = "Camp in progress..."
 	for button in heroButtons:
@@ -66,18 +72,18 @@ func _camp_in_progress():
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
 	if (campData.inProgress):
-		button_autoPickHeroes.disabled = true
-		button_startCampShort.disabled = true
-		button_startCampMedium.disabled = true
-		button_startCampLong.disabled = true
+		button_autoPickHeroes.hide()
+		button_startCampShort.hide()
+		button_startCampMedium.hide()
+		button_startCampLong.hide()
 		if (campData.enableButton == "short"): #short, medium, long as string
-			button_startCampShort.disabled = false
+			button_startCampShort.show()
 			button_startCampShort.text = finishNowStr
 		elif (campData.enableButton == "medium"):
-			button_startCampMedium.disabled = false
+			button_startCampMedium.show()
 			button_startCampMedium.text = finishNowStr
 		elif (campData.enableButton == "long"):
-			button_startCampLong.disabled = false
+			button_startCampLong.show()
 			button_startCampLong.text = finishNowStr
 	else:
 		button_startCampShort.disabled = false
@@ -207,18 +213,12 @@ func _start_camp(duration, enableButtonStr):
 			global._begin_camp_timer(duration, campData.campId)
 			_camp_in_progress()
 			#todo: populate enemies 
-			#todo: play out the fight scene ?
-			
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 
 		finishNowPopup._set_data("Camp", 1)
 		finishNowPopup.popup()
 	elif (campData.inProgress && campData.readyToCollect):
-		#generate rewards
-		#todo: put this somewhere else, it shouldn't be on the "collect" button because
-		#the player can back out of the next page and re-run this code 
-		campData.campOutcome = encounterGenerator.calculate_encounter_outcome(campData)
 		get_tree().change_scene("res://menus/maps/campResults.tscn")
 	else:
 		print("camp.gd error - unhandled state")

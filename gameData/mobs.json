@@ -1,6 +1,7 @@
 [
   {
     "mobName": "null",
+    "sprite": "",
     "lootTable": "",
     "level": "",
     "hp": "",
@@ -12,6 +13,7 @@
   },
   {
     "mobName": "Small Rat",
+    "sprite": "bat/bat_01.png",
     "lootTable": "ratLoot01",
     "level": 1,
     "hp": 30,
@@ -23,6 +25,7 @@
   },
   {
     "mobName": "Large Rat",
+    "sprite": "bat/bat_01.png",
     "lootTable": "ratLoot01",
     "level": 2,
     "hp": 40,
@@ -34,6 +37,7 @@
   },
   {
     "mobName": "Infected Rat",
+    "sprite": "bat/bat_01.png",
     "lootTable": "ratLootBoss",
     "level": 3,
     "hp": 60,
@@ -45,6 +49,7 @@
   },
   {
     "mobName": "Weak Forest Bat",
+    "sprite": "bat/bat_01.png",
     "lootTable": "batLoot01",
     "level": 1,
     "hp": 30,
@@ -56,6 +61,7 @@
   },
   {
     "mobName": "Rabid Forest Bat",
+    "sprite": "bat/bat_01.png",
     "lootTable": "batLoot01",
     "level": 2,
     "hp": 55,
@@ -67,6 +73,7 @@
   },
   {
     "mobName": "Aggressive Wolf",
+    "sprite": "direwolf/direwolf.png",
     "lootTable": "wolfLoot01",
     "level": 2,
     "hp": 95,
@@ -78,6 +85,7 @@
   },
   {
     "mobName": "Direwolf",
+    "sprite": "direwolf/direwolf.png",
     "lootTable": "wolfLoot02",
     "level": 3,
     "hp": 125,
@@ -89,6 +97,7 @@
   },
   {
     "mobName": "Small Spider",
+    "sprite": "spider/spider.png",
     "lootTable": "spiderLoot01",
     "level": 2,
     "hp": 75,
@@ -100,6 +109,7 @@
   },
   {
     "mobName": "Big Spider",
+    "sprite": "spider/spider.png",
     "lootTable": "spiderLoot01",
     "level": 3,
     "hp": 95,
@@ -111,6 +121,7 @@
   },
   {
     "mobName": "Spider King",
+    "sprite": "spider/spider.png",
     "lootTable": "spiderLootBoss",
     "level": 4,
     "hp": 115,
@@ -122,6 +133,7 @@
   },
   {
     "mobName": "Dreadwolf",
+    "sprite": "direwolf/direwolf.png",
     "lootTable": "spiderLoot01",
     "level": 4,
     "hp": 200,
@@ -133,6 +145,7 @@
   },
   {
     "mobName": "Fairie Defender",
+    "sprite": "bat/bat_01.png",
     "lootTable": "fairyLoot01",
     "level": 6,
     "hp": 200,
@@ -144,6 +157,7 @@
   },
   {
     "mobName": "Elite Fairie Guard",
+    "sprite": "bat/bat_01.png",
     "lootTable": "fairyLoot02",
     "level": 7,
     "hp": 250,
@@ -155,6 +169,7 @@
   },
   {
     "mobName": "Yizma the Fairie Queen",
+    "sprite": "bat/bat_01.png",
     "lootTable": "fairyLootBoss",
     "level": 8,
     "hp": 350,
@@ -166,6 +181,7 @@
   },
   {
     "mobName": "Goblin Bandit",
+    "sprite": "bat/bat_01.png",
     "lootTable": "goblinLoot01",
     "level": 2,
     "hp": 120,
@@ -177,6 +193,7 @@
   },
   {
     "mobName": "Goblin Rogue",
+    "sprite": "bat/bat_01.png",
     "lootTable": "goblinLoot01",
     "level": 3,
     "hp": 140,
@@ -188,6 +205,7 @@
   },
   {
     "mobName": "Ragron, the Goblin Outlaw",
+    "sprite": "bat/bat_01.png",
     "lootTable": "gobinLootBoss",
     "level": 4,
     "hp": 250,
@@ -199,6 +217,7 @@
   },
   {
     "mobName": "Lowly Smuggler",
+    "sprite": "bat/bat_01.png",
     "lootTable": "pirateLoot01",
     "level": 8,
     "hp": 200,
@@ -210,6 +229,7 @@
   },
   {
     "mobName": "Smuggler Captain",
+    "sprite": "bat/bat_01.png",
     "lootTable": "pirateLoot01",
     "level": 10,
     "hp": 300,
@@ -221,6 +241,7 @@
   },
   {
     "mobName": "Old Scallywag ",
+    "sprite": "bat/bat_01.png",
     "lootTable": "pirateLoot01",
     "level": 8,
     "hp": 200,
@@ -232,6 +253,7 @@
   },
   {
     "mobName": "Deck Swabbie",
+    "sprite": "bat/bat_01.png",
     "lootTable": "pirateLoot02",
     "level": 9,
     "hp": 200,
@@ -243,6 +265,7 @@
   },
   {
     "mobName": "Captain Smellybeard",
+    "sprite": "bat/bat_01.png",
     "lootTable": "pirateLoot03",
     "level": 12,
     "hp": 500,
@@ -254,6 +277,7 @@
   },
   {
     "mobName": "Scuttling Crab",
+    "sprite": "bat/bat_01.png",
     "lootTable": "crabLoot01",
     "level": 6,
     "hp": 200,
@@ -265,6 +289,7 @@
   },
   {
     "mobName": "Hulking Crab",
+    "sprite": "bat/bat_01.png",
     "lootTable": "crabLoot01",
     "level": 7,
     "hp": 225,
@@ -276,6 +301,7 @@
   },
   {
     "mobName": "Sir Pinch",
+    "sprite": "bat/bat_01.png",
     "lootTable": "crabLootBoss",
     "level": 9,
     "hp": 350,
@@ -287,6 +313,7 @@
   },
   {
     "mobName": "Tadloc Grunt",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "tadlocLoot01",
     "level": 6,
     "hp": 225,
@@ -298,6 +325,7 @@
   },
   {
     "mobName": "Tadloc Raider",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "tadlocLoot02",
     "level": 7,
     "hp": 250,
@@ -309,6 +337,7 @@
   },
   {
     "mobName": "Tadloc Scrapper",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "tadlocLoot03",
     "level": 8,
     "hp": 280,
@@ -320,6 +349,7 @@
   },
   {
     "mobName": "Tidewater Bone Squire",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "skeletonLoot01",
     "level": 10,
     "hp": 400,
@@ -331,6 +361,7 @@
   },
   {
     "mobName": "Tidewater Bone Knight",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "skeletonLoot01",
     "level": 11,
     "hp": 425,
@@ -342,6 +373,7 @@
   },
   {
     "mobName": "Tidewater Bone Champion",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "skeletonLootBoss",
     "level": 12,
     "hp": 450,
@@ -353,6 +385,7 @@
   },
   {
     "mobName": "Burgor the Tadloc King",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "tadlocLootBoss",
     "level": 10,
     "hp": 450,
@@ -364,6 +397,7 @@
   },
   {
     "mobName": "Tadloc Brawler",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "caveTadloc01",
     "level": 12,
     "hp": 320,
@@ -375,6 +409,7 @@
   },
   {
     "mobName": "Tadloc Farseer",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "caveTadloc02",
     "level": 13,
     "hp": 350,
@@ -386,6 +421,7 @@
   },
   {
     "mobName": "Tadloc Spelunker",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "caveTadloc01",
     "level": 12,
     "hp": 300,
@@ -397,6 +433,7 @@
   },
   {
     "mobName": "Wargrun the Fierce",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "tadlocLootBoss",
     "level": 14,
     "hp": 450,
@@ -408,6 +445,7 @@
   },
   {
     "mobName": "Spectral Siren",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "sirenLoot01",
     "level": 34,
     "hp": 11000,
@@ -419,6 +457,7 @@
   },
   {
     "mobName": "Spectral Songstress",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "sirenLoot02",
     "level": 36,
     "hp": 12000,
@@ -430,6 +469,7 @@
   },
   {
     "mobName": "Lela the Irresistable",
+    "sprite": "tadloc/tadloc.png",
     "lootTable": "sirenLootBoss",
     "level": 38,
     "hp": 15000,

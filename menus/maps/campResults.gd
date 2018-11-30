@@ -12,7 +12,6 @@ var battlePrint = false
 
 func _ready():
 	campData = global.activeCampData[global.selectedCampID]
-	#print(campData.campOutcome)
 	if (battlePrint):
 		for event in campData.campOutcome.battleRecord:
 			print(event)
@@ -64,13 +63,23 @@ func _on_button_collect_pressed():
 			hero.send_home()
 	
 	global.softCurrency += campData.campOutcome.scTotal
+	 
+	global.activeCampData[global.selectedCampID].timer = null
+	global.activeCampData[global.selectedCampID].heroes = []
+	global.activeCampData[global.selectedCampID].inProgress = false
+	global.activeCampData[global.selectedCampID].readyToCollect = false
+	global.activeCampData[global.selectedCampID].campHeroesSelected = 0
+	global.activeCampData[global.selectedCampID].selectedDuration = 0
+	global.activeCampData[global.selectedCampID].enableButton = ""
+	global.activeCampData[global.selectedCampID].campOutcome.battleRecord = []
+	global.activeCampData[global.selectedCampID].campOutcome = {}
 	
-	campData.heroes = []
+	#campData.heroes = []
 	for slot in campData.groupSize:
-		campData.heroes.append(null)
-	campData.inProgress = false
-	campData.readyToCollect = false
-	campData.campOutcome = {}
+		global.activeCampData[global.selectedCampID].heroes.append(null)
+	#campData.inProgress = false
+	#campData.readyToCollect = false
+	#campData.campOutcome = {}
 	
 	if (global.returnToMap == "forest"):
 		get_tree().change_scene("res://menus/maps/forest.tscn")

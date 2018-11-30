@@ -226,8 +226,8 @@ func _on_harvestingTimer_timeout(harvestNodeID):
 	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
 
 func _begin_camp_timer(duration, campID):
-	print("starting camp timer")
-	#starting camp timer 
+	#starting camp timer
+	#the camp outcomes are calculated upfront, and collectable once the timer is up 
 	var camp = global.activeCampData[campID]
 	if (!camp.inProgress):
 		camp.inProgress = true
@@ -238,12 +238,15 @@ func _begin_camp_timer(duration, campID):
 		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
 		camp.timer.start()
 		add_child(camp.timer) 
+		
+		#begin the camp battle simulation
+		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
+		
 	else:
 		print("error: camp already running")
 
 func _on_campTimer_timeout(campID):
 	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
-	#todo: may want to do partial progress on camp
 	var camp = global.activeCampData[campID]
 	camp.inProgress = false
 	camp.readyToCollect = true

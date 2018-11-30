@@ -44,7 +44,6 @@ stretch_mode = 0
 position = Vector2( 337.555, 129.338 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
 playing = true
 
 

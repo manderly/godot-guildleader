@@ -21,6 +21,25 @@ var heroPositions = {
 		"y":180
 		},
 	}
+	
+var mobPositions = {
+	"0":{
+		"x":225,
+		"y":140
+		},
+	"1":{
+		"x":300,
+		"y":150
+		},
+	"2":{
+		"x":250,
+		"y":190
+		},
+	"3":{
+		"x":325,
+		"y":200
+		},
+	}
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -37,6 +56,13 @@ func populate_heroes(heroes):
 		heroScene.set_display_params(false, true) #walking, show name 
 		
 		add_child(heroScene)
+		
+func populate_mobs(spriteFilenames):
+	for i in spriteFilenames.size():
+		var mobSprite = Sprite.new()
+		mobSprite.texture = load("res://sprites/mobs/" + spriteFilenames[i])
+		mobSprite.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+		add_child(mobSprite)
 		
 func set_background(filename):
 	$TextureRect.texture = load(filename)
