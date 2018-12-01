@@ -2,7 +2,7 @@ extends Node2D
 #heroPage.gd
 
 var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
-var heroEquipmentSlotNames = ["Main", "Offhand", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
+var heroEquipmentSlotNames = ["Main", "Secondary", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
 #Stats
 var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -54,6 +54,10 @@ func _ready():
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
 	#print(global.selectedHero["equipment"]["mainHand"])
+	
+	if (global.selectedHero.heroClass == "Ranger"):
+		heroEquipmentSlotNames[0] = "Bow"
+		heroEquipmentSlotNames[1] = "Arrow"
 	
 	#Create the inventory (equipment) buttons 
 	var slot = null
@@ -118,7 +122,6 @@ func populate_fields(data):
 	_update_stats()
 	
 func _update_stats():
-	print("hero's hp should be: " + str(global.selectedHero.hp))
 	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
 	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.allLevelXpData[global.selectedHero.level].total)
 	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.allLevelXpData[global.selectedHero.level].total))

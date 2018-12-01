@@ -64,6 +64,7 @@ func generate(destinationArray, classStr):
 	elif (classStr == "Ranger"):
 		newHero.heroClass = "Ranger"
 		newHero.give_new_item("Basic Bow")
+		newHero.give_new_item("Basic Arrow")
 		newHero.give_new_item("Cloth Shirt")
 		newHero.give_new_item("Muddy Boots")
 		newHero.give_new_item("Cloth Pants")
