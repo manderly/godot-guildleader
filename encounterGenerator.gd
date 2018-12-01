@@ -1,4 +1,5 @@
 extends Node
+var mobGenerator = load("res://mobGenerator.gd").new()
 # encounterGenerator.gd 
 
 # Terminology: 
@@ -77,21 +78,44 @@ func _calculate_entity_score(entities):
 			hpTotal += entity.hp
 	return hpTotal
 	
-func _get_battle_mobs(mobs):
+	
+func _get_random_mob_from_table(table):
+	var mob = null
+	var mobRand = _get_rand_between(0,100)
+
+	if mobRand <= table.mob1Chance:
+		mob = mobGenerator.get_mob(table.mob1)
+	elif mobRand <= (table.mob1Chance + table.mob2Chance):
+		mob = mobGenerator.get_mob(table.mob2)
+	else:
+		mob = mobGenerator.get_mob(table.mob3)
+		
+	return mob
+	
+func _get_battle_mobs(spawnPointData):
+	#spawnPointData is an object containing table names for spawn points 1, 2, and 3
+	#get the tables themselves
+	var spawnPoint1Table = staticData.allSpawnTableData[spawnPointData.spawnPoint1TableName]
+	var spawnPoint2Table = staticData.allSpawnTableData[spawnPointData.spawnPoint2TableName]
+	var spawnPoint3Table = staticData.allSpawnTableData[spawnPointData.spawnPoint3TableName]
+	
 	#in a battle, it's all the available heroes vs. a random assortment of mobs
-	var mobAssortment = []
-	#eventually, we'll pass in a min and max quantity of mobs
-	#but for now, 1-3 mobs will do
-	var battleMobsQuantity = _get_rand_between(1, 2)
-	#now figure out which mobs those are, exactly
-	#todo: use rarities as designed in the data sheet (right now they are all equally likely) 
-	var randomMob = null
-	for i in battleMobsQuantity:
-		var randMobNum = _get_rand_between(1,3) #never picks 2 if you pass it (0,2) (1,3)
-		randomMob = mobs[randMobNum - 1] #[-1]
-		randomMob.hpCurrent = randomMob.hp #reset HP 
-		mobAssortment.append(randomMob)
-	return mobAssortment
+	var spawnPoint1Mob = _get_random_mob_from_table(spawnPoint1Table)
+	spawnPoint1Mob.hpCurrent = spawnPoint1Mob.hp
+	var spawnPoint2Mob = _get_random_mob_from_table(spawnPoint2Table)
+	spawnPoint2Mob.hpCurrent = spawnPoint2Mob.hp
+	var spawnPoint3Mob = _get_random_mob_from_table(spawnPoint3Table)
+	spawnPoint3Mob.hpCurrent = spawnPoint3Mob.hp
+	
+	var mobs = []
+	
+	mobs.append(spawnPoint1Mob)
+	mobs.append(spawnPoint2Mob)
+	mobs.append(spawnPoint3Mob)
+	
+	#randomMob.hpCurrent = randomMob.hp #reset HP 
+
+	return mobs
 
 func _calculate_average_level(entities):
 	var sum = 0
@@ -160,7 +184,8 @@ func _target_mob_dies(targetMob, newBattle):
 	#encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
 	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
-func _calculate_battle_outcome(heroes, mobTable):
+func _calculate_battle_outcome(heroes, spawnPointData):
+	print(spawnPointData)
 	encounterOutcome.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
 	#regen heroes
 	#todo: better regen formula
@@ -174,7 +199,7 @@ func _calculate_battle_outcome(heroes, mobTable):
 	#if all mobs die, the encounter goes onto the next battle 
 	
 	#figure out which mobs and which heroes are going to participate in this fight
-	var randomMobs = _get_battle_mobs(mobTable)
+	var randomMobs = _get_battle_mobs(spawnPointData)
 	if (randomMobs.size() > 1):
 		encounterOutcome.detailedPlayByPlay.append(str(randomMobs.size()) + " enemies enter the fight.")
 	else:
@@ -305,7 +330,6 @@ func _calculate_battle_outcome(heroes, mobTable):
 				break
 
 	battleNumber += 1
-	print(newBattle)
 	return newBattle
 
 			
@@ -318,7 +342,9 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	
 	var battleQuantity = 0
 
-	battleQuantity = camp.selectedDuration / (camp.pullRate * 100)
+	#rather than determine battle quantity here, we should let the mob spawn rate determine it
+	
+	battleQuantity = camp.selectedDuration / (5 * 100)
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	
@@ -329,7 +355,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	
 	var battlesComplete = 0
 	while (battlesComplete < battleQuantity && heroesClone.size() > 0):
-		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.mobs)
+		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.spawnPointData)
 		battlesComplete += 1
 		encounterOutcome.battleRecord.append(battleOutcome)
 		

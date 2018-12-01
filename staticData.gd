@@ -15,6 +15,7 @@ var allMobData = {}  #staticData.allMobData["mobName"]
 var allLootTableData = {} #staticData.allLootTableData["lootTable"]
 var allRecipeData = {} #staticData.allRecipeData["recipeName"]
 var allQuestData = {} #staticData.allGameQuestData["questId"]
+var allSpawnTableData = {}
 
 var allRoomTypeData = null
 var allLevelXpData = null 
@@ -101,7 +102,18 @@ func _load_static_data():
 			value.manaCurrent = int(value.mana)
 			value.dead = false
 			allMobData[key] = value
-			
+
+	###### Load spawn table data ######
+	#(mobs are a lot like items, they have names and stats and we access them by their name)
+	#but we don't need instances of them like we do heroes, they don't really persist the way heroes do
+	unformattedData = util.prepare_unformatted_data_from_file("spawnTables.json")
+	for spawnTable in unformattedData:
+		if (spawnTable):
+			key = spawnTable["tableName"]
+			value = spawnTable
+			#add anything else to spawnTable data here if needed 
+			allSpawnTableData[key] = value
+						
 	###### Load loot table data ######
 	unformattedData = util.prepare_unformatted_data_from_file("lootTables.json")
 	for lootTable in unformattedData:

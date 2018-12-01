@@ -41,7 +41,7 @@ stretch_mode = 0
 
 [node name="bat" type="AnimatedSprite" parent="." index="1"]
 
-position = Vector2( 337.555, 129.338 )
+position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
 animation = "default"
 frame = 1

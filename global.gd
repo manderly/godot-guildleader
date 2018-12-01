@@ -148,13 +148,12 @@ func _ready():
 		value.heroes = []
 		for hero in value.groupSize:
 			value.heroes.append(null)
-		value.mobs = []
-		if (value.mob1):
-			value.mobs.append(mobGenerator.get_mob(value.mob1))
-		if (value.mob2):
-			value.mobs.append(mobGenerator.get_mob(value.mob2))
-		if (value.mob3):
-			value.mobs.append(mobGenerator.get_mob(value.mob3))
+		value.spawnPointData = { 
+			"spawnPoint1TableName":value.spawnPoint1,
+			"spawnPoint2TableName":value.spawnPoint2,
+			"spawnPoint3TableName":value.spawnPoint3
+		}
+		#we now have an array of spawn point table names 
 		value.timer = null
 		value.inProgress = false
 		value.readyToCollect = false

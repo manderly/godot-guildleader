@@ -52,17 +52,19 @@ onready var roomsLayer = $screen/rooms
 var onscreenHeroes = []
 
 func _ready():
-	#load_game()
-	
-	global.currentMenu = "main"
 	randomize()
-	$HUD.update_currency(global.softCurrency, global.hardCurrency)
+	global.currentMenu = "main"
 	
-	var global_vars = get_node("/root/global")
-	global_vars.add_to_group("PersistGlobals")
-		
+	#load_game()
+
+	$HUD.update_currency(global.softCurrency, global.hardCurrency)
+
 	# Generate default guildmembers and default rooms
 	if (!global.initDone):
+		
+		var global_vars = get_node("/root/global")
+		global_vars.add_to_group("PersistGlobals")
+	
 		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Warrior")
 		heroGenerator.generate(global.guildRoster, "Rogue")
@@ -88,13 +90,13 @@ func _ready():
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true
+		draw_heroes()
+		draw_rooms()
 	else:
 		print("loaded game")
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	
-	draw_heroes()
-	draw_rooms()
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen
