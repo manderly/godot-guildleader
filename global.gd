@@ -98,7 +98,6 @@ func _ready():
 	
 	###### Load tradeskill data ######
 	unformattedData = util.prepare_unformatted_data_from_file("tradeskills.json")
-	print(unformattedData)
 	for data in unformattedData:
 		key = data["tradeskill"] #a string, ie: "alchemy"
 		value = data #another dictionary

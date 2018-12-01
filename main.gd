@@ -249,7 +249,6 @@ func save_global_vars():
 		"softCurrency":global.softCurrency,
 		"hardCurrency":global.hardCurrency
 		}
-	print(save_dict)
 	return save_dict
 
 func save_game():
@@ -296,7 +295,6 @@ func load_game():
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
 						continue
-					print(String(key) + ', ' + String(current_line[key]))
 					restored_hero.set(key, current_line[key])
 				
 				#position this hero (or at least load it with coordinates)

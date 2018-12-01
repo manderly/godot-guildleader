@@ -133,6 +133,7 @@ func _load_static_data():
 		
 		#second, append each recipe into the array that we'll access them from elsewhere in the game
 		#this syntax is like: tradeskills["blacksmithing"].recipes.append(...)
+		
 		global.tradeskills[recipe.tradeskill].recipes.append(allRecipeData[key])
 		
 	#set a default recipe for each tradeskill

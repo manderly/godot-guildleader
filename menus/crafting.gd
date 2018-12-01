@@ -96,6 +96,8 @@ func _update_ingredients():
 		var ingredientName = staticData.allItemData[str(recipe.ingredient1)]
 		var quantityNeeded = recipe.ingredient1Quantity
 		var playerHas = global.playerTradeskillItems[recipe.ingredient1].count
+		#if you get an error "Invalid operands for 'int' and "String" in operator >=
+		#check that this ingredient actually has a quantity defined in recipes data spreadsheet 
 		ingredient1Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
 		if (playerHas >= quantityNeeded):
 			ingredient1Display._set_green()
