@@ -179,7 +179,7 @@ func _ready():
 	util.give_item_guild("Novice's Blade")
 	util.give_item_guild("Novice's Blade")
 	#here's some uber loot for testing purposes 
-	util.give_item_guild("Basic Bow")
+	util.give_item_guild("Deadeye")
 	util.give_item_guild("Simple Ring")
 	util.give_item_guild("Crimson Staff")
 	util.give_item_guild("Staff of the Four Winds")
