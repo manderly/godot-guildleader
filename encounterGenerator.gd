@@ -185,7 +185,6 @@ func _target_mob_dies(targetMob, newBattle):
 	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
 func _calculate_battle_outcome(heroes, spawnPointData):
-	print(spawnPointData)
 	encounterOutcome.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
 	#regen heroes
 	#todo: better regen formula

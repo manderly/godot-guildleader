@@ -23,6 +23,10 @@ onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/Progres
 onready var campData = null
 onready var heroButtons = []
 
+var stepNum = 0
+
+var stepTimer = Timer.new()
+
 var haveAlready = {
 	"healer":0,
 	"dps":0,
@@ -54,20 +58,31 @@ func _process(delta):
 		button_startCampMedium.text = "COLLECT"
 		button_startCampLong.text = "COLLECT"
 		progressBar.set_value(100)
-
-func _camp_in_progress():
+		
+func _play_animatic_step():
+	if (stepNum < campData.campOutcome.battleRecord.size()):
+		print("SHOWING BATTLE: " + str(stepNum) + " of " + str(campData.campOutcome.battleRecord.size()))
+		print(campData.campOutcome.battleRecord[stepNum].mobs)
+		$battleScene.populate_mobs(campData.campOutcome.battleRecord[stepNum].startMobsSprites)
+		stepNum += 1
+	else:
+		print("out of battles to show")
+	
+func _play_camp_animatic():
 	$battleScene.show()
 	$battleScene.populate_heroes(campData.heroes)
-	
-	#for now, just take the sprites in the first one
-	#for battleRecord in campData.campOutcome.battleRecord:
-	#for sprite in campData.campOutcome.battleRecord[0].startMobsSprites:
-	#	print(sprite)
-	$battleScene.populate_mobs(campData.campOutcome.battleRecord[0].startMobsSprites)
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
 	field_difficultyEstimate.text = "Camp in progress..."
+	
 	for button in heroButtons:
 		button.hide()
+	
+	stepTimer.set_one_shot(false)
+	stepTimer.set_wait_time(5)
+	stepTimer.connect("timeout", self, "_play_animatic_step")
+	#stepTimer.connect("timeout", self, "_play_next_step", [campID])
+	add_child(stepTimer)
+	stepTimer.start()
 
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
@@ -210,8 +225,10 @@ func _start_camp(duration, enableButtonStr):
 			#it has to be done there, or else will be wiped from memory when we close this particular menu
 			campData.selectedDuration = duration
 			campData.enableButton = enableButtonStr
+			#camp.campOutcome is immediately calculated when this global method is called
+			#use camp.campOutcome data to draw the animatic 
 			global._begin_camp_timer(duration, campData.campId)
-			_camp_in_progress()
+			_play_camp_animatic()
 			#todo: populate enemies 
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):

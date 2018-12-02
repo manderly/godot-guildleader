@@ -90,13 +90,13 @@ func _ready():
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
 		global.initDone = true
-		draw_heroes()
-		draw_rooms()
+
 	else:
 		print("loaded game")
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
-	
+	draw_heroes()
+	draw_rooms()
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen
