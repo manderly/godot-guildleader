@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="GuildLeaderProject"
+config/name="Guild Leader"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
@@ -24,9 +24,12 @@ staticData="*res://staticData.gd"
 
 window/size/width=720
 window/size/height=1080
+window/size/resizable=false
 window/size/always_on_top=true
 window/handheld/orientation="portrait"
 window/handheld/emulate_touchscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [rendering]
 
