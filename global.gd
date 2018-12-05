@@ -18,7 +18,7 @@ var currentMenu = "main"
 var vaultSpace = 25 #should be a multiple of 5
 var guildName = "" 
 
-var cameraPosition = Vector2(16,2)
+var cameraPosition = Vector2(-14,2)
 var mainScreenTop = 0
 
 var nextHeroID = 100
