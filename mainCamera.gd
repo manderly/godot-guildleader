@@ -3,9 +3,10 @@ extends Camera2D
 var isTouched = false
 var relativeY = 0
 var prevRelativeY = 0
-var acceleration = .5
+var acceleration = 1.2
+var deceleration = .4
 var velocity = 0
-const MAX_VELOCITY = 15
+const MAX_VELOCITY = 17
 
 func move_camera():
 	var newCoord = Vector2(16, get_offset().y - relativeY * velocity)
@@ -27,9 +28,9 @@ func _input(event):
 		isTouched = true
 		
 		if (event.relative.y < 0):
-			relativeY = 1
-		elif (event.relative.y > 0):
 			relativeY = -1
+		elif (event.relative.y > 0):
+			relativeY = 1
 			
 		if (velocity < MAX_VELOCITY):
 			velocity += acceleration
@@ -48,8 +49,7 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	if (!isTouched && velocity > 0):
-		print('slowing down')
-		velocity -= acceleration
+		velocity -= deceleration
 		move_camera()
 	
 func set_cam_position():
