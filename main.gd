@@ -218,6 +218,7 @@ func draw_rooms():
 			#put the x, y coords into the array data
 			global.rooms[i].setX(roomX)
 			global.rooms[i].setY(roomY)
+			global.mainScreenTop = roomY
 			
 			roomScene.set_instance_data(global.rooms[i]) #put data from array into scene
 			roomScene.set_position(Vector2(roomX,roomY))
