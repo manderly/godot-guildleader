@@ -12,11 +12,11 @@ static func generate(gender, heroClass):
 	var firstRand = null
 	#todo: expand to take race into account (human, elf, etc)
 	if (gender == "female"):
-		firstRand = round(rand_range(0, staticData.humanFemaleNames.size() - 1))
-		firstName = staticData.humanFemaleNames[firstRand]
+		firstRand = round(rand_range(0, names.humanFemale.size() - 1))
+		firstName = names.humanFemale[firstRand]
 	elif (gender == "male"):
-		firstRand = round(rand_range(0, staticData.humanFemaleNames.size() - 1))
-		firstName = staticData.humanMaleNames[firstRand]
+		firstRand = round(rand_range(0, names.humanMale.size() - 1))
+		firstName = names.humanMale[firstRand]
 	
 	#now, determine if the last name is going to be class-specific or race-specific 
 	var lastName = "DEFAULTLAST"
@@ -24,28 +24,28 @@ static func generate(gender, heroClass):
 	var classSpecificLastNameRand = round(rand_range(0,100))
 	if (classSpecificLastNameRand > 20): #80% chance of getting a class-specific last name
 		if (heroClass == "Druid" or heroClass == "Ranger"):
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesNature.size() - 1))
-			lastName = staticData.surnamesNature[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesNature.size() - 1))
+			lastName = names.surnamesNature[classLastNameRandIndex]
 		elif (heroClass == "Rogue"):
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesRogue.size() - 1))
-			lastName = staticData.surnamesRogue[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesRogue.size() - 1))
+			lastName = names.surnamesRogue[classLastNameRandIndex]
 		elif (heroClass == "Warrior"):
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesWarrior.size() - 1))
-			lastName = staticData.surnamesWarrior[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesWarrior.size() - 1))
+			lastName = names.surnamesWarrior[classLastNameRandIndex]
 		elif (heroClass == "Wizard"):
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesWizard.size() - 1))
-			lastName = staticData.surnamesWizard[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesWizard.size() - 1))
+			lastName = names.surnamesWizard[classLastNameRandIndex]
 		elif (heroClass == "Cleric"):
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesCleric.size() - 1))
-			lastName = staticData.surnamesCleric[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesCleric.size() - 1))
+			lastName = names.surnamesCleric[classLastNameRandIndex]
 		else:
 			#recycling nature names here for now 
-			classLastNameRandIndex = round(rand_range(0,staticData.surnamesNature.size() - 1))
-			lastName = staticData.surnamesNature[classLastNameRandIndex]
+			classLastNameRandIndex = round(rand_range(0,names.surnamesNature.size() - 1))
+			lastName = names.surnamesNature[classLastNameRandIndex]
 	else:
 		#use a racial last name instead
-		var lastRand = round(rand_range(0, staticData.surnamesHuman.size() - 1))
-		lastName = staticData.surnamesHuman[lastRand]
+		var lastRand = round(rand_range(0, names.surnamesHuman.size() - 1))
+		lastName = names.surnamesHuman[lastRand]
 	
 	var completeName = firstName + space + lastName
 	

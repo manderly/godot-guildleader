@@ -95,9 +95,9 @@ func _get_random_mob_from_table(table):
 func _get_battle_mobs(spawnPointData):
 	#spawnPointData is an object containing table names for spawn points 1, 2, and 3
 	#get the tables themselves
-	var spawnPoint1Table = staticData.allSpawnTableData[spawnPointData.spawnPoint1TableName]
-	var spawnPoint2Table = staticData.allSpawnTableData[spawnPointData.spawnPoint2TableName]
-	var spawnPoint3Table = staticData.allSpawnTableData[spawnPointData.spawnPoint3TableName]
+	var spawnPoint1Table = staticData.spawnTables[spawnPointData.spawnPoint1TableName]
+	var spawnPoint2Table = staticData.spawnTables[spawnPointData.spawnPoint2TableName]
+	var spawnPoint3Table = staticData.spawnTables[spawnPointData.spawnPoint3TableName]
 	
 	#in a battle, it's all the available heroes vs. a random assortment of mobs
 	var spawnPoint1Mob = _get_random_mob_from_table(spawnPoint1Table)
@@ -145,8 +145,8 @@ func _target_mob_dies(targetMob, newBattle):
 	
 	for hero in newBattle.heroes:
 		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
-		if (hero.xp > staticData.allLevelXpData[hero.level].total):
-			hero.xp = staticData.allLevelXpData[hero.level].total
+		if (hero.xp > staticData.levelXpData[hero.level].total):
+			hero.xp = staticData.levelXpData[hero.level].total
 			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " is full xp and ready to train.")
 		else:
 			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
@@ -376,7 +376,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	else:
 		for hero in heroesClone:
 		#hero.xp = global.levelXpData[hero.level].total
-			if (hero && hero.xp == staticData.allLevelXpData[hero.level].total):
+			if (hero && hero.xp == staticData.levelXpData[hero.level].total):
 				encounterOutcome.summary.append(hero.heroName + " is ready to train!")
 			else:
 				encounterOutcome.summary.append(hero.heroName + " survived!")

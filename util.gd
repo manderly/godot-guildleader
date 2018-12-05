@@ -36,14 +36,14 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	
 #check out hero.gd for give_item to a hero 
 func give_item_guild(itemName): #itemName comes in as a string 
-	if (staticData.allItemData[itemName] && staticData.allItemData[itemName].itemType == "tradeskill"):
+	if (staticData.items[itemName] && staticData.items[itemName].itemType == "tradeskill"):
 		if (!global.playerTradeskillItems[itemName].seen):
 			# might be this now: global.playerTradeskillItems
 			global.tradeskillItemsSeen.append(itemName)
 			global.playerTradeskillItems[itemName].seen = true
 		#either way, increase the count
 		global.playerTradeskillItems[itemName].count += 1
-	elif (staticData.allItemData[itemName] && staticData.allItemData[itemName].itemType == "quest"):
+	elif (staticData.items[itemName] && staticData.items[itemName].itemType == "quest"):
 		if (!global.playerQuestItems[itemName].seen):
 			global.questItemsSeen.append(itemName)
 			global.playerQuestItems[itemName].seen = true
@@ -51,12 +51,12 @@ func give_item_guild(itemName): #itemName comes in as a string
 		global.playerQuestItems[itemName].count += 1
 	else:
 		#make sure this item actually exists in the item records
-		if (!staticData.allItemData[itemName]):
+		if (!staticData.items[itemName]):
 			print("ERROR! Make sure this item name exists: " + itemName)
 		#finds first open null spot and puts the item there
 		for i in range(global.guildItems.size()):
 			if (global.guildItems[i] == null):
-				global.guildItems[i] = staticData.allItemData[itemName].duplicate() #make a new instance
+				global.guildItems[i] = staticData.items[itemName].duplicate() #make a new instance
 				global.guildItems[i].itemID = global.nextItemID
 				global.nextItemID += 1
 				break
@@ -112,6 +112,6 @@ func remove_item_tradeskill():
 	global.tradeskills[global.currentMenu].wildcardItemOnDeck = null
 	
 func give_quest(questID):
-	var newQuestInstance = staticData.allQuestData[questID].duplicate()
+	var newQuestInstance = staticData.quests[questID].duplicate()
 	global.activeQuests.append(newQuestInstance)
 	

@@ -123,8 +123,8 @@ func populate_fields(data):
 	
 func _update_stats():
 	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
-	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.allLevelXpData[global.selectedHero.level].total)
-	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.allLevelXpData[global.selectedHero.level].total))
+	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
+	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
@@ -154,7 +154,7 @@ func _update_stats():
 	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
-		if (global.selectedHero.xp == staticData.allLevelXpData[global.selectedHero.level].total):
+		if (global.selectedHero.xp == staticData.levelXpData[global.selectedHero.level].total):
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
 			global.selectedHero.level_up()

@@ -18,7 +18,11 @@ config/icon="res://icon.png"
 
 global="*res://global.gd"
 util="*res://util.gd"
-staticData="*res://staticData.gd"
+staticData="*res://gameData/staticData.gd"
+names="*res://gameData/names.gd"
+timedNodeData="*res://gameData/timedNodeData.gd"
+dynamicData="*res://gameData/dynamicData.gd"
+colors="*res://gameData/colors.gd"
 
 [display]
 
@@ -26,8 +30,8 @@ window/size/width=480
 window/size/height=960
 window/size/resizable=false
 window/size/always_on_top=true
-window/size/test_width=720
-window/size/test_height=1280
+window/size/test_width=480
+window/size/test_height=960
 window/handheld/orientation="portrait"
 window/handheld/emulate_touchscreen=true
 window/stretch/mode="viewport"

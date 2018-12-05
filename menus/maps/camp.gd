@@ -35,6 +35,10 @@ var haveAlready = {
 
 func _ready():
 	campData = global.activeCampData[global.selectedCampID]
+	if (campData.heroes.size() == 0):
+		for i in campData.groupSize:
+			campData.heroes.append(null)
+		
 	if (!campData.inProgress):
 		$battleScene.hide()
 	else:

@@ -60,7 +60,7 @@ func _ready():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 
 	# Generate default guildmembers and default rooms
-	if (!global.initDone):
+	if (global.initDone == false):
 		
 		var global_vars = get_node("/root/global")
 		global_vars.add_to_group("PersistGlobals")
@@ -89,10 +89,17 @@ func _ready():
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("vault", false)
 		roomGenerator.generate("topEdge", false)
+		
+		util.give_quest("test09")
+		util.give_quest("test10")
+		util.give_quest("azuricite_quest01")
+		global.selectedQuestID = "test09"
+	
 		global.initDone = true
 
 	else:
 		print("loaded game")
+	
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	draw_heroes()
@@ -125,17 +132,6 @@ func _on_Roster_pressed():
 	
 func _process(delta):
 	pass
-	#Displays how much time is left on the active quest 
-	#if (global.questActive && !global.questReadyToCollect):
-		#if (global.questTimer.time_left < 60):
-			#$HUD/button_collectQuest/field_questCountdown.set_text("< 1m")
-			#$HUD/button_collectQuest/field_questCountdown.set_text(str(global.questTimer.time_left))
-		#else:
-			#$HUD/button_collectQuest/field_questCountdown.set_text("Long time")
-	#elif (!global.questActive && global.questReadyToCollect):
-		#$HUD/button_collectQuest/field_questCountdown.set_text("DONE!")
-	#else:
-		#$HUD/button_collectQuest/field_questCountdown.set_text("ERR!")
 	
 func draw_heroes():
 	var heroX = -1

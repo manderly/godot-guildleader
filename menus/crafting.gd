@@ -93,7 +93,7 @@ func _update_ingredients():
 	
 	#determine which ingredients to display and whether the text is red or green 
 	if (recipe.ingredient1): #if this quest has a fourth required component
-		var ingredientName = staticData.allItemData[str(recipe.ingredient1)]
+		var ingredientName = staticData.items[str(recipe.ingredient1)]
 		var quantityNeeded = recipe.ingredient1Quantity
 		var playerHas = global.playerTradeskillItems[recipe.ingredient1].count
 		#if you get an error "Invalid operands for 'int' and "String" in operator >=
@@ -107,7 +107,7 @@ func _update_ingredients():
 		ingredient1Display._clear_fields()
 		
 	if (recipe.ingredient2): #if this quest has a fourth required component
-		var ingredientName = staticData.allItemData[str(recipe.ingredient2)]
+		var ingredientName = staticData.items[str(recipe.ingredient2)]
 		var quantityNeeded = recipe.ingredient2Quantity
 		var playerHas = global.playerTradeskillItems[recipe.ingredient2].count
 		ingredient2Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
@@ -119,7 +119,7 @@ func _update_ingredients():
 		ingredient2Display._clear_fields()
 		
 	if (recipe.ingredient3): #if this quest has a fourth required component
-		var ingredientName = staticData.allItemData[str(recipe.ingredient3)]
+		var ingredientName = staticData.items[str(recipe.ingredient3)]
 		var quantityNeeded = recipe.ingredient3Quantity
 		var playerHas = global.playerTradeskillItems[recipe.ingredient3].count
 		ingredient3Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
@@ -131,7 +131,7 @@ func _update_ingredients():
 		ingredient3Display._clear_fields()
 		
 	if (recipe.ingredient4): #if this quest has a fourth required component
-		var ingredientName = staticData.allItemData[str(recipe.ingredient4)]
+		var ingredientName = staticData.items[str(recipe.ingredient4)]
 		var quantityNeeded = recipe.ingredient4Quantity
 		var playerHas = global.playerTradeskillItems[recipe.ingredient4].count
 		ingredient4Display._render_stacked_item_with_total(ingredientName, quantityNeeded, playerHas)
@@ -150,7 +150,7 @@ func _update_ingredients():
 			labelComputed.show()
 			labelChoose.hide()
 			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
-			resultItemBox._render_tradeskill(staticData.allItemData[itemName])
+			resultItemBox._render_tradeskill(staticData.items[itemName])
 		else:
 			nowCrafting.text = "Now Crafting: " + itemName
 	else:
@@ -187,7 +187,7 @@ func _update_ingredients():
 				
 		elif (recipe.result):
 			labelComputed.hide()
-			resultItemBox._render_tradeskill(staticData.allItemData[str(recipe.result)])
+			resultItemBox._render_tradeskill(staticData.items[str(recipe.result)])
 		
 func _process(delta):
 	#Displays how much time is left on the active recipe 
@@ -199,11 +199,11 @@ func _process(delta):
 		progressBar.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		combineButton.set_text("COLLECT!")
-		combineButton.add_color_override("font_color", staticData.colorYellow) #239, 233, 64 yellow
+		combineButton.add_color_override("font_color", colors.yellow) #239, 233, 64 yellow
 		progressBar.set_value(100)
 	else:
 		combineButton.set_text("COMBINE")
-		combineButton.add_color_override("font_color", staticData.colorWhite) #white
+		combineButton.add_color_override("font_color", colors.white) #white
 
 func _open_collect_result_popup():
 	#determine if we get a skillup and show or hide skillup text accordingly 
@@ -215,7 +215,7 @@ func _open_collect_result_popup():
 	else:
 		finishedItemPopup._show_skill_up_text(false)
 		
-	finishedItemPopup._set_icon(staticData.allItemData[str(tradeskill.currentlyCrafting.name)].icon)
+	finishedItemPopup._set_icon(staticData.items[str(tradeskill.currentlyCrafting.name)].icon)
 	
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 

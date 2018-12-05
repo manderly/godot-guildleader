@@ -34,7 +34,7 @@ func _populate_fields():
 		
 	for itemName in uniqueLootNames:
 		var itemIconAndCountDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
-		var itemData = staticData.allItemData[str(itemName)]
+		var itemData = staticData.items[str(itemName)]
 		itemIconAndCountDisplay._render_stacked_item(itemData, lootDictionaryWithCounts[itemName])
 		itemIconAndCountDisplay._set_white()
 		field_lootItems.add_child(itemIconAndCountDisplay)

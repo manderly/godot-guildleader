@@ -22,7 +22,7 @@ func set_hero_data(data):
 func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.allLevelXpData[data.level].total)
+	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)])
 	if (data.atHome && data.staffedTo == ""):
 		$VBoxContainer/field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
@@ -42,7 +42,7 @@ func populate_fields(data):
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
 	
-	$ProgressBar.set_value(100 * (data.xp / staticData.allLevelXpData[data.level].total))
+	$ProgressBar.set_value(100 * (data.xp / staticData.levelXpData[str(data.level)]))
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()

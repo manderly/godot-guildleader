@@ -92,84 +92,34 @@ func _ready():
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
 
-	#Prepare to load game data. These use unformattedData
-	var key = null #a string, ie: "Tadloc Grunt"
-	var value = null #another dictionary, ie: {dps:4, str:5}
+	#get the static data that was already built for us by Parsely	
+	global.tradeskills = timedNodeData.tradeskills
+	global.activeHarvestingData = timedNodeData.harvesting
+	global.activeCampData = timedNodeData.camps
+	global.playerTradeskillItems = dynamicData.playerTradeskillItems
+	global.playerQuestItems = dynamicData.playerQuestItems
 	
-	###### Load tradeskill data ######
-	unformattedData = util.prepare_unformatted_data_from_file("tradeskills.json")
-	for data in unformattedData:
-		key = data["tradeskill"] #a string, ie: "alchemy"
-		value = data #another dictionary
-		#hero, timer, etc. are not part of the data as it came in and are added here
-		value.hero = null
-		value.timer = null
-		value.inProgress = false
-		value.readyToCollect = false
-		value.wildcardItemOnDeck = null
-		value.recipes = []
-		value.selectedRecipe = null
-		value.currentlyCrafting = {
-			"moddingAnItem":false,
-			"wildcardItem":null,
-			"name":"",
-			"statImproved":"",
-			"statIncrease":"",
-			"totalTimeToFinish":""
-		}
-		tradeskills[key] = value
+	#Now that we have a tradeskill object for each tradeskill,
+	#populate its recipe array with the pertinent recipe objects
+	for recipe in staticData.recipes:
+		global.tradeskills[recipe.tradeskill].recipes.append(recipe)
+	
+	#And set defaults if none exist yet
+	if (!global.tradeskills["alchemy"].selectedRecipe):
+		global.tradeskills["alchemy"].selectedRecipe = global.tradeskills.alchemy.recipes[0]
 		
-	#load all the static data 
-	staticData._load_static_data()
+	if (!global.tradeskills["blacksmithing"].selectedRecipe):
+		global.tradeskills["blacksmithing"].selectedRecipe = global.tradeskills.blacksmithing.recipes[0]
+		
+	if (!global.tradeskills["fletching"].selectedRecipe):
+		global.tradeskills["fletching"].selectedRecipe = global.tradeskills.fletching.recipes[0]
+				
+	if (!global.tradeskills["jewelcraft"].selectedRecipe):
+		global.tradeskills["jewelcraft"].selectedRecipe = global.tradeskills.jewelcraft.recipes[0]
 	
-	###### Load harvesting node data ######
-	#Access harvest node by id
-	unformattedData = util.prepare_unformatted_data_from_file("harvesting.json")
-	for data in unformattedData:
-		key = data["harvestingId"] #a string, ie: "harvesting_copperOre"
-		value = data #another dictionary, ie: {prize1:"prize name", heroes:3}
-		value.hero = null
-		value.timer = null
-		value.inProgress = false
-		value.readyToCollect = false
-		value.timesRun = 0
-		value.lootWon = {
-			"prizeItem1":null,
-			"prizeQuantity":0
-		}
-		activeHarvestingData[key] = value
-	
-	###### Load camp data ######
-	unformattedData = util.prepare_unformatted_data_from_file("camps.json")
-	for data in global.unformattedData:
-		key = data["campId"]
-		value = data
-		#breaks manual selection if done in camp.gd 
-		value.heroes = []
-		for hero in value.groupSize:
-			value.heroes.append(null)
-		value.spawnPointData = { 
-			"spawnPoint1TableName":value.spawnPoint1,
-			"spawnPoint2TableName":value.spawnPoint2,
-			"spawnPoint3TableName":value.spawnPoint3
-		}
-		#we now have an array of spawn point table names 
-		value.timer = null
-		value.inProgress = false
-		value.readyToCollect = false
-		value.timesRun = 0
-		value.campHeroesSelected = 0
-		value.selectedDuration = 0
-		value.enableButton = ""
-		value.campOutcome = {}
-		#to set a camp: global.currentCamp = global.campData["camp_forest01"]
-		activeCampData[key] = value
-	
-	#give quests to the player like if they were items
-	util.give_quest("test09")
-	util.give_quest("test10")
-	util.give_quest("azuricite_quest01")
-	selectedQuestID = "test09"
+	if (!global.tradeskills["tailoring"].selectedRecipe):
+		global.tradeskills["tailoring"].selectedRecipe = global.tradeskills.tailoring.recipes[0]
+		
 	
 	#since we can't init the guildItems array to the size of the vault...
 	guildItems.resize(vaultSpace)
