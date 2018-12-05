@@ -100,6 +100,8 @@ func _ready():
 	else:
 		print("loaded game")
 	
+	#restore saved camera position
+	$screen/mainCamera.set_position()
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	draw_heroes()
@@ -151,7 +153,6 @@ func draw_heroes():
 				heroX = spawnLocs[str(i)]["x"]
 				heroY = spawnLocs[str(i)]["y"]
 			else:
-				print("using saved location")
 				heroX = global.guildRoster[i].savedPositionX #rand_range(mainRoomMinX, mainRoomMaxX)
 				heroY = global.guildRoster[i].savedPositionY #rand_range(mainRoomMinY, mainRoomMaxY)
 			

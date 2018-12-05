@@ -27,7 +27,7 @@ func _ready():
 
 func _change_displayed_quest():
 	#coded with the expectation that every quest gives exactly 1 prize item (and not 0 or 2)
-	quest = staticData.allQuestData[global.selectedQuestID] #local copy 
+	quest = staticData.quests[global.selectedQuestID] #local copy 
 	field_questName.text = quest.name
 	field_questDescription.text = quest.text
 	var itemData = staticData.items[str(quest.prizeItem1)]

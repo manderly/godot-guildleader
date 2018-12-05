@@ -8,7 +8,6 @@ func _ready():
 func draw_hero_and_button():
 	print(global.tradeskills["blacksmithing"].hero)
 	if (global.tradeskills["blacksmithing"].hero):
-		print("Blacksmithing has a hero, creating his scene...")
 		$button_staffCraft.text = "Craft"
 		#draw the hero
 		var heroScene = preload("res://hero.tscn").instance()

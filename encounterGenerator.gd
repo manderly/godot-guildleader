@@ -145,15 +145,15 @@ func _target_mob_dies(targetMob, newBattle):
 	
 	for hero in newBattle.heroes:
 		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
-		if (hero.xp > staticData.levelXpData[hero.level].total):
-			hero.xp = staticData.levelXpData[hero.level].total
+		if (hero.xp > staticData.levelXpData[str(hero.level)]):
+			hero.xp = staticData.levelXpData[str(hero.level)]
 			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " is full xp and ready to train.")
 		else:
 			encounterOutcome.detailedPlayByPlay.append(hero.heroName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
 
 		
 	#give loot (randomly determined from loot table)
-	var lootTable = staticData.allLootTableData[targetMob.lootTable]
+	var lootTable = staticData.lootTables[targetMob.lootTable]
 	
 	#determine the upper limit based on how long the camp is expected to last
 	#shorter camps have a slightly greater chance of dropping items
@@ -376,7 +376,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	else:
 		for hero in heroesClone:
 		#hero.xp = global.levelXpData[hero.level].total
-			if (hero && hero.xp == staticData.levelXpData[hero.level].total):
+			if (hero && hero.xp == staticData.levelXpData[str(hero.level)]):
 				encounterOutcome.summary.append(hero.heroName + " is ready to train!")
 			else:
 				encounterOutcome.summary.append(hero.heroName + " survived!")
