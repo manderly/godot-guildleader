@@ -1,17 +1,18 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://menus/maps/forest.gd" type="Script" id=1]
 [ext_resource path="res://tiles/forest_tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/tackbankforest/tree1d.png" type="Texture" id=3]
-[ext_resource path="res://sprites/tackbankforest/tree1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/tackbankforest/tree1b.png" type="Texture" id=5]
-[ext_resource path="res://sprites/tackbankforest/tree1c.png" type="Texture" id=6]
-[ext_resource path="res://sprites/tackbankforest/tree3.png" type="Texture" id=7]
-[ext_resource path="res://sprites/tackbankforest/tree2.png" type="Texture" id=8]
-[ext_resource path="res://gui/scroll_light.png" type="Texture" id=9]
-[ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=10]
-[ext_resource path="res://menus/maps/harvestingNode.tscn" type="PackedScene" id=11]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=12]
+[ext_resource path="res://menus/maps/mapBackgrounds/map_forest.png" type="Texture" id=3]
+[ext_resource path="res://sprites/tackbankforest/tree1d.png" type="Texture" id=4]
+[ext_resource path="res://sprites/tackbankforest/tree1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/tackbankforest/tree1b.png" type="Texture" id=6]
+[ext_resource path="res://sprites/tackbankforest/tree1c.png" type="Texture" id=7]
+[ext_resource path="res://sprites/tackbankforest/tree3.png" type="Texture" id=8]
+[ext_resource path="res://sprites/tackbankforest/tree2.png" type="Texture" id=9]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=10]
+[ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=11]
+[ext_resource path="res://menus/maps/harvestingNode.tscn" type="PackedScene" id=12]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -19,7 +20,7 @@ content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 128, 64 )
 margin_left = 22.0
 margin_right = 22.0
@@ -61,83 +62,116 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="rocks and grass" type="Node" parent="." index="1"]
+[node name="TextureRect" type="TextureRect" parent="." index="1"]
 
-[node name="trees" type="Node" parent="." index="2"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -17.0
+margin_top = -22.0
+margin_right = 591.0
+margin_bottom = 1066.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
+
+[node name="rocks and grass" type="Node" parent="." index="2"]
+
+[node name="trees" type="Node" parent="." index="3"]
 
 editor/display_folded = true
 
 [node name="tree11" type="Sprite" parent="trees" index="0"]
 
-position = Vector2( -10, 640 )
-texture = ExtResource( 3 )
+visible = false
+position = Vector2( 301.846, 739.447 )
+texture = ExtResource( 4 )
 
 [node name="tree1" type="Sprite" parent="trees" index="1"]
 
+visible = false
 position = Vector2( 110, 10 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="tree8" type="Sprite" parent="trees" index="2"]
 
+visible = false
 position = Vector2( 300, 330 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="tree9" type="Sprite" parent="trees" index="3"]
 
+visible = false
 position = Vector2( 120, 700 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="tree10" type="Sprite" parent="trees" index="4"]
 
+visible = false
 position = Vector2( 40, 720 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="tree2" type="Sprite" parent="trees" index="5"]
 
+visible = false
 position = Vector2( 450, 60 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="tree3" type="Sprite" parent="trees" index="6"]
 
+visible = false
 position = Vector2( 510, 160 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="tree12" type="Sprite" parent="trees" index="7"]
 
+visible = false
 position = Vector2( 460, 210 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="tree13" type="Sprite" parent="trees" index="8"]
 
+visible = false
 position = Vector2( 480, 280 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="tree14" type="Sprite" parent="trees" index="9"]
 
+visible = false
 position = Vector2( 410, 330 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="tree6" type="Sprite" parent="trees" index="10"]
 
+visible = false
 position = Vector2( 30, 120 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="tree4" type="Sprite" parent="trees" index="11"]
 
+visible = false
 position = Vector2( 100, 210 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="tree5" type="Sprite" parent="trees" index="12"]
 
+visible = false
 position = Vector2( 430, 400 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="tree7" type="Sprite" parent="trees" index="13"]
 
+visible = false
 position = Vector2( 10, 400 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
-[node name="mapName" type="Label" parent="." index="3"]
+[node name="mapName" type="Label" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -162,70 +196,70 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_styles" ]
 
-[node name="campNode1" parent="." index="4" instance=ExtResource( 10 )]
+[node name="campNode1" parent="." index="5" instance=ExtResource( 11 )]
 
-margin_left = 170.0
-margin_top = 72.0
-margin_right = 234.0
-margin_bottom = 136.0
+margin_left = 39.0
+margin_top = 36.0
+margin_right = 103.0
+margin_bottom = 100.0
 
-[node name="campNode2" parent="." index="5" instance=ExtResource( 10 )]
+[node name="campNode2" parent="." index="6" instance=ExtResource( 11 )]
 
-margin_left = 313.0
-margin_top = 164.0
-margin_right = 377.0
-margin_bottom = 228.0
+margin_left = 325.0
+margin_top = 79.0
+margin_right = 389.0
+margin_bottom = 143.0
 
-[node name="campNode3" parent="." index="6" instance=ExtResource( 10 )]
+[node name="campNode3" parent="." index="7" instance=ExtResource( 11 )]
 
-margin_left = 143.0
-margin_top = 228.0
-margin_right = 207.0
-margin_bottom = 292.0
+margin_left = 115.0
+margin_top = 189.0
+margin_right = 179.0
+margin_bottom = 253.0
 
-[node name="campNode4" parent="." index="7" instance=ExtResource( 10 )]
+[node name="campNode4" parent="." index="8" instance=ExtResource( 11 )]
 
-margin_left = 82.0
-margin_top = 454.0
-margin_right = 146.0
-margin_bottom = 518.0
+margin_left = 18.0
+margin_top = 324.0
+margin_right = 82.0
+margin_bottom = 388.0
 
-[node name="campNode5" parent="." index="8" instance=ExtResource( 10 )]
+[node name="campNode5" parent="." index="9" instance=ExtResource( 11 )]
 
-margin_left = 210.0
-margin_top = 595.0
-margin_right = 274.0
-margin_bottom = 659.0
+margin_left = 395.0
+margin_top = 505.0
+margin_right = 459.0
+margin_bottom = 569.0
 
-[node name="campNode6" parent="." index="9" instance=ExtResource( 10 )]
+[node name="campNode6" parent="." index="10" instance=ExtResource( 11 )]
 
-margin_left = 387.0
-margin_top = 786.0
-margin_right = 451.0
-margin_bottom = 850.0
+margin_left = 309.0
+margin_top = 693.0
+margin_right = 373.0
+margin_bottom = 757.0
 
-[node name="campNode7" parent="." index="10" instance=ExtResource( 10 )]
+[node name="campNode7" parent="." index="11" instance=ExtResource( 11 )]
 
-margin_left = 316.0
-margin_top = 860.0
-margin_right = 380.0
-margin_bottom = 924.0
+margin_left = 260.0
+margin_top = 838.0
+margin_right = 324.0
+margin_bottom = 902.0
 
-[node name="harvestingNode1" parent="." index="11" instance=ExtResource( 11 )]
+[node name="harvestingNode1" parent="." index="12" instance=ExtResource( 12 )]
 
-margin_left = 287.0
-margin_top = 430.0
-margin_right = 351.0
-margin_bottom = 494.0
+margin_left = 376.0
+margin_top = 263.0
+margin_right = 440.0
+margin_bottom = 327.0
 
-[node name="harvestingNode2" parent="." index="12" instance=ExtResource( 11 )]
+[node name="harvestingNode2" parent="." index="13" instance=ExtResource( 12 )]
 
-margin_left = 55.0
-margin_top = 528.0
-margin_right = 119.0
-margin_bottom = 592.0
+margin_left = 188.0
+margin_top = 745.0
+margin_right = 252.0
+margin_bottom = 809.0
 
-[node name="button_back" parent="." index="13" instance=ExtResource( 12 )]
+[node name="button_back" parent="." index="14" instance=ExtResource( 13 )]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

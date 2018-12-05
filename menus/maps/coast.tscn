@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://menus/maps/coast.gd" type="Script" id=1]
 [ext_resource path="res://tiles/coast_tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=3]
-[ext_resource path="res://gui/scroll_light.png" type="Texture" id=4]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
+[ext_resource path="res://menus/maps/mapBackgrounds/map_beach.png" type="Texture" id=3]
+[ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gui/scroll_light.png" type="Texture" id=5]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=6]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -12,7 +13,7 @@ content_margin_left = -1.0
 content_margin_right = -1.0
 content_margin_top = -1.0
 content_margin_bottom = -1.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 128, 64 )
 margin_left = 22.0
 margin_right = 22.0
@@ -26,7 +27,7 @@ modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -54,65 +55,82 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="trees" type="Node" parent="." index="1"]
+[node name="TextureRect" type="TextureRect" parent="." index="1"]
 
-[node name="questMarker1" parent="." index="2" instance=ExtResource( 3 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 3 )
+stretch_mode = 0
 
-margin_left = 80.0
-margin_top = 760.0
-margin_right = 156.0
-margin_bottom = 830.0
+[node name="trees" type="Node" parent="." index="2"]
 
-[node name="questMarker2" parent="." index="3" instance=ExtResource( 3 )]
+[node name="questMarker1" parent="." index="3" instance=ExtResource( 4 )]
 
-margin_left = 40.0
-margin_top = 640.0
-margin_right = 116.0
-margin_bottom = 710.0
+margin_left = 202.0
+margin_top = 717.0
+margin_right = 278.0
+margin_bottom = 787.0
 
-[node name="questMarker3" parent="." index="4" instance=ExtResource( 3 )]
+[node name="questMarker2" parent="." index="4" instance=ExtResource( 4 )]
 
-margin_left = 280.0
-margin_top = 650.0
-margin_right = 356.0
-margin_bottom = 720.0
+margin_left = 236.0
+margin_top = 426.0
+margin_right = 312.0
+margin_bottom = 496.0
 
-[node name="questMarker4" parent="." index="5" instance=ExtResource( 3 )]
+[node name="questMarker3" parent="." index="5" instance=ExtResource( 4 )]
 
-margin_left = 320.0
-margin_top = 250.0
-margin_right = 396.0
-margin_bottom = 320.0
+margin_left = 407.0
+margin_top = 525.0
+margin_right = 483.0
+margin_bottom = 595.0
 
-[node name="questMarker5" parent="." index="6" instance=ExtResource( 3 )]
+[node name="questMarker4" parent="." index="6" instance=ExtResource( 4 )]
 
-margin_left = 350.0
-margin_top = 440.0
-margin_right = 426.0
-margin_bottom = 510.0
+margin_left = 433.0
+margin_top = 16.0
+margin_right = 509.0
+margin_bottom = 86.0
 
-[node name="questMarker6" parent="." index="7" instance=ExtResource( 3 )]
+[node name="questMarker5" parent="." index="7" instance=ExtResource( 4 )]
 
-margin_left = 50.0
-margin_top = 350.0
-margin_right = 126.0
-margin_bottom = 420.0
+margin_left = 474.0
+margin_top = 306.0
+margin_right = 550.0
+margin_bottom = 376.0
 
-[node name="questMarker7" parent="." index="8" instance=ExtResource( 3 )]
+[node name="questMarker6" parent="." index="8" instance=ExtResource( 4 )]
 
-margin_left = 140.0
-margin_top = 100.0
-margin_right = 216.0
-margin_bottom = 170.0
+margin_left = 211.0
+margin_top = 249.0
+margin_right = 287.0
+margin_bottom = 319.0
 
-[node name="questMarker8" parent="." index="9" instance=ExtResource( 3 )]
+[node name="questMarker7" parent="." index="9" instance=ExtResource( 4 )]
 
-margin_left = 220.0
-margin_top = 80.0
-margin_right = 296.0
-margin_bottom = 150.0
+margin_left = 364.0
+margin_top = 77.0
+margin_right = 440.0
+margin_bottom = 147.0
 
-[node name="mapName" type="Label" parent="." index="10"]
+[node name="questMarker8" parent="." index="10" instance=ExtResource( 4 )]
+
+margin_left = 455.0
+margin_top = 715.0
+margin_right = 531.0
+margin_bottom = 785.0
+
+[node name="mapName" type="Label" parent="." index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -137,7 +155,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors", "custom_styles" ]
 
-[node name="button_back" parent="." index="11" instance=ExtResource( 5 )]
+[node name="button_back" parent="." index="12" instance=ExtResource( 6 )]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
