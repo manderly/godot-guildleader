@@ -101,7 +101,7 @@ func _ready():
 		print("loaded game")
 	
 	#restore saved camera position
-	$screen/mainCamera.set_position()
+	$screen/mainCamera.set_cam_position()
 		
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	draw_heroes()

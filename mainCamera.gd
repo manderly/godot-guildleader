@@ -10,5 +10,5 @@ func _input(event):
 func _ready():
 	pass
 	
-func set_position():
+func set_cam_position():
 	set_offset(global.cameraPosition)
