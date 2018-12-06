@@ -191,6 +191,7 @@ func _begin_camp_timer(duration, campID):
 		add_child(camp.timer) 
 		
 		#begin the camp battle simulation
+		#address as campOutcome.outcome
 		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
 		
 	else:

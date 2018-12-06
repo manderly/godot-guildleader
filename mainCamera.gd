@@ -47,7 +47,7 @@ func _input(event):
 func _ready():
 	pass
 	
-func _process(delta: float) -> void:
+func _process(delta): #: (delta float) -> void
 	if (!isTouched && velocity > 0):
 		velocity -= deceleration
 		move_camera(relativeY * velocity)

@@ -64,10 +64,10 @@ func _process(delta):
 		progressBar.set_value(100)
 		
 func _play_animatic_step():
-	if (stepNum < campData.campOutcome.battleRecord.size()):
-		print("SHOWING BATTLE: " + str(stepNum) + " of " + str(campData.campOutcome.battleRecord.size()))
-		print(campData.campOutcome.battleRecord[stepNum].mobs)
-		$battleScene.populate_mobs(campData.campOutcome.battleRecord[stepNum].startMobsSprites)
+	if (stepNum < campData.campOutcome.outcome.battleRecord.size()):
+		print("SHOWING BATTLE: " + str(stepNum) + " of " + str(campData.campOutcome.outcome.battleRecord.size()))
+		print(campData.campOutcome.outcome.battleRecord[stepNum].mobs)
+		$battleScene.populate_mobs(campData.campOutcome.outcome.battleRecord[stepNum].startMobsSprites)
 		stepNum += 1
 	else:
 		print("out of battles to show")
