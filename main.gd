@@ -45,6 +45,41 @@ var spawnLocs = {
 		},
 	}
 
+var graveyardLocs = {
+	"0":{
+		"x":120,
+		"y":550
+		},
+	"1":{
+		"x":220,
+		"y":580
+		},
+	"2":{
+		"x":320,
+		"y":550
+		},
+	"3":{
+		"x":140,
+		"y":650
+		},
+	"4":{
+		"x":240,
+		"y":680
+		},
+	"5":{
+		"x":340,
+		"y":650
+		},
+	"6":{
+		"x":310,
+		"y":620
+		},
+	"7":{
+		"x":310,
+		"y":720
+		},
+	}
+	
 var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
@@ -142,20 +177,27 @@ func draw_heroes():
 	
 	for i in range(global.guildRoster.size()):
 		#draw heroes who are "atHome"
-		if (global.guildRoster[i].atHome && global.guildRoster[i].staffedTo == ""):
+		var thisHero = global.guildRoster[i]
+		if (thisHero.atHome && thisHero.staffedTo == ""):
 			#we only need to make a new instance if this hero
 			#is "wandering" the guildhall
 			var heroScene = load("res://hero.tscn").instance()
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
-			if (global.guildRoster[i].savedPositionX == -1):
+			if (thisHero.savedPositionX == -1):
 				heroX = spawnLocs[str(i)]["x"]
 				heroY = spawnLocs[str(i)]["y"]
+				
+				#todo: check if hero dead, and spawn in graveyard if so
+				#heroX = graveyardLocs[str(i)]["x"]
+				#heroY = graveyardLocs[str(i)]["y"]
 			else:
 				heroX = global.guildRoster[i].savedPositionX #rand_range(mainRoomMinX, mainRoomMaxX)
 				heroY = global.guildRoster[i].savedPositionY #rand_range(mainRoomMinY, mainRoomMaxY)
 			
+			if (thisHero.dead):
+				heroScene.modulate = Color(0.8, 0.7, 1)
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
 			onscreenHeroes.append(heroScene)

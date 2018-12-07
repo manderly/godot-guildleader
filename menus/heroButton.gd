@@ -23,7 +23,11 @@ func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)])
-	if (data.atHome && data.staffedTo == ""):
+	if (data.atHome && data.dead):
+		$VBoxContainer/field_available.text = "Dead"
+		if (global.currentMenu != "roster"):
+			self.set_disabled(true)
+	elif (data.atHome && data.staffedTo == ""):
 		$VBoxContainer/field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
 		$VBoxContainer/field_available.text = "Ready to go!"

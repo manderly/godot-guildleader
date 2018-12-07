@@ -44,12 +44,6 @@ func _ready():
 	heroScene.set_position(Vector2(20, 20))
 	heroScene.set_display_params(false, false) #walking, show name 
 	add_child(heroScene)
-
-	#hide dismiss and rename buttons if this hero isn't a recruited hero
-	if (!global.selectedHero.recruited):
-		$button_rename.hide()
-		$button_dismiss.hide()
-		$progress_xp.hide()
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
@@ -73,6 +67,8 @@ func _ready():
 		else:
 			#show buttons and give the option to put item in vault if hero is recruited
 			heroInventoryButton._set_info_popup_buttons(true, true, "Put in vault")
+			if (global.selectedHero.dead):
+				heroInventoryButton._set_disabled()
 			
 		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
 		#only set icon if the hero actually has an item in this slot, otherwise empty
@@ -111,18 +107,36 @@ func _ready():
 	$vbox_stats2.add_child(displayPrestige)
 	$vbox_stats2.add_child(displayGroupBonus)
 	$vbox_stats2.add_child(displayRaidBonus)
-	populate_fields(global.selectedHero)
+	populate_fields()
 	
-func populate_fields(data):
-	$field_heroName.text = data.heroName
-	if (data.recruited):
+func populate_fields():
+	$field_heroName.text = global.selectedHero.heroName
+	if (global.selectedHero.recruited):
 		$button_trainOrRecruit.text = "Train to next level"
 	else:
 		$button_trainOrRecruit.text = "Recruit hero"
+		$button_rename.hide()
+		$button_dismiss.hide()
+		$progress_xp.hide()
+		
+	if (global.selectedHero.dead):
+		$button_dismiss.set_disabled(true)
+		$button_revive.set_disabled(false)
+		$button_trainOrRecruit.set_disabled(true)
+	else:
+		$button_dismiss.set_disabled(false)
+		$button_revive.set_disabled(true)
+		$button_trainOrRecruit.set_disabled(false)
+		
 	_update_stats()
 	
 func _update_stats():
-	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
+	var aliveStatus = ""
+	if (global.selectedHero.dead):
+		aliveStatus = "(Dead)"
+	else:
+		aliveStatus = ""
+	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass + " " + aliveStatus
 	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
 	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
@@ -253,3 +267,6 @@ func _on_vbox_stats2_gui_input(ev):
     and ev.is_pressed():
 		get_node("info_statsRight_dialog").popup()
 	
+func _on_button_revive_pressed():
+	global.selectedHero.dead = false
+	populate_fields()

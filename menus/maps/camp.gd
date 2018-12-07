@@ -71,6 +71,8 @@ func _play_animatic_step():
 		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.outcome.battleRecord.size()))
 		print(campData.campOutcome.outcome.battleRecord[stepNum].mobs)
 		$battleScene.populate_mobs(campData.campOutcome.outcome.battleRecord[stepNum].startMobsSprites)
+		print(campData.campOutcome.outcome.battleRecord[stepNum])
+		#$battleScene.populate_heroes(campData.campOutcome.outcome.battleRecord[stepNum].heroesClone)
 		field_battleNum.text = "Battle #" + str(stepNum+1)
 		stepNum += 1
 	else:
@@ -278,7 +280,7 @@ func _on_button_autoPickHeroes_pressed():
 			#todo: sort heroes by xp first (want low xp heroes) 
 			#look through all the available heroes
 			for hero in global.guildRoster:
-				if (hero.atHome == true && hero.staffedTo == ""):
+				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
 					if (haveAlready.healer == 0 && hero.get_archetype() == "healer"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress

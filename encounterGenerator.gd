@@ -324,6 +324,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 				encounter.outcome.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroName + " for " + str(unmodifiedDamage) + " points of damage")
 				if (targetHero.hpCurrent <= 0):
 					targetHero.dead = true
+					targetHero.send_home()
 					encounter.outcome.detailedPlayByPlay.append(targetHero.heroName + " died!")
 					newBattle.heroes.erase(targetHero)
 					if (newBattle.heroes.size() == 0):
@@ -353,14 +354,14 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 	
-	heroesClone = []
-	for t in camp.heroes:
-		if (t):
-			heroesClone.append(t)
+	#heroesClone = []
+	#for t in camp.heroes:
+	#	if (t):
+	#		heroesClone.append(t)
 	
 	var battlesComplete = 0
-	while (battlesComplete < battleQuantity && heroesClone.size() > 0):
-		var battleOutcome = _calculate_battle_outcome(heroesClone, camp.spawnPointData)
+	while (battlesComplete < battleQuantity && camp.heroes.size() > 0):
+		var battleOutcome = _calculate_battle_outcome(camp.heroes, camp.spawnPointData)
 		battlesComplete += 1
 		encounter.outcome.battleRecord.append(battleOutcome)
 		
@@ -377,10 +378,10 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 		encounter.outcome.detailedPlayByPlay.append("There were " + str(battleNumber - 1) + " battles.")
 		encounter.outcome.summary.append("There were " + str(battleNumber) + " battles.")
 	
-	if (heroesClone.size() == 0):
+	if (camp.heroes.size() == 0):
 		encounter.outcome.summary.append("Total party wipe!")
 	else:
-		for hero in heroesClone:
+		for hero in camp.heroes:
 		#hero.xp = global.levelXpData[hero.level].total
 			if (hero && hero.xp == staticData.levelXpData[str(hero.level)]):
 				encounter.outcome.summary.append(hero.heroName + " is ready to train!")
