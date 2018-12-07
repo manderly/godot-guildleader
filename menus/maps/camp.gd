@@ -19,6 +19,7 @@ onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContaine
 onready var vbox_heroButtons = $MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons
 
 onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/ProgressBar
+onready var field_battleNum = $MarginContainer/CenterContainer/VBoxContainer/field_battleNum
 
 onready var campData = null
 onready var heroButtons = []
@@ -40,8 +41,10 @@ func _ready():
 			campData.heroes.append(null)
 		
 	if (!campData.inProgress):
+		field_battleNum.hide()
 		$battleScene.hide()
 	else:
+		field_battleNum.show()
 		_camp_in_progress()
 		
 	add_child(finishNowPopup)
@@ -65,14 +68,17 @@ func _process(delta):
 		
 func _play_animatic_step():
 	if (stepNum < campData.campOutcome.outcome.battleRecord.size()):
-		print("SHOWING BATTLE: " + str(stepNum) + " of " + str(campData.campOutcome.outcome.battleRecord.size()))
+		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.outcome.battleRecord.size()))
 		print(campData.campOutcome.outcome.battleRecord[stepNum].mobs)
 		$battleScene.populate_mobs(campData.campOutcome.outcome.battleRecord[stepNum].startMobsSprites)
+		field_battleNum.text = "Battle #" + str(stepNum+1)
 		stepNum += 1
 	else:
 		print("out of battles to show")
 	
 func _play_camp_animatic():
+	field_battleNum.text = "Pulling..."
+	field_battleNum.show()
 	$battleScene.show()
 	$battleScene.populate_heroes(campData.heroes)
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)

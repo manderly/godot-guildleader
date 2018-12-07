@@ -7,7 +7,7 @@
 [ext_resource path="res://menus/maps/battle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -60,7 +60,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
 margin_right = 480.0
-margin_bottom = 780.0
+margin_bottom = 798.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -79,7 +79,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 16.0
 margin_right = 456.0
-margin_bottom = 780.0
+margin_bottom = 798.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -234,7 +234,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
+[node name="field_battleNum" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -242,7 +242,30 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 268.0
 margin_right = 440.0
-margin_bottom = 628.0
+margin_bottom = 282.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "#BATTLE NUM"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="vbox_heroButtons" type="VBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 286.0
+margin_right = 440.0
+margin_bottom = 646.0
 rect_min_size = Vector2( 440, 360 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -253,7 +276,7 @@ size_flags_vertical = 1
 alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="6"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
 
 visible = false
 anchor_left = 0.0
@@ -329,15 +352,15 @@ margin_top = 38.0
 margin_right = 235.0
 margin_bottom = 72.0
 
-[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="7"]
+[node name="field_difficultyEstimate" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 632.0
+margin_top = 650.0
 margin_right = 440.0
-margin_bottom = 662.0
+margin_bottom = 680.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -354,15 +377,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="8"]
+[node name="field_tipsOrProgress" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 666.0
+margin_top = 684.0
 margin_right = 440.0
-margin_bottom = 696.0
+margin_bottom = 714.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -379,15 +402,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect", "custom_colors" ]
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="9"]
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/CenterContainer/VBoxContainer" index="10"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 700.0
+margin_top = 718.0
 margin_right = 440.0
-margin_bottom = 716.0
+margin_bottom = 734.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -403,15 +426,15 @@ exp_edit = false
 rounded = false
 percent_visible = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="10"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer" index="11"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 720.0
+margin_top = 738.0
 margin_right = 440.0
-margin_bottom = 780.0
+margin_bottom = 798.0
 rect_min_size = Vector2( 0, 60 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
