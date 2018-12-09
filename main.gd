@@ -92,7 +92,7 @@ func _ready():
 	
 	#load_game()
 
-	$HUD.update_currency(global.softCurrency, global.hardCurrency)
+	
 
 	# Generate default guildmembers and default rooms
 	if (global.initDone == false):
@@ -138,9 +138,14 @@ func _ready():
 	#restore saved camera position
 	$screen/mainCamera.set_cam_position()
 		
+	draw_HUD()
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	draw_heroes()
 	draw_rooms()
+	
+func draw_HUD():
+	$HUD.update_currency(global.softCurrency, global.hardCurrency)
+	print("global.softCurrency should say: " + str(global.softCurrency))
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen
@@ -168,6 +173,11 @@ func _on_Roster_pressed():
 	get_tree().change_scene("res://menus/roster.tscn");
 	
 func _process(delta):
+	var currentTime = OS.get_unix_time()
+	if (currentTime < global.testTimerEndTime):
+		print(global.testTimerEndTime - currentTime)
+	else:
+		print("timer done")
 	pass
 	
 func draw_heroes():
@@ -301,6 +311,12 @@ func save_game():
 	for i in save_nodes:
 		var node_data = i.call("save") 
 		save_game.store_line(to_json(node_data))
+	
+	save_nodes = get_tree().get_nodes_in_group("PersistGlobals")
+	for i in save_nodes:
+		var node_data = i.call("save") 
+		save_game.store_line(to_json(node_data))
+		
 	save_game.close()
 	
 func load_game():
@@ -348,21 +364,45 @@ func load_game():
 				elif (!restored_hero.recruited):
 					global.unrecruited.append(restored_hero)
 				else:
-					print("main.gd: can't place this object")
+					print("main.gd: can't place this hero object")
 			
 			#LOAD GLOBAL VARS
 			if (current_line["filename"] == "res://global.gd"):
 				var new_object = load(current_line["filename"])
 				print("PROCESSING SAVED GLOBALS")
-				#build the hero's params back in
-				for key in current_line.keys():
-					if (key == "filename" or key == "parent"):
-						continue
-					new_object.set(key, current_line[key])
+				#old way: build the global vars back in
+				#for key in current_line.keys():
+				#	if (key == "filename" or key == "parent"):
+				#		continue
+					#print(key + " " + str(current_line[key]))
+				#	new_object.set(key, current_line[key])
+				
+				#new way: manual 1:1 pairing
+				global.softCurrency = current_line.softCurrency
+				global.hardCurrency = current_line.hardCurrency
+				global.guildName = current_line.guildName
+				global.initDone = current_line.initDone
+				global.nextHeroID = current_line.nextHeroID
+				global.roomCount = current_line.roomCount
+				global.tradeskills = current_line.tradeskills
+				global.testTimerBeginTime = current_line.testTimerBeginTime
+				global.testTimerEndTime = current_line.testTimerEndTime
+				
+				#these were here but I commented them out
+				#it seemed like a bad idea to wipe them here when they get wiped before this whole 
+				#load operation runs and restored above in LOAD HEROES 
+				
+				#clear out these arrays because they get rebuilt... when? 
 				#new_object.rooms = []
-				new_object.guildRoster = [] #egads, this seems dangerous!
-				new_object.unrecruited = [] #egads, this too
-				get_node(current_line["parent"]).add_child(new_object)
+				#new_object.guildRoster = [] #egads, this seems dangerous!
+				#new_object.unrecruited = [] #egads, this too
+
+				#new_object gets printed as [GDScript:958] res://global.gd
+				#parent is /root
+				#print(new_object)
+				#but for some reason, currencies are not restored (nor anything else in global)
+				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
+				print("done loading global vars")
 				
 			#LOAD ROOMS	?
 			if (current_line["filename"] == "res://rooms/*.tscn"):
@@ -402,3 +442,12 @@ func _on_button_saveGame_pressed():
 	
 func _on_button_loadGame_pressed():
 	load_game()
+	draw_HUD()
+
+
+func _on_button_beginTimer_pressed():
+	global.testTimerBeginTime = OS.get_unix_time() #seconds since epoch
+	global.testTimerEndTime = OS.get_unix_time() + 60 #intended end time
+	print("start time:" + str(global.testTimerBeginTime))
+	print("end time: " + str(global.testTimerEndTime))
+	pass # replace with function body

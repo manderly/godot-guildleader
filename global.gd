@@ -12,6 +12,9 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
+var testTimerBeginTime = 0
+var testTimerEndTime = 0
+
 var softCurrency = 500
 var hardCurrency = 500
 var currentMenu = "main"
@@ -249,6 +252,8 @@ func save():
 			"initDone":initDone,
 			"nextHeroID":nextHeroID,
 			"rooms":rooms,
-			"roomCount":roomCount
+			"roomCount":roomCount,
+			"testTimerBeginTime":testTimerBeginTime,
+			"testTimerEndTime":testTimerEndTime
 		}
 	return save_object 
