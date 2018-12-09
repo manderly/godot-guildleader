@@ -24,7 +24,14 @@ func _ready():
 	add_child(finishedItemPopup)
 	
 	currentHarvest = global.activeHarvestingData[global.selectedHarvestingID]
+	
+	if (currentHarvest.endTime):
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= currentHarvest.endTime):
+			currentHarvest.readyToCollect = true
+	
 	populate_fields(currentHarvest)
+	
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
 		buttonBeginHarvest.text = "Finish now"
 	
@@ -37,13 +44,15 @@ func _ready():
 func _process(delta):
 	#Displays how much time is left on the active quest 
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
-		field_timeRemaining.set_text(util.format_time(currentHarvest.timer.time_left))
+		#field_timeRemaining.set_text(util.format_time(currentHarvest.timer.time_left))
+		field_timeRemaining.set_text(util.format_time(currentHarvest.endTime - OS.get_unix_time()))
 		#Displays how much time is left on the active recipe 
 
 		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
 		#divide time elapsed by time needed to complete
 		#progressBar.set_value(100 * ((currentHarvest.currentlyCrafting.totalTimeToFinish - currentHarvest.timer.time_left) / currentHarvest.currentlyCrafting.totalTimeToFinish))
-		progressBar.set_value(100 * ((currentHarvest.timeToHarvest - currentHarvest.timer.time_left) / currentHarvest.timeToHarvest))
+		#progressBar.set_value(100 * ((currentHarvest.timeToHarvest - currentHarvest.timer.time_left) / currentHarvest.timeToHarvest))
+		progressBar.set_value(100 * ((currentHarvest.endTime - OS.get_unix_time()) / currentHarvest.timeToHarvest))
 		buttonBeginHarvest.text = "FINISH NOW"
 	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
@@ -56,6 +65,7 @@ func _process(delta):
 		field_timeRemaining.set_text("Harvest not started")
 	
 func populate_fields(data):
+	print("harvest data")
 	field_nodeName.text = data.name
 	field_duration.text = "Time to harvest: " + str(util.format_time(data.timeToHarvest))
 	field_skill.text = "Harvesting skill required: " + str(data.minSkill)
@@ -87,7 +97,10 @@ func _on_button_beginHarvesting_pressed():
 			currentHarvest.hero.atHome = false
 			#start the timer attached to the quest object over in global
 			#it has to be done there, or else will be wiped from memory when we close this particular menu 
-			global._begin_harvesting_timer(currentHarvest.timeToHarvest, currentHarvest.harvestingId)
+			#global._begin_harvesting_timer(currentHarvest.timeToHarvest, currentHarvest.harvestingId)
+			currentHarvest.inProgress = true
+			var currentTime = OS.get_unix_time()
+			currentHarvest.endTime = currentTime + currentHarvest.timeToHarvest
 			button_pickHero.set_disabled(true)
 			get_tree().change_scene("res://menus/forest.tscn")
 	#case 2: quest is active but not ready to collect 

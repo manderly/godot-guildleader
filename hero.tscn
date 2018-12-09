@@ -134,8 +134,8 @@ tracks/4/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
 
-[node name="hero" type="KinematicBody2D" groups=[
-"Persist",
+[node name="hero" type="KinematicBody2D" index="0" groups=[
+"ClearOnRestore",
 ]]
 
 input_pickable = true

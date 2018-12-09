@@ -42,6 +42,9 @@ func populate_fields(data):
 	elif(!data.atHome && data.staffedTo == "camp"):
 		$VBoxContainer/field_available.text = "Away (Camp)"
 		self.set_disabled(true)
+	elif(!data.atHome && data.staffedTo == "harvesting"):
+		$VBoxContainer/field_available.text = "Away (Harvesting " + data.staffedToID + ")"
+		self.set_disabled(true)
 	else:
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
@@ -112,6 +115,7 @@ func _on_Button_pressed():
 		if (heroData.atHome == true && heroData.staffedTo == ""): 
 			currentHarvestNode.hero = heroData
 			currentHarvestNode.hero.staffedTo = "harvesting"
+			currentHarvestNode.hero.staffedToID = currentHarvestNode.harvestingId
 			global.currentMenu = "forest"
 		else:
 			print("can't pick this hero")

@@ -193,7 +193,8 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                 } else if (file == "harvesting.json") {
                     key = value["harvestingId"];
                     value.hero = null;
-                    value.timer = null;
+                    //value.timer = null;
+                    value.endTime = null;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.timesRun = 0;

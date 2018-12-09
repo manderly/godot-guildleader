@@ -156,27 +156,27 @@ func _ready():
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
 		
-func _begin_harvesting_timer(duration, harvestNodeID):
+#func _begin_harvesting_timer(duration, harvestNodeID):
 	#starting harvest timer 
-	var harvestNode = global.activeHarvestingData[harvestNodeID]
-	if (!harvestNode.inProgress):
-		harvestNode.inProgress = true
-		harvestNode.readyToCollect = false
-		harvestNode.timer = Timer.new()
-		harvestNode.timer.set_one_shot(true)
-		harvestNode.timer.set_wait_time(duration)
-		harvestNode.timer.connect("timeout", self, "_on_harvestingTimer_timeout", [harvestNodeID])
-		harvestNode.timer.start()
-		add_child(harvestNode.timer)
-	else:
-		print("error: harvestNode already running")
+#	var harvestNode = global.activeHarvestingData[harvestNodeID]
+#	if (!harvestNode.inProgress):
+#		harvestNode.inProgress = true
+#		harvestNode.readyToCollect = false
+#		harvestNode.timer = Timer.new()
+#		harvestNode.timer.set_one_shot(true)
+#		harvestNode.timer.set_wait_time(duration)
+#		harvestNode.timer.connect("timeout", self, "_on_harvestingTimer_timeout", [harvestNodeID])
+#		harvestNode.timer.start()
+#		add_child(harvestNode.timer)
+#	else:
+#		print("error: harvestNode already running")
 		
-func _on_harvestingTimer_timeout(harvestNodeID):
+#func _on_harvestingTimer_timeout(harvestNodeID):
 	#this is where the harvest's random prizes are determined 
-	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
-	var harvestNode = global.activeHarvestingData[harvestNodeID]
-	harvestNode.readyToCollect = true
-	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
+#	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
+#	var harvestNode = global.activeHarvestingData[harvestNodeID]
+#	harvestNode.readyToCollect = true
+#	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
 	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
 
 func _begin_camp_timer(duration, campID):
@@ -254,6 +254,7 @@ func save():
 			"rooms":rooms,
 			"roomCount":roomCount,
 			"testTimerBeginTime":testTimerBeginTime,
-			"testTimerEndTime":testTimerEndTime
+			"testTimerEndTime":testTimerEndTime,
+			"activeHarvestingData":activeHarvestingData
 		}
 	return save_object 

@@ -173,11 +173,11 @@ func _on_Roster_pressed():
 	get_tree().change_scene("res://menus/roster.tscn");
 	
 func _process(delta):
-	var currentTime = OS.get_unix_time()
-	if (currentTime < global.testTimerEndTime):
-		print(global.testTimerEndTime - currentTime)
-	else:
-		print("timer done")
+	#var currentTime = OS.get_unix_time()
+	#if (currentTime < global.testTimerEndTime):
+	#	print(global.testTimerEndTime - currentTime)
+	#else:
+	#	print("timer done")
 	pass
 	
 func draw_heroes():
@@ -198,6 +198,9 @@ func draw_heroes():
 			if (thisHero.savedPositionX == -1):
 				heroX = spawnLocs[str(i)]["x"]
 				heroY = spawnLocs[str(i)]["y"]
+				
+				#global.guildRoster[i].savedPositionX = heroX
+				#global.guildRoster[i].savedPositionY = heroY
 				
 				#todo: check if hero dead, and spawn in graveyard if so
 				#heroX = graveyardLocs[str(i)]["x"]
@@ -293,6 +296,7 @@ func draw_rooms():
 func _on_button_addRoom_pressed():
 	get_tree().change_scene("res://menus/buildNewRoom.tscn")
 
+#todo: this doesn't seem to be used, I had to implement it manually in load 
 func save_global_vars():
 	print("main.gd: saving these global vars")
 	var save_dict = {
@@ -307,14 +311,28 @@ func save_game():
 	print("main.gd: using save_game() to write save file")
 	var save_game = File.new()
 	save_game.open("user://save_game.save", File.WRITE)
+	
+	#this is not the source of the twin heroes bug.... maybe
+	#heroes and rooms are in Persist
+	#maybe heroes are being saved twice and thus restored "twice"
 	var save_nodes = get_tree().get_nodes_in_group("Persist")
 	for i in save_nodes:
 		var node_data = i.call("save") 
 		save_game.store_line(to_json(node_data))
+		
+	#this is wrong because if we call save on just hero scenes
+	# we miss all the heroes staffed to camps and harvest nodes 
+	
+	#this attempt at persisting globals doesn't cut it, either
+	#they just get saved as strings like "[KinematicBody:123]"
 	
 	save_nodes = get_tree().get_nodes_in_group("PersistGlobals")
 	for i in save_nodes:
 		var node_data = i.call("save") 
+		save_game.store_line(to_json(node_data))
+		
+	for hero in global.guildRoster:
+		var node_data = hero.call("save")
 		save_game.store_line(to_json(node_data))
 		
 	save_game.close()
@@ -326,13 +344,17 @@ func load_game():
 		return # Error! We don't have a save to load.
 	
 	#save_nodes is an array 
-	var saved_nodes = get_tree().get_nodes_in_group("Persist")
+	var saved_nodes = get_tree().get_nodes_in_group("ClearOnRestore")
 	for i in saved_nodes:
+		print("freeing " + str(i))
 		i.queue_free()
-
 		
-	#clear it out so we don't get dupes
-	global.guildRoster = []
+	saved_nodes = get_tree().get_nodes_in_group("Persist")
+	for i in saved_nodes:
+		print("freeing " + str(i))
+		i.queue_free()
+		
+	global.guildRoster.clear()
 	global.unrecruited = []
 	global.rooms = []
 	
@@ -342,29 +364,6 @@ func load_game():
 	while not save_game.eof_reached():
 		var current_line = parse_json(save_game.get_line())
 		if (current_line):
-			
-			#LOAD HEROES
-			#make this handle heroes specifically (to distinguish from other objects)
-			if (current_line["filename"] == "res://hero.tscn"):
-				var restored_hero = load("res://hero.gd").new()
-				#var restored_hero = load(current_line["filename"]).instance()
-				
-				#build the hero's params back in
-				for key in current_line.keys():
-					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
-						continue
-					restored_hero.set(key, current_line[key])
-				
-				#position this hero (or at least load it with coordinates)
-				restored_hero.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
-				
-				#append it into the correct array 
-				if (restored_hero.recruited):
-					global.guildRoster.append(restored_hero)
-				elif (!restored_hero.recruited):
-					global.unrecruited.append(restored_hero)
-				else:
-					print("main.gd: can't place this hero object")
 			
 			#LOAD GLOBAL VARS
 			if (current_line["filename"] == "res://global.gd"):
@@ -387,6 +386,7 @@ func load_game():
 				global.tradeskills = current_line.tradeskills
 				global.testTimerBeginTime = current_line.testTimerBeginTime
 				global.testTimerEndTime = current_line.testTimerEndTime
+				global.activeHarvestingData = current_line.activeHarvestingData
 				
 				#these were here but I commented them out
 				#it seemed like a bad idea to wipe them here when they get wiped before this whole 
@@ -403,6 +403,31 @@ func load_game():
 				#but for some reason, currencies are not restored (nor anything else in global)
 				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
 				print("done loading global vars")
+				
+			#LOAD HEROES
+			#make this handle heroes specifically (to distinguish from other objects)
+			if (current_line["filename"] == "heroFile"): #res://hero.tscn
+				var restored_hero = load("res://hero.gd").new()
+				
+				#build the hero's params back in
+				for key in current_line.keys():
+					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
+						continue
+					restored_hero.set(key, current_line[key])
+				
+				#position this hero (or at least load it with coordinates)
+				restored_hero.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
+				
+				#this is getting called twice!!!!!!!!!!!!!
+				
+				#append it into the correct array 
+				print("restoring " + restored_hero.heroName)
+				if (restored_hero.recruited):
+					global.guildRoster.append(restored_hero)
+				elif (!restored_hero.recruited):
+					global.unrecruited.append(restored_hero)
+				else:
+					print("main.gd: can't place this hero object")
 				
 			#LOAD ROOMS	?
 			if (current_line["filename"] == "res://rooms/*.tscn"):
@@ -423,7 +448,8 @@ func load_game():
 	#this seems really cumbersome, is there some way to just ask each
 	#tradeskill who belongs to it and hand over the correct hero instance?
 	for hero in global.guildRoster:
-		print(hero.heroName + " is staffed to: " + hero.staffedTo)
+		print(hero.heroName + " is staffed to: " + hero.staffedTo + " ID: " + hero.staffedToID)
+		
 		if (hero.staffedTo == "blacksmithing"):
 			global.tradeskills["blacksmithing"].hero = hero
 		elif (hero.staffedTo == "alchemy"):
@@ -433,7 +459,10 @@ func load_game():
 		elif (hero.staffedTo == "fletching"):
 			global.tradeskills["fletching"].hero = hero
 		elif (hero.staffedTo == "jewelcraft"):
-			global.tradeskills["jewelcraft"].hero = hero	
+			global.tradeskills["jewelcraft"].hero = hero
+		elif (hero.staffedTo == "harvesting"):
+			#fails here because something isn't a string or is a string and shouldn't be 
+			global.activeHarvestingData[hero.staffedToID].hero = hero
 	draw_heroes()
 	draw_rooms()
 
