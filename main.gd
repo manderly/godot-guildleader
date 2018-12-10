@@ -344,19 +344,14 @@ func load_game():
 		return # Error! We don't have a save to load.
 	
 	#save_nodes is an array 
+	#we had to separate "Persist" from "ClearOnRestore" so that heroes don't get saved twice
 	var saved_nodes = get_tree().get_nodes_in_group("ClearOnRestore")
 	for i in saved_nodes:
-		print("freeing " + str(i))
-		i.queue_free()
-		
-	saved_nodes = get_tree().get_nodes_in_group("Persist")
-	for i in saved_nodes:
-		print("freeing " + str(i))
 		i.queue_free()
 		
 	global.guildRoster.clear()
-	global.unrecruited = []
-	global.rooms = []
+	global.unrecruited.clear()
+	global.rooms.clear()
 	
 	#don't queue_free on PersistGlobals group 
 	
@@ -369,12 +364,6 @@ func load_game():
 			if (current_line["filename"] == "res://global.gd"):
 				var new_object = load(current_line["filename"])
 				print("PROCESSING SAVED GLOBALS")
-				#old way: build the global vars back in
-				#for key in current_line.keys():
-				#	if (key == "filename" or key == "parent"):
-				#		continue
-					#print(key + " " + str(current_line[key]))
-				#	new_object.set(key, current_line[key])
 				
 				#new way: manual 1:1 pairing
 				global.softCurrency = current_line.softCurrency
@@ -388,21 +377,12 @@ func load_game():
 				global.testTimerEndTime = current_line.testTimerEndTime
 				global.activeHarvestingData = current_line.activeHarvestingData
 				
-				#these were here but I commented them out
-				#it seemed like a bad idea to wipe them here when they get wiped before this whole 
-				#load operation runs and restored above in LOAD HEROES 
-				
-				#clear out these arrays because they get rebuilt... when? 
-				#new_object.rooms = []
-				#new_object.guildRoster = [] #egads, this seems dangerous!
-				#new_object.unrecruited = [] #egads, this too
 
 				#new_object gets printed as [GDScript:958] res://global.gd
 				#parent is /root
 				#print(new_object)
 				#but for some reason, currencies are not restored (nor anything else in global)
 				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
-				print("done loading global vars")
 				
 			#LOAD HEROES
 			#make this handle heroes specifically (to distinguish from other objects)
@@ -414,14 +394,9 @@ func load_game():
 					if (key == "filename" or key == "parent" or key == "savedPositionX" or key == "savedPositionY"):
 						continue
 					restored_hero.set(key, current_line[key])
-				
-				#position this hero (or at least load it with coordinates)
+
 				restored_hero.position = Vector2(current_line["savedPositionX"], current_line["savedPositionY"])
 				
-				#this is getting called twice!!!!!!!!!!!!!
-				
-				#append it into the correct array 
-				print("restoring " + restored_hero.heroName)
 				if (restored_hero.recruited):
 					global.guildRoster.append(restored_hero)
 				elif (!restored_hero.recruited):
@@ -441,9 +416,8 @@ func load_game():
 				global.rooms.append(restored_room)
 	save_game.close()
 	
-	#populate tradeskills object
-	#had to do this down here because we need both heroes and tradeskills loaded
-	#to do this operation
+	#populate the "in progress" objects
+	#had to do this down here because we need both heroes and tradeskills loaded first
 	
 	#this seems really cumbersome, is there some way to just ask each
 	#tradeskill who belongs to it and hand over the correct hero instance?
@@ -461,7 +435,6 @@ func load_game():
 		elif (hero.staffedTo == "jewelcraft"):
 			global.tradeskills["jewelcraft"].hero = hero
 		elif (hero.staffedTo == "harvesting"):
-			#fails here because something isn't a string or is a string and shouldn't be 
 			global.activeHarvestingData[hero.staffedToID].hero = hero
 	draw_heroes()
 	draw_rooms()

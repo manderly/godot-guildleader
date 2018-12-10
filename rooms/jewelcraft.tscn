@@ -4,7 +4,8 @@
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 [ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
 
-[node name="Node2D" type="Node2D" groups=[
+[node name="Node2D" type="Node2D" index="0" groups=[
+"ClearOnRestore",
 "Persist",
 ]]
 

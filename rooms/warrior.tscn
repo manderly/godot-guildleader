@@ -4,6 +4,7 @@
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
 
 [node name="Node2D" type="Node2D" index="0" groups=[
+"ClearOnRestore",
 "Persist",
 ]]
 
