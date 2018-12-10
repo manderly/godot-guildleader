@@ -27,7 +27,7 @@ func _on_ConfirmationDialog_confirmed():
 			global.tradeskills[global.currentMenu].timer.stop()
 		elif (finishingThis == "Harvesting"):
 			global.activeHarvestingData[global.selectedHarvestingID].readyToCollect = true
-			global.activeHarvestingData[global.selectedHarvestingID].timer.stop()
+			global.activeHarvestingData[global.selectedHarvestingID].endTime = OS.get_unix_time()
 		elif (finishingThis == "Camp"):
 			global.activeCampData[global.selectedCampID].readyToCollect = true
 			global.activeCampData[global.selectedCampID].timer.stop()

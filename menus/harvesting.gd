@@ -25,7 +25,7 @@ func _ready():
 	
 	currentHarvest = global.activeHarvestingData[global.selectedHarvestingID]
 	
-	if (currentHarvest.endTime):
+	if (currentHarvest.endTime > -1):
 		var currentTime = OS.get_unix_time()
 		if (currentTime >= currentHarvest.endTime):
 			currentHarvest.readyToCollect = true
@@ -44,28 +44,23 @@ func _ready():
 func _process(delta):
 	#Displays how much time is left on the active quest 
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
-		#field_timeRemaining.set_text(util.format_time(currentHarvest.timer.time_left))
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= currentHarvest.endTime):
+			currentHarvest.readyToCollect = true
+		
+		#set the display fields 
 		field_timeRemaining.set_text(util.format_time(currentHarvest.endTime - OS.get_unix_time()))
-		#Displays how much time is left on the active recipe 
-
-		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
-		#divide time elapsed by time needed to complete
-		#progressBar.set_value(100 * ((currentHarvest.currentlyCrafting.totalTimeToFinish - currentHarvest.timer.time_left) / currentHarvest.currentlyCrafting.totalTimeToFinish))
-		#progressBar.set_value(100 * ((currentHarvest.timeToHarvest - currentHarvest.timer.time_left) / currentHarvest.timeToHarvest))
-		progressBar.set_value(100 * ((currentHarvest.endTime - OS.get_unix_time()) / currentHarvest.timeToHarvest))
+		var timeLeft = currentHarvest.endTime - OS.get_unix_time() #100 - 60 = 40 left to do
+		progressBar.set_value(100 * ((currentHarvest.timeToHarvest - timeLeft) / currentHarvest.timeToHarvest))
 		buttonBeginHarvest.text = "FINISH NOW"
-	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
+	elif (currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
 		buttonBeginHarvest.text = "COLLECT"
-	elif (currentHarvest.inProgress && currentHarvest.readyToCollect):
-		buttonBeginHarvest.text = "COLLECT!"
-		#buttonBeginHarvest.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
 		progressBar.set_value(100)
 	else:
 		field_timeRemaining.set_text("Harvest not started")
 	
 func populate_fields(data):
-	print("harvest data")
 	field_nodeName.text = data.name
 	field_duration.text = "Time to harvest: " + str(util.format_time(data.timeToHarvest))
 	field_skill.text = "Harvesting skill required: " + str(data.minSkill)
@@ -131,10 +126,14 @@ func harvestItem_callback():
 	#accept the harvested item and give it to guild inventory 
 	util.give_item_guild(currentHarvest.prizeItem1) #todo: QUANTITIES NOT ACCOUNTED FOR YET 
 	progressBar.set_value(0)
-	currentHarvest.timer.stop()
+	currentHarvest.endTime = -1
 	currentHarvest.inProgress = false
 	currentHarvest.readyToCollect = false
+	currentHarvest.hero.send_home()
+	currentHarvest.hero = null
 	buttonBeginHarvest.text = "BEGIN"
+	button_pickHero.set_disabled(false)
+	populate_fields(currentHarvest)
 	
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
@@ -155,7 +154,6 @@ func _on_harvesting_finish_now_dialog_confirmed():
 	else:
 		#todo: need a global insufficient funds popup
 		print("insufficient funds")
-
 
 func _on_button_pickHero_pressed():
 	global.currentMenu = "harvesting"

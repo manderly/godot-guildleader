@@ -448,7 +448,7 @@ func load_game():
 	#this seems really cumbersome, is there some way to just ask each
 	#tradeskill who belongs to it and hand over the correct hero instance?
 	for hero in global.guildRoster:
-		print(hero.heroName + " is staffed to: " + hero.staffedTo + " ID: " + hero.staffedToID)
+		print(hero.heroName + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
 		
 		if (hero.staffedTo == "blacksmithing"):
 			global.tradeskills["blacksmithing"].hero = hero
