@@ -50,8 +50,16 @@ func _process(delta):
 		
 		#set the display fields 
 		field_timeRemaining.set_text(util.format_time(currentHarvest.endTime - OS.get_unix_time()))
-		var timeLeft = currentHarvest.endTime - OS.get_unix_time() #100 - 60 = 40 left to do
-		progressBar.set_value(100 * ((currentHarvest.timeToHarvest - timeLeft) / currentHarvest.timeToHarvest))
+		#do not split the "currentHarvest.endtime - OS.get_unix_time into its own var 
+		#it's too dumb and slow to keep up with it as a separate var and will just calculate to 0 
+		var progressBarValue = (100 * (currentHarvest.timeToHarvest - (currentHarvest.endTime - OS.get_unix_time())) / currentHarvest.timeToHarvest)
+		#General formula:
+		#100 * ((total time to finish - timer time left) / total time to finish)
+		#60 - 40 / 60 =    20 / 60    = .33    x 100 = 33 
+
+		progressBar.set_value(progressBarValue)
+		#60 - 54 / 60 .... 6/60 = .01  = 1%.... this should work wtf 
+		#print(100 * ((currentHarvest.timeToHarvest - timeLeft) / currentHarvest.timeToHarvest))
 		buttonBeginHarvest.text = "FINISH NOW"
 	elif (currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
