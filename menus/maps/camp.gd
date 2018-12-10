@@ -45,7 +45,7 @@ func _ready():
 		$battleScene.hide()
 	else:
 		field_battleNum.show()
-		_camp_in_progress()
+		_play_camp_animatic()
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -276,7 +276,6 @@ func _on_button_autoPickHeroes_pressed():
 	#for each empty hero slot
 	for i in range(campData.heroes.size()):
 		if (campData.heroes[i] == null):
-			print("found a null spot to fill in!")
 			#todo: sort heroes by xp first (want low xp heroes) 
 			#look through all the available heroes
 			for hero in global.guildRoster:
@@ -285,6 +284,7 @@ func _on_button_autoPickHeroes_pressed():
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.healer += 1
 						break
@@ -293,6 +293,7 @@ func _on_button_autoPickHeroes_pressed():
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.tank += 1
 						break
@@ -301,9 +302,10 @@ func _on_button_autoPickHeroes_pressed():
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.dps += 1
 						break
 						
-	_populate_fields()		
+	_populate_fields()
 			

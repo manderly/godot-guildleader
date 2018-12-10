@@ -376,7 +376,9 @@ func load_game():
 				global.testTimerBeginTime = current_line.testTimerBeginTime
 				global.testTimerEndTime = current_line.testTimerEndTime
 				global.activeHarvestingData = current_line.activeHarvestingData
+				global.activeCampData = current_line.activeCampData
 				
+
 
 				#new_object gets printed as [GDScript:958] res://global.gd
 				#parent is /root
@@ -421,6 +423,10 @@ func load_game():
 	
 	#this seems really cumbersome, is there some way to just ask each
 	#tradeskill who belongs to it and hand over the correct hero instance?
+					#empty out the campData arrays
+	for key in global.activeCampData.keys():
+		global.activeCampData[key].heroes = [] #.empty() leaves two kinematic bodies in the array
+					
 	for hero in global.guildRoster:
 		print(hero.heroName + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
 		
@@ -436,6 +442,8 @@ func load_game():
 			global.tradeskills["jewelcraft"].hero = hero
 		elif (hero.staffedTo == "harvesting"):
 			global.activeHarvestingData[hero.staffedToID].hero = hero
+		elif (hero.staffedTo == "camp"):
+			global.activeCampData[hero.staffedToID].heroes.append(hero)
 	draw_heroes()
 	draw_rooms()
 

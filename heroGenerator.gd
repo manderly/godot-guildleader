@@ -34,14 +34,14 @@ func generate(destinationArray, classStr):
 	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
 		#we need better wizards, here's a twinked one:
-		#newHero.give_new_item("Robe of Alexandra")
-		#newHero.give_new_item("Scepter of the Child King")
+		newHero.give_new_item("Robe of the Dunes")
+		newHero.give_new_item("Scepter of the Child King")
 		#newHero.give_new_item("Tiny Sapphire Ring")
 		newHero.give_new_item("Worn Canvas Sandals") #feet
 		newHero.give_new_item("Cloth Pants") #legs
-		newHero.give_new_item("Novice's Robe") #chest
+		#newHero.give_new_item("Novice's Robe") #chest
 		newHero.give_new_item("Simple Ring")
-		newHero.give_new_item("Cracked Staff")
+		#newHero.give_new_item("Cracked Staff")
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
