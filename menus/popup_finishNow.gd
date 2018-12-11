@@ -24,7 +24,7 @@ func _on_ConfirmationDialog_confirmed():
 		global.hardCurrency -= hcCost
 		if (finishingThis == "Tradeskill"):
 			global.tradeskills[global.currentMenu].readyToCollect = true
-			global.tradeskills[global.currentMenu].timer.stop()
+			global.tradeskills[global.currentMenu].currentlyCrafting.endTime = OS.get_unix_time()
 		elif (finishingThis == "Harvesting"):
 			global.activeHarvestingData[global.selectedHarvestingID].readyToCollect = true
 			global.activeHarvestingData[global.selectedHarvestingID].endTime = OS.get_unix_time()

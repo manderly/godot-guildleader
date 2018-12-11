@@ -19,8 +19,6 @@ func _populate_fields():
 	field_campDescription.text = campData.description
 	
 	#create item boxes for each item won
-	print(campData)
-	print(campData.campOutcome.lootedItemsNames)
 	var lootDictionaryWithCounts = {} #to track counts
 	var uniqueLootNames = [] #to control how many unique items we actually display 
 	for itemName in campData.campOutcome.lootedItemsNames:

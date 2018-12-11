@@ -175,7 +175,6 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                 if (file == "tradeskills.json") {
                     key = value["tradeskill"];
                     value.hero = null;
-                    value.timer = null;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.wildcardItemOnDeck = null;
@@ -187,7 +186,8 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                         "name":"",
                         "statImproved":"",
                         "statIncrease":"",
-                        "totalTimeToFinish":""
+                        "totalTimeToFinish":"",
+                        "endTime":-1
                     }
                     formatted[key] = value;
                 } else if (file == "harvesting.json") {

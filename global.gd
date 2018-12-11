@@ -156,64 +156,6 @@ func _ready():
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
 
-#func _begin_camp_timer(duration, campID):
-	#starting camp timer
-	#the camp outcomes are calculated upfront, and collectable once the timer is up 
-#	var camp = global.activeCampData[campID]
-#	if (!camp.inProgress):
-#		camp.inProgress = true
-#		camp.readyToCollect = false
-#		camp.timer = Timer.new()
-#		camp.timer.set_one_shot(true)
-#		camp.timer.set_wait_time(duration)
-#		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
-#		camp.timer.start()
-#		add_child(camp.timer) 
-		
-		#begin the camp battle simulation
-		#address as campOutcome.outcome
-#		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
-		
-#	else:
-#		print("error: camp already running")
-
-#func _on_campTimer_timeout(campID):
-#	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
-#	var camp = global.activeCampData[campID]
-#	camp.inProgress = false
-#	camp.readyToCollect = true
-
-func _begin_tradeskill_timer(duration):
-	var tradeskill = global.tradeskills[global.currentMenu]
-	var recipe = tradeskill.selectedRecipe
-	
-	if (!tradeskill.inProgress):
-		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
-		if (tradeskill.selectedRecipe.result != "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
-		elif (tradeskill.selectedRecipe.result == "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.currentlyCrafting.wildcardItem.name
-			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
-			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
-		else:
-			print("global.gd - Unknown result type")
-		
-		tradeskill.currentlyCrafting.totalTimeToFinish = duration #make record of how long this recipe needs to finish 
-		tradeskill.inProgress = true
-		tradeskill.readyToCollect = false
-		tradeskill.timer = Timer.new()
-		tradeskill.timer.set_one_shot(true)
-		tradeskill.timer.set_wait_time(duration)
-		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout", [global.currentMenu])
-		tradeskill.timer.start()
-		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
-		add_child(tradeskill.timer) 
-	else:
-		print("global.gd - error: " + tradeskill.name + " timer already running")
-
-func _on_tradeskillTimer_timeout(tradeskillStr):
-	var tradeskill = global.tradeskills[tradeskillStr]
-	tradeskill.readyToCollect = true
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))

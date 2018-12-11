@@ -192,11 +192,25 @@ func _update_ingredients():
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
-		#print("time left: " + str(tradeskill.timer.time_left))
-		combineButton.set_text(util.format_time(tradeskill.timer.time_left))
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= tradeskill.currentlyCrafting.endTime):
+			tradeskill.readyToCollect = true
+			
+		combineButton.set_text(util.format_time(tradeskill.currentlyCrafting.endTime - OS.get_unix_time()))
+				
+		#combineButton.set_text(util.format_time(tradeskill.timer.time_left))
 		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
 		#divide time elapsed by time needed to complete
-		progressBar.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
+		
+		#progressBar.set_value(100 * ((tradeskill.currentlyCrafting.totalTimeToFinish - tradeskill.timer.time_left) / tradeskill.currentlyCrafting.totalTimeToFinish))
+		
+		var progressBarValue = (100 * (tradeskill.currentlyCrafting.totalTimeToFinish - (tradeskill.currentlyCrafting.endTime - OS.get_unix_time())) / tradeskill.currentlyCrafting.totalTimeToFinish)
+		#General formula:
+		#100 * ((total time to finish - timer time left) / total time to finish)
+		#60 - 40 / 60 =    20 / 60    = .33    x 100 = 33 
+
+		progressBar.set_value(progressBarValue)
+	
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		combineButton.set_text("COLLECT!")
 		combineButton.add_color_override("font_color", colors.yellow) #239, 233, 64 yellow
@@ -242,15 +256,23 @@ func tradeskillItem_callback():
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
 
 	progressBar.set_value(0)
-	tradeskill.timer.stop()
+	#tradeskill.timer.stop()
 	tradeskill.wildcardItemOnDeck = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
-	tradeskill.currentlyCrafting.name = null
-	tradeskill.currentlyCrafting.moddingAnItem = false
-	tradeskill.currentlyCrafting.wildcardItem = null
-	tradeskill.currentlyCrafting.statImproved = null
-	tradeskill.currentlyCrafting.statIncrease = null
+	tradeskill.currentlyCrafting = {
+        "moddingAnItem":false,
+        "wildcardItem":null,
+        "name":"",
+        "statImproved":"",
+        "statIncrease":"",
+        "totalTimeToFinish":"",
+        "endTime":-1
+    }
+	#tradeskill.currentlyCrafting.moddingAnItem = false
+	#tradeskill.currentlyCrafting.wildcardItem = null
+	#tradeskill.currentlyCrafting.statImproved = null
+	#tradeskill.currentlyCrafting.statIncrease = null
 	_update_ingredients()
 	
 func _ingredient_check():
@@ -305,7 +327,23 @@ func _on_button_combine_pressed():
 				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItemOnDeck
 				tradeskill.wildcardItemOnDeck = null
 				
-			global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
+			#global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
+	
+			#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
+			if (tradeskill.selectedRecipe.result != "computed"):
+				tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
+			elif (tradeskill.selectedRecipe.result == "computed"):
+				tradeskill.currentlyCrafting.name = tradeskill.currentlyCrafting.wildcardItem.name
+				tradeskill.currentlyCrafting.statImproved = recipe.statImproved
+				tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
+			else:
+				print("crafting.gd - Unknown result type")
+				
+			tradeskill.currentlyCrafting.totalTimeToFinish = recipe.craftingTime #make record of how long this recipe needs to finish 
+			tradeskill.inProgress = true
+			tradeskill.readyToCollect = false
+			tradeskill.currentlyCrafting.endTime = OS.get_unix_time() + recipe.craftingTime
+			
 			_update_ingredients()
 				
 	elif (tradeskill.inProgress && !tradeskill.readyToCollect):
