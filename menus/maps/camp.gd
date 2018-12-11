@@ -259,7 +259,6 @@ func _start_camp(duration, enableButtonStr):
 				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay
 			}
 			
-			print(campData)
 			_play_camp_animatic()
 			#todo: populate enemies 
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
@@ -326,6 +325,17 @@ func _on_button_autoPickHeroes_pressed():
 						campData.campHeroesSelected += 1
 						haveAlready.dps += 1
 						break
+	
+	#now fill in any remaining spots with whoever is first available
+	for i in range(campData.heroes.size()):
+		if (campData.heroes[i] == null):					
+			for hero in global.guildRoster:
+				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
+					#todo: code duplication in heroSelect Button code
+					campData.heroes[i] = hero #in progress
+					campData.heroes[i].staffedTo = "camp"
+					campData.heroes[i].staffedToID = campData.campId
+					campData.campHeroesSelected += 1
 						
 	_populate_fields()
 			
