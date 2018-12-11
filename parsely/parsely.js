@@ -193,7 +193,6 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                 } else if (file == "harvesting.json") {
                     key = value["harvestingId"];
                     value.hero = null;
-                    //value.timer = null;
                     value.endTime = -1;
                     value.inProgress = false;
                     value.readyToCollect = false;
@@ -217,7 +216,7 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                         "spawnPoint3TableName":value.spawnPoint3
                     };
                     //we now have an array of spawn point table names
-                    value.timer = null;
+                    value.endTime = -1;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.timesRun = 0;

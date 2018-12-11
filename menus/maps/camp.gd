@@ -36,6 +36,12 @@ var haveAlready = {
 
 func _ready():
 	campData = global.activeCampData[global.selectedCampID]
+	
+	if (campData.endTime > -1):
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= campData.endTime):
+			campData.readyToCollect = true
+			
 	if (campData.heroes.size() == 0):
 		for i in campData.groupSize:
 			campData.heroes.append(null)
@@ -56,8 +62,10 @@ func _process(delta):
 	if (!campData.inProgress && !campData.readyToCollect):
 		progressBar.set_value(0)
 	elif (campData.inProgress && !campData.readyToCollect):
-		field_tipsOrProgress.text = str(util.format_time(campData.timer.time_left))
-		progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
+		field_tipsOrProgress.text = str(util.format_time(campData.endTime - OS.get_unix_time()))
+		var progressBarValue = (100 * (campData.selectedDuration - (campData.endTime - OS.get_unix_time())) / campData.selectedDuration)
+		#progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
+		progressBar.set_value(progressBarValue)
 	elif (campData.inProgress && campData.readyToCollect):
 		field_tipsOrProgress.text = "DONE!"
 		#todo: make it so only the correct button changes to collect 
@@ -67,11 +75,11 @@ func _process(delta):
 		progressBar.set_value(100)
 		
 func _play_animatic_step():
-	if (stepNum < campData.campOutcome.outcome.battleRecord.size()):
-		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.outcome.battleRecord.size()))
-		print(campData.campOutcome.outcome.battleRecord[stepNum].mobs)
-		$battleScene.populate_mobs(campData.campOutcome.outcome.battleRecord[stepNum].startMobsSprites)
-		print(campData.campOutcome.outcome.battleRecord[stepNum])
+	if (stepNum < campData.campOutcome.battleRecord.size()):
+		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.battleRecord.size()))
+		print(campData.campOutcome.battleRecord[stepNum].mobs)
+		$battleScene.populate_mobs(campData.campOutcome.battleRecord[stepNum].startMobsSprites)
+		print(campData.campOutcome.battleRecord[stepNum])
 		#$battleScene.populate_heroes(campData.campOutcome.outcome.battleRecord[stepNum].heroesClone)
 		field_battleNum.text = "Battle #" + str(stepNum+1)
 		stepNum += 1
@@ -239,7 +247,19 @@ func _start_camp(duration, enableButtonStr):
 			campData.enableButton = enableButtonStr
 			#camp.campOutcome is immediately calculated when this global method is called
 			#use camp.campOutcome data to draw the animatic 
-			global._begin_camp_timer(duration, campData.campId)
+			campData.endTime = OS.get_unix_time() + duration
+			campData.inProgress = true
+
+			var generatedOutcome = encounterGenerator.calculate_encounter_outcome(campData)
+			campData.campOutcome = {
+				"battleRecord":generatedOutcome.battleRecord,
+				"lootedItemsNames":generatedOutcome.lootedItemsNames,
+				"scTotal":generatedOutcome.scTotal,
+				"summary":generatedOutcome.summary,
+				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay
+			}
+			
+			print(campData)
 			_play_camp_animatic()
 			#todo: populate enemies 
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line

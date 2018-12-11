@@ -156,32 +156,32 @@ func _ready():
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
 
-func _begin_camp_timer(duration, campID):
+#func _begin_camp_timer(duration, campID):
 	#starting camp timer
 	#the camp outcomes are calculated upfront, and collectable once the timer is up 
-	var camp = global.activeCampData[campID]
-	if (!camp.inProgress):
-		camp.inProgress = true
-		camp.readyToCollect = false
-		camp.timer = Timer.new()
-		camp.timer.set_one_shot(true)
-		camp.timer.set_wait_time(duration)
-		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
-		camp.timer.start()
-		add_child(camp.timer) 
+#	var camp = global.activeCampData[campID]
+#	if (!camp.inProgress):
+#		camp.inProgress = true
+#		camp.readyToCollect = false
+#		camp.timer = Timer.new()
+#		camp.timer.set_one_shot(true)
+#		camp.timer.set_wait_time(duration)
+#		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
+#		camp.timer.start()
+#		add_child(camp.timer) 
 		
 		#begin the camp battle simulation
 		#address as campOutcome.outcome
-		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
+#		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
 		
-	else:
-		print("error: camp already running")
+#	else:
+#		print("error: camp already running")
 
-func _on_campTimer_timeout(campID):
-	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
-	var camp = global.activeCampData[campID]
-	camp.inProgress = false
-	camp.readyToCollect = true
+#func _on_campTimer_timeout(campID):
+#	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
+#	var camp = global.activeCampData[campID]
+#	camp.inProgress = false
+#	camp.readyToCollect = true
 
 func _begin_tradeskill_timer(duration):
 	var tradeskill = global.tradeskills[global.currentMenu]

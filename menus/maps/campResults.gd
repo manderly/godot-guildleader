@@ -19,10 +19,11 @@ func _populate_fields():
 	field_campDescription.text = campData.description
 	
 	#create item boxes for each item won
-	print(campData.campOutcome.outcome.lootedItemsNames)
+	print(campData)
+	print(campData.campOutcome.lootedItemsNames)
 	var lootDictionaryWithCounts = {} #to track counts
 	var uniqueLootNames = [] #to control how many unique items we actually display 
-	for itemName in campData.campOutcome.outcome.lootedItemsNames:
+	for itemName in campData.campOutcome.lootedItemsNames:
 		if (lootDictionaryWithCounts.has(itemName)):
 			lootDictionaryWithCounts[itemName] += 1
 		else:
@@ -36,19 +37,19 @@ func _populate_fields():
 		itemIconAndCountDisplay._set_white()
 		field_lootItems.add_child(itemIconAndCountDisplay)
 		
-	for event in campData.campOutcome.outcome.summary:
+	for event in campData.campOutcome.summary:
 		var eventText = Label.new()
 		eventText.text = str(event)
 		field_resultsScrollBox.add_child(eventText)
 		
-	for event in campData.campOutcome.outcome.detailedPlayByPlay:
+	for event in campData.campOutcome.detailedPlayByPlay:
 		var detailedEvent = Label.new()
 		detailedEvent.text = str(event)
 		campLog.add_child(detailedEvent)
 
 func _on_button_collect_pressed():
 	#todo: iterate through campData.campOutcome.lootedItems and give those items to guild
-	for lootName in campData.campOutcome.outcome.lootedItemsNames:
+	for lootName in campData.campOutcome.lootedItemsNames:
 		#todo: test that it accounts for multiples of same item 
 		if (lootName): #because some entries are null
 			util.give_item_guild(lootName)
@@ -59,9 +60,9 @@ func _on_button_collect_pressed():
 			hero.restore_hp_mana()
 			hero.send_home()
 	
-	global.softCurrency += campData.campOutcome.outcome.scTotal
+	global.softCurrency += campData.campOutcome.scTotal
 	 
-	global.activeCampData[global.selectedCampID].timer = null
+	global.activeCampData[global.selectedCampID].endTime = -1
 	global.activeCampData[global.selectedCampID].heroes = []
 	global.activeCampData[global.selectedCampID].inProgress = false
 	global.activeCampData[global.selectedCampID].readyToCollect = false

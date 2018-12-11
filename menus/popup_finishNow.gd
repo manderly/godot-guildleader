@@ -30,6 +30,6 @@ func _on_ConfirmationDialog_confirmed():
 			global.activeHarvestingData[global.selectedHarvestingID].endTime = OS.get_unix_time()
 		elif (finishingThis == "Camp"):
 			global.activeCampData[global.selectedCampID].readyToCollect = true
-			global.activeCampData[global.selectedCampID].timer.stop()
+			global.activeCampData[global.selectedCampID].endTime = OS.get_unix_time()
 	else:
 		print("popup_finishNow.gd: INSUFFICIENT DIAMONDS")
