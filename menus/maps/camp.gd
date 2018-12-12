@@ -19,6 +19,7 @@ onready var button_startCampLong = $MarginContainer/CenterContainer/VBoxContaine
 onready var vbox_heroButtons = $MarginContainer/CenterContainer/VBoxContainer/vbox_heroButtons
 
 onready var progressBar = $MarginContainer/CenterContainer/VBoxContainer/ProgressBar
+onready var field_battleNum = $MarginContainer/CenterContainer/VBoxContainer/field_battleNum
 
 onready var campData = null
 onready var heroButtons = []
@@ -35,14 +36,22 @@ var haveAlready = {
 
 func _ready():
 	campData = global.activeCampData[global.selectedCampID]
+	
+	if (campData.endTime > -1):
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= campData.endTime):
+			campData.readyToCollect = true
+			
 	if (campData.heroes.size() == 0):
 		for i in campData.groupSize:
 			campData.heroes.append(null)
 		
 	if (!campData.inProgress):
+		field_battleNum.hide()
 		$battleScene.hide()
 	else:
-		_camp_in_progress()
+		field_battleNum.show()
+		_play_camp_animatic()
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -53,8 +62,10 @@ func _process(delta):
 	if (!campData.inProgress && !campData.readyToCollect):
 		progressBar.set_value(0)
 	elif (campData.inProgress && !campData.readyToCollect):
-		field_tipsOrProgress.text = str(util.format_time(campData.timer.time_left))
-		progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
+		field_tipsOrProgress.text = str(util.format_time(campData.endTime - OS.get_unix_time()))
+		var progressBarValue = (100 * (campData.selectedDuration - (campData.endTime - OS.get_unix_time())) / campData.selectedDuration)
+		#progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
+		progressBar.set_value(progressBarValue)
 	elif (campData.inProgress && campData.readyToCollect):
 		field_tipsOrProgress.text = "DONE!"
 		#todo: make it so only the correct button changes to collect 
@@ -65,14 +76,19 @@ func _process(delta):
 		
 func _play_animatic_step():
 	if (stepNum < campData.campOutcome.battleRecord.size()):
-		print("SHOWING BATTLE: " + str(stepNum) + " of " + str(campData.campOutcome.battleRecord.size()))
+		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.battleRecord.size()))
 		print(campData.campOutcome.battleRecord[stepNum].mobs)
 		$battleScene.populate_mobs(campData.campOutcome.battleRecord[stepNum].startMobsSprites)
+		print(campData.campOutcome.battleRecord[stepNum])
+		#$battleScene.populate_heroes(campData.campOutcome.outcome.battleRecord[stepNum].heroesClone)
+		field_battleNum.text = "Battle #" + str(stepNum+1)
 		stepNum += 1
 	else:
 		print("out of battles to show")
 	
 func _play_camp_animatic():
+	field_battleNum.text = "Pulling..."
+	field_battleNum.show()
 	$battleScene.show()
 	$battleScene.populate_heroes(campData.heroes)
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
@@ -231,7 +247,18 @@ func _start_camp(duration, enableButtonStr):
 			campData.enableButton = enableButtonStr
 			#camp.campOutcome is immediately calculated when this global method is called
 			#use camp.campOutcome data to draw the animatic 
-			global._begin_camp_timer(duration, campData.campId)
+			campData.endTime = OS.get_unix_time() + duration
+			campData.inProgress = true
+
+			var generatedOutcome = encounterGenerator.calculate_encounter_outcome(campData)
+			campData.campOutcome = {
+				"battleRecord":generatedOutcome.battleRecord,
+				"lootedItemsNames":generatedOutcome.lootedItemsNames,
+				"scTotal":generatedOutcome.scTotal,
+				"summary":generatedOutcome.summary,
+				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay
+			}
+			
 			_play_camp_animatic()
 			#todo: populate enemies 
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
@@ -268,15 +295,15 @@ func _on_button_autoPickHeroes_pressed():
 	#for each empty hero slot
 	for i in range(campData.heroes.size()):
 		if (campData.heroes[i] == null):
-			print("found a null spot to fill in!")
 			#todo: sort heroes by xp first (want low xp heroes) 
 			#look through all the available heroes
 			for hero in global.guildRoster:
-				if (hero.atHome == true && hero.staffedTo == ""):
+				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
 					if (haveAlready.healer == 0 && hero.get_archetype() == "healer"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.healer += 1
 						break
@@ -285,6 +312,7 @@ func _on_button_autoPickHeroes_pressed():
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.tank += 1
 						break
@@ -293,9 +321,21 @@ func _on_button_autoPickHeroes_pressed():
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
+						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
 						haveAlready.dps += 1
 						break
+	
+	#now fill in any remaining spots with whoever is first available
+	for i in range(campData.heroes.size()):
+		if (campData.heroes[i] == null):					
+			for hero in global.guildRoster:
+				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
+					#todo: code duplication in heroSelect Button code
+					campData.heroes[i] = hero #in progress
+					campData.heroes[i].staffedTo = "camp"
+					campData.heroes[i].staffedToID = campData.campId
+					campData.campHeroesSelected += 1
 						
-	_populate_fields()		
+	_populate_fields()
 			

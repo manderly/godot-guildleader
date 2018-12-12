@@ -23,7 +23,11 @@ func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)])
-	if (data.atHome && data.staffedTo == ""):
+	if (data.atHome && data.dead):
+		$VBoxContainer/field_available.text = "Dead"
+		if (global.currentMenu != "roster"):
+			self.set_disabled(true)
+	elif (data.atHome && data.staffedTo == ""):
 		$VBoxContainer/field_available.text = "Available"
 	elif (data.atHome && data.staffedTo == "camp"):
 		$VBoxContainer/field_available.text = "Ready to go!"
@@ -36,7 +40,10 @@ func populate_fields(data):
 		$VBoxContainer/field_available.text = "Away (Quest)"
 		self.set_disabled(true)
 	elif(!data.atHome && data.staffedTo == "camp"):
-		$VBoxContainer/field_available.text = "Away (Camp)"
+		$VBoxContainer/field_available.text = "Away (Camp " + data.staffedToID + ")"
+		self.set_disabled(true)
+	elif(!data.atHome && data.staffedTo == "harvesting"):
+		$VBoxContainer/field_available.text = "Away (Harvesting " + data.staffedToID + ")"
 		self.set_disabled(true)
 	else:
 		$VBoxContainer/field_available.text = "###BAD STATE"
@@ -108,6 +115,7 @@ func _on_Button_pressed():
 		if (heroData.atHome == true && heroData.staffedTo == ""): 
 			currentHarvestNode.hero = heroData
 			currentHarvestNode.hero.staffedTo = "harvesting"
+			currentHarvestNode.hero.staffedToID = currentHarvestNode.harvestingId
 			global.currentMenu = "forest"
 		else:
 			print("can't pick this hero")
@@ -117,19 +125,20 @@ func _on_Button_pressed():
 		global.currentMenu = "selectHeroForCamp"
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	elif (global.currentMenu == "selectHeroForCamp"):
+		
+		#!!! Update auto-pickhero code, too!!!!!!!!!!!!!!!!!!!!!!!
+		
 		var currentCamp = global.activeCampData[global.selectedCampID]
 		#first, free up whoever is already in that spot (if anyone) 
-		print(currentCamp.heroes[global.campButtonID])
-		
 		if (currentCamp.heroes[global.campButtonID]):
-			currentCamp.heroes[global.campButtonID].atHome = true
-			currentCamp.heroes[global.campButtonID].staffedTo = ""
+			currentCamp.heroes[global.campButtonID].send_home()
 			currentCamp.campHeroesSelected -= 1
 			
 		#next, confirm this specific hero is available
 		if (heroData.atHome && heroData.staffedTo == ""):
 			currentCamp.heroes[global.campButtonID] = heroData
 			currentCamp.heroes[global.campButtonID].staffedTo = "camp"
+			currentCamp.heroes[global.campButtonID].staffedToID = currentCamp.campId
 			currentCamp.campHeroesSelected += 1
 			global.currentMenu = "camp"
 		else:

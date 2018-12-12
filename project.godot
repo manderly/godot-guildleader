@@ -26,11 +26,11 @@ colors="*res://gameData/colors.gd"
 
 [display]
 
-window/size/width=480
+window/size/width=540
 window/size/height=960
 window/size/resizable=false
 window/size/always_on_top=true
-window/size/test_width=480
+window/size/test_width=540
 window/size/test_height=960
 window/handheld/orientation="portrait"
 window/handheld/emulate_touchscreen=true

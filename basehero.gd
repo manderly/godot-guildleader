@@ -10,6 +10,7 @@ var xp = -1
 var currentRoom = 0 #outside by default
 var atHome = true
 var staffedTo = ""
+var staffedToID = ""
 var recruited = false
 var gender = "female"
 var dead = false

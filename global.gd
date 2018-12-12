@@ -12,6 +12,9 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 var mobGenerator = load("res://mobGenerator.gd").new()
 var encounterGenerator = load("res://encounterGenerator.gd").new()
 
+var testTimerBeginTime = 0
+var testTimerEndTime = 0
+
 var softCurrency = 500
 var hardCurrency = 500
 var currentMenu = "main"
@@ -152,87 +155,7 @@ func _ready():
 	util.give_item_guild("Leather Strip")
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
-		
-func _begin_harvesting_timer(duration, harvestNodeID):
-	#starting harvest timer 
-	var harvestNode = global.activeHarvestingData[harvestNodeID]
-	if (!harvestNode.inProgress):
-		harvestNode.inProgress = true
-		harvestNode.readyToCollect = false
-		harvestNode.timer = Timer.new()
-		harvestNode.timer.set_one_shot(true)
-		harvestNode.timer.set_wait_time(duration)
-		harvestNode.timer.connect("timeout", self, "_on_harvestingTimer_timeout", [harvestNodeID])
-		harvestNode.timer.start()
-		add_child(harvestNode.timer)
-	else:
-		print("error: harvestNode already running")
-		
-func _on_harvestingTimer_timeout(harvestNodeID):
-	#this is where the harvest's random prizes are determined 
-	global.logger(self, "Harvest timer complete! Finished this harvest: " + harvestNodeID)
-	var harvestNode = global.activeHarvestingData[harvestNodeID]
-	harvestNode.readyToCollect = true
-	harvestNode.harvestPrizeQuantity = round(rand_range(harvestNode.minQuantity, harvestNode.maxQuantity))
-	#emit_signal("harvesting_complete", harvestNode.prizeItem1)
 
-func _begin_camp_timer(duration, campID):
-	#starting camp timer
-	#the camp outcomes are calculated upfront, and collectable once the timer is up 
-	var camp = global.activeCampData[campID]
-	if (!camp.inProgress):
-		camp.inProgress = true
-		camp.readyToCollect = false
-		camp.timer = Timer.new()
-		camp.timer.set_one_shot(true)
-		camp.timer.set_wait_time(duration)
-		camp.timer.connect("timeout", self, "_on_campTimer_timeout", [campID])
-		camp.timer.start()
-		add_child(camp.timer) 
-		
-		#begin the camp battle simulation
-		camp.campOutcome = encounterGenerator.calculate_encounter_outcome(camp)
-		
-	else:
-		print("error: camp already running")
-
-func _on_campTimer_timeout(campID):
-	global.logger(self, "Camp timer complete! Finished this camp: " + campID)
-	var camp = global.activeCampData[campID]
-	camp.inProgress = false
-	camp.readyToCollect = true
-
-func _begin_tradeskill_timer(duration):
-	var tradeskill = global.tradeskills[global.currentMenu]
-	var recipe = tradeskill.selectedRecipe
-	
-	if (!tradeskill.inProgress):
-		#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
-		if (tradeskill.selectedRecipe.result != "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
-		elif (tradeskill.selectedRecipe.result == "computed"):
-			tradeskill.currentlyCrafting.name = tradeskill.currentlyCrafting.wildcardItem.name
-			tradeskill.currentlyCrafting.statImproved = recipe.statImproved
-			tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease
-		else:
-			print("global.gd - Unknown result type")
-		
-		tradeskill.currentlyCrafting.totalTimeToFinish = duration #make record of how long this recipe needs to finish 
-		tradeskill.inProgress = true
-		tradeskill.readyToCollect = false
-		tradeskill.timer = Timer.new()
-		tradeskill.timer.set_one_shot(true)
-		tradeskill.timer.set_wait_time(duration)
-		tradeskill.timer.connect("timeout", self, "_on_tradeskillTimer_timeout", [global.currentMenu])
-		tradeskill.timer.start()
-		#todo: timer is added to scene, gets destroyed when you leave even though tradeskills is a global object 
-		add_child(tradeskill.timer) 
-	else:
-		print("global.gd - error: " + tradeskill.name + " timer already running")
-
-func _on_tradeskillTimer_timeout(tradeskillStr):
-	var tradeskill = global.tradeskills[tradeskillStr]
-	tradeskill.readyToCollect = true
 	
 func logger(script, message):
 	print(script.get_name() + ": " + str(message))
@@ -248,6 +171,10 @@ func save():
 			"initDone":initDone,
 			"nextHeroID":nextHeroID,
 			"rooms":rooms,
-			"roomCount":roomCount
+			"roomCount":roomCount,
+			"testTimerBeginTime":testTimerBeginTime,
+			"testTimerEndTime":testTimerEndTime,
+			"activeHarvestingData":activeHarvestingData,
+			"activeCampData":activeCampData
 		}
 	return save_object 

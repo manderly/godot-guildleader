@@ -175,7 +175,6 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                 if (file == "tradeskills.json") {
                     key = value["tradeskill"];
                     value.hero = null;
-                    value.timer = null;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.wildcardItemOnDeck = null;
@@ -187,13 +186,14 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                         "name":"",
                         "statImproved":"",
                         "statIncrease":"",
-                        "totalTimeToFinish":""
+                        "totalTimeToFinish":"",
+                        "endTime":-1
                     }
                     formatted[key] = value;
                 } else if (file == "harvesting.json") {
                     key = value["harvestingId"];
                     value.hero = null;
-                    value.timer = null;
+                    value.endTime = -1;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.timesRun = 0;
@@ -216,7 +216,7 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                         "spawnPoint3TableName":value.spawnPoint3
                     };
                     //we now have an array of spawn point table names
-                    value.timer = null;
+                    value.endTime = -1;
                     value.inProgress = false;
                     value.readyToCollect = false;
                     value.timesRun = 0;

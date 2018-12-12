@@ -24,7 +24,14 @@ func _ready():
 	add_child(finishedItemPopup)
 	
 	currentHarvest = global.activeHarvestingData[global.selectedHarvestingID]
+	
+	if (currentHarvest.endTime > -1):
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= currentHarvest.endTime):
+			currentHarvest.readyToCollect = true
+	
 	populate_fields(currentHarvest)
+	
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
 		buttonBeginHarvest.text = "Finish now"
 	
@@ -37,20 +44,26 @@ func _ready():
 func _process(delta):
 	#Displays how much time is left on the active quest 
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
-		field_timeRemaining.set_text(util.format_time(currentHarvest.timer.time_left))
-		#Displays how much time is left on the active recipe 
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= currentHarvest.endTime):
+			currentHarvest.readyToCollect = true
+		
+		#set the display fields 
+		field_timeRemaining.set_text(util.format_time(currentHarvest.endTime - OS.get_unix_time()))
+		#do not split the "currentHarvest.endtime - OS.get_unix_time into its own var 
+		#it's too dumb and slow to keep up with it as a separate var and will just calculate to 0 
+		var progressBarValue = (100 * (currentHarvest.timeToHarvest - (currentHarvest.endTime - OS.get_unix_time())) / currentHarvest.timeToHarvest)
+		#General formula:
+		#100 * ((total time to finish - timer time left) / total time to finish)
+		#60 - 40 / 60 =    20 / 60    = .33    x 100 = 33 
 
-		#to get the percent, we need to know how long this recipe takes and how much time has elapsed
-		#divide time elapsed by time needed to complete
-		#progressBar.set_value(100 * ((currentHarvest.currentlyCrafting.totalTimeToFinish - currentHarvest.timer.time_left) / currentHarvest.currentlyCrafting.totalTimeToFinish))
-		progressBar.set_value(100 * ((currentHarvest.timeToHarvest - currentHarvest.timer.time_left) / currentHarvest.timeToHarvest))
+		progressBar.set_value(progressBarValue)
+		#60 - 54 / 60 .... 6/60 = .01  = 1%.... this should work wtf 
+		#print(100 * ((currentHarvest.timeToHarvest - timeLeft) / currentHarvest.timeToHarvest))
 		buttonBeginHarvest.text = "FINISH NOW"
-	elif (!currentHarvest.inProgress && currentHarvest.readyToCollect):
+	elif (currentHarvest.readyToCollect):
 		field_timeRemaining.set_text("Harvest time remaining: DONE!")
 		buttonBeginHarvest.text = "COLLECT"
-	elif (currentHarvest.inProgress && currentHarvest.readyToCollect):
-		buttonBeginHarvest.text = "COLLECT!"
-		#buttonBeginHarvest.add_color_override("font_color", global.colorYellow) #239, 233, 64 yellow
 		progressBar.set_value(100)
 	else:
 		field_timeRemaining.set_text("Harvest not started")
@@ -87,7 +100,10 @@ func _on_button_beginHarvesting_pressed():
 			currentHarvest.hero.atHome = false
 			#start the timer attached to the quest object over in global
 			#it has to be done there, or else will be wiped from memory when we close this particular menu 
-			global._begin_harvesting_timer(currentHarvest.timeToHarvest, currentHarvest.harvestingId)
+			#global._begin_harvesting_timer(currentHarvest.timeToHarvest, currentHarvest.harvestingId)
+			currentHarvest.inProgress = true
+			var currentTime = OS.get_unix_time()
+			currentHarvest.endTime = currentTime + currentHarvest.timeToHarvest
 			button_pickHero.set_disabled(true)
 			get_tree().change_scene("res://menus/forest.tscn")
 	#case 2: quest is active but not ready to collect 
@@ -118,10 +134,14 @@ func harvestItem_callback():
 	#accept the harvested item and give it to guild inventory 
 	util.give_item_guild(currentHarvest.prizeItem1) #todo: QUANTITIES NOT ACCOUNTED FOR YET 
 	progressBar.set_value(0)
-	currentHarvest.timer.stop()
+	currentHarvest.endTime = -1
 	currentHarvest.inProgress = false
 	currentHarvest.readyToCollect = false
+	currentHarvest.hero.send_home()
+	currentHarvest.hero = null
 	buttonBeginHarvest.text = "BEGIN"
+	button_pickHero.set_disabled(false)
+	populate_fields(currentHarvest)
 	
 func _on_button_back_pressed():
 	#clear out any heroes who were assigned to quest buttons
@@ -142,7 +162,6 @@ func _on_harvesting_finish_now_dialog_confirmed():
 	else:
 		#todo: need a global insufficient funds popup
 		print("insufficient funds")
-
 
 func _on_button_pickHero_pressed():
 	global.currentMenu = "harvesting"

@@ -130,8 +130,8 @@ func save():
 			
 	print("Saving this hero! " + heroName + " level " + str(level) + " " + heroClass)
 	var saved_hero_data = {
-		"filename":get_filename(), #res://hero.tscn
-		"parent":get_parent().get_path(),
+		"filename":"heroFile",#get_filename(), #res://hero.tscn
+		"parent":"/root",#get_parent().get_path(),
 		"heroID":heroID,
 		"heroName":heroName,
 		"heroClass":heroClass,
@@ -141,6 +141,7 @@ func save():
 		"currentRoom":currentRoom,
 		"atHome":atHome,
 		"staffedTo":thisHero.staffedTo,
+		"staffedToID":thisHero.staffedToID,
 		"recruited":thisHero.recruited,
 		"gender":thisHero.gender,
 		"dead":dead,
@@ -171,7 +172,7 @@ func save():
 	}
 	print('heroName' + saved_hero_data.heroName)
 	print('baseHp' + String(thisHero.baseHp))
-	print(saved_hero_data.skillBlacksmithing)
+	#print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
 	
 func _input_event(viewport, event, shape_idx):
@@ -410,6 +411,7 @@ func _on_touchTimer_timeout():
 func send_home():
 	atHome = true
 	staffedTo = ""
+	staffedToID = -1
 
 func get_archetype():
 	#returns string dps, tank, healer

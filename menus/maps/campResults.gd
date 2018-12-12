@@ -12,9 +12,6 @@ var battlePrint = false
 
 func _ready():
 	campData = global.activeCampData[global.selectedCampID]
-	if (battlePrint):
-		for event in campData.campOutcome.battleRecord:
-			print(event)
 	_populate_fields()
 
 func _populate_fields():
@@ -22,7 +19,6 @@ func _populate_fields():
 	field_campDescription.text = campData.description
 	
 	#create item boxes for each item won
-	print(campData.campOutcome.lootedItemsNames)
 	var lootDictionaryWithCounts = {} #to track counts
 	var uniqueLootNames = [] #to control how many unique items we actually display 
 	for itemName in campData.campOutcome.lootedItemsNames:
@@ -64,23 +60,17 @@ func _on_button_collect_pressed():
 	
 	global.softCurrency += campData.campOutcome.scTotal
 	 
-	global.activeCampData[global.selectedCampID].timer = null
+	global.activeCampData[global.selectedCampID].endTime = -1
 	global.activeCampData[global.selectedCampID].heroes = []
 	global.activeCampData[global.selectedCampID].inProgress = false
 	global.activeCampData[global.selectedCampID].readyToCollect = false
 	global.activeCampData[global.selectedCampID].campHeroesSelected = 0
 	global.activeCampData[global.selectedCampID].selectedDuration = 0
 	global.activeCampData[global.selectedCampID].enableButton = ""
-	global.activeCampData[global.selectedCampID].campOutcome.battleRecord = []
-	global.activeCampData[global.selectedCampID].campOutcome = {}
 	
-	#campData.heroes = []
 	for slot in campData.groupSize:
 		global.activeCampData[global.selectedCampID].heroes.append(null)
-	#campData.inProgress = false
-	#campData.readyToCollect = false
-	#campData.campOutcome = {}
-	
+
 	if (global.returnToMap == "forest"):
 		get_tree().change_scene("res://menus/maps/forest.tscn")
 	elif (global.returnToMap == "coast"):
