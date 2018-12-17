@@ -691,6 +691,52 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="button_createHero" type="TextureButton" parent="HUD" index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = 42.0
+margin_top = 577.0
+margin_right = -434.0
+margin_bottom = 641.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 12 )
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Textures" ]
+
+[node name="Label" type="Label" parent="HUD/button_createHero" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -13.0
+margin_top = 69.0
+margin_right = 71.0
+margin_bottom = 83.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "CREATE HERO"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="screen" type="Node" parent="." index="1"]
 
 [node name="TileMap" type="TileMap" parent="screen" index="0"]
@@ -1043,6 +1089,8 @@ __meta__ = {
 [connection signal="pressed" from="HUD/button_saveGame" to="." method="_on_button_saveGame_pressed"]
 
 [connection signal="pressed" from="HUD/button_loadGame" to="." method="_on_button_loadGame_pressed"]
+
+[connection signal="pressed" from="HUD/button_createHero" to="." method="_on_button_createHero_pressed"]
 
 [connection signal="pressed" from="screen/button_addRoom" to="." method="_on_button_addRoom_pressed"]
 

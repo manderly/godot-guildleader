@@ -359,6 +359,53 @@ func give_existing_item(item): #takes the actual item (use with vault)
 	#hero.give_existing_item(actualItemObject)
 	equipment[item.slot] = item
 	
+func clear_all_items():
+	equipment = {
+		"mainHand": null,
+		"offHand": null,
+		"jewelry": null,
+		"unknown": null,
+		"head": null,
+		"chest": null,
+		"legs": null,
+		"feet": null
+	} 
+	
+func give_gear_loadout(loadoutIDStr):
+	clear_all_items()
+	#get the loadout from staticData
+	var loadout = staticData.loadouts[loadoutIDStr]
+	print(loadout)
+	#iterate through object and give each item to the hero
+	for key in loadout.keys():
+		if (key == "loadoutId" || key == "unknown"): 
+			continue #don't process entries that aren't actually items
+		elif (loadout[key]): #skip empty spots
+			give_new_item(loadout[key])
+	
+func change_class(classStr):
+	if (classStr == "Cleric"):
+		heroClass = "Cleric"
+		give_gear_loadout("clericNew")
+	elif (classStr == "Druid"):
+		heroClass = "Druid"
+		give_gear_loadout("druidNew")
+	elif (classStr == "Rogue"):
+		heroClass = "Rogue"
+		give_gear_loadout("rogueNew")
+	elif (classStr == "Ranger"):
+		heroClass = "Ranger"
+		give_gear_loadout("rangerNew")
+	elif (classStr == "Warrior"):
+		heroClass = "Warrior"
+		give_gear_loadout("warriorNew")
+	elif (classStr == "Wizard"):
+		heroClass = "Wizard"
+		give_gear_loadout("wizardNew")
+	else:
+		print("hero.gd: Attempting to change to invalid class")
+		
+		
 #if we release before 300ms is up, it's a short press - just show the hero name and stop their walking
 #if we release after 300ms is up, it's a long press - open the hero page 
 func _open_hero_page():

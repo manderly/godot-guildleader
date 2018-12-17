@@ -461,3 +461,9 @@ func _on_button_beginTimer_pressed():
 	print("start time:" + str(global.testTimerBeginTime))
 	print("end time: " + str(global.testTimerEndTime))
 	pass # replace with function body
+
+
+func _on_button_createHero_pressed():
+	_save_hero_locations()
+	global.currentMenu = "createHero"
+	get_tree().change_scene("res://menus/createHero.tscn");

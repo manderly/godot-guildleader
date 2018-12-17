@@ -33,58 +33,29 @@ func generate(destinationArray, classStr):
 	
 	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
+		newHero.give_gear_loadout("wizardNew")
 		#we need better wizards, here's a twinked one:
-		newHero.give_new_item("Robe of the Dunes")
-		newHero.give_new_item("Scepter of the Child King")
-		#newHero.give_new_item("Tiny Sapphire Ring")
-		newHero.give_new_item("Worn Canvas Sandals") #feet
-		newHero.give_new_item("Cloth Pants") #legs
-		#newHero.give_new_item("Novice's Robe") #chest
-		newHero.give_new_item("Simple Ring")
-		#newHero.give_new_item("Cracked Staff")
+		#newHero.give_gear_loadout("wizardUber")
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
-		newHero.give_new_item("Rusty Knife")
-		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Worn Ringmail Leg Guards")
-		newHero.give_new_item("Worn Ringmail Vest")
+		newHero.give_gear_loadout("rogueNew")
 
 	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
-		#twink warrior
-		#newHero.give_new_item("Glimmering Steel Sword")
-		
-		newHero.give_new_item("Rusty Broadsword")
-		newHero.give_new_item("Reinforced Shield")
-		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Worn Ringmail Leg Guards")
-		newHero.give_new_item("Worn Ringmail Vest")
+		newHero.give_gear_loadout("warriorNew")
 	
 	elif (classStr == "Ranger"):
 		newHero.heroClass = "Ranger"
-		newHero.give_new_item("Novice's Bow")
-		newHero.give_new_item("Basic Arrow")
-		newHero.give_new_item("Cloth Shirt")
-		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Cloth Pants")
+		newHero.give_gear_loadout("rangerNew")
 		
 	elif (classStr == "Cleric"):
 		newHero.heroClass = "Cleric"
-		#twink cleric
-		#newHero.give_new_item("Sacred Mace of Tun'dn")
-		#newHero.give_new_item("Shield of the Righteous")
-		newHero.give_new_item("Rusty Mace")
-		newHero.give_new_item("Reinforced Shield")
-		newHero.give_new_item("Cloth Shirt")
-		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Cloth Pants")
+		newHero.give_gear_loadout("clericNew")
 
 	elif (classStr == "Druid"):
 		newHero.heroClass = "Druid"
-		newHero.give_new_item("Cloth Shirt")
-		newHero.give_new_item("Muddy Boots")
-		newHero.give_new_item("Cloth Pants")		
+		newHero.give_gear_loadout("druidNew")
 			
 	else:
 		print("ERROR - BAD HERO CLASS TYPE")

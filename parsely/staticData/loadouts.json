@@ -1,0 +1,79 @@
+[
+  {
+    "loadoutId": "clericNew",
+    "mainHand": "Rusty Mace",
+    "offHand": "Reinforced Shield",
+    "chest": "Cloth Shirt",
+    "legs": "Cloth Pants",
+    "jewelry": "",
+    "feet": "Muddy Boots",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "druidNew",
+    "mainHand": "Cracked Staff",
+    "offHand": "",
+    "chest": "Cloth Shirt",
+    "legs": "Cloth Pants",
+    "jewelry": "",
+    "feet": "Muddy Boots",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "rangerNew",
+    "mainHand": "Novice's Bow",
+    "offHand": "Basic Arrow",
+    "chest": "Cloth Shirt",
+    "legs": "Cloth Pants",
+    "jewelry": "",
+    "feet": "Muddy Boots",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "rogueNew",
+    "mainHand": "Rusty Knife",
+    "offHand": "Muddy Boots",
+    "chest": "Worn Ringmail Vest",
+    "legs": "Worn Ringmail Leg Guards",
+    "jewelry": "",
+    "feet": "",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "warriorNew",
+    "mainHand": "Rusty Broadsword",
+    "offHand": "Reinforced Shield",
+    "chest": "Worn Ringmail Vest",
+    "legs": "Worn Ringmail Leg Guards",
+    "jewelry": "",
+    "feet": "Muddy Boots",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "wizardNew",
+    "mainHand": "Cracked Staff",
+    "offHand": "",
+    "chest": "Novice's Robe",
+    "legs": "Cloth Pants",
+    "jewelry": "Simple Ring",
+    "feet": "Worn Canvas Sandals",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "wizardUber",
+    "mainHand": "Scepter of the Child King",
+    "offHand": "",
+    "chest": "Robe of the Dunes",
+    "legs": "Cloth Pants",
+    "jewelry": "Tiny Opal Ring",
+    "feet": "Soft Silk Slippers",
+    "head": "Tiara of Knowledge",
+    "unknown": ""
+  }
+]

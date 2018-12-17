@@ -16,7 +16,7 @@ Notes:
 - json file to process must be an array of objects
 */
 
-console.log("\n STARTING GODOT JSON PARSELY - Guild Leader edition \n");
+console.log("\n STARTING GODOT JSON PARSELY - Guild Leader edition 12/17/2018 \n");
 var fs = require("fs");
 var oneHugeString = "extends Node\n";
 var filenameRegEx = '^([a-zA-Z]+)';
@@ -114,6 +114,9 @@ fs.readdir(staticDataFolder, (err, files) => {
                 //these are just supposed to be arrays of objects or strings, ie: var heroStats = ["{warrior:{hp:123,mana:0}...","",""]
                 arr.push(value);
                 formatted = arr;
+            } else if (file == "loadouts.json") {
+                key = value["loadoutId"];
+                formatted[key] = value;
             } else {
                 console.log("Found but did not process this .json file: " + file);
             }
