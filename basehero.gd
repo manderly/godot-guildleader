@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+var humanFemaleHeads = ["human_female_01.png", "human_female_02.png", "human_female_03.png", "human_female_04.png", "human_female_05.png", "human_female_06.png", "human_female_07.png", "human_female_08.png", "human_female_09.png", "human_female_10.png", "human_female_11.png"]
+var humanMaleHeads = ["human_male_01.png", "human_male_02.png", "human_male_03.png", "human_male_04.png", "human_male_05.png", "human_male_06.png", "human_male_07.png", "human_male_08.png", "human_male_08.png", "human_male_09.png"]
+var elfFemaleHeads = ["elf_female_01.png"]
+
 #Hero properties - not governed by external spreadsheet data
 #These are set when a hero is randomly generated in heroGenerator.gd 
 var heroID = -1 

@@ -3,9 +3,6 @@ extends Node
 #makes a level 1 hero with random class and name
 
 var nameGenerator = load("res://nameGenerator.gd").new()
-var humanFemaleHeads = ["human_female_01.png", "human_female_02.png", "human_female_03.png", "human_female_04.png", "human_female_05.png", "human_female_06.png", "human_female_07.png", "human_female_08.png", "human_female_09.png", "human_female_10.png", "human_female_11.png"]
-var humanMaleHeads = ["human_male_01.png", "human_male_02.png", "human_male_03.png", "human_male_04.png", "human_male_05.png", "human_male_06.png", "human_male_07.png", "human_male_08.png", "human_male_08.png", "human_male_09.png"]
-var elfFemaleHeads = ["elf_female_01.png"]
 
 func _ready():
 	pass
@@ -24,9 +21,9 @@ func generate(destinationArray, classStr):
 	
 	#random head (these are gendered mostly so we don't end up with bearded ladies)
 	if (newHero.gender == "female"):
-		newHero.headSprite = humanFemaleHeads[randi() % humanFemaleHeads.size()]
+		newHero.headSprite = newHero.humanFemaleHeads[randi() % newHero.humanFemaleHeads.size()]
 	else:
-		newHero.headSprite = humanMaleHeads[randi() % humanMaleHeads.size()]
+		newHero.headSprite = newHero.humanMaleHeads[randi() % newHero.humanMaleHeads.size()]
 		
 	#random class
 	var randomClass = randi()%3+1 #1-4

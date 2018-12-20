@@ -18,6 +18,8 @@ var showName = true
 
 var battlePrint = false
 
+var headIndex = 0
+
 #three possible ways to display a hero sprite:
 #walking with name
 #icon with name
@@ -33,6 +35,7 @@ func _ready():
 		$field_name.text = heroName
 	else:
 		$field_name.text = ""
+
 		
 func set_display_params(walkBool, nameBool):
 	walkable = walkBool
@@ -405,6 +408,8 @@ func change_class(classStr):
 	else:
 		print("hero.gd: Attempting to change to invalid class")
 		
+func change_head(headStr): #pass in the string of the head sprite 
+	headSprite = headStr
 		
 #if we release before 300ms is up, it's a short press - just show the hero name and stop their walking
 #if we release after 300ms is up, it's a long press - open the hero page 

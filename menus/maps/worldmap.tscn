@@ -15,7 +15,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -480.0
+margin_left = -540.0
 margin_top = -960.0
 margin_bottom = -660.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -34,7 +34,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 480.0
+margin_right = 540.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -47,6 +47,7 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Margin" ]
 
 [node name="button_forest" type="Button" parent="VBoxContainer" index="1"]
 
@@ -55,7 +56,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 26.0
-margin_right = 480.0
+margin_right = 540.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -81,7 +82,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 102.0
-margin_right = 480.0
+margin_right = 540.0
 margin_bottom = 166.0
 rect_min_size = Vector2( 0, 64 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -100,15 +101,14 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_foothills" type="Button" parent="VBoxContainer" index="3"]
+[node name="button_falls" type="Button" parent="VBoxContainer" index="3"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 178.0
-margin_right = 480.0
+margin_right = 540.0
 margin_bottom = 242.0
 rect_min_size = Vector2( 0, 64 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -122,7 +122,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Verdant Foothills"
+text = "Felkrath Falls"
 flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
@@ -132,5 +132,7 @@ _sections_unfolded = [ "Rect" ]
 [connection signal="pressed" from="VBoxContainer/button_forest" to="." method="_on_button_forest_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/button_coast" to="." method="_on_button_coast_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/button_falls" to="." method="_on_button_falls_pressed"]
 
 
