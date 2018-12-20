@@ -61,6 +61,8 @@ func _ready():
 		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
 		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
 		heroInventoryButton._set_slot(heroEquipmentSlots[i])
+		heroInventoryButton.add_to_group("InventoryButtons")
+		
 		if (global.selectedHero && !global.selectedHero.recruited):
 			#don't show move to vault or trash buttons if this hero isn't recruited
 			heroInventoryButton._set_info_popup_buttons(false, false, "none")
@@ -68,7 +70,7 @@ func _ready():
 			#show buttons and give the option to put item in vault if hero is recruited
 			heroInventoryButton._set_info_popup_buttons(true, true, "Put in vault")
 			if (global.selectedHero.dead):
-				heroInventoryButton._set_disabled()
+				heroInventoryButton.set_disabled(true)
 			
 		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
 		#only set icon if the hero actually has an item in this slot, otherwise empty
@@ -124,9 +126,14 @@ func populate_fields():
 		$button_revive.set_disabled(false)
 		$button_trainOrRecruit.set_disabled(true)
 	else:
+		#hero was just revived
 		$button_dismiss.set_disabled(false)
 		$button_revive.set_disabled(true)
 		$button_trainOrRecruit.set_disabled(false)
+		var inventoryButtons = get_tree().get_nodes_in_group("InventoryButtons")
+		for button in inventoryButtons:
+			button.set_disabled(false)
+		
 		
 	_update_stats()
 	
@@ -269,4 +276,6 @@ func _on_vbox_stats2_gui_input(ev):
 	
 func _on_button_revive_pressed():
 	global.selectedHero.dead = false
+	global.selectedHero.hpCurrent = global.selectedHero.hp
+	global.selectedHero.manaCurrent = global.selectedHero.mana
 	populate_fields()

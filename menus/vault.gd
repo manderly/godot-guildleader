@@ -59,7 +59,7 @@ func _draw_vault_items():
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
 					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
-						currentButton._set_disabled() #disable button if slot mismatch 
+						currentButton.set_disabled(true) #disable button if slot mismatch 
 					
 					#disable if this item isn't a class match but also allow for "any" 
 					var thisHeroCanWear = false
@@ -71,19 +71,19 @@ func _draw_vault_items():
 							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.heroClass.to_lower()):
 								thisHeroCanWear = true
 					if (!thisHeroCanWear):
-						currentButton._set_disabled()
+						currentButton.set_disabled(true)
 				elif (global.currentMenu == "blacksmithing"):
 					if (global.browsingForType == "blade"):
 						if (global.guildItems[i].itemType != "sword" && 
 							global.guildItems[i].itemType != "knife" ||
 							global.guildItems[i].improved):
-							currentButton._set_disabled() #disable button if type mismatch 
+							currentButton.set_disabled(true) #disable button if type mismatch 
 			else:
 				currentButton._clear_label()
 				currentButton._clear_icon()
 				currentButton._clear_data()
 				if (global.currentMenu == "vaultViaHeroPage" || global.currentMenu == "vaultViaBlacksmith"):
-					currentButton._set_disabled() #disable empty buttons but only when equipping an item onto a hero 
+					currentButton.set_disabled(true) #disable empty buttons but only when equipping an item onto a hero 
 				#keep vault index intact 
 
 func _draw_tradeskill_items():

@@ -145,7 +145,7 @@ func _populate_fields():
 		highEndRange = campData.level + 2
 		
 	field_reccLevelRange.text = "Recommended level range: " + str(lowEndRange) + " - " + str(highEndRange)
-	field_campDescription.text = campData.description
+	field_campDescription.text = str(campData.description)
 	
 	button_startCampShort.text = "JOIN CAMP: " + str(util.format_time(campData.durationShort))
 	button_startCampMedium.text = "JOIN CAMP: " + str(util.format_time(campData.durationMedium))

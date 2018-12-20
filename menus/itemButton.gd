@@ -66,16 +66,17 @@ func _set_slot(slotName):
 func _clear_vault_index():
 	itemVaultIndex = -1 #might not need this 
 
-func _set_disabled():
-	$Button.disabled = true
-	$Button.modulate = Color(0.5,0.5,0.5,1)
-	$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
-	
-func _set_enabled():
-	$Button.disabled = false
-	$Button.modulate = Color(1,1,1,1)
-	$Button/sprite_itemIcon.modulate = Color(1,1,1)
-
+func set_disabled(boolVal):
+	if (!boolVal):
+		$Button.disabled = false
+		$Button.modulate = Color(1,1,1,1)
+		$Button/sprite_itemIcon.modulate = Color(1,1,1)
+	else:
+		#false, button is enabled 
+		$Button.disabled = true
+		$Button.modulate = Color(0.5,0.5,0.5,1)
+		$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
+		
 func _render_vault(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)

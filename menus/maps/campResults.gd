@@ -16,7 +16,7 @@ func _ready():
 
 func _populate_fields():
 	field_campName.text = campData.name
-	field_campDescription.text = campData.description
+	field_campDescription.text = str(campData.description)
 	
 	#create item boxes for each item won
 	var lootDictionaryWithCounts = {} #to track counts
