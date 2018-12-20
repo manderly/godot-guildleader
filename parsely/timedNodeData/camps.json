@@ -17,10 +17,7 @@
   {
     "campId": "test09",
     "name": "Rats in the Cellar",
-    "description": [
-      "Farmer Brownwheat needs help clearing rats from his cellar. It's not glamorous work",
-      "but it pays in real coin and you can keep any treasure you find!"
-    ],
+    "description": "Farmer Brownwheat needs help clearing rats from his cellar. It's not glamorous work, but it pays in real coin and you can keep any treasure you find!",
     "level": 1,
     "durationShort": 3600,
     "durationMedium": 10800,
@@ -140,10 +137,7 @@
   {
     "campId": "camp_forest02",
     "name": "Wolves of Tackbank Forest",
-    "description": [
-      "Large",
-      "overly aggressive wolves patrol the entrance to the Tackbank Forest. Defeat as many as you can and establish your guild as defenders of the realm."
-    ],
+    "description": "Large, overly aggressive wolves patrol the entrance to the Tackbank Forest. Defeat as many as you can and establish your guild as defenders of the realm.",
     "level": 3,
     "durationShort": 1800,
     "durationMedium": 3600,
@@ -158,10 +152,7 @@
   {
     "campId": "camp_forest03",
     "name": "Spider Caverns",
-    "description": [
-      "Big and small",
-      "but mostly big. This elaborate cavern system is home to thousands of bloodthirsty spiders."
-    ],
+    "description": "Big and small, but mostly big. This elaborate cavern system is home to thousands of bloodthirsty spiders.",
     "level": 3,
     "durationShort": 3600,
     "durationMedium": 10800,
@@ -191,10 +182,7 @@
   {
     "campId": "camp_forest05",
     "name": "Direwolves and Dreadwolves",
-    "description": [
-      "Dreadwolves are larger and meaner than typical wolves",
-      "and defeating them will make the forest safer for passersby."
-    ],
+    "description": "Dreadwolves are larger and meaner than typical wolves, and defeating them will make the forest safer for passersby.",
     "level": 5,
     "durationShort": 3600,
     "durationMedium": 10800,
@@ -209,10 +197,7 @@
   {
     "campId": "camp_forest06",
     "name": "The Fairie Guard",
-    "description": [
-      "Formidable foes",
-      "these fairies are. Engage in battle and prove your worthiness."
-    ],
+    "description": "Formidable foes, these fairies are. Engage in battle and prove your worthiness.",
     "level": 5,
     "durationShort": 3600,
     "durationMedium": 10800,
@@ -317,11 +302,7 @@
   {
     "campId": "camp_coast06",
     "name": "Tadlocs of Blacksand Caverns",
-    "description": [
-      "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns",
-      "root out the Tadlocs",
-      "and return with any treasures you find."
-    ],
+    "description": "Elite Tadloc warriors are occuping the Blacksand Caverns. Explore the caverns, root out the Tadlocs, and return with any treasures you find.",
     "level": 13,
     "durationShort": 3600,
     "durationMedium": 10800,
@@ -336,10 +317,7 @@
   {
     "campId": "camp_coast07",
     "name": "Captain Smellybeard",
-    "description": [
-      "Legend has it that Captain Smellybeard met his demise off the Shoach Coast. Defeat his ghost so that his spirit can enter the Otherrealm",
-      "and return with anything you find in the ship's cargo hold."
-    ],
+    "description": "Legend has it that Captain Smellybeard met his demise off the Shoach Coast. Defeat his ghost so that his spirit can enter the Otherrealm, and return with anything you find in the ship's cargo hold.",
     "level": 16,
     "durationShort": 3600,
     "durationMedium": 10800,
