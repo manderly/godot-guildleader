@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://menus/maps/falls.gd" type="Script" id=1]
-[ext_resource path="res://menus/maps/mapBackgrounds/map_falls.png" type="Texture" id=2]
+[ext_resource path="res://menus/maps/swamp.gd" type="Script" id=1]
+[ext_resource path="res://menus/maps/mapBackgrounds/map_swamp.png" type="Texture" id=2]
 [ext_resource path="res://sprites/tackbankforest/tree1d.png" type="Texture" id=3]
 [ext_resource path="res://sprites/tackbankforest/tree1.png" type="Texture" id=4]
 [ext_resource path="res://sprites/tackbankforest/tree1b.png" type="Texture" id=5]
@@ -36,6 +36,7 @@ _sections_unfolded = [ "Margin" ]
 [node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
 [node name="TextureRect" type="TextureRect" parent="." index="0"]
 
@@ -164,7 +165,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_styles/normal = SubResource( 1 )
 custom_colors/font_color = Color( 0.215686, 0.141176, 0.0156863, 1 )
-text = "Felkrath Falls"
+text = "Ynnthool Swamp"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -173,68 +174,75 @@ _sections_unfolded = [ "custom_colors", "custom_styles" ]
 
 [node name="campNode1" parent="." index="4" instance=ExtResource( 10 )]
 
-margin_left = 100.0
-margin_top = 439.0
-margin_right = 164.0
-margin_bottom = 503.0
+margin_left = 81.0
+margin_top = 80.0
+margin_right = 145.0
+margin_bottom = 144.0
 
 [node name="campNode2" parent="." index="5" instance=ExtResource( 10 )]
 
-margin_left = 384.0
-margin_top = 35.0
-margin_right = 448.0
-margin_bottom = 99.0
+margin_left = 411.0
+margin_top = 61.0
+margin_right = 475.0
+margin_bottom = 125.0
 
 [node name="campNode3" parent="." index="6" instance=ExtResource( 10 )]
 
-margin_left = 305.0
-margin_top = 279.0
-margin_right = 369.0
-margin_bottom = 343.0
+margin_left = 124.0
+margin_top = 220.0
+margin_right = 188.0
+margin_bottom = 284.0
 
 [node name="campNode4" parent="." index="7" instance=ExtResource( 10 )]
 
-margin_left = 369.0
-margin_top = 400.0
-margin_right = 433.0
-margin_bottom = 464.0
+margin_left = 347.0
+margin_top = 247.0
+margin_right = 411.0
+margin_bottom = 311.0
 
 [node name="campNode5" parent="." index="8" instance=ExtResource( 10 )]
 
-margin_left = 207.0
-margin_top = 942.0
-margin_right = 271.0
-margin_bottom = 1006.0
+margin_left = 44.0
+margin_top = 422.0
+margin_right = 108.0
+margin_bottom = 486.0
 
 [node name="campNode6" parent="." index="9" instance=ExtResource( 10 )]
 
-margin_left = 126.0
-margin_top = 711.0
-margin_right = 190.0
-margin_bottom = 775.0
+margin_left = 153.0
+margin_top = 571.0
+margin_right = 217.0
+margin_bottom = 635.0
 
 [node name="campNode7" parent="." index="10" instance=ExtResource( 10 )]
 
-margin_left = 434.0
-margin_top = 762.0
-margin_right = 498.0
-margin_bottom = 826.0
+margin_left = 340.0
+margin_top = 806.0
+margin_right = 404.0
+margin_bottom = 870.0
 
-[node name="harvestingNode1" parent="." index="11" instance=ExtResource( 11 )]
+[node name="campNode8" parent="." index="11" instance=ExtResource( 10 )]
 
-margin_left = 460.0
-margin_top = 483.0
-margin_right = 524.0
-margin_bottom = 547.0
+margin_left = 231.0
+margin_top = 848.0
+margin_right = 295.0
+margin_bottom = 912.0
 
-[node name="harvestingNode2" parent="." index="12" instance=ExtResource( 11 )]
+[node name="harvestingNode1" parent="." index="12" instance=ExtResource( 11 )]
 
-margin_left = 252.0
-margin_top = 595.0
-margin_right = 316.0
-margin_bottom = 659.0
+margin_left = 448.0
+margin_top = 861.0
+margin_right = 512.0
+margin_bottom = 925.0
 
-[node name="button_back" parent="." index="13" instance=ExtResource( 12 )]
+[node name="harvestingNode2" parent="." index="13" instance=ExtResource( 11 )]
+
+margin_left = 47.0
+margin_top = 674.0
+margin_right = 111.0
+margin_bottom = 738.0
+
+[node name="button_back" parent="." index="14" instance=ExtResource( 12 )]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

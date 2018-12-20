@@ -488,7 +488,7 @@
   },
   {
     "campId": "camp_swamp01",
-    "name": "Swamp 01",
+    "name": "Muck Rocks",
     "description": "Swamp description 01",
     "level": 24,
     "durationShort": 3600,
@@ -503,7 +503,7 @@
   },
   {
     "campId": "camp_swamp02",
-    "name": "Swamp 02",
+    "name": "Ruins",
     "description": "Swamp description 02",
     "level": 26,
     "durationShort": 3600,
@@ -518,7 +518,7 @@
   },
   {
     "campId": "camp_swamp03",
-    "name": "Swamp 03",
+    "name": "Bandit Hideout",
     "description": "Swamp description 03",
     "level": 27,
     "durationShort": 3600,
@@ -533,7 +533,7 @@
   },
   {
     "campId": "camp_swamp04",
-    "name": "Swamp 04",
+    "name": "Ancient Temple",
     "description": "Swamp description 04",
     "level": 30,
     "durationShort": 3600,
@@ -548,7 +548,7 @@
   },
   {
     "campId": "camp_swamp05",
-    "name": "Swamp 05",
+    "name": "Old Seb",
     "description": "Swamp description 05",
     "level": 31,
     "durationShort": 3600,
@@ -563,7 +563,7 @@
   },
   {
     "campId": "camp_swamp06",
-    "name": "Swamp 06",
+    "name": "Spectres",
     "description": "Swamp description 06",
     "level": 35,
     "durationShort": 3600,
@@ -578,7 +578,7 @@
   },
   {
     "campId": "camp_swamp07",
-    "name": "Swamp 07",
+    "name": "Troll Guards",
     "description": "Swamp description 07",
     "level": 36,
     "durationShort": 3600,
@@ -593,7 +593,7 @@
   },
   {
     "campId": "camp_swamp08",
-    "name": "Swamp 08",
+    "name": "Y'grek the Foul",
     "description": "Swamp description 08",
     "level": 45,
     "durationShort": 3600,
