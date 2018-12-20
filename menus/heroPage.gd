@@ -147,7 +147,7 @@ func _update_stats():
 	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
 	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
-	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue"):
+	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue" && global.selectedHero.heroClass != "Ranger"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
 	else:
 		displayMana.hide()
