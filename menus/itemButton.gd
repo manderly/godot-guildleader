@@ -80,7 +80,10 @@ func set_disabled(boolVal):
 func _render_vault(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
-	$Button/field_slotName.text = data.slot
+	if (data.itemType == "arrow"):
+		$Button/field_slotName.text = "Arrow"
+	else:
+		$Button/field_slotName.text = data.slot
 	
 func _render_tradeskill(data):
 	itemData = data
