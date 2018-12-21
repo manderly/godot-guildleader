@@ -9,7 +9,7 @@
 [ext_resource path="res://gui/styles/chiselbutton.tres" type="StyleBox" id=7]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

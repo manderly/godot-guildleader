@@ -56,6 +56,12 @@ func _ready():
 		recipeButton.set_button_group(recipeButtonGroup)
 		recipeButton.connect("updateRecipe", self, "_update_ingredients")
 		$scroll/vbox.add_child(recipeButton)
+	
+	if (tradeskill.currentlyCrafting.endTime > -1):
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= tradeskill.currentlyCrafting.endTime):
+			tradeskill.readyToCollect = true
+			
 	_update_ingredients()
 	_update_hero_skill_display()
 	
@@ -143,18 +149,9 @@ func _update_ingredients():
 		ingredient4Display._clear_fields()
 		
 	#results area
-	if (tradeskill.inProgress):
-		var itemName = tradeskill.currentlyCrafting.name
-		if (tradeskill.currentlyCrafting.moddingAnItem):
-			nowCrafting.text = "Now Crafting: Improved " + itemName
-			labelComputed.show()
-			labelChoose.hide()
-			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
-			resultItemBox._render_tradeskill(staticData.items[itemName])
-		else:
-			nowCrafting.text = "Now Crafting: " + itemName
-	else:
-		#not crafting (not inProgress), just browsng
+	if (!tradeskill.inProgress && !tradeskill.readyToCollect):
+		print("NOT IN PROGRESS, NOT READY TO COLLECT")
+		#not crafting anything (not inProgress), just browsng
 		nowCrafting.text = "You will get: "
 	
 		if (recipe.ingredientWildcard):
@@ -188,7 +185,21 @@ func _update_ingredients():
 		elif (recipe.result):
 			labelComputed.hide()
 			resultItemBox._render_tradeskill(staticData.items[str(recipe.result)])
+	elif (tradeskill.inProgress && !tradeskill.readyToCollect || tradeskill.inProgress && tradeskill.readyToCollect):
+		labelChoose.hide()
+		labelComputed.hide()
 		
+		var itemName = tradeskill.currentlyCrafting.name
+		resultItemBox._render_tradeskill(staticData.items[itemName])
+		
+		if (tradeskill.currentlyCrafting.moddingAnItem):
+			nowCrafting.text = "Now Crafting: Improved " + itemName
+			labelComputed.show()
+			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
+		else:
+			nowCrafting.text = "Now Crafting: " + itemName
+		
+			
 func _process(delta):
 	#Displays how much time is left on the active recipe 
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
