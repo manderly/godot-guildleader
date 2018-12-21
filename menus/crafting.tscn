@@ -31,31 +31,51 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 22, 0, 1, 22, 0, 2, 22, 0, 3, 22, 0, 4, 22, 0, 5, 22, 0, 6, 22, 0, 7, 22, 0, 8, 22, 0, 9, 22, 0, 10, 22, 0, 11, 22, 0, 12, 22, 0, 13, 22, 0, 14, 22, 0, 65536, 22, 0, 65537, 22, 0, 65538, 22, 0, 65539, 22, 0, 65540, 22, 0, 65541, 22, 0, 65542, 22, 0, 65543, 22, 0, 65544, 22, 0, 65545, 22, 0, 65546, 22, 0, 65547, 22, 0, 65548, 22, 0, 65549, 22, 0, 65550, 22, 0, 131072, 22, 0, 131073, 22, 0, 131074, 22, 0, 131075, 22, 0, 131076, 22, 0, 131077, 22, 0, 131078, 22, 0, 131079, 22, 0, 131080, 22, 0, 131081, 22, 0, 131082, 22, 0, 131083, 22, 0, 131084, 22, 0, 131085, 22, 0, 131086, 22, 0, 196608, 22, 0, 196609, 22, 0, 196610, 22, 0, 196611, 22, 0, 196612, 22, 0, 196613, 22, 0, 196614, 22, 0, 196615, 22, 0, 196616, 22, 0, 196617, 22, 0, 196618, 22, 0, 196619, 22, 0, 196620, 22, 0, 196621, 22, 0, 196622, 22, 0, 262144, 22, 0, 262145, 22, 0, 262146, 22, 0, 262147, 22, 0, 262148, 22, 0, 262149, 22, 0, 262150, 22, 0, 262151, 22, 0, 262152, 22, 0, 262153, 22, 0, 262154, 22, 0, 262155, 22, 0, 262156, 22, 0, 262157, 22, 0, 262158, 22, 0, 327680, 22, 0, 327681, 22, 0, 327682, 22, 0, 327683, 22, 0, 327684, 22, 0, 327685, 22, 0, 327686, 22, 0, 327687, 22, 0, 327688, 22, 0, 327689, 22, 0, 327690, 22, 0, 327691, 22, 0, 327692, 22, 0, 327693, 22, 0, 327694, 22, 0, 393216, 22, 0, 393217, 22, 0, 393218, 22, 0, 393219, 22, 0, 393220, 22, 0, 393221, 22, 0, 393222, 22, 0, 393223, 22, 0, 393224, 22, 0, 393225, 22, 0, 393226, 22, 0, 393227, 22, 0, 393228, 22, 0, 393229, 22, 0, 393230, 22, 0, 458752, 22, 0, 458753, 22, 0, 458754, 22, 0, 458755, 22, 0, 458756, 22, 0, 458757, 22, 0, 458758, 22, 0, 458759, 22, 0, 458760, 22, 0, 458761, 22, 0, 458762, 22, 0, 458763, 22, 0, 458764, 22, 0, 458765, 22, 0, 458766, 22, 0, 524288, 22, 0, 524289, 22, 0, 524290, 22, 0, 524291, 22, 0, 524292, 22, 0, 524293, 22, 0, 524294, 22, 0, 524295, 22, 0, 524296, 22, 0, 524297, 22, 0, 524298, 22, 0, 524299, 22, 0, 524300, 22, 0, 524301, 22, 0, 524302, 22, 0, 589824, 22, 0, 589825, 22, 0, 589826, 22, 0, 589827, 22, 0, 589828, 22, 0, 589829, 22, 0, 589830, 22, 0, 589831, 22, 0, 589832, 22, 0, 589833, 22, 0, 589834, 22, 0, 589835, 22, 0, 589836, 22, 0, 589837, 22, 0, 589838, 22, 0, 655360, 22, 0, 655361, 22, 0, 655362, 22, 0, 655363, 22, 0, 655364, 22, 0, 655365, 22, 0, 655366, 22, 0, 655367, 22, 0, 655368, 22, 0, 655369, 22, 0, 655370, 22, 0, 655371, 22, 0, 655372, 22, 0, 655373, 22, 0, 655374, 22, 0, 720896, 22, 0, 720897, 22, 0, 720898, 22, 0, 720899, 22, 0, 720900, 22, 0, 720901, 22, 0, 720902, 22, 0, 720903, 22, 0, 720904, 22, 0, 720905, 22, 0, 720906, 22, 0, 720907, 22, 0, 720908, 22, 0, 720909, 22, 0, 720910, 22, 0, 786432, 22, 0, 786433, 22, 0, 786434, 22, 0, 786435, 22, 0, 786436, 22, 0, 786437, 22, 0, 786438, 22, 0, 786439, 22, 0, 786440, 22, 0, 786441, 22, 0, 786442, 22, 0, 786443, 22, 0, 786444, 22, 0, 786445, 22, 0, 786446, 22, 0, 851968, 22, 0, 851969, 22, 0, 851970, 22, 0, 851971, 22, 0, 851972, 22, 0, 851973, 22, 0, 851974, 22, 0, 851975, 22, 0, 851976, 22, 0, 851977, 22, 0, 851978, 22, 0, 851979, 22, 0, 851980, 22, 0, 851981, 22, 0, 851982, 22, 0, 917504, 22, 0, 917505, 22, 0, 917506, 22, 0, 917507, 22, 0, 917508, 22, 0, 917509, 22, 0, 917510, 22, 0, 917511, 22, 0, 917512, 22, 0, 917513, 22, 0, 917514, 22, 0, 917515, 22, 0, 917516, 22, 0, 917517, 22, 0, 917518, 22, 0, 983040, 22, 0, 983041, 22, 0, 983042, 22, 0, 983043, 22, 0, 983044, 22, 0, 983045, 22, 0, 983046, 22, 0, 983047, 22, 0, 983048, 22, 0, 983049, 22, 0, 983050, 22, 0, 983051, 22, 0, 983052, 22, 0, 983053, 22, 0, 983054, 22, 0, 1048576, 22, 0, 1048577, 22, 0, 1048578, 22, 0, 1048579, 22, 0, 1048580, 22, 0, 1048581, 22, 0, 1048582, 22, 0, 1048583, 22, 0, 1048584, 22, 0, 1048585, 22, 0, 1048586, 22, 0, 1048587, 22, 0, 1048588, 22, 0, 1048589, 22, 0, 1048590, 22, 0, 1114112, 22, 0, 1114113, 22, 0, 1114114, 22, 0, 1114115, 22, 0, 1114116, 22, 0, 1114117, 22, 0, 1114118, 22, 0, 1114119, 22, 0, 1114120, 22, 0, 1114121, 22, 0, 1114122, 22, 0, 1114123, 22, 0, 1114124, 22, 0, 1114125, 22, 0, 1114126, 22, 0, 1179648, 22, 0, 1179649, 22, 0, 1179650, 22, 0, 1179651, 22, 0, 1179652, 22, 0, 1179653, 22, 0, 1179654, 22, 0, 1179655, 22, 0, 1179656, 22, 0, 1179657, 22, 0, 1179658, 22, 0, 1179659, 22, 0, 1179660, 22, 0, 1179661, 22, 0, 1179662, 22, 0, 1245184, 22, 0, 1245185, 22, 0, 1245186, 22, 0, 1245187, 22, 0, 1245188, 22, 0, 1245189, 22, 0, 1245190, 22, 0, 1245191, 22, 0, 1245192, 22, 0, 1245193, 22, 0, 1245194, 22, 0, 1245195, 22, 0, 1245196, 22, 0, 1245197, 22, 0, 1245198, 22, 0, 1310720, 22, 0, 1310721, 22, 0, 1310722, 22, 0, 1310723, 22, 0, 1310724, 22, 0, 1310725, 22, 0, 1310726, 22, 0, 1310727, 22, 0, 1310728, 22, 0, 1310729, 22, 0, 1310730, 22, 0, 1310731, 22, 0, 1310732, 22, 0, 1310733, 22, 0, 1310734, 22, 0, 1376256, 22, 0, 1376257, 22, 0, 1376258, 22, 0, 1376259, 22, 0, 1376260, 22, 0, 1376261, 22, 0, 1376262, 22, 0, 1376263, 22, 0, 1376264, 22, 0, 1376265, 22, 0, 1376266, 22, 0, 1376267, 22, 0, 1376268, 22, 0, 1376269, 22, 0, 1376270, 22, 0, 1441792, 22, 0, 1441793, 22, 0, 1441794, 22, 0, 1441795, 22, 0, 1441796, 22, 0, 1441797, 22, 0, 1441798, 22, 0, 1441799, 22, 0, 1441800, 22, 0, 1441801, 22, 0, 1441802, 22, 0, 1441803, 22, 0, 1441804, 22, 0, 1441805, 22, 0, 1441806, 22, 0, 1507328, 22, 0, 1507329, 22, 0, 1507330, 22, 0, 1507331, 22, 0, 1507332, 22, 0, 1507333, 22, 0, 1507334, 22, 0, 1507335, 22, 0, 1507336, 22, 0, 1507337, 22, 0, 1507338, 22, 0, 1507339, 22, 0, 1507340, 22, 0, 1507341, 22, 0, 1507342, 22, 0, 1572864, 22, 0, 1572865, 22, 0, 1572866, 22, 0, 1572867, 22, 0, 1572868, 22, 0, 1572869, 22, 0, 1572870, 22, 0, 1572871, 22, 0, 1572872, 22, 0, 1572873, 22, 0, 1572874, 22, 0, 1572875, 22, 0, 1572876, 22, 0, 1572877, 22, 0, 1572878, 22, 0, 1638400, 22, 0, 1638401, 22, 0, 1638402, 22, 0, 1638403, 22, 0, 1638404, 22, 0, 1638405, 22, 0, 1638406, 22, 0, 1638407, 22, 0, 1638408, 22, 0, 1638409, 22, 0, 1638410, 22, 0, 1638411, 22, 0, 1638412, 22, 0, 1638413, 22, 0, 1638414, 22, 0, 1703936, 22, 0, 1703937, 22, 0, 1703938, 22, 0, 1703939, 22, 0, 1703940, 22, 0, 1703941, 22, 0, 1703942, 22, 0, 1703943, 22, 0, 1703944, 22, 0, 1703945, 22, 0, 1703946, 22, 0, 1703947, 22, 0, 1703948, 22, 0, 1703949, 22, 0, 1703950, 22, 0, 1769472, 22, 0, 1769473, 22, 0, 1769474, 22, 0, 1769475, 22, 0, 1769476, 22, 0, 1769477, 22, 0, 1769478, 22, 0, 1769479, 22, 0, 1769480, 22, 0, 1769481, 22, 0, 1769482, 22, 0, 1769483, 22, 0, 1769484, 22, 0, 1769485, 22, 0, 1769486, 22, 0, 1835008, 22, 0, 1835009, 22, 0, 1835010, 22, 0, 1835011, 22, 0, 1835012, 22, 0, 1835013, 22, 0, 1835014, 22, 0, 1835015, 22, 0, 1835016, 22, 0, 1835017, 22, 0, 1835018, 22, 0, 1835019, 22, 0, 1835020, 22, 0, 1835021, 22, 0, 1835022, 22, 0, 1900544, 22, 0, 1900545, 22, 0, 1900546, 22, 0, 1900547, 22, 0, 1900548, 22, 0, 1900549, 22, 0, 1900550, 22, 0, 1900551, 22, 0, 1900552, 22, 0, 1900553, 22, 0, 1900554, 22, 0, 1900555, 22, 0, 1900556, 22, 0, 1900557, 22, 0, 1900558, 22, 0 )
+tile_data = PoolIntArray( 0, 22, 0, 1, 22, 0, 2, 22, 0, 3, 22, 0, 4, 22, 0, 5, 22, 0, 6, 22, 0, 7, 22, 0, 8, 22, 0, 9, 22, 0, 10, 22, 0, 11, 22, 0, 12, 22, 0, 13, 22, 0, 14, 22, 0, 15, 18, 0, 16, 18, 0, 65536, 22, 0, 65537, 22, 0, 65538, 22, 0, 65539, 22, 0, 65540, 22, 0, 65541, 22, 0, 65542, 22, 0, 65543, 22, 0, 65544, 22, 0, 65545, 22, 0, 65546, 22, 0, 65547, 22, 0, 65548, 22, 0, 65549, 22, 0, 65550, 22, 0, 65551, 18, 0, 65552, 18, 0, 131072, 22, 0, 131073, 22, 0, 131074, 22, 0, 131075, 22, 0, 131076, 22, 0, 131077, 22, 0, 131078, 22, 0, 131079, 22, 0, 131080, 22, 0, 131081, 22, 0, 131082, 22, 0, 131083, 22, 0, 131084, 22, 0, 131085, 22, 0, 131086, 22, 0, 131087, 18, 0, 131088, 18, 0, 196608, 22, 0, 196609, 22, 0, 196610, 22, 0, 196611, 22, 0, 196612, 22, 0, 196613, 22, 0, 196614, 22, 0, 196615, 22, 0, 196616, 22, 0, 196617, 22, 0, 196618, 22, 0, 196619, 22, 0, 196620, 22, 0, 196621, 22, 0, 196622, 22, 0, 196623, 18, 0, 196624, 18, 0, 262144, 22, 0, 262145, 22, 0, 262146, 22, 0, 262147, 22, 0, 262148, 22, 0, 262149, 22, 0, 262150, 22, 0, 262151, 22, 0, 262152, 22, 0, 262153, 22, 0, 262154, 22, 0, 262155, 22, 0, 262156, 22, 0, 262157, 22, 0, 262158, 22, 0, 262159, 18, 0, 262160, 18, 0, 327680, 22, 0, 327681, 22, 0, 327682, 22, 0, 327683, 22, 0, 327684, 22, 0, 327685, 22, 0, 327686, 22, 0, 327687, 22, 0, 327688, 22, 0, 327689, 22, 0, 327690, 22, 0, 327691, 22, 0, 327692, 22, 0, 327693, 22, 0, 327694, 22, 0, 327695, 18, 0, 327696, 18, 0, 393216, 22, 0, 393217, 22, 0, 393218, 22, 0, 393219, 22, 0, 393220, 22, 0, 393221, 22, 0, 393222, 22, 0, 393223, 22, 0, 393224, 22, 0, 393225, 22, 0, 393226, 22, 0, 393227, 22, 0, 393228, 22, 0, 393229, 22, 0, 393230, 22, 0, 393231, 18, 0, 393232, 18, 0, 458752, 22, 0, 458753, 22, 0, 458754, 22, 0, 458755, 22, 0, 458756, 22, 0, 458757, 22, 0, 458758, 22, 0, 458759, 22, 0, 458760, 22, 0, 458761, 22, 0, 458762, 22, 0, 458763, 22, 0, 458764, 22, 0, 458765, 22, 0, 458766, 22, 0, 458767, 18, 0, 458768, 18, 0, 524288, 22, 0, 524289, 22, 0, 524290, 22, 0, 524291, 22, 0, 524292, 22, 0, 524293, 22, 0, 524294, 22, 0, 524295, 22, 0, 524296, 22, 0, 524297, 22, 0, 524298, 22, 0, 524299, 22, 0, 524300, 22, 0, 524301, 22, 0, 524302, 22, 0, 524303, 18, 0, 524304, 18, 0, 589824, 22, 0, 589825, 22, 0, 589826, 22, 0, 589827, 22, 0, 589828, 22, 0, 589829, 22, 0, 589830, 22, 0, 589831, 22, 0, 589832, 22, 0, 589833, 22, 0, 589834, 22, 0, 589835, 22, 0, 589836, 22, 0, 589837, 22, 0, 589838, 22, 0, 589839, 18, 0, 589840, 18, 0, 655360, 22, 0, 655361, 22, 0, 655362, 22, 0, 655363, 22, 0, 655364, 22, 0, 655365, 22, 0, 655366, 22, 0, 655367, 22, 0, 655368, 22, 0, 655369, 22, 0, 655370, 22, 0, 655371, 22, 0, 655372, 22, 0, 655373, 22, 0, 655374, 22, 0, 655375, 18, 0, 655376, 18, 0, 720896, 22, 0, 720897, 22, 0, 720898, 22, 0, 720899, 22, 0, 720900, 22, 0, 720901, 22, 0, 720902, 22, 0, 720903, 22, 0, 720904, 22, 0, 720905, 22, 0, 720906, 22, 0, 720907, 22, 0, 720908, 22, 0, 720909, 22, 0, 720910, 22, 0, 720911, 18, 0, 720912, 18, 0, 786432, 22, 0, 786433, 22, 0, 786434, 22, 0, 786435, 22, 0, 786436, 22, 0, 786437, 22, 0, 786438, 22, 0, 786439, 22, 0, 786440, 22, 0, 786441, 22, 0, 786442, 22, 0, 786443, 22, 0, 786444, 22, 0, 786445, 22, 0, 786446, 22, 0, 786447, 18, 0, 786448, 18, 0, 851968, 22, 0, 851969, 22, 0, 851970, 22, 0, 851971, 22, 0, 851972, 22, 0, 851973, 22, 0, 851974, 22, 0, 851975, 22, 0, 851976, 22, 0, 851977, 22, 0, 851978, 22, 0, 851979, 22, 0, 851980, 22, 0, 851981, 22, 0, 851982, 22, 0, 851983, 18, 0, 851984, 18, 0, 917504, 22, 0, 917505, 22, 0, 917506, 22, 0, 917507, 22, 0, 917508, 22, 0, 917509, 22, 0, 917510, 22, 0, 917511, 22, 0, 917512, 22, 0, 917513, 22, 0, 917514, 22, 0, 917515, 22, 0, 917516, 22, 0, 917517, 22, 0, 917518, 22, 0, 917519, 18, 0, 917520, 18, 0, 983040, 22, 0, 983041, 22, 0, 983042, 22, 0, 983043, 22, 0, 983044, 22, 0, 983045, 22, 0, 983046, 22, 0, 983047, 22, 0, 983048, 22, 0, 983049, 22, 0, 983050, 22, 0, 983051, 22, 0, 983052, 22, 0, 983053, 22, 0, 983054, 22, 0, 983055, 18, 0, 983056, 18, 0, 1048576, 22, 0, 1048577, 22, 0, 1048578, 22, 0, 1048579, 22, 0, 1048580, 22, 0, 1048581, 22, 0, 1048582, 22, 0, 1048583, 22, 0, 1048584, 22, 0, 1048585, 22, 0, 1048586, 22, 0, 1048587, 22, 0, 1048588, 22, 0, 1048589, 22, 0, 1048590, 22, 0, 1048591, 18, 0, 1048592, 18, 0, 1114112, 22, 0, 1114113, 22, 0, 1114114, 22, 0, 1114115, 22, 0, 1114116, 22, 0, 1114117, 22, 0, 1114118, 22, 0, 1114119, 22, 0, 1114120, 22, 0, 1114121, 22, 0, 1114122, 22, 0, 1114123, 22, 0, 1114124, 22, 0, 1114125, 22, 0, 1114126, 22, 0, 1114127, 18, 0, 1114128, 18, 0, 1179648, 22, 0, 1179649, 22, 0, 1179650, 22, 0, 1179651, 22, 0, 1179652, 22, 0, 1179653, 22, 0, 1179654, 22, 0, 1179655, 22, 0, 1179656, 22, 0, 1179657, 22, 0, 1179658, 22, 0, 1179659, 22, 0, 1179660, 22, 0, 1179661, 22, 0, 1179662, 22, 0, 1179663, 18, 0, 1179664, 18, 0, 1245184, 22, 0, 1245185, 22, 0, 1245186, 22, 0, 1245187, 22, 0, 1245188, 22, 0, 1245189, 22, 0, 1245190, 22, 0, 1245191, 22, 0, 1245192, 22, 0, 1245193, 22, 0, 1245194, 22, 0, 1245195, 22, 0, 1245196, 22, 0, 1245197, 22, 0, 1245198, 22, 0, 1245199, 18, 0, 1245200, 18, 0, 1310720, 22, 0, 1310721, 22, 0, 1310722, 22, 0, 1310723, 22, 0, 1310724, 22, 0, 1310725, 22, 0, 1310726, 22, 0, 1310727, 22, 0, 1310728, 22, 0, 1310729, 22, 0, 1310730, 22, 0, 1310731, 22, 0, 1310732, 22, 0, 1310733, 22, 0, 1310734, 22, 0, 1310735, 18, 0, 1310736, 18, 0, 1376256, 22, 0, 1376257, 22, 0, 1376258, 22, 0, 1376259, 22, 0, 1376260, 22, 0, 1376261, 22, 0, 1376262, 22, 0, 1376263, 22, 0, 1376264, 22, 0, 1376265, 22, 0, 1376266, 22, 0, 1376267, 22, 0, 1376268, 22, 0, 1376269, 22, 0, 1376270, 22, 0, 1376271, 18, 0, 1376272, 18, 0, 1441792, 22, 0, 1441793, 22, 0, 1441794, 22, 0, 1441795, 22, 0, 1441796, 22, 0, 1441797, 22, 0, 1441798, 22, 0, 1441799, 22, 0, 1441800, 22, 0, 1441801, 22, 0, 1441802, 22, 0, 1441803, 22, 0, 1441804, 22, 0, 1441805, 22, 0, 1441806, 22, 0, 1441807, 18, 0, 1441808, 18, 0, 1507328, 22, 0, 1507329, 22, 0, 1507330, 22, 0, 1507331, 22, 0, 1507332, 22, 0, 1507333, 22, 0, 1507334, 22, 0, 1507335, 22, 0, 1507336, 22, 0, 1507337, 22, 0, 1507338, 22, 0, 1507339, 22, 0, 1507340, 22, 0, 1507341, 22, 0, 1507342, 22, 0, 1507343, 18, 0, 1507344, 18, 0, 1572864, 22, 0, 1572865, 22, 0, 1572866, 22, 0, 1572867, 22, 0, 1572868, 22, 0, 1572869, 22, 0, 1572870, 22, 0, 1572871, 22, 0, 1572872, 22, 0, 1572873, 22, 0, 1572874, 22, 0, 1572875, 22, 0, 1572876, 22, 0, 1572877, 22, 0, 1572878, 18, 0, 1572879, 18, 0, 1572880, 18, 0, 1638400, 22, 0, 1638401, 22, 0, 1638402, 22, 0, 1638403, 22, 0, 1638404, 22, 0, 1638405, 22, 0, 1638406, 22, 0, 1638407, 22, 0, 1638408, 22, 0, 1638409, 22, 0, 1638410, 22, 0, 1638411, 22, 0, 1638412, 22, 0, 1638413, 22, 0, 1638414, 18, 0, 1638415, 18, 0, 1638416, 18, 0, 1703936, 22, 0, 1703937, 22, 0, 1703938, 22, 0, 1703939, 22, 0, 1703940, 22, 0, 1703941, 22, 0, 1703942, 22, 0, 1703943, 22, 0, 1703944, 22, 0, 1703945, 22, 0, 1703946, 22, 0, 1703947, 22, 0, 1703948, 22, 0, 1703949, 22, 0, 1703950, 22, 0, 1703951, 18, 0, 1703952, 18, 0, 1769472, 22, 0, 1769473, 22, 0, 1769474, 22, 0, 1769475, 22, 0, 1769476, 22, 0, 1769477, 22, 0, 1769478, 22, 0, 1769479, 22, 0, 1769480, 22, 0, 1769481, 22, 0, 1769482, 22, 0, 1769483, 22, 0, 1769484, 22, 0, 1769485, 22, 0, 1769486, 22, 0, 1769487, 18, 0, 1769488, 18, 0, 1835008, 22, 0, 1835009, 22, 0, 1835010, 22, 0, 1835011, 22, 0, 1835012, 22, 0, 1835013, 22, 0, 1835014, 22, 0, 1835015, 22, 0, 1835016, 22, 0, 1835017, 22, 0, 1835018, 22, 0, 1835019, 22, 0, 1835020, 22, 0, 1835021, 22, 0, 1835022, 22, 0, 1835023, 18, 0, 1835024, 18, 0, 1900544, 22, 0, 1900545, 22, 0, 1900546, 22, 0, 1900547, 22, 0, 1900548, 22, 0, 1900549, 22, 0, 1900550, 22, 0, 1900551, 22, 0, 1900552, 22, 0, 1900553, 22, 0, 1900554, 22, 0, 1900555, 22, 0, 1900556, 22, 0, 1900557, 22, 0, 1900558, 22, 0, 1900559, 18, 0, 1900560, 18, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
+[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 440.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 480, 200 )
+margin_right = 540.0
+margin_bottom = 1042.0
+rect_min_size = Vector2( 540, 960 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 30.0
+margin_right = 510.0
+margin_bottom = 1142.0
+rect_min_size = Vector2( 480, 800 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_constants/separation = 20
 alignment = 0
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="field_craftingSkillName" type="Label" parent="VBoxContainer" index="0"]
+[node name="field_craftingSkillName" type="Label" parent="CenterContainer/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -78,17 +98,17 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect", "Theme", "custom_colors" ]
+_sections_unfolded = [ "Margin", "Rect", "Theme", "custom_colors" ]
 
-[node name="field_description" type="RichTextLabel" parent="VBoxContainer" index="1"]
+[node name="field_description" type="RichTextLabel" parent="CenterContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 44.0
+margin_top = 60.0
 margin_right = 480.0
-margin_bottom = 124.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 0, 80 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
@@ -110,79 +130,110 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Margin", "Rect", "Theme" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" index="2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 128.0
+margin_top = 160.0
 margin_right = 480.0
-margin_bottom = 166.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/CenterContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 40.0
-margin_right = 440.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 400, 0 )
+margin_bottom = 200.0
+rect_min_size = Vector2( 400, 40 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
+alignment = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="field_heroSkill" type="RichTextLabel" parent="VBoxContainer/CenterContainer/HBoxContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 320.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 320, 0 )
+margin_left = 91.0
+margin_right = 212.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 12
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+
+[node name="field_heroName" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 121.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#HERO NAME"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="field_heroSkill" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 26.0
+margin_right = 121.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#SKILLNAME LEVEL"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Container" type="Container" parent="CenterContainer/VBoxContainer/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 216.0
+margin_right = 316.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
-text = "#HERO NAME AND SKILL LEVEL"
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_dismissHero" type="Button" parent="VBoxContainer/CenterContainer/HBoxContainer" index="1"]
+[node name="button_dismissHero" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 324.0
-margin_right = 393.0
-margin_bottom = 38.0
+margin_left = 320.0
+margin_right = 389.0
+margin_bottom = 40.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -200,15 +251,15 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
 
-[node name="label_recipes" type="Label" parent="." index="2"]
+[node name="label_recipes" type="Label" parent="CenterContainer/VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 180.0
+margin_top = 220.0
 margin_right = 480.0
-margin_bottom = 210.0
+margin_bottom = 234.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -222,16 +273,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="scroll" type="ScrollContainer" parent="." index="3"]
+[node name="scroll" type="ScrollContainer" parent="CenterContainer/VBoxContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 220.0
-margin_right = 470.0
-margin_bottom = 440.0
+margin_top = 254.0
+margin_right = 480.0
+margin_bottom = 474.0
+rect_min_size = Vector2( 420, 220 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
@@ -243,8 +294,9 @@ scroll_horizontal = 0
 scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
+_sections_unfolded = [ "Rect", "Scroll" ]
 
-[node name="vbox" type="VBoxContainer" parent="scroll" index="0"]
+[node name="vbox" type="VBoxContainer" parent="CenterContainer/VBoxContainer/scroll" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -263,41 +315,38 @@ custom_constants/separation = 2
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="recipeData" type="Node2D" parent="." index="4"]
-
-[node name="label_ingredients" type="Label" parent="recipeData" index="0"]
+[node name="label_ingredients" type="Label" parent="CenterContainer/VBoxContainer" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -2.0
-margin_top = 459.0
-margin_right = 478.0
-margin_bottom = 489.0
+margin_top = 494.0
+margin_right = 480.0
+margin_bottom = 508.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "#RECIPE NAME# INGREDIENTS"
+text = "#RECIPE NAME"
 align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="components_bg" type="NinePatchRect" parent="recipeData" index="1"]
+[node name="components_bg" type="NinePatchRect" parent="CenterContainer/VBoxContainer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 14.0
-margin_top = 489.0
-margin_right = 465.0
-margin_bottom = 626.0
+margin_top = 528.0
+margin_right = 480.0
+margin_bottom = 668.0
+rect_min_size = Vector2( 0, 140 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -311,16 +360,16 @@ patch_margin_right = 13
 patch_margin_bottom = 13
 _sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Material", "Mouse", "Patch Margin", "Pause", "Rect", "Size Flags", "Theme", "Visibility" ]
 
-[node name="hbox_ingredients" type="HBoxContainer" parent="recipeData" index="2"]
+[node name="hbox_ingredients" type="HBoxContainer" parent="CenterContainer/VBoxContainer/components_bg" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 43.0
-margin_top = 510.0
-margin_right = 277.0
-margin_bottom = 609.0
+margin_left = 29.0
+margin_top = 20.0
+margin_right = 489.0
+margin_bottom = 140.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -328,15 +377,16 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="recipeData/hbox_ingredients" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 394.0
-margin_bottom = 99.0
+margin_bottom = 120.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -344,15 +394,16 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
+_sections_unfolded = [ "Rect" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="recipeData/hbox_ingredients/HBoxContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 300.0
-margin_bottom = 99.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 300, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -364,30 +415,30 @@ custom_constants/separation = -7
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="ingredient1" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer" index="0" instance=ExtResource( 5 )]
+[node name="ingredient1" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer" index="0" instance=ExtResource( 5 )]
 
 margin_right = 300.0
 
-[node name="ingredient2" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer" index="1" instance=ExtResource( 5 )]
+[node name="ingredient2" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer" index="1" instance=ExtResource( 5 )]
 
 margin_top = 23.0
 margin_right = 300.0
 margin_bottom = 53.0
 
-[node name="ingredient3" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer" index="2" instance=ExtResource( 5 )]
+[node name="ingredient3" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer" index="2" instance=ExtResource( 5 )]
 
 margin_top = 46.0
 margin_right = 300.0
 margin_bottom = 76.0
 
-[node name="ingredient4" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer" index="3" instance=ExtResource( 5 )]
+[node name="ingredient4" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer" index="3" instance=ExtResource( 5 )]
 
 margin_top = 69.0
 margin_right = 300.0
 margin_bottom = 99.0
 _sections_unfolded = [ "Grow Direction", "Rect", "Transform", "Z Index" ]
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="recipeData/hbox_ingredients/HBoxContainer" index="1"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -395,7 +446,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 304.0
 margin_right = 394.0
-margin_bottom = 99.0
+margin_bottom = 120.0
 rect_min_size = Vector2( 90, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -407,7 +458,7 @@ custom_constants/separation = 6
 alignment = 0
 _sections_unfolded = [ "Grow Direction", "Rect", "custom_constants" ]
 
-[node name="label_time" type="Label" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2" index="0"]
+[node name="label_time" type="Label" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer2" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -429,7 +480,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
-[node name="label_failNoFail" type="Label" parent="recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2" index="1"]
+[node name="label_failNoFail" type="Label" parent="CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer2" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -452,61 +503,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_colors" ]
 
-[node name="ingredientWildcard" parent="recipeData/hbox_ingredients" index="1" instance=ExtResource( 6 )]
-
-visible = false
-margin_left = 164.0
-margin_right = 234.0
-margin_bottom = 99.0
-_sections_unfolded = [ "Anchor", "Rect", "Size Flags", "Transform" ]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="recipeData" index="3"]
+[node name="field_nowCrafting" type="Label" parent="CenterContainer/VBoxContainer" index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 61.0
-margin_top = 643.0
-margin_right = 421.0
-margin_bottom = 865.0
-rect_min_size = Vector2( 360, 160 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_constants/separation = 13
-alignment = 1
-_sections_unfolded = [ "Rect", "custom_constants" ]
-
-[node name="CenterContainer" type="CenterContainer" parent="recipeData/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 360.0
-rect_min_size = Vector2( 120, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-_sections_unfolded = [ "Rect" ]
-
-[node name="field_nowCrafting" type="Label" parent="recipeData/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 13.0
-margin_right = 360.0
-margin_bottom = 27.0
+margin_top = 688.0
+margin_right = 480.0
+margin_bottom = 702.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -519,15 +524,15 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="CenterContainer2" type="CenterContainer" parent="recipeData/VBoxContainer" index="2"]
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="8"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 40.0
-margin_right = 360.0
-margin_bottom = 120.0
+margin_top = 722.0
+margin_right = 480.0
+margin_bottom = 802.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -536,13 +541,13 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
 
-[node name="resultItem" parent="recipeData/VBoxContainer/CenterContainer2" index="0" instance=ExtResource( 6 )]
+[node name="resultItem" parent="CenterContainer/VBoxContainer/CenterContainer2" index="0" instance=ExtResource( 6 )]
 
-margin_left = 145.0
-margin_right = 215.0
+margin_left = 205.0
+margin_right = 275.0
 margin_bottom = 80.0
 
-[node name="label_computed" type="Label" parent="recipeData/VBoxContainer/CenterContainer2/resultItem" index="1"]
+[node name="label_computed" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/resultItem" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -565,7 +570,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="label_choose" type="Label" parent="recipeData/VBoxContainer/CenterContainer2/resultItem" index="2"]
+[node name="label_choose" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer2/resultItem" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -587,15 +592,53 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="progress_nowCrafting" type="ProgressBar" parent="recipeData/VBoxContainer" index="3"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="9"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 133.0
-margin_right = 360.0
-margin_bottom = 149.0
+margin_top = 822.0
+margin_right = 480.0
+margin_bottom = 922.0
+rect_min_size = Vector2( 480, 100 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 130.0
+margin_top = 10.0
+margin_right = 350.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 220, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="progress_nowCrafting" type="ProgressBar" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer2" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 220.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 160, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -613,15 +656,15 @@ rounded = true
 percent_visible = true
 _sections_unfolded = [ "Percent", "Rect" ]
 
-[node name="button_combine" type="Button" parent="recipeData/VBoxContainer" index="4"]
+[node name="button_combine" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer2" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 162.0
-margin_right = 360.0
-margin_bottom = 222.0
+margin_top = 20.0
+margin_right = 220.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 120, 60 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -640,7 +683,25 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect", "Textures", "custom_styles" ]
 
-[node name="incomplete_dialog" type="AcceptDialog" parent="." index="5"]
+[node name="Container end buffer" type="Container" parent="CenterContainer/VBoxContainer" index="10"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 942.0
+margin_right = 480.0
+margin_bottom = 1142.0
+rect_min_size = Vector2( 0, 200 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="incomplete_dialog" type="AcceptDialog" parent="." index="2"]
 
 visible = false
 anchor_left = 0.0
@@ -664,11 +725,11 @@ dialog_text = "You are short some ingredients!"
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="6" instance=ExtResource( 8 )]
+[node name="button_back" parent="." index="3" instance=ExtResource( 8 )]
 
-[connection signal="pressed" from="VBoxContainer/CenterContainer/HBoxContainer/button_dismissHero" to="." method="_on_button_dismissHero_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/button_dismissHero" to="." method="_on_button_dismissHero_pressed"]
 
-[connection signal="pressed" from="recipeData/VBoxContainer/button_combine" to="." method="_on_button_combine_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer2/button_combine" to="." method="_on_button_combine_pressed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

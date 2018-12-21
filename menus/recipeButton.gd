@@ -10,14 +10,22 @@ func _ready():
 	pass
 
 func set_recipe_data(data):
-	self.text = data.recipeName + " [" + str(data.trivial) + "]"
+	#self.text = data.recipeName + " [" + str(data.trivial) + "]"
+	$field_recipeNameAndTrivial.text = data.recipeName + " [" + str(data.trivial) + "]"
+	#if not computed...
+	if (!data.result == "computed"):
+		var previewItemInstance = staticData.items[data.result].duplicate()
+		$TextureRect.texture = load("res://sprites/items/" + previewItemInstance.icon)
+	else:
+		$TextureRect.texture = load("res://sprites/icons/upgrade_arrow.png")
+		
 	#color the button text according to difficulty of recipe vs. crafter's skill level
 	if (data.trivial < crafterSkill):
 		#this recipe is beneath the crafter's skill level, make it white
 		self.add_color_override("font_color", Color(1, 1, 1, 1)) #white
 	elif (data.trivial >= crafterSkill + 6):
 		#this recipe is 6 or more above crafter's skill level, make it red
-		self.add_color_override("font_color", Color(.89, .176, .156, 1)) #(227,45,40) red
+		self.add_color_override("font_color", colors.darkRed)
 	elif (data.trivial > crafterSkill && data.trivial <= crafterSkill + 5):
 		#this recipe is between 1 and 5 more than crafter's skill level, make it yellow
 		self.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow

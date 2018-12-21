@@ -3,28 +3,33 @@ extends Node2D
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
 
-onready var tradeskillName = $VBoxContainer/field_craftingSkillName
-onready var staffedHeroNameAndSkill = $VBoxContainer/CenterContainer/HBoxContainer/field_heroSkill
-onready var tradeskillDescription = $VBoxContainer/field_description
+onready var tradeskillName = $CenterContainer/VBoxContainer/field_craftingSkillName
+onready var tradeskillDescription = $CenterContainer/VBoxContainer/field_description
 
-onready var ingredient1Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient1
-onready var ingredient2Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient2
-onready var ingredient3Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient3
-onready var ingredient4Display = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient4
+onready var staffedHeroName = $CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_heroName
+onready var staffedHeroSkill = $CenterContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_heroSkill
 
-onready var labelTime = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2/label_time
-onready var labelFailNoFail = $recipeData/hbox_ingredients/HBoxContainer/VBoxContainer2/label_failNoFail
+onready var scrollBox = $CenterContainer/VBoxContainer/scroll/vbox
 
-onready var combineButton = $recipeData/VBoxContainer/button_combine
-onready var progressBar = $recipeData/VBoxContainer/progress_nowCrafting
+onready var recipeName = $CenterContainer/VBoxContainer/label_ingredients
 
-onready var nowCrafting = $recipeData/VBoxContainer/field_nowCrafting
+onready var ingredient1Display = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient1
+onready var ingredient2Display = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient2
+onready var ingredient3Display = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient3
+onready var ingredient4Display = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer/ingredient4
 
-onready var labelComputed = $recipeData/VBoxContainer/CenterContainer2/resultItem/label_computed
-onready var resultItemBox = $recipeData/VBoxContainer/CenterContainer2/resultItem
-onready var wildcardItemBox = $recipeData/hbox_ingredients/ingredientWildcard
-onready var labelChoose = $recipeData/VBoxContainer/CenterContainer2/resultItem/label_choose
-onready var recipeName = $recipeData/label_ingredients
+onready var labelTime = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer2/label_time
+onready var labelFailNoFail = $CenterContainer/VBoxContainer/components_bg/hbox_ingredients/HBoxContainer/VBoxContainer2/label_failNoFail
+
+onready var progressBar = $CenterContainer/VBoxContainer/CenterContainer/VBoxContainer2/progress_nowCrafting
+onready var combineButton = $CenterContainer/VBoxContainer/CenterContainer/VBoxContainer2/button_combine
+
+onready var nowCrafting = $CenterContainer/VBoxContainer/field_nowCrafting
+
+onready var labelComputed = $CenterContainer/VBoxContainer/CenterContainer2/resultItem/label_computed
+onready var resultItemBox = $CenterContainer/VBoxContainer/CenterContainer2/resultItem
+
+onready var labelChoose = $CenterContainer/VBoxContainer/CenterContainer2/resultItem/label_choose
 
 var hasIngredient1 = false
 var hasIngredient2 = false
@@ -55,7 +60,7 @@ func _ready():
 		recipeButton.set_recipe_data(tradeskill.recipes[i])
 		recipeButton.set_button_group(recipeButtonGroup)
 		recipeButton.connect("updateRecipe", self, "_update_ingredients")
-		$scroll/vbox.add_child(recipeButton)
+		scrollBox.add_child(recipeButton)
 	
 	if (tradeskill.currentlyCrafting.endTime > -1):
 		var currentTime = OS.get_unix_time()
@@ -65,7 +70,6 @@ func _ready():
 	_update_ingredients()
 	_update_hero_skill_display()
 	
-#todo: refactor out 
 func _update_hero_skill_display():
 	var skillNum = 0
 	if (global.currentMenu == "blacksmithing"):
@@ -79,7 +83,16 @@ func _update_hero_skill_display():
 	elif (global.currentMenu == "fletching"):
 		skillNum = tradeskill.hero.skillFletching
 		
-	staffedHeroNameAndSkill.text = tradeskill.hero.heroName + " skill level: " + str(tradeskill.hero.skillBlacksmithing)
+	staffedHeroName.text = tradeskill.hero.heroName
+	staffedHeroSkill.text = tradeskill.displayName + " skill level: " + str(skillNum)
+	
+	#draw the hero
+	var heroScene = preload("res://hero.tscn").instance()
+	heroScene.set_instance_data(tradeskill.hero) #put data from array into scene 
+	heroScene._draw_sprites()
+	heroScene.set_position(Vector2(28, 146))
+	heroScene.set_display_params(false, false) #walking, show name 
+	add_child(heroScene)
 		
 func _update_ingredients():
 	#called any time the user selects a recipe 
