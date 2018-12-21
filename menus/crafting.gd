@@ -163,7 +163,6 @@ func _update_ingredients():
 		
 	#results area
 	if (!tradeskill.inProgress && !tradeskill.readyToCollect):
-		print("NOT IN PROGRESS, NOT READY TO COLLECT")
 		#not crafting anything (not inProgress), just browsng
 		nowCrafting.text = "You will get: "
 	

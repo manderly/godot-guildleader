@@ -22,13 +22,13 @@ func set_recipe_data(data):
 	#color the button text according to difficulty of recipe vs. crafter's skill level
 	if (data.trivial < crafterSkill):
 		#this recipe is beneath the crafter's skill level, make it white
-		self.add_color_override("font_color", Color(1, 1, 1, 1)) #white
+		$field_recipeNameAndTrivial.add_color_override("font_color", Color(1, 1, 1, 1)) #white
 	elif (data.trivial >= crafterSkill + 6):
 		#this recipe is 6 or more above crafter's skill level, make it red
-		self.add_color_override("font_color", colors.darkRed)
+		$field_recipeNameAndTrivial.add_color_override("font_color", colors.darkRed)
 	elif (data.trivial > crafterSkill && data.trivial <= crafterSkill + 5):
 		#this recipe is between 1 and 5 more than crafter's skill level, make it yellow
-		self.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
+		$field_recipeNameAndTrivial.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
 	else:
 		print("recipeButton.gd - don't know how to color this button")
 		
