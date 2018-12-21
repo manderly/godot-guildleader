@@ -1,6 +1,8 @@
 extends Node2D
 #heroSelect.gd
 #use this menu to pick a hero to assign to a quest
+onready var heroSelectDescription = $CenterContainer/VBoxContainer/field_heroSelectDescription
+onready var scrollVBox = $CenterContainer/VBoxContainer/scroll/vbox
 
 func _ready():
 	print("currentMenu is: " + global.currentMenu)
@@ -9,13 +11,13 @@ func _ready():
 			global.currentMenu == "fletching" || 
 			global.currentMenu == "jewelcraft" || 
 			global.currentMenu == "tailoring"):
-		$field_heroSelectDescription.text = "Choose a hero to work at this tradeskill. Crafting recipes will improve this hero's skill at " + global.currentMenu + ". While here, this hero will not be available for quests or raids."
+		heroSelectDescription.text = "Choose a hero to work at this tradeskill. Crafting recipes will improve this hero's skill at " + global.currentMenu + ". While here, this hero will not be available for quests or raids."
 	elif (global.currentMenu == "harvesting"):
-		$field_heroSelectDescription.text = "Choose a hero to harvest this resource."
+		heroSelectDescription.text = "Choose a hero to harvest this resource."
 	elif (global.currentMenu == "selectHeroForCamp"):
-		$field_heroSelectDescription.text = "Choose a hero to camp this location."
+		heroSelectDescription.text = "Choose a hero to camp this location."
 	else:
-		$field_heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
+		heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
 		
 	var buttonX = 0
 	var buttonY = 80
@@ -24,7 +26,7 @@ func _ready():
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		heroButton.set_hero_data(global.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
-		$scroll/vbox.add_child(heroButton) 
+		scrollVBox.add_child(heroButton) 
 		buttonY += 80
 
 
