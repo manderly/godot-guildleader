@@ -58,7 +58,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 540.0
-margin_bottom = 628.0
+margin_bottom = 806.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -376,8 +376,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 244.0
 margin_right = 540.0
-margin_bottom = 244.0
-rect_min_size = Vector2( 480, 0 )
+margin_bottom = 444.0
+rect_min_size = Vector2( 480, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -394,7 +394,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 270.0
+margin_top = 100.0
 margin_right = 270.0
+margin_bottom = 100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -406,16 +408,55 @@ custom_constants/hseparation = 24
 columns = 4
 _sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "custom_constants" ]
 
-[node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer" index="4"]
+[node name="label_attributes" type="Label" parent="CenterContainer/VBoxContainer" index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 268.0
+margin_top = 468.0
 margin_right = 540.0
-margin_bottom = 628.0
-rect_min_size = Vector2( 420, 360 )
+margin_bottom = 482.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Attributes"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Margin" ]
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 506.0
+margin_right = 540.0
+margin_bottom = 806.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 60.0
+margin_right = 480.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 420, 300 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -426,7 +467,7 @@ tab_align = 1
 tabs_visible = true
 _sections_unfolded = [ "Rect" ]
 
-[node name="Stats" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer" index="0"]
+[node name="Stats" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -434,7 +475,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -436.0
+margin_right = -416.0
 margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -444,7 +485,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer" index="1"]
+[node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -464,7 +505,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
-[node name="Attributes" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer" index="2"]
+[node name="Bonuses" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -712,9 +753,9 @@ _sections_unfolded = [ "Dialog" ]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename" to="." method="_on_button_rename_pressed"]
 
-[connection signal="gui_input" from="CenterContainer/VBoxContainer/TabContainer/Skills" to="." method="_on_vbox_stats1_gui_input"]
+[connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills" to="." method="_on_vbox_stats1_gui_input"]
 
-[connection signal="gui_input" from="CenterContainer/VBoxContainer/TabContainer/Attributes" to="." method="_on_vbox_stats2_gui_input"]
+[connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses" to="." method="_on_vbox_stats2_gui_input"]
 
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
 

@@ -16,6 +16,7 @@ var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 #Skills
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillChronomancy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillFletching = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillJewelcraft = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillTailoring = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -40,10 +41,12 @@ onready var buttonDismiss = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/
 onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename
 
 #containers
-onready var tabStats = $CenterContainer/VBoxContainer/TabContainer/Stats
-onready var tabSkills = $CenterContainer/VBoxContainer/TabContainer/Skills
-onready var tabAttributes = $CenterContainer/VBoxContainer/TabContainer/Attributes
 onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
+
+onready var tabStats = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats
+onready var tabSkills = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills
+onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses
+
 
 func _ready():
 	
@@ -51,7 +54,7 @@ func _ready():
 	var heroScene = preload("res://hero.tscn").instance()
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
 	heroScene._draw_sprites()
-	heroScene.set_position(Vector2(20, 20))
+	heroScene.set_position(Vector2(50, 20))
 	heroScene.set_display_params(false, false) #walking, show name 
 	add_child(heroScene)
 	
@@ -108,6 +111,7 @@ func _ready():
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
 	tabSkills.add_child(displaySkillBlacksmithing)
+	tabSkills.add_child(displaySkillChronomancy)
 	tabSkills.add_child(displaySkillFletching)
 	tabSkills.add_child(displaySkillJewelcraft)
 	tabSkills.add_child(displaySkillTailoring)
@@ -171,6 +175,7 @@ func _update_stats():
 	#skills
 	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)
 	displaySkillBlacksmithing._update_fields("Blacksmithing", global.selectedHero.skillBlacksmithing)
+	displaySkillChronomancy._update_fields("Chronomancy", global.selectedHero.skillChronomancy)
 	displaySkillFletching._update_fields("Fletching", global.selectedHero.skillFletching)
 	displaySkillJewelcraft._update_fields("Jewelcraft", global.selectedHero.skillJewelcraft)
 	displaySkillTailoring._update_fields("Tailoring", global.selectedHero.skillTailoring)
