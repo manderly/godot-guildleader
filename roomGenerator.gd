@@ -19,4 +19,8 @@ func generate(type, playerBuilt):
 	else:
 		global.rooms.insert(global.rooms.size() - 1, newRoom)
 		print("roomGenerator.gd: increasing roomCount by 1")
-		global.roomCount += 1
+		global.roomCount += 1 
+	
+	if (type == "training"):
+		newRoom.roomName += str(global.trainingRoomCount)
+		global.trainingRoomCount += 1

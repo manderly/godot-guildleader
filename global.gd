@@ -70,6 +70,7 @@ var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft"
 #example: global.tradeskills["alchemy"].hero
 var tradeskills = {} #build this object later 
 var training = {}
+var trainingRoomCount = 0
 
 #the x min and max is the same for all rooms
 var roomMinX = 200
