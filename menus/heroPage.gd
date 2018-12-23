@@ -28,14 +28,24 @@ var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").insta
 var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
-var statsLabel = Label.new()
-var attributesLabel = Label.new()
-var skillsLabel = Label.new()
+#fields (labels)
+onready var label_heroName = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/field_heroName
+onready var label_levelAndClass = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/field_levelAndClass
+onready var label_xp = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/field_xp
+onready var progressBar = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/progress_xp
+
+onready var buttonTrainOrRecruit = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit
+onready var buttonRevive = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive
+onready var buttonDismiss = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss
+onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename
+
+#containers
+onready var tabStats = $CenterContainer/VBoxContainer/TabContainer/Stats
+onready var tabSkills = $CenterContainer/VBoxContainer/TabContainer/Skills
+onready var tabAttributes = $CenterContainer/VBoxContainer/TabContainer/Attributes
+onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
 
 func _ready():
-	statsLabel.text = "Stats"
-	attributesLabel.text = "Attributes"
-	skillsLabel.text = "Skills"
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
@@ -81,55 +91,55 @@ func _ready():
 			heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
 			heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
 	
-		$centerContainer/grid.add_child(heroInventoryButton)
+		inventoryGrid.add_child(heroInventoryButton)
 		
 	#for each stat, place its instance into the appropriate vbox
 	#populating the data is done in a separate method, update_stats 
-	#LEFT SIDE
-	$vbox_stats1.add_child(statsLabel)
-	$vbox_stats1.add_child(displayHP)
-	$vbox_stats1.add_child(displayMana)
-	$vbox_stats1.add_child(displayArmor)
-	$vbox_stats1.add_child(displayDPS)
-	$vbox_stats1.add_child(displaySTR)
-	$vbox_stats1.add_child(displayDEF)
-	$vbox_stats1.add_child(displayINT)
-	$vbox_stats1.add_child(skillsLabel)
-	$vbox_stats1.add_child(displaySkillAlchemy)
-	$vbox_stats1.add_child(displaySkillBlacksmithing)
-	$vbox_stats1.add_child(displaySkillFletching)
-	$vbox_stats1.add_child(displaySkillJewelcraft)
-	$vbox_stats1.add_child(displaySkillTailoring)
-	$vbox_stats1.add_child(displaySkillHarvesting)
+	
+	#Stats
+	tabStats.add_child(displayHP)
+	tabStats.add_child(displayMana)
+	tabStats.add_child(displayArmor)
+	tabStats.add_child(displayDPS)
+	tabStats.add_child(displaySTR)
+	tabStats.add_child(displayDEF)
+	tabStats.add_child(displayINT)
+	
+	#Skills
+	tabSkills.add_child(displaySkillAlchemy)
+	tabSkills.add_child(displaySkillBlacksmithing)
+	tabSkills.add_child(displaySkillFletching)
+	tabSkills.add_child(displaySkillJewelcraft)
+	tabSkills.add_child(displaySkillTailoring)
+	tabSkills.add_child(displaySkillHarvesting)
 
-	#RIGHT SIDE
-	$vbox_stats2.add_child(attributesLabel)
-	$vbox_stats2.add_child(displayDrama)
-	$vbox_stats2.add_child(displayMood)
-	$vbox_stats2.add_child(displayPrestige)
-	$vbox_stats2.add_child(displayGroupBonus)
-	$vbox_stats2.add_child(displayRaidBonus)
+	#Attributes
+	tabAttributes.add_child(displayDrama)
+	tabAttributes.add_child(displayMood)
+	tabAttributes.add_child(displayPrestige)
+	tabAttributes.add_child(displayGroupBonus)
+	tabAttributes.add_child(displayRaidBonus)
 	populate_fields()
 	
 func populate_fields():
-	$field_heroName.text = global.selectedHero.heroName
+	label_heroName.text = global.selectedHero.heroName
 	if (global.selectedHero.recruited):
-		$button_trainOrRecruit.text = "Train to next level"
+		buttonTrainOrRecruit.text = "Train to next level"
 	else:
-		$button_trainOrRecruit.text = "Recruit hero"
-		$button_rename.hide()
-		$button_dismiss.hide()
-		$progress_xp.hide()
+		buttonTrainOrRecruit.text = "Recruit hero"
+		buttonRename.hide()
+		buttonDismiss.hide()
+		progressBar.hide()
 		
 	if (global.selectedHero.dead):
-		$button_dismiss.set_disabled(true)
-		$button_revive.set_disabled(false)
-		$button_trainOrRecruit.set_disabled(true)
+		buttonDismiss.set_disabled(true)
+		buttonRevive.set_disabled(false)
+		buttonTrainOrRecruit.set_disabled(true)
 	else:
 		#hero was just revived
-		$button_dismiss.set_disabled(false)
-		$button_revive.set_disabled(true)
-		$button_trainOrRecruit.set_disabled(false)
+		buttonDismiss.set_disabled(false)
+		buttonRevive.set_disabled(true)
+		buttonTrainOrRecruit.set_disabled(false)
 		var inventoryButtons = get_tree().get_nodes_in_group("InventoryButtons")
 		for button in inventoryButtons:
 			button.set_disabled(false)
@@ -143,9 +153,9 @@ func _update_stats():
 		aliveStatus = "(Dead)"
 	else:
 		aliveStatus = ""
-	$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass + " " + aliveStatus
-	$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
-	$progress_xp.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
+	label_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass + " " + aliveStatus
+	label_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
+	progressBar.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue" && global.selectedHero.heroClass != "Ranger"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
@@ -222,7 +232,7 @@ func _on_rename_dialogue_confirmed():
 	var newName = $confirm_rename_dialog/LineEdit.text
 	global.selectedHero.heroName = newName
 	#redraw the name display field on the hero page with the new name
-	$field_heroName.text = global.selectedHero.heroName
+	label_heroName.text = global.selectedHero.heroName
 	
 func _on_button_back_pressed():
 	if (global.currentMenu == "roster"):
