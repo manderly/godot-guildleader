@@ -120,9 +120,10 @@ func _ready():
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
 		roomGenerator.generate("chronomancy", false)
 		roomGenerator.generate("blacksmith", false)
-		roomGenerator.generate("bedroom", false)
+		roomGenerator.generate("training", false)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("vault", false)
+		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("topEdge", false)
 		
 		util.give_quest("test09")

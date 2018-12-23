@@ -236,11 +236,23 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
         }
         var justFilename = file.match(filenameRegEx); //returns an array of potential matches [ 'items', 'items', index: 0, input: 'items.json' ]
         oneHugeString += "var "+justFilename[0]+"="+JSON.stringify(formatted)+"\n"; //the match we need is always at index 0 though
-
     } else {
         console.log("Skipping " + file);
     }
   });
+    //finally, build the training room data structure
+    var trainingObj = {};
+    for (var i = 0; i < 6; i++) {
+        var key = "training"+i
+        trainingObj[key] = {
+            "inProgress":false,
+            "readyToCollect":false,
+            "endTime":-1,
+            "hero":null,
+            "levelToGrant":0,
+        };
+    }
+    oneHugeString += "var training="+JSON.stringify(trainingObj)+"\n";
     fs.writeFileSync("../gameData/timedNodeData.gd", oneHugeString);
     console.log("Done (timed node data assembly)\n");
 });

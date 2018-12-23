@@ -106,6 +106,14 @@ func _on_Button_pressed():
 			get_tree().change_scene("res://main.tscn")
 		else:
 			print("hero is busy")
+	elif (global.currentMenu == "training"):
+		if (heroData.atHome && heroData.staffedTo == ""):
+			heroData.staffedTo = global.currentMenu
+			global.training["training0"].hero = heroData
+			global.currentMenu = "main"
+			get_tree().change_scene("res://main.tscn")
+		else:
+			print("hero is busy")
 	elif (global.currentMenu == "harvesting"):
 		var currentHarvestNode = global.activeHarvestingData[global.selectedHarvestingID]
 		#first, free up whoever is already in that spot (if anyone) 

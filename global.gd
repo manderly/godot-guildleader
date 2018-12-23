@@ -69,7 +69,7 @@ var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft"
 #use: global.tradeskills[global.currentMenu] 
 #example: global.tradeskills["alchemy"].hero
 var tradeskills = {} #build this object later 
-
+var training = {}
 
 #the x min and max is the same for all rooms
 var roomMinX = 200
@@ -102,6 +102,7 @@ func _ready():
 	global.tradeskills = timedNodeData.tradeskills
 	global.activeHarvestingData = timedNodeData.harvesting
 	global.activeCampData = timedNodeData.camps
+	global.training = timedNodeData.training
 	global.playerTradeskillItems = dynamicData.playerTradeskillItems
 	global.playerQuestItems = dynamicData.playerQuestItems
 	
