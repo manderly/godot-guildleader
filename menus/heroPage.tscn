@@ -8,7 +8,7 @@
 [ext_resource path="res://gui/icons/diamond.png" type="Texture" id=6]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -475,8 +475,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
-margin_right = -416.0
-margin_bottom = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -487,14 +487,15 @@ alignment = 0
 
 [node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="1"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 41.0
-margin_top = 274.0
-margin_right = 33.0
-margin_bottom = 238.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -507,14 +508,15 @@ _sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
 [node name="Bonuses" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="2"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 224.0
-margin_top = 274.0
-margin_right = 216.0
-margin_bottom = 238.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

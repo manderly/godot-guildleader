@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://menus/maps/falls.gd" type="Script" id=1]
 [ext_resource path="res://menus/maps/mapBackgrounds/map_falls.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://menus/maps/campNode.tscn" type="PackedScene" id=10]
 [ext_resource path="res://menus/maps/harvestingNode.tscn" type="PackedScene" id=11]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=12]
+[ext_resource path="res://menus/maps/mapBackgrounds/animations/mistCloud2.png" type="Texture" id=13]
 
 [sub_resource type="StyleBoxTexture" id=1]
 
@@ -32,6 +33,46 @@ expand_margin_bottom = 0.0
 modulate_color = Color( 1, 1, 1, 1 )
 draw_center = true
 _sections_unfolded = [ "Margin" ]
+
+[sub_resource type="ParticlesMaterial" id=2]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 40, 30, 20 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 90.0
+flatness = 0.0
+gravity = Vector3( 0, -2, 0 )
+initial_velocity = 0.5
+initial_velocity_random = 0.0
+angular_velocity = -3.69025e+19
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 1.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 0.5
+scale_random = 1.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Animation", "Color", "Damping", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
 
 [node name="Node2D" type="Node2D"]
 
@@ -235,6 +276,31 @@ margin_right = 316.0
 margin_bottom = 659.0
 
 [node name="button_back" parent="." index="13" instance=ExtResource( 12 )]
+
+[node name="Particles2D" type="Particles2D" parent="." index="14"]
+
+visible = false
+modulate = Color( 1, 1, 1, 0.49 )
+position = Vector2( 267.093, 456.179 )
+emitting = true
+amount = 3
+lifetime = 6.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.04
+randomness = 0.02
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 2 )
+texture = ExtResource( 13 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time", "Transform", "Visibility" ]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 

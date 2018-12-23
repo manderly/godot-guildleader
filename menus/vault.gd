@@ -2,10 +2,10 @@ extends Node2D
 
 var buttonArray = []
 
-onready var gridEquipment = $VBoxContainer/CenterContainer/TabContainer/Equipment/Grid
-onready var gridTradeskillItems = $VBoxContainer/CenterContainer/TabContainer/Resources
-onready var gridQuestItems = $VBoxContainer/CenterContainer/TabContainer/Quest_Items
-onready var inventoryCapacity = $VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
+onready var gridEquipment = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Equipment/CenterContainer/Grid
+onready var gridTradeskillItems = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Resources
+onready var gridQuestItems = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Quest_Items
+onready var inventoryCapacity = $CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
 
 func _ready():
 	#display inventory size and capacity

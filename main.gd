@@ -128,6 +128,7 @@ func _ready():
 		util.give_quest("test09")
 		util.give_quest("test10")
 		util.give_quest("azuricite_quest01")
+		util.give_quest("quest_falls03")
 		global.selectedQuestID = "test09"
 	
 		global.initDone = true
