@@ -38,6 +38,7 @@ func _position_vault_buttons():
 			itemButton._set_info_popup_buttons(true, true, "Equip")
 		elif (global.currentMenu == "alchemy" ||
 			global.currentMenu == "blacksmithing" ||
+			global.currentMenu == "chronomancy" ||
 			global.currentMenu == "jewelcraft" ||
 			global.currentMenu == "tailoring" ||
 			global.currentMenu == "fletching"):

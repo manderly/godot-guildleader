@@ -92,6 +92,7 @@ func _on_Button_pressed():
 		global.currentMenu = "selectHeroForQuest"
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "chronomancy" || 
 			global.currentMenu == "jewelcraft" ||
 			global.currentMenu == "fletching" ||
 			global.currentMenu == "alchemy" ||

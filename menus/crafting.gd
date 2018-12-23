@@ -26,10 +26,19 @@ onready var combineButton = $CenterContainer/VBoxContainer/CenterContainer/VBoxC
 
 onready var nowCrafting = $CenterContainer/VBoxContainer/field_nowCrafting
 
-onready var labelComputed = $CenterContainer/VBoxContainer/CenterContainer2/resultItem/label_computed
-onready var resultItemBox = $CenterContainer/VBoxContainer/CenterContainer2/resultItem
+onready var resultsBoxNormal = $CenterContainer/VBoxContainer/CenterContainer_normal
 
-onready var labelChoose = $CenterContainer/VBoxContainer/CenterContainer2/resultItem/label_choose
+onready var labelComputed = $CenterContainer/VBoxContainer/CenterContainer_normal/resultItem/label_computed
+onready var resultItemBox = $CenterContainer/VBoxContainer/CenterContainer_normal/resultItem
+
+onready var labelChoose = $CenterContainer/VBoxContainer/CenterContainer_normal/resultItem/label_choose
+
+#Conversion is used for turning items into chrono
+onready var resultsBoxConversion = $CenterContainer/VBoxContainer/CenterContainer_chrono
+onready var itemBoxConversionWildcard = $CenterContainer/VBoxContainer/CenterContainer_chrono/HBoxContainer/wildcard_chrono
+onready var itemBoxConversionWildcardChooseLabel = $CenterContainer/VBoxContainer/CenterContainer_chrono/HBoxContainer/wildcard_chrono/label_choose
+onready var itemBoxConversionResult = $CenterContainer/VBoxContainer/CenterContainer_chrono/HBoxContainer/result_chrono
+
 
 var hasIngredient1 = false
 var hasIngredient2 = false
@@ -71,9 +80,11 @@ func _ready():
 	_update_hero_skill_display()
 	
 func _update_hero_skill_display():
-	var skillNum = 0
+	var skillNum = -1
 	if (global.currentMenu == "blacksmithing"):
 		skillNum = tradeskill.hero.skillBlacksmithing
+	elif (global.currentMenu == "chronomancy"):
+		skillNum = tradeskill.hero.skillChronomancy
 	elif (global.currentMenu == "tailoring"):
 		skillNum = tradeskill.hero.skillTailoring
 	elif (global.currentMenu == "jewelcraft"):
@@ -98,6 +109,14 @@ func _update_ingredients():
 	#called any time the user selects a recipe 
 	recipe = tradeskill.selectedRecipe #make a local copy so we don't have to use a long reference
 	
+	if (tradeskill.selectedRecipe.type == "conversion"):
+		resultsBoxNormal.hide()
+		resultsBoxConversion.show()
+	else:
+		resultsBoxNormal.show()
+		resultsBoxConversion.hide()
+		
+		
 	recipeName.text = "Selected recipe: " + recipe.recipeName
 
 	labelTime.text = str(util.format_time(recipe.craftingTime))
@@ -164,9 +183,11 @@ func _update_ingredients():
 	#results area
 	if (!tradeskill.inProgress && !tradeskill.readyToCollect):
 		#not crafting anything (not inProgress), just browsng
-		nowCrafting.text = "You will get: "
+		
 	
-		if (recipe.ingredientWildcard):
+		#if (recipe.ingredientWildcard):
+		if (recipe.type == "upgrade"):
+			nowCrafting.text = "Choose an item to upgrade: "
 			#this recipe requires the player to "choose" the result item 
 			global.browsingForType = recipe.ingredientWildcard #contains the type, such as "blade" 
 			if (tradeskill.wildcardItemOnDeck):
@@ -180,23 +201,50 @@ func _update_ingredients():
 				resultItemBox._set_info_popup_buttons(true, false, "Choose")
 				labelChoose.show()
 				resultItemBox._clear_tradeskill()
-		else:
-			#this recipe doesn't require the player to pick an item to modify
-			tradeskill.wildcardItemOnDeck = null
-			hasWildcardIngredient = false
-			labelChoose.hide()
-		
-		if (recipe.result == "computed"):
+				
 			labelComputed.show()
 			labelComputed.text = "+" +str(recipe.statIncrease) + " " + str(recipe.statImproved)
 			if (global.tradeskills[global.currentMenu].wildcardItemOnDeck):
 				resultItemBox._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItemOnDeck)
 			else:
 				resultItemBox._clear_tradeskill()
-				
-		elif (recipe.result):
+		elif (recipe.type == "conversion"):
+			nowCrafting.text = "You will DESTROY this item to get " + recipe.result + ": "
+			#this is only used for Chrono right now 
+			#this recipe requires the player to "choose" the item to destroy
+			global.browsingForType = recipe.ingredientWildcard #contains the type, such as "any" 
 			labelComputed.hide()
+			if (tradeskill.wildcardItemOnDeck):
+				#the player already picked an "on deck" wildcard item
+				hasWildcardIngredient = true
+				itemBoxConversionWildcardChooseLabel.hide()
+				
+				#wildcard operates as normal, result shows the chrono 
+				itemBoxConversionWildcard._set_info_popup_buttons(true, false, "Return to vault")
+				itemBoxConversionWildcard._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItemOnDeck)
+			
+			else:
+				nowCrafting.text = "Pick an item to use in this recipe: "
+				hasWildcardIngredient = false
+				itemBoxConversionWildcardChooseLabel.show()
+				
+				itemBoxConversionWildcard._set_info_popup_buttons(true, false, "Choose")
+				itemBoxConversionWildcard._clear_tradeskill()
+				
+			#for a "conversion" recipe the result box should not go to the vault
+			itemBoxConversionResult._set_info_popup_buttons(false, false, "No display")
+			itemBoxConversionResult._render_tradeskill(staticData.items[str(recipe.result)])
+			
+		else:
+			#normal recipe, no wildcard item required
+			nowCrafting.text = "You will get: "
+			labelChoose.hide()
+			labelComputed.hide()
+				
+			tradeskill.wildcardItemOnDeck = null
+			hasWildcardIngredient = false
 			resultItemBox._render_tradeskill(staticData.items[str(recipe.result)])
+		
 	elif (tradeskill.inProgress && !tradeskill.readyToCollect || tradeskill.inProgress && tradeskill.readyToCollect):
 		labelChoose.hide()
 		labelComputed.hide()
@@ -208,6 +256,8 @@ func _update_ingredients():
 			nowCrafting.text = "Now Crafting: Improved " + itemName
 			labelComputed.show()
 			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
+		elif (tradeskill.currentlyCrafting.conversion):
+			nowCrafting.text = "Now producing: " + itemName
 		else:
 			nowCrafting.text = "Now Crafting: " + itemName
 		
@@ -267,16 +317,22 @@ func _open_collect_result_popup():
 
 func tradeskillItem_callback():
 	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively
-	if (!tradeskill.currentlyCrafting.statImproved):
-		#this was a "normal" recipe, not a wildcard item recipe
+	if (tradeskill.currentlyCrafting.conversion):
 		util.give_item_guild(tradeskill.currentlyCrafting.name)
-	else:
+	elif (tradeskill.currentlyCrafting.moddingAnItem):
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
 						tradeskill.currentlyCrafting.name,
 						global.currentMenu, 
 						tradeskill.currentlyCrafting.statImproved, 
 						tradeskill.currentlyCrafting.statIncrease) #give the modified item to the guild inventory
+	else:
+		#this was a "normal" recipe, not a wildcard item recipe
+		#todo:handle currency more elegantly 
+		if (tradeskill.currentlyCrafting.name == "Chrono"):
+			global.hardCurrency += 1
+		else:
+			util.give_item_guild(tradeskill.currentlyCrafting.name)
 
 	progressBar.set_value(0)
 	#tradeskill.timer.stop()
@@ -284,6 +340,7 @@ func tradeskillItem_callback():
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
 	tradeskill.currentlyCrafting = {
+		"conversion":false,
         "moddingAnItem":false,
         "wildcardItem":null,
         "name":"",
@@ -344,18 +401,23 @@ func _on_button_combine_pressed():
 			if (recipe.ingredient4):
 				if (global.playerTradeskillItems[recipe.ingredient4].consumable):
 					global.playerTradeskillItems[recipe.ingredient4].count -= 1
-					
-			if (recipe.ingredientWildcard):
-				tradeskill.currentlyCrafting.moddingAnItem = true
+			
+			if (recipe.type == "upgrade"):
+				if (recipe.ingredientWildcard):
+					tradeskill.currentlyCrafting.moddingAnItem = true
+					tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItemOnDeck
+					tradeskill.wildcardItemOnDeck = null
+			elif (recipe.type == "conversion"):
+				tradeskill.currentlyCrafting.moddingAnItem = false
+				tradeskill.currentlyCrafting.conversion = true
 				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItemOnDeck
 				tradeskill.wildcardItemOnDeck = null
-				
 			#global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 	
 			#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
-			if (tradeskill.selectedRecipe.result != "computed"):
+			if (tradeskill.selectedRecipe.type != "upgrade"):
 				tradeskill.currentlyCrafting.name = tradeskill.selectedRecipe.result
-			elif (tradeskill.selectedRecipe.result == "computed"):
+			elif (tradeskill.selectedRecipe.type == "upgrade"):
 				tradeskill.currentlyCrafting.name = tradeskill.currentlyCrafting.wildcardItem.name
 				tradeskill.currentlyCrafting.statImproved = recipe.statImproved
 				tradeskill.currentlyCrafting.statIncrease = recipe.statIncrease

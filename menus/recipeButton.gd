@@ -14,8 +14,11 @@ func set_recipe_data(data):
 	$field_recipeNameAndTrivial.text = data.recipeName + " [" + str(data.trivial) + "]"
 	#if not computed...
 	if (!data.result == "computed"):
-		var previewItemInstance = staticData.items[data.result].duplicate()
-		$TextureRect.texture = load("res://sprites/items/" + previewItemInstance.icon)
+		if (data.result == "Chrono"):
+			$TextureRect.texture = load("res://sprites/icons/chrono.png")
+		else:
+			var previewItemInstance = staticData.items[data.result].duplicate()
+			$TextureRect.texture = load("res://sprites/items/" + previewItemInstance.icon)
 	else:
 		$TextureRect.texture = load("res://sprites/icons/upgrade_arrow.png")
 		

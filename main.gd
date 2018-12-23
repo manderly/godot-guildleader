@@ -118,8 +118,8 @@ func _ready():
 		#generate starting rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
+		roomGenerator.generate("chronomancy", false)
 		roomGenerator.generate("blacksmith", false)
-		roomGenerator.generate("tailoring", false)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("bedroom", false)
 		roomGenerator.generate("vault", false)
@@ -259,6 +259,8 @@ func draw_rooms():
 				roomScene = load("res://rooms/alchemy.tscn").instance()
 			elif (global.rooms[i].roomType == "blacksmith"):
 				roomScene = load("res://rooms/blacksmith.tscn").instance()
+			elif (global.rooms[i].roomType == "chronomancy"):
+				roomScene = load("res://rooms/chronomancy.tscn").instance()
 			elif (global.rooms[i].roomType == "tailoring"):
 				roomScene = load("res://rooms/tailoring.tscn").instance()
 			elif (global.rooms[i].roomType == "jewelcraft"):
@@ -432,6 +434,8 @@ func load_game():
 		
 		if (hero.staffedTo == "blacksmithing"):
 			global.tradeskills["blacksmithing"].hero = hero
+		elif (hero.staffedTo == "chronomancy"):
+			global.tradeskills["chronomancy"].hero = hero
 		elif (hero.staffedTo == "alchemy"):
 			global.tradeskills["alchemy"].hero = hero
 		elif (hero.staffedTo == "tailoring"):

@@ -23,5 +23,10 @@
     "tradeskill": "tailoring",
     "displayName": "Tailoring",
     "description": "Turn cloth and leather into useful items, such as robes, vests, and padding for plate armor made by blacksmiths."
+  },
+  {
+    "tradeskill": "chronomancy",
+    "displayName": "Chronomancy",
+    "description": "Chronomancers extract an item's essence and capture Chrono Dust, destroying the item in the process. Chrono Dust is combined to craft Chrono, which is used to manipulate time itself in the game world. Higher level Chronomancers collect more Dust and produce Chrono faster."
   }
 ]

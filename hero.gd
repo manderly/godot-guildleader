@@ -161,6 +161,7 @@ func save():
 		"intelligence":thisHero.intelligence,
 		"skillAlchemy":thisHero.skillAlchemy,
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
+		"skillChronomancy":thisHero.skillChronomancy,
 		"skillFletching":thisHero.skillFletching,
 		"skillJewelcraft":thisHero.skillJewelcraft,
 		"skillTailoring":thisHero.skillTailoring,
@@ -215,6 +216,7 @@ func _stop_walking():
 	$idleTimer.start()
 	
 func set_instance_data(data):
+	print(data)
 	heroName = data.heroName
 	level = data.level
 	xp = data.xp
@@ -303,6 +305,7 @@ func update_hero_stats():
 	modifiedIntelligence = 0
 	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
+	modifiedSkillChronomancy = 0
 	modifiedSkillFletching = 0
 	modifiedSkillJewelcraft = 0
 	modifiedSkillTailoring = 0
@@ -340,6 +343,7 @@ func update_hero_stats():
 	intelligence = baseIntelligence + modifiedIntelligence
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
+	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
 	skillFletching = baseSkillFletching + modifiedSkillFletching
 	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
 	skillTailoring = baseSkillTailoring + modifiedSkillTailoring

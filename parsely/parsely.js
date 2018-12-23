@@ -184,6 +184,7 @@ fs.readdir(timedNodeDataFolder, (err, files) => {
                     value.recipes = [];
                     value.selectedRecipe = null;
                     value.currentlyCrafting = {
+                        "conversion":false,
                         "moddingAnItem":false,
                         "wildcardItem":null,
                         "name":"",

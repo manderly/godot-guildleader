@@ -132,6 +132,7 @@ func _on_button_moveItem_pressed():
 		self.hide() #hide the popup
 		emit_signal("swappingItemWithAnother") #caught by itemButton.gd 
 	elif (global.currentMenu == "blacksmithing" || 
+			global.currentMenu == "chronomancy" || 
 			global.currentMenu == "alchemy" ||
 			global.currentMenu == "fletching" ||
 			global.currentMenu == "tailoring" ||

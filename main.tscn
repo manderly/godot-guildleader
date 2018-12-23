@@ -9,7 +9,7 @@
 [ext_resource path="res://gui/square_btn_roster.png" type="Texture" id=7]
 [ext_resource path="res://gui/bottomBorder.png" type="Texture" id=8]
 [ext_resource path="res://gui/icons/coin_stack_32.png" type="Texture" id=9]
-[ext_resource path="res://gui/icons/diamond_32.png" type="Texture" id=10]
+[ext_resource path="res://gui/icons/chrono_32.png" type="Texture" id=10]
 [ext_resource path="res://gui/icons/capacity_32.png" type="Texture" id=11]
 [ext_resource path="res://icon.png" type="Texture" id=12]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=13]
@@ -410,7 +410,6 @@ _sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Pa
 
 [node name="hbox" type="HBoxContainer" parent="HUD" index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -471,7 +470,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="textureDiamond" type="TextureRect" parent="HUD/hbox" index="2"]
+[node name="textureChrono" type="TextureRect" parent="HUD/hbox" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0

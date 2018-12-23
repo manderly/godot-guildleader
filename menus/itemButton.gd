@@ -88,9 +88,14 @@ func _render_vault(data):
 func _render_tradeskill(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
-	#$Button/field_slotName.hide()
 	$Button/field_slotName.show()
 	$Button/field_slotName.text = itemData.name
+	
+func _render_currency(data): #pass "Coin" or "Chrono"
+	itemData = data
+	$Button/sprite_itemIcon.texture = load("res://sprites/icons/chrono.png")
+	$Button/field_slotName.show()
+	$Button/field_slotName.text = "1 Chrono"
 	
 func _render_camp_loot(data):
 	itemData = data

@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://rooms/chronomancy.gd" type="Script" id=1]
+[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
+[ext_resource path="res://light.png" type="Texture" id=3]
+[ext_resource path="res://sprites/alchemy/workbench.png" type="Texture" id=4]
+[ext_resource path="res://sprites/alchemy/bookshelf-pots.png" type="Texture" id=5]
+[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=6]
+
+[node name="Node2D" type="Node2D" groups=[
+"ClearOnRestore",
+"Persist",
+]]
+
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 0, 13, 0, 1, 10, 0, 2, 84, 0, 3, 127, 0, 4, 25, 0, 5, 147, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 11, 0, 65538, 84, 0, 65539, 127, 0, 65540, 25, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 78, 0, 131073, 78, 0, 131074, 84, 0, 131075, 127, 0, 131076, 25, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 127, 0, 196612, 23, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0, 262144, 13, 0, 262145, 78, 0, 262146, 84, 0, 262147, 127, 0, 262148, 74, 0, 262157, 83, 0, 262158, 12, 0, 262159, 12, 0 )
+_sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="field_roomName" type="Label" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 105.0
+margin_top = 9.0
+margin_right = 305.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Chronomancy"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="button_staffCraft" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 184.0
+margin_top = 130.0
+margin_right = 225.0
+margin_bottom = 154.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Staff"
+flat = false
+align = 1
+
+[node name="Light2D" type="Light2D" parent="." index="3"]
+
+position = Vector2( 238.195, 29.0109 )
+enabled = true
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.0926971, 0.949219, 0.14623, 1 )
+energy = 1.0
+mode = 0
+range_height = 10.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range" ]
+
+[node name="workbench" type="Sprite" parent="." index="4"]
+
+position = Vector2( 267.635, 98.7915 )
+texture = ExtResource( 4 )
+
+[node name="pots" type="Sprite" parent="." index="5"]
+
+position = Vector2( 374.854, 3.36652 )
+texture = ExtResource( 5 )
+
+[node name="button_inProgress" parent="." index="6" instance=ExtResource( 6 )]
+
+[connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
+
+[connection signal="pressed" from="button_inProgress" to="." method="_on_button_inProgress_pressed"]
+
+
