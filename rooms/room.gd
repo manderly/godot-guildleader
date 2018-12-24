@@ -5,6 +5,7 @@ var roomName = "Default Room Name" #filled in by constructor
 var roomType = "type is a string" #training, bedroom, etc 
 var roomX = 0 #assigned when the room instance is placed on main.tscn 
 var roomY = 0
+var roomID = "" #must be a string, use mostly for training ie: training1
 
 func _ready():
 	display_room_name(roomName)
@@ -25,6 +26,7 @@ func set_instance_data(data):
 	roomType = data.roomType
 	roomX = data.roomX
 	roomY = data.roomY
+	roomID = data.roomID
 	
 func save():
 	print("saving this room:" + str(get_filename()))
@@ -34,6 +36,7 @@ func save():
 		"roomName":roomName,
 		"roomType":roomType,
 		"roomX":roomX,
-		"roomY":roomY
+		"roomY":roomY,
+		"roomID":roomID
 	}
 	return room_save_data

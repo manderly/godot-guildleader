@@ -18,6 +18,7 @@ var testTimerEndTime = 0
 var softCurrency = 500
 var hardCurrency = 500
 var currentMenu = "main"
+var currentRoomID = ""
 var vaultSpace = 25 #should be a multiple of 5
 var guildName = "" 
 

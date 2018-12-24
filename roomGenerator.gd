@@ -14,6 +14,7 @@ func generate(type, playerBuilt):
 	#newRoom.roomID = global.nextRoomID #don't know if we need an ID system, this is how it's done though
 	newRoom.roomName = str(type) #user-facing name
 	newRoom.roomType = str(type) #code-facing name 
+	newRoom.roomID = str(type)
 	if (!playerBuilt):
 		global.rooms.append(newRoom)
 	else:
@@ -23,4 +24,6 @@ func generate(type, playerBuilt):
 	
 	if (type == "training"):
 		newRoom.roomName += str(global.trainingRoomCount)
+		newRoom.roomID = "training"+str(global.trainingRoomCount)
 		global.trainingRoomCount += 1
+		

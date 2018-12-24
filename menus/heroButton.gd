@@ -22,7 +22,7 @@ func set_hero_data(data):
 func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)])
+	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)].total)
 	if (data.atHome && data.dead):
 		$VBoxContainer/field_available.text = "Dead"
 		if (global.currentMenu != "roster"):
@@ -49,7 +49,7 @@ func populate_fields(data):
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
 	
-	$ProgressBar.set_value(100 * (data.xp / staticData.levelXpData[str(data.level)]))
+	$ProgressBar.set_value(100 * (data.xp / staticData.levelXpData[str(data.level)].total))
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
@@ -109,8 +109,16 @@ func _on_Button_pressed():
 	elif (global.currentMenu == "training"):
 		if (heroData.atHome && heroData.staffedTo == ""):
 			heroData.staffedTo = global.currentMenu
-			global.training["training0"].hero = heroData
+			heroData.staffedToID = global.currentRoomID
+			global.training[global.currentRoomID].hero = heroData
+			
+			var timeToTrainToNextLevel = staticData.levelXpData[str(heroData.level)].trainingTime
+			global.training[global.currentRoomID].endTime = OS.get_unix_time() + timeToTrainToNextLevel
+			global.training[global.currentRoomID].inProgress = true
+			global.training[global.currentRoomID].readyToCollect = false
+			
 			global.currentMenu = "main"
+			global.currentRoomID = ""
 			get_tree().change_scene("res://main.tscn")
 		else:
 			print("hero is busy")

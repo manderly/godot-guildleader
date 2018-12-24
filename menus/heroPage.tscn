@@ -8,7 +8,7 @@
 [ext_resource path="res://gui/icons/diamond.png" type="Texture" id=6]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=7]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -88,7 +88,6 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="HBox_Hero" type="HBoxContainer" parent="CenterContainer/VBoxContainer" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

@@ -106,7 +106,7 @@ fs.readdir(staticDataFolder, (err, files) => {
                 formatted = arr;
             } else if (file == "levelXpData.json") {
                 key = value["level"];
-                formatted[key] = value.total;
+                formatted[key] = value;
             } else if (file == "heroStats.json") {
                 key = value["heroClass"];
                 formatted[key] = value;

@@ -148,9 +148,31 @@ func populate_fields():
 		for button in inventoryButtons:
 			button.set_disabled(false)
 		
-		
 	_update_stats()
 	
+func _process(delta):
+	if (global.selectedHero.staffedTo == "training"):
+		#staffedToID = "training1" etc 
+		label_xp.text = "TRAINING TO LEVEL " + str(global.selectedHero.level+1)
+		
+		var trainingData = global.training[global.selectedHero.staffedToID] #get the matching training room data
+		if (trainingData.inProgress && !trainingData.readyToCollect):
+			var currentTime = OS.get_unix_time()
+			if (currentTime >= trainingData.endTime):
+				trainingData.readyToCollect = true
+			
+			buttonTrainOrRecruit.text = util.format_time(trainingData.endTime - OS.get_unix_time())
+			var totalTimeToTrain = staticData.levelXpData[str(global.selectedHero.level)].trainingTime
+			var progressBarValue = (100 * (totalTimeToTrain - (trainingData.endTime - OS.get_unix_time())) / totalTimeToTrain)
+			#General formula:
+			#100 * ((total time to finish - timer time left) / total time to finish)
+			#60 - 40 / 60 =    20 / 60    = .33    x 100 = 33 
+	
+			progressBar.set_value(progressBarValue)
+		
+		if (trainingData.inProgress && trainingData.readyToCollect):
+			buttonTrainOrRecruit.text = "Complete training!"
+			
 func _update_stats():
 	var aliveStatus = ""
 	if (global.selectedHero.dead):
@@ -158,8 +180,8 @@ func _update_stats():
 	else:
 		aliveStatus = ""
 	label_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass + " " + aliveStatus
-	label_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)])
-	progressBar.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)]))
+	label_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)].total)
+	progressBar.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)].total))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
 	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue" && global.selectedHero.heroClass != "Ranger"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
@@ -190,13 +212,28 @@ func _update_stats():
 	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
-		if (global.selectedHero.xp == staticData.levelXpData[str(global.selectedHero.level)]):
+		if (global.selectedHero.xp == staticData.levelXpData[str(global.selectedHero.level)].total):
 			#todo: this should be on a timer and the hero is unavailable while training
 			#also, only one hero can train up at a time 
 			global.selectedHero.level_up()
 			_update_stats()
-		else: 
-			$confirm_instant_train.popup()
+		else:
+			if (global.selectedHero.staffedTo == "training"):
+				var inProgress = global.training[global.selectedHero.staffedToID].inProgress
+				var readyToCollect = global.training[global.selectedHero.staffedToID].readyToCollect
+				if (inProgress && !readyToCollect):
+					print("finish now")
+				elif (inProgress && readyToCollect):
+					#done training, "free" the hero
+					global.training[global.selectedHero.staffedToID].inProgress = false
+					global.training[global.selectedHero.staffedToID].readyToCollect = false
+					global.training[global.selectedHero.staffedToID].hero = null
+					global.selectedHero.send_home()
+					global.selectedHero.level_up()
+					#_update_stats()
+					populate_fields()
+			else:
+				$confirm_instant_train.popup()
 			
 	else: #hero not part of guild yet
 		#print("heroPage.gd: Recruiting this hero: " + global.selectedHero.heroName)
