@@ -4,6 +4,8 @@ extends Node2D
 var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
 var heroEquipmentSlotNames = ["Main", "Secondary", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
 
+onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
+
 #Stats
 var displayHP = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayMana = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -57,6 +59,8 @@ func _ready():
 	heroScene.set_position(Vector2(50, 20))
 	heroScene.set_display_params(false, false) #walking, show name 
 	add_child(heroScene)
+	
+	add_child(finishNowPopup)
 	
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
@@ -210,6 +214,48 @@ func _update_stats():
 	displayGroupBonus._update_fields("Group Bonus", global.selectedHero.groupBonus)
 	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
 	
+func _calc_finish_now_cost():
+	#Business logic: 
+	#1 chrono for every 10 mins of time remaining with a minimum of 1 chrono 
+	#plus
+	#1 chrono for every 2 levels the hero has 
+	
+	var trainingData = global.training[global.selectedHero.staffedToID] #get this particular instance of training
+	var secondsRemaining = trainingData.endTime - OS.get_unix_time()
+	#timeRemaining is in seconds, so to get minutes, divide by 60
+	var minutesRemaining = secondsRemaining / 60
+	var tensOfMinutesRemaining = minutesRemaining / 10 
+	
+	#now determine how many chrono are added because of hero levels
+	var levelsToChrono = (global.selectedHero.level / 2)
+	var cost = tensOfMinutesRemaining + levelsToChrono
+	if (cost < 1):
+		cost = 1
+	return cost
+	
+func _calc_instant_train_cost():
+	#business logic:
+	#it's basically like using "finish now" except with a full timer
+	#get the full time it would take to train to next level
+	#plus
+	#1 chrono for every 2 levels the hero has 
+	#plus
+	#you don't have to earn any xp so tack on a convenience fee of 
+	#50% of the cost up to this point
+	var timeItWouldTakeToTrainInMinutes = staticData.levelXpData[str(global.selectedHero.level)].trainingTime / 60
+	var tensOfMinutes = timeItWouldTakeToTrainInMinutes / 10
+	
+	#now determine how many chrono are added because of hero levels
+	var levelsToChrono = (global.selectedHero.level)
+	var cost = tensOfMinutes + levelsToChrono
+
+	cost += (cost * .25)
+	if (cost < 1):
+		cost = 1
+	
+	cost = int(round(cost))
+	return cost
+	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
 		if (global.selectedHero.xp == staticData.levelXpData[str(global.selectedHero.level)].total):
@@ -222,7 +268,10 @@ func _on_button_train_pressed():
 				var inProgress = global.training[global.selectedHero.staffedToID].inProgress
 				var readyToCollect = global.training[global.selectedHero.staffedToID].readyToCollect
 				if (inProgress && !readyToCollect):
-					print("finish now")
+					#todo: formula for cost is based on level and time left
+					var finishNowCost = _calc_finish_now_cost() 
+					finishNowPopup._set_data("Training", finishNowCost)
+					finishNowPopup.popup()
 				elif (inProgress && readyToCollect):
 					#done training, "free" the hero
 					global.training[global.selectedHero.staffedToID].inProgress = false
@@ -233,6 +282,8 @@ func _on_button_train_pressed():
 					#_update_stats()
 					populate_fields()
 			else:
+				var chronoCost = _calc_instant_train_cost()
+				$confirm_instant_train/RichTextLabel.text = "This hero doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
 				$confirm_instant_train.popup()
 			
 	else: #hero not part of guild yet
@@ -298,11 +349,12 @@ func _on_confirm_dismiss_dialog_confirmed():
 			break
 
 func _on_confirm_instant_train_confirmed():
-	if (global.hardCurrency >= 1):
+	var cost = _calc_instant_train_cost()
+	if (global.hardCurrency >= cost):
 		print("Training this hero to next level")
 		#todo: this should be on a timer and the hero is unavailable while training
 		#also, only one hero can train up at a time
-		global.hardCurrency -= 1
+		global.hardCurrency -= cost
 		global.selectedHero.level_up()
 		#todo: refactor the redrawing of fields into something less case-by-case
 		#$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)

@@ -16,7 +16,7 @@ func _set_data(whatToFinish, costToFinish, optionalString=""):
 	hcCost = costToFinish
 	if (optionalString != ""):
 		optionalString = optionalString + "\n"
-	dialog_text = optionalString + "Finish now for " + str(hcCost) + " diamonds?"
+	dialog_text = optionalString + "Finish now for " + str(hcCost) + " Chrono?"
 
 func _on_ConfirmationDialog_confirmed():
 	print(finishingThis)
@@ -31,5 +31,8 @@ func _on_ConfirmationDialog_confirmed():
 		elif (finishingThis == "Camp"):
 			global.activeCampData[global.selectedCampID].readyToCollect = true
 			global.activeCampData[global.selectedCampID].endTime = OS.get_unix_time()
+		elif (finishingThis == "Training"):
+			global.training[global.selectedHero.staffedToID].readyToCollect = true
+			global.training[global.selectedHero.staffedToID].endTime = OS.get_unix_time()
 	else:
-		print("popup_finishNow.gd: INSUFFICIENT DIAMONDS")
+		print("popup_finishNow.gd: INSUFFICIENT CHRONO")

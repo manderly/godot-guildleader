@@ -3,7 +3,6 @@ extends Node2D
 #use this menu to pick a hero to assign to a quest
 onready var heroSelectDescription = $CenterContainer/VBoxContainer/field_heroSelectDescription
 onready var scrollVBox = $CenterContainer/VBoxContainer/scroll/vbox
-
 func _ready():
 	print("currentMenu is: " + global.currentMenu)
 	if (global.currentMenu == "alchemy" || 

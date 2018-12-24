@@ -2,13 +2,13 @@
 
 [ext_resource path="res://menus/heroPage_heroStatDisplay.gd" type="Script" id=1]
 
-[node name="hbox" type="HBoxContainer"]
+[node name="hbox" type="HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 180.0
+margin_right = 264.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 160, 24 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -56,9 +56,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 104.0
-margin_right = 164.0
+margin_right = 244.0
 margin_bottom = 24.0
-rect_min_size = Vector2( 60, 20 )
+rect_min_size = Vector2( 140, 20 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 2
