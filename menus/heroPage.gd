@@ -175,6 +175,7 @@ func _process(delta):
 			progressBar.set_value(progressBarValue)
 		
 		if (trainingData.inProgress && trainingData.readyToCollect):
+			progressBar.set_value(100)
 			buttonTrainOrRecruit.text = "Complete training!"
 			
 func _update_stats():
@@ -258,33 +259,46 @@ func _calc_instant_train_cost():
 	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited):
-		if (global.selectedHero.xp == staticData.levelXpData[str(global.selectedHero.level)].total):
-			#todo: this should be on a timer and the hero is unavailable while training
-			#also, only one hero can train up at a time 
-			global.selectedHero.level_up()
-			_update_stats()
-		else:
-			if (global.selectedHero.staffedTo == "training"):
-				var inProgress = global.training[global.selectedHero.staffedToID].inProgress
-				var readyToCollect = global.training[global.selectedHero.staffedToID].readyToCollect
-				if (inProgress && !readyToCollect):
-					#todo: formula for cost is based on level and time left
-					var finishNowCost = _calc_finish_now_cost() 
-					finishNowPopup._set_data("Training", finishNowCost)
-					finishNowPopup.popup()
-				elif (inProgress && readyToCollect):
-					#done training, "free" the hero
-					global.training[global.selectedHero.staffedToID].inProgress = false
-					global.training[global.selectedHero.staffedToID].readyToCollect = false
-					global.training[global.selectedHero.staffedToID].hero = null
-					global.selectedHero.send_home()
-					global.selectedHero.level_up()
-					#_update_stats()
+		if (global.selectedHero.staffedTo == "training"):
+			#hero is already in training by whatever means 
+			var inProgress = global.training[global.selectedHero.staffedToID].inProgress
+			var readyToCollect = global.training[global.selectedHero.staffedToID].readyToCollect
+			if (inProgress && !readyToCollect):
+				#training in progress
+				var finishNowCost = _calc_finish_now_cost() 
+				finishNowPopup._set_data("Training", finishNowCost)
+				finishNowPopup.popup()
+			elif (inProgress && readyToCollect):
+				#done training, "free" the hero
+				global.training[global.selectedHero.staffedToID].inProgress = false
+				global.training[global.selectedHero.staffedToID].readyToCollect = false
+				global.training[global.selectedHero.staffedToID].hero = null
+				global.selectedHero.send_home()
+				global.selectedHero.level_up()
+				populate_fields()
+		elif (global.selectedHero.xp == staticData.levelXpData[str(global.selectedHero.level)].total):
+			#hero is ready to train and not already training
+			#assign hero to the lowest-numbered open training spot
+			for i in range(0,5):
+				if (!global.training["training"+str(i)].hero):
+					global.training["training"+str(i)].hero = global.selectedHero
+					global.selectedHero.staffedTo = "training"
+					global.selectedHero.staffedToID = "training"+str(i)
+					global.training["training"+str(i)].inProgress = true
+					global.training["training"+str(i)].readyToCollect = false
+					global.training["training"+str(i)].endTime = OS.get_unix_time() + staticData.levelXpData[str(global.selectedHero.level)].trainingTime
 					populate_fields()
-			else:
-				var chronoCost = _calc_instant_train_cost()
-				$confirm_instant_train/RichTextLabel.text = "This hero doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
-				$confirm_instant_train.popup()
+					break
+			#todo: handle no open spot found case and show popup
+			if (global.selectedHero.staffedTo != "training"):
+				print("no room")
+		elif (global.selectedHero.xp < staticData.levelXpData[str(global.selectedHero.level)].total):
+			#hero is not ready to train, offer instant train instead
+			var chronoCost = _calc_instant_train_cost()
+			$confirm_instant_train/RichTextLabel.text = "This hero doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
+			$confirm_instant_train.popup()
+		else:
+			print('heroPage.gd line 296 - bad state')
 			
 	else: #hero not part of guild yet
 		#print("heroPage.gd: Recruiting this hero: " + global.selectedHero.heroName)
@@ -356,9 +370,6 @@ func _on_confirm_instant_train_confirmed():
 		#also, only one hero can train up at a time
 		global.hardCurrency -= cost
 		global.selectedHero.level_up()
-		#todo: refactor the redrawing of fields into something less case-by-case
-		#$field_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(global.levelXpData[global.selectedHero.level].total)
-		#$field_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass
 		#$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
 		_update_stats()
 	else: 
@@ -383,3 +394,7 @@ func _on_button_revive_pressed():
 	global.selectedHero.hpCurrent = global.selectedHero.hp
 	global.selectedHero.manaCurrent = global.selectedHero.mana
 	populate_fields()
+
+func _on_button_fullXP_pressed():
+	global.selectedHero.xp = staticData.levelXpData[str(global.selectedHero.level)].total
+	_update_stats()
