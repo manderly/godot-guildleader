@@ -9,7 +9,7 @@
 [ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -554,6 +554,10 @@ _sections_unfolded = [ "Rect", "custom_constants" ]
 [node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 5 )]
 
 visible = false
+margin_left = 96.0
+margin_top = 78.0
+margin_right = 446.0
+margin_bottom = 246.0
 
 [node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="3"]
 

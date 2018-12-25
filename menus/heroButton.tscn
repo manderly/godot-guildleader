@@ -3,7 +3,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://menus/heroButton.gd" type="Script" id=2]
 
-[node name="Button" type="Button" index="0"]
+[node name="Button" type="Button"]
 
 anchor_left = 0.0
 anchor_top = 0.0

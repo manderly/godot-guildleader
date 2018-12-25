@@ -53,6 +53,8 @@ var trainingData = null
 
 func _ready():
 	
+	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
+	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
