@@ -370,6 +370,7 @@ func load_game():
 				print("PROCESSING SAVED GLOBALS")
 				
 				#new way: manual 1:1 pairing
+				#must match what's savde in global.gd's save_object
 				global.softCurrency = current_line.softCurrency
 				global.hardCurrency = current_line.hardCurrency
 				global.guildName = current_line.guildName
@@ -377,6 +378,7 @@ func load_game():
 				global.nextHeroID = current_line.nextHeroID
 				global.roomCount = current_line.roomCount
 				global.tradeskills = current_line.tradeskills
+				global.training = current_line.training
 				global.testTimerBeginTime = current_line.testTimerBeginTime
 				global.testTimerEndTime = current_line.testTimerEndTime
 				global.activeHarvestingData = current_line.activeHarvestingData
@@ -450,6 +452,8 @@ func load_game():
 			global.activeHarvestingData[hero.staffedToID].hero = hero
 		elif (hero.staffedTo == "camp"):
 			global.activeCampData[hero.staffedToID].heroes.append(hero)
+		elif (hero.staffedTo == "training"):
+			global.training[hero.staffedToID].hero = hero
 	draw_heroes()
 	draw_rooms()
 

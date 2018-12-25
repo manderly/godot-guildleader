@@ -14,7 +14,9 @@ func _ready():
 	elif (global.currentMenu == "harvesting"):
 		heroSelectDescription.text = "Choose a hero to harvest this resource."
 	elif (global.currentMenu == "selectHeroForCamp"):
-		heroSelectDescription.text = "Choose a hero to camp this location."
+		heroSelectDescription.text = "Choose a hero to hunt mobs and win loot at this camp."
+	elif (global.currentMenu == "training"):
+		heroSelectDescription.text = "Heroes must undergo training to continue to advance in levels. Choose a hero who is 'Ready to Train' to assign them to this training room."
 	else:
 		heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
 		
@@ -32,10 +34,13 @@ func _ready():
 func _on_button_back_pressed():
 	if (global.currentMenu == "alchemy" || 
 		global.currentMenu == "blacksmithing" || 
+		global.currentMenu == "chronomancy" || 
 		global.currentMenu == "fletching" || 
 		global.currentMenu == "jewelcraft" || 
 		global.currentMenu == "tailoring"):
 		global.currentMenu = "main"
+		get_tree().change_scene("res://main.tscn")
+	elif (global.currentMenu == "training"):
 		get_tree().change_scene("res://main.tscn")
 	elif (global.currentMenu == "harvesting"):
 		#todo: return to correct map 

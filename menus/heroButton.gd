@@ -58,6 +58,12 @@ func populate_fields(data):
 	heroScene.set_position(Vector2(14, 6))
 	heroScene.set_display_params(false, false) #walking, name displayed
 	add_child(heroScene)
+	
+	#ready to train text
+	if (data.xp == staticData.levelXpData[str(data.level)].total):
+		$field_readyToTrain.show()
+	else:
+		$field_readyToTrain.hide()
 
 		
 func make_button_empty():
@@ -108,18 +114,22 @@ func _on_Button_pressed():
 			print("hero is busy")
 	elif (global.currentMenu == "training"):
 		if (heroData.atHome && heroData.staffedTo == ""):
-			heroData.staffedTo = global.currentMenu
-			heroData.staffedToID = global.currentRoomID
-			global.training[global.currentRoomID].hero = heroData
-			
-			var timeToTrainToNextLevel = staticData.levelXpData[str(heroData.level)].trainingTime
-			global.training[global.currentRoomID].endTime = OS.get_unix_time() + timeToTrainToNextLevel
-			global.training[global.currentRoomID].inProgress = true
-			global.training[global.currentRoomID].readyToCollect = false
-			
-			global.currentMenu = "main"
-			global.currentRoomID = ""
-			get_tree().change_scene("res://main.tscn")
+			if (heroData.xp == staticData.levelXpData[str(heroData.level)].total):
+				heroData.staffedTo = global.currentMenu
+				heroData.staffedToID = global.currentRoomID
+				global.training[global.currentRoomID].hero = heroData
+				
+				var timeToTrainToNextLevel = staticData.levelXpData[str(heroData.level)].trainingTime
+				global.training[global.currentRoomID].endTime = OS.get_unix_time() + timeToTrainToNextLevel
+				global.training[global.currentRoomID].inProgress = true
+				global.training[global.currentRoomID].readyToCollect = false
+				
+				global.currentMenu = "main"
+				global.currentRoomID = ""
+				get_tree().change_scene("res://main.tscn")
+			else:
+				print("Hero must be ready to train")
+				print("rapid train instead?")
 		else:
 			print("hero is busy")
 	elif (global.currentMenu == "harvesting"):

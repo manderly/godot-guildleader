@@ -49,6 +49,7 @@ onready var tabStats = $CenterContainer/VBoxContainer/CenterContainer/TabContain
 onready var tabSkills = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills
 onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses
 
+var trainingData = null
 
 func _ready():
 	
@@ -62,6 +63,14 @@ func _ready():
 	
 	add_child(finishNowPopup)
 	
+	#check if training was in-progress if so, if it is now complete
+	if (global.selectedHero.staffedTo == "training"):
+		trainingData = global.training[global.selectedHero.staffedToID] #get the matching training room data
+		
+		if (OS.get_unix_time() >= trainingData.endTime):
+			trainingData.readyToCollect = true
+
+				
 	#for each inventory slot, create a heroPage_inventoryButton instance and place it in a row
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
 	#print(global.selectedHero["equipment"]["mainHand"])
@@ -129,7 +138,7 @@ func _ready():
 	tabAttributes.add_child(displayRaidBonus)
 	populate_fields()
 	
-func populate_fields():
+func populate_fields():		
 	label_heroName.text = global.selectedHero.heroName
 	if (global.selectedHero.recruited):
 		buttonTrainOrRecruit.text = "Train to next level"

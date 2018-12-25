@@ -172,6 +172,7 @@ func save():
 			"parent":get_parent().get_path(),
 			"guildName":guildName,
 			"tradeskills":tradeskills,
+			"training":training,
 			"softCurrency":softCurrency,
 			"hardCurrency":hardCurrency,
 			"initDone":initDone,
