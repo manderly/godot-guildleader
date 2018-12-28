@@ -469,18 +469,18 @@ func send_home():
 	staffedTo = ""
 	staffedToID = -1
 
-func get_archetype():
+func get_class_role():
 	#returns string dps, tank, healer
-	var archetype = ""
+	var role = ""
 	if (heroClass == "Wizard" || heroClass == "Ranger" || heroClass == "Rogue" || heroClass == "Monk"):
-		archetype = "dps"
+		role = "dps"
 	elif (heroClass == "Paladin" || heroClass == "Warrior"):
-		archetype = "tank"
+		role = "tank"
 	elif (heroClass == "Cleric" || heroClass == "Druid"):
-		archetype = "healer"
+		role = "support"
 	else:
-		archetype = "ERROR"
-	return archetype
+		role = "ERROR"
+	return role
 	
 func give_xp(xpNum):
 	xp += xpNum

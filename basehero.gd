@@ -9,7 +9,10 @@ var elfFemaleHeads = ["elf_female_01.png"]
 var heroID = -1 
 var heroName = "Default Name"
 var heroClass = "NONE"
+var archetype = "NONE"
 var level = -1
+var perks = {}
+var perkPoints = 0
 var xp = -1
 var currentRoom = 0 #outside by default
 var atHome = true
@@ -43,7 +46,7 @@ var baseDrama = 0
 var baseMood = 0
 var basePrestige = -1
 var baseGroupBonus = "none"
-var baseRaidBonus = "none" 
+var baseRaidBonus = "none"
 	
 var classLevelModifiers = {
 	"Warrior":{

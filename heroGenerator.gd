@@ -30,28 +30,34 @@ func generate(destinationArray, classStr):
 	
 	if (classStr == "Wizard"):
 		newHero.heroClass = "Wizard"
+		newHero.archetype = "Caster"
 		newHero.give_gear_loadout("wizardNew")
 		#we need better wizards, here's a twinked one:
 		#newHero.give_gear_loadout("wizardUber")
 			
 	elif (classStr == "Rogue"):
 		newHero.heroClass = "Rogue"
+		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("rogueNew")
 
 	elif (classStr == "Warrior"):
 		newHero.heroClass = "Warrior"
+		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("warriorNew")
 	
 	elif (classStr == "Ranger"):
 		newHero.heroClass = "Ranger"
+		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("rangerNew")
 		
 	elif (classStr == "Cleric"):
 		newHero.heroClass = "Cleric"
+		newHero.archetype = "Support"
 		newHero.give_gear_loadout("clericNew")
 
 	elif (classStr == "Druid"):
 		newHero.heroClass = "Druid"
+		newHero.archetype = "Support"
 		newHero.give_gear_loadout("druidNew")
 			
 	else:
@@ -86,6 +92,7 @@ func generate(destinationArray, classStr):
 	#other aspects of a hero 
 	newHero.atHome = true
 	newHero.level = 1
+	newHero.perkPoints = 0
 	newHero.xp = 0
 
 	if (destinationArray == global.guildRoster):
@@ -110,6 +117,15 @@ func generate(destinationArray, classStr):
 		else:
 			newHero.give_new_item("Cloth Shirt")
 			newHero.give_new_item("Simple Ring")
+	
+	#build perks object out of which perks this hero can actually use
+	for key in staticData.perks.keys():
+		if (staticData.perks[key].restriction == "any" ||
+			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
+			staticData.perks[key].restriction.to_lower() == newHero.heroClass.to_lower()):
+			#check if it's for anyone, this hero's archetype, or this hero's class
+			#if so, give this hero this perk option 
+			newHero.perks[key] = staticData.perks[key]
 	
 	newHero.update_hero_stats() #calculate hp, mana, etc.
 	newHero.hpCurrent = newHero.hp #only do this when we generate a hero (that's why it's not in update_hero_stats)

@@ -15,24 +15,24 @@ func _ready():
 	field_guildMemberCount.text = "Members: " + str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	field_prestige.text = " Prestige: " + str(0)
 	
-	var archetypes = {
+	var classRoles = {
 		"tank":0,
 		"dps":0,
-		"healer":0	
+		"support":0	
 	}
 	
 	#draw a hero button for each hero in the roster
 	for i in range(global.guildRoster.size()):
-		archetypes[global.guildRoster[i].get_archetype()] += 1
+		classRoles[global.guildRoster[i].get_class_role()] += 1
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		heroButton.set_hero_data(global.guildRoster[i])
 		#heroButton.set_position(Vector2(buttonX, buttonY))
 		$scroll_roster/vbox.add_child(heroButton)
 	
 	#update counts
-	field_tankCount.text = "Tanks: " + str(archetypes["tank"])
-	field_dpsCount.text = "DPS: " + str(archetypes["dps"])
-	field_supportCount.text = "Support: " + str(archetypes["healer"])
+	field_tankCount.text = "Tanks: " + str(classRoles["tank"])
+	field_dpsCount.text = "DPS: " + str(classRoles["dps"])
+	field_supportCount.text = "Support: " + str(classRoles["support"])
 
 func _on_button_renameGuild_pressed():
 	get_node("confirm_rename_dialog").popup()

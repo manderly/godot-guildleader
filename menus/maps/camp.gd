@@ -275,18 +275,18 @@ func _start_camp(duration, enableButtonStr):
 func calc_class_balance():
 	#zero it out
 	haveAlready = {
-		"healer":0,
+		"support":0,
 		"dps":0,
 		"tank":0
 	}
 	
 	for hero in campData.heroes:
 		if (hero != null):
-			if (hero.get_archetype() == "healer"):
-				haveAlready.healer += 1
-			elif (hero.get_archetype() == "tank"):
+			if (hero.get_class_role() == "support"):
+				haveAlready.support += 1
+			elif (hero.get_class_role() == "tank"):
 				haveAlready.tank += 1
-			elif (hero.get_archetype() == "dps"):
+			elif (hero.get_class_role() == "dps"):
 				haveAlready.dps += 1
 
 func _on_button_autoPickHeroes_pressed():
@@ -299,7 +299,7 @@ func _on_button_autoPickHeroes_pressed():
 			#look through all the available heroes
 			for hero in global.guildRoster:
 				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
-					if (haveAlready.healer == 0 && hero.get_archetype() == "healer"):
+					if (haveAlready.healer == 0 && hero.get_class_role() == "healer"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
@@ -308,7 +308,7 @@ func _on_button_autoPickHeroes_pressed():
 						haveAlready.healer += 1
 						break
 					
-					if (haveAlready.tank == 0 && hero.get_archetype() == "tank"):
+					if (haveAlready.tank == 0 && hero.get_class_role() == "tank"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
@@ -317,7 +317,7 @@ func _on_button_autoPickHeroes_pressed():
 						haveAlready.tank += 1
 						break
 					
-					if (haveAlready.dps < 2 && hero.get_archetype() == "dps"):
+					if (haveAlready.dps < 2 && hero.get_class_role() == "dps"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
