@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://rooms/room.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/vault/treasureChest.png" type="Texture" id=3]
-[ext_resource path="res://sprites/vault/treasureChestSmall.png" type="Texture" id=4]
 
-[node name="Node2D" type="Node2D" index="0" groups=[
+[node name="Node2D" type="Node2D" groups=[
 "ClearOnRestore",
 "Persist",
 ]]
@@ -30,7 +28,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 126, 0, 4, 141, 0, 5, 145, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 9, 0, 65537, 10, 0, 65538, 84, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 127, 0, 131076, 25, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 127, 0, 196612, 23, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0, 262144, 12, 0, 262145, 78, 0, 262146, 84, 0, 262147, 127, 0, 262148, 24, 0, 262157, 83, 0, 262158, 9, 0, 262159, 10, 0 )
+tile_data = PoolIntArray( 0, 78, 0, 1, 84, 0, 2, 127, 0, 3, 145, 0, 14, 82, 0, 15, 12, 0, 16, 78, 0, 65536, 9, 0, 65537, 84, 0, 65538, 127, 0, 65550, 82, 0, 65551, 10, 0, 65552, 13, 0, 131072, 12, 0, 131073, 84, 0, 131074, 127, 0, 131086, 82, 0, 131087, 12, 0, 131088, 78, 0, 196608, 10, 0, 196609, 84, 0, 196610, 127, 0, 196622, 82, 0, 196623, 13, 0, 196624, 78, 0, 262144, 12, 0, 262145, 84, 0, 262146, 127, 0, 262158, 82, 0, 262159, 10, 0, 262160, 13, 0, 327680, 10, 0, 327681, 84, 0, 327682, 127, 0, 327694, 83, 0, 327695, 28, 0, 327696, 28, 0 )
 _sections_unfolded = [ "Cell" ]
 
 [node name="field_roomName" type="Label" parent="." index="1"]
@@ -39,10 +37,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 110.0
-margin_top = 10.0
-margin_right = 310.0
-margin_bottom = 24.0
+margin_left = 292.0
+margin_top = 174.0
+margin_right = 492.0
+margin_bottom = 188.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -55,22 +53,5 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="sprite_treasureChest_large" type="Sprite" parent="." index="2"]
-
-position = Vector2( 360, 50 )
-texture = ExtResource( 3 )
-
-[node name="sprite_treasureChest_small" type="Sprite" parent="." index="3"]
-
-position = Vector2( 240, 40 )
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Offset" ]
-
-[node name="sprite_treasureChest_small2" type="Sprite" parent="." index="4"]
-
-position = Vector2( 210, 40 )
-texture = ExtResource( 4 )
-_sections_unfolded = [ "Offset" ]
 
 

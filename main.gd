@@ -239,7 +239,7 @@ func draw_rooms():
 	#the room data is kept in global.rooms 
 	#use that data to draw the instances into main.tscn 
 	var roomX = -1
-	var roomY = 43
+	var roomY = 11 #43
 	for i in range(global.rooms.size()):
 		#rooms are different from heroes
 		#heroes, all of them share one scene (hero.tscn)
@@ -287,9 +287,9 @@ func draw_rooms():
 			roomsLayer.add_child(roomScene)
 				
 			if (i == global.rooms.size() - 2): #if (i == global.rooms.size() - 2):
-				roomY -= 192 #for placing the taller-than-a-room top edge piece
+				roomY -= 224 #192 #for placing the taller-than-a-room top edge piece
 			else:
-				roomY -= 160
+				roomY -= 192 #160
 			
 	#place the "add a room" button above the last placed piece
 	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
