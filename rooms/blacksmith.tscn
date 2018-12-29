@@ -5,7 +5,7 @@
 [ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
 [ext_resource path="res://light.png" type="Texture" id=4]
 
-[node name="Node2D" type="Node2D" index="0" groups=[
+[node name="Node2D" type="Node2D" groups=[
 "ClearOnRestore",
 "Persist",
 ]]
@@ -30,7 +30,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 127, 0, 4, 25, 0, 5, 144, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 127, 0, 65540, 25, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 127, 0, 131076, 25, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 127, 0, 196612, 23, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0, 262144, 11, 0, 262145, 78, 0, 262146, 84, 0, 262147, 127, 0, 262148, 22, 0, 262157, 83, 0, 262158, 10, 0, 262159, 10, 0 )
+tile_data = PoolIntArray( 0, 78, 0, 1, 84, 0, 2, 127, 0, 3, 144, 0, 14, 83, 0, 15, 12, 0, 16, 27, 0, 65536, 78, 0, 65537, 84, 0, 65538, 127, 0, 65550, 83, 0, 65551, 10, 0, 65552, 27, 0, 131072, 12, 0, 131073, 84, 0, 131074, 127, 0, 131086, 83, 0, 131087, 12, 0, 131088, 27, 0, 196608, 10, 0, 196609, 84, 0, 196610, 127, 0, 196622, 83, 0, 196623, 13, 0, 196624, 27, 0, 262144, 11, 0, 262145, 84, 0, 262146, 127, 0, 262158, 83, 0, 262159, 10, 0, 262160, 27, 0, 327680, 78, 0, 327681, 84, 0, 327682, 127, 0, 327694, 83, 0, 327695, 28, 0, 327696, 28, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
@@ -42,10 +42,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 123.0
-margin_top = 10.0
-margin_right = 323.0
-margin_bottom = 24.0
+margin_left = 301.0
+margin_top = 175.0
+margin_right = 436.0
+margin_bottom = 189.0
 rect_pivot_offset = Vector2( 223.347, 6.32697 )
 rect_clip_content = false
 mouse_filter = 2
@@ -65,10 +65,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 181.0
-margin_top = 132.0
-margin_right = 222.0
-margin_bottom = 156.0
+margin_left = 160.0
+margin_top = 150.0
+margin_right = 224.0
+margin_bottom = 182.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2

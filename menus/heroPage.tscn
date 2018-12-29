@@ -9,7 +9,7 @@
 [ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -579,7 +579,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 412.0
-margin_bottom = 256.0
+margin_bottom = 206.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -624,7 +624,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 44.0
 margin_right = 412.0
-margin_bottom = 256.0
+margin_bottom = 206.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -641,8 +641,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 181.0
-margin_bottom = 212.0
+margin_bottom = 162.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -659,9 +658,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 193.0
-margin_right = 393.0
-margin_bottom = 212.0
+margin_left = 12.0
+margin_right = 212.0
+margin_bottom = 162.0
 rect_min_size = Vector2( 50, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -700,7 +699,7 @@ selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "Rect" ]
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="1"]
+[node name="field_perkPoints" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -708,7 +707,28 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 124.0
 margin_right = 200.0
-margin_bottom = 144.0
+margin_bottom = 138.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "#points available"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 142.0
+margin_right = 200.0
+margin_bottom = 162.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2

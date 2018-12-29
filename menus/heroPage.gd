@@ -48,6 +48,8 @@ onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
 onready var tabStats = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats
 onready var tabSkills = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills
 onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses
+
+onready var field_perkPoints = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkPoints
 onready var tabPerksButtonsContainer = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_left
 var trainingData = null
 
@@ -165,11 +167,13 @@ func populate_fields():
 			
 	#populaet perks tab
 	for key in global.selectedHero.perks.keys():
-		print(global.selectedHero.perks[key])
 		var perk = global.selectedHero.perks[key]
 		var perkButton = Button.new()
 		perkButton.text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
 		tabPerksButtonsContainer.add_child(perkButton)
+		
+	#display perk points to spend 
+	field_perkPoints.text = str(global.selectedHero.perkPoints) + " available"
 		
 	_update_stats()
 	

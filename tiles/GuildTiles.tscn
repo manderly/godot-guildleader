@@ -412,43 +412,76 @@ __meta__ = {
 
 [node name="blacksmith_room" type="Sprite" parent="Walls/Rooms" index="7"]
 
-position = Vector2( 408.948, 586.54 )
+position = Vector2( 561.164, 808.096 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 256, 480, 256, 160 )
+region_rect = Rect2( 352, 512, 352, 192 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="vault_room" type="Sprite" parent="Walls/Rooms" index="8"]
+[node name="training_room" type="Sprite" parent="Walls/Rooms" index="8"]
 
-position = Vector2( 138.018, 585.528 )
+position = Vector2( 190.364, 1016.11 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 256, 320, 256, 160 )
+region_rect = Rect2( 0, 704, 352, 192 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="bedroom_room" type="Sprite" parent="Walls/Rooms" index="9"]
+[node name="chronomancy_room" type="Sprite" parent="Walls/Rooms" index="9"]
 
-position = Vector2( 138.92, 767.432 )
+position = Vector2( 565.787, 1017.43 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 480, 256, 160 )
+region_rect = Rect2( 352, 704, 352, 192 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="alchemy_room" type="Sprite" parent="Walls/Rooms" index="10"]
+[node name="vault_room" type="Sprite" parent="Walls/Rooms" index="10"]
 
-position = Vector2( 413.712, 769.649 )
+position = Vector2( 562.639, 608.641 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 320, 256, 160 )
+region_rect = Rect2( 352, 320, 352, 192 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="empty_room" type="Sprite" parent="Walls/Rooms" index="11"]
+
+position = Vector2( 730.705, 409.208 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 0, 352, 192 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="bedroom_room" type="Sprite" parent="Walls/Rooms" index="12"]
+
+position = Vector2( 198.024, 809.366 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 512, 352, 192 )
+_sections_unfolded = [ "Region" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="alchemy_room" type="Sprite" parent="Walls/Rooms" index="13"]
+
+position = Vector2( 198.496, 601.187 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 320, 350, 190 )
 _sections_unfolded = [ "Region" ]
 __meta__ = {
 "_edit_group_": true
