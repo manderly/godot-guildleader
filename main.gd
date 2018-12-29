@@ -89,11 +89,7 @@ var onscreenHeroes = []
 func _ready():
 	randomize()
 	global.currentMenu = "main"
-	
 	#load_game()
-
-	
-
 	# Generate default guildmembers and default rooms
 	if (global.initDone == false):
 		
@@ -287,12 +283,14 @@ func draw_rooms():
 			roomsLayer.add_child(roomScene)
 				
 			if (i == global.rooms.size() - 2): #if (i == global.rooms.size() - 2):
-				roomY -= 224 #192 #for placing the taller-than-a-room top edge piece
+				roomY -= 192 #224 #for placing the taller-than-a-room top edge piece
 			else:
 				roomY -= 192 #160
+				
+			print ("mainScreenTop" + str(global.mainScreenTop))
 			
 	#place the "add a room" button above the last placed piece
-	$screen/button_addRoom.set_position(Vector2(132, roomY + 200))
+	$screen/button_addRoom.set_position(Vector2(150, roomY + 232))
 	#display the cost to build a new room
 	#print("main.gd: global.roomCount: " + str(global.roomCount))
 	$screen/button_addRoom/field_addRoomButtonLabel.text = "BUILD A NEW ROOM \n" + str(global.newRoomCost[global.roomCount]) + " coins"
