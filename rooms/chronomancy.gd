@@ -12,7 +12,7 @@ func draw_hero_and_button():
 		var heroScene = preload("res://hero.tscn").instance()
 		heroScene.set_instance_data(global.tradeskills["chronomancy"].hero) #put data from array into scene 
 		heroScene._draw_sprites()
-		heroScene.set_position(Vector2(280, 60))
+		heroScene.set_position(Vector2(320, 60))
 		add_child(heroScene)
 	else:
 		$button_staffCraft.text = "Staff"

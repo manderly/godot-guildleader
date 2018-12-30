@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://rooms/fletching.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://sprites/forge/wall_tools.png" type="Texture" id=3]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D" index="0" groups=[
 "ClearOnRestore",
@@ -30,7 +29,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 78, 0, 1, 10, 0, 2, 84, 0, 3, 25, 0, 4, 25, 0, 5, 144, 0, 13, 82, 0, 14, 78, 0, 15, 12, 0, 65536, 78, 0, 65537, 13, 0, 65538, 84, 0, 65539, 25, 0, 65540, 25, 0, 65549, 83, 0, 65550, 13, 0, 65551, 10, 0, 131072, 12, 0, 131073, 78, 0, 131074, 84, 0, 131075, 18, 0, 131076, 25, 0, 131085, 82, 0, 131086, 10, 0, 131087, 12, 0, 196608, 10, 0, 196609, 12, 0, 196610, 84, 0, 196611, 25, 0, 196612, 23, 0, 196621, 83, 0, 196622, 12, 0, 196623, 13, 0, 262144, 10, 0, 262145, 12, 0, 262146, 84, 0, 262147, 18, 0, 262148, 18, 0, 262157, 83, 0, 262158, 12, 0, 262159, 12, 0 )
+tile_data = PoolIntArray( 0, 78, 0, 1, 84, 0, 2, 127, 0, 3, 153, 0, 14, 82, 0, 15, 12, 0, 16, 78, 0, 65536, 78, 0, 65537, 84, 0, 65538, 127, 0, 65550, 82, 0, 65551, 10, 0, 65552, 78, 0, 131072, 12, 0, 131073, 84, 0, 131074, 127, 0, 131086, 82, 0, 131087, 12, 0, 131088, 78, 0, 196608, 10, 0, 196609, 84, 0, 196610, 127, 0, 196622, 82, 0, 196623, 13, 0, 196624, 78, 0, 262144, 10, 0, 262145, 84, 0, 262146, 127, 0, 262158, 82, 0, 262159, 12, 0, 262160, 78, 0, 327680, 28, 0, 327681, 84, 0, 327682, 127, 0, 327694, 82, 0, 327695, 78, 0, 327696, 78, 0 )
 _sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
@@ -42,10 +41,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 105.0
-margin_top = 11.0
-margin_right = 305.0
-margin_bottom = 25.0
+margin_left = 146.0
+margin_top = 123.0
+margin_right = 239.0
+margin_bottom = 137.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -59,21 +58,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="sprite_wallTools" type="Sprite" parent="." index="2"]
-
-position = Vector2( 251.318, 23.6893 )
-texture = ExtResource( 3 )
-
-[node name="button_staffCraft" type="Button" parent="." index="3"]
+[node name="button_staffCraft" type="Button" parent="." index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 185.0
-margin_top = 127.0
-margin_right = 226.0
-margin_bottom = 151.0
+margin_left = 160.0
+margin_top = 140.0
+margin_right = 224.0
+margin_bottom = 172.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -88,8 +82,12 @@ group = null
 text = "Staff"
 flat = false
 align = 1
+_sections_unfolded = [ "Rect" ]
 
-[node name="button_inProgress" parent="." index="4" instance=ExtResource( 4 )]
+[node name="button_inProgress" parent="." index="3" instance=ExtResource( 3 )]
+
+margin_left = 402.0
+margin_right = 466.0
 
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
 
