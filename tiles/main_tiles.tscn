@@ -1,0 +1,177 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiles/tiles.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="buildingFront" type="Sprite" parent="." index="0"]
+
+position = Vector2( -463.914, 35.6603 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 224, 544, 224 )
+_sections_unfolded = [ "Region" ]
+
+[node name="building_mainRoom" type="Sprite" parent="." index="1"]
+
+position = Vector2( -460.942, -194.481 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 352, 224 )
+_sections_unfolded = [ "Region" ]
+
+[node name="building_nwBackCorner" type="Sprite" parent="." index="2"]
+
+position = Vector2( -603.253, -349.669 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="roof_west1" type="Sprite" parent="." index="3"]
+
+position = Vector2( -667.97, -109.622 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 192, 32, 32 )
+
+[node name="hall_wall_west1" type="Sprite" parent="." index="4"]
+
+position = Vector2( -737.97, -145.613 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 96, 32, 32 )
+
+[node name="hall_wall_west2" type="Sprite" parent="." index="5"]
+
+position = Vector2( -736.979, -102.028 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 32, 32 )
+
+[node name="roof_north1" type="Sprite" parent="." index="6"]
+
+position = Vector2( -471.508, -339.763 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 32, 32 )
+
+[node name="roof_north2" type="Sprite" parent="." index="7"]
+
+position = Vector2( -424.621, -344.716 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 64, 32, 32 )
+
+[node name="roof_nw" type="Sprite" parent="." index="8"]
+
+position = Vector2( -664.998, -299.15 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 160, 32, 32 )
+
+[node name="roof_ne" type="Sprite" parent="." index="9"]
+
+position = Vector2( -278.018, -343.395 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 160, 32, 32 )
+
+[node name="outside_path" type="Sprite" parent="." index="10"]
+
+position = Vector2( -701.979, -207.688 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 352, 96, 64 )
+
+[node name="outside_grass1" type="Sprite" parent="." index="11"]
+
+position = Vector2( -144.952, -19.4811 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 256, 32, 32 )
+
+[node name="outside_grass2" type="Sprite" parent="." index="12"]
+
+position = Vector2( -148.915, -85.8488 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 288, 64, 64 )
+
+[node name="outside_grass3" type="Sprite" parent="." index="13"]
+
+position = Vector2( -233.773, -126.132 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 512, 352, 64, 64 )
+
+[node name="outside_grass4" type="Sprite" parent="." index="14"]
+
+position = Vector2( -237.075, 195.141 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 544, 160, 32, 32 )
+
+[node name="roof_east1" type="Sprite" parent="." index="15"]
+
+position = Vector2( -203.065, -268.773 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 192, 32, 32 )
+
+[node name="roof_east2" type="Sprite" parent="." index="16"]
+
+position = Vector2( -201.084, -229.15 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 480, 160, 32, 32 )
+
+[node name="room_empty" type="Sprite" parent="." index="17"]
+
+position = Vector2( 373.112, -466.885 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 0, 352, 192 )
+
+[node name="room_alchemy" type="Sprite" parent="." index="18"]
+
+position = Vector2( -9.90564, -447.735 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 448, 352, 192 )
+
+[node name="room_bedroom" type="Sprite" parent="." index="19"]
+
+position = Vector2( -2.31134, -231.792 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 640, 352, 192 )
+
+[node name="room_training" type="Sprite" parent="." index="20"]
+
+position = Vector2( -4.62265, 176.981 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 832, 352, 192 )
+
+[node name="room_vault" type="Sprite" parent="." index="21"]
+
+position = Vector2( 362.546, -50.1885 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 448, 352, 192 )
+
+[node name="room_blacksmithing" type="Sprite" parent="." index="22"]
+
+position = Vector2( 361.225, -262.169 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 640, 352, 192 )
+
+[node name="room_chronomancy" type="Sprite" parent="." index="23"]
+
+position = Vector2( 364.857, 160.801 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 352, 832, 352, 192 )
+
+
