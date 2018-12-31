@@ -7,19 +7,20 @@ var acceleration = 1.2
 var deceleration = .25
 var velocity = 0
 const MAX_VELOCITY = 10
+const X_OFFSET = -2 #bigger negative numbers push it to the right 
 
 func move_camera(yVal):
-	var newCoord = Vector2(-14, get_offset().y - yVal)
+	var newCoord = Vector2(X_OFFSET, get_offset().y - yVal)
 	if (newCoord.y > global.mainScreenTop && newCoord.y < 0):
 		set_offset(newCoord) #attempt at "scrolling" camera (new way)
 		#self.move_local_y(event.relative.y) #inverse camera (old way)
 		global.cameraPosition = newCoord
 	elif (newCoord.y < global.mainScreenTop):
-		var topCoord = Vector2(-14, global.mainScreenTop)
+		var topCoord = Vector2(X_OFFSET, global.mainScreenTop)
 		set_offset(topCoord)
 		global.cameraPosition = topCoord
 	elif (newCoord.y > 0):
-		var bottomCoord = Vector2(-14, 0)
+		var bottomCoord = Vector2(X_OFFSET, 0)
 		set_offset(bottomCoord)
 		global.cameraPosition = bottomCoord
 

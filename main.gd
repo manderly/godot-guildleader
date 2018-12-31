@@ -144,6 +144,7 @@ func _ready():
 func draw_HUD():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
 	print("global.softCurrency should say: " + str(global.softCurrency))
+	$screen/field_guildName.text = global.guildName + " Guild Hall"
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen

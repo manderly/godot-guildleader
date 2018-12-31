@@ -27,6 +27,7 @@ func _ready():
 		if (allHumanHeads[i] == global.selectedHero.headSprite):
 			headIndex = i
 	
+	$confirm_rename_dialog.set_mode("first")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "update_hero_preview")
 	draw_hero_scene()
 

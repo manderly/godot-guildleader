@@ -32,7 +32,7 @@ func _ready():
 			_start_idle_timer()
 	
 	if (showName):
-		$field_name.text = heroName
+		$field_name.text = heroFirstName + " " + heroLastName
 	else:
 		$field_name.text = ""
 
@@ -111,7 +111,8 @@ func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
 	for i in global.guildRoster.size():
 		#pair hero scene to hero in data array
-		if (global.guildRoster[i].heroName == heroName):
+		#todo I bet this doesn't work if two heroes share a first name
+		if (global.guildRoster[i].heroFirstName == heroFirstName):
 			global.guildRoster[i].savedPositionX = get_position().x
 			global.guildRoster[i].savedPositionY = get_position().y
 	#todo: is there some smarter way to do this? I wanted to just set
@@ -131,12 +132,13 @@ func save():
 			
 	print('rosterHero ID: ' + String(thisHero.heroID))
 			
-	print("Saving this hero! " + heroName + " level " + str(level) + " " + heroClass)
+	print("Saving this hero! " + heroFirstName + " level " + str(level) + " " + heroClass)
 	var saved_hero_data = {
 		"filename":"heroFile",#get_filename(), #res://hero.tscn
 		"parent":"/root",#get_parent().get_path(),
 		"heroID":heroID,
-		"heroName":heroName,
+		"heroFirstName":heroFirstName,
+		"heroLastName":heroLastName,
 		"heroClass":heroClass,
 		"level":level,
 		"xp":xp,
@@ -217,7 +219,8 @@ func _stop_walking():
 	
 func set_instance_data(data):
 	print(data)
-	heroName = data.heroName
+	heroFirstName = data.heroFirstName
+	heroLastName = data.heroLastName
 	level = data.level
 	xp = data.xp
 	heroClass = data.heroClass

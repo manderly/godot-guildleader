@@ -55,6 +55,7 @@ var trainingData = null
 
 func _ready():
 	
+	$confirm_rename_dialog.set_mode("last")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
 	
 	#draw the hero
@@ -143,7 +144,7 @@ func _ready():
 	populate_fields()
 	
 func populate_fields():		
-	label_heroName.text = global.selectedHero.heroName
+	label_heroName.text = global.selectedHero.heroFirstName + " " + global.selectedHero.heroLastName
 	if (global.selectedHero.recruited):
 		buttonTrainOrRecruit.text = "Train to next level"
 	else:

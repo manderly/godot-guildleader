@@ -7,7 +7,8 @@ var elfFemaleHeads = ["elf_female_01.png"]
 #Hero properties - not governed by external spreadsheet data
 #These are set when a hero is randomly generated in heroGenerator.gd 
 var heroID = -1 
-var heroName = "Default Name"
+var heroFirstName = "Firstname"
+var heroLastName = ""
 var heroClass = "NONE"
 var archetype = "NONE"
 var level = -1

@@ -4,7 +4,7 @@
 [ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://createHero_classButtonGroup.tres" type="ButtonGroup" id=3]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
