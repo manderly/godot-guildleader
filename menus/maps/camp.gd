@@ -299,13 +299,13 @@ func _on_button_autoPickHeroes_pressed():
 			#look through all the available heroes
 			for hero in global.guildRoster:
 				if (hero.atHome == true && hero.staffedTo == "" && !hero.dead):
-					if (haveAlready.healer == 0 && hero.get_class_role() == "healer"):
+					if (haveAlready.support == 0 && hero.get_class_role() == "support"):
 						#todo: code duplication in heroSelect Button code
 						campData.heroes[i] = hero #in progress
 						campData.heroes[i].staffedTo = "camp"
 						campData.heroes[i].staffedToID = campData.campId
 						campData.campHeroesSelected += 1
-						haveAlready.healer += 1
+						haveAlready.support += 1
 						break
 					
 					if (haveAlready.tank == 0 && hero.get_class_role() == "tank"):

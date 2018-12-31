@@ -154,9 +154,9 @@ func _target_mob_dies(targetMob, newBattle):
 		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
 		if (hero.xp > staticData.levelXpData[str(hero.level)]):
 			hero.xp = staticData.levelXpData[str(hero.level)]
-			encounter.detailedPlayByPlay.append(hero.heroName + " is full xp and ready to train.")
+			encounter.detailedPlayByPlay.append(hero.heroFirstName + " is full xp and ready to train.")
 		else:
-			encounter.detailedPlayByPlay.append(hero.heroName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
+			encounter.detailedPlayByPlay.append(hero.heroFirstName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
 
 		
 	#give loot (randomly determined from loot table)
@@ -213,7 +213,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 	for mob in randomMobs:
 		encounter.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
 	for hero in heroes:
-		encounter.detailedPlayByPlay.append(">" + hero.heroName + " (Level " + str(hero.level) + " " + hero.heroClass + " HP: " + str(hero.hpCurrent) + ")")
+		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.heroClass + " HP: " + str(hero.hpCurrent) + ")")
 		
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
@@ -241,7 +241,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
 					var unmodifiedDamage = hero.melee_attack()
 					targetMob.hpCurrent -= int(unmodifiedDamage)
-					encounter.detailedPlayByPlay.append(hero.heroName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
 					#todo: mob's defense roll 
 					#see if mob should die 
 					if targetMob.hpCurrent <= 0:
@@ -274,17 +274,17 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 						#only get a full resist if the mob is higher level than the player
 						if (targetMob.level > hero.level):
 							#full resist
-							encounter.detailedPlayByPlay.append(hero.heroName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
 						else:
 							#partial resist because hero is higher level than mob
 							var resistRand = _get_rand_between(1, targetMob.baseResist+1)
 							var modifiedNukeDmg = (nukeDmg / resistRand)
 		
-							encounter.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
 							targetMob.hpCurrent -= int(modifiedNukeDmg)
 					else:
 						#full damage
-						encounter.detailedPlayByPlay.append(hero.heroName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
 						targetMob.hpCurrent -= int(nukeDmg)
 					
 					if targetMob.hpCurrent <= 0:
@@ -296,9 +296,9 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 					var healAmount = 16 #todo: fancy formula
 					for partyMember in newBattle.heroes:
 						if (!partyMember.dead):
-							encounter.detailedPlayByPlay.append(hero.heroName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroName + "!")
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "!")
 							#if (battlePrint):
-								#print(hero.heroName + " restores 5 hitpoints to everyone, including: " + partyMember.heroName)
+								#print(hero.heroFirstName + " restores 5 hitpoints to everyone, including: " + partyMember.heroFirstName)
 							partyMember.hpCurrent += healAmount
 							if (partyMember.hpCurrent > partyMember.hp):
 								partyMember.hpCurrent = partyMember.hp #cannot exceed max 
@@ -309,7 +309,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 						if (!partyMember.dead && partyMember.hpCurrent < lowestHPhero.hpCurrent):
 							lowestHPhero = partyMember
 					#now we know which hero is in most need of healing
-					print(hero.heroName + " restores 15 hitpoints to " + lowestHPhero + " with a 5 hp bonus")
+					print(hero.heroFirstName + " restores 15 hitpoints to " + lowestHPhero + " with a 5 hp bonus")
 					lowestHPhero.hpCurrent += 15
 					if (lowestHPhero.hpCurrent > lowestHPhero.hp):
 						lowestHPhero.hpCurrent = (lowestHPhero.hp + 5) #give a litle extra on top
@@ -322,11 +322,11 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
 				var unmodifiedDamage = mob.dps * mob.strength * mob.level
 				targetHero.hpCurrent -= unmodifiedDamage
-				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroName + " for " + str(unmodifiedDamage) + " points of damage")
+				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(unmodifiedDamage) + " points of damage")
 				if (targetHero.hpCurrent <= 0):
 					targetHero.dead = true
 					targetHero.send_home()
-					encounter.detailedPlayByPlay.append(targetHero.heroName + " died!")
+					encounter.detailedPlayByPlay.append(targetHero.heroFirstName + " died!")
 					newBattle.heroes.erase(targetHero)
 					if (newBattle.heroes.size() == 0):
 						encounter.detailedPlayByPlay.append("Total party wipe!")
@@ -386,8 +386,8 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 		for hero in camp.heroes:
 		#hero.xp = global.levelXpData[hero.level].total
 			if (hero && hero.xp == staticData.levelXpData[str(hero.level)]):
-				encounter.summary.append(hero.heroName + " is ready to train!")
+				encounter.summary.append(hero.heroFirstName + " is ready to train!")
 			else:
-				encounter.summary.append(hero.heroName + " survived!")
+				encounter.summary.append(hero.heroFirstName + " survived!")
 	
 	return encounter
