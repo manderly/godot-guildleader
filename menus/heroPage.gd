@@ -143,8 +143,14 @@ func _ready():
 	tabAttributes.add_child(displayRaidBonus)
 	populate_fields()
 	
-func populate_fields():		
-	label_heroName.text = global.selectedHero.heroFirstName + " " + global.selectedHero.heroLastName
+func populate_fields():
+	if (global.selectedHero.level < 20):
+		buttonRename.set_disabled(true)
+		label_heroName.text = global.selectedHero.heroFirstName
+	else:
+		buttonRename.set_disabled(false)
+		label_heroName.text = global.selectedHero.heroFirstName + " " + global.selectedHero.heroLastName
+	
 	if (global.selectedHero.recruited):
 		buttonTrainOrRecruit.text = "Train to next level"
 	else:
@@ -389,13 +395,13 @@ func _on_confirm_dismiss_dialog_confirmed():
 func _on_confirm_instant_train_confirmed():
 	var cost = _calc_instant_train_cost()
 	if (global.hardCurrency >= cost):
-		print("Training this hero to next level")
 		#todo: this should be on a timer and the hero is unavailable while training
 		#also, only one hero can train up at a time
 		global.hardCurrency -= cost
 		global.selectedHero.level_up()
 		#$progress_xp.set_value(100 * (global.selectedHero.xp / global.levelXpData[global.selectedHero.level].total))
 		_update_stats()
+		populate_fields()
 	else: 
 		print("heroPage.gd: not enough diamonds")
 

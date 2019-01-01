@@ -20,7 +20,10 @@ func set_hero_data(data):
 	populate_fields(heroData)
 
 func populate_fields(data):
-	$VBoxContainer/field_heroName.text = data.heroFirstName + " " + data.heroLastName
+	#if (data.level < 20):
+	$VBoxContainer/field_heroName.text = data.heroFirstName #just show first name on buttons
+	#else:
+	#	$VBoxContainer/field_heroName.text = data.heroFirstName + " " + data.heroLastName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
 	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)].total)
 	if (data.atHome && data.dead):

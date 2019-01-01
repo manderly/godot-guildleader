@@ -386,7 +386,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	else:
 		for hero in camp.heroes:
 		#hero.xp = global.levelXpData[hero.level].total
-			if (hero && hero.xp == staticData.levelXpData[str(hero.level)]):
+			if (hero && hero.xp == staticData.levelXpData[str(hero.level)].total):
 				encounter.summary.append(hero.heroFirstName + " is ready to train!")
 			else:
 				encounter.summary.append(hero.heroFirstName + " survived!")

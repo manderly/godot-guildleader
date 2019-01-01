@@ -32,7 +32,10 @@ func _ready():
 			_start_idle_timer()
 	
 	if (showName):
-		$field_name.text = heroFirstName + " " + heroLastName
+		if (level < 20):
+			$field_name.text = heroFirstName
+		else:
+			$field_name.text = heroFirstName + " " + heroLastName
 	else:
 		$field_name.text = ""
 
@@ -504,7 +507,7 @@ func level_up():
 	baseDefense = int(round(baseDefense * classLevelModifiers[heroClass].defense))
 	update_hero_stats()
 	hpCurrent = hp #refill hp and mana when leveling up 
-	manaCurrent = mana  
+	manaCurrent = mana
 	
 func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2

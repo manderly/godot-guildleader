@@ -9,7 +9,7 @@
 [ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -58,9 +58,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 4.0
+margin_top = 18.0
 margin_right = 540.0
-margin_bottom = 838.0
+margin_bottom = 824.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -96,7 +96,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 30.0
 margin_right = 540.0
-margin_bottom = 210.0
+margin_bottom = 182.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -113,9 +113,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 47.0
-margin_right = 117.0
-margin_bottom = 180.0
+margin_left = 54.0
+margin_right = 124.0
+margin_bottom = 152.0
 rect_min_size = Vector2( 70, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -131,9 +131,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 137.0
-margin_right = 340.0
-margin_bottom = 180.0
+margin_left = 144.0
+margin_right = 347.0
+margin_bottom = 152.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -263,9 +263,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 360.0
-margin_right = 492.0
-margin_bottom = 180.0
+margin_left = 367.0
+margin_right = 485.0
+margin_bottom = 152.0
 rect_min_size = Vector2( 80, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -283,7 +283,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 132.0
+margin_right = 118.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -307,7 +307,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 40.0
-margin_right = 132.0
+margin_right = 118.0
 margin_bottom = 60.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -324,14 +324,14 @@ text = "Dismiss"
 flat = false
 align = 1
 
-[node name="button_rename2" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right" index="2"]
+[node name="button_rename" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 80.0
-margin_right = 132.0
+margin_right = 118.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -355,7 +355,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 120.0
-margin_right = 132.0
+margin_right = 118.0
 margin_bottom = 140.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -378,9 +378,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 234.0
+margin_top = 206.0
 margin_right = 540.0
-margin_bottom = 248.0
+margin_bottom = 220.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -399,9 +399,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 272.0
+margin_top = 244.0
 margin_right = 540.0
-margin_bottom = 472.0
+margin_bottom = 444.0
 rect_min_size = Vector2( 480, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -439,9 +439,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 496.0
+margin_top = 468.0
 margin_right = 540.0
-margin_bottom = 510.0
+margin_bottom = 482.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -461,9 +461,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 534.0
+margin_top = 506.0
 margin_right = 540.0
-margin_bottom = 834.0
+margin_bottom = 806.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -976,7 +976,7 @@ _sections_unfolded = [ "Dialog" ]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss" to="." method="_on_button_dismiss_pressed"]
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename2" to="." method="_on_button_rename_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename" to="." method="_on_button_rename_pressed"]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_fullXP" to="." method="_on_button_fullXP_pressed"]
 
