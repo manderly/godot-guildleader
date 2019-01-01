@@ -152,8 +152,9 @@ func _target_mob_dies(targetMob, newBattle):
 	
 	for hero in newBattle.heroes:
 		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
-		if (hero.xp > staticData.levelXpData[str(hero.level)]):
-			hero.xp = staticData.levelXpData[str(hero.level)]
+		print(staticData.levelXpData[str(hero.level)])
+		if (hero.xp > staticData.levelXpData[str(hero.level)].total):
+			hero.xp = staticData.levelXpData[str(hero.level)].total
 			encounter.detailedPlayByPlay.append(hero.heroFirstName + " is full xp and ready to train.")
 		else:
 			encounter.detailedPlayByPlay.append(hero.heroFirstName + " got " + str(xp/newBattle.heroes.size()) + " xp!")

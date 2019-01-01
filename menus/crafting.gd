@@ -94,7 +94,7 @@ func _update_hero_skill_display():
 	elif (global.currentMenu == "fletching"):
 		skillNum = tradeskill.hero.skillFletching
 		
-	staffedHeroName.text = tradeskill.hero.heroName
+	staffedHeroName.text = tradeskill.hero.heroFirstName
 	staffedHeroSkill.text = tradeskill.displayName + " skill level: " + str(skillNum)
 	
 	#draw the hero

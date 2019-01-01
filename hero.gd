@@ -176,8 +176,6 @@ func save():
 		"equipment":thisHero.equipment,
 		"headSprite":thisHero.headSprite #armor sprites should be derived from equipment 
 	}
-	print('heroName' + saved_hero_data.heroName)
-	print('baseHp' + String(thisHero.baseHp))
 	#print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
 	
