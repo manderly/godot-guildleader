@@ -182,6 +182,11 @@ func populate_fields():
 	#display perk points to spend 
 	field_perkPoints.text = str(global.selectedHero.perkPoints) + " available"
 		
+	#disable train button if hero is recruited and at max level
+	if (global.selectedHero.recruited && global.selectedHero.level >= global.maxHeroLevel):
+		buttonTrainOrRecruit.set_disabled(true)
+		buttonTrainOrRecruit.text = "Max level"
+		
 	_update_stats()
 	
 func _process(delta):
@@ -273,22 +278,31 @@ func _calc_instant_train_cost():
 	#plus
 	#you don't have to earn any xp so tack on a convenience fee of 
 	#50% of the cost up to this point
-	var timeItWouldTakeToTrainInMinutes = staticData.levelXpData[str(global.selectedHero.level)].trainingTime / 60
-	var tensOfMinutes = timeItWouldTakeToTrainInMinutes / 10
+	
+	#1/1/19 redo: now it just takes the cost from the levelXpData data, for better control over it
+	#var timeItWouldTakeToTrainInMinutes = staticData.levelXpData[str(global.selectedHero.level)].trainingTime / 60
+	#var tensOfMinutes = timeItWouldTakeToTrainInMinutes / 10
 	
 	#now determine how many chrono are added because of hero levels
-	var levelsToChrono = (global.selectedHero.level)
-	var cost = tensOfMinutes + levelsToChrono
+	#var levelsToChrono = (global.selectedHero.level)
+	#var cost = tensOfMinutes + levelsToChrono
 
-	cost += (cost * .25)
-	if (cost < 1):
-		cost = 1
+	#cost += (cost * .25)
+	#if (cost < 1):
+	#	cost = 1
 	
-	cost = int(round(cost))
+	#cost = int(round(cost))
+	
+	var cost = 999
+	if (global.selectedHero.level >= 30):
+		cost = 30
+	else:
+		cost = staticData.levelXpData[str(global.selectedHero.level+1)].chronoCost
+	
 	return cost
 	
 func _on_button_train_pressed():
-	if (global.selectedHero.recruited):
+	if (global.selectedHero.recruited && global.selectedHero.level < global.maxHeroLevel):
 		if (global.selectedHero.staffedTo == "training"):
 			#hero is already in training by whatever means 
 			var inProgress = global.training[global.selectedHero.staffedToID].inProgress

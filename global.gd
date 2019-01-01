@@ -20,6 +20,7 @@ var hardCurrency = 500
 var currentMenu = "main"
 var currentRoomID = ""
 var vaultSpace = 25 #should be a multiple of 5
+var maxHeroLevel = 5
 var guildName = "" 
 
 var cameraPosition = Vector2(-14,2)

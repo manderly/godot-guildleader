@@ -20,12 +20,16 @@ func set_hero_data(data):
 	populate_fields(heroData)
 
 func populate_fields(data):
-	#if (data.level < 20):
 	$VBoxContainer/field_heroName.text = data.heroFirstName #just show first name on buttons
-	#else:
-	#	$VBoxContainer/field_heroName.text = data.heroFirstName + " " + data.heroLastName
 	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
-	$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)].total)
+	
+	if (data.level >= global.maxHeroLevel):
+		$field_xp.text = "Max Level"
+		$ProgressBar.hide()
+	else:
+		$field_xp.text = "XP: " + str(data.xp) + "/" + str(staticData.levelXpData[str(data.level)].total)
+		$ProgressBar.set_value(100 * (data.xp / staticData.levelXpData[str(data.level)].total))
+	
 	if (data.atHome && data.dead):
 		$VBoxContainer/field_available.text = "Dead"
 		if (global.currentMenu != "roster"):
@@ -51,8 +55,13 @@ func populate_fields(data):
 	else:
 		$VBoxContainer/field_available.text = "###BAD STATE"
 		print("Check heroButton.gd line 19 hero state")
+		
+	if (global.currentMenu == "training"):
+		#if we're trying to pick someone to train, disable anyone who is at max level
+		if (data.level >= global.maxHeroLevel):
+			self.set_disabled(true)
 	
-	$ProgressBar.set_value(100 * (data.xp / staticData.levelXpData[str(data.level)].total))
+	
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()

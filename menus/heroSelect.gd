@@ -4,7 +4,6 @@ extends Node2D
 onready var heroSelectDescription = $CenterContainer/VBoxContainer/field_heroSelectDescription
 onready var scrollVBox = $CenterContainer/VBoxContainer/scroll/vbox
 func _ready():
-	print("currentMenu is: " + global.currentMenu)
 	if (global.currentMenu == "alchemy" || 
 			global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "fletching" || 
