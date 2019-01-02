@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://rooms/chronomancy.gd" type="Script" id=1]
 [ext_resource path="res://tiles/main_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://light.png" type="Texture" id=3]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node2D" groups=[
 "ClearOnRestore",
@@ -111,15 +110,6 @@ shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
 _sections_unfolded = [ "Range" ]
 
-[node name="button_inProgress" parent="." index="4" instance=ExtResource( 4 )]
-
-margin_left = 437.0
-margin_top = 9.0
-margin_right = 501.0
-margin_bottom = 73.0
-
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
-
-[connection signal="pressed" from="button_inProgress" to="." method="_on_button_inProgress_pressed"]
 
 

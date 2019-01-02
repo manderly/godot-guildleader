@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://rooms/tailoring.gd" type="Script" id=1]
 [ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=3]
 
 [node name="Node2D" type="Node2D" groups=[
 "ClearOnRestore",
@@ -85,15 +84,6 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
-[node name="button_inProgress" parent="." index="3" instance=ExtResource( 3 )]
-
-margin_left = 403.0
-margin_top = 11.0
-margin_right = 467.0
-margin_bottom = 75.0
-
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
-
-[connection signal="pressed" from="button_inProgress" to="." method="_on_button_inProgress_pressed"]
 
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://rooms/alchemy.gd" type="Script" id=1]
 [ext_resource path="res://tiles/main_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://light.png" type="Texture" id=3]
 [ext_resource path="res://sprites/alchemy/workbench.png" type="Texture" id=4]
 [ext_resource path="res://sprites/alchemy/bookshelf-pots.png" type="Texture" id=5]
-[ext_resource path="res://button_tradeskillInProgress.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D" groups=[
 "ClearOnRestore",
@@ -125,13 +124,6 @@ visible = false
 position = Vector2( 374.854, 3.36652 )
 texture = ExtResource( 5 )
 
-[node name="button_inProgress" parent="." index="6" instance=ExtResource( 6 )]
-
-margin_left = 403.0
-margin_right = 467.0
-
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]
-
-[connection signal="pressed" from="button_inProgress" to="." method="_on_button_inProgress_pressed"]
 
 
