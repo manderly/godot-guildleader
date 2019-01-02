@@ -252,11 +252,14 @@ func _update_stats():
 	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
 	
 func check_name_input(userInput):
+	#this is for SURNAMES
+	#surnames are more flexible than first names
+	#surnames can have spaces, multiple caps, and apostrophes 
 	var regex = RegEx.new()
 	regex.compile("[A-Za-z '`]*")
 	var result = regex.search(userInput)
 	if (result):
-		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
+		$confirm_rename_dialog.set_candidate_name(result.get_string())
 	else:
 		print("no result")
 		

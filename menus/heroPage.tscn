@@ -1,16 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/heroPage.gd" type="Script" id=1]
 [ext_resource path="res://tiles/menus_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
 [ext_resource path="res://menus/button_theme.tres" type="Theme" id=4]
-[ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=5]
-[ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=6]
-[ext_resource path="res://gui/icons/chrono_32.png" type="Texture" id=7]
-[ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=8]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=9]
+[ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=5]
+[ext_resource path="res://gui/icons/chrono_32.png" type="Texture" id=6]
+[ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -128,7 +127,6 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="VBox_Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -241,7 +239,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 82.0
 margin_right = 240.0
-margin_bottom = 170.0
+margin_bottom = 120.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -255,7 +253,6 @@ enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "TRAIN"
-icon = ExtResource( 5 )
 flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
@@ -748,7 +745,7 @@ text = "BUY PERK"
 flat = false
 align = 1
 
-[node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 6 )]
+[node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 5 )]
 
 visible = false
 margin_left = 96.0
@@ -835,7 +832,7 @@ _sections_unfolded = [ "Dialog", "Popup" ]
 [node name="Sprite" type="Sprite" parent="confirm_instant_train" index="3"]
 
 position = Vector2( 140.7, 89.5623 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="confirm_instant_train" index="4"]
 
@@ -865,7 +862,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="finishNow_dialog" parent="." index="5" instance=ExtResource( 8 )]
+[node name="finishNow_dialog" parent="." index="5" instance=ExtResource( 7 )]
 
 visible = false
 margin_left = 115.0
@@ -971,7 +968,7 @@ Add another bedroom to make room for new recruits."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="9" instance=ExtResource( 9 )]
+[node name="button_back" parent="." index="9" instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
 

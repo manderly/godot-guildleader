@@ -50,8 +50,10 @@ func update_hero_preview():
 	draw_hero_scene()
 	
 func check_name_input(userInput):
+	#this is for FIRST NAMES
+	#Rules are more strict here, no punctuation and first letter must be a capital 
 	var regex = RegEx.new()
-	regex.compile("[A-Za-z '`]*")
+	regex.compile("[A-Za-z'`]*")
 	var result = regex.search(userInput)
 	if (result):
 		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
