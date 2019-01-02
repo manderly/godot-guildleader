@@ -29,6 +29,8 @@ func _ready():
 	
 	$confirm_rename_dialog.set_mode("first")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "update_hero_preview")
+	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
+	
 	draw_hero_scene()
 
 func draw_hero_scene():
@@ -40,11 +42,21 @@ func draw_hero_scene():
 	add_child(heroScene)
 	
 func _on_button_rename_pressed():
+	$confirm_rename_dialog.set_mode("first")
 	get_node("confirm_rename_dialog").popup()
 
 func update_hero_preview():
 	heroScene.free()
 	draw_hero_scene()
+	
+func check_name_input(userInput):
+	var regex = RegEx.new()
+	regex.compile("[A-Za-z '`]*")
+	var result = regex.search(userInput)
+	if (result):
+		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
+	else:
+		print("no result")
 	
 func _on_button_cleric_pressed():
 	global.selectedHero.change_class("Cleric")

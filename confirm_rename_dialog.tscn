@@ -22,10 +22,10 @@ size_flags_vertical = 1
 popup_exclusive = false
 window_title = "Rename Hero"
 resizable = false
-dialog_text = "Enter new name"
+dialog_text = "Enter new first name (15 letter limit)"
 dialog_hide_on_ok = true
 script = ExtResource( 1 )
-_sections_unfolded = [ "Dialog", "Rect" ]
+_sections_unfolded = [ "Dialog", "Margin", "Popup", "Rect" ]
 
 [node name="LineEdit" type="LineEdit" parent="." index="3"]
 
@@ -44,12 +44,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 1
 size_flags_horizontal = 1
 size_flags_vertical = 1
+max_length = 15
 focus_mode = 2
 context_menu_enabled = true
 placeholder_alpha = 0.6
-caret_blink = false
+caret_blink = true
 caret_blink_speed = 0.65
 caret_position = 0
+_sections_unfolded = [ "Caret", "Placeholder", "Rect" ]
 
 [connection signal="confirmed" from="." to="." method="_on_confirm_rename_dialog_confirmed"]
 
