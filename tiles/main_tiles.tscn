@@ -40,6 +40,7 @@ position = Vector2( -737.97, -145.613 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 128, 96, 32, 32 )
+_sections_unfolded = [ "Region" ]
 
 [node name="hall_wall_west2" type="Sprite" parent="." index="5"]
 

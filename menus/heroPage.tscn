@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/heroPage.gd" type="Script" id=1]
-[ext_resource path="res://tiles/GuildTiles.tres" type="TileSet" id=2]
-[ext_resource path="res://menus/button_theme.tres" type="Theme" id=3]
-[ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=4]
-[ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=5]
-[ext_resource path="res://gui/icons/chrono_32.png" type="Texture" id=6]
-[ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
+[ext_resource path="res://tiles/menus_tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=3]
+[ext_resource path="res://menus/button_theme.tres" type="Theme" id=4]
+[ext_resource path="res://gui/icons/up_arrow.png" type="Texture" id=5]
+[ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=6]
+[ext_resource path="res://gui/icons/chrono_32.png" type="Texture" id=7]
+[ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
 
@@ -31,7 +32,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 73, 0, 1, 73, 0, 2, 73, 0, 3, 73, 0, 4, 73, 0, 5, 73, 0, 6, 73, 0, 7, 73, 0, 8, 73, 0, 9, 73, 0, 10, 73, 0, 11, 73, 0, 12, 73, 0, 13, 73, 0, 14, 73, 0, 15, 73, 0, 16, 73, 0, 65536, 73, 0, 65537, 73, 0, 65538, 73, 0, 65539, 73, 0, 65540, 73, 0, 65541, 73, 0, 65542, 73, 0, 65543, 73, 0, 65544, 73, 0, 65545, 73, 0, 65546, 73, 0, 65547, 73, 0, 65548, 73, 0, 65549, 73, 0, 65550, 73, 0, 65551, 73, 0, 65552, 73, 0, 131072, 73, 0, 131073, 73, 0, 131074, 73, 0, 131075, 73, 0, 131076, 73, 0, 131077, 73, 0, 131078, 73, 0, 131079, 73, 0, 131080, 73, 0, 131081, 73, 0, 131082, 73, 0, 131083, 73, 0, 131084, 73, 0, 131085, 73, 0, 131086, 73, 0, 131087, 73, 0, 131088, 73, 0, 196608, 73, 0, 196609, 73, 0, 196610, 73, 0, 196611, 73, 0, 196612, 73, 0, 196613, 73, 0, 196614, 73, 0, 196615, 73, 0, 196616, 73, 0, 196617, 73, 0, 196618, 73, 0, 196619, 73, 0, 196620, 73, 0, 196621, 73, 0, 196622, 73, 0, 196623, 73, 0, 196624, 73, 0, 262144, 73, 0, 262145, 73, 0, 262146, 73, 0, 262147, 73, 0, 262148, 73, 0, 262149, 73, 0, 262150, 73, 0, 262151, 73, 0, 262152, 73, 0, 262153, 73, 0, 262154, 73, 0, 262155, 73, 0, 262156, 73, 0, 262157, 73, 0, 262158, 73, 0, 262159, 73, 0, 262160, 73, 0, 327680, 73, 0, 327681, 73, 0, 327682, 73, 0, 327683, 73, 0, 327684, 73, 0, 327685, 73, 0, 327686, 73, 0, 327687, 73, 0, 327688, 73, 0, 327689, 73, 0, 327690, 73, 0, 327691, 73, 0, 327692, 73, 0, 327693, 73, 0, 327694, 73, 0, 327695, 73, 0, 327696, 73, 0, 393216, 73, 0, 393217, 73, 0, 393218, 73, 0, 393219, 73, 0, 393220, 73, 0, 393221, 73, 0, 393222, 73, 0, 393223, 73, 0, 393224, 73, 0, 393225, 73, 0, 393226, 73, 0, 393227, 73, 0, 393228, 73, 0, 393229, 73, 0, 393230, 73, 0, 393231, 73, 0, 393232, 73, 0, 458752, 73, 0, 458753, 73, 0, 458754, 73, 0, 458755, 73, 0, 458756, 73, 0, 458757, 73, 0, 458758, 73, 0, 458759, 73, 0, 458760, 73, 0, 458761, 73, 0, 458762, 73, 0, 458763, 73, 0, 458764, 73, 0, 458765, 73, 0, 458766, 73, 0, 458767, 73, 0, 458768, 73, 0, 524288, 73, 0, 524289, 73, 0, 524290, 73, 0, 524291, 73, 0, 524292, 73, 0, 524293, 73, 0, 524294, 73, 0, 524295, 73, 0, 524296, 73, 0, 524297, 73, 0, 524298, 73, 0, 524299, 73, 0, 524300, 73, 0, 524301, 73, 0, 524302, 73, 0, 524303, 73, 0, 524304, 73, 0, 589824, 73, 0, 589825, 73, 0, 589826, 73, 0, 589827, 73, 0, 589828, 73, 0, 589829, 73, 0, 589830, 73, 0, 589831, 73, 0, 589832, 73, 0, 589833, 73, 0, 589834, 73, 0, 589835, 73, 0, 589836, 73, 0, 589837, 73, 0, 589838, 73, 0, 589839, 73, 0, 589840, 73, 0, 655360, 73, 0, 655361, 73, 0, 655362, 73, 0, 655363, 73, 0, 655364, 73, 0, 655365, 73, 0, 655366, 73, 0, 655367, 73, 0, 655368, 73, 0, 655369, 73, 0, 655370, 73, 0, 655371, 73, 0, 655372, 73, 0, 655373, 73, 0, 655374, 73, 0, 655375, 73, 0, 655376, 73, 0, 720896, 73, 0, 720897, 73, 0, 720898, 73, 0, 720899, 73, 0, 720900, 73, 0, 720901, 73, 0, 720902, 73, 0, 720903, 73, 0, 720904, 73, 0, 720905, 73, 0, 720906, 73, 0, 720907, 73, 0, 720908, 73, 0, 720909, 73, 0, 720910, 73, 0, 720911, 73, 0, 720912, 73, 0, 786432, 73, 0, 786433, 73, 0, 786434, 73, 0, 786435, 73, 0, 786436, 73, 0, 786437, 73, 0, 786438, 73, 0, 786439, 73, 0, 786440, 73, 0, 786441, 73, 0, 786442, 73, 0, 786443, 73, 0, 786444, 73, 0, 786445, 73, 0, 786446, 73, 0, 786447, 73, 0, 786448, 73, 0, 851968, 73, 0, 851969, 73, 0, 851970, 73, 0, 851971, 73, 0, 851972, 73, 0, 851973, 73, 0, 851974, 73, 0, 851975, 73, 0, 851976, 73, 0, 851977, 73, 0, 851978, 73, 0, 851979, 73, 0, 851980, 73, 0, 851981, 73, 0, 851982, 73, 0, 851983, 73, 0, 851984, 73, 0, 917504, 73, 0, 917505, 73, 0, 917506, 73, 0, 917507, 73, 0, 917508, 73, 0, 917509, 73, 0, 917510, 73, 0, 917511, 73, 0, 917512, 73, 0, 917513, 73, 0, 917514, 73, 0, 917515, 73, 0, 917516, 73, 0, 917517, 73, 0, 917518, 73, 0, 917519, 73, 0, 917520, 73, 0, 983040, 73, 0, 983041, 73, 0, 983042, 73, 0, 983043, 73, 0, 983044, 73, 0, 983045, 73, 0, 983046, 73, 0, 983047, 73, 0, 983048, 73, 0, 983049, 73, 0, 983050, 73, 0, 983051, 73, 0, 983052, 73, 0, 983053, 73, 0, 983054, 73, 0, 983055, 73, 0, 983056, 73, 0, 1048576, 73, 0, 1048577, 73, 0, 1048578, 73, 0, 1048579, 73, 0, 1048580, 73, 0, 1048581, 73, 0, 1048582, 73, 0, 1048583, 73, 0, 1048584, 73, 0, 1048585, 73, 0, 1048586, 73, 0, 1048587, 73, 0, 1048588, 73, 0, 1048589, 73, 0, 1048590, 73, 0, 1048591, 73, 0, 1048592, 73, 0, 1114112, 73, 0, 1114113, 73, 0, 1114114, 73, 0, 1114115, 73, 0, 1114116, 73, 0, 1114117, 73, 0, 1114118, 73, 0, 1114119, 73, 0, 1114120, 73, 0, 1114121, 73, 0, 1114122, 73, 0, 1114123, 73, 0, 1114124, 73, 0, 1114125, 73, 0, 1114126, 73, 0, 1114127, 73, 0, 1114128, 73, 0, 1179648, 73, 0, 1179649, 73, 0, 1179650, 73, 0, 1179651, 73, 0, 1179652, 73, 0, 1179653, 73, 0, 1179654, 73, 0, 1179655, 73, 0, 1179656, 73, 0, 1179657, 73, 0, 1179658, 73, 0, 1179659, 73, 0, 1179660, 73, 0, 1179661, 73, 0, 1179662, 73, 0, 1179663, 73, 0, 1179664, 73, 0, 1245184, 73, 0, 1245185, 73, 0, 1245186, 73, 0, 1245187, 73, 0, 1245188, 73, 0, 1245189, 73, 0, 1245190, 73, 0, 1245191, 73, 0, 1245192, 73, 0, 1245193, 73, 0, 1245194, 73, 0, 1245195, 73, 0, 1245196, 73, 0, 1245197, 73, 0, 1245198, 73, 0, 1245199, 73, 0, 1245200, 73, 0, 1310720, 73, 0, 1310721, 73, 0, 1310722, 73, 0, 1310723, 73, 0, 1310724, 73, 0, 1310725, 73, 0, 1310726, 73, 0, 1310727, 73, 0, 1310728, 73, 0, 1310729, 73, 0, 1310730, 73, 0, 1310731, 73, 0, 1310732, 73, 0, 1310733, 73, 0, 1310734, 73, 0, 1310735, 73, 0, 1310736, 73, 0, 1376256, 73, 0, 1376257, 73, 0, 1376258, 73, 0, 1376259, 73, 0, 1376260, 73, 0, 1376261, 73, 0, 1376262, 73, 0, 1376263, 73, 0, 1376264, 73, 0, 1376265, 73, 0, 1376266, 73, 0, 1376267, 73, 0, 1376268, 73, 0, 1376269, 73, 0, 1376270, 73, 0, 1376271, 73, 0, 1376272, 73, 0, 1441792, 73, 0, 1441793, 73, 0, 1441794, 73, 0, 1441795, 73, 0, 1441796, 73, 0, 1441797, 73, 0, 1441798, 73, 0, 1441799, 73, 0, 1441800, 73, 0, 1441801, 73, 0, 1441802, 73, 0, 1441803, 73, 0, 1441804, 73, 0, 1441805, 73, 0, 1441806, 73, 0, 1441807, 73, 0, 1441808, 73, 0, 1507328, 73, 0, 1507329, 73, 0, 1507330, 73, 0, 1507331, 73, 0, 1507332, 73, 0, 1507333, 73, 0, 1507334, 73, 0, 1507335, 73, 0, 1507336, 73, 0, 1507337, 73, 0, 1507338, 73, 0, 1507339, 73, 0, 1507340, 73, 0, 1507341, 73, 0, 1507342, 73, 0, 1507343, 73, 0, 1507344, 73, 0, 1572864, 73, 0, 1572865, 73, 0, 1572866, 73, 0, 1572867, 73, 0, 1572868, 73, 0, 1572869, 73, 0, 1572870, 73, 0, 1572871, 73, 0, 1572872, 73, 0, 1572873, 73, 0, 1572874, 73, 0, 1572875, 73, 0, 1572876, 73, 0, 1572877, 73, 0, 1572878, 73, 0, 1572879, 73, 0, 1572880, 73, 0, 1638400, 73, 0, 1638401, 73, 0, 1638402, 73, 0, 1638403, 73, 0, 1638404, 73, 0, 1638405, 73, 0, 1638406, 73, 0, 1638407, 73, 0, 1638408, 73, 0, 1638409, 73, 0, 1638410, 73, 0, 1638411, 73, 0, 1638412, 73, 0, 1638413, 73, 0, 1638414, 73, 0, 1638415, 73, 0, 1638416, 73, 0, 1703936, 73, 0, 1703937, 73, 0, 1703938, 73, 0, 1703939, 73, 0, 1703940, 73, 0, 1703941, 73, 0, 1703942, 73, 0, 1703943, 73, 0, 1703944, 73, 0, 1703945, 73, 0, 1703946, 73, 0, 1703947, 73, 0, 1703948, 73, 0, 1703949, 73, 0, 1703950, 73, 0, 1703951, 73, 0, 1703952, 73, 0, 1769472, 73, 0, 1769473, 73, 0, 1769474, 73, 0, 1769475, 73, 0, 1769476, 73, 0, 1769477, 73, 0, 1769478, 73, 0, 1769479, 73, 0, 1769480, 73, 0, 1769481, 73, 0, 1769482, 73, 0, 1769483, 73, 0, 1769484, 73, 0, 1769485, 73, 0, 1769486, 73, 0, 1769487, 73, 0, 1769488, 73, 0, 1835008, 73, 0, 1835009, 73, 0, 1835010, 73, 0, 1835011, 73, 0, 1835012, 73, 0, 1835013, 73, 0, 1835014, 73, 0, 1835015, 73, 0, 1835016, 73, 0, 1835017, 73, 0, 1835018, 73, 0, 1835019, 73, 0, 1835020, 73, 0, 1835021, 73, 0, 1835022, 73, 0, 1835023, 73, 0, 1835024, 73, 0, 1900544, 73, 0, 1900545, 73, 0, 1900546, 73, 0, 1900547, 73, 0, 1900548, 73, 0, 1900549, 73, 0, 1900550, 73, 0, 1900551, 73, 0, 1900552, 73, 0, 1900553, 73, 0, 1900554, 73, 0, 1900555, 73, 0, 1900556, 73, 0, 1900557, 73, 0, 1900558, 73, 0, 1900559, 73, 0, 1900560, 73, 0 )
+tile_data = PoolIntArray( 0, 27, 0, 5, 27, 0, 10, 27, 0, 12, 13, 0, 13, 15, 0, 15, 27, 0, 262144, 27, 0, 262149, 27, 0, 262154, 27, 0, 262159, 27, 0, 327687, 14, 0, 524288, 27, 0, 524293, 27, 0, 524298, 27, 0, 524303, 27, 0, 589824, 73, 0, 655360, 73, 0, 720896, 73, 0, 786432, 27, 0, 786437, 27, 0, 786442, 27, 0, 786447, 27, 0, 851968, 73, 0, 851984, 73, 0, 917504, 73, 0, 917520, 73, 0, 983040, 73, 0, 983056, 73, 0, 1048576, 27, 0, 1048577, 73, 0, 1048578, 73, 0, 1048579, 73, 0, 1048581, 27, 0, 1048586, 27, 0, 1048587, 73, 0, 1048588, 73, 0, 1048589, 73, 0, 1048590, 73, 0, 1048591, 27, 0, 1048592, 73, 0, 1114112, 73, 0, 1114113, 73, 0, 1114114, 73, 0, 1114115, 73, 0, 1114116, 73, 0, 1114117, 73, 0, 1114118, 73, 0, 1114119, 73, 0, 1114120, 73, 0, 1114121, 73, 0, 1114122, 73, 0, 1114123, 73, 0, 1114124, 73, 0, 1114125, 73, 0, 1114126, 73, 0, 1114127, 73, 0, 1114128, 73, 0, 1179648, 73, 0, 1179649, 73, 0, 1179650, 73, 0, 1179651, 73, 0, 1179652, 73, 0, 1179653, 73, 0, 1179654, 73, 0, 1179655, 73, 0, 1179656, 73, 0, 1179657, 73, 0, 1179658, 73, 0, 1179659, 73, 0, 1179660, 73, 0, 1179661, 73, 0, 1179662, 73, 0, 1179663, 73, 0, 1179664, 73, 0, 1245184, 73, 0, 1245185, 73, 0, 1245186, 73, 0, 1245187, 73, 0, 1245188, 73, 0, 1245189, 73, 0, 1245190, 73, 0, 1245191, 73, 0, 1245192, 73, 0, 1245193, 73, 0, 1245194, 73, 0, 1245195, 73, 0, 1245196, 73, 0, 1245197, 73, 0, 1245198, 73, 0, 1245199, 73, 0, 1245200, 73, 0, 1310720, 27, 0, 1310721, 73, 0, 1310722, 73, 0, 1310723, 73, 0, 1310724, 73, 0, 1310725, 27, 0, 1310726, 73, 0, 1310727, 73, 0, 1310728, 73, 0, 1310729, 73, 0, 1310730, 27, 0, 1310731, 73, 0, 1310732, 73, 0, 1310733, 73, 0, 1310734, 73, 0, 1310735, 27, 0, 1310736, 73, 0, 1376256, 73, 0, 1376257, 73, 0, 1376258, 73, 0, 1376259, 73, 0, 1376260, 73, 0, 1376261, 73, 0, 1376262, 73, 0, 1376263, 73, 0, 1376264, 73, 0, 1376265, 73, 0, 1376266, 73, 0, 1376267, 73, 0, 1376268, 73, 0, 1376269, 73, 0, 1376270, 73, 0, 1376271, 73, 0, 1376272, 73, 0, 1441792, 73, 0, 1441793, 73, 0, 1441794, 73, 0, 1441795, 73, 0, 1441796, 73, 0, 1441797, 73, 0, 1441798, 73, 0, 1441799, 73, 0, 1441800, 73, 0, 1441801, 73, 0, 1441802, 73, 0, 1441803, 73, 0, 1441804, 73, 0, 1441805, 73, 0, 1441806, 73, 0, 1441807, 73, 0, 1441808, 73, 0, 1507328, 73, 0, 1507329, 73, 0, 1507330, 73, 0, 1507331, 73, 0, 1507332, 73, 0, 1507333, 73, 0, 1507334, 73, 0, 1507335, 73, 0, 1507336, 73, 0, 1507337, 73, 0, 1507338, 73, 0, 1507339, 73, 0, 1507340, 73, 0, 1507341, 73, 0, 1507342, 73, 0, 1507343, 73, 0, 1507344, 73, 0, 1572864, 27, 0, 1572865, 73, 0, 1572866, 73, 0, 1572867, 73, 0, 1572868, 73, 0, 1572869, 27, 0, 1572870, 73, 0, 1572871, 73, 0, 1572872, 73, 0, 1572873, 73, 0, 1572874, 27, 0, 1572875, 73, 0, 1572876, 73, 0, 1572877, 73, 0, 1572878, 73, 0, 1572879, 27, 0, 1572880, 73, 0, 1638400, 73, 0, 1638401, 73, 0, 1638402, 73, 0, 1638403, 73, 0, 1638404, 73, 0, 1638405, 73, 0, 1638406, 73, 0, 1638407, 73, 0, 1638408, 73, 0, 1638409, 73, 0, 1638410, 73, 0, 1638411, 73, 0, 1638412, 73, 0, 1638413, 73, 0, 1638414, 73, 0, 1638415, 73, 0, 1638416, 73, 0, 1703936, 73, 0, 1703937, 73, 0, 1703938, 73, 0, 1703939, 73, 0, 1703940, 73, 0, 1703941, 73, 0, 1703942, 73, 0, 1703943, 73, 0, 1703944, 73, 0, 1703945, 73, 0, 1703946, 73, 0, 1703947, 73, 0, 1703948, 73, 0, 1703949, 73, 0, 1703950, 73, 0, 1703951, 73, 0, 1703952, 73, 0, 1769472, 73, 0, 1769473, 73, 0, 1769474, 73, 0, 1769475, 73, 0, 1769476, 73, 0, 1769477, 73, 0, 1769478, 73, 0, 1769479, 73, 0, 1769480, 73, 0, 1769481, 73, 0, 1769482, 73, 0, 1769483, 73, 0, 1769484, 73, 0, 1769485, 73, 0, 1769486, 73, 0, 1769487, 73, 0, 1769488, 73, 0, 1835008, 27, 0, 1835009, 73, 0, 1835010, 73, 0, 1835011, 73, 0, 1835012, 73, 0, 1835013, 27, 0, 1835014, 73, 0, 1835015, 73, 0, 1835016, 73, 0, 1835017, 73, 0, 1835018, 27, 0, 1835019, 73, 0, 1835020, 73, 0, 1835021, 73, 0, 1835022, 73, 0, 1835023, 27, 0, 1835024, 73, 0, 1900544, 73, 0, 1900545, 73, 0, 1900546, 73, 0, 1900547, 73, 0, 1900548, 73, 0, 1900549, 73, 0, 1900550, 73, 0, 1900551, 73, 0, 1900552, 73, 0, 1900553, 73, 0, 1900554, 73, 0, 1900555, 73, 0, 1900556, 73, 0, 1900557, 73, 0, 1900558, 73, 0, 1900559, 73, 0, 1900560, 73, 0 )
 _sections_unfolded = [ "Cell" ]
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="1"]
@@ -49,8 +50,9 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 3 )
 use_top_left = false
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "Theme" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" index="0"]
 
@@ -58,9 +60,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 18.0
 margin_right = 540.0
-margin_bottom = 824.0
+margin_bottom = 866.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -96,7 +97,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 30.0
 margin_right = 540.0
-margin_bottom = 182.0
+margin_bottom = 242.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -113,9 +114,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 54.0
-margin_right = 124.0
-margin_bottom = 152.0
+margin_left = 30.0
+margin_right = 100.0
+margin_bottom = 212.0
 rect_min_size = Vector2( 70, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -127,13 +128,15 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="VBox_Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero" index="1"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 144.0
-margin_right = 347.0
-margin_bottom = 152.0
+margin_left = 120.0
+margin_right = 360.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 240, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -142,7 +145,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_constants/separation = 6
 alignment = 0
-_sections_unfolded = [ "custom_constants" ]
+_sections_unfolded = [ "Rect", "custom_constants" ]
 
 [node name="field_heroName" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="0"]
 
@@ -150,7 +153,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 203.0
+margin_right = 240.0
 margin_bottom = 14.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -171,7 +174,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 20.0
-margin_right = 203.0
+margin_right = 240.0
 margin_bottom = 34.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -192,7 +195,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 40.0
-margin_right = 203.0
+margin_right = 240.0
 margin_bottom = 54.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -213,7 +216,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 60.0
-margin_right = 203.0
+margin_right = 240.0
 margin_bottom = 76.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -237,8 +240,8 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 82.0
-margin_right = 203.0
-margin_bottom = 152.0
+margin_right = 240.0
+margin_bottom = 170.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -246,13 +249,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = ExtResource( 3 )
+theme = ExtResource( 4 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "TRAIN"
-icon = ExtResource( 4 )
+icon = ExtResource( 5 )
 flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
@@ -263,9 +266,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 367.0
-margin_right = 485.0
-margin_bottom = 152.0
+margin_left = 380.0
+margin_right = 510.0
+margin_bottom = 212.0
 rect_min_size = Vector2( 80, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -283,8 +286,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 118.0
-margin_bottom = 20.0
+margin_right = 130.0
+margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -306,9 +309,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 40.0
-margin_right = 118.0
-margin_bottom = 60.0
+margin_top = 58.0
+margin_right = 130.0
+margin_bottom = 96.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -330,9 +333,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 80.0
-margin_right = 118.0
-margin_bottom = 100.0
+margin_top = 116.0
+margin_right = 130.0
+margin_bottom = 154.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -354,9 +357,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 120.0
-margin_right = 118.0
-margin_bottom = 140.0
+margin_top = 174.0
+margin_right = 130.0
+margin_bottom = 212.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -378,9 +381,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 206.0
+margin_top = 266.0
 margin_right = 540.0
-margin_bottom = 220.0
+margin_bottom = 280.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -399,9 +402,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 244.0
+margin_top = 304.0
 margin_right = 540.0
-margin_bottom = 444.0
+margin_bottom = 504.0
 rect_min_size = Vector2( 480, 200 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -439,9 +442,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 468.0
+margin_top = 528.0
 margin_right = 540.0
-margin_bottom = 482.0
+margin_bottom = 542.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -461,9 +464,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 506.0
+margin_top = 566.0
 margin_right = 540.0
-margin_bottom = 806.0
+margin_bottom = 866.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -745,7 +748,7 @@ text = "BUY PERK"
 flat = false
 align = 1
 
-[node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 5 )]
+[node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 6 )]
 
 visible = false
 margin_left = 96.0
@@ -832,7 +835,7 @@ _sections_unfolded = [ "Dialog", "Popup" ]
 [node name="Sprite" type="Sprite" parent="confirm_instant_train" index="3"]
 
 position = Vector2( 140.7, 89.5623 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="confirm_instant_train" index="4"]
 
@@ -862,7 +865,7 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 
-[node name="finishNow_dialog" parent="." index="5" instance=ExtResource( 7 )]
+[node name="finishNow_dialog" parent="." index="5" instance=ExtResource( 8 )]
 
 visible = false
 margin_left = 115.0
@@ -968,7 +971,7 @@ Add another bedroom to make room for new recruits."
 dialog_hide_on_ok = true
 _sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="9" instance=ExtResource( 8 )]
+[node name="button_back" parent="." index="9" instance=ExtResource( 9 )]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
 

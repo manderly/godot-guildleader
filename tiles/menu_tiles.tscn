@@ -1,0 +1,231 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://tiles/tiles_menus.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="paper_nw" type="Sprite" parent="." index="0"]
+
+position = Vector2( 20.226, 23.3939 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_north1" type="Sprite" parent="." index="1"]
+
+position = Vector2( 60.9217, 23.6376 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_north2" type="Sprite" parent="." index="2"]
+
+position = Vector2( 101.861, 22.6629 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_ne" type="Sprite" parent="." index="3"]
+
+position = Vector2( 145.968, 20.4697 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_west1" type="Sprite" parent="." index="4"]
+
+position = Vector2( 19.4949, 60.4343 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_east1" type="Sprite" parent="." index="5"]
+
+position = Vector2( 145.968, 61.409 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_east2" type="Sprite" parent="." index="6"]
+
+position = Vector2( 145.237, 100.155 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 64, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_se" type="Sprite" parent="." index="7"]
+
+position = Vector2( 144.75, 140.607 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 96, 96, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_south2" type="Sprite" parent="." index="8"]
+
+position = Vector2( 103.811, 140.364 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 96, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_south1" type="Sprite" parent="." index="9"]
+
+position = Vector2( 63.8459, 139.389 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 96, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_middle1" type="Sprite" parent="." index="10"]
+
+position = Vector2( 61.1653, 62.3838 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_west2" type="Sprite" parent="." index="11"]
+
+position = Vector2( 20.7134, 99.6678 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 64, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="paper_sw" type="Sprite" parent="." index="12"]
+
+position = Vector2( 20.226, 139.632 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 96, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="wood1" type="Sprite" parent="." index="13"]
+
+position = Vector2( 211.276, 20.9571 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="wood2" type="Sprite" parent="." index="14"]
+
+position = Vector2( 210.789, 59.9469 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="wood3" type="Sprite" parent="." index="15"]
+
+position = Vector2( 211.276, 103.567 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 64, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="wood4" type="Sprite" parent="." index="16"]
+
+position = Vector2( 211.276, 142.313 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 96, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="wood_big" type="Sprite" parent="." index="17"]
+
+position = Vector2( 343.842, 146.943 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 160, 160, 128 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_nw" type="Sprite" parent="." index="18"]
+
+position = Vector2( 278.534, 18.7639 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_sw" type="Sprite" parent="." index="19"]
+
+position = Vector2( 278.047, 59.9469 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 160, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_north1" type="Sprite" parent="." index="20"]
+
+position = Vector2( 318.011, 19.7386 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_south1" type="Sprite" parent="." index="21"]
+
+position = Vector2( 318.011, 57.0227 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 192, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_south2" type="Sprite" parent="." index="22"]
+
+position = Vector2( 357.001, 57.7537 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_south3" type="Sprite" parent="." index="23"]
+
+position = Vector2( 397.697, 57.7537 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_se" type="Sprite" parent="." index="24"]
+
+position = Vector2( 438.392, 56.5353 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 32, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_north2" type="Sprite" parent="." index="25"]
+
+position = Vector2( 357.488, 19.7386 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 224, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_north3" type="Sprite" parent="." index="26"]
+
+position = Vector2( 397.697, 20.226 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 256, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+[node name="titleBox_ne" type="Sprite" parent="." index="27"]
+
+position = Vector2( 439.123, 19.4949 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 0, 32, 32 )
+_sections_unfolded = [ "Offset", "Region" ]
+
+
