@@ -57,6 +57,7 @@ func _ready():
 	
 	$confirm_rename_dialog.set_mode("last")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
+	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
 	
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
@@ -144,7 +145,7 @@ func _ready():
 	populate_fields()
 	
 func populate_fields():
-	if (global.selectedHero.level < 20):
+	if (global.selectedHero.level < global.surnameLevel):
 		buttonRename.set_disabled(true)
 		label_heroName.text = global.selectedHero.heroFirstName
 	else:
@@ -250,6 +251,15 @@ func _update_stats():
 	displayGroupBonus._update_fields("Group Bonus", global.selectedHero.groupBonus)
 	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
 	
+func check_name_input(userInput):
+	var regex = RegEx.new()
+	regex.compile("[A-Za-z '`]*")
+	var result = regex.search(userInput)
+	if (result):
+		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
+	else:
+		print("no result")
+		
 func _calc_finish_now_cost():
 	#Business logic: 
 	#1 chrono for every 10 mins of time remaining with a minimum of 1 chrono 

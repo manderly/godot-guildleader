@@ -32,7 +32,7 @@ func _ready():
 			_start_idle_timer()
 	
 	if (showName):
-		if (level < 20):
+		if (level < global.surnameLevel):
 			$field_name.text = heroFirstName
 		else:
 			$field_name.text = heroFirstName + " " + heroLastName
