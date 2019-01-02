@@ -235,7 +235,7 @@ func draw_heroes():
 func draw_rooms():
 	#the room data is kept in global.rooms 
 	#use that data to draw the instances into main.tscn 
-	var roomX = -1
+	var roomX = 0
 	var roomY = 0 #11 #43
 	for i in range(global.rooms.size()):
 		#rooms are different from heroes
