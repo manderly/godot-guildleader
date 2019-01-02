@@ -46,7 +46,7 @@ func _input(event):
 		isTouched = false
 
 func _ready():
-	var newCoord = Vector2(X_OFFSET, get_offset().y)
+	var newCoord = Vector2(X_OFFSET, global.cameraPosition.y)
 	global.cameraPosition = newCoord
 	
 func _process(delta): #: (delta float) -> void
