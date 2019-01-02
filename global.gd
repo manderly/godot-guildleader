@@ -21,7 +21,7 @@ var currentMenu = "main"
 var currentRoomID = ""
 var vaultSpace = 25 #should be a multiple of 5
 var maxHeroLevel = 30
-var surnameLevel = 3
+var surnameLevel = 15
 var guildName = "" 
 
 var cameraPosition = Vector2(-14,2)
