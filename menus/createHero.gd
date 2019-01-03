@@ -2,6 +2,7 @@ extends Node2D
 #createHero.gd
 
 var heroGenerator = load("res://heroGenerator.gd").new()
+var nameGenerator = load("res://nameGenerator.gd").new()
 var heroScene = null
 
 var allHumanHeads = []
@@ -100,5 +101,9 @@ func _on_button_nextHead_pressed():
 	global.selectedHero.change_head(allHumanHeads[headIndex])
 	update_hero_preview()
 
+func _on_button_randomName_pressed():
+	global.selectedHero.heroFirstName = nameGenerator.generateFirst("any")
+	update_hero_preview()
+	
 func _on_button_createHero_pressed():
 	get_tree().change_scene("res://main.tscn")

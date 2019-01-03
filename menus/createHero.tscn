@@ -5,7 +5,7 @@
 [ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://createHero_classButtonGroup.tres" type="ButtonGroup" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -126,7 +126,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 424.0
-margin_right = 488.0
+margin_right = 530.0
 margin_bottom = 120.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -142,7 +142,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 64.0
+margin_right = 106.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -155,7 +155,32 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "Rename"
+text = "Enter Name"
+flat = false
+align = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="button_randomName" type="Button" parent="VBoxContainer/HBoxContainer2/vbox_right" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 24.0
+margin_right = 106.0
+margin_bottom = 44.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Random Name"
 flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
@@ -413,6 +438,8 @@ flat = false
 align = 1
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/vbox_right/button_rename" to="." method="_on_button_rename_pressed"]
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/vbox_right/button_randomName" to="." method="_on_button_randomName_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/button_prevHead" to="." method="_on_button_prevHead_pressed"]
 

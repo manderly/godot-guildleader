@@ -263,6 +263,11 @@ func check_name_input(userInput):
 	else:
 		print("no result")
 		
+func random_last_name():
+	var candidateName = nameGenerator.generateLast(global.selectedHero.heroClass)
+	#$LineEdit.text = candidateName
+
+		
 func _calc_finish_now_cost():
 	#Business logic: 
 	#1 chrono for every 10 mins of time remaining with a minimum of 1 chrono 

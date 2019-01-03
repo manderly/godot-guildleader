@@ -30,3 +30,4 @@ func _on_confirm_rename_dialog_confirmed():
 	
 	#send "redraw hero name" signal so createHero and heroPage know to update their fields
 	emit_signal("redrawHeroName")
+

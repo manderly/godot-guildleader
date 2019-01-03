@@ -10,6 +10,17 @@ static func generateFirst(gender):
 	#get a first name (gender-specific)
 	var firstName = "DEFAULTFIRST"
 	var firstRand = null
+	
+	#since this thing expects a gender, we need to make it "genderless"
+	#for the random name button used in Create Hero
+	#simulate it by picking a random gender each time we pick a random name 
+	if (gender == "any"):
+		var randomGenderNum = round(rand_range(0,1))
+		if (randomGenderNum == 0):
+			gender = "female"
+		else:
+			gender = "male"
+		
 	#todo: expand to take race into account (human, elf, etc)
 	if (gender == "female"):
 		firstRand = round(rand_range(0, names.humanFemale.size() - 1))
@@ -17,8 +28,7 @@ static func generateFirst(gender):
 	elif (gender == "male"):
 		firstRand = round(rand_range(0, names.humanMale.size() - 1))
 		firstName = names.humanMale[firstRand]
-
-	#var completeName = firstName + space + lastName
+		
 	return firstName
 	
 static func generateLast(heroClass):
