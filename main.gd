@@ -143,7 +143,6 @@ func _ready():
 	
 func draw_HUD():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
-	print("global.softCurrency should say: " + str(global.softCurrency))
 	$screen/field_guildName.text = global.guildName + " Guild Hall"
 	
 func _save_hero_locations():
@@ -287,8 +286,6 @@ func draw_rooms():
 				roomY -= 224 #192 #224 #for placing the taller-than-a-room top edge piece
 			else:
 				roomY -= 192 #160
-				
-			print ("mainScreenTop" + str(global.mainScreenTop))
 			
 	#place the "add a room" button above the last placed piece
 	$screen/button_addRoom.set_position(Vector2(150, roomY + 232))
@@ -433,7 +430,7 @@ func load_game():
 		global.activeCampData[key].heroes = [] #.empty() leaves two kinematic bodies in the array
 					
 	for hero in global.guildRoster:
-		print(hero.heroFirstName + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
+		#print(hero.heroFirstName + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
 		
 		if (hero.staffedTo == "blacksmithing"):
 			global.tradeskills["blacksmithing"].hero = hero

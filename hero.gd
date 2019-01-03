@@ -133,7 +133,7 @@ func save():
 			if (heroID == hero.heroID):
 				thisHero = hero
 			
-	print('rosterHero ID: ' + String(thisHero.heroID))
+	#print('rosterHero ID: ' + String(thisHero.heroID))
 			
 	print("Saving this hero! " + heroFirstName + " level " + str(level) + " " + heroClass)
 	var saved_hero_data = {
@@ -219,7 +219,6 @@ func _stop_walking():
 	$idleTimer.start()
 	
 func set_instance_data(data):
-	print(data)
 	heroFirstName = data.heroFirstName
 	heroLastName = data.heroLastName
 	level = data.level
@@ -386,7 +385,6 @@ func give_gear_loadout(loadoutIDStr):
 	clear_all_items()
 	#get the loadout from staticData
 	var loadout = staticData.loadouts[loadoutIDStr]
-	print(loadout)
 	#iterate through object and give each item to the hero
 	for key in loadout.keys():
 		if (key == "loadoutId" || key == "unknown"): 

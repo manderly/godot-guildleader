@@ -72,7 +72,7 @@ static func generateLast(heroClass):
 
 static func generateGuildName():
 	var guildNameRand = round(rand_range(0, guildNames.size() - 1))
-	print(guildNameRand)
+	#print(guildNameRand)
 	var completeGuildName = guildNames[guildNameRand]
 	return completeGuildName
 	
