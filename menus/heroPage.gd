@@ -262,10 +262,6 @@ func check_name_input(userInput):
 		$confirm_rename_dialog.set_candidate_name(result.get_string())
 	else:
 		print("no result")
-		
-func random_last_name():
-	var candidateName = nameGenerator.generateLast(global.selectedHero.heroClass)
-	#$LineEdit.text = candidateName
 
 		
 func _calc_finish_now_cost():
