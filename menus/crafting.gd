@@ -68,7 +68,7 @@ func _ready():
 		recipeButton.set_crafter_skill_level(tradeskill.hero.skillBlacksmithing) #todo: fix 
 		recipeButton.set_recipe_data(tradeskill.recipes[i])
 		recipeButton.set_button_group(recipeButtonGroup)
-		recipeButton.connect("updateRecipe", self, "_update_ingredients")
+		recipeButton.connect("updateRecipe", self, "_draw_ingredients_and_results")
 		scrollBox.add_child(recipeButton)
 	
 	if (tradeskill.currentlyCrafting.endTime > -1):
@@ -76,8 +76,13 @@ func _ready():
 		if (currentTime >= tradeskill.currentlyCrafting.endTime):
 			tradeskill.readyToCollect = true
 			
-	_update_ingredients()
+	_draw_ingredients_and_results()
 	_update_hero_skill_display()
+	
+func _draw_ingredients_and_results():
+	_update_ingredients()
+	_update_results_area()
+
 	
 func _update_hero_skill_display():
 	var skillNum = -1
@@ -179,13 +184,12 @@ func _update_ingredients():
 			ingredient4Display._set_red()
 	else:
 		ingredient4Display._clear_fields()
-		
-	#results area
+
+func _update_results_area():
+	tradeskill = global.tradeskills[global.currentMenu]	
+
 	if (!tradeskill.inProgress && !tradeskill.readyToCollect):
 		#not crafting anything (not inProgress), just browsng
-		
-	
-		#if (recipe.ingredientWildcard):
 		if (recipe.type == "upgrade"):
 			nowCrafting.text = "Choose an item to upgrade: "
 			#this recipe requires the player to "choose" the result item 
@@ -221,7 +225,7 @@ func _update_ingredients():
 				
 				#wildcard operates as normal, result shows the chrono 
 				itemBoxConversionWildcard._set_info_popup_buttons(true, false, "Return to vault")
-				itemBoxConversionWildcard._render_tradeskill(global.tradeskills[global.currentMenu].wildcardItemOnDeck)
+				itemBoxConversionWildcard._render_tradeskill(tradeskill.wildcardItemOnDeck)
 			
 			else:
 				nowCrafting.text = "Pick an item to use in this recipe: "
@@ -245,22 +249,28 @@ func _update_ingredients():
 			hasWildcardIngredient = false
 			resultItemBox._render_tradeskill(staticData.items[str(recipe.result)])
 		
-	elif (tradeskill.inProgress && !tradeskill.readyToCollect || tradeskill.inProgress && tradeskill.readyToCollect):
+	elif (tradeskill.inProgress): #whether ready to collect or not 
 		labelChoose.hide()
 		labelComputed.hide()
 		
-		var itemName = tradeskill.currentlyCrafting.name
-		resultItemBox._render_tradeskill(staticData.items[itemName])
+		print(tradeskill.currentlyCrafting)
 		
+		var itemName = tradeskill.currentlyCrafting.name
+	
 		if (tradeskill.currentlyCrafting.moddingAnItem):
-			nowCrafting.text = "Now Crafting: Improved " + itemName
+			nowCrafting.text = "Now crafting: Improved " + itemName
 			labelComputed.show()
 			labelComputed.text = "+" +str(tradeskill.currentlyCrafting.statIncrease) + " " + str(tradeskill.currentlyCrafting.statImproved)
 		elif (tradeskill.currentlyCrafting.conversion):
 			nowCrafting.text = "Now producing: " + itemName
+			#retain memory of original item (so we can show it)
+			#and produced item (so we can show it, too)
+			itemBoxConversionWildcardChooseLabel.hide()
+			itemBoxConversionWildcard._render_tradeskill(staticData.items[str(tradeskill.currentlyCrafting.wildcardItem.name)])
+			itemBoxConversionResult._render_tradeskill(staticData.items[str(tradeskill.currentlyCrafting.name)])
 		else:
-			nowCrafting.text = "Now Crafting: " + itemName
-		
+			nowCrafting.text = "Now crafting: " + itemName
+			resultItemBox._render_tradeskill(staticData.items[itemName])
 			
 func _process(delta):
 	#Displays how much time is left on the active recipe 
@@ -335,7 +345,6 @@ func tradeskillItem_callback():
 			util.give_item_guild(tradeskill.currentlyCrafting.name)
 
 	progressBar.set_value(0)
-	#tradeskill.timer.stop()
 	tradeskill.wildcardItemOnDeck = null
 	tradeskill.inProgress = false
 	tradeskill.readyToCollect = false
@@ -349,11 +358,7 @@ func tradeskillItem_callback():
         "totalTimeToFinish":"",
         "endTime":-1
     }
-	#tradeskill.currentlyCrafting.moddingAnItem = false
-	#tradeskill.currentlyCrafting.wildcardItem = null
-	#tradeskill.currentlyCrafting.statImproved = null
-	#tradeskill.currentlyCrafting.statIncrease = null
-	_update_ingredients()
+	_draw_ingredients_and_results()
 	
 func _ingredient_check():
 	var readyToCombine = true
