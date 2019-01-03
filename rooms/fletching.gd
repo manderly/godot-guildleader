@@ -25,12 +25,14 @@ func _on_button_staffCraft_pressed():
 		get_tree().change_scene("res://menus/crafting.tscn")
 
 func _process(delta):
-	if (OS.get_unix_time() > global.tradeskills["fletching"].currentlyCrafting.endTime):
-		global.tradeskills["fletching"].readyToCollect = true
-		
-	if (global.tradeskills["fletching"].inProgress && !global.tradeskills["fletching"].readyToCollect):
-		$button_staffCraft.text = util.format_time(global.tradeskills["fletching"].currentlyCrafting.endTime - OS.get_unix_time())
-	elif (global.tradeskills["fletching"].inProgress && global.tradeskills["fletching"].readyToCollect):
+	var tradeskill = global.tradeskills["fletching"]
+	
+	if (tradeskill.inProgress && !tradeskill.readyToCollect):
+		if (OS.get_unix_time() > tradeskill.currentlyCrafting.endTime):
+			tradeskill.readyToCollect = true
+		else:
+			$button_staffCraft.text = util.format_time(tradeskill.currentlyCrafting.endTime - OS.get_unix_time())
+	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_staffCraft.text = "DONE"
 
 func _on_button_inProgress_pressed():

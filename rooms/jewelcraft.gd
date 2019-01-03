@@ -25,12 +25,14 @@ func _on_button_staffCraft_pressed():
 		get_tree().change_scene("res://menus/crafting.tscn")
 
 func _process(delta):
-	if (OS.get_unix_time() > global.tradeskills["jewelcraft"].currentlyCrafting.endTime):
-		global.tradeskills["jewelcraft"].readyToCollect = true
-		
-	if (global.tradeskills["jewelcraft"].inProgress && !global.tradeskills["jewelcraft"].readyToCollect):
-		$button_staffCraft.text = util.format_time(global.tradeskills["jewelcraft"].currentlyCrafting.endTime - OS.get_unix_time())
-	elif (global.tradeskills["jewelcraft"].inProgress && global.tradeskills["jewelcraft"].readyToCollect):
+	var tradeskill = global.tradeskills["jewelcraft"]
+	
+	if (tradeskill.inProgress && !tradeskill.readyToCollect):
+		if (OS.get_unix_time() > tradeskill.currentlyCrafting.endTime):
+			tradeskill.readyToCollect = true
+		else:
+			$button_staffCraft.text = util.format_time(tradeskill.currentlyCrafting.endTime - OS.get_unix_time())
+	elif (tradeskill.inProgress && tradeskill.readyToCollect):
 		$button_staffCraft.text = "DONE"
 
 func _on_button_inProgress_pressed():
