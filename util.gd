@@ -115,3 +115,12 @@ func give_quest(questID):
 	var newQuestInstance = staticData.quests[questID].duplicate()
 	global.activeQuests.append(newQuestInstance)
 	
+func calc_instant_train_cost():	
+	#1/1/19 redo: now it just takes the cost from the levelXpData data, for better control over it
+	var cost = 999
+	if (global.selectedHero.level >= 30):
+		cost = 30
+	else:
+		cost = staticData.levelXpData[str(global.selectedHero.level+1)].chronoCost
+	
+	return cost

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/heroSelect.gd" type="Script" id=1]
 [ext_resource path="res://tiles/menus_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/icons/chrono.png" type="Texture" id=4]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -28,6 +29,9 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 27, 0, 5, 27, 0, 10, 27, 0, 15, 27, 0, 262144, 27, 0, 262149, 27, 0, 262154, 27, 0, 262159, 27, 0, 524288, 27, 0, 524293, 27, 0, 524298, 27, 0, 524303, 27, 0, 786432, 27, 0, 786437, 27, 0, 786442, 27, 0, 786447, 27, 0, 1048576, 27, 0, 1048581, 27, 0, 1048586, 27, 0, 1048591, 27, 0, 1310720, 27, 0, 1310725, 27, 0, 1310730, 27, 0, 1310735, 27, 0, 1572864, 27, 0, 1572869, 27, 0, 1572874, 27, 0, 1572879, 27, 0, 1835008, 27, 0, 1835013, 27, 0, 1835018, 27, 0, 1835023, 27, 0 )
 _sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="1"]
 
@@ -165,6 +169,66 @@ __meta__ = {
 
 [node name="button_back" parent="." index="2" instance=ExtResource( 3 )]
 
+[node name="rapid_train_dialog" type="ConfirmationDialog" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 72.0
+margin_top = 96.0
+margin_right = 472.0
+margin_bottom = 306.0
+rect_min_size = Vector2( 400, 140 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+popup_exclusive = false
+window_title = "Please Confirm..."
+resizable = false
+dialog_hide_on_ok = true
+
+[node name="Sprite" type="Sprite" parent="rapid_train_dialog" index="3"]
+
+position = Vector2( 193.817, 132.708 )
+texture = ExtResource( 4 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="rapid_train_dialog" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 392.0
+margin_bottom = 174.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = ""
+scroll_active = true
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+__meta__ = {
+"_edit_lock_": true
+}
+
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
+
+[connection signal="confirmed" from="rapid_train_dialog" to="." method="_on_rapid_train_dialog_confirmed"]
 
 

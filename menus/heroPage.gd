@@ -283,38 +283,6 @@ func _calc_finish_now_cost():
 		cost = 1
 	return cost
 	
-func _calc_instant_train_cost():
-	#business logic:
-	#it's basically like using "finish now" except with a full timer
-	#get the full time it would take to train to next level
-	#plus
-	#1 chrono for every 2 levels the hero has 
-	#plus
-	#you don't have to earn any xp so tack on a convenience fee of 
-	#50% of the cost up to this point
-	
-	#1/1/19 redo: now it just takes the cost from the levelXpData data, for better control over it
-	#var timeItWouldTakeToTrainInMinutes = staticData.levelXpData[str(global.selectedHero.level)].trainingTime / 60
-	#var tensOfMinutes = timeItWouldTakeToTrainInMinutes / 10
-	
-	#now determine how many chrono are added because of hero levels
-	#var levelsToChrono = (global.selectedHero.level)
-	#var cost = tensOfMinutes + levelsToChrono
-
-	#cost += (cost * .25)
-	#if (cost < 1):
-	#	cost = 1
-	
-	#cost = int(round(cost))
-	
-	var cost = 999
-	if (global.selectedHero.level >= 30):
-		cost = 30
-	else:
-		cost = staticData.levelXpData[str(global.selectedHero.level+1)].chronoCost
-	
-	return cost
-	
 func _on_button_train_pressed():
 	if (global.selectedHero.recruited && global.selectedHero.level < global.maxHeroLevel):
 		if (global.selectedHero.staffedTo == "training"):
@@ -352,8 +320,8 @@ func _on_button_train_pressed():
 				print("no room")
 		elif (global.selectedHero.xp < staticData.levelXpData[str(global.selectedHero.level)].total):
 			#hero is not ready to train, offer instant train instead
-			var chronoCost = _calc_instant_train_cost()
-			$confirm_instant_train/RichTextLabel.text = "This hero doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
+			var chronoCost = util.calc_instant_train_cost()
+			$confirm_instant_train/RichTextLabel.text = global.selectedHero.heroFirstName + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
 			$confirm_instant_train.popup()
 		else:
 			print('heroPage.gd line 296 - bad state')
@@ -421,7 +389,7 @@ func _on_confirm_dismiss_dialog_confirmed():
 			break
 
 func _on_confirm_instant_train_confirmed():
-	var cost = _calc_instant_train_cost()
+	var cost = util.calc_instant_train_cost()
 	if (global.hardCurrency >= cost):
 		#todo: this should be on a timer and the hero is unavailable while training
 		#also, only one hero can train up at a time
@@ -431,7 +399,7 @@ func _on_confirm_instant_train_confirmed():
 		_update_stats()
 		populate_fields()
 	else: 
-		print("heroPage.gd: not enough diamonds")
+		print("heroPage.gd: not enough Chrono")
 
 #make the entire vbox clickable
 func _on_vbox_stats1_gui_input(ev):

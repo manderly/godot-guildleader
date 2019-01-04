@@ -9,6 +9,8 @@ extends Button
 var heroData = null
 var buttonID = null
 
+signal rapidTrain()
+
 func _ready():
 	pass
 
@@ -140,8 +142,9 @@ func _on_Button_pressed():
 				global.currentRoomID = ""
 				get_tree().change_scene("res://main.tscn")
 			else:
-				print("Hero must be ready to train")
-				print("rapid train instead?")
+				global.selectedHero = heroData
+				print("Firing off the rapid train popup signal")
+				emit_signal("rapidTrain")
 		else:
 			print("hero is busy")
 	elif (global.currentMenu == "harvesting"):

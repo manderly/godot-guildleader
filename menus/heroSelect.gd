@@ -3,7 +3,9 @@ extends Node2D
 #use this menu to pick a hero to assign to a quest
 onready var heroSelectDescription = $CenterContainer/VBoxContainer/field_heroSelectDescription
 onready var scrollVBox = $CenterContainer/VBoxContainer/scroll/vbox
+
 func _ready():
+			
 	if (global.currentMenu == "alchemy" || 
 			global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "fletching" || 
@@ -18,18 +20,41 @@ func _ready():
 		heroSelectDescription.text = "Heroes must undergo training to continue to advance in levels. Choose a hero who is 'Ready to Train' to assign them to this training room."
 	else:
 		heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
-		
+	_draw_hero_buttons()
+	
+
+func _open_rapid_train_popup():
+	var chronoCost = util.calc_instant_train_cost()
+	$rapid_train_dialog/RichTextLabel.text = global.selectedHero.heroFirstName + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
+	$rapid_train_dialog.popup()
+	
+func _on_rapid_train_dialog_confirmed():
+	var cost = util.calc_instant_train_cost()
+	if (global.hardCurrency >= cost):
+		#todo: this should be on a timer and the hero is unavailable while training
+		#also, only one hero can train up at a time
+		global.hardCurrency -= cost
+		global.selectedHero.level_up()
+		_update_hero_buttons()
+	else: 
+		print("heroPage.gd: not enough Chrono")
+	
+func _draw_hero_buttons():
 	var buttonX = 0
 	var buttonY = 80
 	for i in range(global.guildRoster.size()):
-		#print(global.guildRoster[i]) #print all heroes (debug)
 		var heroButton = preload("res://menus/heroButton.tscn").instance()
 		heroButton.set_hero_data(global.guildRoster[i])
 		heroButton.set_position(Vector2(buttonX, buttonY))
+		heroButton.connect("rapidTrain", self, "_open_rapid_train_popup")
 		scrollVBox.add_child(heroButton) 
 		buttonY += 80
-
-
+		
+func _update_hero_buttons():
+	var children = scrollVBox.get_children()
+	for i in children.size():
+		children[i].set_hero_data(global.guildRoster[i])
+	
 func _on_button_back_pressed():
 	if (global.currentMenu == "alchemy" || 
 		global.currentMenu == "blacksmithing" || 
