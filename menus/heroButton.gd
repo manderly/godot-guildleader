@@ -143,7 +143,6 @@ func _on_Button_pressed():
 				get_tree().change_scene("res://main.tscn")
 			else:
 				global.selectedHero = heroData
-				print("Firing off the rapid train popup signal")
 				emit_signal("rapidTrain")
 		else:
 			print("hero is busy")
