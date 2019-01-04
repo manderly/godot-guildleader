@@ -77,6 +77,6 @@ scroll_active = true
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "Hint", "Mouse", "Rect", "custom_colors" ]
+_sections_unfolded = [ "Hint", "Mouse", "Rect", "Theme", "custom_colors", "custom_styles" ]
 
 

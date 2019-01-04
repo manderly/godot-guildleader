@@ -206,8 +206,8 @@ func _calculate_estimated_difficulty():
 func _calculate_recommended_classes():
 	calc_class_balance()
 	var classesNeededString = "This group could use "
-	if (haveAlready.healer == 0):
-		classesNeededString += "a healer."
+	if (haveAlready.support == 0):
+		classesNeededString += "a support class."
 	elif (haveAlready.tank == 0):
 		classesNeededString += "a tank."
 	elif (haveAlready.dps == 0):

@@ -152,7 +152,6 @@ func _target_mob_dies(targetMob, newBattle):
 	
 	for hero in newBattle.heroes:
 		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
-		print(staticData.levelXpData[str(hero.level)])
 		if (hero.xp > staticData.levelXpData[str(hero.level)].total):
 			hero.xp = staticData.levelXpData[str(hero.level)].total
 			encounter.detailedPlayByPlay.append(hero.heroFirstName + " is full xp and ready to train.")
@@ -326,6 +325,8 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(unmodifiedDamage) + " points of damage")
 				if (targetHero.hpCurrent <= 0):
 					targetHero.dead = true
+					targetHero.hpCurrent = 0
+					targetHero.manaCurrent = 0
 					targetHero.send_home()
 					encounter.detailedPlayByPlay.append(targetHero.heroFirstName + " died!")
 					newBattle.heroes.erase(targetHero)
