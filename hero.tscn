@@ -134,7 +134,7 @@ tracks/4/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
 
-[node name="hero" type="KinematicBody2D" groups=[
+[node name="hero" type="KinematicBody2D" index="0" groups=[
 "ClearOnRestore",
 ]]
 
@@ -367,6 +367,8 @@ autostart = false
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
 
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
+
+[connection signal="tree_exited" from="heroButton" to="." method="_on_heroButton_tree_exited"]
 
 [connection signal="timeout" from="idleTimer" to="." method="_on_Timer_timeout"]
 

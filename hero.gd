@@ -20,6 +20,8 @@ var battlePrint = false
 
 var headIndex = 0
 
+var longEnoughClickToOpenHeroPage = false
+
 #three possible ways to display a hero sprite:
 #walking with name
 #icon with name
@@ -183,11 +185,10 @@ func save():
 	return saved_hero_data
 	
 func _input_event(viewport, event, shape_idx):
-	pass
-	#print("old input event triggered")
-    #if event is InputEventMouseButton \
-    #and event.button_index == BUTTON_LEFT \
-    #and event.is_pressed():
+    pass
+	#if event is InputEventMouseButton \
+	#and event.button_index == BUTTON_LEFT \
+	#and event.is_pressed(): print("pressed")
         #self.on_click()
 		
 	#if event is InputEventMouseButton \
@@ -448,23 +449,32 @@ func _on_heroButton_pressed():
 	if (walkable):
 		if (walking):
 			walking = false
-		$touchTimer.set_wait_time(0.5)
+		$touchTimer.set_wait_time(1)
 		$touchTimer.start()
 
 func _on_heroButton_released():
 	if (walkable):
 		if $touchTimer.is_stopped():
-			#long press detected
-			_open_hero_page()
+			#long press detected (timer had managed to begin and stop before the user released)
+			if (longEnoughClickToOpenHeroPage):
+				_open_hero_page()
 		else:
-			#short press detected
+			#short press detected (timer is still going when user releases)
 			_show_extended_stats()
-			$idleTimer.set_wait_time(5)
+			longEnoughClickToOpenHeroPage = false
+			$idleTimer.set_wait_time(0.5)
 			$idleTimer.start()
 		
 func _on_touchTimer_timeout():
-	#touch timer timed out 
+	#touch timer timed out, we're now clear to open hero page on release 
+	#provided the player releases over a hero and does not drag off that hero 
 	$touchTimer.stop()
+	longEnoughClickToOpenHeroPage = true
+
+func _on_heroButton_tree_exited():
+	#drag off hero without releasing = do not open hero page 
+	$touchTimer.stop()
+	longEnoughClickToOpenHeroPage = false
 
 func send_home():
 	atHome = true
