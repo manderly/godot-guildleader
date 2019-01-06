@@ -51,6 +51,8 @@ onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabCo
 
 onready var field_perkPoints = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkPoints
 onready var tabPerksButtonsContainer = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_left
+onready var field_perkDescription = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkDescription
+
 var trainingData = null
 
 func _ready():
@@ -173,21 +175,20 @@ func populate_fields():
 		for button in inventoryButtons:
 			button.set_disabled(false)
 			
-	#populaet perks tab
+	#populate perks tab
 	for key in global.selectedHero.perks.keys():
 		var perk = global.selectedHero.perks[key]
 		var perkButton = Button.new()
 		perkButton.text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
+		perkButton.connect("pressed", self, "_select_perk", [key])
 		tabPerksButtonsContainer.add_child(perkButton)
-		
-	#display perk points to spend 
-	field_perkPoints.text = str(global.selectedHero.perkPoints) + " available"
 		
 	#disable train button if hero is recruited and at max level
 	if (global.selectedHero.recruited && global.selectedHero.level >= global.maxHeroLevel):
 		buttonTrainOrRecruit.set_disabled(true)
 		buttonTrainOrRecruit.text = "Max level"
 		
+	_update_perks_tab()
 	_update_stats()
 	
 func _process(delta):
@@ -214,6 +215,17 @@ func _process(delta):
 			progressBar.set_value(100)
 			buttonTrainOrRecruit.text = "Complete training!"
 			
+func _update_perks_tab():
+	#display perk points to spend 
+	field_perkPoints.text = str(global.selectedHero.perkPoints) + " available"
+	#get all the buttons and update their data 
+	var perkButtons = tabPerksButtonsContainer.get_children()
+	var perkKeys = global.selectedHero.perks.keys() #an array of perk names 
+	
+	for i in (perkButtons.size()):
+		var perk = global.selectedHero.perks[perkKeys[i]]
+		perkButtons[i].text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
+		
 func _update_stats():
 	var aliveStatus = ""
 	if (global.selectedHero.dead):
@@ -424,3 +436,10 @@ func _on_button_revive_pressed():
 func _on_button_fullXP_pressed():
 	global.selectedHero.xp = staticData.levelXpData[str(global.selectedHero.level)].total
 	_update_stats()
+
+func _select_perk(key):
+	field_perkDescription.text = global.selectedHero.perks[key].description
+	
+func _on_Button_perkPoint_pressed():
+	global.selectedHero.give_perk_points(1)
+	_update_perks_tab()

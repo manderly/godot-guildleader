@@ -517,6 +517,12 @@ func level_up():
 	hpCurrent = hp #refill hp and mana when leveling up 
 	manaCurrent = mana
 	
+func give_perk_points(quantity):
+	perkPoints += quantity
+	
+func take_perk_points(quantity):
+	perkPoints -= quantity
+	
 func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2
 	var roll = randi()%20+1 #(roll between 1-20)

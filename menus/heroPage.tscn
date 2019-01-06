@@ -9,7 +9,7 @@
 [ext_resource path="res://menus/popup_finishNow.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -257,7 +257,7 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme", "custom_styles" ]
 
-[node name="button_fullXP" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="5"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="5"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -266,6 +266,22 @@ anchor_bottom = 0.0
 margin_top = 126.0
 margin_right = 240.0
 margin_bottom = 164.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+
+[node name="button_fullXP" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 84.0
+margin_bottom = 38.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -278,6 +294,30 @@ enabled_focus_mode = 2
 shortcut = null
 group = null
 text = "#FULL XP"
+flat = false
+align = 1
+
+[node name="Button_perkPoint" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 88.0
+margin_right = 163.0
+margin_bottom = 38.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "+1 PERK"
 flat = false
 align = 1
 
@@ -554,7 +594,6 @@ _sections_unfolded = [ "Rect", "custom_constants" ]
 
 [node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="3"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -672,7 +711,7 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Rect" ]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="0"]
+[node name="field_perkDescription" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -972,7 +1011,9 @@ _sections_unfolded = [ "Dialog" ]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_fullXP" to="." method="_on_button_fullXP_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/button_fullXP" to="." method="_on_button_fullXP_pressed"]
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/Button_perkPoint" to="." method="_on_Button_perkPoint_pressed"]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive" to="." method="_on_button_revive_pressed"]
 
