@@ -126,7 +126,7 @@ func generate(destinationArray, classStr):
 			staticData.perks[key].restriction.to_lower() == newHero.heroClass.to_lower()):
 			#check if it's for anyone, this hero's archetype, or this hero's class
 			#if so, give this hero this perk option 
-			newHero.perks[key] = staticData.perks[key]
+			newHero.perks[key] = staticData.perks[key].duplicate()
 	
 	newHero.update_hero_stats() #calculate hp, mana, etc.
 	newHero.hpCurrent = newHero.hp #only do this when we generate a hero (that's why it's not in update_hero_stats)

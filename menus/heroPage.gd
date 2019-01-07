@@ -59,6 +59,7 @@ var perkOnDeckKey = null
 
 func _ready():
 	
+	
 	$confirm_rename_dialog.set_mode("last")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
