@@ -52,8 +52,10 @@ onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabCo
 onready var field_perkPoints = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkPoints
 onready var tabPerksButtonsContainer = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_left
 onready var field_perkDescription = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkDescription
+onready var button_buyPerk = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_buyPerk
 
 var trainingData = null
+var perkOnDeckKey = null
 
 func _ready():
 	
@@ -144,6 +146,11 @@ func _ready():
 	tabAttributes.add_child(displayPrestige)
 	tabAttributes.add_child(displayGroupBonus)
 	tabAttributes.add_child(displayRaidBonus)
+	
+	#select the first perk by default (select by key)	
+	var perkKeys = global.selectedHero.perks.keys() #an array of perk names
+	_select_perk(perkKeys[0])
+	
 	populate_fields()
 	
 func populate_fields():
@@ -187,7 +194,7 @@ func populate_fields():
 	if (global.selectedHero.recruited && global.selectedHero.level >= global.maxHeroLevel):
 		buttonTrainOrRecruit.set_disabled(true)
 		buttonTrainOrRecruit.text = "Max level"
-		
+	
 	_update_perks_tab()
 	_update_stats()
 	
@@ -225,7 +232,15 @@ func _update_perks_tab():
 	for i in (perkButtons.size()):
 		var perk = global.selectedHero.perks[perkKeys[i]]
 		perkButtons[i].text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
-		
+	
+	#disable the buy perk button if the hero has no perk points to spend
+	var perk = global.selectedHero.perks[perkOnDeckKey]
+	if (perk.pointsSpent < perk.levels): #if there are still levels to buy of this perk 
+		if (global.selectedHero.perkPoints > 0): #verify the hero has enough points to buy it
+			button_buyPerk.set_disabled(false)
+		else:
+			button_buyPerk.set_disabled(true)
+	
 func _update_stats():
 	var aliveStatus = ""
 	if (global.selectedHero.dead):
@@ -438,8 +453,22 @@ func _on_button_fullXP_pressed():
 	_update_stats()
 
 func _select_perk(key):
-	field_perkDescription.text = global.selectedHero.perks[key].description
+	var perk = global.selectedHero.perks[key]
+	field_perkDescription.text = perk.perkName + "\n\n" + perk.description
+	perkOnDeckKey = key
 	
 func _on_Button_perkPoint_pressed():
 	global.selectedHero.give_perk_points(1)
 	_update_perks_tab()
+
+func _on_button_buyPerk_pressed():
+	var perk = global.selectedHero.perks[perkOnDeckKey]
+	if (perk.pointsSpent < perk.levels):
+		if (global.selectedHero.perkPoints >= 1):
+			global.selectedHero.take_perk_points(1)
+			global.selectedHero.perks[perkOnDeckKey].pointsSpent += 1
+			_update_perks_tab()
+		else:
+			print("Not enough perk points to buy this perk.")
+	else:
+		print("This perk is full")
