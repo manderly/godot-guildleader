@@ -152,6 +152,14 @@ func _ready():
 	var perkKeys = global.selectedHero.perks.keys() #an array of perk names
 	_select_perk(perkKeys[0])
 	
+	#fill perks tab with buttons
+	for key in global.selectedHero.perks.keys():
+		var perk = global.selectedHero.perks[key]
+		var perkButton = Button.new()
+		perkButton.text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
+		perkButton.connect("pressed", self, "_select_perk", [key])
+		tabPerksButtonsContainer.add_child(perkButton)
+	
 	populate_fields()
 	
 func populate_fields():
@@ -182,14 +190,7 @@ func populate_fields():
 		var inventoryButtons = get_tree().get_nodes_in_group("InventoryButtons")
 		for button in inventoryButtons:
 			button.set_disabled(false)
-			
-	#populate perks tab
-	for key in global.selectedHero.perks.keys():
-		var perk = global.selectedHero.perks[key]
-		var perkButton = Button.new()
-		perkButton.text = perk.perkName + " " + str(perk.pointsSpent) + "/" + str(perk.levels)
-		perkButton.connect("pressed", self, "_select_perk", [key])
-		tabPerksButtonsContainer.add_child(perkButton)
+		
 		
 	#disable train button if hero is recruited and at max level
 	if (global.selectedHero.recruited && global.selectedHero.level >= global.maxHeroLevel):
