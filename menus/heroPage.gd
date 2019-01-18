@@ -237,7 +237,6 @@ func _update_perks_tab():
 	
 	#disable the buy perk button if the hero has no perk points to spend
 	var perk = global.selectedHero.perks[perkOnDeckKey]
-	print(perk)
 	if (perk.pointsSpent < perk.levels && global.selectedHero.perkPoints > 0): #if there are still levels to buy of this perk 
 		# if you can still spend more here AND you have points to spend, enable button
 		button_buyPerk.set_disabled(false)
