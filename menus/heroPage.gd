@@ -237,11 +237,15 @@ func _update_perks_tab():
 	
 	#disable the buy perk button if the hero has no perk points to spend
 	var perk = global.selectedHero.perks[perkOnDeckKey]
-	if (perk.pointsSpent < perk.levels): #if there are still levels to buy of this perk 
-		if (global.selectedHero.perkPoints > 0): #verify the hero has enough points to buy it
-			button_buyPerk.set_disabled(false)
-		else:
-			button_buyPerk.set_disabled(true)
+	print(perk)
+	if (perk.pointsSpent < perk.levels && global.selectedHero.perkPoints > 0): #if there are still levels to buy of this perk 
+		# if you can still spend more here AND you have points to spend, enable button
+		button_buyPerk.set_disabled(false)
+		button_buyPerk.text = "BUY PERK"
+	else:
+		button_buyPerk.set_disabled(true)
+		if (perk.pointsSpent == perk.levels):
+			button_buyPerk.text = "PERK FULL!"
 	
 func _update_stats():
 	var aliveStatus = ""
@@ -458,6 +462,7 @@ func _select_perk(key):
 	var perk = global.selectedHero.perks[key]
 	field_perkDescription.text = perk.perkName + "\n\n" + perk.description
 	perkOnDeckKey = key
+	_update_perks_tab()
 	
 func _on_Button_perkPoint_pressed():
 	global.selectedHero.give_perk_points(1)
@@ -469,8 +474,8 @@ func _on_button_buyPerk_pressed():
 		if (global.selectedHero.perkPoints >= 1):
 			global.selectedHero.take_perk_points(1)
 			global.selectedHero.perks[perkOnDeckKey].pointsSpent += 1
-			_update_perks_tab()
 		else:
 			print("Not enough perk points to buy this perk.")
 	else:
 		print("This perk is full")
+	_update_perks_tab()
