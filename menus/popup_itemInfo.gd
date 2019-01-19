@@ -9,13 +9,48 @@ signal swappingItemWithAnother
 signal updateStats
 signal clearWildcardButton
 
+onready var field_stat0 = $VBoxContainer/hbox_stats/vboxstats1/field_stat0
+onready var field_stat1 = $VBoxContainer/hbox_stats/vboxstats1/field_stat1
+onready var field_stat2 = $VBoxContainer/hbox_stats/vboxstats2/field_stat2
+onready var field_stat3 = $VBoxContainer/hbox_stats/vboxstats2/field_stat3
+onready var field_stat4 = $VBoxContainer/hbox_stats/vboxstats3/field_stat4
+onready var field_stat5 = $VBoxContainer/hbox_stats/vboxstats3/field_stat5
+
+onready var field_itemName = $VBoxContainer/field_itemName
+onready var field_itemID = $field_itemID
+onready var sprite_itemIcon = $sprite_itemIcon
+
+onready var field_slot = $VBoxContainer/HBoxContainer/VBoxContainer/field_slot
+onready var field_noDrop = $VBoxContainer/HBoxContainer/VBoxContainer2/field_noDrop
+onready var field_rarity = $VBoxContainer/HBoxContainer/VBoxContainer2/field_rarity
+
+onready var field_improved = $VBoxContainer/field_improved
+
+onready var field_armorOrDPS = $VBoxContainer/HBoxContainer/VBoxContainer/field_armorOrDPS
+
+onready var field_classes = $VBoxContainer/field_classes
+
+var classNameMap = {
+	"any":"ANY",
+	"warrior":"WAR",
+	"cleric":"CLR",
+	"druid":"DRU",
+	"paladin":"PAL",
+	"wizard":"WIZ",
+	"ranger":"RNG",
+	"rogue":"ROG",
+	"necromancer":"NEC",
+	"enchanter":"ENC",
+	"bard":"BRD"
+	}
+
 func _ready():
-	$field_stat0.hide()
-	$field_stat1.hide()
-	$field_stat2.hide()
-	$field_stat3.hide()
-	$field_stat4.hide()
-	$field_stat5.hide()
+	field_stat0.hide()
+	field_stat1.hide()
+	field_stat2.hide()
+	field_stat3.hide()
+	field_stat4.hide()
+	field_stat5.hide()
 
 func _set_vault_index(idx):
 	vaultIndex = idx
@@ -26,51 +61,56 @@ func _set_data(data):
 	
 func _populate_fields():
 	#window_title = itemData.name #old way that puts title outside the art for some reason
-	$field_itemName.text = itemData.name
+	field_itemName.text = itemData.name
 
-	$sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
-	$field_slot.text = itemData.slot.capitalize()
+	sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
+	field_slot.text = itemData.slot.capitalize()
 
 	if (!itemData.noDrop):
-		$field_noDrop.text = "Tradeable"
+		field_noDrop.text = "Tradeable"
 	else:
-		$field_noDrop.text = "Binds on equip"
+		field_noDrop.text = "Binds on equip"
 		
 	if (itemData.rarity):
-		$field_rarity.text = str(itemData.rarity).capitalize()
+		field_rarity.text = str(itemData.rarity).capitalize()
 		if (itemData.rarity == "uncommon"):
-			$field_rarity.add_color_override("font_color", colors.green)
+			field_rarity.add_color_override("font_color", colors.green)
 		elif (itemData.rarity == "rare"):
-			$field_rarity.add_color_override("font_color", colors.blue) 
+			field_rarity.add_color_override("font_color", colors.blue) 
 		elif (itemData.rarity == "epic"):
-			$field_rarity.add_color_override("font_color", colors.pink) 
+			field_rarity.add_color_override("font_color", colors.pink) 
 	
 	if (itemData.improved):
-		$field_improved.text = "Improved " + itemData.improvement
+		field_improved.text = "Improved " + itemData.improvement
 	else:
-		$field_improved.hide()
+		field_improved.hide()
 			
 	print("popup_itemInfo.gd - itemID: " + str(itemData.itemID))
 	if (itemData.itemID):
-		$field_itemID.text = str(itemData.itemID)
-		$field_itemID.add_color_override("font_color", colors.pink) 
+		field_itemID.text = str(itemData.itemID)
+		field_itemID.add_color_override("font_color", colors.pink) 
 		
 	#figure out what stats this item gives
 	if (itemData.slot != "tradeskill" && itemData.slot != "quest"):
 		#an item gives armor or dps, but not both
 		if (itemData.dps > 0):
-			$field_armorOrDPS.text = str(itemData.dps) + " DPS"
+			field_armorOrDPS.text = str(itemData.dps) + " DPS"
 		elif (itemData.armor > 0):
-			$field_armorOrDPS.text = str(itemData.armor) + " Armor"
+			field_armorOrDPS.text = str(itemData.armor) + " Armor"
 		else:
-			$field_armorOrDPS.hide()
+			field_armorOrDPS.hide()
 			
 		#there might be multiple class restrictions, so build a string
 		var restrictionsStr = ""
 		for i in range(itemData.classRestrictions.size()):
-			restrictionsStr += itemData.classRestrictions[i] + " "
+			# Behind the scenes, we use the full class name. But on an item
+			# we use an abbreviation. Those abbreviations are only for display, 
+			# so do the conversion here.
+			var classNameLong = itemData.classRestrictions[i].to_lower()
+			print(classNameMap[classNameLong])
+			restrictionsStr += str(classNameMap[classNameLong]) + " "
 		#$field_classes.text = "Class: " + str(itemData.classRestriction).capitalize()
-		$field_classes.text = "Classes: \n" + restrictionsStr.capitalize()
+		field_classes.text = "Classes: " + restrictionsStr
 	
 		var stats = []
 		if (itemData.hpRaw > 0):
@@ -90,11 +130,13 @@ func _populate_fields():
 	
 		#display them (should just be the ones greater than 0)
 		for i in range(stats.size()):
-			get_node("field_stat" + str(i)).text = stats[i]
-			get_node("field_stat" + str(i)).show()
+			find_node("field_stat" + str(i)).text = stats[i]
+			find_node("field_stat" + str(i)).show()
+			#get_node("field_stat" + str(i)).text = stats[i]
+			#get_node("field_stat" + str(i)).show()
 	else:
-		$field_armorOrDPS.hide()
-		$field_classes.hide()
+		field_armorOrDPS.hide()
+		field_classes.hide()
 		
 func _set_buttons(showActionButton, showTrashButton, actionButtonStr):
 	if (showActionButton):

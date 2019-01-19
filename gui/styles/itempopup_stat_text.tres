@@ -2,7 +2,7 @@
 
 [ext_resource path="res://gui/border_box.png" type="Texture" id=1]
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=1]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -33,6 +33,6 @@ WindowDialog/constants/title_height = 20
 WindowDialog/fonts/title_font = null
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 3 )
+WindowDialog/styles/panel = SubResource( 1 )
 _sections_unfolded = [ "Label", "Panel", "Panel/styles", "PopupMenu", "PopupMenu/styles", "WindowDialog/styles" ]
 
