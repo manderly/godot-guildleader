@@ -1,5 +1,5 @@
 extends Node2D
-#harvestingConfirm.gd
+#harvestingConfirm.gd #
 #the screen with the harvesting details, loot, and the hero the player has assigned to it 
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").instance()
