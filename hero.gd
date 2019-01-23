@@ -40,7 +40,8 @@ func _ready():
 			$field_name.text = heroFirstName + " " + heroLastName
 	else:
 		$field_name.text = ""
-
+	
+	hide_hp()
 		
 func set_display_params(walkBool, nameBool):
 	walkable = walkBool
@@ -112,6 +113,31 @@ func _on_Timer_timeout():
 	_hide_extended_stats()
 	_start_walking()
 
+func vignette_update_hp(oldHP, newHP, totalHP):
+	$field_HP.text = str(oldHP) + "/" + str(totalHP)
+	$hpBar.set_value(oldHP/totalHP)
+	
+	#todo: animate the change
+	yield(get_tree().create_timer(5.0), "timeout")
+	
+	$field_HP.text = str(newHP) + "/" + str(totalHP)
+	$hpBar.set_value(newHP/totalHP)
+	
+func vignette_die():
+	$body.modulate = Color(0.8, 0.7, 1)
+	#todo: animate the change
+	
+func show_hp():
+	$hpBar.show()
+	$field_HP.show()
+	$hp.show()
+	$field_levelAndClass.hide()
+
+func hide_hp():
+	$hpBar.hide()
+	$field_HP.hide()
+	$hp.hide()
+	
 func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
 	for i in global.guildRoster.size():

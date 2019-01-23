@@ -217,7 +217,8 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		# make a snapshot of this hero's data for the vignette
 		battle.heroDeltas[hero.heroID] = {
 				"startHP":hero.hpCurrent,
-				"endHP":null
+				"endHP":0,
+				"totalHP":hero.hp
 			}
 		
 	#a battle continues until all mobs (or all heroes) are dead
@@ -363,7 +364,10 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 	
 	for hero in heroes:
 		# make a snapshot of this hero's data for the vignette
+		# end hp is 0 by default, so if a hero no longer exists in heroes (because it is dead)
+		# then that 0 will remain in place 
 		battle.heroDeltas[hero.heroID].endHP = hero.hpCurrent
+		
 	encounter.vignetteData.battles.append(battle)
 	return newBattle
 
@@ -375,12 +379,11 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	#remember that an encounter has several mobs in it
 	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
 	
-	var battleQuantity = 0
-	
-	#encounter = {} #load("res://CampOutcome.gd").new() #Outcome.new()
 	#rather than determine battle quantity here, we should let the mob spawn rate determine it
 	
-	battleQuantity = camp.selectedDuration / (5 * 100)
+	#var battleQuantity = camp.selectedDuration / (5 * 100)
+	var battleQuantity = camp.selectedDuration / (camp.respawnRate * 15)
+	print("encounterGenerator 384 BATTLE QUANTITY: " + str(battleQuantity))
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
 

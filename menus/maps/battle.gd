@@ -70,6 +70,7 @@ func play_vignette(data):
 	populate_heroes(data.campHeroes)
 	
 	#for each battle
+	print("there will be " + str(data.battles.size()) + " battles")
 	for i in data.battles.size():
 	
 		
@@ -91,10 +92,12 @@ func play_vignette(data):
 		# for each hero still on screen, move to middle
 		var heroes = get_tree().get_nodes_in_group("heroes")
 		for hero in heroes:
+			hero.hide_hp()
 			hero.set_position(middleOfScreen)
 			
 		# for each mob on screen, move to middle
 		var mobs = get_tree().get_nodes_in_group("mobs")
+		print(mobs)
 		for mob in mobs:
 			mob.set_position(middleOfScreen)
 			
@@ -121,13 +124,33 @@ func play_vignette(data):
 		
 		# remove dead heroes and mobs
 		for hero in heroes:
-			print("Am I dead? " + str(hero.heroFirstName))
+			print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
+			
+			#display hp bars and animate the change in the total and % fill
+			var deltas = battle.heroDeltas[hero.heroID]
+			hero.show_hp()
+			hero.vignette_update_hp(deltas.startHP, deltas.endHP, deltas.totalHP)
+				
+			#todo: animate the change simultaneously in all heroes 
+			if (battle.heroDeltas[hero.heroID].endHP <= 0):
+				print("yes, play dying animation and remove me")
+				hero.vignette_die()
+				yield(get_tree().create_timer(3.0), "timeout")
+				remove_child(hero)
+			else:
+				print("no, keep me in")
+				
 			
 		for mob in mobs:
 			print("Am I dead? " + str("mob name here"))
+			mob.remove_from_group("mobs")
+			#todo: remove dead mob 
+		
+		mobs.empty()
 			
 		# wait (regen period between pulls)
 		yield(get_tree().create_timer(5.0), "timeout")
+		
 	
 func show_fight_cloud(showBool):
 	if (showBool):

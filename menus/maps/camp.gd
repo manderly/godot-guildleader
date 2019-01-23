@@ -64,6 +64,11 @@ func _process(delta):
 		var progressBarValue = (100 * (campData.selectedDuration - (campData.endTime - OS.get_unix_time())) / campData.selectedDuration)
 		#progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
 		progressBar.set_value(progressBarValue)
+		
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= campData.endTime):
+			campData.readyToCollect = true
+			 
 	elif (campData.inProgress && campData.readyToCollect):
 		field_tipsOrProgress.text = "DONE!"
 		#todo: make it so only the correct button changes to collect 
