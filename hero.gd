@@ -115,13 +115,13 @@ func _on_Timer_timeout():
 
 func vignette_update_hp(oldHP, newHP, totalHP):
 	$field_HP.text = str(oldHP) + "/" + str(totalHP)
-	$hpBar.set_value(oldHP/totalHP)
+	$hpBar.set_value((oldHP/totalHP)*100)
 	
 	#todo: animate the change
 	yield(get_tree().create_timer(5.0), "timeout")
 	
 	$field_HP.text = str(newHP) + "/" + str(totalHP)
-	$hpBar.set_value(newHP/totalHP)
+	$hpBar.set_value((newHP/totalHP)*100)
 	
 func vignette_die():
 	$body.modulate = Color(0.8, 0.7, 1)

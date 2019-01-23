@@ -8,11 +8,11 @@ var middleOfScreen = Vector2(150,150)
 var heroPositions = {
 	"0":{
 		"x":25,
-		"y":120
+		"y":118
 		},
 	"1":{
 		"x":100,
-		"y":130
+		"y":140
 		},
 	"2":{
 		"x":50,
@@ -73,15 +73,17 @@ func play_vignette(data):
 	print("there will be " + str(data.battles.size()) + " battles")
 	for i in data.battles.size():
 	
-		
 		#todo: only continue to play if at least one hero is alive
 		var battle = data.battles[i]
 		
 		# print BATTLE N where the player can see it
 		print("BATTLE " + str(i))
+		$label_battleN.show()
+		$label_battleN.text = "BATTLE " + str(i + 1)
 	
 		# wait for mobs to spawn
 		yield(get_tree().create_timer(3.0), "timeout")
+		$label_battleN.hide()
 			
 		# spawn enenmies
 		populate_mobs(battle.mobSprites)
@@ -122,6 +124,7 @@ func play_vignette(data):
 		# update heroes and mobs hp
 		yield(get_tree().create_timer(1.0), "timeout")
 		
+		#var activeHeroes = get_tree().call_group("heroes", "vignette_die")
 		# remove dead heroes and mobs
 		for hero in heroes:
 			print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
@@ -134,12 +137,16 @@ func play_vignette(data):
 			#todo: animate the change simultaneously in all heroes 
 			if (battle.heroDeltas[hero.heroID].endHP <= 0):
 				print("yes, play dying animation and remove me")
-				hero.vignette_die()
-				yield(get_tree().create_timer(3.0), "timeout")
-				remove_child(hero)
+				#hero.vignette_die()
+				hero.add_to_group("dyingHeroes")
+				#remove_child(hero)
 			else:
 				print("no, keep me in")
 				
+		var dyingHeroes = get_tree().call_group("dyingHeroes", "vignette_die")
+		yield(get_tree().create_timer(3.0), "timeout")
+		for dyingHero in get_tree().get_nodes_in_group("dyingHeroes"):
+			dyingHero.queue_free()
 			
 		for mob in mobs:
 			print("Am I dead? " + str("mob name here"))

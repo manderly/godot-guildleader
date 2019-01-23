@@ -45,12 +45,34 @@ stretch_mode = 0
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 3
 playing = true
 
 [node name="fightcloud" type="Sprite" parent="." index="2"]
 
 position = Vector2( 227.895, 127.337 )
 texture = ExtResource( 8 )
+
+[node name="label_battleN" type="Label" parent="." index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 192.0
+margin_top = 123.0
+margin_right = 251.0
+margin_bottom = 137.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "BATTLE #"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
 
 
