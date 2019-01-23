@@ -2,7 +2,7 @@ extends Node2D
 
 var fightCloudTimer = Timer.new()
 var timeUntilNextBattle = Timer.new()
-var middleOfScreen = Vector2(300,300)
+var middleOfScreen = Vector2(150,150)
 #  0   1
 #    2   3
 var heroPositions = {
@@ -71,17 +71,22 @@ func play_vignette(data):
 	
 	#for each battle
 	for i in data.battles.size():
+	
 		
 		#todo: only continue to play if at least one hero is alive
 		var battle = data.battles[i]
-		print("BATTLE")
-		print(battle)
 		
 		# print BATTLE N where the player can see it
 		print("BATTLE " + str(i))
-		
+	
+		# wait for mobs to spawn
+		yield(get_tree().create_timer(3.0), "timeout")
+			
 		# spawn enenmies
 		populate_mobs(battle.mobSprites)
+		
+		# pause before jumping into the fray
+		yield(get_tree().create_timer(1.0), "timeout")
 		
 		# for each hero still on screen, move to middle
 		var heroes = get_tree().get_nodes_in_group("heroes")
@@ -97,16 +102,18 @@ func play_vignette(data):
 		show_fight_cloud(true)
 
 		# wait (represents actual fighting)
-		yield(get_tree().create_timer(3.0), "timeout")
+		yield(get_tree().create_timer(6.0), "timeout")
 		
 		# despawn the fight cloud
 		show_fight_cloud(false)
 		
 		# jump heroes and mobs back to their starting points
-		for hero in heroes:
+		for i in heroes.size():
+			var hero = heroes[i]
 			hero.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 			
-		for mob in mobs:
+		for i in mobs.size():
+			var mob = mobs[i]
 			mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
 		
 		# update heroes and mobs hp
