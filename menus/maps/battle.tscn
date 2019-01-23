@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/maps/battle.gd" type="Script" id=1]
 [ext_resource path="res://menus/maps/battleBackgrounds/forest01.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://sprites/mobs/bat/bat_03.png" type="Texture" id=5]
 [ext_resource path="res://sprites/mobs/bat/bat_04.png" type="Texture" id=6]
 [ext_resource path="res://sprites/mobs/bat/bat_05.png" type="Texture" id=7]
+[ext_resource path="res://sprites/vignettes/fightcloud.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -18,7 +19,7 @@ animations = [ {
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -44,7 +45,12 @@ stretch_mode = 0
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 4
 playing = true
+
+[node name="fightcloud" type="Sprite" parent="." index="2"]
+
+position = Vector2( 227.895, 127.337 )
+texture = ExtResource( 8 )
 
 

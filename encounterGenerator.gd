@@ -53,7 +53,11 @@ var encounter = {
 				"lootedItemsNames":[],
 				"scTotal":-1,
 				"summary":[],
-				"detailedPlayByPlay":[]
+				"detailedPlayByPlay":[],
+				"vignetteData":{
+					"campHeroes":[],
+					"battles":[]
+				}
 			}
 
 #todo: track how much xp each hero gets individually for display later 
@@ -193,13 +197,29 @@ func _target_mob_dies(targetMob, newBattle):
 	
 func _calculate_battle_outcome(heroes, spawnPointData):
 	encounter.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
+	
+	# for THIS BATTLE, create an object that will hold the 'before' and 'after' snapshots
+	# of hero and mob hp 
+	var battle = {
+		"heroDeltas":{},
+		"mobSprites":[],
+		"mobDeltas":{}
+	}
+	
 	#regen heroes
 	#todo: better regen formula
+	
 	for hero in heroes:
 		hero.hpCurrent += (_get_rand_between(1,10))
 		if (hero.hpCurrent > hero.hp):
 			hero.hpCurrent = hero.hp
-	
+			
+		# make a snapshot of this hero's data for the vignette
+		battle.heroDeltas[hero.heroID] = {
+				"startHP":hero.hpCurrent,
+				"endHP":null
+			}
+		
 	#a battle continues until all mobs (or all heroes) are dead
 	#if all heroes die, the encounter is over
 	#if all mobs die, the encounter goes onto the next battle 
@@ -228,8 +248,9 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		"rawBattleLog":[]
 	}
 	
+	# add to the "battle" object used to generate the vignette
 	for mob in newBattle.mobs:
-		newBattle.startMobsSprites.append(mob.sprite)
+		battle.mobSprites.append(mob.sprite)
 	
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
@@ -339,6 +360,11 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 				break
 
 	battleNumber += 1
+	
+	for hero in heroes:
+		# make a snapshot of this hero's data for the vignette
+		battle.heroDeltas[hero.heroID].endHP = hero.hpCurrent
+	encounter.vignetteData.battles.append(battle)
 	return newBattle
 
 			
@@ -357,11 +383,11 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	battleQuantity = camp.selectedDuration / (5 * 100)
 	#generate N battles and save their outcomes to the battleRecord
 	#save cumulative loot totals to encounterOutcome
+
 	
-	#heroesClone = []
-	#for t in camp.heroes:
-	#	if (t):
-	#		heroesClone.append(t)
+	#so the vignette knows which heroes were here
+	for hero in camp.heroes:
+		encounter.vignetteData.campHeroes.append(hero)
 	
 	var battlesComplete = 0
 	while (battlesComplete < battleQuantity && camp.heroes.size() > 0):

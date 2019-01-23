@@ -1,6 +1,8 @@
 extends Node2D
 
-
+var fightCloudTimer = Timer.new()
+var timeUntilNextBattle = Timer.new()
+var middleOfScreen = Vector2(300,300)
 #  0   1
 #    2   3
 var heroPositions = {
@@ -44,7 +46,88 @@ var mobPositions = {
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
-	pass
+	show_fight_cloud(false)
+
+func play_vignette(data):
+	#handles the step by step iteration of the vignette data 
+	# vignette data should come in as an array 
+	# each index is an object representing a discrete battle
+	# each battle has heroes, mobs, start hp and end hp for each
+	# each battle also has a duration (tbd by camp factors)
+	
+	# every battle and its outcome has already been decided and recorded in this data structure
+	# this method just "plays it out"
+	
+	#for now, just see if the data made it 
+	print("this data came into battle scene")
+	print(data)
+	
+	# put heroes on the stage - these heroes will persist battle-to-battle and get updated
+	# and possibly killed and removed from later battles
+	
+	# these heroes should be recognized as a consistent group 
+	print(data.campHeroes)
+	populate_heroes(data.campHeroes)
+	
+	#for each battle
+	for i in data.battles.size():
+		
+		#todo: only continue to play if at least one hero is alive
+		var battle = data.battles[i]
+		print("BATTLE")
+		print(battle)
+		
+		# print BATTLE N where the player can see it
+		print("BATTLE " + str(i))
+		
+		# spawn enenmies
+		populate_mobs(battle.mobSprites)
+		
+		# for each hero still on screen, move to middle
+		var heroes = get_tree().get_nodes_in_group("heroes")
+		for hero in heroes:
+			hero.set_position(middleOfScreen)
+			
+		# for each mob on screen, move to middle
+		var mobs = get_tree().get_nodes_in_group("mobs")
+		for mob in mobs:
+			mob.set_position(middleOfScreen)
+			
+		# spawn the fight cloud
+		show_fight_cloud(true)
+
+		# wait (represents actual fighting)
+		yield(get_tree().create_timer(3.0), "timeout")
+		
+		# despawn the fight cloud
+		show_fight_cloud(false)
+		
+		# jump heroes and mobs back to their starting points
+		for hero in heroes:
+			hero.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
+			
+		for mob in mobs:
+			mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+		
+		# update heroes and mobs hp
+		yield(get_tree().create_timer(1.0), "timeout")
+		
+		# remove dead heroes and mobs
+		for hero in heroes:
+			print("Am I dead? " + str(hero.heroFirstName))
+			
+		for mob in mobs:
+			print("Am I dead? " + str("mob name here"))
+			
+		# wait (regen period between pulls)
+		yield(get_tree().create_timer(5.0), "timeout")
+	
+func show_fight_cloud(showBool):
+	if (showBool):
+		$fightcloud.show()
+	else:
+		$fightcloud.hide()
+	
 
 func populate_heroes(heroes):
 	for i in heroes.size():
@@ -54,7 +137,7 @@ func populate_heroes(heroes):
 		heroScene.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 		heroScene.face_right()
 		heroScene.set_display_params(false, true) #walking, show name 
-		
+		heroScene.add_to_group("heroes")
 		add_child(heroScene)
 		
 func populate_mobs(spriteFilenames):
@@ -62,6 +145,7 @@ func populate_mobs(spriteFilenames):
 		var mobSprite = Sprite.new()
 		mobSprite.texture = load("res://sprites/mobs/" + spriteFilenames[i])
 		mobSprite.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+		mobSprite.add_to_group("mobs")
 		add_child(mobSprite)
 		
 func set_background(filename):
