@@ -3,6 +3,8 @@ extends Node2D
 var fightCloudTimer = Timer.new()
 var timeUntilNextBattle = Timer.new()
 var middleOfScreen = Vector2(150,150)
+var deadHeroes = 0
+
 #  0   1
 #    2   3
 var heroPositions = {
@@ -126,7 +128,8 @@ func play_vignette(data):
 		
 		#var activeHeroes = get_tree().call_group("heroes", "vignette_die")
 		# remove dead heroes and mobs
-		for hero in heroes:
+		for i in heroes.size():
+			var hero = heroes[i]
 			print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
 			
 			#display hp bars and animate the change in the total and % fill
@@ -147,16 +150,30 @@ func play_vignette(data):
 		yield(get_tree().create_timer(3.0), "timeout")
 		for dyingHero in get_tree().get_nodes_in_group("dyingHeroes"):
 			dyingHero.queue_free()
+			deadHeroes+=1
+			#todo: also remove hero from heroes 
 			
-		for mob in mobs:
-			print("Am I dead? " + str("mob name here"))
-			mob.remove_from_group("mobs")
-			#todo: remove dead mob 
-		
-		mobs.empty()
+		# we always clear all the mobs UNLESS all the heroes are dead
+		if (deadHeroes < heroes.size()):
+			for mob in mobs:
+				#Unlike heroes, mobs are just sprites
+				#So remove the mob childs from the stage
+				remove_child(mob)
+		else:
+			print("HEROES ALL DEAD! Leave the surviving mobs up.")
+			$label_battleN.show()
+			$label_battleN.text = "ALL HEROES DEFEATED :("
+			#First, we have to figure out which mobs are not dead
+			#So look in this battle's deltas
+			#Todo: mob deltas not yet implemented in encounter generator
 			
 		# wait (regen period between pulls)
-		yield(get_tree().create_timer(5.0), "timeout")
+		yield(get_tree().create_timer(4.0), "timeout")
+		
+	# we've used up all the battles, print the outcome
+	$label_battleN.show()
+	$label_battleN.text = "Camp complete!"
+
 		
 	
 func show_fight_cloud(showBool):
