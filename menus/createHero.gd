@@ -7,10 +7,14 @@ var heroScene = null
 
 var allHumanHeads = []
 var headIndex = -1
+var defaultClassStr = "Cleric" #todo: randomize
+
+onready var field_classDescription = $VBoxContainer/CenterContainer/field_classDescription
 
 func _ready():
 	#generate a hero
-	heroGenerator.generate(global.guildRoster, "Cleric")
+	heroGenerator.generate(global.guildRoster, defaultClassStr)
+	update_class_text(defaultClassStr)
 	
 	#the new hero is the last thing in the roster, so grab it out of the back
 	var lastIndex = global.guildRoster.size() - 1
@@ -64,26 +68,32 @@ func check_name_input(userInput):
 func _on_button_cleric_pressed():
 	global.selectedHero.change_class("Cleric")
 	update_hero_preview()
+	update_class_text("Cleric")
 
 func _on_button_druid_pressed():
 	global.selectedHero.change_class("Druid")
 	update_hero_preview()
+	update_class_text("Druid")
 
 func _on_button_ranger_pressed():
 	global.selectedHero.change_class("Ranger")
 	update_hero_preview()
+	update_class_text("Ranger")
 
 func _on_button_rogue_pressed():
 	global.selectedHero.change_class("Rogue")
 	update_hero_preview()
+	update_class_text("Rogue")
 
 func _on_button_warrior_pressed():
 	global.selectedHero.change_class("Warrior")
 	update_hero_preview()
+	update_class_text("Warrior")
 
 func _on_button_wizard_pressed():
 	global.selectedHero.change_class("Wizard")
 	update_hero_preview()
+	update_class_text("Wizard")
 
 func _on_button_prevHead_pressed():
 	headIndex -= 1
@@ -104,6 +114,9 @@ func _on_button_nextHead_pressed():
 func _on_button_randomName_pressed():
 	global.selectedHero.heroFirstName = nameGenerator.generateFirst("any")
 	update_hero_preview()
+	
+func update_class_text(classNameStr):
+	field_classDescription.text = staticData.heroStats[classNameStr.to_lower()].description
 	
 func _on_button_createHero_pressed():
 	get_tree().change_scene("res://main.tscn")
