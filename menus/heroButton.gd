@@ -63,8 +63,7 @@ func populate_fields(data):
 		if (data.level >= global.maxHeroLevel):
 			self.set_disabled(true)
 	
-	
-	
+
 	#draw the hero
 	var heroScene = preload("res://hero.tscn").instance()
 	heroScene.set_instance_data(data) #put data from array into scene 
@@ -73,6 +72,10 @@ func populate_fields(data):
 	heroScene.set_display_params(false, false) #walking, name displayed
 	add_child(heroScene)
 	
+	# tint the hero purple if dead
+	if (data.dead):
+		heroScene.modulate = Color(0.8, 0.7, 1)
+		
 	#ready to train text
 	if (data.xp == staticData.levelXpData[str(data.level)].total):
 		$field_readyToTrain.show()

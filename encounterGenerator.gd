@@ -56,7 +56,7 @@ var encounter = {
 				"detailedPlayByPlay":[],
 				"vignetteData":{
 					"campHeroes":[],
-					"battles":[]
+					"battleSnapshots":[]
 				}
 			}
 
@@ -200,7 +200,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 	
 	# for THIS BATTLE, create an object that will hold the 'before' and 'after' snapshots
 	# of hero and mob hp 
-	var battle = {
+	var battleSnapshot = {
 		"heroDeltas":{},
 		"mobSprites":[],
 		"mobDeltas":{}
@@ -215,7 +215,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 			hero.hpCurrent = hero.hp
 			
 		# make a snapshot of this hero's data for the vignette
-		battle.heroDeltas[hero.heroID] = {
+		battleSnapshot.heroDeltas[hero.heroID] = {
 				"startHP":hero.hpCurrent,
 				"endHP":0,
 				"totalHP":hero.hp
@@ -251,7 +251,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 	
 	# add to the "battle" object used to generate the vignette
 	for mob in newBattle.mobs:
-		battle.mobSprites.append(mob.sprite)
+		battleSnapshot.mobSprites.append(mob.sprite)
 	
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
@@ -366,9 +366,9 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		# make a snapshot of this hero's data for the vignette
 		# end hp is 0 by default, so if a hero no longer exists in heroes (because it is dead)
 		# then that 0 will remain in place 
-		battle.heroDeltas[hero.heroID].endHP = hero.hpCurrent
-		
-	encounter.vignetteData.battles.append(battle)
+		battleSnapshot.heroDeltas[hero.heroID].endHP = hero.hpCurrent
+
+	encounter.vignetteData.battleSnapshots.append(battleSnapshot)
 	return newBattle
 
 			

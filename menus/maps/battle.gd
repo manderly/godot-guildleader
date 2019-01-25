@@ -72,11 +72,11 @@ func play_vignette(data):
 	populate_heroes(data.campHeroes)
 	
 	#for each battle
-	print("there will be " + str(data.battles.size()) + " battles")
-	for i in data.battles.size():
+	print("there will be " + str(data.battleSnapshots.size()) + " battles")
+	for i in data.battleSnapshots.size():
 	
 		#todo: only continue to play if at least one hero is alive
-		var battle = data.battles[i]
+		var battle = data.battleSnapshots[i]
 		
 		# print BATTLE N where the player can see it
 		print("BATTLE " + str(i))

@@ -59,7 +59,6 @@ var perkOnDeckKey = null
 
 func _ready():
 	
-	
 	$confirm_rename_dialog.set_mode("last")
 	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
@@ -69,8 +68,13 @@ func _ready():
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(50, 20))
-	heroScene.set_display_params(false, false) #walking, show name 
+	heroScene.set_display_params(false, false) #walking, show name
+	heroScene.add_to_group("heroScene")
 	add_child(heroScene)
+	
+	# tint the hero purple if dead
+	if (global.selectedHero.dead):
+		heroScene.modulate = Color(0.8, 0.7, 1)
 	
 	add_child(finishNowPopup)
 	
@@ -190,6 +194,10 @@ func populate_fields():
 		var inventoryButtons = get_tree().get_nodes_in_group("InventoryButtons")
 		for button in inventoryButtons:
 			button.set_disabled(false)
+		
+		# tint the hero clear again
+		var heroScene = get_tree().get_nodes_in_group("heroScene")
+		heroScene[0].modulate = Color(1, 1, 1)
 		
 		
 	#disable train button if hero is recruited and at max level
