@@ -15,6 +15,9 @@ var displaySTR = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
+var displayHPRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayManaRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
 #Skills
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -45,7 +48,8 @@ onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/b
 #containers
 onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
 
-onready var tabStats = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats
+onready var tabStatsLeft = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsLeft
+onready var tabStatsRight = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsRight
 onready var tabSkills = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills
 onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses
 
@@ -128,13 +132,16 @@ func _ready():
 	#populating the data is done in a separate method, update_stats 
 	
 	#Stats
-	tabStats.add_child(displayHP)
-	tabStats.add_child(displayMana)
-	tabStats.add_child(displayArmor)
-	tabStats.add_child(displayDPS)
-	tabStats.add_child(displaySTR)
-	tabStats.add_child(displayDEF)
-	tabStats.add_child(displayINT)
+	tabStatsLeft.add_child(displayHP)
+	tabStatsLeft.add_child(displayMana)
+	tabStatsLeft.add_child(displayArmor)
+	tabStatsLeft.add_child(displayDPS)
+	tabStatsLeft.add_child(displaySTR)
+	tabStatsLeft.add_child(displayDEF)
+	tabStatsLeft.add_child(displayINT)
+	
+	tabStatsRight.add_child(displayHPRegen)
+	tabStatsRight.add_child(displayManaRegen)
 	
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
@@ -268,12 +275,16 @@ func _update_stats():
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
 	else:
 		displayMana.hide()
+		displayManaRegen.hide()
 	#stats
 	displayArmor._update_fields("Armor", global.selectedHero.armor)
 	displayDPS._update_fields("DPS", global.selectedHero.dps)
 	displaySTR._update_fields("STR", global.selectedHero.strength)
 	displayDEF._update_fields("DEF", global.selectedHero.defense)
 	displayINT._update_fields("INT", global.selectedHero.intelligence)
+	
+	displayHPRegen._update_fields("HP Regen", global.selectedHero.regenRateHP)
+	displayManaRegen._update_fields("Mana Regen", global.selectedHero.regenRateMana)
 	
 	#skills
 	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)

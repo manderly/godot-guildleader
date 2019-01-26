@@ -60,16 +60,16 @@ func play_vignette(data):
 	# every battle and its outcome has already been decided and recorded in this data structure
 	# this method just "plays it out"
 	
-	#for now, just see if the data made it 
-	print("this data came into battle scene")
-	print(data)
-	
 	# put heroes on the stage - these heroes will persist battle-to-battle and get updated
 	# and possibly killed and removed from later battles
 	
 	# these heroes should be recognized as a consistent group 
 	print(data.campHeroes)
 	populate_heroes(data.campHeroes)
+	$label_battleN.hide()
+	#todo: might be nice if heroes walked into position from offstage
+	yield(get_tree().create_timer(2.0), "timeout")
+	
 	
 	#for each battle
 	print("there will be " + str(data.battleSnapshots.size()) + " battles")
@@ -77,21 +77,22 @@ func play_vignette(data):
 	
 		#todo: only continue to play if at least one hero is alive
 		var battle = data.battleSnapshots[i]
+			
+		# spawn enenmies
+		#todo: poof!
+		populate_mobs(battle.mobSprites)
+		yield(get_tree().create_timer(1.0), "timeout")
 		
 		# print BATTLE N where the player can see it
 		print("BATTLE " + str(i))
 		$label_battleN.show()
 		$label_battleN.text = "BATTLE " + str(i + 1)
+		yield(get_tree().create_timer(2.0), "timeout")
 	
-		# wait for mobs to spawn
-		yield(get_tree().create_timer(3.0), "timeout")
+		# clear text and pause a moment before jumping into the fray
 		$label_battleN.hide()
-			
-		# spawn enenmies
-		populate_mobs(battle.mobSprites)
-		
-		# pause before jumping into the fray
 		yield(get_tree().create_timer(1.0), "timeout")
+		
 		
 		# for each hero still on screen, move to middle
 		var heroes = get_tree().get_nodes_in_group("heroes")
@@ -130,7 +131,7 @@ func play_vignette(data):
 		# remove dead heroes and mobs
 		for i in heroes.size():
 			var hero = heroes[i]
-			print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
+			#print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
 			
 			#display hp bars and animate the change in the total and % fill
 			var deltas = battle.heroDeltas[hero.heroID]
@@ -139,12 +140,10 @@ func play_vignette(data):
 				
 			#todo: animate the change simultaneously in all heroes 
 			if (battle.heroDeltas[hero.heroID].endHP <= 0):
-				print("yes, play dying animation and remove me")
+				#print("yes, play dying animation and remove me")
 				#hero.vignette_die()
 				hero.add_to_group("dyingHeroes")
-				#remove_child(hero)
-			else:
-				print("no, keep me in")
+
 				
 		var dyingHeroes = get_tree().call_group("dyingHeroes", "vignette_die")
 		yield(get_tree().create_timer(3.0), "timeout")
@@ -168,7 +167,11 @@ func play_vignette(data):
 			#Todo: mob deltas not yet implemented in encounter generator
 			
 		# wait (regen period between pulls)
-		yield(get_tree().create_timer(4.0), "timeout")
+		# todo: this time should be based on respawn time of this specific camp
+		$label_battleN.show()
+		$label_battleN.text = "Waiting for respawn"
+		print("waiting for respawn:" + str(data.respawnRate))
+		yield(get_tree().create_timer(data.respawnRate), "timeout")
 		
 	# we've used up all the battles, print the outcome
 	$label_battleN.show()

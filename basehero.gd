@@ -48,6 +48,9 @@ var baseMood = 0
 var basePrestige = -1
 var baseGroupBonus = "none"
 var baseRaidBonus = "none"
+
+var baseRegenRateHP = 1
+var baseRegenRateMana = 1
 	
 var classLevelModifiers = {
 	"Warrior":{
@@ -105,6 +108,9 @@ var modifiedSkillTailoring = 0
 var modifiedSkillHarvesting = 0
 var modifiedPrestige = 0
 
+var modifiedRegenRateHP = 0
+var modifiedRegenRateMana = 0
+
 #TODO: Buffs - someday, buffs will affect stats, too. 
 
 #FINAL STATS - combine base and modified stats. For now, default to -1 until the math is done.  
@@ -130,6 +136,8 @@ var prestige = -1
 var groupBonus = "none"
 var raidBonus = "none"
 
+var regenRateHP = -1
+var regenRateMana = -1
 
 #This hero's items (equipment)
 #to access: heroInstance.equipment.mainHand

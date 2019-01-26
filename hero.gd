@@ -192,6 +192,8 @@ func save():
 		"strength":thisHero.strength,
 		"defense":thisHero.defense,
 		"intelligence":thisHero.intelligence,
+		"regenRateHP":thisHero.regenRateHP,
+		"regenRateMana":thisHero.regenRateMana,
 		"skillAlchemy":thisHero.skillAlchemy,
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
 		"skillChronomancy":thisHero.skillChronomancy,
@@ -333,6 +335,8 @@ func update_hero_stats():
 	modifiedStrength = 0
 	modifiedDefense = 0
 	modifiedIntelligence = 0
+	modifiedRegenRateHP = 0
+	modifiedRegenRateMana = 0
 	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
 	modifiedSkillChronomancy = 0
@@ -355,6 +359,8 @@ func update_hero_stats():
 			modifiedStrength += equip.strength
 			modifiedDefense += equip.defense
 			modifiedIntelligence += equip.intelligence
+			modifiedRegenRateHP += equip.regenRateHP
+			modifiedRegenRateMana += equip.regenRateMana
 			modifiedPrestige += equip.prestige
 			#skill stats to come later (todo) 
 			#groupBonus is a different system (todo) 
@@ -371,6 +377,8 @@ func update_hero_stats():
 	strength = baseStrength + modifiedStrength
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
+	regenRateHP = baseRegenRateHP + modifiedRegenRateHP
+	regenRateMana = baseRegenRateMana + modifiedRegenRateMana
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy

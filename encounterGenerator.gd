@@ -3,7 +3,7 @@ var mobGenerator = load("res://mobGenerator.gd").new()
 # encounterGenerator.gd 
 
 # Terminology: 
-# an encounter is the entire thing
+# an encounter is the entire camp duration
 # a battle is part of an encounter
 # heroes win: heroes won the fight easily
 # mobs win: heroes still win, technically, but we roll to see if any heroes die 
@@ -56,7 +56,8 @@ var encounter = {
 				"detailedPlayByPlay":[],
 				"vignetteData":{
 					"campHeroes":[],
-					"battleSnapshots":[]
+					"battleSnapshots":[],
+					"respawnRate":0
 				}
 			}
 
@@ -373,20 +374,12 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 
 			
 func calculate_encounter_outcome(camp): #pass in the entire camp object
-	#use duration to determine how many encounters (battles) happen
-	#duration comes in as seconds, so divide by 60 to make it 1 encounter per minute
-	#or 120 to make it 1 encounter every 2 mins, etc.
-	#remember that an encounter has several mobs in it
-	#so pace these accordingly (maybe one encounter every 5-10 mins is ideal)
+	#use duration and respawn rate to determine how many encounters (battles) happen
+	# camp respawnRate comes in as seconds, such as "60 seconds between battles"
+	encounter.vignetteData.respawnRate = camp.respawnRate
 	
-	#rather than determine battle quantity here, we should let the mob spawn rate determine it
-	
-	#var battleQuantity = camp.selectedDuration / (5 * 100)
-	var battleQuantity = camp.selectedDuration / (camp.respawnRate * 15)
+	var battleQuantity = camp.selectedDuration / camp.respawnRate
 	print("encounterGenerator 384 BATTLE QUANTITY: " + str(battleQuantity))
-	#generate N battles and save their outcomes to the battleRecord
-	#save cumulative loot totals to encounterOutcome
-
 	
 	#so the vignette knows which heroes were here
 	for hero in camp.heroes:

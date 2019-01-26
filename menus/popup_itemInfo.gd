@@ -127,7 +127,13 @@ func _populate_fields():
 		
 		if (itemData.intelligence > 0):
 			stats.append("+" + str(itemData.intelligence) + " INT")
-	
+		
+		if (itemData.regenRateHP > 0):
+			stats.append("+" + str(itemData.regenRateHP) + " HP regen")
+			
+		if (itemData.regenRateMana > 0):
+			stats.append("+" + str(itemData.regenRateMana) + " Mana regen")
+			
 		#display them (should just be the ones greater than 0)
 		for i in range(stats.size()):
 			find_node("field_stat" + str(i)).text = stats[i]

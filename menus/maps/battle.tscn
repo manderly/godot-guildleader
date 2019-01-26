@@ -45,7 +45,7 @@ stretch_mode = 0
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
 animation = "default"
-frame = 1
+frame = 4
 playing = true
 
 [node name="fightcloud" type="Sprite" parent="." index="2"]
