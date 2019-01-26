@@ -49,7 +49,8 @@ func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
 	show_fight_cloud(false)
-
+		
+	
 func play_vignette(data):
 	#handles the step by step iteration of the vignette data 
 	# vignette data should come in as an array 
@@ -93,11 +94,10 @@ func play_vignette(data):
 		$label_battleN.hide()
 		yield(get_tree().create_timer(1.0), "timeout")
 		
-		
 		# for each hero still on screen, move to middle
 		var heroes = get_tree().get_nodes_in_group("heroes")
 		for hero in heroes:
-			hero.hide_hp()
+			hero.vignette_hide_stats()
 			hero.set_position(middleOfScreen)
 			
 		# for each mob on screen, move to middle
@@ -135,15 +135,14 @@ func play_vignette(data):
 			
 			#display hp bars and animate the change in the total and % fill
 			var deltas = battle.heroDeltas[hero.heroID]
-			hero.show_hp()
-			hero.vignette_update_hp(deltas.startHP, deltas.endHP, deltas.totalHP)
+			hero.vignette_show_stats()
+			hero.vignette_update_hp_and_mana(deltas.startHP, deltas.endHP, deltas.totalHP, deltas.startMana, deltas.endMana, deltas.totalMana)
 				
 			#todo: animate the change simultaneously in all heroes 
 			if (battle.heroDeltas[hero.heroID].endHP <= 0):
-				#print("yes, play dying animation and remove me")
-				#hero.vignette_die()
 				hero.add_to_group("dyingHeroes")
-
+			else:
+				hero.add_to_group("recoveringHeroes")
 				
 		var dyingHeroes = get_tree().call_group("dyingHeroes", "vignette_die")
 		yield(get_tree().create_timer(3.0), "timeout")
@@ -171,7 +170,17 @@ func play_vignette(data):
 		$label_battleN.show()
 		$label_battleN.text = "Waiting for respawn"
 		print("waiting for respawn:" + str(data.respawnRate))
-		yield(get_tree().create_timer(data.respawnRate), "timeout")
+	
+
+		# use a while loop to update hp/mana restore ticks
+		# ie: camp needs 30 seconds to respawn
+		# there will be 3 ticks of updates
+		var recoveringHeroes = get_tree().get_nodes_in_group("recoveringHeroes")
+		var regenTicks = data.respawnRate / 10
+		for ticks in regenTicks:
+			get_tree().call_group("recoveringHeroes", "vignette_recover_tick")
+			#wait 10 seconds
+			yield(get_tree().create_timer(10), "timeout")
 		
 	# we've used up all the battles, print the outcome
 	$label_battleN.show()

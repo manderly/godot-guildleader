@@ -40,7 +40,7 @@ var battlePrint = false
 
 #populate battleRecord array with battle objects
 #populate loot with names of items won
-#populate sc and hc with totals of currency won 
+#populate sc with totals of currency won 
 #class Outcome: 
 
 	
@@ -182,7 +182,6 @@ func _target_mob_dies(targetMob, newBattle):
 		
 	#Determine how much SC the player looted from this mob
 	#Not every mob drops money, so don't roll a random if this mob is moneyless 
-	newBattle.hc = _get_rand_between(0, 2)
 	if (lootTable.scMax > 0):
 		var scAmount = _get_rand_between(lootTable.scMin, lootTable.scMax)
 		encounter.detailedPlayByPlay.append("Looted " + str(scAmount) + " coins.")
@@ -196,7 +195,10 @@ func _target_mob_dies(targetMob, newBattle):
 	#encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
 	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
-func _calculate_battle_outcome(heroes, spawnPointData):
+func _calculate_battle_outcome(camp):
+	var heroes = camp.heroes
+	var spawnPointData = camp.spawnPointData
+	
 	encounter.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
 	
 	# for THIS BATTLE, create an object that will hold the 'before' and 'after' snapshots
@@ -207,19 +209,35 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		"mobDeltas":{}
 	}
 	
-	#regen heroes
-	#todo: better regen formula
+	# Next, refill hp and mana based on hero's regen rate and the camp's respawn rate
+
+	# Every hero has a regenRateHP and regenRateMana expressed as an int (1, 5, 20, etc)
+	
+	# And every battle has a respawn time that represents the wait between fights
+	# Heroes refill hp and mana in that time
+	# The higher the wait time and the higher the regen rate, the more hp and mana recovered
+	# before the next fight
 	
 	for hero in heroes:
-		hero.hpCurrent += (_get_rand_between(1,10))
+		# for now, regen 1 regenRateHP for every 10 seconds of respawn time
+		var hpRestored = hero.regenRateHP * (camp.respawnRate / 10)
+		var manaRestored = hero.regenRateMana * (camp.respawnRate / 10)
+		hero.hpCurrent += hpRestored
 		if (hero.hpCurrent > hero.hp):
 			hero.hpCurrent = hero.hp
+		hero.manaCurrent += manaRestored
+		if (hero.manaCurrent > hero.mana):
+			hero.manaCurrent = hero.mana
 			
-		# make a snapshot of this hero's data for the vignette
+		# Now that we're done regenning, make a snapshot of this hero's data for the vignette
+		# Todo: add mana to snapshot
 		battleSnapshot.heroDeltas[hero.heroID] = {
 				"startHP":hero.hpCurrent,
 				"endHP":0,
-				"totalHP":hero.hp
+				"totalHP":hero.hp,
+				"startMana":hero.manaCurrent,
+				"endMana":0,
+				"totalMana":hero.mana
 			}
 		
 	#a battle continues until all mobs (or all heroes) are dead
@@ -245,7 +263,6 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		"winner":"",
 		"loot":[], #item name strings 
 		"sc":0,
-		"hc":0,
 		"xp:":0,
 		"rawBattleLog":[]
 	}
@@ -368,6 +385,7 @@ func _calculate_battle_outcome(heroes, spawnPointData):
 		# end hp is 0 by default, so if a hero no longer exists in heroes (because it is dead)
 		# then that 0 will remain in place 
 		battleSnapshot.heroDeltas[hero.heroID].endHP = hero.hpCurrent
+		battleSnapshot.heroDeltas[hero.heroID].endMana = hero.manaCurrent
 
 	encounter.vignetteData.battleSnapshots.append(battleSnapshot)
 	return newBattle
@@ -379,7 +397,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	encounter.vignetteData.respawnRate = camp.respawnRate
 	
 	var battleQuantity = camp.selectedDuration / camp.respawnRate
-	print("encounterGenerator 384 BATTLE QUANTITY: " + str(battleQuantity))
+	print("encounterGenerator.gd line 384 BATTLE QUANTITY: " + str(battleQuantity))
 	
 	#so the vignette knows which heroes were here
 	for hero in camp.heroes:
@@ -387,7 +405,7 @@ func calculate_encounter_outcome(camp): #pass in the entire camp object
 	
 	var battlesComplete = 0
 	while (battlesComplete < battleQuantity && camp.heroes.size() > 0):
-		var battleOutcome = _calculate_battle_outcome(camp.heroes, camp.spawnPointData)
+		var battleOutcome = _calculate_battle_outcome(camp)
 		battlesComplete += 1
 		encounter.battleRecord.append(battleOutcome)
 		

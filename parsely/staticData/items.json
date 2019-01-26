@@ -1871,7 +1871,7 @@
     "defense": 0,
     "intelligence": 15,
     "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateMana": 1,
     "noDrop": false
   },
   {
@@ -1996,7 +1996,7 @@
     "defense": 5,
     "intelligence": 16,
     "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateMana": 1,
     "noDrop": true
   },
   {
@@ -2021,7 +2021,7 @@
     "defense": 8,
     "intelligence": 20,
     "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateMana": 2,
     "noDrop": true
   },
   {
@@ -2045,8 +2045,8 @@
     "strength": 5,
     "defense": 15,
     "intelligence": 30,
-    "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateHP": 2,
+    "regenRateMana": 3,
     "noDrop": true
   },
   {
@@ -2070,8 +2070,8 @@
     "strength": 5,
     "defense": 15,
     "intelligence": 25,
-    "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateHP": 2,
+    "regenRateMana": 3,
     "noDrop": true
   },
   {
@@ -2096,7 +2096,7 @@
     "defense": 8,
     "intelligence": 30,
     "regenRateHP": 0,
-    "regenRateMana": 0,
+    "regenRateMana": 3,
     "noDrop": true
   },
   {

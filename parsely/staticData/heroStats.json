@@ -11,6 +11,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 0,
     "dps": 0,
     "description": "The warrior is a fierce combatant and strong defender of the group. A warrior fights with swords and defends with a shield."
   },
@@ -26,6 +28,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 0,
     "dps": 0,
     "description": "The rogue is a sneaky character, quick with a dagger and even quicker with an unguarded coin purse. Rogues excel at dealing melee damage and increase the amount of loot brought home from a group."
   },
@@ -41,6 +45,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 1,
     "dps": 0,
     "description": "Clerics are healers and protectors. A cleric recovers wounds taken by the group between battles, increasing how long a group can survive a camp."
   },
@@ -56,6 +62,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 1,
     "dps": 0,
     "description": "Wizards are smart and powerful, conjuring devastating magical attacks and unleashing them on enemies in the form of fireballs and ice strikes."
   },
@@ -71,6 +79,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 0,
     "dps": 0,
     "description": "Rangers are at home in the outdoors and fight exclusively with a bow and arrow."
   },
@@ -86,6 +96,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 1,
     "dps": 0,
     "description": "Druids are a jack-of-all-trades class that can serve as a healer or a damage-dealer."
   },
@@ -101,6 +113,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 1,
     "dps": 0,
     "description": "Paladins are a hybrid class of warrior and cleric."
   },
@@ -116,6 +130,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 1,
     "dps": 0,
     "description": "Necromancers are dour AF"
   },
@@ -131,6 +147,8 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 0,
     "dps": 0,
     "description": "Bards are the life of the party and inspire the group to action with a variety of songs."
   }

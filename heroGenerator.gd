@@ -77,6 +77,8 @@ func generate(destinationArray, classStr):
 	newHero.baseStrength = startingStats["strength"]
 	newHero.baseDefense = startingStats["defense"]
 	newHero.baseIntelligence = startingStats["intelligence"]
+	newHero.baseRegenRateHP = startingStats["regenRateHP"]
+	newHero.baseRegenRateMana = startingStats["regenRateMana"]
 	newHero.baseSkillAlchemy = 0
 	newHero.baseSkillBlacksmithing = 0
 	newHero.baseSkillChronomancy = 0

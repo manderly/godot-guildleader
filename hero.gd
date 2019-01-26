@@ -41,7 +41,7 @@ func _ready():
 	else:
 		$field_name.text = ""
 	
-	hide_hp()
+	vignette_hide_stats()
 		
 func set_display_params(walkBool, nameBool):
 	walkable = walkBool
@@ -113,30 +113,45 @@ func _on_Timer_timeout():
 	_hide_extended_stats()
 	_start_walking()
 
-func vignette_update_hp(oldHP, newHP, totalHP):
+func vignette_update_hp_and_mana(oldHP, newHP, totalHP, oldMana, newMana, totalMana):
+	#if the regen tick took us above the total allowed, reset to total 
+	if (newHP > totalHP):
+		hpCurrent = totalHP
+	else:
+		hpCurrent = newHP
+
+	if (newMana > totalMana):
+		manaCurrent = totalMana
+	else:
+		manaCurrent = newMana
+		
 	$field_HP.text = str(oldHP) + "/" + str(totalHP)
-	$hpBar.set_value((oldHP/totalHP)*100)
-	
+	$field_Mana.text = str(oldMana) + "/" + str(totalMana)
 	#todo: animate the change
-	yield(get_tree().create_timer(5.0), "timeout")
-	
-	$field_HP.text = str(newHP) + "/" + str(totalHP)
-	$hpBar.set_value((newHP/totalHP)*100)
+	yield(get_tree().create_timer(1.0), "timeout")
+
+	$field_HP.text = str(hpCurrent) + "/" + str(totalHP)
+	$field_Mana.text = str(manaCurrent) + "/" + str(totalMana)
 	
 func vignette_die():
 	$body.modulate = Color(0.8, 0.7, 1)
 	#todo: animate the change
 	
-func show_hp():
-	$hpBar.show()
+func vignette_show_stats():
 	$field_HP.show()
-	$hp.show()
+	$label_hp.show()
+	
+	if get_is_caster_type():
+		$field_Mana.show()
+		$label_mana.show()
+	
 	$field_levelAndClass.hide()
 
-func hide_hp():
-	$hpBar.hide()
+func vignette_hide_stats():
 	$field_HP.hide()
-	$hp.hide()
+	$label_hp.hide()
+	$field_Mana.hide()
+	$label_mana.hide()
 	
 func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
@@ -263,6 +278,12 @@ func set_instance_data(data):
 	#chestSprite = data.equipment.chest.bodySprite
 	#legsSprite = data.equipment.legs.bodySprite
 	#bootSprite = data.equipment.feet.bodySprite
+	hp = data.hp
+	hpCurrent = data.hpCurrent
+	mana = data.mana
+	manaCurrent = data.manaCurrent
+	regenRateHP = data.regenRateHP
+	regenRateMana = data.regenRateMana
 	equipment = {
 		"mainHand": data.equipment.mainHand,
 		"offHand": data.equipment.offHand,
@@ -278,6 +299,7 @@ func set_instance_data(data):
 	shieldSprite = data.shieldSprite
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
+
 	
 func _draw_sprites():
 	var none = "res://sprites/heroes/none.png"
@@ -470,14 +492,17 @@ func _open_hero_page():
 				break
 				
 func _hide_extended_stats():
-	$field_levelAndClass.text = ""
-	$field_xp.text = ""
-	$field_debug.text = ""
+	$field_levelAndClass.hide()
+	$field_xp.hide()
+	$field_debug.hide()
 	
 func _show_extended_stats():
 	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
-	$field_xp.text = str(xp) + " xp"
+	$field_xp.text = str(xp) + "/" + str(staticData.levelXpData[str(level)].total) + " xp"
 	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
+	$field_levelAndClass.show()
+	$field_xp.show()
+	#$field_debug.show()
 	
 func _on_heroButton_pressed():
 	if (walkable):
@@ -528,6 +553,13 @@ func get_class_role():
 		role = "ERROR"
 	return role
 	
+func get_is_caster_type():
+	#returns boolean, true = has mana, false = no mana
+	var isCaster = false
+	if (heroClass == "Wizard" || heroClass == "Paladin" || heroClass == "Cleric" || heroClass == "Druid" || heroClass == "Necromancer"):
+		isCaster = true
+	return isCaster
+	
 func give_xp(xpNum):
 	xp += xpNum
 	
@@ -571,3 +603,8 @@ func melee_attack():
 	if (battlePrint):
 		print("Returning this raw damage: " + str(rawDmg))
 	return rawDmg
+
+func vignette_recover_tick():
+	#print(heroFirstName + " is recovering " + str(regenRateHP) + " hp and " + str(regenRateMana) + " mana")
+	#print(heroFirstName + " is starting with " + str(hpCurrent) + " hp")
+	vignette_update_hp_and_mana(hpCurrent, hpCurrent+regenRateHP, hp, manaCurrent, manaCurrent+regenRateMana, mana)
