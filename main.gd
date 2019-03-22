@@ -111,6 +111,10 @@ func _ready():
 		heroGenerator.generate(global.unrecruited, "Druid")
 		#heroGenerator.generate(global.unrecruited, "Warrior")
 		
+		#level them up a bit for testing purposes
+		for hero in global.guildRoster:
+			hero.make_level(3)
+		
 		#generate starting rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)

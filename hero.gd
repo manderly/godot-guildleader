@@ -565,7 +565,7 @@ func give_xp(xpNum):
 	
 func make_level(levelNum):
 	if (levelNum > 1):
-		for level in range(levelNum):
+		for level in range(levelNum - 1):
 			level_up()
 	
 func restore_hp_mana():
@@ -608,3 +608,29 @@ func vignette_recover_tick():
 	#print(heroFirstName + " is recovering " + str(regenRateHP) + " hp and " + str(regenRateMana) + " mana")
 	#print(heroFirstName + " is starting with " + str(hpCurrent) + " hp")
 	vignette_update_hp_and_mana(hpCurrent, hpCurrent+regenRateHP, hp, manaCurrent, manaCurrent+regenRateMana, mana)
+	
+func say_hello():
+	print(heroFirstName + " says hello")
+	
+func set_dead():
+	dead = true
+	hpCurrent = 0
+	manaCurrent = 0
+	
+func get_nuke_dmg():
+	return level * intelligence
+
+func take_melee_damage(unmodifiedDamage):
+	#todo: damage mitigation roll
+	hpCurrent -= unmodifiedDamage
+	
+func get_cleric_party_heal_amount():
+	return 50 #todo: fancy formula
+	
+func get_druid_target_heal_amount():
+	return 100 #todo: fancy formula 
+	
+func get_healed(amount):
+	hpCurrent += amount
+	if (hpCurrent > hp):
+		hpCurrent = hp #cannot exceed max 

@@ -46,6 +46,7 @@ var battlePrint = false
 	
 var heroesClone = []
 var battleNumber = 1
+var battleOrder = []
 
 #var encounter = null #instantiate in _ready
 var encounter = {
@@ -210,8 +211,34 @@ func _target_mob_dies(targetMob, newBattle):
 	
 	#delete this mob from the current fight
 	newBattle.mobs.erase(targetMob)
+	_remove_from_battle_order(targetMob)
 	#encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
 	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
+	
+func _print_battle_order():
+	print("BATTLE ORDER:")
+	var i = 0;
+	for entity in battleOrder:
+		#print(entity.entityType)
+		if (entity.entityType == "mob"):
+			print(str(i) + " " + entity.mobName + " level " + str(entity.level))
+		elif (entity.entityType == "hero"):
+			print(str(i) + " " + entity.heroFirstName + " level " + str(entity.level) + " " + entity.heroClass)
+		
+		i += 1
+		
+func _remove_from_battle_order(entity):
+	for entity in battleOrder:
+		if (entity.entityType == "mob"):
+			if (entity.mobName == entity.mobName && entity.hpCurrent <= 0):
+				print("removing from battle order: " + entity.mobName)
+				battleOrder.erase(entity)
+		elif (entity.entityType == "hero"):
+			if (entity.heroFirstName == entity.heroFirstName && entity.hpCurrent <= 0):
+				print("removing from battle order: " + entity.heroFirstName)
+				battleOrder.erase(entity)
+	
+	_print_battle_order()
 	
 func _calculate_battle_outcome(camp):
 	var heroes = camp.heroes
@@ -289,120 +316,42 @@ func _calculate_battle_outcome(camp):
 	for mob in newBattle.mobs:
 		battleSnapshot.mobSprites.append(mob.sprite)
 	
-	# shuffle order 
-	var battleOrder = _get_random_battle_order(newBattle.heroes, newBattle.mobs)
-	print("BATTLE ORDER:")
-	for entity in battleOrder:
-		#print(entity.entityType)
-		if (entity.entityType == "mob"):
-			print(entity.mobName + " level " + str(entity.level))
-		elif (entity.entityType == "hero"):
-			print(entity.heroFirstName + " level " + str(entity.level) + " " + entity.heroClass)
-		
+	# shuffle mobs and heroes into random order 
+	battleOrder = _get_random_battle_order(newBattle.heroes, newBattle.mobs)
+	
 		#if ("mobName" in entity):
 		#	print(entity.mobName)
 	
+	#while there are still mobs and heroes alive, pick next in battleOrder
+	# this system is built on the assumption that battleOrder and newBattle.heroes/mobs
+	# reference the same entities in memory (passed by reference)
 	
+	var i = 0
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
-		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
-		for hero in newBattle.heroes:
-			var targetMob = null
-			targetMob = _get_target_entity(newBattle.mobs)
 		
-			if (hero && !hero.dead):
-				if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
-					var unmodifiedDamage = hero.melee_attack()
-					targetMob.hpCurrent -= int(unmodifiedDamage)
-					encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
-					#todo: mob's defense roll 
-					#see if mob should die 
-					if targetMob.hpCurrent <= 0:
-						_target_mob_dies(targetMob, newBattle)
-						if (newBattle.mobs.size() == 0):
-							break
-				elif (hero.heroClass == "Wizard"):
-					#nuke
-					var nukeDmg = hero.level * hero.intelligence
-					
-					#mob's save roll is based on level difference between hero and mob
-					#if mob > hero, mob has a greater chance to resist
-					#if mob < hero, mob has a lesser chance to resist
-					var mobBaseResist = targetMob.baseResist #out of 20
-					
-					if (hero.level > targetMob.level):
-						mobBaseResist -= (hero.level - targetMob.level)
-						if mobBaseResist < 1:
-							mobBaseResist = 1
-					elif (hero.level < targetMob.level):
-						mobBaseResist += (targetMob.level - hero.level)
-						if mobBaseResist > 19:
-							mobBaseResist = 19
-
-					#now roll to see if the mob resists some of the spell dmg
-					var resistRoll = _get_rand_between(0, 20)
-					if (resistRoll <= mobBaseResist):
-						#mob resists the nuke
-						#but how bad is the resist?
-						#only get a full resist if the mob is higher level than the player
-						if (targetMob.level > hero.level):
-							#full resist
-							encounter.detailedPlayByPlay.append(hero.heroFirstName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
-						else:
-							#partial resist because hero is higher level than mob
-							var resistRand = _get_rand_between(1, targetMob.baseResist+1)
-							var modifiedNukeDmg = (nukeDmg / resistRand)
+		if (i >= battleOrder.size()):
+			i = 0
+			
+		var entity = battleOrder[i]
+		i+=1
 		
-							encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
-							targetMob.hpCurrent -= int(modifiedNukeDmg)
-					else:
-						#full damage
-						encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
-						targetMob.hpCurrent -= int(nukeDmg)
-					
-					if targetMob.hpCurrent <= 0:
-						_target_mob_dies(targetMob, newBattle)
-						if (newBattle.mobs.size() == 0):
-							break
-				elif (hero.heroClass == "Cleric"):
-					#heal ALL heroes in party
-					var healAmount = 16 #todo: fancy formula
-					for partyMember in newBattle.heroes:
-						if (!partyMember.dead):
-							encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "!")
-							#if (battlePrint):
-								#print(hero.heroFirstName + " restores 5 hitpoints to everyone, including: " + partyMember.heroFirstName)
-							partyMember.hpCurrent += healAmount
-							if (partyMember.hpCurrent > partyMember.hp):
-								partyMember.hpCurrent = partyMember.hp #cannot exceed max 
-				elif (hero.heroClass == "Druid"):
-					#can nuke or heal, for now druid just heals lowest hp hero 
-					var lowestHPhero = newBattle.heroes[0]
-					for partyMember in newBattle.heroes:
-						if (!partyMember.dead && partyMember.hpCurrent < lowestHPhero.hpCurrent):
-							lowestHPhero = partyMember
-					#now we know which hero is in most need of healing
-					print(hero.heroFirstName + " restores 15 hitpoints to " + lowestHPhero + " with a 5 hp bonus")
-					lowestHPhero.hpCurrent += 15
-					if (lowestHPhero.hpCurrent > lowestHPhero.hp):
-						lowestHPhero.hpCurrent = (lowestHPhero.hp + 5) #give a litle extra on top
-		
-		#now the mobs get a turn, but only if there's some heroes left
-		for mob in newBattle.mobs:
-			mob.say_hello()
-			#var heroesToFight = _get_target_entity(newBattle.heroes)
+		entity.say_hello()
+		if (entity.entityType == "mob"):
+			# only pick a hero to fight if any are left 
 			if (newBattle.heroes.size() > 0):
+				var mob = entity
 				#this mob's target (randomly picked for now)
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
-				var unmodifiedDamage = mob.dps * mob.strength * mob.level
-				targetHero.hpCurrent -= unmodifiedDamage
+				var unmodifiedDamage = mob.get_melee_attack_damage()
+				targetHero.take_melee_damage(unmodifiedDamage)
 				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(unmodifiedDamage) + " points of damage")
+				
 				if (targetHero.hpCurrent <= 0):
-					targetHero.dead = true
-					targetHero.hpCurrent = 0
-					targetHero.manaCurrent = 0
+					targetHero.set_dead()
 					targetHero.send_home()
 					encounter.detailedPlayByPlay.append(targetHero.heroFirstName + " died!")
 					newBattle.heroes.erase(targetHero)
+					_remove_from_battle_order(targetHero)
 					if (newBattle.heroes.size() == 0):
 						encounter.detailedPlayByPlay.append("Total party wipe!")
 						break
@@ -410,7 +359,73 @@ func _calculate_battle_outcome(camp):
 				encounter.detailedPlayByPlay.append("Total party wipe!")
 				print("no heroes left to fight, the encounter is over")
 				break
+		elif (entity.entityType == "hero"):
+			var hero = entity
+			#get an enemy target
+			var targetMob = null
+			targetMob = _get_target_entity(newBattle.mobs)
 
+			if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
+				var unmodifiedDamage = hero.melee_attack()
+				targetMob.take_melee_damage(unmodifiedDamage)
+				encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
+
+				#see if mob should die 
+				if targetMob.hpCurrent <= 0:
+					_target_mob_dies(targetMob, newBattle)
+					if (newBattle.mobs.size() == 0):
+						break
+			elif (hero.heroClass == "Wizard"):
+				#nuke
+				var nukeDmg = hero.get_nuke_dmg()
+				var mobBaseResist = targetMob.get_base_resist(hero.level)
+
+				#now roll to see if the mob resists some of the spell dmg
+				var resistRoll = _get_rand_between(0, 20)
+				if (resistRoll <= mobBaseResist):
+					#mob resists the nuke
+					#but how bad is the resist?
+					#only get a full resist if the mob is higher level than the player
+					if (targetMob.level > hero.level):
+						#full resist
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
+					else:
+						#partial resist because hero is higher level than mob
+						var resistRand = _get_rand_between(1, targetMob.baseResist+1)
+						var modifiedNukeDmg = (nukeDmg / resistRand)
+	
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+						targetMob.take_spell_damage(modifiedNukeDmg)
+						
+				else:
+					#full damage
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+					targetMob.take_spell_damage(nukeDmg)
+				
+				if targetMob.hpCurrent <= 0:
+					_target_mob_dies(targetMob, newBattle)
+					if (newBattle.mobs.size() == 0):
+						break
+			elif (hero.heroClass == "Cleric"):
+				#heal ALL heroes in party
+				var healAmount = hero.get_cleric_party_heal_amount()
+				_heal_all_heroes(healAmount)
+				for partyMember in newBattle.heroes:
+					if (!partyMember.dead):
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "!")
+						partyMember.get_healed(healAmount)
+			elif (hero.heroClass == "Druid"):
+				#can nuke or heal, for now druid just heals lowest hp hero 
+				var lowestHPhero = newBattle.heroes[0]
+				for partyMember in newBattle.heroes:
+					if (!partyMember.dead && partyMember.hpCurrent < lowestHPhero.hpCurrent):
+						lowestHPhero = partyMember
+				#now we know which hero is in most need of healing
+				var healAmount = hero.get_druid_target_heal_amount()
+				print(hero.heroFirstName + " restores " + healAmount + " hitpoints to " + lowestHPhero + " with 5 hp bonus on top")
+				lowestHPhero.get_healed(healAmount)
+				lowestHPhero.hpCurrent += 5 # little extra on top ok to exceed capacity
+				
 	battleNumber += 1
 	
 	for hero in heroes:

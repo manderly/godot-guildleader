@@ -16,6 +16,8 @@ func get_mob(mobName):
 	newMob.baseResist = staticData.mobs[mobName].baseResist
 	newMob.dps = staticData.mobs[mobName].dps
 	newMob.strength = staticData.mobs[mobName].strength
+	newMob.defense = staticData.mobs[mobName].defense
 	newMob.dead = false
 	newMob.sprite = "res://sprites/mobs/"+staticData.mobs[mobName].sprite
+	newMob.lootTable = staticData.mobs[mobName].lootTable
 	return newMob
