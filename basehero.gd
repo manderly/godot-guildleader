@@ -24,6 +24,7 @@ var gender = "female"
 var dead = false
 var savedPositionX = -1
 var savedPositionY = -1
+var entityType = "hero"
 
 #Hero base stats come from external spreadsheet data
 #These are first set when a hero is randomly generated in heroGenerator.gd

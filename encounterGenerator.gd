@@ -143,6 +143,24 @@ func _get_target_entity(targets):
 		return target
 	else: 
 		print("ERROR: NOTHING TO PICK FROM")
+		
+func _get_random_battle_order(heroes, mobs):
+	var heroesAndMobs = [];
+	# could be like hero1, hero3, mob2, mob1, hero2, mob3
+	for entity in heroes:
+		heroesAndMobs.append(entity)
+	
+	for entity in mobs:
+		heroesAndMobs.append(entity)
+		
+	var shuffledHeroesAndMobs = []
+	var indexList = range(heroesAndMobs.size())
+	for i in range(heroesAndMobs.size()):
+		var x = randi()%indexList.size()
+		shuffledHeroesAndMobs.append(heroesAndMobs[indexList[x]])
+		indexList.remove(x)
+		
+	return shuffledHeroesAndMobs
 
 #modifies the current newBattle object directly
 func _target_mob_dies(targetMob, newBattle):
@@ -271,6 +289,20 @@ func _calculate_battle_outcome(camp):
 	for mob in newBattle.mobs:
 		battleSnapshot.mobSprites.append(mob.sprite)
 	
+	# shuffle order 
+	var battleOrder = _get_random_battle_order(newBattle.heroes, newBattle.mobs)
+	print("BATTLE ORDER:")
+	for entity in battleOrder:
+		#print(entity.entityType)
+		if (entity.entityType == "mob"):
+			print(entity.mobName + " level " + str(entity.level))
+		elif (entity.entityType == "hero"):
+			print(entity.heroFirstName + " level " + str(entity.level) + " " + entity.heroClass)
+		
+		#if ("mobName" in entity):
+		#	print(entity.mobName)
+	
+	
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
 		#everyone takes a turn (todo: shuffle the arrays or sort by initiatve rolls)
 		for hero in newBattle.heroes:
@@ -356,6 +388,7 @@ func _calculate_battle_outcome(camp):
 		
 		#now the mobs get a turn, but only if there's some heroes left
 		for mob in newBattle.mobs:
+			mob.say_hello()
 			#var heroesToFight = _get_target_entity(newBattle.heroes)
 			if (newBattle.heroes.size() > 0):
 				#this mob's target (randomly picked for now)
