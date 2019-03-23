@@ -248,11 +248,13 @@ func _calculate_battle_outcome(camp):
 	
 	# for THIS BATTLE, create an object that will hold the 'before' and 'after' snapshots
 	# of hero and mob hp 
+	# also contains all mob instance data so we can draw them on the screen during the vignette
 	var battleSnapshot = {
 		"heroDeltas":{},
-		"mobSprites":[],
+		"mobs":[],
 		"mobDeltas":{}
 	}
+
 	
 	# Next, refill hp and mana based on hero's regen rate and the camp's respawn rate
 
@@ -291,6 +293,12 @@ func _calculate_battle_outcome(camp):
 	
 	#figure out which mobs and which heroes are going to participate in this fight
 	var randomMobs = _get_battle_mobs(spawnPointData)
+	
+	# preserve these mobs for all time in the battle snapshots
+	# hopefully they don't get blown out by erasing them elsewhere... probably do though 
+	for mob in randomMobs:
+		battleSnapshot.mobs.append(mob)
+		
 	if (randomMobs.size() > 1):
 		encounter.detailedPlayByPlay.append(str(randomMobs.size()) + " enemies enter the fight.")
 	else:
@@ -303,7 +311,6 @@ func _calculate_battle_outcome(camp):
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
 		"heroes":heroes,
-		"startMobsSprites":[],
 		"mobs":randomMobs,
 		"winner":"",
 		"loot":[], #item name strings 
@@ -311,10 +318,6 @@ func _calculate_battle_outcome(camp):
 		"xp:":0,
 		"rawBattleLog":[]
 	}
-	
-	# add to the "battle" object used to generate the vignette
-	for mob in newBattle.mobs:
-		battleSnapshot.mobSprites.append(mob.sprite)
 	
 	# shuffle mobs and heroes into random order 
 	battleOrder = _get_random_battle_order(newBattle.heroes, newBattle.mobs)

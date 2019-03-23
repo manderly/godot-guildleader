@@ -29,19 +29,19 @@ var heroPositions = {
 var mobPositions = {
 	"0":{
 		"x":245,
-		"y":150
+		"y":120
 		},
 	"1":{
 		"x":310,
-		"y":160
+		"y":140
 		},
 	"2":{
 		"x":270,
-		"y":200
+		"y":180
 		},
 	"3":{
 		"x":335,
-		"y":220
+		"y":210
 		},
 	}
 
@@ -79,9 +79,9 @@ func play_vignette(data):
 		#todo: only continue to play if at least one hero is alive
 		var battle = data.battleSnapshots[i]
 			
-		# spawn enenmies
+		# spawn enenmies - enemies change every round, unlike heroes
 		#todo: poof!
-		populate_mobs(battle.mobSprites)
+		populate_mobs(battle.mobs)
 		yield(get_tree().create_timer(1.0), "timeout")
 		
 		# print BATTLE N where the player can see it
@@ -202,17 +202,28 @@ func populate_heroes(heroes):
 		heroScene._draw_sprites()
 		heroScene.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 		heroScene.face_right()
-		heroScene.set_display_params(false, true) #walking, show name 
+		heroScene.set_display_params(false, true) #no walking, show name 
 		heroScene.add_to_group("heroes")
 		add_child(heroScene)
 		
-func populate_mobs(spriteFilenames):
-	for i in spriteFilenames.size():
-		var mobSprite = Sprite.new()
-		mobSprite.texture = load("res://sprites/mobs/" + spriteFilenames[i])
-		mobSprite.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
-		mobSprite.add_to_group("mobs")
-		add_child(mobSprite)
+func populate_mobs(mobs):
+	for i in mobs.size():
+		var mobScene = preload("res://mob.tscn").instance()
+		mobScene.set_instance_data(mobs[i])
+		mobScene._draw_sprites()
+		mobScene.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+		mobScene.set_display_params(false, true) #no walking, show name 
+		mobScene.add_to_group("mobs")
+		add_child(mobScene)
+		
+#func populate_mobs(spriteFilepaths):
+#	for i in spriteFilepaths.size():
+#		var mobSprite = Sprite.new()
+		#mobSprite.texture = load("res://sprites/mobs/" + spriteFilenames[i])
+#		mobSprite.texture = load(spriteFilepaths[i])
+#		mobSprite.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+#		mobSprite.add_to_group("mobs")
+#		add_child(mobSprite)
 		
 func set_background(filename):
 	$TextureRect.texture = load(filename)

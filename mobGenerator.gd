@@ -20,4 +20,5 @@ func get_mob(mobName):
 	newMob.dead = false
 	newMob.sprite = "res://sprites/mobs/"+staticData.mobs[mobName].sprite
 	newMob.lootTable = staticData.mobs[mobName].lootTable
+	newMob.mobID = 123
 	return newMob
