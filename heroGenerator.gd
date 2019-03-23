@@ -134,3 +134,5 @@ func generate(destinationArray, classStr):
 	newHero.hpCurrent = newHero.hp #only do this when we generate a hero (that's why it's not in update_hero_stats)
 	newHero.manaCurrent = newHero.mana
 	destinationArray.append(newHero)
+	
+	global.namesInUse.append(newHero.heroFirstName)

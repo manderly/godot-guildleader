@@ -23,6 +23,7 @@ var vaultSpace = 25 #should be a multiple of 5
 var maxHeroLevel = 30
 var surnameLevel = 20
 var guildName = "" 
+var namesInUse = []
 
 var cameraPosition = Vector2(-14,2)
 var mainScreenTop = 0
