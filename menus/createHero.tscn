@@ -526,6 +526,27 @@ flat = false
 align = 1
 _sections_unfolded = [ "Rect" ]
 
+[node name="label_nameDupe" type="Label" parent="VBoxContainer" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 446.0
+margin_right = 542.0
+margin_bottom = 460.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Error: Someone else has this name!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/vbox_right/button_rename" to="." method="_on_button_rename_pressed"]
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/vbox_right/button_randomName" to="." method="_on_button_randomName_pressed"]

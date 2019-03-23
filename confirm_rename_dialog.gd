@@ -1,12 +1,13 @@
 extends ConfirmationDialog
 
-signal redrawHeroName()
+signal refreshHeroCreation()
 
 var mode = "" #set to first or last 
 var candidateName = ""
 
 func _ready():
 	pass
+
 	
 func set_candidate_name(nameStr):
 	candidateName = nameStr
@@ -29,5 +30,5 @@ func _on_confirm_rename_dialog_confirmed():
 		print("confirm rename dialog mode not set!")
 	
 	#send "redraw hero name" signal so createHero and heroPage know to update their fields
-	emit_signal("redrawHeroName")
+	emit_signal("refreshHeroCreation")
 

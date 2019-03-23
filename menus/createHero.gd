@@ -10,11 +10,14 @@ var headIndex = -1
 var defaultClassStr = "Cleric" #todo: randomize
 
 onready var field_classDescription = $VBoxContainer/CenterContainer/field_classDescription
+onready var button_createHero = $VBoxContainer/CenterContainer2/button_createHero
+onready var label_nameDupe = $VBoxContainer/label_nameDupe
 
 func _ready():
+	label_nameDupe.hide()
+	
 	#generate a hero
 	heroGenerator.generate(global.guildRoster, defaultClassStr)
-	update_class_text(defaultClassStr)
 	
 	#the new hero is the last thing in the roster, so grab it out of the back
 	var lastIndex = global.guildRoster.size() - 1
@@ -33,10 +36,14 @@ func _ready():
 			headIndex = i
 	
 	$confirm_rename_dialog.set_mode("first")
-	$confirm_rename_dialog.connect("redrawHeroName", self, "update_hero_preview")
+	$confirm_rename_dialog.connect("refreshHeroCreation", self, "update_hero_preview") #update_hero_preview
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
 	
 	draw_hero_scene()
+	_set_class(defaultClassStr)
+
+	# run validation on current selections (names, points spent)
+	_check_valid()
 
 func draw_hero_scene():
 	heroScene = preload("res://hero.tscn").instance()
@@ -53,10 +60,25 @@ func _on_button_rename_pressed():
 func update_hero_preview():
 	heroScene.free()
 	draw_hero_scene()
+	_check_valid()
+	
+func _check_valid():
+	#check name is unique
+	# check points spent (todo)
+	if (nameGenerator.checkIfNameInUse(global.selectedHero.heroFirstName)):
+		print(global.selectedHero.heroFirstName + " - name is in use, disabled go button")
+		button_createHero.set_disabled(true)
+		label_nameDupe.show()
+	else:
+		print(global.selectedHero.heroFirstName + " - name is good, enable go button")
+		button_createHero.set_disabled(false)
+		label_nameDupe.hide()
+
 	
 func check_name_input(userInput):
-	#this is for FIRST NAMES
-	#Rules are more strict here, no punctuation and first letter must be a capital 
+	#this is for FIRST NAMES and the check runs every character input
+	#Rules are more strict here
+	#No duplication of existing names, no punctuation and first letter must be a capital 
 	var regex = RegEx.new()
 	regex.compile("[A-Za-z'`]*")
 	var result = regex.search(userInput)
@@ -64,36 +86,29 @@ func check_name_input(userInput):
 		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
 	else:
 		print("no result")
+		
+func _set_class(classStr):
+	global.selectedHero.change_class(classStr)
+	update_hero_preview()
+	update_class_text(classStr)
 	
 func _on_button_cleric_pressed():
-	global.selectedHero.change_class("Cleric")
-	update_hero_preview()
-	update_class_text("Cleric")
+	_set_class("Cleric")
 
 func _on_button_druid_pressed():
-	global.selectedHero.change_class("Druid")
-	update_hero_preview()
-	update_class_text("Druid")
+	_set_class("Druid")
 
 func _on_button_ranger_pressed():
-	global.selectedHero.change_class("Ranger")
-	update_hero_preview()
-	update_class_text("Ranger")
+	_set_class("Ranger")
 
 func _on_button_rogue_pressed():
-	global.selectedHero.change_class("Rogue")
-	update_hero_preview()
-	update_class_text("Rogue")
+	_set_class("Rogue")
 
 func _on_button_warrior_pressed():
-	global.selectedHero.change_class("Warrior")
-	update_hero_preview()
-	update_class_text("Warrior")
+	_set_class("Warrior")
 
 func _on_button_wizard_pressed():
-	global.selectedHero.change_class("Wizard")
-	update_hero_preview()
-	update_class_text("Wizard")
+	_set_class("Wizard")
 
 func _on_button_prevHead_pressed():
 	headIndex -= 1
@@ -119,4 +134,5 @@ func update_class_text(classNameStr):
 	field_classDescription.text = staticData.heroStats[classNameStr.to_lower()].description
 	
 func _on_button_createHero_pressed():
+	global.namesInUse.append(global.selectedHero.heroFirstName)
 	get_tree().change_scene("res://main.tscn")

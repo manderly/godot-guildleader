@@ -471,6 +471,10 @@ func change_class(classStr):
 	else:
 		print("hero.gd: Attempting to change to invalid class")
 		
+func get_class():
+	print("returning class: " + heroClass)
+	return heroClass
+	
 func change_head(headStr): #pass in the string of the head sprite 
 	headSprite = headStr
 		

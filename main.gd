@@ -114,6 +114,13 @@ func _ready():
 		#level them up a bit for testing purposes
 		for hero in global.guildRoster:
 			hero.make_level(3)
+			
+		# record all these names as in use
+		for hero in global.guildRoster:
+			global.namesInUse.append(hero.heroFirstName)
+		
+		for hero in global.unrecruited:
+			global.namesInUse.append(hero.heroFirstName)
 		
 		#generate starting rooms
 		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
