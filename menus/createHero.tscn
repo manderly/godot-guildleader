@@ -30,6 +30,9 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 27, 0, 5, 27, 0, 10, 27, 0, 15, 27, 0, 262144, 27, 0, 262149, 27, 0, 262154, 27, 0, 262159, 27, 0, 524288, 27, 0, 524293, 27, 0, 524298, 27, 0, 524303, 27, 0, 786432, 27, 0, 786437, 27, 0, 786442, 27, 0, 786447, 27, 0, 1048576, 27, 0, 1048581, 27, 0, 1048586, 27, 0, 1048591, 27, 0, 1310720, 27, 0, 1310725, 27, 0, 1310730, 27, 0, 1310735, 27, 0, 1572864, 27, 0, 1572869, 27, 0, 1572874, 27, 0, 1572879, 27, 0, 1835008, 27, 0, 1835013, 27, 0, 1835018, 27, 0, 1835023, 27, 0 )
 _sections_unfolded = [ "Cell" ]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="confirm_rename_dialog" parent="." index="1" instance=ExtResource( 3 )]
 
@@ -542,6 +545,27 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "Error: Someone else has this name!"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="label_nameTooShort" type="Label" parent="VBoxContainer" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 464.0
+margin_right = 542.0
+margin_bottom = 478.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Error: Name must be at least 2 letters long."
 align = 1
 percent_visible = 1.0
 lines_skipped = 0

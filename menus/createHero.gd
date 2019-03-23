@@ -12,9 +12,11 @@ var defaultClassStr = "Cleric" #todo: randomize
 onready var field_classDescription = $VBoxContainer/CenterContainer/field_classDescription
 onready var button_createHero = $VBoxContainer/CenterContainer2/button_createHero
 onready var label_nameDupe = $VBoxContainer/label_nameDupe
+onready var label_nameTooShort = $VBoxContainer/label_nameTooShort
 
 func _ready():
 	label_nameDupe.hide()
+	label_nameTooShort.hide()
 	
 	#generate a hero
 	heroGenerator.generate(global.guildRoster, defaultClassStr)
@@ -37,7 +39,7 @@ func _ready():
 	
 	$confirm_rename_dialog.set_mode("first")
 	$confirm_rename_dialog.connect("refreshHeroCreation", self, "update_hero_preview") #update_hero_preview
-	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
+	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "sanitize_name_input") #, ["userInput"]
 	
 	draw_hero_scene()
 	_set_class(defaultClassStr)
@@ -66,23 +68,27 @@ func _check_valid():
 	#check name is unique
 	# check points spent (todo)
 	if (nameGenerator.checkIfNameInUse(global.selectedHero.heroFirstName)):
-		print(global.selectedHero.heroFirstName + " - name is in use, disabled go button")
 		button_createHero.set_disabled(true)
+		label_nameTooShort.hide()
 		label_nameDupe.show()
-	else:
-		print(global.selectedHero.heroFirstName + " - name is good, enable go button")
-		button_createHero.set_disabled(false)
+	elif (global.selectedHero.heroFirstName == ""):
+		button_createHero.set_disabled(true)
+		label_nameTooShort.show()
 		label_nameDupe.hide()
-
+	else:
+		button_createHero.set_disabled(false)
+		label_nameTooShort.hide()
+		label_nameDupe.hide()
 	
-func check_name_input(userInput):
+	
+func sanitize_name_input(userInput):
 	#this is for FIRST NAMES and the check runs every character input
 	#Rules are more strict here
 	#No duplication of existing names, no punctuation and first letter must be a capital 
 	var regex = RegEx.new()
 	regex.compile("[A-Za-z'`]*")
 	var result = regex.search(userInput)
-	if (result):
+	if (result): # always comes up true even if name is garbage 
 		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
 	else:
 		print("no result")
