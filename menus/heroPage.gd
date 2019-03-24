@@ -44,6 +44,7 @@ onready var buttonTrainOrRecruit = $CenterContainer/VBoxContainer/HBox_Hero/VBox
 onready var buttonRevive = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive
 onready var buttonDismiss = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss
 onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename
+onready var buttonRenameFirst = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_renameFirst
 
 #containers
 onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
@@ -64,7 +65,7 @@ var perkOnDeckKey = null
 func _ready():
 	
 	$confirm_rename_dialog.set_mode("last")
-	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
+	$confirm_rename_dialog.connect("heroNameUpdated", self, "populate_fields")
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
 	
 	#draw the hero
@@ -174,6 +175,11 @@ func _ready():
 	populate_fields()
 	
 func populate_fields():
+	if (global.selectedHero.isPlayer):
+		buttonRenameFirst.show()
+	else:
+		buttonRenameFirst.hide()
+		
 	if (global.selectedHero.level < global.surnameLevel):
 		buttonRename.set_disabled(true)
 		label_heroName.text = global.selectedHero.heroFirstName
@@ -406,7 +412,12 @@ func _on_button_train_pressed():
 			#todo: maybe stay on hero page? might be more intuitive 
 			get_tree().change_scene("res://main.tscn")
 
+# Note: March 2019 - tried to implement changing first name and couldn't
+# find a good flow for validating that the name input is valid before applying it
+# to the hero and surfacing any errors to the player. Best to keep it to surname
+# changes only for now.
 func _on_button_rename_pressed():
+	$confirm_rename_dialog.set_mode("last")
 	get_node("confirm_rename_dialog").popup()
 	
 func _on_button_dismiss_pressed():
@@ -414,9 +425,9 @@ func _on_button_dismiss_pressed():
 
 func _on_rename_dialogue_confirmed():
 	var newName = $confirm_rename_dialog/LineEdit.text
-	global.selectedHero.heroName = newName
+	global.selectedHero.heroFirstName = newName
 	#redraw the name display field on the hero page with the new name
-	label_heroName.text = global.selectedHero.heroName
+	label_heroName.text = global.selectedHero.heroFirstName
 	
 func _on_button_back_pressed():
 	if (global.currentMenu == "roster"):
@@ -497,3 +508,5 @@ func _on_button_buyPerk_pressed():
 	else:
 		print("This perk is full")
 	_update_perks_tab()
+
+

@@ -22,6 +22,8 @@ var headIndex = 0
 
 var longEnoughClickToOpenHeroPage = false
 
+var isPlayer = false
+
 #three possible ways to display a hero sprite:
 #walking with name
 #icon with name
@@ -222,7 +224,8 @@ func save():
 		"groupBonus":thisHero.groupBonus,
 		"raidBonus":thisHero.raidBonus,
 		"equipment":thisHero.equipment,
-		"headSprite":thisHero.headSprite #armor sprites should be derived from equipment 
+		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 
+		"isPlayer":thisHero.isPlayer
 	}
 	#print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
@@ -299,6 +302,7 @@ func set_instance_data(data):
 	shieldSprite = data.shieldSprite
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
+	isPlayer = data.isPlayer
 
 	
 func _draw_sprites():

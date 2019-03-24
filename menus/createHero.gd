@@ -24,6 +24,7 @@ func _ready():
 	#the new hero is the last thing in the roster, so grab it out of the back
 	var lastIndex = global.guildRoster.size() - 1
 	global.selectedHero = global.guildRoster[lastIndex]
+	global.selectedHero.isPlayer = true
 	
 	#for now, this new hero can only be human
 	#but we need all the human heads in one big array so this page can cycle through them
@@ -38,7 +39,8 @@ func _ready():
 			headIndex = i
 	
 	$confirm_rename_dialog.set_mode("first")
-	$confirm_rename_dialog.connect("refreshHeroCreation", self, "update_hero_preview") #update_hero_preview
+	$confirm_rename_dialog.connect("heroNameUpdated", self, "update_hero_preview") #update_hero_preview
+	$confirm_rename_dialog.connect("heroNameInvalid", self, "_name_invalid")
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "sanitize_name_input") #, ["userInput"]
 	
 	draw_hero_scene()
@@ -64,34 +66,50 @@ func update_hero_preview():
 	draw_hero_scene()
 	_check_valid()
 	
-func _check_valid():
-	#check name is unique
-	# check points spent (todo)
-	if (nameGenerator.checkIfNameInUse(global.selectedHero.heroFirstName)):
-		button_createHero.set_disabled(true)
-		label_nameTooShort.hide()
+func _name_invalid(nameStr):
+	if (nameStr != ""):
+		print(nameStr + " is in use, show warning")
+		label_nameDupe.text = nameStr + " is already in use. Choose a different name!"
 		label_nameDupe.show()
-	elif (global.selectedHero.heroFirstName == ""):
-		button_createHero.set_disabled(true)
+	elif (nameStr == ""):
+		print(nameStr + " is an empty name")
+		label_nameTooShort.text = "Alas, your name cannot be blank."
 		label_nameTooShort.show()
-		label_nameDupe.hide()
-	else:
-		button_createHero.set_disabled(false)
-		label_nameTooShort.hide()
-		label_nameDupe.hide()
+	
+func _check_valid():
+	# check points spent (todo)
+	button_createHero.set_disabled(false)
+	label_nameTooShort.hide()
+	label_nameDupe.hide()
+	pass
 	
 	
 func sanitize_name_input(userInput):
 	#this is for FIRST NAMES and the check runs every character input
 	#Rules are more strict here
 	#No duplication of existing names, no punctuation and first letter must be a capital 
-	var regex = RegEx.new()
-	regex.compile("[A-Za-z'`]*")
-	var result = regex.search(userInput)
-	if (result): # always comes up true even if name is garbage 
-		$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
+	
+	# One exception is made: two-letter initials are allowed IF that's how the player
+	# entered it (ie: AJ)
+	if (userInput.length() <= 2):
+		# if the player input is given as one or two capital letters, let that pass
+		var regex = RegEx.new()
+		regex.compile("[A-Z]*")
+		var result = regex.search(userInput)
+		if (result.get_string() == userInput):
+			#the user entered one or two letters and they are both capitalized - accept it
+			$confirm_rename_dialog.set_candidate_name(result.get_string())
+		else:
+			# the user entered one or two letters and one or both are not capitalized 
+			# correct it into this form: Hi 
+			$confirm_rename_dialog.set_candidate_name(userInput.to_lower().capitalize())
 	else:
-		print("no result")
+		var regex = RegEx.new()
+		regex.compile("[A-Za-z'`]*")
+		var result = regex.search(userInput)
+		if (result): # result is the part of the userInput that matches the regex pattern
+			$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
+	
 		
 func _set_class(classStr):
 	global.selectedHero.change_class(classStr)
