@@ -55,38 +55,38 @@ var baseRegenRateMana = 1
 	
 var classLevelModifiers = {
 	"Warrior":{
-		"hp":1.75,
+		"hp":1.29,
 		"mana":1,
 		"strength":1.2,
 		"defense":1.4
 		},
 	"Rogue":{
-		"hp":1.5,
+		"hp":1.24,
 		"mana":1,
 		"strength":1.2,
 		"defense":1.3
 		},
 	"Ranger":{
-		"hp":1.8,
+		"hp":1.25,
 		"mana":1,
 		"strength":1.2,
 		"defense":1.3
 		},
 	"Wizard":{
-		"hp":1.55,
-		"mana":1.58,
+		"hp":1.20,
+		"mana":1.32,
 		"strength":1,
 		"defense":1
 		},
 	"Cleric":{
-		"hp":1.3,
-		"mana":1.6,
+		"hp":1.25,
+		"mana":1.31,
 		"strength":1,
 		"defense":1.4
 		},
 	"Druid":{
-		"hp":1.2,
-		"mana":1.6,
+		"hp":1.22,
+		"mana":1.25,
 		"strength":1,
 		"defense":1.2
 		},
