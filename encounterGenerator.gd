@@ -266,15 +266,9 @@ func _calculate_battle_outcome(camp):
 	# before the next fight
 	
 	for hero in heroes:
-		# for now, regen 1 regenRateHP for every 10 seconds of respawn time
-		var hpRestored = hero.regenRateHP * (camp.respawnRate / 10)
-		var manaRestored = hero.regenRateMana * (camp.respawnRate / 10)
-		hero.hpCurrent += hpRestored
-		if (hero.hpCurrent > hero.hp):
-			hero.hpCurrent = hero.hp
-		hero.manaCurrent += manaRestored
-		if (hero.manaCurrent > hero.mana):
-			hero.manaCurrent = hero.mana
+		# regen hp and mana every X (global.tickRate) seconds of downtime (respawnRate)
+		hero.regen_hp_between_battles(camp.respawnRate)
+		hero.regen_mana_between_battles(camp.respawnRate) #hero.regenRateMana * (camp.respawnRate / 10)
 			
 		# Now that we're done regenning, make a snapshot of this hero's data for the vignette
 		# Todo: add mana to snapshot

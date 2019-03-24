@@ -642,3 +642,16 @@ func get_healed(amount):
 	hpCurrent += amount
 	if (hpCurrent > hp):
 		hpCurrent = hp #cannot exceed max 
+		
+func regen_hp_between_battles(campRespawnRate):
+	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
+	hpCurrent += hpRegenerated
+	if (hpCurrent > hp):
+		hpCurrent = hp
+	
+func regen_mana_between_battles(campRespawnRate):
+	var manaRegenerated = regenRateMana * (campRespawnRate / global.tickRate)
+	manaCurrent += manaRegenerated
+	if (manaCurrent > mana):
+		manaCurrent = mana
+	

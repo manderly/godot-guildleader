@@ -24,6 +24,7 @@ var maxHeroLevel = 30
 var surnameLevel = 20
 var guildName = "" 
 var namesInUse = []
+var tickRate = 10
 
 var cameraPosition = Vector2(-14,2)
 var mainScreenTop = 0

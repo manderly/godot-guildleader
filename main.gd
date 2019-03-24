@@ -113,7 +113,7 @@ func _ready():
 		
 		#level them up a bit for testing purposes
 		for hero in global.guildRoster:
-			hero.make_level(20)
+			hero.make_level(4)
 			
 		# record all these names as in use
 		for hero in global.guildRoster:
