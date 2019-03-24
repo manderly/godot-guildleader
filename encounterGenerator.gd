@@ -175,12 +175,21 @@ func _target_mob_dies(targetMob, newBattle):
 	var xp = ((targetMob.level * int(2)) * int(2) + 15)
 	
 	for hero in newBattle.heroes:
-		hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
-		if (hero.xp > staticData.levelXpData[str(hero.level)].total):
-			hero.xp = staticData.levelXpData[str(hero.level)].total
-			encounter.detailedPlayByPlay.append(hero.heroFirstName + " is full xp and ready to train.")
+		if (hero.level > targetMob.level + 5):
+			# no xp
+			encounter.detailedPlayByPlay.append(hero.heroFirstName + " is too high level to get any xp from this enemy.")
 		else:
-			encounter.detailedPlayByPlay.append(hero.heroFirstName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
+			# hero is either 4 levels over the mob or lower level than the mob
+			if (hero.level + 2 < targetMob.level):
+				# give bonus xp if hero is 3 levels (or more) below this mob
+				xp += (targetMob.level * 2)
+			hero.give_xp(round(xp/newBattle.heroes.size())) #todo: formula someday
+			
+			if (hero.xp > staticData.levelXpData[str(hero.level)].total):
+				hero.xp = staticData.levelXpData[str(hero.level)].total
+				encounter.detailedPlayByPlay.append(hero.heroFirstName + " is full xp and ready to train.")
+			else:
+				encounter.detailedPlayByPlay.append(hero.heroFirstName + " got " + str(xp/newBattle.heroes.size()) + " xp!")
 
 		
 	#give loot (randomly determined from loot table)
@@ -271,7 +280,6 @@ func _calculate_battle_outcome(camp):
 		hero.regen_mana_between_battles(camp.respawnRate) #hero.regenRateMana * (camp.respawnRate / 10)
 			
 		# Now that we're done regenning, make a snapshot of this hero's data for the vignette
-		# Todo: add mana to snapshot
 		battleSnapshot.heroDeltas[hero.heroID] = {
 				"startHP":hero.hpCurrent,
 				"endHP":0,
