@@ -68,7 +68,6 @@ func update_hero_preview():
 	
 func _name_invalid(nameStr):
 	if (nameStr != ""):
-		print(nameStr + " is in use, show warning")
 		label_nameDupe.text = nameStr + " is already in use. Choose a different name!"
 		label_nameDupe.show()
 	elif (nameStr == ""):
@@ -79,9 +78,6 @@ func _name_invalid(nameStr):
 func _check_valid():
 	# check points spent (todo)
 	button_createHero.set_disabled(false)
-	label_nameTooShort.hide()
-	label_nameDupe.hide()
-	pass
 	
 	
 func sanitize_name_input(userInput):
@@ -94,7 +90,7 @@ func sanitize_name_input(userInput):
 	if (userInput.length() <= 2):
 		# if the player input is given as one or two capital letters, let that pass
 		var regex = RegEx.new()
-		regex.compile("[A-Z]*")
+		regex.compile("[A-Z]*") #use + instead of * to actually get a null result
 		var result = regex.search(userInput)
 		if (result.get_string() == userInput):
 			#the user entered one or two letters and they are both capitalized - accept it
@@ -105,11 +101,14 @@ func sanitize_name_input(userInput):
 			$confirm_rename_dialog.set_candidate_name(userInput.to_lower().capitalize())
 	else:
 		var regex = RegEx.new()
-		regex.compile("[A-Za-z'`]*")
-		var result = regex.search(userInput)
-		if (result): # result is the part of the userInput that matches the regex pattern
+		regex.compile("[A-Za-z'`]+")
+		var result = regex.search(userInput) # get just the parts that match the regex pattern
+		if (result):
 			$confirm_rename_dialog.set_candidate_name(result.get_string().to_lower().capitalize())
-	
+		else:
+			#result is null
+			print("result is null")
+			
 		
 func _set_class(classStr):
 	global.selectedHero.change_class(classStr)
