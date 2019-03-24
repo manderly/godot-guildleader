@@ -175,11 +175,6 @@ func _ready():
 	populate_fields()
 	
 func populate_fields():
-	if (global.selectedHero.isPlayer):
-		buttonRenameFirst.show()
-	else:
-		buttonRenameFirst.hide()
-		
 	if (global.selectedHero.level < global.surnameLevel):
 		buttonRename.set_disabled(true)
 		label_heroName.text = global.selectedHero.heroFirstName
