@@ -308,7 +308,7 @@ func check_name_input(userInput):
 	#surnames are more flexible than first names
 	#surnames can have spaces, multiple caps, and apostrophes 
 	var regex = RegEx.new()
-	regex.compile("[A-Za-z '`]*")
+	regex.compile("[A-Za-z. '`]*")
 	var result = regex.search(userInput)
 	if (result):
 		$confirm_rename_dialog.set_candidate_name(result.get_string())

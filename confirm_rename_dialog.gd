@@ -21,7 +21,7 @@ func set_mode(modeStr): #"first" or "last"
 		dialog_text = "Enter up to 15 letters for this hero's first name.\nNo spaces, numbers, or symbols."
 		$LineEdit.text = global.selectedHero.heroFirstName
 	elif (modeStr == "last"):
-		dialog_text = "Enter up to 15 letters for this hero's last name.\nAccent marks ' and ` accepted."
+		dialog_text = "Enter up to 15 letters for this hero's last name.\nSpaces and accent marks ' and ` accepted. \nLeave blank to remove last name."
 		$LineEdit.text = global.selectedHero.heroLastName
 	else:
 		print("confirm rename dialog mode not set!")
