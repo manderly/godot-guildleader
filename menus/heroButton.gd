@@ -45,6 +45,8 @@ func populate_fields(data):
 	elif (data.atHome && data.staffedTo != ""): #to catch tradeskills 
 		$VBoxContainer/field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
 		self.set_disabled(true)
+		if(data.atHome && data.staffedTo == "training"):
+			$field_readyToTrain.text = "TRAINING TO " + str(data.level + 1)	
 	elif (!data.atHome && data.staffedTo == "quest"): #heroes aren't unavailable until quest begins
 		$VBoxContainer/field_available.text = "Away (Quest)"
 		self.set_disabled(true)

@@ -3,7 +3,7 @@
 [ext_resource path="res://gui/styles/theme_main.tres" type="Theme" id=1]
 [ext_resource path="res://menus/heroButton.gd" type="Script" id=2]
 
-[node name="Button" type="Button"]
+[node name="Button" type="Button" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -115,7 +115,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 336.0
+margin_left = 273.0
 margin_top = 15.0
 margin_right = 409.0
 margin_bottom = 29.0
@@ -126,6 +126,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "xp: XXX/YYY"
+align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -137,10 +138,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 307.0
-margin_top = 50.0
+margin_left = 248.0
+margin_top = 52.0
 margin_right = 413.0
-margin_bottom = 64.0
+margin_bottom = 66.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -148,6 +149,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 text = "READY TO TRAIN"
+align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
