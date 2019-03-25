@@ -247,7 +247,7 @@ func _remove_from_battle_order(entity):
 				print("removing from battle order: " + entity.heroFirstName)
 				battleOrder.erase(entity)
 	
-	_print_battle_order()
+	#_print_battle_order()
 	
 func _calculate_battle_outcome(camp):
 	var heroes = camp.heroes
@@ -431,7 +431,7 @@ func _calculate_battle_outcome(camp):
 				lowestHPhero.get_healed(healAmount)
 				lowestHPhero.hpCurrent += 5 # little extra on top ok to exceed capacity
 		else:
-			print("encounterGenerator.gd - entity type not found")
+			print("encounterGenerator.gd - entity type " + entity.entityType + " not found")
 	battleNumber += 1
 	
 	for hero in heroes:

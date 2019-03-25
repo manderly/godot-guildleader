@@ -237,17 +237,14 @@ func vignette_show_stats():
 	$field_levelAndClass.hide()
 
 func _draw_sprites():
-	print("DRAWING SPRITES")
 	# this method is for both heroes and mobs
 	# a hero always has all the usual body parts (head, feet, weapons, etc)
 	# but a mob can be humanoid or a singular "oneBody" sprite
 
 	var none = "res://sprites/heroes/none.png"
-	print("sprite is: " + str(sprite))
 
 	#if not a oneBody, then it's a humanoid with a visible gear loadout 
 	if (!sprite):
-		print("no sprite")
 		#everyone has a head, no need to else/if this one 
 		$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
 
@@ -290,7 +287,6 @@ func _draw_sprites():
 			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
 			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
 	elif (sprite):
-		print("using this sprite: " + sprite)
 		#otherwise, it's a oneBody
 		# oneBody are usually mobs but could be used later for special forms heroes take
 		# ie: a druid in a wolf form
