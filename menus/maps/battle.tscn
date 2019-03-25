@@ -19,7 +19,7 @@ animations = [ {
 } ]
 _sections_unfolded = [ "Resource" ]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -45,6 +45,7 @@ stretch_mode = 0
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 2
 playing = true
 
 [node name="fightcloud" type="Sprite" parent="." index="2"]

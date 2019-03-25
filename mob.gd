@@ -57,60 +57,6 @@ func set_instance_data(data):
 	#weapon2Sprite = data.weapon2Sprite
 	#shieldSprite = data.shieldSprite
 	
-func _draw_sprites():
-	# a mob can be "one body" (like a bat or a goblin)
-	# or it might be a humanoid and look a lot like heroes with all the same parts
-	
-	var none = "res://sprites/mobs/none.png"
-	print(sprite)
-	$body/oneSprite.texture = load("res://sprites/" + sprite)
-	
-	# todo: heroes all had heads, but mobs don't necessarily have a head
-	# not sure how to handle heads yet
-	
-	#if (equipment.head):
-	#	$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
-	#else:
-	#	$body/head.texture = load(none)
-
-	# mobs can walk around empty-handed, so check that gear actually exists 
-	if (equipment.mainHand):
-		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + equipment.mainHand.bodySprite)
-	else:
-		$body/weapon1.texture = load(none)
-	
-	#shields are offhand items but they use a different node on the hero body 
-	if (equipment.offHand):
-		if (equipment.offHand.itemType == "shield"):
-			$body/shield.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/weapon2.texture = load(none)
-		else:
-			$body/weapon2.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/shield.texture = load(none)
-	else:
-		$body/weapon2.texture = load(none)
-		$body/shield.texture = load(none)
-
-	#todo: figure out an elegant way to handle naked characters 
-	if (equipment.chest):
-		$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
-	else:
-		$body/chest.hide()
-		#$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
-	
-	if (equipment.legs):
-		$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
-	else:
-		$body/legs.hide()
-	
-	if (equipment.feet):
-		$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-		$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-	else:
-		$body/boot1.hide()
-		$body/boot2.hide()
-
-	
 func get_base_resist(heroLevel):
 	# mob's save roll is based on level difference between hero and mob
 	#if mob > hero, mob has a greater chance to resist
