@@ -197,7 +197,8 @@ func show_fight_cloud(showBool):
 
 func populate_heroes(heroes):
 	for i in heroes.size():
-		var heroScene = preload("res://hero.tscn").instance()
+		var heroScene = preload("res://baseEntity.tscn").instance()
+		heroScene.set_script(preload("res://hero.gd"))
 		heroScene.set_instance_data(heroes[i]) #put data from array into scene 
 		heroScene._draw_sprites()
 		heroScene.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
@@ -208,7 +209,8 @@ func populate_heroes(heroes):
 		
 func populate_mobs(mobs):
 	for i in mobs.size():
-		var mobScene = preload("res://mob.tscn").instance()
+		var mobScene = preload("res://baseEntity.tscn").instance()
+		mobScene.set_script(preload("res://mob.gd"))
 		mobScene.set_instance_data(mobs[i])
 		mobScene._draw_sprites()
 		mobScene.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))

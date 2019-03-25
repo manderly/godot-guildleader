@@ -98,6 +98,7 @@ func generate(destinationArray, classStr):
 	newHero.perkPoints = 0
 	newHero.xp = 0
 	newHero.isPlayer = false
+	newHero.entityType = "hero"
 
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)

@@ -69,7 +69,8 @@ func _ready():
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
 	
 	#draw the hero
-	var heroScene = preload("res://hero.tscn").instance()
+	var heroScene = preload("res://baseEntity.tscn").instance()
+	heroScene.set_script(preload("res://hero.gd"))
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(50, 20))

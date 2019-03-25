@@ -430,7 +430,8 @@ func _calculate_battle_outcome(camp):
 				print(hero.heroFirstName + " restores " + healAmount + " hitpoints to " + lowestHPhero + " with 5 hp bonus on top")
 				lowestHPhero.get_healed(healAmount)
 				lowestHPhero.hpCurrent += 5 # little extra on top ok to exceed capacity
-				
+		else:
+			print("encounterGenerator.gd - entity type not found")
 	battleNumber += 1
 	
 	for hero in heroes:

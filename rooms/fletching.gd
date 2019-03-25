@@ -9,7 +9,8 @@ func draw_hero_and_button():
 	if (global.tradeskills["fletching"].hero):
 		$button_staffCraft.text = "Craft"
 		#draw the hero
-		var heroScene = preload("res://hero.tscn").instance()
+		var heroScene = preload("res://baseEntity.tscn").instance()
+		heroScene.set_script(preload("res://hero.gd"))
 		heroScene.set_instance_data(global.tradeskills["fletching"].hero) #put data from array into scene 
 		heroScene._draw_sprites()
 		heroScene.set_position(Vector2(280, 60))

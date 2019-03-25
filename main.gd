@@ -200,7 +200,8 @@ func draw_heroes():
 		if (thisHero.atHome && thisHero.staffedTo == ""):
 			#we only need to make a new instance if this hero
 			#is "wandering" the guildhall
-			var heroScene = load("res://hero.tscn").instance()
+			var heroScene = load("res://baseEntity.tscn").instance()
+			heroScene.set_script(preload("res://hero.gd"))
 			heroScene.set_instance_data(global.guildRoster[i]) #put data from array into scene 
 			heroScene._draw_sprites()
 			#print(global.guildRoster[i].heroName + " wants to be at " + str(global.guildRoster[i].savedPosition))
@@ -234,7 +235,8 @@ func draw_heroes():
 			heroX = global.unrecruited[i].savedPositionX #rand_range(150, 380)
 			heroY = global.unrecruited[i].savedPositionY #rand_range(650, 820)
 			
-		var heroScene = load("res://hero.tscn").instance()
+		var heroScene = load("res://baseEntity.tscn").instance()
+		heroScene.set_script(preload("res://hero.gd"))
 		heroScene.set_position(Vector2(heroX, heroY))
 		heroScene.set_instance_data(global.unrecruited[i])
 		heroScene._draw_sprites()

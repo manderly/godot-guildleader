@@ -1,36 +1,14 @@
-extends KinematicBody2D
+extends "baseEntity.gd"
 # mob.gd
 
+# these are properties only mobs have
+var baseResist = -1
+var lootTable = "batLoot01"
 var mobName = "Default name"
 var mobID = 123
-var entityType = "mob"
-var level = -1
-var hp = -1
-var hpCurrent = -1
-var mana = -1
-var manaCurrent = -1
-var baseResist = -1
-var dps = -1
-var strength = -1
-var defense = -1
-var dead = false
-var sprite = "res://sprites/mobs/bat/bat_01.png"
-var lootTable = "batLoot01"
-#to access: mobInstance.equipment.mainHand
-var equipment = {
-	"mainHand": null,
-	"offHand": null,
-	"jewelry": null,
-	"unknown": null,
-	"head": null,
-	"chest": null,
-	"legs": null,
-	"feet": null
-}
-var walkable = false
-var showName = true
-	
+
 func _ready():
+	entityType = "mob"
 	_hide_extended_stats()
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -49,17 +27,10 @@ func _hide_extended_stats():
 	$field_levelAndClass.hide()
 	$field_debug.hide()
 	
-func vignette_hide_stats():
-	$field_HP.hide()
-	$label_hp.hide()
-	$field_Mana.hide()
-	$label_mana.hide()
-	
 func set_instance_data(data):
-	print("data")
-	print(data)
 	mobName = data.mobName
 	sprite = data.sprite
+	# todo: humanoid mob support
 	level = data.level
 	dead = data.dead
 	mobID = 123 #todo: mob ID system

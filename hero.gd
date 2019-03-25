@@ -1,4 +1,4 @@
-extends "basehero.gd"
+extends "baseEntity.gd"
 #hero.gd
 
 #todo: globalize these
@@ -12,17 +12,39 @@ var outsideMaxX = 380
 var outsideMinY = 650
 var outsideMaxY = 820
 
-#for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
-var walkable = false
-var showName = true
+# These properties are specific to a hero
+var heroID = -1 
+var heroFirstName = "Firstname"
+var heroLastName = ""
+var heroClass = "NONE"
+var recruited = false
+var gender = "female"
+var perks = {}
+var perkPoints = 0
+var xp = -1
 
-var battlePrint = false
+# These properties relate to where a hero is on the main screen
+var currentRoom = 0 #outside by default
+var atHome = true
+var staffedTo = ""
+var staffedToID = ""
+var savedPositionX = -1
+var savedPositionY = -1
+
+#Hero walking vars 
+var walkDestX = -1
+var walkDestY = -1
+var startingX = 1
+var startingY = 1
+var target = Vector2()
+var velocity = Vector2()
+var speed = 20
+var walking = false
 
 var headIndex = 0
 
 var longEnoughClickToOpenHeroPage = false
-
-var isPlayer = false
+var isPlayer = false # to distiguish heroes the game generated vs. a hero the player made
 
 #three possible ways to display a hero sprite:
 #walking with name
@@ -30,6 +52,7 @@ var isPlayer = false
 #icon with no name
 
 func _ready():
+	entityType = "hero"
 	_hide_extended_stats()
 	if (walkable):
 		if (atHome && staffedTo == ""):
@@ -134,27 +157,7 @@ func vignette_update_hp_and_mana(oldHP, newHP, totalHP, oldMana, newMana, totalM
 
 	$field_HP.text = str(hpCurrent) + "/" + str(totalHP)
 	$field_Mana.text = str(manaCurrent) + "/" + str(totalMana)
-	
-func vignette_die():
-	$body.modulate = Color(0.8, 0.7, 1)
-	#todo: animate the change
-	
-func vignette_show_stats():
-	$field_HP.show()
-	$label_hp.show()
-	
-	if get_is_caster_type():
-		$field_Mana.show()
-		$label_mana.show()
-	
-	$field_levelAndClass.hide()
-
-func vignette_hide_stats():
-	$field_HP.hide()
-	$label_hp.hide()
-	$field_Mana.hide()
-	$label_mana.hide()
-	
+		
 func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
 	for i in global.guildRoster.size():
@@ -165,7 +168,6 @@ func save_current_position():
 			global.guildRoster[i].savedPositionY = get_position().y
 	#todo: is there some smarter way to do this? I wanted to just set
 	#the variables on this hero instance but it has to be done in the roster array 
-	
 	
 func save():
 	var thisHero = self
@@ -225,22 +227,10 @@ func save():
 		"raidBonus":thisHero.raidBonus,
 		"equipment":thisHero.equipment,
 		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 
-		"isPlayer":thisHero.isPlayer
+		"isPlayer":thisHero.isPlayer,
+		"entityType":thisHero.entityType
 	}
-	#print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
-	
-func _input_event(viewport, event, shape_idx):
-    pass
-	#if event is InputEventMouseButton \
-	#and event.button_index == BUTTON_LEFT \
-	#and event.is_pressed(): print("pressed")
-        #self.on_click()
-		
-	#if event is InputEventMouseButton \
-    #and event.button_index == BUTTON_LEFT \
-    #and event.is_released():
-        #self.on_heroTouchRelease()
 
 func _physics_process(delta):
 	if (walking):
@@ -277,6 +267,7 @@ func set_instance_data(data):
 	heroID = data.heroID
 	atHome = data.atHome
 	staffedTo = data.staffedTo
+	sprite = data.sprite #oneBody sprite, if present (not present if humanoid)
 	headSprite = data.headSprite #sprites are set in heroGenerator.gd
 	#chestSprite = data.equipment.chest.bodySprite
 	#legsSprite = data.equipment.legs.bodySprite
@@ -303,48 +294,6 @@ func set_instance_data(data):
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
 	isPlayer = data.isPlayer
-
-	
-func _draw_sprites():
-	var none = "res://sprites/heroes/none.png"
-	#everyone has a head, no need to else/if this one 
-	$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
-
-	#heroes can walk around empty-handed, so check that gear actually exists 
-	if (equipment.mainHand):
-		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + equipment.mainHand.bodySprite)
-	else:
-		$body/weapon1.texture = load(none)
-	
-	#shields are offhand items but they use a different node on the hero body 
-	if (equipment.offHand):
-		if (equipment.offHand.itemType == "shield"):
-			$body/shield.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/weapon2.texture = load(none)
-		else:
-			$body/weapon2.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/shield.texture = load(none)
-	else:
-		$body/weapon2.texture = load(none)
-		$body/shield.texture = load(none)
-
-	#todo: figure out an elegant way to handle naked characters 
-	if (equipment.chest):
-		$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
-	else:
-		$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
-	
-	if (equipment.legs):
-		$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
-	else:
-		$body/legs.texture = load("res://sprites/heroes/legs/missing.png")
-	
-	if (equipment.feet):
-		$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-		$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-	else:
-		$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
-		$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():
@@ -416,42 +365,9 @@ func update_hero_stats():
 	drama = "Low"
 	mood = "Happy"
 
-#this method generates a brand new instance of the item, it's an equivalent
-#to the method used in util.gd to give new items to the guild
-func give_new_item(itemNameStr): 
-	#To use: hero.give_item("Item Name Here")
-	#hero.give_item("item name here", false) #for items from the vault 
-	var newItem = staticData.items[itemNameStr].duplicate() #make a new instance from the big book of items
-	newItem.itemID = global.nextItemID
-	global.nextItemID += 1
-	equipment[newItem.slot] = newItem #now give it to the matching equipment slot on this hero
-
 func give_existing_item(item): #takes the actual item (use with vault)
 	#hero.give_existing_item(actualItemObject)
 	equipment[item.slot] = item
-	
-func clear_all_items():
-	equipment = {
-		"mainHand": null,
-		"offHand": null,
-		"jewelry": null,
-		"unknown": null,
-		"head": null,
-		"chest": null,
-		"legs": null,
-		"feet": null
-	} 
-	
-func give_gear_loadout(loadoutIDStr):
-	clear_all_items()
-	#get the loadout from staticData
-	var loadout = staticData.loadouts[loadoutIDStr]
-	#iterate through object and give each item to the hero
-	for key in loadout.keys():
-		if (key == "loadoutId" || key == "unknown"): 
-			continue #don't process entries that aren't actually items
-		elif (loadout[key]): #skip empty spots
-			give_new_item(loadout[key])
 	
 func change_class(classStr):
 	if (classStr == "Cleric"):
@@ -476,7 +392,6 @@ func change_class(classStr):
 		print("hero.gd: Attempting to change to invalid class")
 		
 func get_class():
-	print("returning class: " + heroClass)
 	return heroClass
 	
 func change_head(headStr): #pass in the string of the head sprite 
@@ -596,21 +511,6 @@ func give_perk_points(quantity):
 	
 func take_perk_points(quantity):
 	perkPoints -= quantity
-	
-func melee_attack():
-	var rawDmg = (equipment["mainHand"].dps * strength) / 2
-	var roll = randi()%20+1 #(roll between 1-20)
-	if (roll == 1):
-		if (battlePrint):
-			print("miss!")
-		rawDmg = 0
-	elif (roll == 20):
-		if (battlePrint):
-			print("Critical hit! Double damage!")
-		rawDmg *= 2
-	if (battlePrint):
-		print("Returning this raw damage: " + str(rawDmg))
-	return rawDmg
 
 func vignette_recover_tick():
 	#print(heroFirstName + " is recovering " + str(regenRateHP) + " hp and " + str(regenRateMana) + " mana")
@@ -627,22 +527,13 @@ func set_dead():
 	
 func get_nuke_dmg():
 	return level * intelligence
-
-func take_melee_damage(unmodifiedDamage):
-	#todo: damage mitigation roll
-	hpCurrent -= unmodifiedDamage
 	
 func get_cleric_party_heal_amount():
 	return 50 #todo: fancy formula
 	
 func get_druid_target_heal_amount():
 	return 100 #todo: fancy formula 
-	
-func get_healed(amount):
-	hpCurrent += amount
-	if (hpCurrent > hp):
-		hpCurrent = hp #cannot exceed max 
-		
+
 func regen_hp_between_battles(campRespawnRate):
 	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
 	hpCurrent += hpRegenerated
