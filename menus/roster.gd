@@ -15,6 +15,10 @@ func _ready():
 	field_guildMemberCount.text = "Members: " + str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	field_prestige.text = " Prestige: " + str(0)
 	
+	$confirm_rename_dialog.set_mode("guild")
+	$confirm_rename_dialog.connect("guildNameUpdated", self, "_on_rename_guild_confirmed")
+	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
+	
 	var classRoles = {
 		"tank":0,
 		"dps":0,
@@ -34,7 +38,19 @@ func _ready():
 	field_dpsCount.text = "DPS: " + str(classRoles["dps"])
 	field_supportCount.text = "Support: " + str(classRoles["support"])
 
+func check_name_input(userInput):
+	#this is for GUILD NAMES
+	#guild names can have spaces, multiple caps, and apostrophes 
+	var regex = RegEx.new()
+	regex.compile("[A-Za-z. '`]*")
+	var result = regex.search(userInput)
+	if (result):
+		$confirm_rename_dialog.set_candidate_name(result.get_string())
+	else:
+		print("no result")
+		
 func _on_button_renameGuild_pressed():
+	$confirm_rename_dialog.set_mode("guild")
 	get_node("confirm_rename_dialog").popup()
 
 func _on_rename_guild_confirmed():

@@ -50,7 +50,8 @@ func _ready():
 	_check_valid()
 
 func draw_hero_scene():
-	heroScene = preload("res://hero.tscn").instance()
+	heroScene = preload("res://baseEntity.tscn").instance()
+	heroScene.set_script(preload("res://hero.gd"))
 	heroScene.set_instance_data(global.selectedHero)
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(240, 80)) #screen is 540 wide 

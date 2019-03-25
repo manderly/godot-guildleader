@@ -4,6 +4,7 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 
 signal heroNameUpdated()
 signal heroNameInvalid(candidateName)
+signal guildNameUpdated()
 
 var mode = "" #set to first or last 
 var candidateName = ""
@@ -23,6 +24,10 @@ func set_mode(modeStr): #"first" or "last"
 	elif (modeStr == "last"):
 		dialog_text = "Enter up to 15 letters for this hero's last name.\nSpaces and accent marks ' and ` accepted. \nLeave blank to remove last name."
 		$LineEdit.text = global.selectedHero.heroLastName
+	elif (modeStr == "guild"):
+		dialog_text = "Enter up to 25 letters for your guild's name. \n Spaces and accent marks ' and ` accepted."
+		$LineEdit.max_length = 25
+		$LineEdit.text = global.guildName
 	else:
 		print("confirm rename dialog mode not set!")
 	
@@ -32,11 +37,15 @@ func _on_confirm_rename_dialog_confirmed():
 			emit_signal("heroNameInvalid", candidateName)
 		else:
 			global.selectedHero.heroFirstName = candidateName
+			emit_signal("heroNameUpdated")
 	elif (mode == "last"):
 		global.selectedHero.heroLastName = candidateName
+		emit_signal("heroNameUpdated")
+	elif (mode == "guild"):
+		global.guildName = candidateName
+		emit_signal("guildNameUpdated")
 	else:
 		print("confirm rename dialog mode not set!")
 	
-	#send "redraw hero name" signal so createHero and heroPage know to update their fields
-	emit_signal("heroNameUpdated")
+	
 

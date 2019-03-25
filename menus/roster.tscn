@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://menus/roster.gd" type="Script" id=1]
 [ext_resource path="res://tiles/menus_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://gui/info-box.png" type="Texture" id=3]
-[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=4]
+[ext_resource path="res://confirm_rename_dialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 
@@ -379,60 +380,13 @@ custom_constants/separation = 10
 alignment = 0
 _sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="confirm_rename_dialog" type="ConfirmationDialog" parent="." index="6"]
+[node name="confirm_rename_dialog" parent="." index="6" instance=ExtResource( 4 )]
 
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 76.0
-margin_top = 130.0
-margin_right = 426.0
-margin_bottom = 298.0
-rect_min_size = Vector2( 200, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
-window_title = "Rename guild"
-resizable = false
-dialog_text = "Enter new guild name"
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog", "Rect" ]
 
-[node name="LineEdit" type="LineEdit" parent="confirm_rename_dialog" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 8.0
-margin_top = 22.0
-margin_right = 342.0
-margin_bottom = 132.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
-focus_mode = 2
-context_menu_enabled = true
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-caret_position = 0
-
-[node name="button_back" parent="." index="7" instance=ExtResource( 4 )]
+[node name="button_back" parent="." index="7" instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="vbox_guildInfo/vbox_bottomBox/HBoxContainer/button_renameGuild" to="." method="_on_button_renameGuild_pressed"]
-
-[connection signal="confirmed" from="confirm_rename_dialog" to="." method="_on_rename_guild_confirmed"]
 
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
 
