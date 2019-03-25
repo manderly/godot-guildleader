@@ -45,6 +45,8 @@ func populate_fields(data):
 	elif (data.atHome && data.staffedTo != ""): #to catch tradeskills 
 		$VBoxContainer/field_available.text = "Busy (" + str(data.staffedTo.capitalize()) + ")"
 		self.set_disabled(true)
+		if(data.atHome && data.staffedTo == "training"):
+			$field_readyToTrain.text = "TRAINING TO " + str(data.level + 1)	
 	elif (!data.atHome && data.staffedTo == "quest"): #heroes aren't unavailable until quest begins
 		$VBoxContainer/field_available.text = "Away (Quest)"
 		self.set_disabled(true)
@@ -63,16 +65,20 @@ func populate_fields(data):
 		if (data.level >= global.maxHeroLevel):
 			self.set_disabled(true)
 	
-	
-	
+
 	#draw the hero
-	var heroScene = preload("res://hero.tscn").instance()
+	var heroScene = preload("res://baseEntity.tscn").instance()
+	heroScene.set_script(preload("res://hero.gd"))
 	heroScene.set_instance_data(data) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(14, 6))
 	heroScene.set_display_params(false, false) #walking, name displayed
 	add_child(heroScene)
 	
+	# tint the hero purple if dead
+	if (data.dead):
+		heroScene.modulate = Color(0.8, 0.7, 1)
+		
 	#ready to train text
 	if (data.xp == staticData.levelXpData[str(data.level)].total):
 		$field_readyToTrain.show()

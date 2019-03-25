@@ -1,4 +1,4 @@
-extends "basehero.gd"
+extends "baseEntity.gd"
 #hero.gd
 
 #todo: globalize these
@@ -12,15 +12,39 @@ var outsideMaxX = 380
 var outsideMinY = 650
 var outsideMaxY = 820
 
-#for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
-var walkable = false
-var showName = true
+# These properties are specific to a hero
+var heroID = -1 
+var heroFirstName = "Firstname"
+var heroLastName = ""
+var heroClass = "NONE"
+var recruited = false
+var gender = "female"
+var perks = {}
+var perkPoints = 0
+var xp = -1
 
-var battlePrint = false
+# These properties relate to where a hero is on the main screen
+var currentRoom = 0 #outside by default
+var atHome = true
+var staffedTo = ""
+var staffedToID = ""
+var savedPositionX = -1
+var savedPositionY = -1
+
+#Hero walking vars 
+var walkDestX = -1
+var walkDestY = -1
+var startingX = 1
+var startingY = 1
+var target = Vector2()
+var velocity = Vector2()
+var speed = 20
+var walking = false
 
 var headIndex = 0
 
 var longEnoughClickToOpenHeroPage = false
+var isPlayer = false # to distiguish heroes the game generated vs. a hero the player made
 
 #three possible ways to display a hero sprite:
 #walking with name
@@ -28,6 +52,7 @@ var longEnoughClickToOpenHeroPage = false
 #icon with no name
 
 func _ready():
+	entityType = "hero"
 	_hide_extended_stats()
 	if (walkable):
 		if (atHome && staffedTo == ""):
@@ -40,7 +65,8 @@ func _ready():
 			$field_name.text = heroFirstName + " " + heroLastName
 	else:
 		$field_name.text = ""
-
+	
+	vignette_hide_stats()
 		
 func set_display_params(walkBool, nameBool):
 	walkable = walkBool
@@ -112,6 +138,26 @@ func _on_Timer_timeout():
 	_hide_extended_stats()
 	_start_walking()
 
+func vignette_update_hp_and_mana(oldHP, newHP, totalHP, oldMana, newMana, totalMana):
+	#if the regen tick took us above the total allowed, reset to total 
+	if (newHP > totalHP):
+		hpCurrent = totalHP
+	else:
+		hpCurrent = newHP
+
+	if (newMana > totalMana):
+		manaCurrent = totalMana
+	else:
+		manaCurrent = newMana
+		
+	$field_HP.text = str(oldHP) + "/" + str(totalHP)
+	$field_Mana.text = str(oldMana) + "/" + str(totalMana)
+	#todo: animate the change
+	yield(get_tree().create_timer(1.0), "timeout")
+
+	$field_HP.text = str(hpCurrent) + "/" + str(totalHP)
+	$field_Mana.text = str(manaCurrent) + "/" + str(totalMana)
+		
 func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
 	for i in global.guildRoster.size():
@@ -122,7 +168,6 @@ func save_current_position():
 			global.guildRoster[i].savedPositionY = get_position().y
 	#todo: is there some smarter way to do this? I wanted to just set
 	#the variables on this hero instance but it has to be done in the roster array 
-	
 	
 func save():
 	var thisHero = self
@@ -166,6 +211,8 @@ func save():
 		"strength":thisHero.strength,
 		"defense":thisHero.defense,
 		"intelligence":thisHero.intelligence,
+		"regenRateHP":thisHero.regenRateHP,
+		"regenRateMana":thisHero.regenRateMana,
 		"skillAlchemy":thisHero.skillAlchemy,
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
 		"skillChronomancy":thisHero.skillChronomancy,
@@ -179,22 +226,11 @@ func save():
 		"groupBonus":thisHero.groupBonus,
 		"raidBonus":thisHero.raidBonus,
 		"equipment":thisHero.equipment,
-		"headSprite":thisHero.headSprite #armor sprites should be derived from equipment 
+		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 
+		"isPlayer":thisHero.isPlayer,
+		"entityType":thisHero.entityType
 	}
-	#print(saved_hero_data.skillBlacksmithing)
 	return saved_hero_data
-	
-func _input_event(viewport, event, shape_idx):
-    pass
-	#if event is InputEventMouseButton \
-	#and event.button_index == BUTTON_LEFT \
-	#and event.is_pressed(): print("pressed")
-        #self.on_click()
-		
-	#if event is InputEventMouseButton \
-    #and event.button_index == BUTTON_LEFT \
-    #and event.is_released():
-        #self.on_heroTouchRelease()
 
 func _physics_process(delta):
 	if (walking):
@@ -231,10 +267,17 @@ func set_instance_data(data):
 	heroID = data.heroID
 	atHome = data.atHome
 	staffedTo = data.staffedTo
+	sprite = data.sprite #oneBody sprite, if present (not present if humanoid)
 	headSprite = data.headSprite #sprites are set in heroGenerator.gd
 	#chestSprite = data.equipment.chest.bodySprite
 	#legsSprite = data.equipment.legs.bodySprite
 	#bootSprite = data.equipment.feet.bodySprite
+	hp = data.hp
+	hpCurrent = data.hpCurrent
+	mana = data.mana
+	manaCurrent = data.manaCurrent
+	regenRateHP = data.regenRateHP
+	regenRateMana = data.regenRateMana
 	equipment = {
 		"mainHand": data.equipment.mainHand,
 		"offHand": data.equipment.offHand,
@@ -250,47 +293,7 @@ func set_instance_data(data):
 	shieldSprite = data.shieldSprite
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
-	
-func _draw_sprites():
-	var none = "res://sprites/heroes/none.png"
-	#everyone has a head, no need to else/if this one 
-	$body/head.texture = load("res://sprites/heroes/head/" + headSprite)
-
-	#heroes can walk around empty-handed, so check that gear actually exists 
-	if (equipment.mainHand):
-		$body/weapon1.texture = load("res://sprites/heroes/weaponMain/" + equipment.mainHand.bodySprite)
-	else:
-		$body/weapon1.texture = load(none)
-	
-	#shields are offhand items but they use a different node on the hero body 
-	if (equipment.offHand):
-		if (equipment.offHand.itemType == "shield"):
-			$body/shield.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/weapon2.texture = load(none)
-		else:
-			$body/weapon2.texture = load("res://sprites/heroes/offHand/" + equipment.offHand.bodySprite)
-			$body/shield.texture = load(none)
-	else:
-		$body/weapon2.texture = load(none)
-		$body/shield.texture = load(none)
-
-	#todo: figure out an elegant way to handle naked characters 
-	if (equipment.chest):
-		$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
-	else:
-		$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
-	
-	if (equipment.legs):
-		$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
-	else:
-		$body/legs.texture = load("res://sprites/heroes/legs/missing.png")
-	
-	if (equipment.feet):
-		$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-		$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-	else:
-		$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
-		$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
+	isPlayer = data.isPlayer
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():
@@ -307,6 +310,8 @@ func update_hero_stats():
 	modifiedStrength = 0
 	modifiedDefense = 0
 	modifiedIntelligence = 0
+	modifiedRegenRateHP = 0
+	modifiedRegenRateMana = 0
 	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
 	modifiedSkillChronomancy = 0
@@ -329,6 +334,8 @@ func update_hero_stats():
 			modifiedStrength += equip.strength
 			modifiedDefense += equip.defense
 			modifiedIntelligence += equip.intelligence
+			modifiedRegenRateHP += equip.regenRateHP
+			modifiedRegenRateMana += equip.regenRateMana
 			modifiedPrestige += equip.prestige
 			#skill stats to come later (todo) 
 			#groupBonus is a different system (todo) 
@@ -345,6 +352,8 @@ func update_hero_stats():
 	strength = baseStrength + modifiedStrength
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
+	regenRateHP = baseRegenRateHP + modifiedRegenRateHP
+	regenRateMana = baseRegenRateMana + modifiedRegenRateMana
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
@@ -356,42 +365,9 @@ func update_hero_stats():
 	drama = "Low"
 	mood = "Happy"
 
-#this method generates a brand new instance of the item, it's an equivalent
-#to the method used in util.gd to give new items to the guild
-func give_new_item(itemNameStr): 
-	#To use: hero.give_item("Item Name Here")
-	#hero.give_item("item name here", false) #for items from the vault 
-	var newItem = staticData.items[itemNameStr].duplicate() #make a new instance from the big book of items
-	newItem.itemID = global.nextItemID
-	global.nextItemID += 1
-	equipment[newItem.slot] = newItem #now give it to the matching equipment slot on this hero
-
 func give_existing_item(item): #takes the actual item (use with vault)
 	#hero.give_existing_item(actualItemObject)
 	equipment[item.slot] = item
-	
-func clear_all_items():
-	equipment = {
-		"mainHand": null,
-		"offHand": null,
-		"jewelry": null,
-		"unknown": null,
-		"head": null,
-		"chest": null,
-		"legs": null,
-		"feet": null
-	} 
-	
-func give_gear_loadout(loadoutIDStr):
-	clear_all_items()
-	#get the loadout from staticData
-	var loadout = staticData.loadouts[loadoutIDStr]
-	#iterate through object and give each item to the hero
-	for key in loadout.keys():
-		if (key == "loadoutId" || key == "unknown"): 
-			continue #don't process entries that aren't actually items
-		elif (loadout[key]): #skip empty spots
-			give_new_item(loadout[key])
 	
 func change_class(classStr):
 	if (classStr == "Cleric"):
@@ -415,6 +391,9 @@ func change_class(classStr):
 	else:
 		print("hero.gd: Attempting to change to invalid class")
 		
+func get_class():
+	return heroClass
+	
 func change_head(headStr): #pass in the string of the head sprite 
 	headSprite = headStr
 		
@@ -436,14 +415,17 @@ func _open_hero_page():
 				break
 				
 func _hide_extended_stats():
-	$field_levelAndClass.text = ""
-	$field_xp.text = ""
-	$field_debug.text = ""
+	$field_levelAndClass.hide()
+	$field_xp.hide()
+	$field_debug.hide()
 	
 func _show_extended_stats():
 	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
-	$field_xp.text = str(xp) + " xp"
+	$field_xp.text = str(xp) + "/" + str(staticData.levelXpData[str(level)].total) + " xp"
 	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
+	$field_levelAndClass.show()
+	$field_xp.show()
+	#$field_debug.show()
 	
 func _on_heroButton_pressed():
 	if (walkable):
@@ -494,12 +476,19 @@ func get_class_role():
 		role = "ERROR"
 	return role
 	
+func get_is_caster_type():
+	#returns boolean, true = has mana, false = no mana
+	var isCaster = false
+	if (heroClass == "Wizard" || heroClass == "Paladin" || heroClass == "Cleric" || heroClass == "Druid" || heroClass == "Necromancer"):
+		isCaster = true
+	return isCaster
+	
 func give_xp(xpNum):
 	xp += xpNum
 	
 func make_level(levelNum):
 	if (levelNum > 1):
-		for level in range(levelNum):
+		for level in range(levelNum - 1):
 			level_up()
 	
 func restore_hp_mana():
@@ -522,18 +511,38 @@ func give_perk_points(quantity):
 	
 func take_perk_points(quantity):
 	perkPoints -= quantity
+
+func vignette_recover_tick():
+	#print(heroFirstName + " is recovering " + str(regenRateHP) + " hp and " + str(regenRateMana) + " mana")
+	#print(heroFirstName + " is starting with " + str(hpCurrent) + " hp")
+	vignette_update_hp_and_mana(hpCurrent, hpCurrent+regenRateHP, hp, manaCurrent, manaCurrent+regenRateMana, mana)
 	
-func melee_attack():
-	var rawDmg = (equipment["mainHand"].dps * strength) / 2
-	var roll = randi()%20+1 #(roll between 1-20)
-	if (roll == 1):
-		if (battlePrint):
-			print("miss!")
-		rawDmg = 0
-	elif (roll == 20):
-		if (battlePrint):
-			print("Critical hit! Double damage!")
-		rawDmg *= 2
-	if (battlePrint):
-		print("Returning this raw damage: " + str(rawDmg))
-	return rawDmg
+func say_hello():
+	print(heroFirstName + " says hello")
+	
+func set_dead():
+	dead = true
+	hpCurrent = 0
+	manaCurrent = 0
+	
+func get_nuke_dmg():
+	return level * intelligence
+	
+func get_cleric_party_heal_amount():
+	return 50 #todo: fancy formula
+	
+func get_druid_target_heal_amount():
+	return 100 #todo: fancy formula 
+
+func regen_hp_between_battles(campRespawnRate):
+	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
+	hpCurrent += hpRegenerated
+	if (hpCurrent > hp):
+		hpCurrent = hp
+	
+func regen_mana_between_battles(campRespawnRate):
+	var manaRegenerated = regenRateMana * (campRespawnRate / global.tickRate)
+	manaCurrent += manaRegenerated
+	if (manaCurrent > mana):
+		manaCurrent = mana
+	

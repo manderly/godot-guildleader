@@ -26,8 +26,6 @@ onready var heroButtons = []
 
 var stepNum = 0
 
-var stepTimer = Timer.new()
-
 var haveAlready = {
 	"healer":0,
 	"dps":0,
@@ -51,7 +49,7 @@ func _ready():
 		$battleScene.hide()
 	else:
 		field_battleNum.show()
-		_play_camp_animatic()
+		#_play_camp_animatic()
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -66,6 +64,11 @@ func _process(delta):
 		var progressBarValue = (100 * (campData.selectedDuration - (campData.endTime - OS.get_unix_time())) / campData.selectedDuration)
 		#progressBar.set_value(100 * ((campData.selectedDuration - campData.timer.time_left) / campData.selectedDuration))
 		progressBar.set_value(progressBarValue)
+		
+		var currentTime = OS.get_unix_time()
+		if (currentTime >= campData.endTime):
+			campData.readyToCollect = true
+			 
 	elif (campData.inProgress && campData.readyToCollect):
 		field_tipsOrProgress.text = "DONE!"
 		#todo: make it so only the correct button changes to collect 
@@ -73,36 +76,19 @@ func _process(delta):
 		button_startCampMedium.text = "COLLECT"
 		button_startCampLong.text = "COLLECT"
 		progressBar.set_value(100)
-		
-func _play_animatic_step():
-	if (stepNum < campData.campOutcome.battleRecord.size()):
-		print("SHOWING BATTLE: " + str(stepNum+1) + " of " + str(campData.campOutcome.battleRecord.size()))
-		print(campData.campOutcome.battleRecord[stepNum].mobs)
-		$battleScene.populate_mobs(campData.campOutcome.battleRecord[stepNum].startMobsSprites)
-		print(campData.campOutcome.battleRecord[stepNum])
-		#$battleScene.populate_heroes(campData.campOutcome.outcome.battleRecord[stepNum].heroesClone)
-		field_battleNum.text = "Battle #" + str(stepNum+1)
-		stepNum += 1
-	else:
-		print("out of battles to show")
+
 	
-func _play_camp_animatic():
-	field_battleNum.text = "Pulling..."
-	field_battleNum.show()
+func _play_camp_animatic(campData):
+	#field_battleNum.text = "Pulling..."
+	#field_battleNum.show()
 	$battleScene.show()
-	$battleScene.populate_heroes(campData.heroes)
+	$battleScene.play_vignette(campData.campOutcome.vignetteData) #also need to know how far into the camp we are, temporally speaking
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
 	field_difficultyEstimate.text = "Camp in progress..."
 	
 	for button in heroButtons:
 		button.hide()
-	
-	stepTimer.set_one_shot(false)
-	stepTimer.set_wait_time(5)
-	stepTimer.connect("timeout", self, "_play_animatic_step")
-	#stepTimer.connect("timeout", self, "_play_next_step", [campID])
-	add_child(stepTimer)
-	stepTimer.start()
+
 
 func _enable_and_disable_duration_buttons():
 	var finishNowStr = "Finish Now"
@@ -256,10 +242,11 @@ func _start_camp(duration, enableButtonStr):
 				"lootedItemsNames":generatedOutcome.lootedItemsNames,
 				"scTotal":generatedOutcome.scTotal,
 				"summary":generatedOutcome.summary,
-				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay
+				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay,
+				"vignetteData":generatedOutcome.vignetteData
 			}
 			
-			_play_camp_animatic()
+			_play_camp_animatic(campData)
 			#todo: populate enemies 
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):

@@ -120,9 +120,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 22.0
+margin_top = 18.0
 margin_right = 300.0
-margin_bottom = 28.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 0, 6 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -138,9 +138,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 36.0
+margin_top = 28.0
 margin_right = 300.0
-margin_bottom = 68.0
+margin_bottom = 60.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -306,9 +306,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 76.0
+margin_top = 64.0
 margin_right = 300.0
-margin_bottom = 92.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 0, 16 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -324,9 +324,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 100.0
+margin_top = 84.0
 margin_right = 300.0
-margin_bottom = 114.0
+margin_bottom = 98.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -345,9 +345,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 122.0
+margin_top = 102.0
 margin_right = 300.0
-margin_bottom = 154.0
+margin_bottom = 152.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -365,7 +365,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 60.0
-margin_bottom = 32.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -416,6 +416,27 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme", "Visibility" ]
 
+[node name="field_stat2" type="Label" parent="VBoxContainer/hbox_stats/vboxstats1" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 60.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "+999 Stat"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme", "Visibility" ]
+
 [node name="vboxstats2" type="VBoxContainer" parent="VBoxContainer/hbox_stats" index="1"]
 
 anchor_left = 0.0
@@ -424,7 +445,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 90.0
 margin_right = 150.0
-margin_bottom = 32.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -433,7 +454,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="field_stat2" type="Label" parent="VBoxContainer/hbox_stats/vboxstats2" index="0"]
+[node name="field_stat3" type="Label" parent="VBoxContainer/hbox_stats/vboxstats2" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -453,7 +474,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
-[node name="field_stat3" type="Label" parent="VBoxContainer/hbox_stats/vboxstats2" index="1"]
+[node name="field_stat4" type="Label" parent="VBoxContainer/hbox_stats/vboxstats2" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -462,6 +483,27 @@ anchor_bottom = 0.0
 margin_top = 18.0
 margin_right = 60.0
 margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "+999 Stat"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="field_stat5" type="Label" parent="VBoxContainer/hbox_stats/vboxstats2" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 60.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -482,7 +524,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 180.0
 margin_right = 240.0
-margin_bottom = 32.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -491,7 +533,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
 
-[node name="field_stat4" type="Label" parent="VBoxContainer/hbox_stats/vboxstats3" index="0"]
+[node name="field_stat6" type="Label" parent="VBoxContainer/hbox_stats/vboxstats3" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -511,7 +553,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
-[node name="field_stat5" type="Label" parent="VBoxContainer/hbox_stats/vboxstats3" index="1"]
+[node name="field_stat7" type="Label" parent="VBoxContainer/hbox_stats/vboxstats3" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -532,15 +574,36 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Theme" ]
 
+[node name="field_stat8" type="Label" parent="VBoxContainer/hbox_stats/vboxstats3" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 60.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "+999 Stat"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
 [node name="field_improved" type="Label" parent="VBoxContainer" index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 162.0
+margin_top = 156.0
 margin_right = 300.0
-margin_bottom = 176.0
+margin_bottom = 170.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2

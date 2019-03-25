@@ -6,4 +6,19 @@ func _ready():
 	pass
 	
 func get_mob(mobName):
-	return staticData.mobs[mobName]
+	var newMob = load("res://mob.gd").new()
+	newMob.mobName = mobName
+	newMob.hp = staticData.mobs[mobName].hp
+	newMob.mana = staticData.mobs[mobName].mana
+	newMob.hpCurrent = staticData.mobs[mobName].hpCurrent
+	newMob.manaCurrent = staticData.mobs[mobName].manaCurrent
+	newMob.level = staticData.mobs[mobName].level
+	newMob.baseResist = staticData.mobs[mobName].baseResist
+	newMob.dps = staticData.mobs[mobName].dps
+	newMob.strength = staticData.mobs[mobName].strength
+	newMob.defense = staticData.mobs[mobName].defense
+	newMob.dead = false
+	newMob.sprite = "res://sprites/mobs/"+staticData.mobs[mobName].sprite
+	newMob.lootTable = staticData.mobs[mobName].lootTable
+	newMob.mobID = 123
+	return newMob

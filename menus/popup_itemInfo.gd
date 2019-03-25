@@ -11,10 +11,13 @@ signal clearWildcardButton
 
 onready var field_stat0 = $VBoxContainer/hbox_stats/vboxstats1/field_stat0
 onready var field_stat1 = $VBoxContainer/hbox_stats/vboxstats1/field_stat1
-onready var field_stat2 = $VBoxContainer/hbox_stats/vboxstats2/field_stat2
+onready var field_stat2 = $VBoxContainer/hbox_stats/vboxstats1/field_stat2
 onready var field_stat3 = $VBoxContainer/hbox_stats/vboxstats2/field_stat3
-onready var field_stat4 = $VBoxContainer/hbox_stats/vboxstats3/field_stat4
-onready var field_stat5 = $VBoxContainer/hbox_stats/vboxstats3/field_stat5
+onready var field_stat4 = $VBoxContainer/hbox_stats/vboxstats2/field_stat4
+onready var field_stat5 = $VBoxContainer/hbox_stats/vboxstats2/field_stat5
+onready var field_stat6 = $VBoxContainer/hbox_stats/vboxstats3/field_stat6
+onready var field_stat7 = $VBoxContainer/hbox_stats/vboxstats3/field_stat7
+onready var field_stat8 = $VBoxContainer/hbox_stats/vboxstats3/field_stat8
 
 onready var field_itemName = $VBoxContainer/field_itemName
 onready var field_itemID = $field_itemID
@@ -51,6 +54,9 @@ func _ready():
 	field_stat3.hide()
 	field_stat4.hide()
 	field_stat5.hide()
+	field_stat6.hide()
+	field_stat7.hide()
+	field_stat8.hide()
 
 func _set_vault_index(idx):
 	vaultIndex = idx
@@ -127,7 +133,13 @@ func _populate_fields():
 		
 		if (itemData.intelligence > 0):
 			stats.append("+" + str(itemData.intelligence) + " INT")
-	
+		
+		if (itemData.regenRateHP > 0):
+			stats.append("+" + str(itemData.regenRateHP) + " HP regen")
+			
+		if (itemData.regenRateMana > 0):
+			stats.append("+" + str(itemData.regenRateMana) + " Mana regen")
+			
 		#display them (should just be the ones greater than 0)
 		for i in range(stats.size()):
 			find_node("field_stat" + str(i)).text = stats[i]

@@ -15,6 +15,9 @@ var displaySTR = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayDEF = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
+var displayHPRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayManaRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
 #Skills
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -41,11 +44,13 @@ onready var buttonTrainOrRecruit = $CenterContainer/VBoxContainer/HBox_Hero/VBox
 onready var buttonRevive = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive
 onready var buttonDismiss = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss
 onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename
+onready var buttonRenameFirst = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_renameFirst
 
 #containers
 onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
 
-onready var tabStats = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats
+onready var tabStatsLeft = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsLeft
+onready var tabStatsRight = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsRight
 onready var tabSkills = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills
 onready var tabAttributes = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses
 
@@ -59,18 +64,23 @@ var perkOnDeckKey = null
 
 func _ready():
 	
-	
 	$confirm_rename_dialog.set_mode("last")
-	$confirm_rename_dialog.connect("redrawHeroName", self, "populate_fields")
+	$confirm_rename_dialog.connect("heroNameUpdated", self, "populate_fields")
 	$confirm_rename_dialog/LineEdit.connect("text_changed", self, "check_name_input") #, ["userInput"]
 	
 	#draw the hero
-	var heroScene = preload("res://hero.tscn").instance()
+	var heroScene = preload("res://baseEntity.tscn").instance()
+	heroScene.set_script(preload("res://hero.gd"))
 	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
 	heroScene._draw_sprites()
 	heroScene.set_position(Vector2(50, 20))
-	heroScene.set_display_params(false, false) #walking, show name 
+	heroScene.set_display_params(false, false) #walking, show name
+	heroScene.add_to_group("heroScene")
 	add_child(heroScene)
+	
+	# tint the hero purple if dead
+	if (global.selectedHero.dead):
+		heroScene.modulate = Color(0.8, 0.7, 1)
 	
 	add_child(finishNowPopup)
 	
@@ -124,13 +134,16 @@ func _ready():
 	#populating the data is done in a separate method, update_stats 
 	
 	#Stats
-	tabStats.add_child(displayHP)
-	tabStats.add_child(displayMana)
-	tabStats.add_child(displayArmor)
-	tabStats.add_child(displayDPS)
-	tabStats.add_child(displaySTR)
-	tabStats.add_child(displayDEF)
-	tabStats.add_child(displayINT)
+	tabStatsLeft.add_child(displayHP)
+	tabStatsLeft.add_child(displayMana)
+	tabStatsLeft.add_child(displayArmor)
+	tabStatsLeft.add_child(displayDPS)
+	tabStatsLeft.add_child(displaySTR)
+	tabStatsLeft.add_child(displayDEF)
+	tabStatsLeft.add_child(displayINT)
+	
+	tabStatsRight.add_child(displayHPRegen)
+	tabStatsRight.add_child(displayManaRegen)
 	
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
@@ -190,6 +203,10 @@ func populate_fields():
 		var inventoryButtons = get_tree().get_nodes_in_group("InventoryButtons")
 		for button in inventoryButtons:
 			button.set_disabled(false)
+		
+		# tint the hero clear again
+		var heroScene = get_tree().get_nodes_in_group("heroScene")
+		heroScene[0].modulate = Color(1, 1, 1)
 		
 		
 	#disable train button if hero is recruited and at max level
@@ -260,12 +277,16 @@ func _update_stats():
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
 	else:
 		displayMana.hide()
+		displayManaRegen.hide()
 	#stats
 	displayArmor._update_fields("Armor", global.selectedHero.armor)
 	displayDPS._update_fields("DPS", global.selectedHero.dps)
 	displaySTR._update_fields("STR", global.selectedHero.strength)
 	displayDEF._update_fields("DEF", global.selectedHero.defense)
 	displayINT._update_fields("INT", global.selectedHero.intelligence)
+	
+	displayHPRegen._update_fields("HP Regen", global.selectedHero.regenRateHP)
+	displayManaRegen._update_fields("Mana Regen", global.selectedHero.regenRateMana)
 	
 	#skills
 	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)
@@ -288,7 +309,7 @@ func check_name_input(userInput):
 	#surnames are more flexible than first names
 	#surnames can have spaces, multiple caps, and apostrophes 
 	var regex = RegEx.new()
-	regex.compile("[A-Za-z '`]*")
+	regex.compile("[A-Za-z. '`]*")
 	var result = regex.search(userInput)
 	if (result):
 		$confirm_rename_dialog.set_candidate_name(result.get_string())
@@ -387,7 +408,12 @@ func _on_button_train_pressed():
 			#todo: maybe stay on hero page? might be more intuitive 
 			get_tree().change_scene("res://main.tscn")
 
+# Note: March 2019 - tried to implement changing first name and couldn't
+# find a good flow for validating that the name input is valid before applying it
+# to the hero and surfacing any errors to the player. Best to keep it to surname
+# changes only for now.
 func _on_button_rename_pressed():
+	$confirm_rename_dialog.set_mode("last")
 	get_node("confirm_rename_dialog").popup()
 	
 func _on_button_dismiss_pressed():
@@ -395,9 +421,9 @@ func _on_button_dismiss_pressed():
 
 func _on_rename_dialogue_confirmed():
 	var newName = $confirm_rename_dialog/LineEdit.text
-	global.selectedHero.heroName = newName
+	global.selectedHero.heroFirstName = newName
 	#redraw the name display field on the hero page with the new name
-	label_heroName.text = global.selectedHero.heroName
+	label_heroName.text = global.selectedHero.heroFirstName
 	
 func _on_button_back_pressed():
 	if (global.currentMenu == "roster"):
@@ -478,3 +504,5 @@ func _on_button_buyPerk_pressed():
 	else:
 		print("This perk is full")
 	_update_perks_tab()
+
+

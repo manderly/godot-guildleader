@@ -1,7 +1,7 @@
 [
   {
     "heroClass": "warrior",
-    "hp": 20,
+    "hp": 30,
     "mana": 0,
     "strength": 18,
     "defense": 18,
@@ -11,11 +11,14 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 0,
+    "dps": 0,
+    "description": "The warrior is a fierce combatant and strong defender of the group. A warrior fights with swords and defends with a shield."
   },
   {
     "heroClass": "rogue",
-    "hp": 15,
+    "hp": 26,
     "mana": 0,
     "strength": 10,
     "defense": 12,
@@ -25,11 +28,14 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 0,
+    "dps": 0,
+    "description": "The rogue is a sneaky character, quick with a dagger and even quicker with an unguarded coin purse. Rogues excel at dealing melee damage and increase the amount of loot brought home from a group."
   },
   {
     "heroClass": "cleric",
-    "hp": 12,
+    "hp": 22,
     "mana": 18,
     "strength": 10,
     "defense": 12,
@@ -39,12 +45,15 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 1,
+    "dps": 0,
+    "description": "Clerics are healers and protectors. A cleric recovers wounds taken by the group between battles, increasing how long a group can survive a camp."
   },
   {
     "heroClass": "wizard",
-    "hp": 10,
-    "mana": 20,
+    "hp": 19,
+    "mana": 24,
     "strength": 6,
     "defense": 8,
     "intelligence": 18,
@@ -53,11 +62,14 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 1,
+    "dps": 0,
+    "description": "Wizards are smart and powerful, conjuring devastating magical attacks and unleashing them on enemies in the form of fireballs and ice strikes."
   },
   {
     "heroClass": "ranger",
-    "hp": 16,
+    "hp": 25,
     "mana": 0,
     "strength": 10,
     "defense": 12,
@@ -67,12 +79,15 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 0,
+    "dps": 0,
+    "description": "Rangers are at home in the outdoors and fight exclusively with a bow and arrow."
   },
   {
     "heroClass": "druid",
-    "hp": 10,
-    "mana": 20,
+    "hp": 20,
+    "mana": 18,
     "strength": 6,
     "defense": 8,
     "intelligence": 18,
@@ -81,11 +96,14 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 1,
+    "dps": 0,
+    "description": "Druids are a jack-of-all-trades class that can serve as a healer or a damage-dealer."
   },
   {
     "heroClass": "paladin",
-    "hp": 18,
+    "hp": 26,
     "mana": 15,
     "strength": 17,
     "defense": 20,
@@ -95,12 +113,15 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 1,
+    "dps": 0,
+    "description": "Paladins are a hybrid class of warrior and cleric."
   },
   {
     "heroClass": "necromancer",
-    "hp": 10,
-    "mana": 20,
+    "hp": 19,
+    "mana": 24,
     "strength": 6,
     "defense": 8,
     "intelligence": 18,
@@ -109,6 +130,26 @@
     "prestige": 0,
     "groupBonus": 0,
     "raidBonus": 0,
-    "dps": 0
+    "regenRateHP": 1,
+    "regenRateMana": 1,
+    "dps": 0,
+    "description": "Necromancers are dour AF"
+  },
+  {
+    "heroClass": "bard",
+    "hp": 25,
+    "mana": 0,
+    "strength": 11,
+    "defense": 11,
+    "intelligence": 11,
+    "drama": 1,
+    "mood": 10,
+    "prestige": 0,
+    "groupBonus": 0,
+    "raidBonus": 0,
+    "regenRateHP": 1,
+    "regenRateMana": 0,
+    "dps": 0,
+    "description": "Bards are the life of the party and inspire the group to action with a variety of songs."
   }
 ]
