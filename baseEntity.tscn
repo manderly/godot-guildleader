@@ -1,72 +1,50 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=1]
-[ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=2]
-[ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=3]
-[ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=5]
-[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=6]
-[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=7]
-[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=8]
+[ext_resource path="res://particles/puff_64.png" type="Texture" id=1]
+[ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=5]
+[ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=6]
+[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=7]
+[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=8]
+[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=9]
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.522901, 0.956107 )
+colors = PoolColorArray( 0.485401, 0.244053, 0.587207, 1, 0.32549, 0.239216, 0.701961, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
 
 [sub_resource type="ParticlesMaterial" id=1]
-
-render_priority = 0
-trail_divisor = 1
 emission_shape = 1
-emission_sphere_radius = 6.0
-flag_align_y = false
-flag_rotate_y = false
+emission_sphere_radius = 4.0
 flag_disable_z = true
-spread = 5.0
+spread = 6.0
 flatness = 1.0
-gravity = Vector3( 0, 30, 0 )
-initial_velocity = 1.0
-initial_velocity_random = 0.0
-angular_velocity = 0.0
-angular_velocity_random = 0.0
+gravity = Vector3( 0, -8, 0 )
+initial_velocity = 0.5
+angular_velocity = 2.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 0.0
-linear_accel_random = 0.0
-radial_accel = 1.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
+radial_accel = 2.0
+angle = 2.0
 angle_random = 1.0
-scale = 1.0
-scale_random = 0.0
-color = Color( 0.800781, 0.713122, 0.140762, 1 )
-hue_variation = 1.0
-hue_variation_random = 0.0
-anim_speed = 2.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Animation", "Emission Shape", "Flags", "Gravity", "Spread", "Trail" ]
+scale = 0.75
+color_ramp = SubResource( 7 )
+anim_speed = 1.0
 
 [sub_resource type="RectangleShape2D" id=2]
-
-custom_solver_bias = 0.0
 extents = Vector2( 27.3423, 32.2133 )
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "idle"
-length = 1.0
-loop = false
-step = 0.1
 
 [sub_resource type="Animation" id=4]
-
 resource_name = "walk"
 length = 2.0
 loop = true
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../body/boot1:position")
 tracks/0/interp = 1
@@ -129,335 +107,151 @@ tracks/4/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-
-custom_solver_bias = 0.0
 extents = Vector2( 1, 1 )
 
 [node name="hero" type="KinematicBody2D" groups=[
 "ClearOnRestore",
 ]]
-
 input_pickable = true
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-_sections_unfolded = [ "Collision", "Pickable", "collision" ]
 
-[node name="field_name" type="Label" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_name" type="Label" parent="."]
 margin_left = -90.0
 margin_top = -14.0
 margin_right = 153.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Name"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_levelAndClass" type="Label" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_levelAndClass" type="Label" parent="."]
 margin_left = -10.0
 margin_top = 65.0
 margin_right = 73.0
 margin_bottom = 79.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Level X Class"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Size Flags" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="2"]
-
+[node name="Particles2D" type="Particles2D" parent="."]
 visible = false
 position = Vector2( 9.68694, 21.5928 )
-emitting = true
-amount = 8
-lifetime = 1.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
 process_material = SubResource( 1 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 
-[node name="field_xp" type="Label" parent="." index="3"]
+[node name="particles_ghost" type="Particles2D" parent="."]
+show_behind_parent = true
+position = Vector2( 29.0409, 38.6087 )
+amount = 10
+lifetime = 3.0
+process_material = SubResource( 1 )
+texture = ExtResource( 1 )
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_xp" type="Label" parent="."]
 margin_left = 10.0
 margin_top = 94.0
 margin_right = 59.0
 margin_bottom = 108.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "xp/total"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_debug" type="Label" parent="." index="4"]
-
+[node name="field_debug" type="Label" parent="."]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 80.0
 margin_right = 55.0
 margin_bottom = 94.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "debug field"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 32.7649, 30.8304 )
 shape = SubResource( 2 )
-_sections_unfolded = [ "Material", "Pause", "Transform", "Visibility", "Z Index" ]
 
-[node name="animationPlayer" type="AnimationPlayer" parent="." index="6"]
-
+[node name="animationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
-autoplay = ""
-playback_process_mode = 1
-playback_default_blend_time = 0.0
 playback_speed = 2.0
 anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="body" type="Node2D" parent="." index="7"]
-
+[node name="body" type="Node2D" parent="."]
 position = Vector2( 30.9247, 21.1424 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="shadow" type="Sprite" parent="body" index="0"]
-
+[node name="shadow" type="Sprite" parent="body"]
 position = Vector2( 1.06569, 33.8472 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
-[node name="boot1" type="Sprite" parent="body" index="1"]
-
+[node name="boot1" type="Sprite" parent="body"]
 position = Vector2( -4, 34 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Animation", "Transform" ]
-
-[node name="boot2" type="Sprite" parent="body" index="2"]
-
-position = Vector2( 6, 34 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="legs" type="Sprite" parent="body" index="3"]
-
-position = Vector2( 1, 30 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="chest" type="Sprite" parent="body" index="4"]
+[node name="boot2" type="Sprite" parent="body"]
+position = Vector2( 6, 34 )
+texture = ExtResource( 3 )
 
-position = Vector2( -14, 10 )
+[node name="legs" type="Sprite" parent="body"]
+position = Vector2( 1, 30 )
 texture = ExtResource( 4 )
-centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="head" type="Sprite" parent="body" index="5"]
-
+[node name="chest" type="Sprite" parent="body"]
+position = Vector2( -14, 10 )
 texture = ExtResource( 5 )
-_sections_unfolded = [ "Animation", "Transform" ]
+centered = false
 
-[node name="weapon1" type="Sprite" parent="body" index="6"]
-
-position = Vector2( -13.0407, 21.8781 )
+[node name="head" type="Sprite" parent="body"]
 texture = ExtResource( 6 )
-_sections_unfolded = [ "Offset" ]
 
-[node name="weapon2" type="Sprite" parent="body" index="7"]
-
-position = Vector2( 1.99084, 25.9922 )
+[node name="weapon1" type="Sprite" parent="body"]
+position = Vector2( -13.0407, 21.8781 )
 texture = ExtResource( 7 )
-_sections_unfolded = [ "Offset" ]
 
-[node name="shield" type="Sprite" parent="body" index="8"]
-
-position = Vector2( 19.7722, 19.2338 )
+[node name="weapon2" type="Sprite" parent="body"]
+position = Vector2( 1.99084, 25.9922 )
 texture = ExtResource( 8 )
-_sections_unfolded = [ "Offset" ]
 
-[node name="oneSprite" type="Sprite" parent="body" index="9"]
+[node name="shield" type="Sprite" parent="body"]
+position = Vector2( 19.7722, 19.2338 )
+texture = ExtResource( 9 )
 
-[node name="heroButton" type="TouchScreenButton" parent="." index="8"]
+[node name="oneSprite" type="Sprite" parent="body"]
 
+[node name="heroButton" type="TouchScreenButton" parent="."]
 position = Vector2( 19.4813, 16.1385 )
 scale = Vector2( 22.8798, 29.0313 )
 z_index = 1
-normal = null
-pressed = null
-bitmask = null
 shape = SubResource( 5 )
-shape_centered = true
-shape_visible = true
-passby_press = false
-action = ""
-visibility_mode = 0
-_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
-[node name="idleTimer" type="Timer" parent="." index="9"]
-
-process_mode = 1
+[node name="idleTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
-autostart = false
 
-[node name="touchTimer" type="Timer" parent="." index="10"]
+[node name="touchTimer" type="Timer" parent="."]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = false
-autostart = false
-
-[node name="field_HP" type="Label" parent="." index="11"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_HP" type="Label" parent="."]
 margin_left = 25.0
 margin_top = 66.0
 margin_right = 102.0
 margin_bottom = 80.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "WXYZ/ABCD"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="label_hp" type="Label" parent="." index="12"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="label_hp" type="Label" parent="."]
 margin_left = 3.0
 margin_top = 66.0
 margin_right = 23.0
 margin_bottom = 80.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "HP"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
-[node name="field_Mana" type="Label" parent="." index="13"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_Mana" type="Label" parent="."]
 margin_left = 25.0
 margin_top = 80.0
 margin_right = 102.0
 margin_bottom = 94.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "WXYZ/ABCD"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="label_mana" type="Label" parent="." index="14"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="label_mana" type="Label" parent="."]
 margin_left = -14.0
 margin_top = 80.0
 margin_right = 6.0
 margin_bottom = 94.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Mana"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
-
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
-
 [connection signal="tree_exited" from="heroButton" to="." method="_on_heroButton_tree_exited"]
-
 [connection signal="timeout" from="idleTimer" to="." method="_on_Timer_timeout"]
-
 [connection signal="timeout" from="touchTimer" to="." method="_on_touchTimer_timeout"]
-
-

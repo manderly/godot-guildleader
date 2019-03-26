@@ -9,8 +9,8 @@ extends Node
 # [{'EN': {'craftingButtonText': 'Crafting'}}, {'JP': {'craftingButtonText': 'Tsukurimono'}} 
 
 var nameGenerator = load("res://nameGenerator.gd").new()
-var mobGenerator = load("res://mobGenerator.gd").new()
-var encounterGenerator = load("res://encounterGenerator.gd").new()
+#var mobGenerator = load("res://mobGenerator.gd").new()
+#var encounterGenerator = load("res://encounterGenerator.gd").new()
 
 var testTimerBeginTime = 0
 var testTimerEndTime = 0
