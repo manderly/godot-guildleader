@@ -232,7 +232,7 @@ func _print_battle_order():
 		if (entity.entityType == "mob"):
 			print(str(i) + " " + entity.mobName + " level " + str(entity.level))
 		elif (entity.entityType == "hero"):
-			print(str(i) + " " + entity.heroFirstName + " level " + str(entity.level) + " " + entity.heroClass)
+			print(str(i) + " " + entity.heroFirstName + " level " + str(entity.level) + " " + entity.charClass)
 		
 		i += 1
 		
@@ -308,7 +308,7 @@ func _calculate_battle_outcome(camp):
 	for mob in randomMobs:
 		encounter.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
 	for hero in heroes:
-		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.heroClass + " HP: " + str(hero.hpCurrent) + ")")
+		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.charClass + " HP: " + str(hero.hpCurrent) + ")")
 		
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
@@ -370,7 +370,7 @@ func _calculate_battle_outcome(camp):
 			var targetMob = null
 			targetMob = _get_target_entity(newBattle.mobs)
 
-			if (hero.heroClass == "Warrior" || hero.heroClass == "Rogue" || hero.heroClass == "Ranger"):
+			if (hero.charClass == "Warrior" || hero.charClass == "Rogue" || hero.charClass == "Ranger"):
 				var unmodifiedDamage = hero.melee_attack()
 				targetMob.take_melee_damage(unmodifiedDamage)
 				encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
@@ -380,7 +380,7 @@ func _calculate_battle_outcome(camp):
 					_target_mob_dies(targetMob, newBattle)
 					if (newBattle.mobs.size() == 0):
 						break
-			elif (hero.heroClass == "Wizard"):
+			elif (hero.charClass == "Wizard"):
 				#nuke
 				var nukeDmg = hero.get_nuke_dmg()
 				var mobBaseResist = targetMob.get_base_resist(hero.level)
@@ -411,15 +411,15 @@ func _calculate_battle_outcome(camp):
 					_target_mob_dies(targetMob, newBattle)
 					if (newBattle.mobs.size() == 0):
 						break
-			elif (hero.heroClass == "Cleric"):
+			elif (hero.charClass == "Cleric"):
 				#heal ALL heroes in party
 				var healAmount = hero.get_cleric_party_heal_amount()
-				_heal_all_heroes(healAmount)
+				#_heal_all_heroes(healAmount)
 				for partyMember in newBattle.heroes:
 					if (!partyMember.dead):
 						encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "!")
 						partyMember.get_healed(healAmount)
-			elif (hero.heroClass == "Druid"):
+			elif (hero.charClass == "Druid"):
 				#can nuke or heal, for now druid just heals lowest hp hero 
 				var lowestHPhero = newBattle.heroes[0]
 				for partyMember in newBattle.heroes:

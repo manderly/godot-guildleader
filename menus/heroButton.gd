@@ -23,7 +23,7 @@ func set_hero_data(data):
 
 func populate_fields(data):
 	$VBoxContainer/field_heroName.text = data.heroFirstName #just show first name on buttons
-	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.heroClass
+	$VBoxContainer/field_levelAndClass.text = "Level " + str(data.level) + " " + data.charClass
 	
 	if (data.level >= global.maxHeroLevel):
 		$field_xp.text = "Max Level"

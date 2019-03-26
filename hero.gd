@@ -16,7 +16,6 @@ var outsideMaxY = 820
 var heroID = -1 
 var heroFirstName = "Firstname"
 var heroLastName = ""
-var heroClass = "NONE"
 var recruited = false
 var gender = "female"
 var perks = {}
@@ -182,14 +181,14 @@ func save():
 			
 	#print('rosterHero ID: ' + String(thisHero.heroID))
 			
-	print("Saving this hero! " + heroFirstName + " level " + str(level) + " " + heroClass)
+	print("Saving this hero! " + heroFirstName + " level " + str(level) + " " + charClass)
 	var saved_hero_data = {
 		"filename":"heroFile",#get_filename(), #res://hero.tscn
 		"parent":"/root",#get_parent().get_path(),
 		"heroID":heroID,
 		"heroFirstName":heroFirstName,
 		"heroLastName":heroLastName,
-		"heroClass":heroClass,
+		"charClass":charClass,
 		"level":level,
 		"xp":xp,
 		"walkable":walkable,
@@ -260,7 +259,7 @@ func set_instance_data(data):
 	heroLastName = data.heroLastName
 	level = data.level
 	xp = data.xp
-	heroClass = data.heroClass
+	charClass = data.charClass
 	currentRoom = data.currentRoom
 	recruited = data.recruited
 	dead = data.dead
@@ -371,28 +370,28 @@ func give_existing_item(item): #takes the actual item (use with vault)
 	
 func change_class(classStr):
 	if (classStr == "Cleric"):
-		heroClass = "Cleric"
+		charClass = "Cleric"
 		give_gear_loadout("clericNew")
 	elif (classStr == "Druid"):
-		heroClass = "Druid"
+		charClass = "Druid"
 		give_gear_loadout("druidNew")
 	elif (classStr == "Rogue"):
-		heroClass = "Rogue"
+		charClass = "Rogue"
 		give_gear_loadout("rogueNew")
 	elif (classStr == "Ranger"):
-		heroClass = "Ranger"
+		charClass = "Ranger"
 		give_gear_loadout("rangerNew")
 	elif (classStr == "Warrior"):
-		heroClass = "Warrior"
+		charClass = "Warrior"
 		give_gear_loadout("warriorNew")
 	elif (classStr == "Wizard"):
-		heroClass = "Wizard"
+		charClass = "Wizard"
 		give_gear_loadout("wizardNew")
 	else:
 		print("hero.gd: Attempting to change to invalid class")
 		
 func get_class():
-	return heroClass
+	return charClass
 	
 func change_head(headStr): #pass in the string of the head sprite 
 	headSprite = headStr
@@ -420,7 +419,7 @@ func _hide_extended_stats():
 	$field_debug.hide()
 	
 func _show_extended_stats():
-	$field_levelAndClass.text = "Level " + str(level) + " " + heroClass
+	$field_levelAndClass.text = "Level " + str(level) + " " + charClass
 	$field_xp.text = str(xp) + "/" + str(staticData.levelXpData[str(level)].total) + " xp"
 	$field_debug.text = "(room: " + str(currentRoom) + " id: " + str(heroID) + ")"
 	$field_levelAndClass.show()
@@ -462,26 +461,6 @@ func send_home():
 	atHome = true
 	staffedTo = ""
 	staffedToID = -1
-
-func get_class_role():
-	#returns string dps, tank, healer
-	var role = ""
-	if (heroClass == "Wizard" || heroClass == "Ranger" || heroClass == "Rogue" || heroClass == "Monk"):
-		role = "dps"
-	elif (heroClass == "Paladin" || heroClass == "Warrior"):
-		role = "tank"
-	elif (heroClass == "Cleric" || heroClass == "Druid"):
-		role = "support"
-	else:
-		role = "ERROR"
-	return role
-	
-func get_is_caster_type():
-	#returns boolean, true = has mana, false = no mana
-	var isCaster = false
-	if (heroClass == "Wizard" || heroClass == "Paladin" || heroClass == "Cleric" || heroClass == "Druid" || heroClass == "Necromancer"):
-		isCaster = true
-	return isCaster
 	
 func give_xp(xpNum):
 	xp += xpNum
@@ -498,10 +477,10 @@ func restore_hp_mana():
 func level_up():
 	xp = int(0)
 	level += int(1)
-	baseHp = int(round(baseHp * classLevelModifiers[heroClass].hp))
-	baseMana = int(round(baseMana * classLevelModifiers[heroClass].mana))
-	baseStrength = int(round(baseStrength * classLevelModifiers[heroClass].strength))
-	baseDefense = int(round(baseDefense * classLevelModifiers[heroClass].defense))
+	baseHp = int(round(baseHp * classLevelModifiers[charClass].hp))
+	baseMana = int(round(baseMana * classLevelModifiers[charClass].mana))
+	baseStrength = int(round(baseStrength * classLevelModifiers[charClass].strength))
+	baseDefense = int(round(baseDefense * classLevelModifiers[charClass].defense))
 	update_hero_stats()
 	hpCurrent = hp #refill hp and mana when leveling up 
 	manaCurrent = mana

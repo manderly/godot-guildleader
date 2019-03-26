@@ -5,7 +5,7 @@ const title = ["the Brave","of the Moths","the Wave Caller","the Hasty","the Idi
 
 const guildNames = ["Faith and Fury", "Keepers of the Night", "Metal and Might", "Swords and Storms", "Magic and Mayhem", "Unconquered Legacy", "The Unbreakables", "Fires of Destiny", "Dark Destiny", "Keepers of Lore", "Old Guard Outlaws", "Midnight Empire", "The Silver Blade", "The Riverlords", "Visions of Victory", "Anomaly", "Dawn Soldiers", "Heroes of the Sword", "Mercenaries of the Coast", "High Crusaders", "Society of Nobles", "The Stonefists", "Forsaken Blades", "The Promised Ones", "Searing Force", "Stoneguard", "Guardians of the Keep", "Wisdom", "Mead and Maidens", "The Unfavored Sons", "Heirs of Fortune", "Darkbane", "The Lost Company", "Riders of the Dawn", "Truth and Honor", "The Great Dividers", "The Planeswalkers", "The Ancients", "Thunderforce", "Lightstalkers", "Unseen Order", "Chaosbringers", "Skunk Queens", "Dragonhunters", "Steel and Fury"]
 
-func checkIfNameInUse(newName):
+static func checkIfNameInUse(newName):
 	var nameIsInUse = false
 	for name in global.namesInUse:
 		if (newName == name):
@@ -42,25 +42,25 @@ static func generateFirst(gender):
 	else:
 		return firstName
 	
-static func generateLast(heroClass):
+static func generateLast(charClass):
 	#determine if the last name is going to be class-specific or race-specific 
 	var lastName = "DEFAULTLAST"
 	var classLastNameRandIndex = 0
 	var classSpecificLastNameRand = round(rand_range(0,100))
 	if (classSpecificLastNameRand > 20): #80% chance of getting a class-specific last name
-		if (heroClass == "Druid" or heroClass == "Ranger"):
+		if (charClass == "Druid" or charClass == "Ranger"):
 			classLastNameRandIndex = round(rand_range(0,names.surnamesNature.size() - 1))
 			lastName = names.surnamesNature[classLastNameRandIndex]
-		elif (heroClass == "Rogue"):
+		elif (charClass == "Rogue"):
 			classLastNameRandIndex = round(rand_range(0,names.surnamesRogue.size() - 1))
 			lastName = names.surnamesRogue[classLastNameRandIndex]
-		elif (heroClass == "Warrior"):
+		elif (charClass == "Warrior"):
 			classLastNameRandIndex = round(rand_range(0,names.surnamesWarrior.size() - 1))
 			lastName = names.surnamesWarrior[classLastNameRandIndex]
-		elif (heroClass == "Wizard"):
+		elif (charClass == "Wizard"):
 			classLastNameRandIndex = round(rand_range(0,names.surnamesWizard.size() - 1))
 			lastName = names.surnamesWizard[classLastNameRandIndex]
-		elif (heroClass == "Cleric"):
+		elif (charClass == "Cleric"):
 			classLastNameRandIndex = round(rand_range(0,names.surnamesCleric.size() - 1))
 			lastName = names.surnamesCleric[classLastNameRandIndex]
 		else:

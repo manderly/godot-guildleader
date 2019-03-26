@@ -29,34 +29,34 @@ func generate(destinationArray, classStr):
 	var randomClass = randi()%3+1 #1-4
 	
 	if (classStr == "Wizard"):
-		newHero.heroClass = "Wizard"
+		newHero.charClass = "Wizard"
 		newHero.archetype = "Caster"
 		newHero.give_gear_loadout("wizardNew")
 		#we need better wizards, here's a twinked one:
 		#newHero.give_gear_loadout("wizardUber")
 			
 	elif (classStr == "Rogue"):
-		newHero.heroClass = "Rogue"
+		newHero.charClass = "Rogue"
 		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("rogueNew")
 
 	elif (classStr == "Warrior"):
-		newHero.heroClass = "Warrior"
+		newHero.charClass = "Warrior"
 		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("warriorNew")
 	
 	elif (classStr == "Ranger"):
-		newHero.heroClass = "Ranger"
+		newHero.charClass = "Ranger"
 		newHero.archetype = "Melee"
 		newHero.give_gear_loadout("rangerNew")
 		
 	elif (classStr == "Cleric"):
-		newHero.heroClass = "Cleric"
+		newHero.charClass = "Cleric"
 		newHero.archetype = "Support"
 		newHero.give_gear_loadout("clericNew")
 
 	elif (classStr == "Druid"):
-		newHero.heroClass = "Druid"
+		newHero.charClass = "Druid"
 		newHero.archetype = "Support"
 		newHero.give_gear_loadout("druidNew")
 			
@@ -66,9 +66,9 @@ func generate(destinationArray, classStr):
 	#random name 
 	#todo: pass species in addition to gender 
 	newHero.heroFirstName = nameGenerator.generateFirst(newHero.gender)
-	newHero.heroLastName = nameGenerator.generateLast(newHero.heroClass)
+	newHero.heroLastName = nameGenerator.generateLast(newHero.charClass)
 
-	var startingStats = staticData.heroStats[newHero.heroClass.to_lower()]
+	var startingStats = staticData.heroStats[newHero.charClass.to_lower()]
 	#assign stats accordingly
 	newHero.baseHp = startingStats["hp"]
 	newHero.baseMana = startingStats["mana"]
@@ -127,7 +127,7 @@ func generate(destinationArray, classStr):
 	for key in staticData.perks.keys():
 		if (staticData.perks[key].restriction == "any" ||
 			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
-			staticData.perks[key].restriction.to_lower() == newHero.heroClass.to_lower()):
+			staticData.perks[key].restriction.to_lower() == newHero.charClass.to_lower()):
 			#check if it's for anyone, this hero's archetype, or this hero's class
 			#if so, give this hero this perk option 
 			newHero.perks[key] = staticData.perks[key].duplicate()

@@ -16,6 +16,7 @@ var level = -1
 var archetype = "NONE"
 var dead = false
 var entityType = "tbd"
+var charClass = null
 
 #for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
 var walkable = false
@@ -169,7 +170,27 @@ func clear_all_items():
 		"chest": null,
 		"legs": null,
 		"feet": null
-	} 
+	}
+	
+func get_class_role():
+	#returns string dps, tank, healer
+	var role = ""
+	if (charClass == "Wizard" || charClass == "Ranger" || charClass == "Rogue" || charClass == "Monk"):
+		role = "dps"
+	elif (charClass == "Paladin" || charClass == "Warrior"):
+		role = "tank"
+	elif (charClass == "Cleric" || charClass == "Druid"):
+		role = "support"
+	else:
+		role = "ERROR"
+	return role
+	
+func get_is_caster_type():
+	#returns boolean, true = has mana, false = no mana
+	var isCaster = false
+	if (charClass == "Wizard" || charClass == "Paladin" || charClass == "Cleric" || charClass == "Druid" || charClass == "Necromancer"):
+		isCaster = true
+	return isCaster
 
 func melee_attack():
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2

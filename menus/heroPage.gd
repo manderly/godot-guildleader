@@ -96,7 +96,7 @@ func _ready():
 	#todo: this might be able to share logic with vault_itemButton.gd or combine with it 
 	#print(global.selectedHero["equipment"]["mainHand"])
 	
-	if (global.selectedHero.heroClass == "Ranger"):
+	if (global.selectedHero.charClass == "Ranger"):
 		heroEquipmentSlotNames[0] = "Bow"
 		heroEquipmentSlotNames[1] = "Arrow"
 	
@@ -269,11 +269,11 @@ func _update_stats():
 		aliveStatus = "(Dead)"
 	else:
 		aliveStatus = ""
-	label_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.heroClass + " " + aliveStatus
+	label_levelAndClass.text = str(global.selectedHero.level) + " " + global.selectedHero.charClass + " " + aliveStatus
 	label_xp.text = "XP: " + str(global.selectedHero.xp) + "/" + str(staticData.levelXpData[str(global.selectedHero.level)].total)
 	progressBar.set_value(100 * (global.selectedHero.xp / staticData.levelXpData[str(global.selectedHero.level)].total))
 	displayHP._update_fields("HP", str(global.selectedHero.hpCurrent) + " / " + str(global.selectedHero.hp))
-	if (global.selectedHero.heroClass != "Warrior" && global.selectedHero.heroClass != "Rogue" && global.selectedHero.heroClass != "Ranger"):
+	if (global.selectedHero.charClass != "Warrior" && global.selectedHero.charClass != "Rogue" && global.selectedHero.charClass != "Ranger"):
 		displayMana._update_fields("Mana", str(global.selectedHero.manaCurrent) + " / " + str(global.selectedHero.mana))
 	else:
 		displayMana.hide()

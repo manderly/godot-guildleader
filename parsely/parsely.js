@@ -111,7 +111,7 @@ fs.readdir(staticDataFolder, (err, files) => {
                 key = value["perkId"];
                 formatted[key] = value;
             } else if (file == "heroStats.json") {
-                key = value["heroClass"];
+                key = value["charClass"];
                 formatted[key] = value;
             } else if (file == "roomTypes.json") {
                 //these are just supposed to be arrays of objects or strings, ie: var heroStats = ["{warrior:{hp:123,mana:0}...","",""]

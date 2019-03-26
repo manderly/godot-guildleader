@@ -15,7 +15,7 @@ func _ready():
 	_position_vault_buttons()
 	
 	if (global.currentMenu == "vaultViaHeroPage"):
-		global.logger(self, "Browsing for: " + global.selectedHero.heroClass + " " + str(global.browsingForSlot))
+		global.logger(self, "Browsing for: " + global.selectedHero.charClass + " " + str(global.browsingForSlot))
 	
 	#tradeskill tab and quest tab
 	_draw_tradeskill_items()
@@ -69,7 +69,7 @@ func _draw_vault_items():
 					else:
 						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
 						for p in range(global.guildItems[i].classRestrictions.size()):
-							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.heroClass.to_lower()):
+							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.charClass.to_lower()):
 								thisHeroCanWear = true
 					if (!thisHeroCanWear):
 						currentButton.set_disabled(true)
