@@ -1,18 +1,18 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://particles/puff_64.png" type="Texture" id=1]
-[ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=2]
-[ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=3]
-[ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=4]
-[ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=5]
-[ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=6]
-[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=7]
-[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=8]
-[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=9]
+[ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=1]
+[ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=2]
+[ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=4]
+[ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=5]
+[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=6]
+[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=7]
+[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=8]
+[ext_resource path="res://particles/puff_64.png" type="Texture" id=9]
 
 [sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.522901, 0.956107 )
-colors = PoolColorArray( 0.485401, 0.244053, 0.587207, 1, 0.32549, 0.239216, 0.701961, 1, 1, 1, 1, 0 )
+offsets = PoolRealArray( 0, 0.162214, 0.633588, 0.956107 )
+colors = PoolColorArray( 0.486275, 0.243137, 0.588235, 0, 0.419608, 0.239216, 0.65098, 1, 0.32549, 0.239216, 0.701961, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=7]
 gradient = SubResource( 6 )
@@ -21,16 +21,15 @@ gradient = SubResource( 6 )
 emission_shape = 1
 emission_sphere_radius = 4.0
 flag_disable_z = true
-spread = 6.0
+spread = 8.0
 flatness = 1.0
-gravity = Vector3( 0, -8, 0 )
+gravity = Vector3( 0, -20, 0 )
 initial_velocity = 0.5
 angular_velocity = 2.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel = 2.0
-angle = 2.0
-angle_random = 1.0
+radial_accel = -15.0
+angle = 45.0
 scale = 0.75
 color_ramp = SubResource( 7 )
 anim_speed = 1.0
@@ -109,6 +108,13 @@ tracks/4/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 1, 1 )
 
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
 [node name="hero" type="KinematicBody2D" groups=[
 "ClearOnRestore",
 ]]
@@ -132,14 +138,6 @@ text = "Level X Class"
 visible = false
 position = Vector2( 9.68694, 21.5928 )
 process_material = SubResource( 1 )
-
-[node name="particles_ghost" type="Particles2D" parent="."]
-show_behind_parent = true
-position = Vector2( 29.0409, 38.6087 )
-amount = 10
-lifetime = 3.0
-process_material = SubResource( 1 )
-texture = ExtResource( 1 )
 
 [node name="field_xp" type="Label" parent="."]
 margin_left = 10.0
@@ -167,6 +165,7 @@ anims/idle = SubResource( 3 )
 anims/walk = SubResource( 4 )
 
 [node name="body" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 30.9247, 21.1424 )
 __meta__ = {
 "_edit_lock_": true
@@ -174,39 +173,39 @@ __meta__ = {
 
 [node name="shadow" type="Sprite" parent="body"]
 position = Vector2( 1.06569, 33.8472 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 
 [node name="boot1" type="Sprite" parent="body"]
 position = Vector2( -4, 34 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="boot2" type="Sprite" parent="body"]
 position = Vector2( 6, 34 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
 [node name="legs" type="Sprite" parent="body"]
 position = Vector2( 1, 30 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="chest" type="Sprite" parent="body"]
 position = Vector2( -14, 10 )
-texture = ExtResource( 5 )
+texture = ExtResource( 4 )
 centered = false
 
 [node name="head" type="Sprite" parent="body"]
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="weapon1" type="Sprite" parent="body"]
 position = Vector2( -13.0407, 21.8781 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="weapon2" type="Sprite" parent="body"]
 position = Vector2( 1.99084, 25.9922 )
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="shield" type="Sprite" parent="body"]
 position = Vector2( 19.7722, 19.2338 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 
 [node name="oneSprite" type="Sprite" parent="body"]
 
@@ -249,6 +248,19 @@ margin_top = 80.0
 margin_right = 6.0
 margin_bottom = 94.0
 text = "Mana"
+
+[node name="particles_ghost" type="Particles2D" parent="."]
+show_behind_parent = true
+material = SubResource( 8 )
+position = Vector2( 32.0284, 46.5321 )
+z_index = 1
+z_as_relative = false
+emitting = false
+amount = 9
+lifetime = 4.0
+preprocess = 3.0
+process_material = SubResource( 1 )
+texture = ExtResource( 9 )
 
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]

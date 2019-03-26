@@ -220,7 +220,7 @@ func draw_heroes():
 				heroY = global.guildRoster[i].savedPositionY #rand_range(mainRoomMinY, mainRoomMaxY)
 			
 			if (thisHero.dead):
-				heroScene.modulate = Color(0.8, 0.7, 1)
+				heroScene.ghost_mode(true)
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
 			onscreenHeroes.append(heroScene)

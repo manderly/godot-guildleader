@@ -504,6 +504,15 @@ func set_dead():
 	hpCurrent = 0
 	manaCurrent = 0
 	
+func ghost_mode(ghostMode):
+	if (ghostMode):
+		print("ghost mode on")
+		$body.modulate = Color(0.8, 0.7, 1)
+		$particles_ghost.set_emitting(true)
+	else:
+		$body.modulate = Color(1, 1, 1)
+		$particles_ghost.set_emitting(false)
+	
 func get_nuke_dmg():
 	return level * intelligence
 	
