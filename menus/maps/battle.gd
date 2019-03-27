@@ -210,22 +210,23 @@ func populate_heroes(heroes):
 func populate_mobs(mobs):
 	for i in mobs.size():
 		var mobScene = preload("res://baseEntity.tscn").instance()
-		mobScene.set_script(preload("res://mob.gd"))
+		mobScene.hide()
+		mobScene.set_script(load("res://mob.gd"))
 		mobScene.set_instance_data(mobs[i])
-		mobScene._draw_sprites()
+		var p_spawnCloud = load("res://particles/particles_spawnCloud.tscn").instance()
+		var p_boomRing = load("res://particles/particles_boomRing.tscn").instance()
+		p_spawnCloud.set_emitting(true)
+		p_boomRing.set_emitting(true)
+		mobScene.add_child(p_spawnCloud)
+		mobScene.add_child(p_boomRing)
 		mobScene.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
 		mobScene.set_display_params(false, true) #no walking, show name 
 		mobScene.add_to_group("mobs")
 		add_child(mobScene)
-		
-#func populate_mobs(spriteFilepaths):
-#	for i in spriteFilepaths.size():
-#		var mobSprite = Sprite.new()
-		#mobSprite.texture = load("res://sprites/mobs/" + spriteFilenames[i])
-#		mobSprite.texture = load(spriteFilepaths[i])
-#		mobSprite.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
-#		mobSprite.add_to_group("mobs")
-#		add_child(mobSprite)
+	
+	yield(get_tree().create_timer(0.5), "timeout")
+	get_tree().call_group("mobs", "show")
+	get_tree().call_group("mobs", "_draw_sprites")
 		
 func set_background(filename):
 	$TextureRect.texture = load(filename)

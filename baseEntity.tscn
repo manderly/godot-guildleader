@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=1]
 [ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=2]
@@ -9,39 +9,42 @@
 [ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=7]
 [ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=8]
 [ext_resource path="res://particles/puff_64.png" type="Texture" id=9]
+[ext_resource path="res://particles/blob.png" type="Texture" id=10]
 
-[sub_resource type="Gradient" id=6]
-offsets = PoolRealArray( 0, 0.162214, 0.633588, 0.956107 )
-colors = PoolColorArray( 0.486275, 0.243137, 0.588235, 0, 0.419608, 0.239216, 0.65098, 1, 0.32549, 0.239216, 0.701961, 1, 1, 1, 1, 0 )
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.146947, 0.835878, 1 )
+colors = PoolColorArray( 0.750878, 0.750878, 0.750878, 0, 0.602441, 0.602441, 0.602441, 1, 0.579003, 0.579003, 0.579003, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=1]
-emission_shape = 1
-emission_sphere_radius = 4.0
+[sub_resource type="Curve" id=3]
+max_value = 1.5
+_data = [ Vector2( 0.0885369, 0.3672 ), 0.0, 4.50928, 0, 0, Vector2( 1, 1.5 ), -0.324486, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 5, 5, 5 )
 flag_disable_z = true
-spread = 8.0
-flatness = 1.0
-gravity = Vector3( 0, -20, 0 )
-initial_velocity = 0.5
-angular_velocity = 2.0
+spread = 0.0
+gravity = Vector3( -5, -5, 0 )
+initial_velocity = 10.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-radial_accel = -15.0
-angle = 45.0
-scale = 0.75
-color_ramp = SubResource( 7 )
+scale = 0.55
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
 anim_speed = 1.0
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 27.3423, 32.2133 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=7]
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk"
+[sub_resource type="Animation" id=8]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -105,11 +108,10 @@ tracks/4/keys = {
 "values": [ 0.0, -6.56508, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="CanvasItemMaterial" id=8]
-blend_mode = 1
+[sub_resource type="CanvasItemMaterial" id=10]
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -137,7 +139,7 @@ text = "Level X Class"
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
 position = Vector2( 9.68694, 21.5928 )
-process_material = SubResource( 1 )
+process_material = SubResource( 5 )
 
 [node name="field_xp" type="Label" parent="."]
 margin_left = 10.0
@@ -156,16 +158,15 @@ text = "debug field"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 32.7649, 30.8304 )
-shape = SubResource( 2 )
+shape = SubResource( 6 )
 
 [node name="animationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("")
 playback_speed = 2.0
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
+anims/idle = SubResource( 7 )
+anims/walk = SubResource( 8 )
 
 [node name="body" type="Node2D" parent="."]
-editor/display_folded = true
 position = Vector2( 30.9247, 21.1424 )
 __meta__ = {
 "_edit_lock_": true
@@ -213,7 +214,7 @@ texture = ExtResource( 8 )
 position = Vector2( 19.4813, 16.1385 )
 scale = Vector2( 22.8798, 29.0313 )
 z_index = 1
-shape = SubResource( 5 )
+shape = SubResource( 9 )
 
 [node name="idleTimer" type="Timer" parent="."]
 wait_time = 4.0
@@ -251,7 +252,7 @@ text = "Mana"
 
 [node name="particles_ghost" type="Particles2D" parent="."]
 show_behind_parent = true
-material = SubResource( 8 )
+material = SubResource( 10 )
 position = Vector2( 32.0284, 46.5321 )
 z_index = 1
 z_as_relative = false
@@ -259,8 +260,37 @@ emitting = false
 amount = 9
 lifetime = 4.0
 preprocess = 3.0
-process_material = SubResource( 1 )
+process_material = SubResource( 5 )
 texture = ExtResource( 9 )
+
+[node name="particles_cloudAround" type="Particles2D" parent="."]
+visible = false
+show_behind_parent = true
+material = SubResource( 10 )
+position = Vector2( 32.0284, 46.5321 )
+z_index = 1
+z_as_relative = false
+amount = 11
+lifetime = 15.27
+speed_scale = 6.73
+explosiveness = 0.56
+randomness = 1.0
+process_material = SubResource( 5 )
+texture = ExtResource( 10 )
+
+[node name="particles_swirlAround" type="Particles2D" parent="."]
+visible = false
+show_behind_parent = true
+material = SubResource( 10 )
+position = Vector2( 32.0284, 46.5321 )
+z_index = 1
+z_as_relative = false
+amount = 10
+lifetime = 3.0
+speed_scale = 3.0
+explosiveness = 0.6
+process_material = SubResource( 5 )
+texture = ExtResource( 10 )
 
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
