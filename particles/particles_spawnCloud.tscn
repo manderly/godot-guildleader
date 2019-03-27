@@ -48,6 +48,7 @@ emitting = false
 amount = 6
 lifetime = 5.0
 one_shot = true
+preprocess = 0.25
 speed_scale = 3.8
 explosiveness = 1.0
 process_material = SubResource( 6 )
