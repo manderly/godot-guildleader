@@ -18,7 +18,20 @@ func get_mob(mobName):
 	newMob.strength = staticData.mobs[mobName].strength
 	newMob.defense = staticData.mobs[mobName].defense
 	newMob.dead = false
-	newMob.sprite = "res://sprites/mobs/"+staticData.mobs[mobName].sprite
+	
+	if (staticData.mobs[mobName].sprite):
+		newMob.sprite = staticData.mobs[mobName].sprite
+	else:
+		newMob.sprite = null
+		
+	if ("headSprite" in staticData.mobs[mobName]):
+		newMob.headSprite = staticData.mobs[mobName].headSprite
+	else:
+		newMob.sprite = null
+	
+	if (staticData.mobs[mobName].loadout):
+		newMob.give_gear_loadout(staticData.mobs[mobName].loadout)
+		
 	newMob.lootTable = staticData.mobs[mobName].lootTable
 	newMob.mobID = 123
 	newMob.entityType = "mob"

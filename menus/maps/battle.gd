@@ -65,7 +65,7 @@ func play_vignette(data):
 	# and possibly killed and removed from later battles
 	
 	# these heroes should be recognized as a consistent group 
-	print(data.campHeroes)
+	#print(data.campHeroes)
 	populate_heroes(data.campHeroes)
 	$label_battleN.hide()
 	#todo: might be nice if heroes walked into position from offstage
@@ -120,6 +120,7 @@ func play_vignette(data):
 			var hero = heroes[i]
 			hero.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 			
+		print("mobs.size() is: " + str(mobs.size()))
 		for i in mobs.size():
 			var mob = mobs[i]
 			mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
@@ -157,36 +158,32 @@ func play_vignette(data):
 				#Unlike heroes, mobs are just sprites
 				#So remove the mob childs from the stage
 				remove_child(mob)
+				
+			# wait (regen period between pulls)
+			# todo: this time should be based on respawn time of this specific camp
+			$label_battleN.show()
+			$label_battleN.text = "Waiting for respawn"
+			#print("waiting for respawn:" + str(data.respawnRate))
+			
+			# use a while loop to update hp/mana restore ticks
+			# ie: camp needs 30 seconds to respawn
+			# there will be 3 ticks of updates
+			var recoveringHeroes = get_tree().get_nodes_in_group("recoveringHeroes")
+			var regenTicks = data.respawnRate / 10
+			for ticks in regenTicks:
+				get_tree().call_group("recoveringHeroes", "vignette_recover_tick")
+				#wait 10 seconds
+				yield(get_tree().create_timer(10), "timeout")
 		else:
 			print("HEROES ALL DEAD! Leave the surviving mobs up.")
 			$label_battleN.show()
 			$label_battleN.text = "ALL HEROES DEFEATED :("
-			#First, we have to figure out which mobs are not dead
-			#So look in this battle's deltas
-			#Todo: mob deltas not yet implemented in encounter generator
-			
-		# wait (regen period between pulls)
-		# todo: this time should be based on respawn time of this specific camp
-		$label_battleN.show()
-		$label_battleN.text = "Waiting for respawn"
-		print("waiting for respawn:" + str(data.respawnRate))
+			break
 	
-
-		# use a while loop to update hp/mana restore ticks
-		# ie: camp needs 30 seconds to respawn
-		# there will be 3 ticks of updates
-		var recoveringHeroes = get_tree().get_nodes_in_group("recoveringHeroes")
-		var regenTicks = data.respawnRate / 10
-		for ticks in regenTicks:
-			get_tree().call_group("recoveringHeroes", "vignette_recover_tick")
-			#wait 10 seconds
-			yield(get_tree().create_timer(10), "timeout")
-		
 	# we've used up all the battles, print the outcome
 	$label_battleN.show()
 	$label_battleN.text = "Camp complete!"
-
-		
+	
 	
 func show_fight_cloud(showBool):
 	if (showBool):

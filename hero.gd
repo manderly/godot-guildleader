@@ -509,9 +509,11 @@ func ghost_mode(ghostMode):
 		print("ghost mode on")
 		$body.modulate = Color(0.8, 0.7, 1)
 		$particles_ghost.set_emitting(true)
+		$particles_ghost.show()
 	else:
 		$body.modulate = Color(1, 1, 1)
 		$particles_ghost.set_emitting(false)
+		$particles_ghost.hide()
 	
 func get_nuke_dmg():
 	return level * intelligence

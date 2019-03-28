@@ -221,6 +221,8 @@ func draw_heroes():
 			
 			if (thisHero.dead):
 				heroScene.ghost_mode(true)
+			else:
+				heroScene.ghost_mode(false)
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
 			onscreenHeroes.append(heroScene)
