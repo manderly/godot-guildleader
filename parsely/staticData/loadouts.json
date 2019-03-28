@@ -75,5 +75,16 @@
     "feet": "Soft Silk Slippers",
     "head": "Tiara of Knowledge",
     "unknown": ""
+  },
+  {
+    "loadoutId": "pirate",
+    "mainHand": "Rusty Broadsword",
+    "offHand": "",
+    "chest": "Worn Ringmail Vest",
+    "legs": "Worn Ringmail Leg Guards",
+    "jewelry": "",
+    "feet": "Muddy Boots",
+    "head": "",
+    "unknown": ""
   }
 ]
