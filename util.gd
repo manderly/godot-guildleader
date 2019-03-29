@@ -63,7 +63,6 @@ func give_item_guild(itemName): #itemName comes in as a string
 	
 	
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 
-	print("giving a modded item to the guild")
 	var moddedItem = global.tradeskills[tradeskill].currentlyCrafting.wildcardItem
 	moddedItem[stat] += bonusAmount
 	moddedItem["improved"] = true

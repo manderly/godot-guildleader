@@ -240,11 +240,11 @@ func _remove_from_battle_order(entity):
 	for entity in battleOrder:
 		if (entity.entityType == "mob"):
 			if (entity.mobName == entity.mobName && entity.hpCurrent <= 0):
-				print("removing from battle order: " + entity.mobName)
+				#print("removing from battle order: " + entity.mobName)
 				battleOrder.erase(entity)
 		elif (entity.entityType == "hero"):
 			if (entity.heroFirstName == entity.heroFirstName && entity.hpCurrent <= 0):
-				print("removing from battle order: " + entity.heroFirstName)
+				#print("removing from battle order: " + entity.heroFirstName)
 				battleOrder.erase(entity)
 	
 	#_print_battle_order()
@@ -340,7 +340,7 @@ func _calculate_battle_outcome(camp):
 		var entity = battleOrder[i]
 		i+=1
 		
-		entity.say_hello()
+		#entity.say_hello()
 		if (entity.entityType == "mob"):
 			# only pick a hero to fight if any are left 
 			if (newBattle.heroes.size() > 0):
@@ -427,7 +427,7 @@ func _calculate_battle_outcome(camp):
 						lowestHPhero = partyMember
 				#now we know which hero is in most need of healing
 				var healAmount = hero.get_druid_target_heal_amount()
-				print(hero.heroFirstName + " restores " + healAmount + " hitpoints to " + lowestHPhero + " with 5 hp bonus on top")
+				#print(hero.heroFirstName + " restores " + healAmount + " hitpoints to " + lowestHPhero + " with 5 hp bonus on top")
 				lowestHPhero.get_healed(healAmount)
 				lowestHPhero.hpCurrent += 5 # little extra on top ok to exceed capacity
 		else:

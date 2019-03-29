@@ -308,11 +308,12 @@ func _draw_sprites():
 			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
 			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
 	elif (sprite):
+		print("oneBody uses this sprite: " + sprite)
 		#otherwise, it's a oneBody
 		# oneBody are usually mobs but could be used later for special forms heroes take
 		# ie: a druid in a wolf form
 		# sprite is a var on baseEntity but it's set (maybe) in _ready
-		$body/oneSprite.texture = load(sprite)
+		$body/oneSprite.texture = load("res://sprites/mobs/" + sprite)
 		$body/oneSprite.show()
 		$body/weapon1.hide() 
 		$body/weapon2.hide()

@@ -30,7 +30,7 @@ func _hide_extended_stats():
 func set_instance_data(data):
 	mobName = data.mobName
 	sprite = data.sprite
-	# todo: humanoid mob support
+	headSprite = data.headSprite
 	level = data.level
 	dead = data.dead
 	mobID = 123 #todo: mob ID system

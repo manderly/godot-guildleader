@@ -16,7 +16,7 @@ Notes:
 - json file to process must be an array of objects
 */
 
-console.log("\n STARTING GODOT JSON PARSELY - Guild Leader edition 12/17/2018 \n");
+console.log("\n STARTING GODOT JSON PARSELY - Guild Leader edition 3/27/2019 \n");
 var fs = require("fs");
 var oneHugeString = "extends Node\n";
 var filenameRegEx = '^([a-zA-Z]+)';
