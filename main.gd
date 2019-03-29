@@ -102,7 +102,7 @@ func _ready():
 		#Generate a few more guildmates for quest testing
 		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 		heroGenerator.generate(global.guildRoster, "Ranger")
-		#heroGenerator.generate(global.guildRoster, "Cleric")
+		heroGenerator.generate(global.guildRoster, "Cleric")
 		
 		#Generate unrecruited heroes
 		#heroGenerator.generate(global.unrecruited, "Cleric")
@@ -113,7 +113,7 @@ func _ready():
 		
 		#level them up a bit for testing purposes
 		for hero in global.guildRoster:
-			hero.make_level(12)
+			hero.make_level(18)
 			
 		# record all these names as in use
 		for hero in global.guildRoster:

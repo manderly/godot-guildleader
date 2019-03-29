@@ -7,16 +7,20 @@ func _ready():
 	
 func get_mob(mobName):
 	var newMob = load("res://mob.gd").new()
+	newMob.mobClass = staticData.mobs[mobName].mobClass
+	
+	var startingStats = staticData.heroStats[newMob.mobClass.to_lower()]
+	
 	newMob.mobName = mobName
-	newMob.hp = staticData.mobs[mobName].hp
-	newMob.mana = staticData.mobs[mobName].mana
-	newMob.hpCurrent = staticData.mobs[mobName].hpCurrent
-	newMob.manaCurrent = staticData.mobs[mobName].manaCurrent
+	newMob.hp = startingStats["hp"]
+	newMob.mana = startingStats["mana"]
+	newMob.hpCurrent = startingStats["hp"]
+	newMob.manaCurrent = startingStats["mana"]
 	newMob.level = staticData.mobs[mobName].level
 	newMob.baseResist = staticData.mobs[mobName].baseResist
 	newMob.dps = staticData.mobs[mobName].dps
-	newMob.strength = staticData.mobs[mobName].strength
-	newMob.defense = staticData.mobs[mobName].defense
+	newMob.strength = startingStats["strength"]
+	newMob.defense = startingStats["defense"]
 	newMob.dead = false
 	
 	if (staticData.mobs[mobName].sprite):

@@ -103,6 +103,7 @@ func _get_random_mob_from_table(table):
 	else:
 		mob = mobGenerator.get_mob(table.mob3)
 		
+	mob.make_level(mob.level)
 	return mob
 	
 func _get_battle_mobs(spawnPointData):
@@ -348,8 +349,12 @@ func _calculate_battle_outcome(camp):
 				#this mob's target (randomly picked for now)
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
 				var unmodifiedDamage = mob.get_melee_attack_damage()
-				targetHero.take_melee_damage(unmodifiedDamage, mob.level)
-				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(unmodifiedDamage) + " points of damage")
+				var modifiedDamage = targetHero.calculate_melee_damage_mitigated(unmodifiedDamage, mob.level)
+				if (modifiedDamage == 0):
+					encounter.detailedPlayByPlay.append(mob.mobName + " tried to attack " + targetHero.heroFirstName + " but missed!")
+				else:
+					targetHero.take_melee_damage(modifiedDamage)
+					encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(modifiedDamage) + " points of damage")
 				
 				if (targetHero.hpCurrent <= 0):
 					targetHero.set_dead()
@@ -372,8 +377,12 @@ func _calculate_battle_outcome(camp):
 
 			if (hero.charClass == "Warrior" || hero.charClass == "Rogue" || hero.charClass == "Ranger"):
 				var unmodifiedDamage = hero.melee_attack()
-				targetMob.take_melee_damage(unmodifiedDamage, hero.level)
-				encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
+				var modifiedDamage = targetMob.calculate_melee_damage_mitigated(unmodifiedDamage, hero.level)
+				if (modifiedDamage == 0):
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " tried to attack " + targetMob.mobName + " but missed!")
+				else:
+					targetMob.take_melee_damage(modifiedDamage)
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
 
 				#see if mob should die 
 				if targetMob.hpCurrent <= 0:

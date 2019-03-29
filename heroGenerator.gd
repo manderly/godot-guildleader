@@ -31,24 +31,24 @@ func generate(destinationArray, classStr):
 	if (classStr == "Wizard"):
 		newHero.charClass = "Wizard"
 		newHero.archetype = "Caster"
-		newHero.give_gear_loadout("wizardNew")
+		newHero.give_gear_loadout("wizard12")  #"wizardNew")
 		#we need better wizards, here's a twinked one:
 		#newHero.give_gear_loadout("wizardUber")
 			
 	elif (classStr == "Rogue"):
 		newHero.charClass = "Rogue"
 		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("rogueNew")
+		newHero.give_gear_loadout("rogue12") #"rogueNew")
 
 	elif (classStr == "Warrior"):
 		newHero.charClass = "Warrior"
 		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("warriorNew")
+		newHero.give_gear_loadout("warrior12") #"warriorNew")
 	
 	elif (classStr == "Ranger"):
 		newHero.charClass = "Ranger"
 		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("rangerNew")
+		newHero.give_gear_loadout("ranger12")
 		
 	elif (classStr == "Cleric"):
 		newHero.charClass = "Cleric"

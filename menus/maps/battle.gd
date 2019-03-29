@@ -102,7 +102,7 @@ func play_vignette(data):
 			
 		# for each mob on screen, move to middle
 		var mobs = get_tree().get_nodes_in_group("mobs")
-		print(mobs)
+		#print(mobs)
 		for mob in mobs:
 			mob.set_position(middleOfScreen)
 			
@@ -120,7 +120,7 @@ func play_vignette(data):
 			var hero = heroes[i]
 			hero.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
 			
-		print("mobs.size() is: " + str(mobs.size()))
+		#print("mobs.size() is: " + str(mobs.size()))
 		for i in mobs.size():
 			var mob = mobs[i]
 			mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))

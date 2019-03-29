@@ -6,11 +6,9 @@
     "loadout": "",
     "lootTable": "",
     "level": "",
-    "hp": "",
-    "mana": "",
+    "mobClass": "",
+    "elite": "",
     "dps": "",
-    "strength": "",
-    "defense": "",
     "baseResist": ""
   },
   {
@@ -20,11 +18,9 @@
     "loadout": "",
     "lootTable": "ratLoot01",
     "level": 1,
-    "hp": 30,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 3,
-    "strength": 3,
-    "defense": 2,
     "baseResist": 2
   },
   {
@@ -34,11 +30,9 @@
     "loadout": "",
     "lootTable": "ratLoot01",
     "level": 2,
-    "hp": 40,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 4,
-    "strength": 4,
-    "defense": 2,
     "baseResist": 2
   },
   {
@@ -48,11 +42,9 @@
     "loadout": "",
     "lootTable": "ratLootBoss",
     "level": 3,
-    "hp": 60,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 5,
-    "strength": 5,
-    "defense": 4,
     "baseResist": 2
   },
   {
@@ -62,11 +54,9 @@
     "loadout": "",
     "lootTable": "batLoot01",
     "level": 1,
-    "hp": 30,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 1,
-    "strength": 1,
-    "defense": 2,
     "baseResist": 2
   },
   {
@@ -76,11 +66,9 @@
     "loadout": "",
     "lootTable": "batLoot01",
     "level": 2,
-    "hp": 45,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 2,
-    "strength": 2,
-    "defense": 2,
     "baseResist": 2
   },
   {
@@ -90,11 +78,9 @@
     "loadout": "",
     "lootTable": "wolfLoot01",
     "level": 2,
-    "hp": 95,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 3,
-    "strength": 5,
-    "defense": 4,
     "baseResist": 4
   },
   {
@@ -104,11 +90,9 @@
     "loadout": "",
     "lootTable": "wolfLoot02",
     "level": 3,
-    "hp": 125,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 4,
-    "strength": 7,
-    "defense": 6,
     "baseResist": 2
   },
   {
@@ -118,11 +102,9 @@
     "loadout": "",
     "lootTable": "spiderLoot01",
     "level": 2,
-    "hp": 75,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 5,
-    "strength": 5,
-    "defense": 1,
     "baseResist": 2
   },
   {
@@ -132,11 +114,9 @@
     "loadout": "",
     "lootTable": "spiderLoot01",
     "level": 3,
-    "hp": 95,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 7,
-    "strength": 7,
-    "defense": 2,
     "baseResist": 2
   },
   {
@@ -146,11 +126,9 @@
     "loadout": "",
     "lootTable": "spiderLootBoss",
     "level": 4,
-    "hp": 115,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 8,
-    "strength": 8,
-    "defense": 3,
     "baseResist": 6
   },
   {
@@ -160,11 +138,9 @@
     "loadout": "",
     "lootTable": "spiderLoot01",
     "level": 4,
-    "hp": 200,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 5,
-    "strength": 9,
-    "defense": 8,
     "baseResist": 5
   },
   {
@@ -174,11 +150,9 @@
     "loadout": "",
     "lootTable": "fairyLoot01",
     "level": 6,
-    "hp": 200,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 4,
-    "strength": 3,
-    "defense": 5,
     "baseResist": 9
   },
   {
@@ -188,11 +162,9 @@
     "loadout": "",
     "lootTable": "fairyLoot02",
     "level": 7,
-    "hp": 250,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 5,
-    "strength": 3,
-    "defense": 5,
     "baseResist": 9
   },
   {
@@ -202,11 +174,9 @@
     "loadout": "",
     "lootTable": "fairyLootBoss",
     "level": 8,
-    "hp": 350,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 6,
-    "strength": 4,
-    "defense": 9,
     "baseResist": 12
   },
   {
@@ -216,11 +186,9 @@
     "loadout": "",
     "lootTable": "goblinLoot01",
     "level": 2,
-    "hp": 120,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 4,
-    "strength": 5,
-    "defense": 4,
     "baseResist": 5
   },
   {
@@ -230,11 +198,9 @@
     "loadout": "",
     "lootTable": "goblinLoot01",
     "level": 3,
-    "hp": 140,
-    "mana": 0,
+    "mobClass": "Rogue",
+    "elite": false,
     "dps": 5,
-    "strength": 5,
-    "defense": 5,
     "baseResist": 5
   },
   {
@@ -244,11 +210,9 @@
     "loadout": "",
     "lootTable": "gobinLootBoss",
     "level": 4,
-    "hp": 250,
-    "mana": 0,
+    "mobClass": "Rogue",
+    "elite": true,
     "dps": 8,
-    "strength": 6,
-    "defense": 8,
     "baseResist": 6
   },
   {
@@ -257,13 +221,11 @@
     "headSprite": "pirate_female_01.png",
     "loadout": "pirate",
     "lootTable": "pirateLoot01",
-    "level": 8,
-    "hp": 200,
-    "mana": 0,
-    "dps": 3,
-    "strength": 3,
-    "defense": 5,
-    "baseResist": 5
+    "level": 11,
+    "mobClass": "Rogue",
+    "elite": false,
+    "dps": 7,
+    "baseResist": 12
   },
   {
     "mobName": "Smuggler Captain",
@@ -271,13 +233,11 @@
     "headSprite": "pirate_female_02.png",
     "loadout": "pirate",
     "lootTable": "pirateLoot01",
-    "level": 10,
-    "hp": 300,
-    "mana": 0,
-    "dps": 5,
-    "strength": 4,
-    "defense": 4,
-    "baseResist": 5
+    "level": 12,
+    "mobClass": "Warrior",
+    "elite": false,
+    "dps": 8,
+    "baseResist": 12
   },
   {
     "mobName": "Old Scallywag ",
@@ -285,13 +245,11 @@
     "headSprite": "pirate_male_01.png",
     "loadout": "pirate",
     "lootTable": "pirateLoot01",
-    "level": 8,
-    "hp": 200,
-    "mana": 0,
-    "dps": 2,
-    "strength": 3,
-    "defense": 5,
-    "baseResist": 5
+    "level": 14,
+    "mobClass": "Warrior",
+    "elite": false,
+    "dps": 9,
+    "baseResist": 12
   },
   {
     "mobName": "Deck Swabbie",
@@ -299,13 +257,11 @@
     "headSprite": "pirate_male_04.png",
     "loadout": "pirate",
     "lootTable": "pirateLoot02",
-    "level": 9,
-    "hp": 200,
-    "mana": 0,
-    "dps": 3,
-    "strength": 2,
-    "defense": 5,
-    "baseResist": 5
+    "level": 15,
+    "mobClass": "Warrior",
+    "elite": false,
+    "dps": 9,
+    "baseResist": 12
   },
   {
     "mobName": "Captain Smellybeard",
@@ -313,13 +269,11 @@
     "headSprite": "smellybeard.png",
     "loadout": "pirate",
     "lootTable": "pirateLoot03",
-    "level": 12,
-    "hp": 500,
-    "mana": 0,
-    "dps": 5,
-    "strength": 3,
-    "defense": 5,
-    "baseResist": 12
+    "level": 18,
+    "mobClass": "Rogue",
+    "elite": false,
+    "dps": 12,
+    "baseResist": 25
   },
   {
     "mobName": "Scuttling Crab",
@@ -328,11 +282,9 @@
     "loadout": "",
     "lootTable": "crabLoot01",
     "level": 6,
-    "hp": 200,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 6,
-    "strength": 6,
-    "defense": 6,
     "baseResist": 4
   },
   {
@@ -342,11 +294,9 @@
     "loadout": "",
     "lootTable": "crabLoot01",
     "level": 7,
-    "hp": 225,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 7,
-    "strength": 7,
-    "defense": 7,
     "baseResist": 4
   },
   {
@@ -356,11 +306,9 @@
     "loadout": "",
     "lootTable": "crabLootBoss",
     "level": 9,
-    "hp": 350,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 8,
-    "strength": 8,
-    "defense": 8,
     "baseResist": 5
   },
   {
@@ -370,11 +318,9 @@
     "loadout": "",
     "lootTable": "tadlocLoot01",
     "level": 6,
-    "hp": 225,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 8,
-    "strength": 6,
-    "defense": 6,
     "baseResist": 5
   },
   {
@@ -384,11 +330,9 @@
     "loadout": "",
     "lootTable": "tadlocLoot02",
     "level": 7,
-    "hp": 250,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 8,
-    "strength": 7,
-    "defense": 7,
     "baseResist": 5
   },
   {
@@ -398,11 +342,9 @@
     "loadout": "",
     "lootTable": "tadlocLoot03",
     "level": 8,
-    "hp": 280,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 9,
-    "strength": 9,
-    "defense": 9,
     "baseResist": 5
   },
   {
@@ -412,11 +354,9 @@
     "loadout": "",
     "lootTable": "skeletonLoot01",
     "level": 10,
-    "hp": 400,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 10,
-    "strength": 10,
-    "defense": 10,
     "baseResist": 10
   },
   {
@@ -426,11 +366,9 @@
     "loadout": "",
     "lootTable": "skeletonLoot01",
     "level": 11,
-    "hp": 425,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 11,
-    "strength": 11,
-    "defense": 11,
     "baseResist": 10
   },
   {
@@ -440,11 +378,9 @@
     "loadout": "",
     "lootTable": "skeletonLootBoss",
     "level": 12,
-    "hp": 450,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 12,
-    "strength": 12,
-    "defense": 12,
     "baseResist": 10
   },
   {
@@ -454,11 +390,9 @@
     "loadout": "",
     "lootTable": "tadlocLootBoss",
     "level": 10,
-    "hp": 450,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 10,
-    "strength": 10,
-    "defense": 10,
     "baseResist": 12
   },
   {
@@ -468,11 +402,9 @@
     "loadout": "",
     "lootTable": "caveTadloc01",
     "level": 12,
-    "hp": 320,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 9,
-    "strength": 9,
-    "defense": 9,
     "baseResist": 5
   },
   {
@@ -482,11 +414,9 @@
     "loadout": "",
     "lootTable": "caveTadloc02",
     "level": 13,
-    "hp": 350,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 9,
-    "strength": 9,
-    "defense": 9,
     "baseResist": 5
   },
   {
@@ -496,11 +426,9 @@
     "loadout": "",
     "lootTable": "caveTadloc01",
     "level": 12,
-    "hp": 300,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 8,
-    "strength": 8,
-    "defense": 8,
     "baseResist": 5
   },
   {
@@ -510,11 +438,9 @@
     "loadout": "",
     "lootTable": "tadlocLootBoss",
     "level": 14,
-    "hp": 450,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 11,
-    "strength": 11,
-    "defense": 11,
     "baseResist": 8
   },
   {
@@ -524,11 +450,9 @@
     "loadout": "",
     "lootTable": "sirenLoot01",
     "level": 34,
-    "hp": 11000,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 45,
-    "strength": 35,
-    "defense": 35,
     "baseResist": 9
   },
   {
@@ -538,11 +462,9 @@
     "loadout": "",
     "lootTable": "sirenLoot02",
     "level": 36,
-    "hp": 12000,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": false,
     "dps": 55,
-    "strength": 35,
-    "defense": 35,
     "baseResist": 10
   },
   {
@@ -552,11 +474,9 @@
     "loadout": "",
     "lootTable": "sirenLootBoss",
     "level": 38,
-    "hp": 15000,
-    "mana": 0,
+    "mobClass": "Warrior",
+    "elite": true,
     "dps": 75,
-    "strength": 35,
-    "defense": 35,
     "baseResist": 13
   }
 ]

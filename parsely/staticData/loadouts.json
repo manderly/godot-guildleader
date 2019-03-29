@@ -86,5 +86,49 @@
     "feet": "Muddy Boots",
     "head": "",
     "unknown": ""
+  },
+  {
+    "loadoutId": "wizard12",
+    "mainHand": "Twisted Staff",
+    "offHand": "Caster's Mitten",
+    "chest": "Blue Cotton Robe",
+    "legs": "Hand-stitched Leggings",
+    "jewelry": "Iridescent Ring",
+    "feet": "Soft Silk Slippers",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "warrior12",
+    "mainHand": "Fine Steel Sword",
+    "offHand": "Heavy Painted Shield",
+    "chest": "Simple Chainmail Vest",
+    "legs": "Simple Chainmail Leggings",
+    "jewelry": "Copper Pearl Ring",
+    "feet": "Tadloc Skin Boots",
+    "head": "",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "rogue12",
+    "mainHand": "Fine Steel Dagger",
+    "offHand": "",
+    "chest": "Simple Chainmail Vest",
+    "legs": "Simple Chainmail Leggings",
+    "jewelry": "Copper Pearl Ring",
+    "feet": "Muddy Boots",
+    "head": "Bandit's Headband",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "ranger12",
+    "mainHand": "Oak Recurve Bow",
+    "offHand": "Oak Shaft Arrow",
+    "chest": "Simple Chainmail Vest",
+    "legs": "Simple Chainmail Leggings",
+    "jewelry": "Copper Pearl Ring",
+    "feet": "Muddy Boots",
+    "head": "Simple Chainmail Coif",
+    "unknown": ""
   }
 ]

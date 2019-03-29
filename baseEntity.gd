@@ -53,40 +53,40 @@ var baseRegenRateMana = 1
 	
 var classLevelModifiers = {
 	"Warrior":{
-		"hp":1.29,
+		"hp":1.26,
 		"mana":1,
 		"strength":1.2,
-		"defense":1.4
+		"defense":1.08
 		},
 	"Rogue":{
 		"hp":1.24,
 		"mana":1,
 		"strength":1.2,
-		"defense":1.3
+		"defense":1.02
 		},
 	"Ranger":{
 		"hp":1.25,
 		"mana":1,
 		"strength":1.2,
-		"defense":1.3
+		"defense":1.03
 		},
 	"Wizard":{
-		"hp":1.20,
-		"mana":1.32,
+		"hp":1.21,
+		"mana":1.28,
 		"strength":1,
-		"defense":1
+		"defense":1.00
 		},
 	"Cleric":{
 		"hp":1.25,
-		"mana":1.31,
+		"mana":1.28,
 		"strength":1,
-		"defense":1.4
+		"defense":1.07
 		},
 	"Druid":{
 		"hp":1.22,
-		"mana":1.25,
+		"mana":1.27,
 		"strength":1,
-		"defense":1.2
+		"defense":1.05
 		},
 }
 
@@ -184,6 +184,7 @@ func get_class_role():
 	else:
 		role = "ERROR"
 	return role
+
 	
 func get_is_caster_type():
 	#returns boolean, true = has mana, false = no mana
@@ -192,7 +193,11 @@ func get_is_caster_type():
 		isCaster = true
 	return isCaster
 
+func get_melee_attack_damage():
+	return round((dps * (strength + (level * dps))) / level)
+	
 func melee_attack():
+	# battlePrint = true
 	var rawDmg = (equipment["mainHand"].dps * strength) / 2
 	var roll = randi()%20+1 #(roll between 1-20)
 	if (roll == 1):
@@ -222,37 +227,50 @@ func _get_rand_between(firstVal, secondVal):
 	
 	var randNum = randi()%int(top)+int(bottom) #1-100, 5-10, 600-1900, etc
 	return randNum
-			
-func take_melee_damage(unmodifiedDamage, attackerLevel):
-	# take melee damage, but also calculate mitigation 
-	
+
+func calculate_melee_damage_mitigated(unmodifiedDamage, attackerLevel):
+	#print("using this defense score as the miss bar: " + str(defense))
+	# calculate mitigation 
+	var modifiedDamage = unmodifiedDamage
 	# first, see if the attacker missed
 	# attacker has greater chance of missing the lower his level in relation to mine
-	var missBar = 50 #the "bar" for missing is set to 50 by default
+	var missBar = defense #the "bar" for missing uses the defense score to start
 	if (level > attackerLevel):
 		# I'm higher level, raise the 'miss bar' by the difference between our levels and make it less likely that an attack hits me
-		missBar += (level - attackerLevel)
+		missBar += (level - attackerLevel) * 2
+		if (missBar > 97):
+			missBar = 98
 	elif (attackerLevel >= level):
 		# Attacker is higher level or same as me, lower the miss bar and make it more likely that an attack hits me
-		missBar -= (attackerLevel - level)
+		missBar -= (attackerLevel - level) * attackerLevel
+		if (missBar < 0):
+			missBar = 0
 	
 	# now the "missBar" is somewhere between 0 and 100
 	# for this attack to miss, we have to roll a number higher than the miss bar
 	var missRand = _get_rand_between(0, 100)
 	if (missRand > missBar):
 		#attack hits
-		var modifiedDamage = unmodifiedDamage
 		# defense determines how much damage is actually done
-		modifiedDamage = (unmodifiedDamage * unmodifiedDamage / (unmodifiedDamage + defense))
-		print("Level " + str(attackerLevel) + " attacks level " + str(level) + " for " + str(modifiedDamage) + " dmg (unmodified: " + str(unmodifiedDamage) + ")")
-		#print("Attack on level " + str(level) + " entity by level " + str(attackerLevel) + " unmodified dmg: " + str(unmodifiedDamage) + " / modified dmg: " + str(modifiedDamage))
-		hpCurrent -= modifiedDamage
+		modifiedDamage = round(unmodifiedDamage * unmodifiedDamage / (unmodifiedDamage + defense))
+		if (level > attackerLevel):
+			# reduce damage a bit more if I'm higher level than my attacker
+			# the bigger the level gap, the more that the attack is reduced by
+			modifiedDamage -= round(level - attackerLevel / 2)
+			if (modifiedDamage < 0):
+				modifiedDamage = 1
+		#print("Level " + str(attackerLevel) + " attacks level " + str(level) + " for " + str(modifiedDamage) + " dmg (unmodified: " + str(unmodifiedDamage) + ")")
 	else:
+		
 		# attack misses entirely
-		print("Level " + str(attackerLevel) + " tried to attack level " + str(level) + " but missed!")
+		#print("Level " + str(attackerLevel) + " tried to attack level " + str(level) + " but missed!")
+		modifiedDamage = 0
+		
+	return modifiedDamage
 	
+func take_melee_damage(damage):
+	hpCurrent -= damage
 	
-
 #this method generates a brand new instance of the item, it's an equivalent
 #to the method used in util.gd to give new items to the guild
 func give_new_item(itemNameStr): 

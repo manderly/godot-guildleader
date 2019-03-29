@@ -6,6 +6,8 @@ var baseResist = -1
 var lootTable = "batLoot01"
 var mobName = "Default name"
 var mobID = 123
+var mobClass = "Warrior"
+var elite = false
 
 func _ready():
 	entityType = "mob"
@@ -27,8 +29,34 @@ func _hide_extended_stats():
 	$field_levelAndClass.hide()
 	$field_debug.hide()
 	
+#classLevelModifiers are in baseEntity near the top
+func level_up():
+	level += int(1)
+	hp = int(round(hp * classLevelModifiers[mobClass].hp))
+	mana = int(round(mana * classLevelModifiers[mobClass].mana))
+	strength = int(round(strength * classLevelModifiers[mobClass].strength))
+	defense = int(round(defense * classLevelModifiers[mobClass].defense))
+	
+	if (elite):
+		hp += (hp * .30) # add 30% more hp
+		mana += (mana * .30)
+		strength += (strength * .15) #15% more strength
+		defense += (defense * .25) #25% more defense
+		 
+	hpCurrent = hp #refill hp and mana when leveling up 
+	manaCurrent = mana
+	
+func make_level(levelNum):
+	level = 1 #reset to 1, we have the intended level backed up in levelNum
+	#print("making this mob: " + mobName + " level " + str(levelNum))
+	if (levelNum > 1):
+		for level in range(levelNum - 1):
+			level_up()
+	
 func set_instance_data(data):
 	mobName = data.mobName
+	mobClass = data.mobClass
+	elite = data.elite
 	sprite = data.sprite
 	headSprite = data.headSprite
 	level = data.level
@@ -74,9 +102,6 @@ func get_base_resist(heroLevel):
 			adjustedResist = 19
 	
 	return adjustedResist
-
-func get_melee_attack_damage():
-	return dps * strength * level
 	
 func take_spell_damage(dmg):
 	# resists are handled in encounter generator so message can be appended to log 

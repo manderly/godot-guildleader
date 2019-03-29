@@ -528,7 +528,7 @@ func get_druid_target_heal_amount():
 
 func regen_hp_between_battles(campRespawnRate):
 	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
-	print("recovering this many hp: " + str(hpRegenerated))
+	#print("recovering this many hp: " + str(hpRegenerated))
 	hpCurrent += hpRegenerated
 	if (hpCurrent > hp):
 		hpCurrent = hp
