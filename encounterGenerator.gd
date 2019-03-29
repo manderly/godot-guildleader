@@ -348,7 +348,7 @@ func _calculate_battle_outcome(camp):
 				#this mob's target (randomly picked for now)
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
 				var unmodifiedDamage = mob.get_melee_attack_damage()
-				targetHero.take_melee_damage(unmodifiedDamage)
+				targetHero.take_melee_damage(unmodifiedDamage, mob.level)
 				encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(unmodifiedDamage) + " points of damage")
 				
 				if (targetHero.hpCurrent <= 0):
@@ -372,7 +372,7 @@ func _calculate_battle_outcome(camp):
 
 			if (hero.charClass == "Warrior" || hero.charClass == "Rogue" || hero.charClass == "Ranger"):
 				var unmodifiedDamage = hero.melee_attack()
-				targetMob.take_melee_damage(unmodifiedDamage)
+				targetMob.take_melee_damage(unmodifiedDamage, hero.level)
 				encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
 
 				#see if mob should die 

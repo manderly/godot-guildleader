@@ -21,7 +21,6 @@ func _ready():
 	else:
 		heroSelectDescription.text = "heroSelect.gd TEXT NOT SET"
 	_draw_hero_buttons()
-	
 
 func _open_rapid_train_popup():
 	var chronoCost = util.calc_instant_train_cost()

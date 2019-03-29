@@ -481,6 +481,8 @@ func level_up():
 	baseMana = int(round(baseMana * classLevelModifiers[charClass].mana))
 	baseStrength = int(round(baseStrength * classLevelModifiers[charClass].strength))
 	baseDefense = int(round(baseDefense * classLevelModifiers[charClass].defense))
+	baseRegenRateHP = int(round(level/2))
+	baseRegenRateMana = int(round(level/2))
 	update_hero_stats()
 	hpCurrent = hp #refill hp and mana when leveling up 
 	manaCurrent = mana
@@ -526,6 +528,7 @@ func get_druid_target_heal_amount():
 
 func regen_hp_between_battles(campRespawnRate):
 	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
+	print("recovering this many hp: " + str(hpRegenerated))
 	hpCurrent += hpRegenerated
 	if (hpCurrent > hp):
 		hpCurrent = hp

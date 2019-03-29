@@ -78,9 +78,6 @@ func get_base_resist(heroLevel):
 func get_melee_attack_damage():
 	return dps * strength * level
 	
-func take_melee_damage(unmodifiedDamage):
-	hpCurrent -= unmodifiedDamage
-	
 func take_spell_damage(dmg):
 	# resists are handled in encounter generator so message can be appended to log 
 	hpCurrent -= dmg

@@ -211,10 +211,47 @@ func get_healed(amount):
 	hpCurrent += amount
 	if (hpCurrent > hp):
 		hpCurrent = hp #cannot exceed max 
+
+func _get_rand_between(firstVal, secondVal):
+	var bottom = firstVal
+	var top = secondVal
+	
+	if (secondVal < firstVal): #figure out which value is lower (ie: if we pass (8,0) we can't use them as-is) 
+		bottom = secondVal
+		top = firstVal
+	
+	var randNum = randi()%int(top)+int(bottom) #1-100, 5-10, 600-1900, etc
+	return randNum
 			
-func take_melee_damage(unmodifiedDamage):
-	#todo: damage mitigation roll
-	hpCurrent -= unmodifiedDamage
+func take_melee_damage(unmodifiedDamage, attackerLevel):
+	# take melee damage, but also calculate mitigation 
+	
+	# first, see if the attacker missed
+	# attacker has greater chance of missing the lower his level in relation to mine
+	var missBar = 50 #the "bar" for missing is set to 50 by default
+	if (level > attackerLevel):
+		# I'm higher level, raise the 'miss bar' by the difference between our levels and make it less likely that an attack hits me
+		missBar += (level - attackerLevel)
+	elif (attackerLevel >= level):
+		# Attacker is higher level or same as me, lower the miss bar and make it more likely that an attack hits me
+		missBar -= (attackerLevel - level)
+	
+	# now the "missBar" is somewhere between 0 and 100
+	# for this attack to miss, we have to roll a number higher than the miss bar
+	var missRand = _get_rand_between(0, 100)
+	if (missRand > missBar):
+		#attack hits
+		var modifiedDamage = unmodifiedDamage
+		# defense determines how much damage is actually done
+		modifiedDamage = (unmodifiedDamage * unmodifiedDamage / (unmodifiedDamage + defense))
+		print("Level " + str(attackerLevel) + " attacks level " + str(level) + " for " + str(modifiedDamage) + " dmg (unmodified: " + str(unmodifiedDamage) + ")")
+		#print("Attack on level " + str(level) + " entity by level " + str(attackerLevel) + " unmodified dmg: " + str(unmodifiedDamage) + " / modified dmg: " + str(modifiedDamage))
+		hpCurrent -= modifiedDamage
+	else:
+		# attack misses entirely
+		print("Level " + str(attackerLevel) + " tried to attack level " + str(level) + " but missed!")
+	
+	
 
 #this method generates a brand new instance of the item, it's an equivalent
 #to the method used in util.gd to give new items to the guild
@@ -308,7 +345,6 @@ func _draw_sprites():
 			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
 			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
 	elif (sprite):
-		print("oneBody uses this sprite: " + sprite)
 		#otherwise, it's a oneBody
 		# oneBody are usually mobs but could be used later for special forms heroes take
 		# ie: a druid in a wolf form
