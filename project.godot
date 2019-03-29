@@ -47,6 +47,10 @@ window/handheld/emulate_touchscreen=true
 
 common/swap_ok_cancel=true
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
