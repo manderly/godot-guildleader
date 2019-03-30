@@ -123,6 +123,7 @@ particles_anim_loop = false
 "ClearOnRestore",
 ]]
 input_pickable = true
+collision_mask = 2
 
 [node name="field_name" type="Label" parent="."]
 margin_left = -90.0
@@ -214,8 +215,8 @@ texture = ExtResource( 8 )
 [node name="oneSprite" type="Sprite" parent="body"]
 
 [node name="heroButton" type="TouchScreenButton" parent="."]
-position = Vector2( 19.4813, 16.1385 )
-scale = Vector2( 22.8798, 29.0313 )
+position = Vector2( 31.5613, 30.1669 )
+scale = Vector2( 30, 36 )
 z_index = 1
 shape = SubResource( 9 )
 

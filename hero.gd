@@ -39,6 +39,7 @@ var target = Vector2()
 var velocity = Vector2()
 var speed = 20
 var walking = false
+var walkingToBattlePoint = false
 
 var headIndex = 0
 
@@ -87,6 +88,8 @@ func _start_walking():
 	else: #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)
+			
+	# else we use the walkDestX and walkDestY set from outside this method
 	
 	startingX = get_position().x
 	startingY = get_position().y
@@ -127,10 +130,10 @@ func _start_walking():
 	
 func face_right():
 	$body.set_scale(Vector2(-1,1))
-	#$body/weapon1.offset.x = 20
-	#$body/weapon2.offset.x = -20
-	#$body/shield.offset.x = -28
-	#$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
+	$body/weapon1.offset.x = 20
+	$body/weapon2.offset.x = -20
+	$body/shield.offset.x = -28
+	$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 			
 func _on_Timer_timeout():
 	#idleTimer is up, time to start walking!
@@ -157,6 +160,17 @@ func vignette_update_hp_and_mana(oldHP, newHP, totalHP, oldMana, newMana, totalM
 	$field_HP.text = str(hpCurrent) + "/" + str(totalHP)
 	$field_Mana.text = str(manaCurrent) + "/" + str(totalMana)
 		
+func vignette_walk_to_point(vignetteX, vignetteY):
+	walkDestX = vignetteX
+	walkDestY = vignetteY
+	$animationPlayer.play("walk")
+	startingX = get_position().x
+	startingY = get_position().y
+	#print("walking from " + str(startingX) + " to " + str(walkDestX))
+	target = Vector2(walkDestX, walkDestY)
+	walkingToBattlePoint = true
+	#physics_process handles it from here 
+	
 func save_current_position():
 	#this works on the hero SCENE, but we have to pass it to the hero DATA
 	for i in global.guildRoster.size():
@@ -235,24 +249,30 @@ func _physics_process(delta):
 	if (walking):
 		velocity = (target - position).normalized() * speed
 		if (target - position).length() > 10:
-			#move_and_slide(velocity) #last good but doesn't stop walking
 			var collision_info = move_and_collide(velocity * delta)
 			if collision_info:
 				#print(collision_info.collider.heroName)
 				_stop_walking()
 		else:
 			_stop_walking()
-			
-    #var collision_info = move_and_collide(direction.normalized() * speed * delta)
-    #if collision_info:
-      #  collision_info.collider.queue_free()
+	elif (walkingToBattlePoint):
+		velocity = (target - position).normalized() * speed
+		if ((target - position).length() > 1):
+			var collision_info = move_and_collide(velocity * delta)
+			if collision_info:
+				_stop_walking()
+		else:
+			_stop_walking()
 
 func _stop_walking():
 	target = get_position()
 	velocity = 0
 	$animationPlayer.play("idle")
-	walking = false
-	$idleTimer.start()
+	if (walking):
+		walking = false
+		$idleTimer.start()
+	elif (walkingToBattlePoint):
+		walkingToBattlePoint = false
 	
 func set_instance_data(data):
 	heroFirstName = data.heroFirstName

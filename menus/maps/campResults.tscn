@@ -122,7 +122,7 @@ alignment = 1
 [node name="button_collect" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 576.0
 margin_right = 276.0
-margin_bottom = 640.0
+margin_bottom = 614.0
 text = "COLLECT PRIZES & SEND HEROES HOME"
 
 [node name="button_back" parent="." instance=ExtResource( 5 )]

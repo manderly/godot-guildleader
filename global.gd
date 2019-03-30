@@ -165,6 +165,8 @@ func _ready():
 	util.give_item_guild("Leather Strip")
 	util.give_item_guild("Small Brick of Ore")
 	util.give_item_guild("Copper Ore")
+	
+	util.give_item_guild("Caster's Circlet")
 
 	
 func logger(script, message):

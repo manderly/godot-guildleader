@@ -7,6 +7,26 @@ var deadHeroes = 0
 
 #  0   1
 #    2   3
+var heroPositionsOffscreen = {
+	# 200 less than starting positions
+	"0":{
+		"x":0, 
+		"y":118
+		},
+	"1":{
+		"x":75, 
+		"y":140
+		},
+	"2":{
+		"x":25, 
+		"y":170
+		},
+	"3":{
+		"x":105, 
+		"y":180
+		},
+	}
+
 var heroPositions = {
 	"0":{
 		"x":25,
@@ -21,7 +41,7 @@ var heroPositions = {
 		"y":170
 		},
 	"3":{
-		"x":125,
+		"x":135,
 		"y":180
 		},
 	}
@@ -52,6 +72,7 @@ func _ready():
 		
 	
 func play_vignette(data):
+	$label_battleN.hide()
 	#handles the step by step iteration of the vignette data 
 	# vignette data should come in as an array 
 	# each index is an object representing a discrete battle
@@ -65,11 +86,14 @@ func play_vignette(data):
 	# and possibly killed and removed from later battles
 	
 	# these heroes should be recognized as a consistent group 
-	#print(data.campHeroes)
 	populate_heroes(data.campHeroes)
-	$label_battleN.hide()
-	#todo: might be nice if heroes walked into position from offstage
-	yield(get_tree().create_timer(2.0), "timeout")
+	var heroes = get_tree().get_nodes_in_group("heroes")
+	# walk the heroes into position
+	for i in heroes.size():
+		var hero = heroes[i]
+		hero.vignette_walk_to_point(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"])
+
+	yield(get_tree().create_timer(3.0), "timeout")
 	
 	
 	#for each battle
@@ -95,7 +119,7 @@ func play_vignette(data):
 		yield(get_tree().create_timer(1.0), "timeout")
 		
 		# for each hero still on screen, move to middle
-		var heroes = get_tree().get_nodes_in_group("heroes")
+		heroes = get_tree().get_nodes_in_group("heroes")
 		for hero in heroes:
 			hero.vignette_hide_stats()
 			hero.set_position(middleOfScreen)
@@ -198,7 +222,7 @@ func populate_heroes(heroes):
 		heroScene.set_script(preload("res://hero.gd"))
 		heroScene.set_instance_data(heroes[i]) #put data from array into scene 
 		heroScene._draw_sprites()
-		heroScene.set_position(Vector2(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"]))
+		heroScene.set_position(Vector2(heroPositionsOffscreen[str(i)]["x"], heroPositionsOffscreen[str(i)]["y"]))
 		heroScene.face_right()
 		heroScene.set_display_params(false, true) #no walking, show name 
 		heroScene.add_to_group("heroes")
