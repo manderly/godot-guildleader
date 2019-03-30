@@ -10,6 +10,9 @@ var mainRoomMaxX = 360
 var mainRoomMinY = 250
 var mainRoomMaxY = 410
 
+# node to add heroes to
+onready var heroesNode = $screen/YSort
+
 var spawnLocs = {
 	"0":{
 		"x":120,
@@ -29,7 +32,7 @@ var spawnLocs = {
 		},
 	"4":{
 		"x":240,
-		"y":380
+		"y":350
 		},
 	"5":{
 		"x":340,
@@ -226,7 +229,7 @@ func draw_heroes():
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
 			onscreenHeroes.append(heroScene)
-			add_child(heroScene)
+			heroesNode.add_child(heroScene)
 			
 	#draw unrecruited heroes outside the base
 	for i in range(global.unrecruited.size()):

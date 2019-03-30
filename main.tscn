@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://HUD.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://sprites/outside/shrub.png" type="Texture" id=19]
 [ext_resource path="res://sprites/outside/lamp.png" type="Texture" id=20]
 [ext_resource path="res://gui/chiselbutton.png" type="Texture" id=21]
+[ext_resource path="res://sprites/outside/roof_over.png" type="Texture" id=22]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 21 )
@@ -427,6 +428,13 @@ mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="YSort" type="YSort" parent="screen"]
+
+[node name="roof_over" type="Sprite" parent="screen"]
+position = Vector2( 270.991, 429.226 )
+z_index = 5
+texture = ExtResource( 22 )
 
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button MAP/Map" to="." method="_on_Map_pressed"]
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button QUESTS/Quests" to="." method="_on_Quests_pressed"]
