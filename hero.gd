@@ -111,11 +111,12 @@ func _start_walking():
 		#if already facing right (-1), don't do anything
 		#if facing left (1), change to -1
 		if ($body.scale.x == 1):
-			$body.set_scale(Vector2(-1,1))
-			$body/weapon1.offset.x = 20
-			$body/weapon2.offset.x = -20
-			$body/shield.offset.x = -28
-			$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
+			face_right()
+			#$body.set_scale(Vector2(-1,1))
+			#$body/weapon1.offset.x = 20
+			#$body/weapon2.offset.x = -20
+			#$body/shield.offset.x = -28
+			#$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 	elif (startingX > target.x):
 		#print(heroName + " walking LEFT // started: " + str(startingX) + " // going to:" + str(target.x))
 		#if already facing left (1), don't do anything
@@ -133,6 +134,7 @@ func face_right():
 	$body/weapon1.offset.x = 20
 	$body/weapon2.offset.x = -20
 	$body/shield.offset.x = -28
+	#$body/weapon1.set_rotation_degrees(140) #set_rotation_degrees(N), rotation_degrees = N, set_rot(N), set_rotd(N), 
 	$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 			
 func _on_Timer_timeout():

@@ -44,7 +44,8 @@ var classNameMap = {
 	"rogue":"ROG",
 	"necromancer":"NEC",
 	"enchanter":"ENC",
-	"bard":"BRD"
+	"bard":"BRD",
+	"monk":"MNK"
 	}
 
 func _ready():

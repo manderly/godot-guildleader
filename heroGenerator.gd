@@ -53,7 +53,7 @@ func generate(destinationArray, classStr):
 	elif (classStr == "Cleric"):
 		newHero.charClass = "Cleric"
 		newHero.archetype = "Support"
-		newHero.give_gear_loadout("clericNew")
+		newHero.give_gear_loadout("cleric12")
 
 	elif (classStr == "Druid"):
 		newHero.charClass = "Druid"

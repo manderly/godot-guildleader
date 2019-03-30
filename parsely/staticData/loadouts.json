@@ -102,11 +102,11 @@
     "loadoutId": "warrior12",
     "mainHand": "Fine Steel Sword",
     "offHand": "Heavy Painted Shield",
-    "chest": "Simple Chainmail Vest",
-    "legs": "Simple Chainmail Leggings",
+    "chest": "Bronze Plate Breastplate",
+    "legs": "Bronze Plate Greaves",
     "jewelry": "Copper Pearl Ring",
-    "feet": "Tadloc Skin Boots",
-    "head": "",
+    "feet": "Bronze Plate Boots",
+    "head": "Simple Chainmail Coif",
     "unknown": ""
   },
   {
@@ -128,6 +128,17 @@
     "legs": "Simple Chainmail Leggings",
     "jewelry": "Copper Pearl Ring",
     "feet": "Muddy Boots",
+    "head": "Simple Chainmail Coif",
+    "unknown": ""
+  },
+  {
+    "loadoutId": "cleric12",
+    "mainHand": "Guardian's Mace",
+    "offHand": "Heavy Painted Shield",
+    "chest": "Bronze Plate Breastplate",
+    "legs": "Bronze Plate Greaves",
+    "jewelry": "Copper Pearl Ring",
+    "feet": "Bronze Plate Boots",
     "head": "Simple Chainmail Coif",
     "unknown": ""
   }

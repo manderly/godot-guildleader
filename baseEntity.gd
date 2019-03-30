@@ -55,38 +55,38 @@ var classLevelModifiers = {
 	"Warrior":{
 		"hp":1.26,
 		"mana":1,
-		"strength":1.2,
-		"defense":1.08
+		"strength":1,
+		"defense":1
 		},
 	"Rogue":{
 		"hp":1.24,
 		"mana":1,
-		"strength":1.2,
-		"defense":1.02
+		"strength":1,
+		"defense":1
 		},
 	"Ranger":{
 		"hp":1.25,
 		"mana":1,
-		"strength":1.2,
-		"defense":1.03
+		"strength":1,
+		"defense":1
 		},
 	"Wizard":{
 		"hp":1.21,
 		"mana":1.28,
 		"strength":1,
-		"defense":1.00
+		"defense":1
 		},
 	"Cleric":{
 		"hp":1.25,
 		"mana":1.28,
 		"strength":1,
-		"defense":1.07
+		"defense":1
 		},
 	"Druid":{
 		"hp":1.22,
 		"mana":1.27,
 		"strength":1,
-		"defense":1.05
+		"defense":1
 		},
 }
 
