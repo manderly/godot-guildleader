@@ -349,18 +349,23 @@ func _draw_sprites():
 		if (equipment.chest):
 			$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
 			if (equipment.chest.tint):
-				$body/chest.modulate = tints[equipment.chest.tint] #Color(0.8, 0.8, 0.8)
+				$body/chest.modulate = tints[equipment.chest.tint] 
 		else:
 			$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
 		
 		if (equipment.legs):
 			$body/legs.texture = load("res://sprites/heroes/legs/" + equipment.legs.bodySprite)
+			if (equipment.legs.tint):
+				$body/legs.modulate = tints[equipment.legs.tint] 
 		else:
 			$body/legs.texture = load("res://sprites/heroes/legs/missing.png")
 		
 		if (equipment.feet):
 			$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
 			$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+			if (equipment.feet.tint):
+				$body/boot1.modulate = tints[equipment.feet.tint]
+				$body/boot2.modulate = tints[equipment.feet.tint]
 		else:
 			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
 			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
