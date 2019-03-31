@@ -299,7 +299,7 @@ func vignette_hide_stats():
 	$label_mana.hide()
 
 func vignette_die():
-	$body.modulate = Color(0.8, 0.7, 1)
+	$body.modulate = tints.ghost
 	#todo: animate the change
 
 func vignette_show_stats():
@@ -348,6 +348,8 @@ func _draw_sprites():
 		# missing.png helps identify items with missing sprites
 		if (equipment.chest):
 			$body/chest.texture = load("res://sprites/heroes/chest/" + equipment.chest.bodySprite)
+			if (equipment.chest.tint):
+				$body/chest.modulate = tints[equipment.chest.tint] #Color(0.8, 0.8, 0.8)
 		else:
 			$body/chest.texture = load("res://sprites/heroes/chest/missing.png")
 		

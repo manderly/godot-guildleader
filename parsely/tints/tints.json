@@ -1,0 +1,100 @@
+[
+  {
+    "tintName": "bronze",
+    "red": 201,
+    "green": 102,
+    "blue": 7,
+    "alpha": 100
+  },
+  {
+    "tintName": "rubyRed",
+    "red": 155,
+    "green": 15,
+    "blue": 15,
+    "alpha": 100
+  },
+  {
+    "tintName": "darkBlue",
+    "red": 10,
+    "green": 50,
+    "blue": 200,
+    "alpha": 100
+  },
+  {
+    "tintName": "darkPurple",
+    "red": 52,
+    "green": 22,
+    "blue": 10,
+    "alpha": 80
+  },
+  {
+    "tintName": "dirtyTan",
+    "red": 132,
+    "green": 125,
+    "blue": 108,
+    "alpha": 100
+  },
+  {
+    "tintName": "azuricite",
+    "red": 77,
+    "green": 100,
+    "blue": 145,
+    "alpha": 100
+  },
+  {
+    "tintName": "green",
+    "red": 16,
+    "green": 230,
+    "blue": 14,
+    "alpha": 100
+  },
+  {
+    "tintName": "blue",
+    "red": 18,
+    "green": 80,
+    "blue": 241,
+    "alpha": 100
+  },
+  {
+    "tintName": "pink",
+    "red": 241,
+    "green": 18,
+    "blue": 134,
+    "alpha": 100
+  },
+  {
+    "tintName": "white",
+    "red": 100,
+    "green": 100,
+    "blue": 100,
+    "alpha": 100
+  },
+  {
+    "tintName": "yellow",
+    "red": 237,
+    "green": 232,
+    "blue": 63,
+    "alpha": 100
+  },
+  {
+    "tintName": "red",
+    "red": 227,
+    "green": 45,
+    "blue": 40,
+    "alpha": 100
+  },
+  {
+    "tintName": "darkRed",
+    "red": 107,
+    "green": 3,
+    "blue": 0,
+    "alpha": 100
+  },
+  {
+    "tintName": "ghost",
+    "red": 204,
+    "green": 178,
+    "blue": 255,
+    "alpha": 100
+  }
+]

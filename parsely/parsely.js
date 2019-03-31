@@ -147,6 +147,30 @@ fs.readdir(staticDataFolder, (err, files) => {
 
 });
 
+//process tints from JSON objects to Godot-friendly Colors
+const tintsFolder = './tints/';
+fs.readdir(tintsFolder, (err, files) => {
+    console.log("PROCESSING COLOR TINT DATA");
+    oneHugeString = "extends Node\n";
+    console.log("Looking in..." + tintsFolder);
+    files.forEach(file => {
+        if ((/\.(json)$/i).test(file)) { //if it's json
+            console.log("Processing " + file);
+            var fromJSON = JSON.parse(fs.readFileSync(tintsFolder + file, 'utf8'));
+            for (var value of fromJSON) {
+                //divide each number by 255 to get a Godot-friendly value
+                var red = parseFloat(value.red/255).toFixed(3);
+                var green = parseFloat(value.green/255).toFixed(3);
+                var blue = parseFloat(value.blue/255).toFixed(3);
+                var alpha = parseFloat(value.alpha/100).toFixed(2);
+                oneHugeString += "var "+value.tintName+" = Color("+red+", "+green+", "+blue+", "+alpha+")\n";
+            }
+        }
+    });
+    fs.writeFileSync("../gameData/tints.gd", oneHugeString);
+    console.log("Done (tint data)\n");
+});
+
 //name files are already exported as arrays, so we just need this tool to turn them into a gd file with vars
 const namesFolder = './names/';
 fs.readdir(namesFolder, (err, files) => {

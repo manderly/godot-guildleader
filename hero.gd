@@ -531,7 +531,7 @@ func set_dead():
 func ghost_mode(ghostMode):
 	if (ghostMode):
 		print("ghost mode on")
-		$body.modulate = Color(0.8, 0.7, 1)
+		$body.modulate = tints.ghost #Color(0.8, 0.7, 1)
 		$particles_ghost.set_emitting(true)
 		$particles_ghost.show()
 	else:

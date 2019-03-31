@@ -28,6 +28,7 @@ names="*res://gameData/names.gd"
 timedNodeData="*res://gameData/timedNodeData.gd"
 dynamicData="*res://gameData/dynamicData.gd"
 colors="*res://gameData/colors.gd"
+tints="*res://gameData/tints.gd"
 
 [display]
 
