@@ -543,7 +543,13 @@ func get_nuke_dmg():
 	return level * intelligence
 	
 func get_cleric_party_heal_amount():
-	return 50 #todo: fancy formula
+	#todo: take perks into account
+	var healAmount = 0;
+	var healManaCost = level * 3
+	if (manaCurrent > healManaCost):
+		healAmount = level * 4
+		manaCurrent -= healManaCost
+	return healAmount 
 	
 func get_druid_target_heal_amount():
 	return 100 #todo: fancy formula 

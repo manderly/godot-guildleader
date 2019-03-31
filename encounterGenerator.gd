@@ -421,13 +421,55 @@ func _calculate_battle_outcome(camp):
 					if (newBattle.mobs.size() == 0):
 						break
 			elif (hero.charClass == "Cleric"):
-				#heal ALL heroes in party
-				var healAmount = hero.get_cleric_party_heal_amount()
-				#_heal_all_heroes(healAmount)
+				#decide if a party heal is needed
+				var partyMembersInNeedOfHeal = 0
+				var partyMembersInNeedOfTopoff = 0
+				var individualInNeedOfHeal = null
 				for partyMember in newBattle.heroes:
 					if (!partyMember.dead):
-						encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "!")
-						partyMember.get_healed(healAmount)
+						# do the needs of the many outweigh the needs of the few?
+						# see if the whole group needs a (small-ish) heal
+						if (partyMember.hpCurrent < round(partyMember.hp * .85)):
+							partyMembersInNeedOfHeal += 1
+						elif (partyMember.hpCurrent < partyMember.hp):
+							partyMembersInNeedOfTopoff += 1
+						
+						# see if any one particular person is low
+						if (partyMember.hpCurrent < round(partyMember.hp * .50)):
+							individualInNeedOfHeal = partyMember
+				if (partyMembersInNeedOfHeal > 1):
+					print("2 or more in the group need a heal")
+					#heal ALL heroes in party
+					var healAmount = hero.get_cleric_party_heal_amount()
+					if (healAmount == 0):
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " is out of mana!")
+					else:
+						for partyMember in newBattle.heroes:
+							if (!partyMember.dead):
+								encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "! (" + str(partyMember.hpCurrent) + "/" + str(partyMember.hp) + ")")
+								partyMember.get_healed(healAmount)
+				elif (individualInNeedOfHeal):
+					# heal lowest hp hero
+					# todo: move to hero, make it cost mana
+					print(individualInNeedOfHeal.heroFirstName + " needs an individual heal")
+					var healAmount = 900
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " performs an individual heal")
+					individualInNeedOfHeal.get_healed(healAmount)
+				elif (partyMembersInNeedOfTopoff > 1):
+					print("the group could use a topoff if there's mana for it")
+					if hero.manaCurrent > (hero.mana * .92):
+						# cleric is at 92% mana or more, go ahead and top the group off
+						var healAmount = hero.get_cleric_party_heal_amount()
+						for partyMember in newBattle.heroes:
+							if (!partyMember.dead):
+								encounter.detailedPlayByPlay.append(hero.heroFirstName + " restores " + str(healAmount) + " hitpoints to " + partyMember.heroFirstName + "! (" + str(partyMember.hpCurrent) + "/" + str(partyMember.hp) + ")")
+								partyMember.get_healed(healAmount)
+				else:
+					hero.manaCurrent += hero.regenRateMana #todo: move to hero
+					if (hero.manaCurrent > hero.mana):
+						hero.manaCurrent = hero.mana
+					encounter.detailedPlayByPlay.append(hero.heroFirstName + " sits this round out to conserve mana. (" + str(hero.manaCurrent) +"/" + str(hero.mana) + ")")
+					
 			elif (hero.charClass == "Druid"):
 				#can nuke or heal, for now druid just heals lowest hp hero 
 				var lowestHPhero = newBattle.heroes[0]
