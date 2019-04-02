@@ -511,9 +511,14 @@ func _on_button_buyPerk_pressed():
 		print("This perk is full")
 	_update_perks_tab()
 
-
+func _redraw_hero():
+	#it's the only thing in this group
+	var heroScenes = get_tree().get_nodes_in_group("heroScene")
+	var heroScene = heroScenes[0]
+	heroScene.set_instance_data(global.selectedHero) #put data from array into scene 
+	heroScene._draw_sprites()
+	 
 func _on_button_helm_pressed():
 	global.selectedHero.showMyHelm = !global.selectedHero.showMyHelm
 	populate_fields()
-	var heroScenes = get_tree().get_nodes_in_group("heroScene")
-	heroScenes[0]._draw_sprites()
+	_redraw_hero()

@@ -375,6 +375,7 @@ func _draw_sprites():
 		# not the depiction of the hero's actual head 
 		# todo: the player can also set a flag to display this hero's helmet or hide it 
 		if (equipment.head && showMyHelm):
+			$body/helm.show()
 			$body/helm.texture = load("res://sprites/heroes/helm/" + equipment.head.bodySprite)
 		else:
 			$body/helm.hide()
