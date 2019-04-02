@@ -2,7 +2,7 @@ extends Node2D
 #coast.gd
 
 func _ready():
-	global.returnToMap = "coast"
+	global.returnToMap = "res://menus/maps/coast.tscn"
 	$questMarker1._set_data("camp_coast01")
 	$questMarker2._set_data("camp_coast02")
 	$questMarker3._set_data("camp_coast03")

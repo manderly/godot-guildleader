@@ -2,7 +2,7 @@ extends Node2D
 #forest.gd 
 
 func _ready():
-	global.returnToMap = "forest"
+	global.returnToMap = "res://menus/maps/forest.tscn"
 	$campNode1._set_data("camp_forest01")
 	$campNode2._set_data("camp_forest02")
 	$campNode3._set_data("camp_forest03")

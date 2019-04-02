@@ -70,12 +70,14 @@ func _process(delta):
 			campData.readyToCollect = true
 			 
 	elif (campData.inProgress && campData.readyToCollect):
-		field_tipsOrProgress.text = "DONE!"
+		# it should just kick you to COLLECT page
+		get_tree().change_scene("res://menus/maps/campResults.tscn")
+		#field_tipsOrProgress.text = "DONE!"
 		#todo: make it so only the correct button changes to collect 
-		button_startCampShort.text = "COLLECT"
-		button_startCampMedium.text = "COLLECT"
-		button_startCampLong.text = "COLLECT"
-		progressBar.set_value(100)
+		#button_startCampShort.text = "COLLECT"
+		#button_startCampMedium.text = "COLLECT"
+		#button_startCampLong.text = "COLLECT"
+		#progressBar.set_value(100)
 
 	
 func _play_camp_animatic(campData):
@@ -162,7 +164,7 @@ func _on_button_back_pressed():
 			if (campData.heroes[i]):
 				campData.heroes[i].send_home() #send this specific hero home
 				campData.heroes[i] = null #and null his spot 
-	get_tree().change_scene("res://menus/maps/forest.tscn")
+	get_tree().change_scene(global.returnToMap) #set in map-specific scene ie: coast.tscn script 
 
 func _calculate_estimated_difficulty():
 	var estimate = "Looks like an even fight"

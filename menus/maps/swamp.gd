@@ -2,7 +2,7 @@ extends Node2D
 #swamp.gd 
 
 func _ready():
-	global.returnToMap = "swamp"
+	global.returnToMap = "res://menus/maps/swamp.tscn"
 	$campNode1._set_data("camp_swamp01")
 	$campNode2._set_data("camp_swamp02")
 	$campNode3._set_data("camp_swamp03")
