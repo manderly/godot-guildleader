@@ -92,7 +92,7 @@ func _populate_fields():
 	else:
 		field_improved.hide()
 			
-	print("popup_itemInfo.gd - itemID: " + str(itemData.itemID))
+	#print("popup_itemInfo.gd - itemID: " + str(itemData.itemID))
 	if (itemData.itemID):
 		field_itemID.text = str(itemData.itemID)
 		field_itemID.add_color_override("font_color", colors.pink) 
@@ -110,12 +110,13 @@ func _populate_fields():
 		#there might be multiple class restrictions, so build a string
 		var restrictionsStr = ""
 		for i in range(itemData.classRestrictions.size()):
-			# Behind the scenes, we use the full class name. But on an item
-			# we use an abbreviation. Those abbreviations are only for display, 
-			# so do the conversion here.
-			var classNameLong = itemData.classRestrictions[i].to_lower()
-			print(classNameMap[classNameLong])
-			restrictionsStr += str(classNameMap[classNameLong]) + " "
+			if (itemData.classRestrictions[i] != null):
+				# Behind the scenes, we use the full class name. But on an item
+				# we use an abbreviation. Those abbreviations are only for display, 
+				# so do the conversion here.
+				var classNameLong = itemData.classRestrictions[i].to_lower()
+				#print(classNameMap[classNameLong])
+				restrictionsStr += str(classNameMap[classNameLong]) + " "
 		#$field_classes.text = "Class: " + str(itemData.classRestriction).capitalize()
 		field_classes.text = "Classes: " + restrictionsStr
 	

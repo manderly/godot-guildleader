@@ -243,7 +243,8 @@ func save():
 		"equipment":thisHero.equipment,
 		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 
 		"isPlayer":thisHero.isPlayer,
-		"entityType":thisHero.entityType
+		"entityType":thisHero.entityType,
+		"showMyHelm":thisHero.showMyHelm
 	}
 	return saved_hero_data
 
@@ -315,6 +316,7 @@ func set_instance_data(data):
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
 	isPlayer = data.isPlayer
+	showMyHelm = data.showMyHelm
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():

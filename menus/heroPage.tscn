@@ -10,583 +10,188 @@
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D"]
-
 script = ExtResource( 1 )
 
-[node name="TileMap" type="TileMap" parent="." index="0"]
-
-mode = 0
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 27, 0, 5, 27, 0, 10, 27, 0, 12, 13, 0, 13, 15, 0, 15, 27, 0, 262144, 27, 0, 262149, 27, 0, 262154, 27, 0, 262159, 27, 0, 327687, 14, 0, 524288, 27, 0, 524293, 27, 0, 524298, 27, 0, 524303, 27, 0, 589824, 73, 0, 655360, 73, 0, 720896, 73, 0, 786432, 27, 0, 786437, 27, 0, 786442, 27, 0, 786447, 27, 0, 851968, 73, 0, 851984, 73, 0, 917504, 73, 0, 917520, 73, 0, 983040, 73, 0, 983056, 73, 0, 1048576, 27, 0, 1048577, 73, 0, 1048578, 73, 0, 1048579, 73, 0, 1048581, 27, 0, 1048586, 27, 0, 1048587, 73, 0, 1048588, 73, 0, 1048589, 73, 0, 1048590, 73, 0, 1048591, 27, 0, 1048592, 73, 0, 1114112, 73, 0, 1114113, 73, 0, 1114114, 73, 0, 1114115, 73, 0, 1114116, 73, 0, 1114117, 73, 0, 1114118, 73, 0, 1114119, 73, 0, 1114120, 73, 0, 1114121, 73, 0, 1114122, 73, 0, 1114123, 73, 0, 1114124, 73, 0, 1114125, 73, 0, 1114126, 73, 0, 1114127, 73, 0, 1114128, 73, 0, 1179648, 73, 0, 1179649, 73, 0, 1179650, 73, 0, 1179651, 73, 0, 1179652, 73, 0, 1179653, 73, 0, 1179654, 73, 0, 1179655, 73, 0, 1179656, 73, 0, 1179657, 73, 0, 1179658, 73, 0, 1179659, 73, 0, 1179660, 73, 0, 1179661, 73, 0, 1179662, 73, 0, 1179663, 73, 0, 1179664, 73, 0, 1245184, 73, 0, 1245185, 73, 0, 1245186, 73, 0, 1245187, 73, 0, 1245188, 73, 0, 1245189, 73, 0, 1245190, 73, 0, 1245191, 73, 0, 1245192, 73, 0, 1245193, 73, 0, 1245194, 73, 0, 1245195, 73, 0, 1245196, 73, 0, 1245197, 73, 0, 1245198, 73, 0, 1245199, 73, 0, 1245200, 73, 0, 1310720, 27, 0, 1310721, 73, 0, 1310722, 73, 0, 1310723, 73, 0, 1310724, 73, 0, 1310725, 27, 0, 1310726, 73, 0, 1310727, 73, 0, 1310728, 73, 0, 1310729, 73, 0, 1310730, 27, 0, 1310731, 73, 0, 1310732, 73, 0, 1310733, 73, 0, 1310734, 73, 0, 1310735, 27, 0, 1310736, 73, 0, 1376256, 73, 0, 1376257, 73, 0, 1376258, 73, 0, 1376259, 73, 0, 1376260, 73, 0, 1376261, 73, 0, 1376262, 73, 0, 1376263, 73, 0, 1376264, 73, 0, 1376265, 73, 0, 1376266, 73, 0, 1376267, 73, 0, 1376268, 73, 0, 1376269, 73, 0, 1376270, 73, 0, 1376271, 73, 0, 1376272, 73, 0, 1441792, 73, 0, 1441793, 73, 0, 1441794, 73, 0, 1441795, 73, 0, 1441796, 73, 0, 1441797, 73, 0, 1441798, 73, 0, 1441799, 73, 0, 1441800, 73, 0, 1441801, 73, 0, 1441802, 73, 0, 1441803, 73, 0, 1441804, 73, 0, 1441805, 73, 0, 1441806, 73, 0, 1441807, 73, 0, 1441808, 73, 0, 1507328, 73, 0, 1507329, 73, 0, 1507330, 73, 0, 1507331, 73, 0, 1507332, 73, 0, 1507333, 73, 0, 1507334, 73, 0, 1507335, 73, 0, 1507336, 73, 0, 1507337, 73, 0, 1507338, 73, 0, 1507339, 73, 0, 1507340, 73, 0, 1507341, 73, 0, 1507342, 73, 0, 1507343, 73, 0, 1507344, 73, 0, 1572864, 27, 0, 1572865, 73, 0, 1572866, 73, 0, 1572867, 73, 0, 1572868, 73, 0, 1572869, 27, 0, 1572870, 73, 0, 1572871, 73, 0, 1572872, 73, 0, 1572873, 73, 0, 1572874, 27, 0, 1572875, 73, 0, 1572876, 73, 0, 1572877, 73, 0, 1572878, 73, 0, 1572879, 27, 0, 1572880, 73, 0, 1638400, 73, 0, 1638401, 73, 0, 1638402, 73, 0, 1638403, 73, 0, 1638404, 73, 0, 1638405, 73, 0, 1638406, 73, 0, 1638407, 73, 0, 1638408, 73, 0, 1638409, 73, 0, 1638410, 73, 0, 1638411, 73, 0, 1638412, 73, 0, 1638413, 73, 0, 1638414, 73, 0, 1638415, 73, 0, 1638416, 73, 0, 1703936, 73, 0, 1703937, 73, 0, 1703938, 73, 0, 1703939, 73, 0, 1703940, 73, 0, 1703941, 73, 0, 1703942, 73, 0, 1703943, 73, 0, 1703944, 73, 0, 1703945, 73, 0, 1703946, 73, 0, 1703947, 73, 0, 1703948, 73, 0, 1703949, 73, 0, 1703950, 73, 0, 1703951, 73, 0, 1703952, 73, 0, 1769472, 73, 0, 1769473, 73, 0, 1769474, 73, 0, 1769475, 73, 0, 1769476, 73, 0, 1769477, 73, 0, 1769478, 73, 0, 1769479, 73, 0, 1769480, 73, 0, 1769481, 73, 0, 1769482, 73, 0, 1769483, 73, 0, 1769484, 73, 0, 1769485, 73, 0, 1769486, 73, 0, 1769487, 73, 0, 1769488, 73, 0, 1835008, 27, 0, 1835009, 73, 0, 1835010, 73, 0, 1835011, 73, 0, 1835012, 73, 0, 1835013, 27, 0, 1835014, 73, 0, 1835015, 73, 0, 1835016, 73, 0, 1835017, 73, 0, 1835018, 27, 0, 1835019, 73, 0, 1835020, 73, 0, 1835021, 73, 0, 1835022, 73, 0, 1835023, 27, 0, 1835024, 73, 0, 1900544, 73, 0, 1900545, 73, 0, 1900546, 73, 0, 1900547, 73, 0, 1900548, 73, 0, 1900549, 73, 0, 1900550, 73, 0, 1900551, 73, 0, 1900552, 73, 0, 1900553, 73, 0, 1900554, 73, 0, 1900555, 73, 0, 1900556, 73, 0, 1900557, 73, 0, 1900558, 73, 0, 1900559, 73, 0, 1900560, 73, 0 )
-_sections_unfolded = [ "Cell" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 540.0
 margin_bottom = 842.0
 rect_min_size = Vector2( 540, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 12.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_right = 540.0
-margin_bottom = 830.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_bottom = 842.0
 custom_constants/separation = 24
 alignment = 1
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="topbumper" type="Container" parent="CenterContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="topbumper" type="Container" parent="CenterContainer/VBoxContainer"]
 margin_right = 540.0
 margin_bottom = 6.0
 rect_min_size = Vector2( 540, 6 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
-[node name="HBox_Hero" type="HBoxContainer" parent="CenterContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HBox_Hero" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 540.0
-margin_bottom = 194.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_bottom = 218.0
 theme = ExtResource( 3 )
 alignment = 1
-_sections_unfolded = [ "Theme", "custom_constants" ]
 
-[node name="Container" type="Container" parent="CenterContainer/VBoxContainer/HBox_Hero" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Container" type="Container" parent="CenterContainer/VBoxContainer/HBox_Hero"]
 margin_left = 46.0
 margin_right = 116.0
-margin_bottom = 164.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 70, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
-[node name="VBox_Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBox_Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero"]
 margin_left = 120.0
 margin_right = 360.0
-margin_bottom = 164.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 240, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 6
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="field_heroName" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_heroName" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
 margin_right = 240.0
 margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "### HERO NAME HERE ######"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_levelAndClass" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_levelAndClass" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
 margin_top = 20.0
 margin_right = 240.0
 margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#X CLASS"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_xp" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_xp" type="Label" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
 margin_top = 40.0
 margin_right = 240.0
 margin_bottom = 54.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "XXX/YYY xp"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="progress_xp" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="progress_xp" type="ProgressBar" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
 margin_top = 60.0
 margin_right = 240.0
-margin_bottom = 76.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-min_value = 0.0
-max_value = 100.0
+margin_bottom = 74.0
 step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-percent_visible = true
 
-[node name="button_trainOrRecruit" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 82.0
+[node name="button_trainOrRecruit" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
+margin_top = 80.0
 margin_right = 240.0
-margin_bottom = 120.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_bottom = 118.0
 theme = ExtResource( 4 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "TRAIN"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme", "custom_styles" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 126.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center"]
+margin_top = 124.0
 margin_right = 240.0
-margin_bottom = 164.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+margin_bottom = 162.0
 
-[node name="button_fullXP" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="button_fullXP" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer"]
 margin_right = 84.0
 margin_bottom = 38.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "#FULL XP"
-flat = false
-align = 1
 
-[node name="Button_perkPoint" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button_perkPoint" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer"]
 margin_left = 88.0
 margin_right = 163.0
 margin_bottom = 38.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "+1 PERK"
-flat = false
-align = 1
 
-[node name="VBox_Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBox_Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/HBox_Hero"]
 margin_left = 364.0
 margin_right = 494.0
-margin_bottom = 164.0
+margin_bottom = 188.0
 rect_min_size = Vector2( 80, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 12
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="button_revive" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="button_revive" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right"]
 margin_right = 130.0
 margin_bottom = 38.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "REVIVE"
-flat = false
-align = 1
 
-[node name="button_dismiss" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="button_dismiss" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right"]
 margin_top = 50.0
 margin_right = 130.0
 margin_bottom = 88.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Dismiss"
-flat = false
-align = 1
 
-[node name="button_rename" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="button_rename" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right"]
 margin_top = 100.0
 margin_right = 130.0
 margin_bottom = 138.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "Change Surname"
-flat = false
-align = 1
 
-[node name="label_Equipment" type="Label" parent="CenterContainer/VBoxContainer" index="2"]
+[node name="button_helm" type="Button" parent="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right"]
+margin_top = 150.0
+margin_right = 130.0
+margin_bottom = 188.0
+toggle_mode = true
+text = "Show Helm"
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 218.0
+[node name="label_Equipment" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 242.0
 margin_right = 540.0
-margin_bottom = 232.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
+margin_bottom = 256.0
 text = "Equipment"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="centerContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 256.0
+[node name="centerContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 280.0
 margin_right = 540.0
-margin_bottom = 456.0
+margin_bottom = 480.0
 rect_min_size = Vector2( 480, 200 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
-_sections_unfolded = [ "Rect" ]
 
-[node name="grid" type="GridContainer" parent="CenterContainer/VBoxContainer/centerContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="grid" type="GridContainer" parent="CenterContainer/VBoxContainer/centerContainer"]
 margin_left = 270.0
 margin_top = 100.0
 margin_right = 270.0
 margin_bottom = 100.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/vseparation = 24
 custom_constants/hseparation = 24
 columns = 4
-_sections_unfolded = [ "Grow Direction", "Rect", "Size Flags", "custom_constants" ]
 
-[node name="label_attributes" type="Label" parent="CenterContainer/VBoxContainer" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 480.0
+[node name="label_attributes" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 504.0
 margin_right = 540.0
-margin_bottom = 494.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
+margin_bottom = 518.0
 text = "Attributes"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Margin" ]
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 518.0
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 542.0
 margin_right = 540.0
-margin_bottom = 818.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
+margin_bottom = 842.0
 
-[node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 60.0
 margin_right = 480.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 420, 300 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-tab_align = 1
-tabs_visible = true
-_sections_unfolded = [ "Rect" ]
 
-[node name="Stats" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
+[node name="Stats" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
-[node name="StatsLeft" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="StatsLeft" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
 margin_bottom = 264.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
-[node name="StatsRight" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="StatsRight" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
 margin_left = 4.0
 margin_right = 4.0
 margin_bottom = 264.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
-[node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="1"]
-
+[node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -594,20 +199,9 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Mouse", "Rect", "custom_constants" ]
 
-[node name="Bonuses" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="2"]
-
+[node name="Bonuses" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -615,21 +209,10 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer" index="3"]
-
+[node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 editor/display_folded = true
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -637,332 +220,104 @@ margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect", "custom_constants" ]
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks"]
 margin_right = 412.0
 margin_bottom = 226.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3"]
 margin_right = 412.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 300, 40 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
 text = "Spend perk points to unlock permanent hero improvements."
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
-_sections_unfolded = [ "Rect" ]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3"]
 margin_top = 44.0
 margin_right = 412.0
 margin_bottom = 226.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 12
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="VBox_left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBox_left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer"]
 margin_bottom = 182.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_constants/separation = 12
-alignment = 0
-_sections_unfolded = [ "custom_constants" ]
 
-[node name="VBox_right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBox_right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer"]
 margin_left = 12.0
 margin_right = 212.0
 margin_bottom = 182.0
 rect_min_size = Vector2( 50, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Rect" ]
 
-[node name="field_perkDescription" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_perkDescription" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
 margin_right = 200.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 200, 140 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
 text = "# PERK DESCRIPTION HERE #"
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
-_sections_unfolded = [ "Rect" ]
 
-[node name="field_perkPoints" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_perkPoints" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
 margin_top = 144.0
 margin_right = 200.0
 margin_bottom = 158.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#points available"
 align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="button_buyPerk" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="button_buyPerk" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
 margin_top = 162.0
 margin_right = 200.0
 margin_bottom = 182.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
 text = "BUY PERK"
-flat = false
-align = 1
 
-[node name="confirm_rename_dialog" parent="." index="2" instance=ExtResource( 5 )]
-
-visible = false
+[node name="confirm_rename_dialog" parent="." instance=ExtResource( 5 )]
 margin_left = 96.0
 margin_top = 78.0
 margin_right = 446.0
 margin_bottom = 246.0
 
-[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="." index="3"]
-
+[node name="confirm_dismiss_dialog" type="ConfirmationDialog" parent="."]
 editor/display_folded = true
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 98.0
 margin_top = 218.0
 margin_right = 398.0
 margin_bottom = 358.0
 rect_min_size = Vector2( 200, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Dismiss hero?"
-resizable = false
-dialog_hide_on_ok = true
 
-[node name="Label2" type="RichTextLabel" parent="confirm_dismiss_dialog" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Label2" type="RichTextLabel" parent="confirm_dismiss_dialog"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 292.0
 margin_bottom = 104.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
 text = "Are you sure you want to kick this hero out of your guild? This action is permanent!  "
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
 
-[node name="confirm_instant_train" type="ConfirmationDialog" parent="." index="4"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="confirm_instant_train" type="ConfirmationDialog" parent="."]
 margin_left = 105.0
 margin_top = 200.0
 margin_right = 395.0
 margin_bottom = 356.0
 rect_min_size = Vector2( 200, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Instant Training"
-resizable = false
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog", "Popup" ]
 
-[node name="Sprite" type="Sprite" parent="confirm_instant_train" index="3"]
-
+[node name="Sprite" type="Sprite" parent="confirm_instant_train"]
 position = Vector2( 140.7, 89.5623 )
 texture = ExtResource( 6 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="confirm_instant_train" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="RichTextLabel" type="RichTextLabel" parent="confirm_instant_train"]
 margin_left = 8.0
 margin_top = 8.0
 margin_right = 282.0
 margin_bottom = 120.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-bbcode_enabled = false
-bbcode_text = ""
-visible_characters = -1
-percent_visible = 1.0
-meta_underlined = true
-tab_size = 4
-text = ""
-scroll_active = true
-scroll_following = false
-selection_enabled = false
-override_selected_font_color = false
 
-[node name="finishNow_dialog" parent="." index="5" instance=ExtResource( 7 )]
-
-visible = false
+[node name="finishNow_dialog" parent="." instance=ExtResource( 7 )]
 margin_left = 115.0
 margin_top = 51.0
 margin_right = 465.0
 margin_bottom = 241.0
 
-[node name="info_statsLeft_dialog" type="AcceptDialog" parent="." index="6"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="info_statsLeft_dialog" type="AcceptDialog" parent="."]
 margin_left = 23.0
 margin_top = 314.0
 margin_right = 459.0
 margin_bottom = 695.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Stats Guide"
-resizable = false
 dialog_text = "HP = hit points. Your character's total amount of health.
 
 Mana = Your character's mana pool size determines how 
@@ -981,29 +336,13 @@ DEF = defense. Increase this stat to increase your odds of not
 getting hit in melee combat.
 
 INT = intelligence. Increase this stat to enlarge your mana pool."
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog" ]
 
-[node name="info_statsRight_dialog" type="AcceptDialog" parent="." index="7"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="info_statsRight_dialog" type="AcceptDialog" parent="."]
 margin_left = 23.0
 margin_top = 314.0
 margin_right = 459.0
 margin_bottom = 695.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Stats Guide"
-resizable = false
 dialog_text = "Drama = 
 
 Mood = 
@@ -1013,60 +352,29 @@ Prestige =
 Group Bonus = 
 
 Raid Bonus = "
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog" ]
 
-[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="." index="8"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="insufficient_guild_capacity_dialog" type="AcceptDialog" parent="."]
 margin_left = 38.0
 margin_top = 45.0
 margin_right = 445.0
 margin_bottom = 190.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Insufficient space!"
-resizable = false
 dialog_text = "Your guildhall is at capacity!
 Add another bedroom to make room for new recruits."
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog" ]
 
-[node name="button_back" parent="." index="9" instance=ExtResource( 8 )]
+[node name="button_back" parent="." instance=ExtResource( 8 )]
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/button_fullXP" to="." method="_on_button_fullXP_pressed"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/Button_perkPoint" to="." method="_on_Button_perkPoint_pressed"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive" to="." method="_on_button_revive_pressed"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss" to="." method="_on_button_dismiss_pressed"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename" to="." method="_on_button_rename_pressed"]
-
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_helm" to="." method="_on_button_helm_pressed"]
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills" to="." method="_on_vbox_stats1_gui_input"]
-
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses" to="." method="_on_vbox_stats2_gui_input"]
-
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks" to="." method="_on_vbox_stats2_gui_input"]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_buyPerk" to="." method="_on_button_buyPerk_pressed"]
-
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
-
 [connection signal="confirmed" from="confirm_instant_train" to="." method="_on_confirm_instant_train_confirmed"]
-
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
-
-

@@ -45,6 +45,7 @@ onready var buttonRevive = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/b
 onready var buttonDismiss = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_dismiss
 onready var buttonRename = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename
 onready var buttonRenameFirst = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_renameFirst
+onready var buttonShowHelm = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_helm
 
 #containers
 onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
@@ -176,6 +177,11 @@ func _ready():
 	populate_fields()
 	
 func populate_fields():
+	if (global.selectedHero.showMyHelm):
+		buttonShowHelm.set_pressed(true)
+	else:
+		buttonShowHelm.set_pressed(false)
+		
 	if (global.selectedHero.level < global.surnameLevel):
 		buttonRename.set_disabled(true)
 		label_heroName.text = global.selectedHero.heroFirstName
@@ -506,3 +512,8 @@ func _on_button_buyPerk_pressed():
 	_update_perks_tab()
 
 
+func _on_button_helm_pressed():
+	global.selectedHero.showMyHelm = !global.selectedHero.showMyHelm
+	populate_fields()
+	var heroScenes = get_tree().get_nodes_in_group("heroScene")
+	heroScenes[0]._draw_sprites()

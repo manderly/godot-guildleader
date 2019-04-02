@@ -21,6 +21,7 @@ var charClass = null
 #for distinguishing "walkers" (main scene) from usages of the hero not walking (hero page, buttons, etc) 
 var walkable = false
 var showName = true
+var showMyHelm = true
 
 var battlePrint = false
 
@@ -369,6 +370,15 @@ func _draw_sprites():
 		else:
 			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
 			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
+			
+		# a bit confusing here, in this context "head" is a helmet or head item
+		# not the depiction of the hero's actual head 
+		# todo: the player can also set a flag to display this hero's helmet or hide it 
+		if (equipment.head && showMyHelm):
+			$body/helm.texture = load("res://sprites/heroes/helm/" + equipment.head.bodySprite)
+		else:
+			$body/helm.hide()
+			
 	elif (sprite):
 		#otherwise, it's a oneBody
 		# oneBody are usually mobs but could be used later for special forms heroes take
@@ -384,3 +394,4 @@ func _draw_sprites():
 		$body/legs.hide()
 		$body/boot1.hide()
 		$body/boot2.hide()
+		$body/helm.hide()

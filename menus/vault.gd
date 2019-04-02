@@ -69,8 +69,9 @@ func _draw_vault_items():
 					else:
 						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
 						for p in range(global.guildItems[i].classRestrictions.size()):
-							if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.charClass.to_lower()):
-								thisHeroCanWear = true
+							if (global.guildItems[i].classRestrictions[p] != null):
+								if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.charClass.to_lower()):
+									thisHeroCanWear = true
 					if (!thisHeroCanWear):
 						currentButton.set_disabled(true)
 				elif (global.currentMenu == "blacksmithing"):

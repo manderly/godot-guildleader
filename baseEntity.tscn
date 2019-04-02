@@ -1,15 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://sprites/heroes/shadow.png" type="Texture" id=1]
 [ext_resource path="res://sprites/heroes/feet/boots02.png" type="Texture" id=2]
 [ext_resource path="res://sprites/heroes/legs/chainmail1.png" type="Texture" id=3]
 [ext_resource path="res://sprites/heroes/chest/chainmail1.png" type="Texture" id=4]
 [ext_resource path="res://sprites/heroes/head/elf_female_01.png" type="Texture" id=5]
-[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=6]
-[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=7]
-[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=8]
-[ext_resource path="res://particles/puff_64.png" type="Texture" id=9]
-[ext_resource path="res://particles/blob.png" type="Texture" id=10]
+[ext_resource path="res://sprites/heroes/helm/bucket.png" type="Texture" id=6]
+[ext_resource path="res://sprites/heroes/weaponMain/weaponMain01.png" type="Texture" id=7]
+[ext_resource path="res://sprites/heroes/offHand/weaponSecondary02.png" type="Texture" id=8]
+[ext_resource path="res://sprites/heroes/offHand/shield1.png" type="Texture" id=9]
+[ext_resource path="res://particles/puff_64.png" type="Texture" id=10]
+[ext_resource path="res://particles/blob.png" type="Texture" id=11]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.146947, 0.835878, 1 )
@@ -200,17 +201,20 @@ centered = false
 [node name="head" type="Sprite" parent="body"]
 texture = ExtResource( 5 )
 
+[node name="helm" type="Sprite" parent="body"]
+texture = ExtResource( 6 )
+
 [node name="weapon1" type="Sprite" parent="body"]
 position = Vector2( -11.8768, 23.5269 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="weapon2" type="Sprite" parent="body"]
 position = Vector2( 1.99084, 25.9922 )
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="shield" type="Sprite" parent="body"]
 position = Vector2( 19.7722, 19.2338 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="oneSprite" type="Sprite" parent="body"]
 
@@ -265,7 +269,7 @@ amount = 9
 lifetime = 4.0
 preprocess = 3.0
 process_material = SubResource( 5 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="particles_cloudAround" type="Particles2D" parent="."]
 visible = false
@@ -280,7 +284,7 @@ speed_scale = 6.73
 explosiveness = 0.56
 randomness = 1.0
 process_material = SubResource( 5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="particles_swirlAround" type="Particles2D" parent="."]
 visible = false
@@ -294,7 +298,7 @@ lifetime = 3.0
 speed_scale = 3.0
 explosiveness = 0.6
 process_material = SubResource( 5 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
