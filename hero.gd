@@ -547,23 +547,37 @@ func get_cleric_party_heal_amount():
 	var healAmount = 0;
 	var healManaCost = level * 3
 	if (manaCurrent > healManaCost):
-		healAmount = level * 4
+		healAmount = (level * 4) + (intelligence * 2)
 		manaCurrent -= healManaCost
 	return healAmount 
+
+func warrior_taunt_attacker():
+	var taunt = false;
+	# todo: take perk into account
+	var tauntRand = _get_rand_between(0, 20)
+	if (tauntRand >= 15):
+		taunt = true
+	return taunt
 	
 func get_druid_target_heal_amount():
 	return 100 #todo: fancy formula 
 
 func regen_hp_between_battles(campRespawnRate):
+	var startingHP = hpCurrent #snapshot so we can return the delta
 	var hpRegenerated = regenRateHP * (campRespawnRate / global.tickRate)
 	#print("recovering this many hp: " + str(hpRegenerated))
 	hpCurrent += hpRegenerated
 	if (hpCurrent > hp):
 		hpCurrent = hp
+		
+	return (hpCurrent - startingHP) #so we can append it to encounter log
 	
 func regen_mana_between_battles(campRespawnRate):
+	var startingMana = manaCurrent
 	var manaRegenerated = regenRateMana * (campRespawnRate / global.tickRate)
 	manaCurrent += manaRegenerated
 	if (manaCurrent > mana):
 		manaCurrent = mana
+	
+	return (manaCurrent - startingMana) #so we can append it to encounter log 
 	

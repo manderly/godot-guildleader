@@ -1,5 +1,7 @@
 extends Node
 var mobGenerator = load("res://mobGenerator.gd").new()
+var groupTarget = null
+
 # encounterGenerator.gd 
 
 # Terminology: 
@@ -141,7 +143,19 @@ func _calculate_average_level(entities):
 
 func _get_target_entity(targets):
 	if (targets.size()):
-		var target = targets[randi()%targets.size()]
+		var target = targets[0]
+		var allTheSameHP = true
+		for candidate in targets:
+			if candidate.hpCurrent < target.hpCurrent:
+				target = candidate #found a lower hp target
+				allTheSameHP = false
+		
+		# todo: prioritize elites, prioritize caster types 
+		if (allTheSameHP):
+			# no lower hp candidate was found, they're all the same, so just pick a random one
+			# should work even if they're all 1 hp 
+			# should work even if 
+			target = targets[randi()%targets.size()]
 		return target
 	else: 
 		print("ERROR: NOTHING TO PICK FROM")
@@ -166,6 +180,9 @@ func _get_random_battle_order(heroes, mobs):
 
 #modifies the current newBattle object directly
 func _target_mob_dies(targetMob, newBattle):
+	groupTarget = null
+	print("groupTarget is now: " + str(groupTarget))
+	print("targetMob is now: " + str(targetMob.mobName))
 	targetMob.dead = true
 	encounter.detailedPlayByPlay.append(targetMob.mobName + " was defeated!")
 	#newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
@@ -253,6 +270,7 @@ func _remove_from_battle_order(entity):
 func _calculate_battle_outcome(camp):
 	var heroes = camp.heroes
 	var spawnPointData = camp.spawnPointData
+	var groupWarrior = null
 	
 	encounter.detailedPlayByPlay.append("NEW BATTLE! Battle #" + str(battleNumber))
 	
@@ -277,8 +295,13 @@ func _calculate_battle_outcome(camp):
 	
 	for hero in heroes:
 		# regen hp and mana every X (global.tickRate) seconds of downtime (respawnRate)
-		hero.regen_hp_between_battles(camp.respawnRate)
-		hero.regen_mana_between_battles(camp.respawnRate) #hero.regenRateMana * (camp.respawnRate / 10)
+		var hpRecovered = hero.regen_hp_between_battles(camp.respawnRate)
+		var manaRecovered = hero.regen_mana_between_battles(camp.respawnRate) #hero.regenRateMana * (camp.respawnRate / 10)
+		
+		encounter.detailedPlayByPlay.append(hero.heroFirstName + " rested and recovered " + str(hpRecovered) + " hp and " + str(manaRecovered) + " mana")
+		
+		if (hero.charClass == "Warrior"):
+			groupWarrior = hero
 			
 		# Now that we're done regenning, make a snapshot of this hero's data for the vignette
 		battleSnapshot.heroDeltas[hero.heroID] = {
@@ -309,7 +332,7 @@ func _calculate_battle_outcome(camp):
 	for mob in randomMobs:
 		encounter.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
 	for hero in heroes:
-		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.charClass + " HP: " + str(hero.hpCurrent) + ")")
+		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.charClass + " HP: " + str(hero.hpCurrent) + "/" + str(hero.hp) + ")")
 		
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
@@ -346,15 +369,26 @@ func _calculate_battle_outcome(camp):
 			# only pick a hero to fight if any are left 
 			if (newBattle.heroes.size() > 0):
 				var mob = entity
-				#this mob's target (randomly picked for now)
+				# this mob's target determined by logic inside _get_target_entity
+				# generally prefers lowest hp hero 
 				var targetHero = _get_target_entity(newBattle.heroes) #crashes when there are null spots in hero array
 				var unmodifiedDamage = mob.get_melee_attack_damage()
 				var modifiedDamage = targetHero.calculate_melee_damage_mitigated(unmodifiedDamage, mob.level)
 				if (modifiedDamage == 0):
 					encounter.detailedPlayByPlay.append(mob.mobName + " tried to attack " + targetHero.heroFirstName + " but missed!")
 				else:
+					# if the group has a warrior, she attempts to defend targetHero
+					# todo: higher defense score = higher chance of blocking
+					if (targetHero.charClass != "Warrior" && groupWarrior):
+						var tauntSuccessful = groupWarrior.warrior_taunt_attacker()
+						if (tauntSuccessful):
+							var initialHero = targetHero
+							targetHero = groupWarrior
+							encounter.detailedPlayByPlay.append(mob.mobName + " tried to attack " + initialHero.heroFirstName + " but was BLOCKED by " + targetHero.heroFirstName + " who took " + str(modifiedDamage) + " points of damage instead.")
+						else:
+							encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(modifiedDamage) + " points of damage.")
 					targetHero.take_melee_damage(modifiedDamage)
-					encounter.detailedPlayByPlay.append(mob.mobName + " attacks " + targetHero.heroFirstName + " for " + str(modifiedDamage) + " points of damage")
+					
 				
 				if (targetHero.hpCurrent <= 0):
 					targetHero.set_dead()
@@ -371,9 +405,19 @@ func _calculate_battle_outcome(camp):
 				break
 		elif (entity.entityType == "hero"):
 			var hero = entity
-			#get an enemy target
 			var targetMob = null
-			targetMob = _get_target_entity(newBattle.mobs)
+			
+			# if we have a group target (we had a warrior use shout and set it)
+			if (groupTarget):
+				# print(hero.heroFirstName + " is using the established group target: " + groupTarget.mobName)
+				targetMob = groupTarget
+			else:
+				#pick a new one using the rules outlined in get_target_entity
+				targetMob = _get_target_entity(newBattle.mobs)
+				if (groupWarrior):
+					groupTarget = targetMob
+					encounter.detailedPlayByPlay.append(groupWarrior.heroFirstName + " uses SHOUT! The group is now focused on: " + groupTarget.mobName)
+					
 
 			if (hero.charClass == "Warrior" || hero.charClass == "Rogue" || hero.charClass == "Ranger"):
 				var unmodifiedDamage = hero.melee_attack()
@@ -438,7 +482,7 @@ func _calculate_battle_outcome(camp):
 						if (partyMember.hpCurrent < round(partyMember.hp * .50)):
 							individualInNeedOfHeal = partyMember
 				if (partyMembersInNeedOfHeal > 1):
-					print("2 or more in the group need a heal")
+					#print("2 or more in the group need a heal")
 					#heal ALL heroes in party
 					var healAmount = hero.get_cleric_party_heal_amount()
 					if (healAmount == 0):
@@ -456,7 +500,7 @@ func _calculate_battle_outcome(camp):
 					encounter.detailedPlayByPlay.append(hero.heroFirstName + " performs an individual heal")
 					individualInNeedOfHeal.get_healed(healAmount)
 				elif (partyMembersInNeedOfTopoff > 1):
-					print("the group could use a topoff if there's mana for it")
+					#print("the group could use a topoff if there's mana for it")
 					if hero.manaCurrent > (hero.mana * .92):
 						# cleric is at 92% mana or more, go ahead and top the group off
 						var healAmount = hero.get_cleric_party_heal_amount()

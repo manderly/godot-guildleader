@@ -30,10 +30,11 @@ func _hide_extended_stats():
 	$field_debug.hide()
 	
 #classLevelModifiers are in baseEntity near the top
+# mobs are meant to be fought by a group of heroes so they're tougher
 func level_up():
 	level += int(1)
-	hp = int(round(hp * classLevelModifiers[mobClass].hp))
-	mana = int(round(mana * classLevelModifiers[mobClass].mana))
+	hp = int(round(hp * classLevelModifiers[mobClass].hp * 1.06))
+	mana = int(round(mana * classLevelModifiers[mobClass].mana * 1.05))
 	strength = int(round(strength * classLevelModifiers[mobClass].strength))
 	defense = int(round(defense * classLevelModifiers[mobClass].defense))
 	
