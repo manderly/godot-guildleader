@@ -241,6 +241,8 @@ func save():
 		"groupBonus":thisHero.groupBonus,
 		"raidBonus":thisHero.raidBonus,
 		"equipment":thisHero.equipment,
+		"perkPoints":thisHero.perkPoints,
+		"perks":thisHero.perks,
 		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 
 		"isPlayer":thisHero.isPlayer,
 		"entityType":thisHero.entityType,
