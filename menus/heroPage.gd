@@ -505,11 +505,13 @@ func _on_button_buyPerk_pressed():
 		if (global.selectedHero.perkPoints >= 1):
 			global.selectedHero.take_perk_points(1)
 			global.selectedHero.perks[perkOnDeckKey].pointsSpent += 1
+			global.selectedHero.update_hero_stats()
 		else:
 			print("Not enough perk points to buy this perk.")
 	else:
 		print("This perk is full")
 	_update_perks_tab()
+	_update_stats()
 
 func _redraw_hero():
 	#it's the only thing in this group

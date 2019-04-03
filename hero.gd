@@ -279,6 +279,20 @@ func _stop_walking():
 	elif (walkingToBattlePoint):
 		walkingToBattlePoint = false
 	
+func get_perk_bonus(perkIDStr):
+	var bonus = 0
+	if (perkIDStr in perks):
+		if (perks[perkIDStr].pointsSpent >= 1):
+			bonus += perks[perkIDStr].level1
+		
+		if (perks[perkIDStr].pointsSpent >= 2):
+			bonus += perks[perkIDStr].level2
+			
+		if (perks[perkIDStr].pointsSpent == 3):
+			bonus += perks[perkIDStr].level3
+		
+	return bonus
+		
 func set_instance_data(data):
 	heroFirstName = data.heroFirstName
 	heroLastName = data.heroLastName
@@ -319,6 +333,7 @@ func set_instance_data(data):
 	savedPositionY = data.savedPositionY
 	isPlayer = data.isPlayer
 	showMyHelm = data.showMyHelm
+	perks = data.perks
 
 #call this method after assigning equipment to a hero (or removing it from a hero)
 func update_hero_stats():
@@ -366,14 +381,20 @@ func update_hero_stats():
 			#groupBonus is a different system (todo) 
 			#raidBonus is a different system (todo)
 			#drama and mood are not affected by equipment
+
+	# calculate perk bonuses
+	var dpsFromPerks = get_perk_bonus("perkAny01")
+	var hpFromPerks = get_perk_bonus("perkAny02")
+	var hpFromPerksMelee = get_perk_bonus("perkMelee01")
+	var manaFromPerksCaster = get_perk_bonus("perkCaster01")
 	
 	#finally, update the hero's stats 
 	#global.logger(self, "updating hero stats on hero itself")
-	hp = baseHp + modifiedHp
-	mana = baseMana + modifiedMana
+	hp = baseHp + modifiedHp + hpFromPerks + (hp * (hpFromPerksMelee * .01))
+	mana = baseMana + modifiedMana + (mana * (manaFromPerksCaster * .01))
 	#global.logger(self, "new hp total: " + str(hp))
 	armor = baseArmor + modifiedArmor
-	dps = baseDps + modifiedDps
+	dps = baseDps + modifiedDps + dpsFromPerks
 	strength = baseStrength + modifiedStrength
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
