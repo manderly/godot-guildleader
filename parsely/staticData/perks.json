@@ -7,9 +7,9 @@
     "levels": 3,
     "visibleToMe": true,
     "level1": 1,
-    "level2": 2,
-    "level3": 3,
-    "description": "Each level adds a permanent DPS bonus, +1, +2, and +3 DPS respectively."
+    "level2": 3,
+    "level3": 7,
+    "description": "Each level adds a permanent DPS bonus, +1, +3, and +7 DPS respectively."
   },
   {
     "perkId": "perkAny02",
@@ -18,10 +18,10 @@
     "pointsSpent": 0,
     "levels": 3,
     "visibleToMe": true,
-    "level1": 15,
-    "level2": 25,
-    "level3": 50,
-    "description": "Each level adds a permanent HP bonus, +15, +25, +50 HP respectively."
+    "level1": 25,
+    "level2": 50,
+    "level3": 125,
+    "description": "Each level adds a permanent HP bonus, +25, +50, +125 HP respectively."
   },
   {
     "perkId": "perkAny03",
@@ -64,72 +64,72 @@
     "perkName": "Fortitude",
     "restriction": "melee",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
-    "level1": 5,
-    "level2": "",
-    "level3": "",
-    "description": "Increase hero's total HP by 5%."
+    "level1": 2,
+    "level2": 6,
+    "level3": 10,
+    "description": "Increase hero's total HP by 2%, 5%, 10%."
   },
   {
     "perkId": "perkMelee02",
     "perkName": "Lightning Reflexes",
     "restriction": "melee",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
-    "level1": 5,
-    "level2": "",
-    "level3": "",
-    "description": "Increase hero's chance to dodge by 5%."
+    "level1": 1,
+    "level2": 2,
+    "level3": 5,
+    "description": "Increase hero's chance to dodge by 1%, 2%, and 5% respectively."
   },
   {
     "perkId": "perkCaster01",
     "perkName": "Expanding Mind",
     "restriction": "caster",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
-    "level1": 5,
-    "level2": "",
-    "level3": "",
-    "description": "Increase hero's total mana by 5%"
+    "level1": 3,
+    "level2": 7,
+    "level3": 15,
+    "description": "Increase hero's total mana by 3%, 7%, 15%"
   },
   {
     "perkId": "perkCaster02",
     "perkName": "Mental Leap",
     "restriction": "caster",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
-    "level1": 15,
-    "level2": "",
-    "level3": "",
-    "description": "This hero recovers 15% more mana between battles."
+    "level1": 5,
+    "level2": 10,
+    "level3": 15,
+    "description": "This hero recovers 5%, 10%, 15% more mana between battles."
   },
   {
     "perkId": "perkSupport01",
     "perkName": "Team Player",
     "restriction": "support",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
     "level1": 5,
-    "level2": "",
-    "level3": "",
-    "description": "Improve this hero's healing capabilities by 5%"
+    "level2": 12,
+    "level3": 20,
+    "description": "Improve this hero's healing capabilities by 5%, 12%, 20% respectively."
   },
   {
     "perkId": "perkSupport02",
     "perkName": "Hasty Recovery",
     "restriction": "support",
     "pointsSpent": 0,
-    "levels": 1,
+    "levels": 3,
     "visibleToMe": false,
-    "level1": 5,
-    "level2": "",
-    "level3": "",
-    "description": "Heroes in a group with this hero recover 5% more hitpoints between battles"
+    "level1": 3,
+    "level2": 7,
+    "level3": 15,
+    "description": "Heroes in a group with this hero recover 3%, 7%, and 15% more hitpoints between battles"
   },
   {
     "perkId": "perkCleric",
@@ -139,8 +139,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 0,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "Heroes revived by this Cleric come back with no resurrection sickness."
   },
   {
@@ -151,8 +151,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 16,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "Heroes in a group with this Druid gain a thorny damage shield that injures enemies who "
   },
   {
@@ -163,8 +163,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 25,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "Increase this Warrior's chance of drawing aggro by 25%"
   },
   {
@@ -175,8 +175,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 2,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "This Ranger gains a small chance to shoot an arrow directly into an enemy's heart, killing it instantly."
   },
   {
@@ -187,8 +187,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 25,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "This Rogue is 25% more likely to successfully pick an enemy's pocket."
   },
   {
@@ -199,8 +199,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 2,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "This Wizard's spells gain a small chance of hopping to adajcent enemies, inflicting damage to multiple enemies at once."
   },
   {
@@ -211,8 +211,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 15,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "This Paladin gains the ability to cast a protective shield onto all group members at the start of a fight."
   },
   {
@@ -223,8 +223,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 0,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "TBD"
   },
   {
@@ -235,8 +235,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 0,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "TBD"
   },
   {
@@ -247,8 +247,8 @@
     "levels": 1,
     "visibleToMe": false,
     "level1": 0,
-    "level2": "",
-    "level3": "",
+    "level2": null,
+    "level3": null,
     "description": "TBD"
   }
 ]

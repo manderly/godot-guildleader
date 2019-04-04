@@ -387,12 +387,16 @@ func update_hero_stats():
 	var hpFromPerks = get_perk_bonus("perkAny02")
 	var hpFromPerksMelee = get_perk_bonus("perkMelee01")
 	var manaFromPerksCaster = get_perk_bonus("perkCaster01")
+	var manaRegenRateFromPerks = get_perk_bonus("perkCaster02")
 	
 	#finally, update the hero's stats 
 	#global.logger(self, "updating hero stats on hero itself")
-	hp = baseHp + modifiedHp + hpFromPerks + (hp * (hpFromPerksMelee * .01))
-	mana = baseMana + modifiedMana + (mana * (manaFromPerksCaster * .01))
-	#global.logger(self, "new hp total: " + str(hp))
+	hp = baseHp + modifiedHp + hpFromPerks
+	hp += hp * (hpFromPerksMelee * .01)
+	
+	mana = baseMana + modifiedMana 
+	mana += mana * (manaFromPerksCaster * .01)
+	
 	armor = baseArmor + modifiedArmor
 	dps = baseDps + modifiedDps + dpsFromPerks
 	strength = baseStrength + modifiedStrength
@@ -400,6 +404,7 @@ func update_hero_stats():
 	intelligence = baseIntelligence + modifiedIntelligence
 	regenRateHP = baseRegenRateHP + modifiedRegenRateHP
 	regenRateMana = baseRegenRateMana + modifiedRegenRateMana
+	regenRateMana = regenRateMana * (manaRegenRateFromPerks * .01)
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
