@@ -18,6 +18,8 @@ var displayINT = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayHPRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displayManaRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
+var displayCritChance = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
 #Skills
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -145,6 +147,8 @@ func _ready():
 	
 	tabStatsRight.add_child(displayHPRegen)
 	tabStatsRight.add_child(displayManaRegen)
+	
+	tabStatsRight.add_child(displayCritChance)
 	
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
@@ -293,7 +297,7 @@ func _update_stats():
 	
 	displayHPRegen._update_fields("HP Regen", global.selectedHero.regenRateHP)
 	displayManaRegen._update_fields("Mana Regen", global.selectedHero.regenRateMana)
-	
+	displayCritChance._update_fields("Crit Chance", str(global.selectedHero.criticalHitChance) + "%")
 	#skills
 	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)
 	displaySkillBlacksmithing._update_fields("Blacksmithing", global.selectedHero.skillBlacksmithing)

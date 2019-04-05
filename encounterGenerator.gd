@@ -436,6 +436,8 @@ func _calculate_battle_outcome(camp):
 			elif (hero.charClass == "Wizard"):
 				#nuke
 				var nukeDmg = hero.get_nuke_dmg()
+				var criticalDmg = hero.get_critical_extra_dmg()
+								
 				var mobBaseResist = targetMob.get_base_resist(hero.level)
 
 				#now roll to see if the mob resists some of the spell dmg
@@ -450,14 +452,27 @@ func _calculate_battle_outcome(camp):
 					else:
 						#partial resist because hero is higher level than mob
 						var resistRand = _get_rand_between(1, targetMob.baseResist+1)
+						
+						if (criticalDmg > 0):
+							nukeDmg = nukeDmg + criticalDmg
+						
 						var modifiedNukeDmg = (nukeDmg / resistRand)
 	
-						encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+						if (criticalDmg > 0):
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " scores a CRITICAL HIT and nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+						else:
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
+						
 						targetMob.take_spell_damage(modifiedNukeDmg)
 						
 				else:
-					#full damage
-					encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+					#no resist, full damage
+					if (criticalDmg > 0):
+						nukeDmg = nukeDmg + criticalDmg
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " scores a CRITICAL HIT and nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+					else:
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " nukes " + targetMob.mobName + " for " + str(nukeDmg) + " points of damage!")
+					
 					targetMob.take_spell_damage(nukeDmg)
 				
 				if targetMob.hpCurrent <= 0:

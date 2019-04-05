@@ -228,6 +228,7 @@ func save():
 		"intelligence":thisHero.intelligence,
 		"regenRateHP":thisHero.regenRateHP,
 		"regenRateMana":thisHero.regenRateMana,
+		"criticalHitChance":thisHero.criticalHitChance,
 		"skillAlchemy":thisHero.skillAlchemy,
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
 		"skillChronomancy":thisHero.skillChronomancy,
@@ -316,6 +317,7 @@ func set_instance_data(data):
 	manaCurrent = data.manaCurrent
 	regenRateHP = data.regenRateHP
 	regenRateMana = data.regenRateMana
+	criticalHitChance = data.criticalHitChance
 	equipment = {
 		"mainHand": data.equipment.mainHand,
 		"offHand": data.equipment.offHand,
@@ -352,6 +354,7 @@ func update_hero_stats():
 	modifiedIntelligence = 0
 	modifiedRegenRateHP = 0
 	modifiedRegenRateMana = 0
+	modifiedCriticalHitChance = 0
 	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
 	modifiedSkillChronomancy = 0
@@ -376,6 +379,8 @@ func update_hero_stats():
 			modifiedIntelligence += equip.intelligence
 			modifiedRegenRateHP += equip.regenRateHP
 			modifiedRegenRateMana += equip.regenRateMana
+			#todo: equipment could/should offer extra bonuses, like a crit chance
+			#modifiedCriticalHitChance += equip.criticalHitChance
 			modifiedPrestige += equip.prestige
 			#skill stats to come later (todo) 
 			#groupBonus is a different system (todo) 
@@ -388,6 +393,7 @@ func update_hero_stats():
 	var hpFromPerksMelee = get_perk_bonus("perkMelee01")
 	var manaFromPerksCaster = get_perk_bonus("perkCaster01")
 	var manaRegenRateFromPerks = get_perk_bonus("perkCaster02")
+	var criticalHitChanceFromPerks = get_perk_bonus("perkAny03")
 	
 	#finally, update the hero's stats 
 	#global.logger(self, "updating hero stats on hero itself")
@@ -403,8 +409,14 @@ func update_hero_stats():
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
 	regenRateHP = baseRegenRateHP + modifiedRegenRateHP
+	
+	# todo: finish checking that perks actually affect mana regen rate
 	regenRateMana = baseRegenRateMana + modifiedRegenRateMana
 	regenRateMana = regenRateMana * (manaRegenRateFromPerks * .01)
+	
+	criticalHitChance = baseCriticalHitChance + modifiedCriticalHitChance
+	criticalHitChance = criticalHitChance + criticalHitChanceFromPerks
+	
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
@@ -568,9 +580,26 @@ func ghost_mode(ghostMode):
 		$body.modulate = Color(1, 1, 1)
 		$particles_ghost.set_emitting(false)
 		$particles_ghost.hide()
+
+func get_critical_extra_dmg():
+	var extraDamage = 0
+	var roll = randi()%100+1 #(roll between 1-100)
+	if (roll <= criticalHitChance):
+		#how much extra damage? random again to find out 
+		extraDamage = randi()%((level*5)+20)
+		print("extra damage: " + str(extraDamage))
+		# SUPER extra damage? random one last time to find out
+		var impressiveDamageRoll = randi()%200
+		print(impressiveDamageRoll)
+		if (impressiveDamageRoll <= intelligence):
+			extraDamage = (extraDamage*2) #double it 
+			print("adding impressive damage for a nuke of: " + str(extraDamage))
+	return extraDamage
 	
 func get_nuke_dmg():
-	return level * intelligence
+	var nukeDmg = level * intelligence
+	
+	return nukeDmg
 	
 func get_cleric_party_heal_amount():
 	#todo: take perks into account

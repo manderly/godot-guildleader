@@ -51,6 +51,7 @@ var baseRaidBonus = "none"
 
 var baseRegenRateHP = 1
 var baseRegenRateMana = 1
+var baseCriticalHitChance = 2
 	
 var classLevelModifiers = {
 	"Warrior":{
@@ -110,6 +111,7 @@ var modifiedPrestige = 0
 
 var modifiedRegenRateHP = 0
 var modifiedRegenRateMana = 0
+var modifiedCriticalHitChance = 0
 
 #TODO: Buffs - someday, buffs will affect stats, too. 
 
@@ -138,6 +140,7 @@ var raidBonus = "none"
 
 var regenRateHP = -1
 var regenRateMana = -1
+var criticalHitChance = -1
 
 #This hero's items (equipment)
 #to access: heroInstance.equipment.mainHand
