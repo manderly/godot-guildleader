@@ -422,11 +422,20 @@ func _calculate_battle_outcome(camp):
 			if (hero.charClass == "Warrior" || hero.charClass == "Rogue" || hero.charClass == "Ranger"):
 				var unmodifiedDamage = hero.melee_attack()
 				var modifiedDamage = targetMob.calculate_melee_damage_mitigated(unmodifiedDamage, hero.level)
-				if (modifiedDamage == 0):
-					encounter.detailedPlayByPlay.append(hero.heroFirstName + " tried to attack " + targetMob.mobName + " but missed!")
+				
+				# if ranger, see if she has the insta-kill perk
+				if (hero.charClass == "Ranger" && hero.has_perk("perkRanger")):
+					var heartShot = hero.get_ranger_heart_shot()
+					if (heartShot):
+						modifiedDamage = 100000
+						targetMob.take_melee_damage(modifiedDamage)
+						encounter.detailedPlayByPlay.append("SHOT THROUGH THE HEART! And " + hero.heroFirstName + "'s to blame. " + targetMob.mobName + " died instantly.")
 				else:
-					targetMob.take_melee_damage(modifiedDamage)
-					encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
+					if (modifiedDamage == 0):
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " tried to attack " + targetMob.mobName + " but missed!")
+					else:
+						targetMob.take_melee_damage(modifiedDamage)
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " attacked " + targetMob.mobName + " for " + str(unmodifiedDamage) + " points of damage")
 
 				#see if mob should die 
 				if targetMob.hpCurrent <= 0:

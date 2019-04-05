@@ -279,6 +279,13 @@ func _stop_walking():
 		$idleTimer.start()
 	elif (walkingToBattlePoint):
 		walkingToBattlePoint = false
+
+func has_perk(perkIDStr):
+	var hasPerk = false
+	if (perkIDStr in perks):
+		if (perks[perkIDStr].pointsSpent >= 1):
+			hasPerk = true
+	return hasPerk
 	
 func get_perk_bonus(perkIDStr):
 	var bonus = 0
@@ -598,7 +605,6 @@ func get_critical_extra_dmg():
 	
 func get_nuke_dmg():
 	var nukeDmg = level * intelligence
-	
 	return nukeDmg
 	
 func get_cleric_party_heal_amount():
@@ -617,6 +623,14 @@ func warrior_taunt_attacker():
 	if (tauntRand >= 15):
 		taunt = true
 	return taunt
+	
+func get_ranger_heart_shot():
+	var heartShot = false
+	# if perk active, ranger has a 2% chance of doing an instakill 
+	var roll = randi()%100+1 #(roll between 1-100)
+	if (roll <= 2):
+		heartShot = true
+	return heartShot
 	
 func get_druid_target_heal_amount():
 	return 100 #todo: fancy formula 
