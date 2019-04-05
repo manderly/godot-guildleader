@@ -31,9 +31,9 @@
     "levels": 3,
     "visibleToMe": true,
     "level1": 2,
-    "level2": 5,
-    "level3": 10,
-    "description": "Each level increases this hero's chance of landing a critical hit, +2%, +5%, and +10% respectively."
+    "level2": 3,
+    "level3": 5,
+    "description": "Each level increases this hero's chance of landing a critical hit, +2%, +3%, and +5% respectively."
   },
   {
     "perkId": "perkAny04",
