@@ -1,119 +1,47 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/itemButton.gd" type="Script" id=1]
 [ext_resource path="res://gui/sprite_inventory_button.png" type="Texture" id=2]
+[ext_resource path="res://particles/tinySparkle_16.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxTexture" id=1]
-
-content_margin_left = -1.0
-content_margin_right = -1.0
-content_margin_top = -1.0
-content_margin_bottom = -1.0
 texture = ExtResource( 2 )
 region_rect = Rect2( 0, 0, 64, 64 )
 margin_left = 11.0
 margin_right = 11.0
 margin_top = 11.0
 margin_bottom = 11.0
-expand_margin_left = 0.0
-expand_margin_right = 0.0
-expand_margin_top = 0.0
-expand_margin_bottom = 0.0
-modulate_color = Color( 1, 1, 1, 1 )
-draw_center = true
-_sections_unfolded = [ "Margin" ]
 
 [node name="Control" type="Control"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 70.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 70, 80 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Rect", "Size Flags", "Transform" ]
 
-[node name="Button" type="Button" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="Button" type="Button" parent="."]
 margin_right = 70.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 70, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 custom_styles/normal = SubResource( 1 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
-align = 1
-_sections_unfolded = [ "Rect", "Size Flags", "custom_styles" ]
 
-[node name="field_slotName" type="Label" parent="Button" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_slotName" type="Label" parent="Button"]
 margin_left = -32.0
 margin_top = 75.0
 margin_right = 102.0
 margin_bottom = 89.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#NAME"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="sprite_itemIcon" type="Sprite" parent="Button" index="1"]
-
+[node name="sprite_itemIcon" type="Sprite" parent="Button"]
 position = Vector2( 34.64, 35.4043 )
+texture = ExtResource( 3 )
 
-[node name="field_vaultIdx" type="Label" parent="Button" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_vaultIdx" type="Label" parent="Button"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 41.0
 margin_bottom = 15.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "idx:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-
-

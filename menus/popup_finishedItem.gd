@@ -23,8 +23,14 @@ func _show_skill_up_text(showBool):
 	else:
 		skillUpField.hide()
 	
-func _set_icon(iconPath):
-	$elements/sprite_icon.texture = load("res://sprites/items/" + iconPath)
+func _set_icon(data):
+	print(data)
+	$elements/sprite_icon.texture = load("res://sprites/items/" + data.icon)
+	if ("tint" in data):
+		if (data.tint != null):
+			$elements/sprite_icon.modulate = tints[data.tint]
+		else:
+			$elements/sprite_icon.modulate = Color(1,1,1,1)
 
 func _on_finishedItem_dialog_confirmed():
 	emit_signal("collectItem")

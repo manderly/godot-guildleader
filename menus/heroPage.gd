@@ -128,8 +128,11 @@ func _ready():
 		if (global.selectedHero["equipment"][slot] != null):
 			#global.logger(self, "this hero has an item in their slot: " + slot)
 			#global.logger(self, global.selectedHero["equipment"][slot])
-			heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
-			heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
+			print("making a item button")
+			heroInventoryButton._render_hero_page(global.selectedHero["equipment"][slot])
+			
+			#heroInventoryButton._set_icon(global.selectedHero["equipment"][slot]["icon"]) #put item's icon on button 
+			#heroInventoryButton._set_data(global.selectedHero["equipment"][slot])
 	
 		inventoryGrid.add_child(heroInventoryButton)
 		

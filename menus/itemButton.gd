@@ -50,6 +50,7 @@ func _clear_label():
 	
 func _set_icon(filename):
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + filename)
+	$Button/sprite_itemIcon.modulate = tints.ghost
 
 func _clear_icon():
 	$Button/sprite_itemIcon.texture = null
@@ -69,17 +70,28 @@ func _clear_vault_index():
 func set_disabled(boolVal):
 	if (!boolVal):
 		$Button.disabled = false
-		$Button.modulate = Color(1,1,1,1)
-		$Button/sprite_itemIcon.modulate = Color(1,1,1)
+		#$Button.modulate = Color(1,1,1,1)
+		#$Button/sprite_itemIcon.modulate = Color(1,1,1)
 	else:
 		#false, button is enabled 
 		$Button.disabled = true
 		$Button.modulate = Color(0.5,0.5,0.5,1)
 		$Button/sprite_itemIcon.modulate = Color(0.25,0.25,0.25)
 		
+func _render_item_sprite(data):
+	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	if (data.tint):
+		$Button/sprite_itemIcon.modulate = tints[data.tint]
+	else:
+		$Button/sprite_itemIcon.modulate = Color(1,1,1,1)
+		
+func _render_hero_page(data):
+	itemData = data
+	_render_item_sprite(data)
+	
 func _render_vault(data):
 	itemData = data
-	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	_render_item_sprite(data)
 	if (data.itemType == "arrow"):
 		$Button/field_slotName.text = "Arrow"
 	else:
@@ -87,7 +99,7 @@ func _render_vault(data):
 	
 func _render_tradeskill(data):
 	itemData = data
-	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	_render_item_sprite(data)
 	$Button/field_slotName.show()
 	$Button/field_slotName.text = itemData.name
 	
@@ -100,11 +112,13 @@ func _render_currency(data): #pass "Coin" or "Chrono"
 func _render_camp_loot(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/sprite_itemIcon.modulate = tints.ghost
 	$Button/field_slotName.hide()
 	
 func _render_quest_prize(data):
 	itemData = data
 	$Button/sprite_itemIcon.texture = load("res://sprites/items/" + data.icon)
+	$Button/sprite_itemIcon.modulate = tints.ghost
 	$Button/field_slotName.hide()
 	
 func _clear_tradeskill():

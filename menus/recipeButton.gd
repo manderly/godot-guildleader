@@ -19,6 +19,8 @@ func set_recipe_data(data):
 		else:
 			var previewItemInstance = staticData.items[data.result].duplicate()
 			$TextureRect.texture = load("res://sprites/items/" + previewItemInstance.icon)
+			if (previewItemInstance.tint):
+				$TextureRect.modulate = tints[previewItemInstance.tint]
 	else:
 		$TextureRect.texture = load("res://sprites/icons/upgrade_arrow.png")
 		

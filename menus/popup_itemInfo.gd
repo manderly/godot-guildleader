@@ -71,6 +71,11 @@ func _populate_fields():
 	field_itemName.text = itemData.name
 
 	sprite_itemIcon.texture = load("res://sprites/items/" + itemData.icon)
+	if (itemData.tint):
+		sprite_itemIcon.modulate = tints[itemData.tint]
+	else:
+		sprite_itemIcon.modulate = Color(1,1,1,1)
+		
 	field_slot.text = itemData.slot.capitalize()
 
 	if (!itemData.noDrop):

@@ -313,7 +313,7 @@ func _open_collect_result_popup():
 	else:
 		finishedItemPopup._show_skill_up_text(false)
 		
-	finishedItemPopup._set_icon(staticData.items[str(tradeskill.currentlyCrafting.name)].icon)
+	finishedItemPopup._set_icon(staticData.items[str(tradeskill.currentlyCrafting.name)])  #staticData.items[str(tradeskill.currentlyCrafting.name)].icon)
 	
 	#since we don't actually create the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 

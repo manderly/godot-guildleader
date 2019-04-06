@@ -5,98 +5,36 @@
 [ext_resource path="res://sprites/items/alexandrite.png" type="Texture" id=3]
 
 [node name="recipeButton" type="Button"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 400.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 460, 50 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 theme = ExtResource( 1 )
 toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-flat = false
 align = 0
 script = ExtResource( 2 )
-_sections_unfolded = [ "Rect", "Theme" ]
 
-[node name="TextureRect" type="TextureRect" parent="." index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="TextureRect" type="TextureRect" parent="."]
 margin_left = 4.0
 margin_top = 3.0
 margin_right = 68.0
 margin_bottom = 67.0
 rect_scale = Vector2( 0.65, 0.65 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 3 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
 
-[node name="field_recipeNameAndTrivial" type="Label" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_recipeNameAndTrivial" type="Label" parent="."]
 margin_left = 48.0
 margin_top = 18.0
 margin_right = 228.0
 margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#RECIPE NAME AND TRIVIAL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
-[node name="field_timeToCreate" type="Label" parent="." index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_timeToCreate" type="Label" parent="."]
 margin_left = 404.0
 margin_top = 14.0
 margin_right = 444.0
 margin_bottom = 34.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "60s"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
 
 [connection signal="pressed" from="." to="." method="_on_recipeButton_pressed"]
-
-
