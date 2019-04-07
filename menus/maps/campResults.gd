@@ -71,11 +71,7 @@ func _on_button_collect_pressed():
 	for slot in campData.groupSize:
 		global.activeCampData[global.selectedCampID].heroes.append(null)
 
-	print("going back to " + global.returnToMap)
-	if (global.returnToMap == "forest"):
-		get_tree().change_scene("res://menus/maps/forest.tscn")
-	elif (global.returnToMap == "coast"):
-		get_tree().change_scene("res://menus/maps/coast.tscn")
+	get_tree().change_scene(global.returnToMap)
 	
 func _on_button_detailedCombatLog_pressed():
 	campLogPopup.popup()
