@@ -1,5 +1,12 @@
 [
   {
+    "tintName": "clear",
+    "red": 255,
+    "green": 255,
+    "blue": 255,
+    "alpha": 100
+  },
+  {
     "tintName": "bronze",
     "red": 201,
     "green": 102,
@@ -95,6 +102,34 @@
     "red": 204,
     "green": 178,
     "blue": 255,
+    "alpha": 100
+  },
+  {
+    "tintName": "teal",
+    "red": 0,
+    "green": 255,
+    "blue": 255,
+    "alpha": 100
+  },
+  {
+    "tintName": "lightTeal",
+    "red": 209,
+    "green": 248,
+    "blue": 248,
+    "alpha": 100
+  },
+  {
+    "tintName": "lime",
+    "red": 100,
+    "green": 150,
+    "blue": 50,
+    "alpha": 100
+  },
+  {
+    "tintName": "softYellow",
+    "red": 247,
+    "green": 245,
+    "blue": 207,
     "alpha": 100
   }
 ]

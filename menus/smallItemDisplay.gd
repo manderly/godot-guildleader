@@ -15,13 +15,15 @@ func _display_in_vault(ingredientData):
 	_set_white()
 	$sprite_icon.texture = load("res://sprites/items/" + ingredientData.icon)
 	if ("tint" in ingredientData):
-		$sprite_icon.modulate = tints[ingredientData.tint]
+		if (ingredientData.tint != null):
+			$sprite_icon.modulate = tints[ingredientData.tint]
 	
 func _render_stacked_item(itemData, quantity):
 	$field_name.text = itemData.name + " x" + str(quantity)
 	$sprite_icon.texture = load("res://sprites/items/" + itemData.icon)
 	if ("tint" in itemData):
-		$sprite_icon.modulate = tints[itemData.tint]
+		if (itemData.tint != null):
+			$sprite_icon.modulate = tints[itemData.tint]
 
 func _render_stacked_item_with_total(itemData, quantity, total):
 	if (total > 999):

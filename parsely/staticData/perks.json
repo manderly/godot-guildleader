@@ -102,10 +102,10 @@
     "pointsSpent": 0,
     "levels": 3,
     "visibleToMe": false,
-    "level1": 5,
-    "level2": 10,
-    "level3": 15,
-    "description": "This hero recovers 5%, 10%, 15% more mana between battles."
+    "level1": 2,
+    "level2": 5,
+    "level3": 10,
+    "description": "Each level adds a permanent bonus to this hero's mana regeneration rate, +2, +5, and +10 mana per tick, respectively."
   },
   {
     "perkId": "perkSupport01",

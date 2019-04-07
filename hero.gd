@@ -415,11 +415,12 @@ func update_hero_stats():
 	strength = baseStrength + modifiedStrength
 	defense = baseDefense + modifiedDefense
 	intelligence = baseIntelligence + modifiedIntelligence
+	
 	regenRateHP = baseRegenRateHP + modifiedRegenRateHP
 	
 	# todo: finish checking that perks actually affect mana regen rate
-	regenRateMana = baseRegenRateMana + modifiedRegenRateMana
-	regenRateMana = regenRateMana * (manaRegenRateFromPerks * .01)
+	regenRateMana = baseRegenRateMana + modifiedRegenRateMana + manaRegenRateFromPerks
+	#regenRateMana += (regenRateMana * (manaRegenRateFromPerks * .01)) # from when regen rate perk was a % instead of a flat +N 
 	
 	criticalHitChance = baseCriticalHitChance + modifiedCriticalHitChance
 	criticalHitChance = criticalHitChance + criticalHitChanceFromPerks
@@ -607,12 +608,21 @@ func get_nuke_dmg():
 	var nukeDmg = level * intelligence
 	return nukeDmg
 	
+func get_cleric_individual_heal_amount():
+	#todo: take perks into account
+	var healAmount = 0;
+	var healManaCost = level * 10
+	if (manaCurrent > healManaCost):
+		healAmount = (level * 5) + (intelligence * 2)
+		manaCurrent -= healManaCost
+	return healAmount 
+	
 func get_cleric_party_heal_amount():
 	#todo: take perks into account
 	var healAmount = 0;
-	var healManaCost = level * 3
+	var healManaCost = level * 8
 	if (manaCurrent > healManaCost):
-		healAmount = (level * 4) + (intelligence * 2)
+		healAmount = (level * 3) + (intelligence * 2)
 		manaCurrent -= healManaCost
 	return healAmount 
 

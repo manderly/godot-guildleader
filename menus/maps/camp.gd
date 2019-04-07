@@ -151,7 +151,6 @@ func _populate_fields():
 	
 		#don't make class recommendations until the player has picked a few heroes
 	if (campData.campHeroesSelected >= 3):
-		print("calculating recommendations...")
 		var difficultyString = _calculate_estimated_difficulty()
 		field_difficultyEstimate.text = difficultyString
 		var classMakeupString = _calculate_recommended_classes()

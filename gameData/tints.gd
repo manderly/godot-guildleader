@@ -1,4 +1,5 @@
 extends Node
+var clear = Color(1.000, 1.000, 1.000, 1.00)
 var bronze = Color(0.788, 0.400, 0.027, 1.00)
 var rubyRed = Color(0.608, 0.059, 0.059, 1.00)
 var darkBlue = Color(0.039, 0.196, 0.784, 1.00)
@@ -13,3 +14,7 @@ var yellow = Color(0.929, 0.910, 0.247, 1.00)
 var red = Color(0.890, 0.176, 0.157, 1.00)
 var darkRed = Color(0.420, 0.012, 0.000, 1.00)
 var ghost = Color(0.800, 0.698, 1.000, 1.00)
+var teal = Color(0.000, 1.000, 1.000, 1.00)
+var lightTeal = Color(0.820, 0.973, 0.973, 1.00)
+var lime = Color(0.392, 0.588, 0.196, 1.00)
+var softYellow = Color(0.969, 0.961, 0.812, 1.00)

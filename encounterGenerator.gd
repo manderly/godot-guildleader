@@ -74,14 +74,28 @@ func _ready():
 	pass
 
 func _get_rand_between(firstVal, secondVal):
-	var bottom = firstVal
-	var top = secondVal
+	
+	var minVal = firstVal
+	var maxVal = secondVal
 	
 	if (secondVal < firstVal): #figure out which value is lower (ie: if we pass (8,0) we can't use them as-is) 
-		bottom = secondVal
-		top = firstVal
+		minVal = secondVal
+		maxVal = firstVal
+	# random between 0 and 1 seems to be broken, always get 1
+	var randNumRaw = randi()% ((maxVal - minVal) + 1) 
+	var randNum = randNumRaw + minVal
+	#print("getting random between " + str(firstVal) + " and " + str(secondVal) + ": " + str(randNum))
 	
-	var randNum = randi()%int(top)+int(bottom) #1-100, 5-10, 600-1900, etc
+	if (randNum < minVal):
+		print("ERROR! " + str(randNum) + " is less than boundary number " + str(minVal))
+		randNum = minVal
+		breakpoint
+		
+	if (randNum > maxVal):
+		print("ERROR! " + str(randNum) + " is greater than boundary number " + str(maxVal))
+		randNum = maxVal
+		breakpoint
+
 	return randNum
 	
 func _calculate_entity_score(entities):
@@ -181,8 +195,6 @@ func _get_random_battle_order(heroes, mobs):
 #modifies the current newBattle object directly
 func _target_mob_dies(targetMob, newBattle):
 	groupTarget = null
-	print("groupTarget is now: " + str(groupTarget))
-	print("targetMob is now: " + str(targetMob.mobName))
 	targetMob.dead = true
 	encounter.detailedPlayByPlay.append(targetMob.mobName + " was defeated!")
 	#newBattle.rawBattleLog.append(targetMob.mobName + " was defeated!")
@@ -212,19 +224,37 @@ func _target_mob_dies(targetMob, newBattle):
 		
 	#give loot (randomly determined from loot table)
 	var lootTable = staticData.lootTables[targetMob.lootTable]
+	var lootGroup = staticData.lootGroups[lootTable.lootGroup]
 	
-	#determine the upper limit based on how long the camp is expected to last
+	#Todo: determine the upper limit based on how long the camp is expected to last
 	#shorter camps have a slightly greater chance of dropping items
 	#longer camps have a slightly lower chance of dropping items 
+	if (lootGroup != null):
+		if (_get_rand_between(0,100) < lootTable.lootGroupChance):
+			# we get to pick between X and Y random items from the lootGroup
+			var quantityOfCommonItems = (_get_rand_between(lootTable.lootGroupMin, lootTable.lootGroupMax))
+			#print("picking " + str(quantityOfCommonItems) + " common items (min: " + str(lootTable.lootGroupMin) + " max: " + str(lootTable.lootGroupMax) +")")
+			if (quantityOfCommonItems > 0):
+				for item in quantityOfCommonItems:
+					# for now we're assuming all 11 items are stocked
+					var itemRand = _get_rand_between(1,12) #between 1 and 12
+					if (lootGroup["item"+str(itemRand)]):
+						encounter.detailedPlayByPlay.append("Looted this item: " + lootGroup["item"+str(itemRand)])
+						newBattle.loot.append(lootGroup["item"+str(itemRand)])
+					else:
+						print("item " + str(itemRand) + " does not exist! check lootGroups.json!")
+	else:
+		print("encounterGenerator 238: lootGroup not found")
+		
 	if (_get_rand_between(0, 100) < lootTable.item1Chance):
 		#newBattle.rawBattleLog.append("Looted this item: " + lootTable.item1)
-		encounter.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
-		newBattle.loot.append(lootTable.item1)
+		encounter.detailedPlayByPlay.append("Looted this item: " + lootTable.campItem1)
+		newBattle.loot.append(lootTable.campItem1)
 		
 	if (_get_rand_between(0, 100) < lootTable.item2Chance):
 		#newBattle.rawBattleLog.append("Looted this item: " + lootTable.item2)
-		encounter.detailedPlayByPlay.append("Looted this item: " + lootTable.item2)
-		newBattle.loot.append(lootTable.item2)
+		encounter.detailedPlayByPlay.append("Looted this item: " + lootTable.campItem2)
+		newBattle.loot.append(lootTable.campItem2)
 		
 	#Determine how much SC the player looted from this mob
 	#Not every mob drops money, so don't roll a random if this mob is moneyless 
@@ -239,8 +269,6 @@ func _target_mob_dies(targetMob, newBattle):
 	#delete this mob from the current fight
 	newBattle.mobs.erase(targetMob)
 	_remove_from_battle_order(targetMob)
-	#encounterOutcome.detailedPlayByPlay.append("Looted this item: " + lootTable.item1)
-	#newBattle.rawBattleLog.append("The heroes looted: " + str(newBattle.sc) + " coins") 
 	
 func _print_battle_order():
 	print("BATTLE ORDER:")
@@ -332,7 +360,7 @@ func _calculate_battle_outcome(camp):
 	for mob in randomMobs:
 		encounter.detailedPlayByPlay.append("*" + mob.mobName + " (Level " + str(mob.level) + " HP: " + str(mob.hpCurrent) + ")")
 	for hero in heroes:
-		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.charClass + " HP: " + str(hero.hpCurrent) + "/" + str(hero.hp) + ")")
+		encounter.detailedPlayByPlay.append(">" + hero.heroFirstName + " (Level " + str(hero.level) + " " + hero.charClass + " HP: " + str(hero.hpCurrent) + "/" + str(hero.hp) + "  Mana: " + str(hero.manaCurrent) + "/" + str(hero.mana) + ")")
 		
 	var newBattle = {
 		#contains actual hero objects and actual mob objects
@@ -357,7 +385,6 @@ func _calculate_battle_outcome(camp):
 	
 	var i = 0
 	while (newBattle.mobs.size() > 0 && newBattle.heroes.size() > 0):
-		
 		if (i >= battleOrder.size()):
 			i = 0
 			
@@ -460,12 +487,13 @@ func _calculate_battle_outcome(camp):
 						encounter.detailedPlayByPlay.append(hero.heroFirstName + " attempted to nuke " + targetMob.mobName + ", but " + targetMob.mobName + " resisted!")
 					else:
 						#partial resist because hero is higher level than mob
-						var resistRand = _get_rand_between(1, targetMob.baseResist+1)
-						
+						var resistRand = _get_rand_between(1, targetMob.baseResist)
+						#print("resistRand is " + str(resistRand))
 						if (criticalDmg > 0):
 							nukeDmg = nukeDmg + criticalDmg
 						
-						var modifiedNukeDmg = (nukeDmg / resistRand)
+						# always gets a "divide by 0" problem even with 1 added 
+						var modifiedNukeDmg = ((nukeDmg / resistRand) + 1)
 	
 						if (criticalDmg > 0):
 							encounter.detailedPlayByPlay.append(hero.heroFirstName + " scores a CRITICAL HIT and nukes " + targetMob.mobName + " for " + str(modifiedNukeDmg) + " points of damage! (Partial resist)")
@@ -518,11 +546,18 @@ func _calculate_battle_outcome(camp):
 								partyMember.get_healed(healAmount)
 				elif (individualInNeedOfHeal):
 					# heal lowest hp hero
-					# todo: move to hero, make it cost mana
-					print(individualInNeedOfHeal.heroFirstName + " needs an individual heal")
-					var healAmount = 900
-					encounter.detailedPlayByPlay.append(hero.heroFirstName + " performs an individual heal")
-					individualInNeedOfHeal.get_healed(healAmount)
+					var healAmount = hero.get_cleric_individual_heal_amount()
+					if (healAmount > 0):
+						# take snapshot of hpCurrent before heal
+						var heroHPBefore = individualInNeedOfHeal.hpCurrent
+						individualInNeedOfHeal.get_healed(healAmount)
+						encounter.detailedPlayByPlay.append(hero.heroFirstName + " heals " + individualInNeedOfHeal.heroFirstName + " and restores " + str(individualInNeedOfHeal.hpCurrent - heroHPBefore) + " hitpoints")
+					else:
+						# "sit the round out" - this is duplicated code with the else below
+						hero.manaCurrent += hero.regenRateMana #todo: move to hero
+						if (hero.manaCurrent > hero.mana):
+							hero.manaCurrent = hero.mana
+							encounter.detailedPlayByPlay.append(hero.heroFirstName + " is out of mana and sits to recover. (" + str(hero.manaCurrent) +"/" + str(hero.mana) + ")")
 				elif (partyMembersInNeedOfTopoff > 1):
 					#print("the group could use a topoff if there's mana for it")
 					if hero.manaCurrent > (hero.mana * .92):
