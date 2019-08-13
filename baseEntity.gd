@@ -365,14 +365,14 @@ func _draw_sprites():
 			$body/legs.texture = load("res://sprites/heroes/legs/missing.png")
 		
 		if (equipment.feet):
-			$body/boot1.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
-			$body/boot2.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+			$body/bootMain.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
+			$body/bootOff.texture = load("res://sprites/heroes/feet/" + equipment.feet.bodySprite)
 			if (equipment.feet.tint):
-				$body/boot1.modulate = tints[equipment.feet.tint]
-				$body/boot2.modulate = tints[equipment.feet.tint]
+				$body/bootMain.modulate = tints[equipment.feet.tint]
+				$body/bootOff.modulate = tints[equipment.feet.tint]
 		else:
-			$body/boot1.texture = load("res://sprites/heroes/feet/missing.png")
-			$body/boot2.texture = load("res://sprites/heroes/feet/missing.png")
+			$body/bootMain.texture = load("res://sprites/heroes/feet/missing.png")
+			$body/bootOff.texture = load("res://sprites/heroes/feet/missing.png")
 			
 		# a bit confusing here, in this context "head" is a helmet or head item
 		# not the depiction of the hero's actual head 

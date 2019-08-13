@@ -435,7 +435,6 @@ __meta__ = {
 position = Vector2( 270.991, 429.226 )
 z_index = 5
 texture = ExtResource( 22 )
-
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button MAP/Map" to="." method="_on_Map_pressed"]
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button QUESTS/Quests" to="." method="_on_Quests_pressed"]
 [connection signal="pressed" from="HUD/hbox_bottomBar/vbox button VAULT/Vault" to="." method="_on_Vault_pressed"]
