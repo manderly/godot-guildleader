@@ -216,6 +216,24 @@ func melee_attack():
 		print("Returning this raw damage: " + str(rawDmg))
 	return rawDmg
 
+func get_cleric_individual_heal_amount():
+	#todo: take perks into account
+	var healAmount = 0;
+	var healManaCost = level * 10
+	if (manaCurrent > healManaCost):
+		healAmount = (level * 5) + (intelligence * 2)
+		manaCurrent -= healManaCost
+	return healAmount 
+	
+func get_cleric_party_heal_amount():
+	#todo: take perks into account
+	var healAmount = 0;
+	var healManaCost = level * 8
+	if (manaCurrent > healManaCost):
+		healAmount = (level * 3) + (intelligence * 2)
+		manaCurrent -= healManaCost
+	return healAmount 
+	
 func get_healed(amount):
 	hpCurrent += amount
 	if (hpCurrent > hp):
