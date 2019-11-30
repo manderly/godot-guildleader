@@ -187,7 +187,7 @@ func _update_ingredients():
 		ingredient4Display._clear_fields()
 
 func _update_results_area():
-	tradeskill = global.tradeskills[global.currentMenu]	
+	tradeskill = global.tradeskills[global.currentMenu]
 
 	if (!tradeskill.inProgress && !tradeskill.readyToCollect):
 		#not crafting anything (not inProgress), just browsng
@@ -303,11 +303,20 @@ func _process(delta):
 		combineButton.set_text("COMBINE")
 		combineButton.add_color_override("font_color", colors.white) #white
 
-func _open_collect_result_popup():
-	#determine if we get a skillup and show or hide skillup text accordingly 
-	var skillPath = "skill"+tradeskill.displayName
+# determine if skill up happens and if it does, update the hero's skill
+func tradeskill_skill_up(skillPath):
+	var tradeskill = global.tradeskills[global.currentMenu]
 	if (util.determine_if_skill_up_happens(tradeskill.hero[skillPath], tradeskill.selectedRecipe.trivial)): #pass current skill, pass trivial level
 		tradeskill.hero[skillPath] += 1
+		return 1
+	else:
+		return 0
+		
+# determine if skill up happened and if it does, update UI accordingly 
+func _open_collect_result_popup():
+	var tradeskill = global.tradeskills[global.currentMenu]
+	#determine if we get a skillup and show or hide skillup text accordingly 
+	if (tradeskill_skill_up("skill"+tradeskill.displayName)):
 		finishedItemPopup._set_skill_up(tradeskill.hero, tradeskill.displayName)
 		_update_hero_skill_display()
 	else:

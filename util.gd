@@ -23,15 +23,47 @@ func format_time(time):
 		
 	return timeFormattedForDisplay
 
+func getRecipeDifficulty(trivial, crafterSkill):
+	# returns one of the following: "trivial", "white", "yellow", "red"
+	# [trivial][white][yellow][red    ]
+	var ret = "unknown"
+	if (trivial <= crafterSkill):
+		ret = "trivial"
+	elif (trivial > crafterSkill):
+		# this item is greater than the hero's skill but...
+		if (trivial <= crafterSkill + 6):
+			# between current skill and current skill + 6
+			ret = "white"
+		elif (trivial > crafterSkill + 6 and trivial < crafterSkill + 16):
+			# between current skill + 7 and current skill + 11
+			ret = "yellow"
+		elif (trivial >= crafterSkill + 16):
+			ret = "red"
+	return ret
+	
+	
 func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current skill, pass trivial level
 	var skillUpHappened = false
 	#only attempt to skill up if the recipe trivial is higher than current skill level 
-	if (heroSkillLevel < trivialLevel):
-		#just a 50/50 chance for now
+	# red = guaranteed, 100% 
+	# yellow = 50% chance
+	# white = 25% chance
+	# gray = 0% chance
+	var difficulty = getRecipeDifficulty(trivialLevel, heroSkillLevel)
+	if (difficulty == "red"):
+		skillUpHappened = true
+	elif (difficulty == "yellow"):
 		var skillUpRandom = randi()%2+1 #1-2
 		if (skillUpRandom == 2):
 			skillUpHappened = true
-	
+	elif (difficulty == "white"):
+		var skillUpRandom = randi()%4+1 #1-4
+		if (skillUpRandom == 2):
+			skillUpHappened = true
+	elif (difficulty == "trivial"):
+		skillUpHappened = false
+	else:
+		print("Unknown difficulty - line 66 of util.gd")
 	return skillUpHappened
 	
 #check out hero.gd for give_item to a hero 
