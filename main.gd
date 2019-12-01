@@ -1,8 +1,12 @@
 extends Node
 #main.gd
 
+var testing = false
+
 var heroGenerator = load("res://heroGenerator.gd").new()
 var roomGenerator = load("res://roomGenerator.gd").new()
+
+var autoplayTester = load("res://test_autoplay.gd").new()
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -89,71 +93,80 @@ onready var roomsLayer = $screen/rooms
 
 var onscreenHeroes = []
 
-func _ready():
-	randomize()
-	global.currentMenu = "main"
-	#load_game()
-	# Generate default guildmembers and default rooms
-	if (global.initDone == false):
+func generateStartingHeroes():
 		
-		var global_vars = get_node("/root/global")
-		global_vars.add_to_group("PersistGlobals")
-	
-		heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		heroGenerator.generate(global.guildRoster, "Warrior")
-		heroGenerator.generate(global.guildRoster, "Rogue")
-		#Generate a few more guildmates for quest testing
-		#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
-		heroGenerator.generate(global.guildRoster, "Ranger")
-		heroGenerator.generate(global.guildRoster, "Cleric")
-		
-		#Generate unrecruited heroes
-		#heroGenerator.generate(global.unrecruited, "Cleric")
-		#heroGenerator.generate(global.unrecruited, "Rogue")
-		heroGenerator.generate(global.unrecruited, "Ranger")
-		heroGenerator.generate(global.unrecruited, "Druid")
-		#heroGenerator.generate(global.unrecruited, "Warrior")
-		
-		#level them up a bit for testing purposes
-		for hero in global.guildRoster:
-			hero.make_level(18)
-			
-		# record all these names as in use
-		for hero in global.guildRoster:
-			global.namesInUse.append(hero.heroFirstName)
-		
-		for hero in global.unrecruited:
-			global.namesInUse.append(hero.heroFirstName)
-		
-		#generate starting rooms
-		roomGenerator.generate("dummy", false) #placeholder for front yard (0)
-		roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
-		roomGenerator.generate("chronomancy", false)
-		roomGenerator.generate("blacksmith", false)
-		roomGenerator.generate("training", false)
-		roomGenerator.generate("bedroom", false)
-		roomGenerator.generate("vault", false)
-		roomGenerator.generate("bedroom", false)
-		roomGenerator.generate("topEdge", false)
-		
-		util.give_quest("test09")
-		util.give_quest("test10")
-		util.give_quest("azuricite_quest01")
-		util.give_quest("quest_falls03")
-		global.selectedQuestID = "test09"
-	
-		global.initDone = true
+	var global_vars = get_node("/root/global")
+	global_vars.add_to_group("PersistGlobals")
 
-	else:
-		print("loaded game")
+	heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+	heroGenerator.generate(global.guildRoster, "Warrior")
+	heroGenerator.generate(global.guildRoster, "Rogue")
+	#Generate a few more guildmates for quest testing
+	#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
+	heroGenerator.generate(global.guildRoster, "Ranger")
+	heroGenerator.generate(global.guildRoster, "Cleric")
 	
-	#restore saved camera position
-	$screen/mainCamera.set_cam_position()
+	#Generate unrecruited heroes
+	#heroGenerator.generate(global.unrecruited, "Cleric")
+	#heroGenerator.generate(global.unrecruited, "Rogue")
+	heroGenerator.generate(global.unrecruited, "Ranger")
+	heroGenerator.generate(global.unrecruited, "Druid")
+	#heroGenerator.generate(global.unrecruited, "Warrior")
+	
+	#level them up a bit for testing purposes
+	for hero in global.guildRoster:
+		hero.make_level(18)
 		
-	draw_HUD()
-	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
-	draw_heroes()
-	draw_rooms()
+	# record all these names as in use
+	for hero in global.guildRoster:
+		global.namesInUse.append(hero.heroFirstName)
+	
+	for hero in global.unrecruited:
+		global.namesInUse.append(hero.heroFirstName)
+	
+	#generate starting rooms
+	roomGenerator.generate("dummy", false) #placeholder for front yard (0)
+	roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
+	roomGenerator.generate("chronomancy", false)
+	roomGenerator.generate("blacksmith", false)
+	roomGenerator.generate("training", false)
+	roomGenerator.generate("bedroom", false)
+	roomGenerator.generate("vault", false)
+	roomGenerator.generate("bedroom", false)
+	roomGenerator.generate("topEdge", false)
+	
+	util.give_quest("test09")
+	util.give_quest("test10")
+	util.give_quest("azuricite_quest01")
+	util.give_quest("quest_falls03")
+	global.selectedQuestID = "test09"
+
+	global.initDone = true
+
+func _ready():
+	if (testing == true):
+		autoplayTester.tradeskillToMaxTest("Blacksmithing")
+		autoplayTester.tradeskillToMaxTest("Tailoring")
+		autoplayTester.tradeskillToMaxTest("Alchemy")
+		autoplayTester.tradeskillToMaxTest("Jewelcraft")
+		autoplayTester.tradeskillToMaxTest("Fletching")
+	else:
+		randomize()
+		global.currentMenu = "main"
+		#load_game()
+		# Generate default guildmembers and default rooms
+		if (global.initDone == false):
+			generateStartingHeroes()
+		else:
+			print("loaded game")
+	
+		#restore saved camera position
+		$screen/mainCamera.set_cam_position()
+			
+		draw_HUD()
+		$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
+		draw_heroes()
+		draw_rooms()
 	
 func draw_HUD():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)

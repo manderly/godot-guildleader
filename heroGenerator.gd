@@ -67,7 +67,7 @@ func generate(destinationArray, classStr):
 	#todo: pass species in addition to gender 
 	newHero.heroFirstName = nameGenerator.generateFirst(newHero.gender)
 	newHero.heroLastName = nameGenerator.generateLast(newHero.charClass)
-
+	
 	var startingStats = staticData.heroStats[newHero.charClass.to_lower()]
 	#assign stats accordingly
 	newHero.baseHp = startingStats["hp"]
