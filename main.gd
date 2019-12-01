@@ -1,12 +1,8 @@
 extends Node
 #main.gd
 
-var testing = false
-
 var heroGenerator = load("res://heroGenerator.gd").new()
 var roomGenerator = load("res://roomGenerator.gd").new()
-
-var autoplayTester = load("res://test_autoplay.gd").new()
 
 #todo: globalize these
 var mainRoomMinX = 110
@@ -144,29 +140,22 @@ func generateStartingHeroes():
 	global.initDone = true
 
 func _ready():
-	if (testing == true):
-		autoplayTester.tradeskillToMaxTest("Blacksmithing")
-		autoplayTester.tradeskillToMaxTest("Tailoring")
-		autoplayTester.tradeskillToMaxTest("Alchemy")
-		autoplayTester.tradeskillToMaxTest("Jewelcraft")
-		autoplayTester.tradeskillToMaxTest("Fletching")
+	randomize()
+	global.currentMenu = "main"
+	#load_game()
+	# Generate default guildmembers and default rooms
+	if (global.initDone == false):
+		generateStartingHeroes()
 	else:
-		randomize()
-		global.currentMenu = "main"
-		#load_game()
-		# Generate default guildmembers and default rooms
-		if (global.initDone == false):
-			generateStartingHeroes()
-		else:
-			print("loaded game")
-	
-		#restore saved camera position
-		$screen/mainCamera.set_cam_position()
-			
-		draw_HUD()
-		$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
-		draw_heroes()
-		draw_rooms()
+		print("loaded game")
+
+	#restore saved camera position
+	$screen/mainCamera.set_cam_position()
+		
+	draw_HUD()
+	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
+	draw_heroes()
+	draw_rooms()
 	
 func draw_HUD():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)
