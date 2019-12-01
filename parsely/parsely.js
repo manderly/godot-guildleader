@@ -21,6 +21,12 @@ var fs = require("fs");
 var oneHugeString = "extends Node\n";
 var filenameRegEx = '^([a-zA-Z]+)';
 
+// Collect instances of things like...
+// - ingredients in recipes having no count associated with them
+// - items having null stats
+// ... so the user can fix them in the data spreadsheet instead of having to find them in-game.
+var staticDataWarnings = [];
+
 //these get fed into dynamic vars but they are built here
 var playerTradeskillItems = {};
 var playerQuestItems = {};
@@ -102,6 +108,20 @@ fs.readdir(staticDataFolder, (err, files) => {
                 value.timesRun = 0;
                 formatted[key] = value;
             } else if (file == "recipes.json") {
+                // look for instances of ingredient assigned but no quantity
+                if (value["ingredient1"] && value["ingredient1Quantity"] === null) {
+                    staticDataWarnings.push("Recipe for " + value["recipeName"] + " is missing " + value["ingredient1"] + " quantity");
+                }
+                if (value["ingredient2"] && value["ingredient2Quantity"] === null) {
+                    staticDataWarnings.push("Recipe for " + value["recipeName"] + " is missing " + value["ingredient2"] + " quantity");
+                }
+                if (value["ingredient3"] && value["ingredient3Quantity"] === null) {
+                    staticDataWarnings.push("Recipe for " + value["recipeName"] + " is missing " + value["ingredient3"] + " quantity");
+                }
+                if (value["ingredient4"] && value["ingredient4Quantity"] === null) {
+                    staticDataWarnings.push("Recipe for " + value["recipeName"] + " is missing " + value["ingredient4"] + " quantity");
+                }
+
                 arr.push(value);
                 formatted = arr;
             } else if (file == "levelXpData.json") {
@@ -134,9 +154,19 @@ fs.readdir(staticDataFolder, (err, files) => {
     }
   });
 
+    // print any warnings
+    if (staticDataWarnings.length) {
+        console.log("\nStatic data warnings:");
+        for (i = 0; i < staticDataWarnings.length; i++) {
+            console.log(staticDataWarnings[i]);
+        }
+    } else {
+        console.log("Static data generated no warnings!");
+    }
+
     //write the static data file
     fs.writeFileSync("../gameData/staticData.gd", oneHugeString);
-    console.log("Done (static data)\n");
+    console.log("DONE (static data)\n");
 
     //now write the dynamic data file
     //add on these two other objects we built earlier
@@ -146,7 +176,7 @@ fs.readdir(staticDataFolder, (err, files) => {
     dynamicDataString+="var playerTradeskillItems="+JSON.stringify(playerTradeskillItems)+"\n";
     dynamicDataString+="var playerQuestItems="+JSON.stringify(playerQuestItems)+"\n";
     fs.writeFileSync("../gameData/dynamicData.gd", dynamicDataString);
-    console.log("Done (dynamic data)\n");
+    console.log("DONE (dynamic data)\n");
 
 });
 
@@ -171,7 +201,7 @@ fs.readdir(tintsFolder, (err, files) => {
         }
     });
     fs.writeFileSync("../gameData/tints.gd", oneHugeString);
-    console.log("Done (tint data)\n");
+    console.log("DONE (tint data)\n");
 });
 
 //name files are already exported as arrays, so we just need this tool to turn them into a gd file with vars
@@ -189,7 +219,7 @@ fs.readdir(namesFolder, (err, files) => {
         }
     });
     fs.writeFileSync("../gameData/names.gd", oneHugeString);
-    console.log("Done (names data)\n");
+    console.log("DONE (names data)\n");
 });
 
 //TIMED NODE DATA - these vary by save
