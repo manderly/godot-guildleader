@@ -1,3 +1,5 @@
+# popup_finishedItem.gd
+
 extends AcceptDialog
 #BE SURE TO DO THIS in _ready: add_child(finishedItemPopup)
 
@@ -25,7 +27,11 @@ func _show_skill_up_text(showBool):
 	
 func _set_icon(data):
 	print(data)
-	$elements/sprite_icon.texture = load("res://sprites/items/" + data)
+	if ("icon" in data):
+		$elements/sprite_icon.texture = load("res://sprites/items/" + data.icon)
+	else:
+		$elements/sprite_icon.texture = load("res://sprites/items/" + data)
+	
 	if ("tint" in data):
 		if (data.tint != null):
 			$elements/sprite_icon.modulate = tints[data.tint]
