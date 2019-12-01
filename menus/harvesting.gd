@@ -76,7 +76,7 @@ func populate_fields(data):
 	nodeGraphic.texture = load("res://sprites/harvestNodes/" + data.icon)
 	
 	if (data.hero):
-		field_heroName.text = data.hero.heroName
+		field_heroName.text = data.hero.heroFirstName
 		_update_hero_skill_display()
 	else:
 		field_heroName.text = ""

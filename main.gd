@@ -146,6 +146,10 @@ func generateStartingHeroes():
 func _ready():
 	if (testing == true):
 		autoplayTester.tradeskillToMaxTest("Blacksmithing")
+		autoplayTester.tradeskillToMaxTest("Tailoring")
+		autoplayTester.tradeskillToMaxTest("Alchemy")
+		autoplayTester.tradeskillToMaxTest("Jewelcraft")
+		autoplayTester.tradeskillToMaxTest("Fletching")
 	else:
 		randomize()
 		global.currentMenu = "main"
@@ -156,13 +160,13 @@ func _ready():
 		else:
 			print("loaded game")
 	
-	#restore saved camera position
-	$screen/mainCamera.set_cam_position()
-		
-	draw_HUD()
-	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
-	draw_heroes()
-	draw_rooms()
+		#restore saved camera position
+		$screen/mainCamera.set_cam_position()
+			
+		draw_HUD()
+		$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
+		draw_heroes()
+		draw_rooms()
 	
 func draw_HUD():
 	$HUD.update_currency(global.softCurrency, global.hardCurrency)

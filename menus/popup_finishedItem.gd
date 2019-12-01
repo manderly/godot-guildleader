@@ -25,7 +25,7 @@ func _show_skill_up_text(showBool):
 	
 func _set_icon(data):
 	print(data)
-	$elements/sprite_icon.texture = load("res://sprites/items/" + data.icon)
+	$elements/sprite_icon.texture = load("res://sprites/items/" + data)
 	if ("tint" in data):
 		if (data.tint != null):
 			$elements/sprite_icon.modulate = tints[data.tint]

@@ -54,11 +54,11 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 		skillUpHappened = true
 	elif (difficulty == "yellow"):
 		var skillUpRandom = randi()%2+1 #1-2
-		if (skillUpRandom == 2):
+		if (skillUpRandom == 1): # a 1/2 chance of skilling up on yellow
 			skillUpHappened = true
 	elif (difficulty == "white"):
 		var skillUpRandom = randi()%4+1 #1-4
-		if (skillUpRandom == 2):
+		if (skillUpRandom == 2): # a 1/4 chance of skilling up on white 
 			skillUpHappened = true
 	elif (difficulty == "trivial"):
 		skillUpHappened = false

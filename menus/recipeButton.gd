@@ -28,7 +28,10 @@ func set_recipe_data(data):
 	# returns one of the following: "trivial", "yellow", "red"
 	var difficulty = util.getRecipeDifficulty(data.trivial, crafterSkill)
 	if (difficulty == "trivial"):
-		#this recipe is beneath the crafter's skill level, make it white
+		#this recipe is beneath the crafter's skill level, make it grey
+		$field_recipeNameAndTrivial.add_color_override("font_color", Color(.50, .50, .50, 1)) #grey
+	elif (difficulty == "white"):
+		#this recipe is about the crafter's skill level, make it white
 		$field_recipeNameAndTrivial.add_color_override("font_color", Color(1, 1, 1, 1)) #white
 	elif (difficulty == "red"):
 		#this recipe is 12 or more above crafter's skill level, make it red
@@ -37,7 +40,7 @@ func set_recipe_data(data):
 		#this recipe is between 1 and 6 more than crafter's skill level, make it yellow
 		$field_recipeNameAndTrivial.add_color_override("font_color", Color(.93, .913, .25, 1)) #239, 233, 64 yellow
 	else:
-		print("recipeButton.gd - error: recipe difficulty unknown")
+		print("recipeButton.gd - error: recipe difficulty unknown: " + str(difficulty))
 		
 	$field_timeToCreate.text = str(util.format_time(data.craftingTime))
 	recipeData = data

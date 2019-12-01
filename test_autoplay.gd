@@ -25,7 +25,8 @@ func tradeskillToMaxTest(tradeskillStr):  # ex: Blacksmithing
 	global.currentMenu = tradeskillStr.to_lower()  # ex: "blacksmithing"
 	var tradeskill = global.tradeskills[global.currentMenu]
 	
-	var tracker = {}
+	var combineTracker = {}
+	var ingredientTracker = {}
 	
 	print("TRADESKILL TEST: " + tradeskillStr)
 	var classes = ["Wizard", "Rogue", "Warrior", "Cleric", "Ranger"]
@@ -36,10 +37,6 @@ func tradeskillToMaxTest(tradeskillStr):  # ex: Blacksmithing
 	# make that hero work on a randomly chosen tradeskill
 	# todo: pass tradeskill in as param
 	hero.staffedTo = tradeskillStr
-
-	# verify the hero 
-	# where I left off - it's a kinematic body, not an object with data 
-	print(hero)
 	
 	# assign to this tradeskill in the global object
 	global.tradeskills[tradeskillStr.to_lower()].hero = hero
@@ -59,11 +56,33 @@ func tradeskillToMaxTest(tradeskillStr):  # ex: Blacksmithing
 			var recipe = tradeskill.recipes[i]
 			global.tradeskills[global.currentMenu].selectedRecipe = recipe
 			while (hero["skill"+tradeskillStr] < recipe.trivial):
-				if (tracker.has(recipe.recipeName)):
-					tracker[recipe.recipeName]+=1
+				# log this recipe
+				if (combineTracker.has(recipe.recipeName)):
+					combineTracker[recipe.recipeName]+=1
 				else:
-					tracker[recipe.recipeName]=0
-				#print("Crafting this: " + recipe.recipeName + " [trivial: " + str(recipe.trivial) + "]")
+					combineTracker[recipe.recipeName]=1
+				# log its ingredients
+				
+				if (ingredientTracker.has(recipe.ingredient1)):
+					ingredientTracker[recipe.ingredient1]+=recipe.ingredient1Quantity
+				else:
+					ingredientTracker[recipe.ingredient1]=recipe.ingredient1Quantity
+					
+				if (ingredientTracker.has(recipe.ingredient2)):
+					ingredientTracker[recipe.ingredient2]+=recipe.ingredient2Quantity
+				else:
+					ingredientTracker[recipe.ingredient2]=recipe.ingredient2Quantity
+					
+				if (ingredientTracker.has(recipe.ingredient3)):
+					ingredientTracker[recipe.ingredient3]+=recipe.ingredient3Quantity
+				else:
+					ingredientTracker[recipe.ingredient3]=recipe.ingredient3Quantity
+					
+				if (ingredientTracker.has(recipe.ingredient4)):
+					ingredientTracker[recipe.ingredient4]+=recipe.ingredient4Quantity
+				else:
+					ingredientTracker[recipe.ingredient4]=recipe.ingredient4Quantity
+				
 				# note we don't actually have to do any combining, we're just evaluating
 				# the rate at which the hero skills up given the formula as implemented 
 				attempts+=1
@@ -81,4 +100,5 @@ func tradeskillToMaxTest(tradeskillStr):  # ex: Blacksmithing
 	print(hero.heroFirstName + " maxxed out at skill level " + str(hero["skill"+tradeskillStr]))
 	print("Attempts: " + str(attempts) + " Skillups: " + str(skillups))
 	print("Time spent crafting " + str(hours) + " hours")
-	print(tracker)
+	print(combineTracker)
+	print(ingredientTracker)
