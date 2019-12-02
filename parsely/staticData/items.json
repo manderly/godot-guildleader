@@ -4265,7 +4265,7 @@
   },
   {
     "name": "Taaffeite",
-    "icon": "copperBar.png",
+    "icon": "taaffeite.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4447,7 +4447,7 @@
   },
   {
     "name": "Cedar Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_cedar.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4473,7 +4473,7 @@
   },
   {
     "name": "Silver Tip Cedar Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_cedar_silver_tip.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4499,7 +4499,7 @@
   },
   {
     "name": "Silentwood Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_silentwood.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4525,7 +4525,7 @@
   },
   {
     "name": "Silver Tip Silentwood Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_silentwood_silver_tip.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4551,7 +4551,7 @@
   },
   {
     "name": "Shadow Oak Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_shadow_oak.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4577,7 +4577,7 @@
   },
   {
     "name": "Silver Tip Shadow Oak Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_shadow_oak_silver_tip.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4603,7 +4603,7 @@
   },
   {
     "name": "Rainwood Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_rainwood.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4629,7 +4629,7 @@
   },
   {
     "name": "Silver Tip Rainwood Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_rainwood_silver_tip.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4681,7 +4681,7 @@
   },
   {
     "name": "Golden Oak Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_golden_oak.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4707,7 +4707,7 @@
   },
   {
     "name": "Silver Tip Golden Oak Arrow",
-    "icon": "arrow_basic1.png",
+    "icon": "arrow_golden_oak_silver_tip.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "arrow",
@@ -4837,7 +4837,7 @@
   },
   {
     "name": "Simple Arrowhead",
-    "icon": "offhand1.png",
+    "icon": "arrowhead_simple.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4863,7 +4863,7 @@
   },
   {
     "name": "Silver Arrowhead",
-    "icon": "offhand1.png",
+    "icon": "arrowhead_silver.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4889,7 +4889,7 @@
   },
   {
     "name": "Durable Arrowhead",
-    "icon": "offhand1.png",
+    "icon": "arrowhead_simple.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4915,7 +4915,7 @@
   },
   {
     "name": "Heartpiercer Arrowhead",
-    "icon": "offhand1.png",
+    "icon": "arrowhead_simple.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4941,7 +4941,7 @@
   },
   {
     "name": "Ethatrium Arrowhead",
-    "icon": "offhand1.png",
+    "icon": "arrowhead_simple.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4967,7 +4967,7 @@
   },
   {
     "name": "Cedar Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_cedar.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4993,7 +4993,7 @@
   },
   {
     "name": "Ash Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_ash.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5019,7 +5019,7 @@
   },
   {
     "name": "Silentwood Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_silentwood.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5045,7 +5045,7 @@
   },
   {
     "name": "Shadow Oak Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_shadow_oak.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5071,7 +5071,7 @@
   },
   {
     "name": "Rainwood Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_rainwood.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5097,7 +5097,7 @@
   },
   {
     "name": "Golden Oak Arrow Shaft",
-    "icon": "offhand1.png",
+    "icon": "arrow_shaft_golden_oak.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5123,7 +5123,7 @@
   },
   {
     "name": "Grey Feather",
-    "icon": "offhand1.png",
+    "icon": "feather1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5149,7 +5149,7 @@
   },
   {
     "name": "Old Feather",
-    "icon": "offhand1.png",
+    "icon": "feather1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5175,7 +5175,7 @@
   },
   {
     "name": "Silver Feather",
-    "icon": "offhand1.png",
+    "icon": "feather1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5201,7 +5201,7 @@
   },
   {
     "name": "Ghostraven Feather",
-    "icon": "offhand1.png",
+    "icon": "feather1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5227,7 +5227,7 @@
   },
   {
     "name": "Iridescent Feather",
-    "icon": "offhand1.png",
+    "icon": "feather1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5253,7 +5253,33 @@
   },
   {
     "name": "Rough Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_1.png",
+    "bodySprite": "novis",
+    "tint": null,
+    "itemType": "tradeskill",
+    "consumable": true,
+    "prestige": 0,
+    "slot": "tradeskill",
+    "rarity": "common",
+    "classRestriction1": "any",
+    "classRestriction2": null,
+    "classRestriction3": null,
+    "classRestriction4": null,
+    "classRestriction5": null,
+    "hpRaw": 0,
+    "manaRaw": 0,
+    "dps": 0,
+    "armor": 0,
+    "strength": 0,
+    "defense": 0,
+    "intelligence": 0,
+    "regenRateHP": 0,
+    "regenRateMana": 0,
+    "noDrop": false
+  },
+  {
+    "name": "Cedar Branch",
+    "icon": "branch_cedar.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5279,7 +5305,7 @@
   },
   {
     "name": "Oak Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5305,7 +5331,7 @@
   },
   {
     "name": "Ash Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_ash.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5331,7 +5357,7 @@
   },
   {
     "name": "Rainwood Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5357,7 +5383,7 @@
   },
   {
     "name": "Golden Oak Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5383,7 +5409,7 @@
   },
   {
     "name": "Silentwood Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_silentwood.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5409,7 +5435,7 @@
   },
   {
     "name": "Shadow Oak Branch",
-    "icon": "offhand1.png",
+    "icon": "branch_1.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5854,7 +5880,7 @@
     "icon": "spiderweb.png",
     "bodySprite": "novis",
     "tint": null,
-    "itemType": "quest",
+    "itemType": "tradeskill",
     "consumable": false,
     "prestige": 0,
     "slot": "quest",
@@ -7021,7 +7047,7 @@
   },
   {
     "name": "Drawknife",
-    "icon": "leatherStrip.png",
+    "icon": "drawknife.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -7047,7 +7073,7 @@
   },
   {
     "name": "Fluffy Fiber",
-    "icon": "leatherStrip.png",
+    "icon": "cloth_fluff.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -7073,7 +7099,7 @@
   },
   {
     "name": "Soft Cloth Fiber",
-    "icon": "leatherStrip.png",
+    "icon": "cloth_ball.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -7099,7 +7125,7 @@
   },
   {
     "name": "Soft Cloth Swatch",
-    "icon": "leatherStrip.png",
+    "icon": "cloth_bolt.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -7125,7 +7151,7 @@
   },
   {
     "name": "Comfy Quilt",
-    "icon": "leatherStrip.png",
+    "icon": "cloth_quilt.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
