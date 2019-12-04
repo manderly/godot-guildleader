@@ -217,7 +217,11 @@ func _update_results_area():
 			nowCrafting.text = "You will DESTROY this item to get " + recipe.result + ": "
 			#this is only used for Chrono right now 
 			#this recipe requires the player to "choose" the item to destroy
-			global.browsingForType = recipe.ingredientWildcard #contains the type, such as "any" 
+			if (global.currentMenu == "tailoring"):
+				global.browsingForType = "cloth"
+			elif (global.currentMenu == "chronomancy"):
+				global.browsingForType = recipe.ingredientWildcard #contains the type, such as "any" 
+			
 			labelComputed.hide()
 			if (tradeskill.wildcardItemOnDeck):
 				#the player already picked an "on deck" wildcard item

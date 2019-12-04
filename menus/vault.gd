@@ -80,6 +80,10 @@ func _draw_vault_items():
 							global.guildItems[i].itemType != "knife" ||
 							global.guildItems[i].improved):
 							currentButton.set_disabled(true) #disable button if type mismatch 
+				elif (global.currentMenu == "tailoring"):
+					if (global.browsingForType == "cloth"):
+						if (global.guildItems[i].material != "cloth"):
+							currentButton.set_disabled(true) #disable button if type mismatch 
 			else:
 				currentButton._clear_label()
 				currentButton._clear_icon()
