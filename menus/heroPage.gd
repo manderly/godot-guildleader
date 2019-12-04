@@ -531,15 +531,19 @@ func _on_button_refundPerks_pressed():
 	# preserve any unspent perk points
 	# empty out all perk spending 
 	# redraw ui
-	var perksWithPoints = global.selectedHero.perks.keys()
-	for perkName in perksWithPoints:
-		var refund = global.selectedHero.perks[perkName].pointsSpent
-		global.selectedHero.give_perk_points(refund)
-		global.selectedHero.perks[perkName].pointsSpent = 0
-		
-	global.selectedHero.update_hero_stats()
-	_update_perks_tab()
-	_update_stats()
+	if (global.hardCurrency >= 2):
+		var perksWithPoints = global.selectedHero.perks.keys()
+		for perkName in perksWithPoints:
+			var refund = global.selectedHero.perks[perkName].pointsSpent
+			global.selectedHero.give_perk_points(refund)
+			global.selectedHero.perks[perkName].pointsSpent = 0
+			
+		global.selectedHero.update_hero_stats()
+		_update_perks_tab()
+		_update_stats()
+		global.hardCurrency -= 2
+	else:
+		print("Insufficient Chrono")
 
 func _redraw_hero():
 	#it's the only thing in this group

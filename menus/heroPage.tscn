@@ -169,6 +169,7 @@ margin_right = 540.0
 margin_bottom = 842.0
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+editor/display_folded = true
 margin_left = 60.0
 margin_right = 480.0
 margin_bottom = 300.0
@@ -269,7 +270,7 @@ text = "BUY PERK"
 margin_top = 162.0
 margin_right = 200.0
 margin_bottom = 182.0
-text = "REFUND PERKS [1 Chrono]"
+text = "REFUND PERKS [2 Chrono]"
 
 [node name="confirm_rename_dialog" parent="." instance=ExtResource( 5 )]
 margin_left = 96.0
