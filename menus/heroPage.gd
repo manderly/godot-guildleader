@@ -61,6 +61,7 @@ onready var field_perkPoints = $CenterContainer/VBoxContainer/CenterContainer/Ta
 onready var tabPerksButtonsContainer = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_left
 onready var field_perkDescription = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/field_perkDescription
 onready var button_buyPerk = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_buyPerk
+onready var button_refundPerks = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_refundPerks
 
 var trainingData = null
 var perkOnDeckKey = null
@@ -275,6 +276,11 @@ func _update_perks_tab():
 		button_buyPerk.set_disabled(true)
 		if (perk.pointsSpent == perk.levels):
 			button_buyPerk.text = "PERK FULL!"
+			
+	if (perk.pointsSpent >= 1):
+		button_refundPerks.set_disabled(false)
+	else:
+		button_refundPerks.set_disabled(true)
 	
 func _update_stats():
 	var aliveStatus = ""
@@ -517,6 +523,21 @@ func _on_button_buyPerk_pressed():
 			print("Not enough perk points to buy this perk.")
 	else:
 		print("This perk is full")
+	_update_perks_tab()
+	_update_stats()
+	
+func _on_button_refundPerks_pressed():
+	# give all spent perk points back to hero
+	# preserve any unspent perk points
+	# empty out all perk spending 
+	# redraw ui
+	var perksWithPoints = global.selectedHero.perks.keys()
+	for perkName in perksWithPoints:
+		var refund = global.selectedHero.perks[perkName].pointsSpent
+		global.selectedHero.give_perk_points(refund)
+		global.selectedHero.perks[perkName].pointsSpent = 0
+		
+	global.selectedHero.update_hero_stats()
 	_update_perks_tab()
 	_update_stats()
 

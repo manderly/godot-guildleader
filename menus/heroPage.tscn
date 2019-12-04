@@ -211,7 +211,6 @@ margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
 
 [node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
-editor/display_folded = true
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -265,6 +264,12 @@ margin_top = 162.0
 margin_right = 200.0
 margin_bottom = 182.0
 text = "BUY PERK"
+
+[node name="button_refundPerks" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
+margin_top = 162.0
+margin_right = 200.0
+margin_bottom = 182.0
+text = "REFUND PERKS [1 Chrono]"
 
 [node name="confirm_rename_dialog" parent="." instance=ExtResource( 5 )]
 margin_left = 96.0
@@ -363,7 +368,6 @@ dialog_text = "Your guildhall is at capacity!
 Add another bedroom to make room for new recruits."
 
 [node name="button_back" parent="." instance=ExtResource( 8 )]
-
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/button_fullXP" to="." method="_on_button_fullXP_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/Button_perkPoint" to="." method="_on_Button_perkPoint_pressed"]
@@ -375,6 +379,7 @@ Add another bedroom to make room for new recruits."
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses" to="." method="_on_vbox_stats2_gui_input"]
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks" to="." method="_on_vbox_stats2_gui_input"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_buyPerk" to="." method="_on_button_buyPerk_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_refundPerks" to="." method="_on_button_refundPerks_pressed"]
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
 [connection signal="confirmed" from="confirm_instant_train" to="." method="_on_confirm_instant_train_confirmed"]
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
