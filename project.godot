@@ -52,6 +52,10 @@ common/swap_ok_cancel=true
 
 pointing/emulate_touch_from_mouse=true
 
+[logging]
+
+file_logging/enable_file_logging=true
+
 [rendering]
 
 quality/2d/use_pixel_snap=true
