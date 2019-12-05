@@ -23,7 +23,7 @@ func set_mode(modeStr): #"first" or "last"
 		$LineEdit.text = global.selectedHero.get_first_name()
 	elif (modeStr == "last"):
 		dialog_text = "Enter up to 15 letters for this hero's last name.\nSpaces and accent marks ' and ` accepted. \nLeave blank to remove last name."
-		$LineEdit.text = global.selectedHero.get_first_name()
+		$LineEdit.text = global.selectedHero.get_last_name()
 	elif (modeStr == "guild"):
 		dialog_text = "Enter up to 25 letters for your guild's name. \n Spaces and accent marks ' and ` accepted."
 		$LineEdit.max_length = 25
