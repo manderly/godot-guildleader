@@ -368,7 +368,7 @@ dialog_text = "Your guildhall is at capacity!
 Add another bedroom to make room for new recruits."
 
 [node name="button_back" parent="." instance=ExtResource( 8 )]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/button_trainOrRecruit" to="." method="_on_button_train_or_recruit_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/button_fullXP" to="." method="_on_button_fullXP_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/HBoxContainer/Button_perkPoint" to="." method="_on_Button_perkPoint_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_revive" to="." method="_on_button_revive_pressed"]

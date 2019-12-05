@@ -21,7 +21,6 @@ __meta__ = {
 }
 
 [node name="field_roomName" type="Label" parent="."]
-visible = false
 margin_left = 169.0
 margin_top = 8.0
 margin_right = 269.0
@@ -45,5 +44,4 @@ range_height = 10.0
 
 [node name="particles_chronoPot" parent="." instance=ExtResource( 4 )]
 position = Vector2( 295.433, 62.9867 )
-
 [connection signal="pressed" from="button_staffCraft" to="." method="_on_button_staffCraft_pressed"]

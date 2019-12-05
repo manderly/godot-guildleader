@@ -355,7 +355,7 @@ func _calc_finish_now_cost():
 		cost = 1
 	return cost
 	
-func _on_button_train_pressed():
+func _on_button_train_or_recruit_pressed():
 	if (global.selectedHero.recruited && global.selectedHero.level < global.maxHeroLevel):
 		if (global.selectedHero.staffedTo == "training"):
 			#hero is already in training by whatever means 
@@ -403,8 +403,7 @@ func _on_button_train_pressed():
 		#loop through unrecruited hero array and find the one that we're viewing
 		
 		#first, see if we have space for this hero
-		if (global.guildRoster.size() == global.guildCapacity):
-			print("not enough room!")
+		if (global.guildRoster.size() >= global.guildCapacity):
 			get_node("insufficient_guild_capacity_dialog").popup()
 		elif (global.guildRoster.size() < global.guildCapacity):
 			for i in range(global.unrecruited.size()):
