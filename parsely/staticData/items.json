@@ -55,7 +55,7 @@
   },
   {
     "name": "Rusty Mace",
-    "icon": "mace1.png",
+    "icon": "rustyMace.png",
     "bodySprite": "mace1.png",
     "tint": null,
     "itemType": "mace",
@@ -3970,7 +3970,7 @@
   },
   {
     "name": "Silver Ore",
-    "icon": "copperOre.png",
+    "icon": "silverOre.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4024,7 +4024,7 @@
   },
   {
     "name": "Gold Ore",
-    "icon": "copperOre.png",
+    "icon": "goldOre.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4078,7 +4078,7 @@
   },
   {
     "name": "Platinum Ore",
-    "icon": "copperOre.png",
+    "icon": "platinumOre.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4132,7 +4132,7 @@
   },
   {
     "name": "Ethatrium Ore",
-    "icon": "copperOre.png",
+    "icon": "ethatriumOre.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4294,7 +4294,7 @@
   },
   {
     "name": "Diamond",
-    "icon": "peridot.png",
+    "icon": "diamond.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4321,7 +4321,7 @@
   },
   {
     "name": "Garnet",
-    "icon": "peridot.png",
+    "icon": "garnet.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -4348,7 +4348,7 @@
   },
   {
     "name": "Emerald",
-    "icon": "peridot.png",
+    "icon": "emerald.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5459,32 +5459,6 @@
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
-    "consumable": true,
-    "prestige": 0,
-    "slot": "tradeskill",
-    "rarity": "common",
-    "classRestriction1": "any",
-    "classRestriction2": null,
-    "classRestriction3": null,
-    "classRestriction4": null,
-    "classRestriction5": null,
-    "hpRaw": 0,
-    "manaRaw": 0,
-    "dps": 0,
-    "armor": 0,
-    "strength": 0,
-    "defense": 0,
-    "intelligence": 0,
-    "regenRateHP": 0,
-    "regenRateMana": 0,
-    "noDrop": false
-  },
-  {
-    "name": "Cedar Branch",
-    "icon": "branch_cedar.png",
-    "bodySprite": "novis",
-    "tint": null,
-    "itemType": "tradeskill",
     "material": null,
     "consumable": true,
     "prestige": 0,
@@ -5859,7 +5833,7 @@
   },
   {
     "name": "Hemp Cord",
-    "icon": "leatherStrip.png",
+    "icon": "hempCord.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5886,7 +5860,7 @@
   },
   {
     "name": "Hemp Fiber",
-    "icon": "leatherStrip.png",
+    "icon": "hempFiber.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5913,7 +5887,7 @@
   },
   {
     "name": "Spider Silk Cord",
-    "icon": "leatherStrip.png",
+    "icon": "spiderSilkCord.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5940,7 +5914,7 @@
   },
   {
     "name": "Hemp Bowstring",
-    "icon": "leatherStrip.png",
+    "icon": "hempBowstring.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -5967,7 +5941,7 @@
   },
   {
     "name": "Spider Silk Bowstring",
-    "icon": "leatherStrip.png",
+    "icon": "spiderSilkBowstring.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6102,7 +6076,7 @@
   },
   {
     "name": "Bat Wing",
-    "icon": "leatherStrip.png",
+    "icon": "batWing.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6372,7 +6346,7 @@
   },
   {
     "name": "Gemstone Mount",
-    "icon": "leatherStrip.png",
+    "icon": "gemstoneMount.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6399,7 +6373,7 @@
   },
   {
     "name": "Hammered Copper Band",
-    "icon": "leatherStrip.png",
+    "icon": "copperBand.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6426,7 +6400,7 @@
   },
   {
     "name": "Copper Buttons",
-    "icon": "leatherStrip.png",
+    "icon": "copperButtons.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6453,7 +6427,7 @@
   },
   {
     "name": "Copper Topaz Ring",
-    "icon": "leatherStrip.png",
+    "icon": "copperTopazRing.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "jewelry",
@@ -6480,7 +6454,7 @@
   },
   {
     "name": "Copper Pearl Ring",
-    "icon": "leatherStrip.png",
+    "icon": "copperPearlRing.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "jewelry",
@@ -6507,7 +6481,7 @@
   },
   {
     "name": "Copper Chain",
-    "icon": "leatherStrip.png",
+    "icon": "copperChain.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6537,7 +6511,7 @@
     "icon": "leatherStrip.png",
     "bodySprite": "novis",
     "tint": null,
-    "itemType": "jewelry",
+    "itemType": "tradeskill",
     "material": null,
     "consumable": false,
     "prestige": 0,
@@ -6642,7 +6616,7 @@
   },
   {
     "name": "Silver Chain",
-    "icon": "leatherStrip.png",
+    "icon": "silverChain.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6777,7 +6751,7 @@
   },
   {
     "name": "Gold Chain",
-    "icon": "leatherStrip.png",
+    "icon": "goldChain.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -6912,7 +6886,7 @@
   },
   {
     "name": "Platinum Chain",
-    "icon": "leatherStrip.png",
+    "icon": "platinumChain.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
@@ -7047,7 +7021,7 @@
   },
   {
     "name": "Ethatrium Chain",
-    "icon": "leatherStrip.png",
+    "icon": "ethatriumChain.png",
     "bodySprite": "novis",
     "tint": null,
     "itemType": "tradeskill",
