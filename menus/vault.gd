@@ -7,7 +7,14 @@ onready var gridTradeskillItems = $CenterContainer/VBoxContainer/CenterContainer
 onready var gridQuestItems = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Quest_Items
 onready var inventoryCapacity = $CenterContainer/VBoxContainer/HBoxContainer/MarginContainer/field_guildInventoryCapacity
 
+onready var tabContainer = $CenterContainer/VBoxContainer/CenterContainer/TabContainer
+
 func _ready():
+	# workaround for underscore in "Quest_Items" and eventual translation support
+	var tabTitles = ["Equipment", "Quest Items", "Crafting"]
+	for i in range(tabContainer.get_tab_count()):
+		tabContainer.set_tab_title(i, tabTitles[i])
+		
 	#display inventory size and capacity
 	inventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
 	
