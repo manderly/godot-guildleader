@@ -131,7 +131,7 @@ func tradeskillToMaxTest(tradeskillStr):  # ex: Blacksmithing
 		
 	var hours = (timeSpent/60)/60
 	
-	print(hero.heroFirstName + " maxxed out at skill level " + str(hero["skill"+tradeskillStr]))
+	print(hero.get_first_name() + " maxxed out at skill level " + str(hero["skill"+tradeskillStr]))
 	print("Attempts: " + str(attempts) + " Skillups: " + str(skillups))
 	print("Time spent crafting " + str(hours) + " hours")
 	print("Combines:")

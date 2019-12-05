@@ -60,9 +60,9 @@ func _ready():
 	
 	if (showName):
 		if (level < global.surnameLevel):
-			$field_name.text = heroFirstName
+			$field_name.text = get_first_name()
 		else:
-			$field_name.text = heroFirstName + " " + heroLastName
+			$field_name.text = get_first_name() + " " + get_last_name()
 	else:
 		$field_name.text = ""
 	
@@ -178,7 +178,7 @@ func save_current_position():
 	for i in global.guildRoster.size():
 		#pair hero scene to hero in data array
 		#todo I bet this doesn't work if two heroes share a first name
-		if (global.guildRoster[i].heroFirstName == heroFirstName):
+		if (global.guildRoster[i].get_first_name() == heroFirstName):
 			global.guildRoster[i].savedPositionX = get_position().x
 			global.guildRoster[i].savedPositionY = get_position().y
 	#todo: is there some smarter way to do this? I wanted to just set
@@ -197,13 +197,13 @@ func save():
 			
 	#print('rosterHero ID: ' + String(thisHero.heroID))
 			
-	print("Saving this hero! " + heroFirstName + " level " + str(level) + " " + charClass)
+	print("Saving this hero! " + get_first_name() + " level " + str(level) + " " + charClass)
 	var saved_hero_data = {
 		"filename":"heroFile",#get_filename(), #res://hero.tscn
 		"parent":"/root",#get_parent().get_path(),
 		"heroID":heroID,
-		"heroFirstName":heroFirstName,
-		"heroLastName":heroLastName,
+		"heroFirstName":get_first_name(),
+		"heroLastName":get_last_name(),
 		"charClass":charClass,
 		"level":level,
 		"xp":xp,
@@ -302,8 +302,8 @@ func get_perk_bonus(perkIDStr):
 	return bonus
 		
 func set_instance_data(data):
-	heroFirstName = data.heroFirstName
-	heroLastName = data.heroLastName
+	heroFirstName = data.get_first_name()
+	heroLastName = data.get_last_name()
 	level = data.level
 	xp = data.xp
 	charClass = data.charClass
@@ -528,6 +528,18 @@ func _on_heroButton_tree_exited():
 	#drag off hero without releasing = do not open hero page 
 	$touchTimer.stop()
 	longEnoughClickToOpenHeroPage = false
+	
+func set_first_name(name):
+	heroFirstName = name
+
+func set_last_name(name):
+	heroLastName = name
+	
+func get_first_name():
+	return heroFirstName
+	
+func get_last_name():
+	return heroLastName
 
 func send_home():
 	atHome = true
@@ -571,7 +583,7 @@ func vignette_recover_tick():
 	vignette_update_hp_and_mana(hpCurrent, hpCurrent+regenRateHP, hp, manaCurrent, manaCurrent+regenRateMana, mana)
 	
 func say_hello():
-	print(heroFirstName + " says hello")
+	print(get_first_name() + " says hello")
 	
 func set_dead():
 	dead = true

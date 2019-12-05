@@ -192,10 +192,10 @@ func populate_fields():
 		
 	if (global.selectedHero.level < global.surnameLevel):
 		buttonRename.set_disabled(true)
-		label_heroName.text = global.selectedHero.heroFirstName
+		label_heroName.text = global.selectedHero.get_first_name()
 	else:
 		buttonRename.set_disabled(false)
-		label_heroName.text = global.selectedHero.heroFirstName + " " + global.selectedHero.heroLastName
+		label_heroName.text = global.selectedHero.get_first_name() + " " + global.selectedHero.heroLastName
 	
 	if (global.selectedHero.recruited):
 		buttonTrainOrRecruit.text = "Train to next level"
@@ -393,7 +393,7 @@ func _on_button_train_pressed():
 		elif (global.selectedHero.xp < staticData.levelXpData[str(global.selectedHero.level)].total):
 			#hero is not ready to train, offer instant train instead
 			var chronoCost = util.calc_instant_train_cost()
-			$confirm_instant_train/RichTextLabel.text = global.selectedHero.heroFirstName + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
+			$confirm_instant_train/RichTextLabel.text = global.selectedHero.get_first_name() + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
 			$confirm_instant_train.popup()
 		else:
 			print('heroPage.gd line 296 - bad state')
@@ -440,9 +440,9 @@ func _on_button_dismiss_pressed():
 
 func _on_rename_dialogue_confirmed():
 	var newName = $confirm_rename_dialog/LineEdit.text
-	global.selectedHero.heroFirstName = newName
+	global.selectedHero.set_first_name(newName)
 	#redraw the name display field on the hero page with the new name
-	label_heroName.text = global.selectedHero.heroFirstName
+	label_heroName.text = global.selectedHero.get_first_name()
 	
 func _on_button_back_pressed():
 	if (global.currentMenu == "roster"):

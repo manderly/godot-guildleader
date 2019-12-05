@@ -156,7 +156,7 @@ func play_vignette(data):
 		# remove dead heroes and mobs
 		for i in heroes.size():
 			var hero = heroes[i]
-			#print("Am I dead? " + str(hero.heroFirstName) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
+			#print("Am I dead? " + str(hero.get_first_name()) + " (hero ID:" + str(hero.heroID) + ") has this many hp left: " + str(battle.heroDeltas[hero.heroID].endHP))
 			
 			#display hp bars and animate the change in the total and % fill
 			var deltas = battle.heroDeltas[hero.heroID]

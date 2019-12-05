@@ -16,7 +16,7 @@ func _set_item_name(itemNameStr):
 	
 func _set_skill_up(heroObj, skillNameStr):
 	var skillPath = "skill"+skillNameStr #ex: hero.skillBlacksmithing
-	skillUpField.text = heroObj.heroFirstName + " became better at " + skillNameStr + " (" + str(heroObj[skillPath]) + ")"
+	skillUpField.text = heroObj.get_first_name() + " became better at " + skillNameStr + " (" + str(heroObj[skillPath]) + ")"
 	_show_skill_up_text(true)
 
 func _show_skill_up_text(showBool):

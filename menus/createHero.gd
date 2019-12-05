@@ -151,12 +151,12 @@ func _on_button_nextHead_pressed():
 	update_hero_preview()
 
 func _on_button_randomName_pressed():
-	global.selectedHero.heroFirstName = nameGenerator.generateFirst("any")
+	global.selectedHero.set_first_name(nameGenerator.generateFirst("any"))
 	update_hero_preview()
 	
 func update_class_text(classNameStr):
 	field_classDescription.text = staticData.heroStats[classNameStr.to_lower()].description
 	
 func _on_button_createHero_pressed():
-	global.namesInUse.append(global.selectedHero.heroFirstName)
+	global.namesInUse.append(global.selectedHero.get_first_name())
 	get_tree().change_scene("res://main.tscn")

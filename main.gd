@@ -115,10 +115,10 @@ func generateStartingHeroes():
 		
 	# record all these names as in use
 	for hero in global.guildRoster:
-		global.namesInUse.append(hero.heroFirstName)
+		global.namesInUse.append(hero.get_first_name())
 	
 	for hero in global.unrecruited:
-		global.namesInUse.append(hero.heroFirstName)
+		global.namesInUse.append(hero.get_first_name())
 	
 	#generate starting rooms
 	roomGenerator.generate("dummy", false) #placeholder for front yard (0)
@@ -451,7 +451,7 @@ func load_game():
 		global.activeCampData[key].heroes = [] #.empty() leaves two kinematic bodies in the array
 					
 	for hero in global.guildRoster:
-		#print(hero.heroFirstName + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
+		#print(hero.get_first_name() + " is staffed to: " + str(hero.staffedTo) + " ID: " + str(hero.staffedToID))
 		
 		if (hero.staffedTo == "blacksmithing"):
 			global.tradeskills["blacksmithing"].hero = hero

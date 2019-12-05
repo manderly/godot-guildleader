@@ -24,7 +24,7 @@ func _ready():
 
 func _open_rapid_train_popup():
 	var chronoCost = util.calc_instant_train_cost()
-	$rapid_train_dialog/RichTextLabel.text = global.selectedHero.heroFirstName + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
+	$rapid_train_dialog/RichTextLabel.text = global.selectedHero.get_first_name() + " doesn't have enough XP to train to the next level. Do you want to INSTANT TRAIN for " + str(chronoCost) + " Chrono?"
 	$rapid_train_dialog.popup()
 	
 func _on_rapid_train_dialog_confirmed():
