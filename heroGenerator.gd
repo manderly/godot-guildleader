@@ -7,6 +7,21 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 func _ready():
 	pass
 
+"""
+func set_hero_class(newHero, classStr):
+	newHero.set_hero_class(classStr)
+		
+	#build perks object out of which perks this hero can actually use
+	newHero.perks = {}
+	for key in staticData.perks.keys():
+		if (staticData.perks[key].restriction == "any" ||
+			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
+			staticData.perks[key].restriction.to_lower() == newHero.charClass.to_lower()):
+			#check if it's for anyone, this hero's archetype, or this hero's class
+			#if so, give this hero this perk option 
+			newHero.perks[key] = staticData.perks[key].duplicate()
+	"""	
+	
 #make new hero object
 func generate(destinationArray, classStr):
 	var newHero = load("res://hero.gd").new()
@@ -27,42 +42,8 @@ func generate(destinationArray, classStr):
 		
 	#random class
 	var randomClass = randi()%3+1 #1-4
+	newHero.set_hero_class(classStr)
 	
-	if (classStr == "Wizard"):
-		newHero.charClass = "Wizard"
-		newHero.archetype = "Caster"
-		newHero.give_gear_loadout("wizard12")  #"wizardNew")
-		#we need better wizards, here's a twinked one:
-		#newHero.give_gear_loadout("wizardUber")
-			
-	elif (classStr == "Rogue"):
-		newHero.charClass = "Rogue"
-		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("rogue12") #"rogueNew")
-
-	elif (classStr == "Warrior"):
-		newHero.charClass = "Warrior"
-		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("warrior12") #"warriorNew")
-	
-	elif (classStr == "Ranger"):
-		newHero.charClass = "Ranger"
-		newHero.archetype = "Melee"
-		newHero.give_gear_loadout("ranger12")
-		
-	elif (classStr == "Cleric"):
-		newHero.charClass = "Cleric"
-		newHero.archetype = "Support"
-		newHero.give_gear_loadout("cleric12")
-
-	elif (classStr == "Druid"):
-		newHero.charClass = "Druid"
-		newHero.archetype = "Support"
-		newHero.give_gear_loadout("druidNew")
-			
-	else:
-		print("ERROR - BAD HERO CLASS TYPE")
-		
 	#random name 
 	#todo: pass species in addition to gender 
 	newHero.set_first_name(nameGenerator.generateFirst(newHero.gender))
@@ -125,15 +106,7 @@ func generate(destinationArray, classStr):
 			newHero.give_new_item("Cloth Shirt")
 			newHero.give_new_item("Simple Ring")
 	
-	#build perks object out of which perks this hero can actually use
-	for key in staticData.perks.keys():
-		if (staticData.perks[key].restriction == "any" ||
-			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
-			staticData.perks[key].restriction.to_lower() == newHero.charClass.to_lower()):
-			#check if it's for anyone, this hero's archetype, or this hero's class
-			#if so, give this hero this perk option 
-			newHero.perks[key] = staticData.perks[key].duplicate()
-	
+
 	newHero.update_hero_stats() #calculate hp, mana, etc.
 	newHero.hpCurrent = newHero.hp #only do this when we generate a hero (that's why it's not in update_hero_stats)
 	newHero.manaCurrent = newHero.mana

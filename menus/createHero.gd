@@ -112,7 +112,7 @@ func sanitize_name_input(userInput):
 			
 		
 func _set_class(classStr):
-	global.selectedHero.change_class(classStr)
+	global.selectedHero.set_hero_class(classStr)
 	update_hero_preview()
 	update_class_text(classStr)
 	

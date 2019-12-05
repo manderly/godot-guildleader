@@ -25,7 +25,7 @@ rect_min_size = Vector2( 540, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_right = 540.0
-margin_bottom = 842.0
+margin_bottom = 848.0
 custom_constants/separation = 24
 alignment = 1
 
@@ -166,16 +166,16 @@ align = 1
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 542.0
 margin_right = 540.0
-margin_bottom = 842.0
+margin_bottom = 848.0
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
-editor/display_folded = true
 margin_left = 60.0
 margin_right = 480.0
-margin_bottom = 300.0
+margin_bottom = 306.0
 rect_min_size = Vector2( 420, 300 )
 
 [node name="Stats" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -184,12 +184,12 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="StatsLeft" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
-margin_bottom = 264.0
+margin_bottom = 270.0
 
 [node name="StatsRight" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
 margin_left = 4.0
 margin_right = 4.0
-margin_bottom = 264.0
+margin_bottom = 270.0
 
 [node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 visible = false
@@ -212,7 +212,6 @@ margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
 
 [node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -223,7 +222,7 @@ rect_min_size = Vector2( 160, 0 )
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks"]
 margin_right = 412.0
-margin_bottom = 226.0
+margin_bottom = 270.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3"]
 margin_right = 412.0
@@ -234,42 +233,42 @@ text = "Spend perk points to unlock permanent hero improvements."
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3"]
 margin_top = 44.0
 margin_right = 412.0
-margin_bottom = 226.0
+margin_bottom = 270.0
 custom_constants/separation = 12
 
 [node name="VBox_left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer"]
-margin_bottom = 182.0
+margin_bottom = 226.0
 custom_constants/separation = 12
 
 [node name="VBox_right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer"]
 margin_left = 12.0
 margin_right = 212.0
-margin_bottom = 182.0
+margin_bottom = 226.0
 rect_min_size = Vector2( 50, 0 )
 
 [node name="field_perkDescription" type="RichTextLabel" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
 margin_right = 200.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 200, 140 )
+margin_bottom = 160.0
+rect_min_size = Vector2( 200, 160 )
 text = "# PERK DESCRIPTION HERE #"
 
 [node name="field_perkPoints" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
-margin_top = 144.0
+margin_top = 164.0
 margin_right = 200.0
-margin_bottom = 158.0
+margin_bottom = 178.0
 text = "#points available"
 align = 1
 
 [node name="button_buyPerk" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
-margin_top = 162.0
+margin_top = 182.0
 margin_right = 200.0
-margin_bottom = 182.0
+margin_bottom = 202.0
 text = "BUY PERK"
 
 [node name="button_refundPerks" type="Button" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right"]
-margin_top = 162.0
+margin_top = 206.0
 margin_right = 200.0
-margin_bottom = 182.0
+margin_bottom = 226.0
 text = "REFUND PERKS [2 Chrono]"
 
 [node name="confirm_rename_dialog" parent="." instance=ExtResource( 5 )]
