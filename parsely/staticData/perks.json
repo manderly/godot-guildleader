@@ -129,7 +129,7 @@
     "level1": 3,
     "level2": 7,
     "level3": 15,
-    "description": "Heroes in a group with this hero recover 3%, 7%, and 15% more hitpoints between battles"
+    "description": "Heroes in a group with this hero recover 3%, 7%, and 15% more hitpoints between battles."
   },
   {
     "perkId": "perkCleric",
@@ -153,7 +153,7 @@
     "level1": 16,
     "level2": null,
     "level3": null,
-    "description": "Heroes in a group with this Druid gain a thorny damage shield that injures enemies who "
+    "description": "Heroes in a group with this Druid gain a thorny damage shield that injures enemies who attack them."
   },
   {
     "perkId": "perkWarrior",
