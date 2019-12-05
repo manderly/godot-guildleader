@@ -6,6 +6,7 @@ extends AcceptDialog
 onready var itemNameField = $elements/field_itemName
 onready var skillUpField = $elements/field_skillUp
 
+var quantity = 0
 signal collectItem
 
 func _ready():
@@ -13,6 +14,9 @@ func _ready():
 
 func _set_item_name(itemNameStr):
 	itemNameField.text = itemNameStr
+	
+func _set_item_quantity(q):
+	quantity = q
 	
 func _set_skill_up(heroObj, skillNameStr):
 	var skillPath = "skill"+skillNameStr #ex: hero.skillBlacksmithing
@@ -39,4 +43,5 @@ func _set_icon(data):
 			$elements/sprite_icon.modulate = Color(1,1,1,1)
 
 func _on_finishedItem_dialog_confirmed():
-	emit_signal("collectItem")
+	emit_signal("collectItem", quantity)
+	#tradeskillItem_callback in crafting.gd

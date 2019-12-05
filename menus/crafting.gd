@@ -317,8 +317,11 @@ func tradeskill_skill_up(skillPath):
 		return 0
 		
 # determine if skill up happened and if it does, update UI accordingly 
+# determine quantity produced, if applicable 
 func _open_collect_result_popup():
+	# local var for tradeskill 
 	var tradeskill = global.tradeskills[global.currentMenu]
+	
 	#determine if we get a skillup and show or hide skillup text accordingly 
 	if (tradeskill_skill_up("skill"+tradeskill.displayName)):
 		finishedItemPopup._set_skill_up(tradeskill.hero, tradeskill.displayName)
@@ -326,9 +329,18 @@ func _open_collect_result_popup():
 	else:
 		finishedItemPopup._show_skill_up_text(false)
 		
+	
+	# show the item's icon	
 	finishedItemPopup._set_icon(staticData.items[str(tradeskill.currentlyCrafting.name)])  #staticData.items[str(tradeskill.currentlyCrafting.name)].icon)
 	
-	#since we don't actually create the item until it is collected,
+	# show the item's quantity
+	# for most recipes that's 1, but for conversions it could be more than 1
+	var quantity = 1
+	if (tradeskill.currentlyCrafting.conversion):
+		quantity = _determine_quantity_rendered(tradeskill)
+		print("Player crafted " + str(quantity) + " of that item")
+		
+	#since we don't actually create or give the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
 	var itemNameStr = ""
 	if (tradeskill.currentlyCrafting.moddingAnItem):
@@ -336,13 +348,54 @@ func _open_collect_result_popup():
 	else:
 		itemNameStr = tradeskill.currentlyCrafting.name
 	
+	itemNameStr += " x"+str(quantity)
+	
 	finishedItemPopup._set_item_name(itemNameStr)
-	finishedItemPopup.popup()
+	finishedItemPopup._set_item_quantity(quantity) # pass the quantity to the popup
+	finishedItemPopup.popup() 
 
-func tradeskillItem_callback():
+func _determine_quantity_rendered(tradeskill):
+	# For "render to fluff" and "Render to Chrono" type conversions
+	# Use a combination of crafter's skill and level's rarity or type to determine amount produced
+	var quantity = 1 #guaranteed to get at least one
+	#print(tradeskill.currentlyCrafting.wildcardItem.name)
+	#print(tradeskill.currentlyCrafting.wildcardItem.rarity)
+	if (tradeskill.tradeskill == "chronomancy"):
+		# skill check - the higher the skill, the more likely the 
+		# player will get an extra chrono dust		
+		var skill = tradeskill.hero.skillChronomancy
+		var skillRandom = randi()%200+skill
+		if (skillRandom >= 190):
+			quantity+=2
+		elif (skillRandom >= 150):
+			quantity+=1
+		# rarity check - the higher the item's rarity, the more likely
+		# the player will get an extra chrono dust from it 
+		var rarity = tradeskill.currentlyCrafting.wildcardItem.rarity
+		if (rarity == "rare"):
+			var rarityRandom = randi()%2+1 #1-2
+			if (rarityRandom == 1): # a 1/2 chance of getting an extra chrono
+				quantity+=1
+		elif (rarity == "epic"):
+			var rarityRandom = randi()%3+1 #1-3
+			if (rarityRandom == 1 || rarityRandom == 2): # a 2/3 chance of getting an extra chrono
+				quantity+=1
+		elif (rarity == "legendary"):
+			# guaranteed extra if item was legendary 
+			quantity+=2
+	if (tradeskill.tradeskill == "tailoring"):
+		# robes and pants produce 2 fluffs
+		# everything else produces 1 fluff
+		quantity = 2
+	return quantity
+
+func tradeskillItem_callback(quantity):
 	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively
 	if (tradeskill.currentlyCrafting.conversion):
-		util.give_item_guild(tradeskill.currentlyCrafting.name, 1)
+		# for "render to chrono" and "render to fluff" type conversions,
+		# determine quantity to be given based on formula
+		# contained within method called
+		util.give_item_guild(tradeskill.currentlyCrafting.name, quantity)
 	elif (tradeskill.currentlyCrafting.moddingAnItem):
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
@@ -455,6 +508,8 @@ func _on_button_combine_pressed():
 		finishNowPopup._set_data("Tradeskill", 2)
 		finishNowPopup.popup()
 	elif (tradeskill.inProgress && tradeskill.readyToCollect):
+		# timer is done, item is ready to collect 
+		# popup_finishedItem.gd
 		_open_collect_result_popup()
 	else:
 		print("crafting.gd - got in some weird state")
