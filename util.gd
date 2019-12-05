@@ -67,31 +67,32 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	return skillUpHappened
 	
 #check out hero.gd for give_item to a hero 
-func give_item_guild(itemName): #itemName comes in as a string 
-	if (staticData.items[itemName] && staticData.items[itemName].itemType == "tradeskill"):
-		if (!global.playerTradeskillItems[itemName].seen):
-			# might be this now: global.playerTradeskillItems
-			global.tradeskillItemsSeen.append(itemName)
-			global.playerTradeskillItems[itemName].seen = true
-		#either way, increase the count
-		global.playerTradeskillItems[itemName].count += 1
-	elif (staticData.items[itemName] && staticData.items[itemName].itemType == "quest"):
-		if (!global.playerQuestItems[itemName].seen):
-			global.questItemsSeen.append(itemName)
-			global.playerQuestItems[itemName].seen = true
-		#either way, increase the count
-		global.playerQuestItems[itemName].count += 1
-	else:
-		#make sure this item actually exists in the item records
-		if (!staticData.items[itemName]):
-			print("ERROR! Make sure this item name exists: " + itemName)
-		#finds first open null spot and puts the item there
-		for i in range(global.guildItems.size()):
-			if (global.guildItems[i] == null):
-				global.guildItems[i] = staticData.items[itemName].duplicate() #make a new instance
-				global.guildItems[i].itemID = global.nextItemID
-				global.nextItemID += 1
-				break
+func give_item_guild(itemName, quantity): #itemName comes in as a string 
+	for i in range(quantity):
+		if (staticData.items[itemName] && staticData.items[itemName].itemType == "tradeskill"):
+			if (!global.playerTradeskillItems[itemName].seen):
+				# might be this now: global.playerTradeskillItems
+				global.tradeskillItemsSeen.append(itemName)
+				global.playerTradeskillItems[itemName].seen = true
+			#either way, increase the count
+			global.playerTradeskillItems[itemName].count += 1
+		elif (staticData.items[itemName] && staticData.items[itemName].itemType == "quest"):
+			if (!global.playerQuestItems[itemName].seen):
+				global.questItemsSeen.append(itemName)
+				global.playerQuestItems[itemName].seen = true
+			#either way, increase the count
+			global.playerQuestItems[itemName].count += 1
+		else:
+			#make sure this item actually exists in the item records
+			if (!staticData.items[itemName]):
+				print("ERROR! Make sure this item name exists: " + itemName)
+			#finds first open null spot and puts the item there
+			for i in range(global.guildItems.size()):
+				if (global.guildItems[i] == null):
+					global.guildItems[i] = staticData.items[itemName].duplicate() #make a new instance
+					global.guildItems[i].itemID = global.nextItemID
+					global.nextItemID += 1
+					break
 	
 	
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 

@@ -342,7 +342,7 @@ func _open_collect_result_popup():
 func tradeskillItem_callback():
 	#these things happen when the player dismisses the "COMPLETE!" popup affirmatively
 	if (tradeskill.currentlyCrafting.conversion):
-		util.give_item_guild(tradeskill.currentlyCrafting.name)
+		util.give_item_guild(tradeskill.currentlyCrafting.name, 1)
 	elif (tradeskill.currentlyCrafting.moddingAnItem):
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
@@ -356,7 +356,7 @@ func tradeskillItem_callback():
 		if (tradeskill.currentlyCrafting.name == "Chrono"):
 			global.hardCurrency += 1
 		else:
-			util.give_item_guild(tradeskill.currentlyCrafting.name)
+			util.give_item_guild(tradeskill.currentlyCrafting.name, 1)
 
 	progressBar.set_value(0)
 	tradeskill.wildcardItemOnDeck = null
@@ -480,7 +480,7 @@ func _on_button_back_pressed():
 		#crafting promise should return that on deck item to the guild vault
 		util.remove_item_tradeskill()
 		
-		#util.give_item_guild(tradeskill.wildcardItemOnDeck)
+		#util.give_item_guild(tradeskill.wildcardItemOnDeck, 1)
 		#tradeskill.wildcardItemOnDeck = null
 	
 	get_tree().change_scene("res://main.tscn")

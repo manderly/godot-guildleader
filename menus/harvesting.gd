@@ -132,7 +132,7 @@ func _open_collect_result_popup():
 	
 func harvestItem_callback():
 	#accept the harvested item and give it to guild inventory 
-	util.give_item_guild(currentHarvest.prizeItem1) #todo: QUANTITIES NOT ACCOUNTED FOR YET 
+	util.give_item_guild(currentHarvest.prizeItem1, 2) #todo: QUANTITIES NOT ACCOUNTED FOR YET 
 	progressBar.set_value(0)
 	currentHarvest.endTime = -1
 	currentHarvest.inProgress = false

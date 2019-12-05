@@ -76,7 +76,7 @@ func _update_components_display():
 
 func _on_button_completeQuest_pressed():
 	#give the player the promised item
-	util.give_item_guild(quest.prizeItem1)
+	util.give_item_guild(quest.prizeItem1, 1)
 	#take the components
 	if (quest.reqItem1):
 		global.playerQuestItems[quest.reqItem1].count -= quest.reqItem1Quantity
