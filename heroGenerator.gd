@@ -6,21 +6,6 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 
 func _ready():
 	pass
-
-"""
-func set_hero_class(newHero, classStr):
-	newHero.set_hero_class(classStr)
-		
-	#build perks object out of which perks this hero can actually use
-	newHero.perks = {}
-	for key in staticData.perks.keys():
-		if (staticData.perks[key].restriction == "any" ||
-			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
-			staticData.perks[key].restriction.to_lower() == newHero.charClass.to_lower()):
-			#check if it's for anyone, this hero's archetype, or this hero's class
-			#if so, give this hero this perk option 
-			newHero.perks[key] = staticData.perks[key].duplicate()
-	"""	
 	
 #make new hero object
 func generate(destinationArray, classStr):
