@@ -310,10 +310,10 @@ func auto_assign_bedroom():
 	for i in range(bedroomIDs.size()):  # bedroom0, bedroom1, etc. 
 		if (!foundAHome):
 			var key = bedroomIDs[i]
-			for j in range(global.bedrooms[key].size()):
-				if (global.bedrooms[key][j] == 0):
+			for j in range(global.bedrooms[key].occupants.size()):
+				if (global.bedrooms[key].occupants[j] == 0):
 					#print("setting " + bedroomIDs[i] + " index " + str(j) + " to: " + str(hero.heroID))
-					global.bedrooms[key][j] = heroID
+					global.bedrooms[key].occupants[j] = heroID
 					foundAHome = true
 					break # exit j loop
 					

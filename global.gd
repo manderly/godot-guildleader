@@ -42,7 +42,7 @@ var guildCapacity = 6 #each bedroom adds +2 capacity
 const bedroomMaxOccupancy = 2 
 
 # bedroom assignments are separate from a hero being physically IN their bedroom
-var bedrooms = {} # track who belongs to each bedroom here (by heroID)
+var bedrooms = {} # add to every time a bedroom is added, look in roomGenerator.gd
 var bedroomCount = 0
 
 var unrecruited = []

@@ -9,9 +9,9 @@ onready var heroesNode = $YSort
 
 func _ready():
 	var occupied = 0
-	for i in global.bedrooms[roomID].size():
+	for i in global.bedrooms[roomID].occupants.size():
 		# look for occupied "slots" in this bedroom;s array 
-		if global.bedrooms[roomID][i] > 0:
+		if global.bedrooms[roomID].occupants[i] > 0:
 			occupied+=1
 			
 	set_occupancy(occupied)
@@ -19,10 +19,10 @@ func _ready():
 
 func draw_hero_and_button():
 	# a hero who is "staffed" to his bedroom will appear in his bedroom
-	for i in (global.bedrooms[roomID].size()): # account for index 0 and index 1
-		if (global.bedrooms[roomID][i] > 0):
+	for i in (global.bedrooms[roomID].occupants.size()): # account for index 0 and index 1
+		if (global.bedrooms[roomID].occupants[i] > 0):
 			# get hero's data from global array using this ID
-			var hero = util.get_hero_by_id(global.bedrooms[roomID][i])
+			var hero = util.get_hero_by_id(global.bedrooms[roomID].occupants[i])
 			# get the hero by this ID 
 			if (hero.idleIn == "bedroom"):
 				var heroScene = preload("res://baseEntity.tscn").instance()

@@ -29,9 +29,19 @@ func generate(type, playerBuilt):
 	
 	# every time a bedroom is added, add a key/value pair for it in the 
 	# bedrooms object. It will hold the two heroes (by ID) who belong to that bedroom.
+	
+	# track who belongs to each bedroom here (by heroID)
 	if (type == "bedroom"):
 		newRoom.roomName += str(global.bedroomCount)
 		newRoom.roomID = "bedroom"+str(global.bedroomCount)
+		global.bedrooms[newRoom.roomID] = {
+			"occupants":[0,0],
+			"inventory":{
+				"theme":"default",
+				"bed0":null,
+				"bed1":null,
+				"rug":null,
+				"decor":null
+			}	
+		}
 		global.bedroomCount += 1
-		global.bedrooms[newRoom.roomID] = [0,0]
-		
