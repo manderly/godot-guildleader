@@ -30,3 +30,5 @@ margin_right = 437.946
 margin_bottom = 22.9007
 text = "0/0"
 align = 2
+
+[node name="YSort" type="YSort" parent="."]

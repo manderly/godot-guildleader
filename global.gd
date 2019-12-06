@@ -25,9 +25,12 @@ var surnameLevel = 20
 var guildName = "" 
 var namesInUse = []
 var tickRate = 10
+var lastIdlePositionShuffle = 0 # replace with unix timestamp, compare in main.gd 
 
 var cameraPosition = Vector2(-14,2)
 var mainScreenTop = 0
+
+var onscreenHeroes = []
 
 var nextHeroID = 100
 

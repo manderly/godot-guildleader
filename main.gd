@@ -11,6 +11,7 @@ var mainRoomMinY = 250
 var mainRoomMaxY = 410
 
 # node to add heroes to
+# must exist in each scene that renders heroes who might walk over each other 
 onready var heroesNode = $screen/YSort
 
 var spawnLocs = {
@@ -86,8 +87,6 @@ var graveyardLocs = {
 var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
-
-var onscreenHeroes = []
 				
 func generateStartingHeroes():
 		
@@ -133,9 +132,6 @@ func generateStartingHeroes():
 	# so the starting heroes belong to bedrooms by default 
 	for hero in global.guildRoster:
 		hero.auto_assign_bedroom()
-		
-	# print the bedroom assignments
-	print(global.bedrooms)
 	
 	util.give_quest("test09")
 	util.give_quest("test10")
@@ -170,7 +166,7 @@ func draw_HUD():
 	
 func _save_hero_locations():
 	#save the x and y of every hero currently on the screen
-	for hero in onscreenHeroes:
+	for hero in global.onscreenHeroes:
 		hero.save_current_position()
 	
 func _on_Map_pressed():
@@ -202,26 +198,29 @@ func _process(delta):
 	pass
 	
 func determine_atHome_positions():
-	# take all the atHome heroes and assign some to be in the main hall
-	# and some to be in their bedrooms. This is just for visual purposes
-	for i in range(global.guildRoster.size()):
-		#for each hero who is at home, give him a 50/50 chance of being in his room
-		var thisHero = global.guildRoster[i]
-		if (thisHero.atHome && thisHero.staffedTo == ""):
-			# 50/50 chance of showing in bedroom instead of main hall 
-			# todo: make this based on time, not a random draw every load
-			var idleInNum = randi()%2+1 #1-2
-			if (idleInNum == 1):
-				thisHero.idleIn="bedroom"
-				print("showing thisHero in a bedroom: " + thisHero.get_first_name())
-				# bedroom.gd code will take it from here when drawRooms is called 
-			else:
-				thisHero.idleIn="main"
+	var now = OS.get_unix_time()
+	# let's say now is 61, and the last shuffle was at 0
+	# if now - last shuffle > 60, time to shuffle
+	if (global.lastIdlePositionShuffle == 0 || (now - global.lastIdlePositionShuffle > 600)):
+		# take all the atHome heroes and assign some to be in the main hall
+		# and some to be in their bedrooms. This is just for visual purposes
+		for i in range(global.guildRoster.size()):
+			#for each hero who is at home, give him a 50/50 chance of being in his room
+			var thisHero = global.guildRoster[i]
+			if (thisHero.atHome && thisHero.staffedTo == ""):
+				# 50/50 chance of showing in bedroom instead of main hall 
+				var idleInNum = randi()%2+1 #1-2
+				if (idleInNum == 1):
+					thisHero.idleIn="bedroom"
+					# bedroom.gd code will take it from here when drawRooms is called 
+				else:
+					thisHero.idleIn="main"
+		global.lastIdlePositionShuffle = now
 			
 func draw_heroes():
 	var heroX = -1
 	var heroY = -1
-	onscreenHeroes = []
+	global.onscreenHeroes = []
 	
 	for i in range(global.guildRoster.size()):
 		#draw heroes who are "atHome"
@@ -247,14 +246,18 @@ func draw_heroes():
 			else:
 				heroX = global.guildRoster[i].savedPositionX #rand_range(mainRoomMinX, mainRoomMaxX)
 				heroY = global.guildRoster[i].savedPositionY #rand_range(mainRoomMinY, mainRoomMaxY)
-			
+				if (global.guildRoster[i].savedFacing == "left"):
+					heroScene.face_left()
+				elif (global.guildRoster[i].savedFacing == "right"):
+					heroScene.face_right()
+					
 			if (thisHero.dead):
 				heroScene.ghost_mode(true)
 			else:
 				heroScene.ghost_mode(false)
 			heroScene.set_position(Vector2(heroX, heroY))
 			heroScene.set_display_params(true, true) #walking, show name
-			onscreenHeroes.append(heroScene)
+			global.onscreenHeroes.append(heroScene)
 			heroesNode.add_child(heroScene)
 			
 	#draw unrecruited heroes outside the base
@@ -272,7 +275,7 @@ func draw_heroes():
 		heroScene.set_instance_data(global.unrecruited[i])
 		heroScene._draw_sprites()
 		heroScene.set_display_params(true, true) #walking, show name
-		onscreenHeroes.append(heroScene)
+		global.onscreenHeroes.append(heroScene)
 		add_child(heroScene)
 
 func draw_rooms():
