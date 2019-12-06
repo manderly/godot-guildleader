@@ -412,6 +412,8 @@ func _on_button_train_or_recruit_pressed():
 					global.unrecruited[i].recruited = true
 					global.unrecruited[i].currentRoom = 1
 					global.guildRoster.append(global.unrecruited[i])
+					# assign to a bedroom
+					global.unrecruited[i].auto_assign_bedroom()
 					break
 		
 			#now remove this hero from the unrecruited hero array

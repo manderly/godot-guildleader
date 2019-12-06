@@ -34,7 +34,9 @@ var nextHeroID = 100
 var selectedHero = null #which hero to show on heroPage
 
 var guildRoster = []
-var guildCapacity = 4 #each bedroom adds +2 capacity 
+var guildCapacity = 6 #each bedroom adds +2 capacity 
+
+const bedroomMaxOccupancy = 2 
 var bedrooms = {} # track who belongs to each bedroom here (by heroID)
 var bedroomCount = 0
 

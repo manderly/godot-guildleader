@@ -22,3 +22,11 @@ margin_right = 263.0
 margin_bottom = 22.0
 text = "Bedroom"
 valign = 1
+
+[node name="field_occupancy" type="Label" parent="."]
+margin_left = 397.946
+margin_top = 8.90068
+margin_right = 437.946
+margin_bottom = 22.9007
+text = "0/0"
+align = 2
