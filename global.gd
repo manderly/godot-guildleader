@@ -161,7 +161,11 @@ func _ready():
 	util.give_item_guild("Rough Stone", 15)
 	util.give_item_guild("Leather Strip", 5)
 	util.give_item_guild("Small Brick of Ore", 1)
-	util.give_item_guild("Copper Ore", 1)
+	util.give_item_guild("Copper Ore", 10)
+	util.give_item_guild("Silver Ore", 10)
+	util.give_item_guild("Gold Ore", 10)
+	util.give_item_guild("Topaz", 2)
+	util.give_item_guild("Pearl", 2)
 	
 	util.give_item_guild("Azuricite Metal", 10)
 	util.give_item_guild("Leather Padding", 6)
