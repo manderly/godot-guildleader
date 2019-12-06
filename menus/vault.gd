@@ -101,7 +101,7 @@ func _draw_vault_items():
 
 func _draw_tradeskill_items():
 	#these are on their own tab now
-	print(global.tradeskillItemsSeen) #array of item names
+	#print(global.tradeskillItemsSeen) #array of item names
 	for i in range(global.tradeskillItemsSeen.size()):
 		var tradeskillItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = global.tradeskillItemsSeen[i]
@@ -110,7 +110,7 @@ func _draw_tradeskill_items():
 
 func _draw_quest_items():
 	#these are on their own tab now
-	print(global.questItemsSeen) #array of item names
+	#print(global.questItemsSeen) #array of item names
 	for item in global.questItemsSeen:
 		var questItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
 		var itemName = item
@@ -119,7 +119,7 @@ func _draw_quest_items():
 	
 	
 func _on_button_back_pressed():
-	print(global.currentMenu)
+	#print(global.currentMenu)
 	if (global.currentMenu == "vaultViaHeroPage"):
 		global.currentMenu = "heroPage"
 		get_tree().change_scene("res://menus/heroPage.tscn")

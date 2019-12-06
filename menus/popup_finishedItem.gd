@@ -30,7 +30,6 @@ func _show_skill_up_text(showBool):
 		skillUpField.hide()
 	
 func _set_icon(data):
-	print(data)
 	if ("icon" in data):
 		$elements/sprite_icon.texture = load("res://sprites/items/" + data.icon)
 	else:

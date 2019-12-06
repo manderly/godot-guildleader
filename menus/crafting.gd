@@ -258,8 +258,6 @@ func _update_results_area():
 		labelChoose.hide()
 		labelComputed.hide()
 		
-		print(tradeskill.currentlyCrafting)
-		
 		var itemName = tradeskill.currentlyCrafting.name
 	
 		if (tradeskill.currentlyCrafting.moddingAnItem):
@@ -338,7 +336,6 @@ func _open_collect_result_popup():
 	var quantity = 1
 	if (tradeskill.currentlyCrafting.conversion):
 		quantity = _determine_quantity_rendered(tradeskill)
-		print("Player crafted " + str(quantity) + " of that item")
 		
 	#since we don't actually create or give the item until it is collected,
 	#we can't use its final name yet. This "fakes" it - 
@@ -383,10 +380,14 @@ func _determine_quantity_rendered(tradeskill):
 		elif (rarity == "legendary"):
 			# guaranteed extra if item was legendary 
 			quantity+=2
-	if (tradeskill.tradeskill == "tailoring"):
-		# robes and pants produce 2 fluffs
+	elif (tradeskill.tradeskill == "tailoring"):
+		var slot = tradeskill.currentlyCrafting.wildcardItem.slot
+		if (slot.to_lower() == "chest" || slot.to_lower() == "legs"):
+			# robes/shirts and pants produce 2 fluffs
+			quantity = 2
 		# everything else produces 1 fluff
-		quantity = 2
+	else: 
+		print("crafting.gd error: no 'render to...' rules for this tradeskill!")
 	return quantity
 
 func tradeskillItem_callback(quantity):

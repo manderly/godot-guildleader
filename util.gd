@@ -85,7 +85,7 @@ func give_item_guild(itemName, quantity): #itemName comes in as a string
 		else:
 			#make sure this item actually exists in the item records
 			if (!staticData.items[itemName]):
-				print("ERROR! Make sure this item name exists: " + itemName)
+				print("util.gd ERROR! Make sure this item name exists: " + itemName)
 			#finds first open null spot and puts the item there
 			for i in range(global.guildItems.size()):
 				if (global.guildItems[i] == null):
@@ -116,7 +116,7 @@ func remove_item_guild_by_name(itemNameStr):
 		global.guildItems.remove(removeIdx)
 					
 func remove_item_guild_by_id(itemID):
-	print("util.gd: Removing itemID " + str(itemID) + " from guild's inventory")
+	#print("util.gd: Removing itemID " + str(itemID) + " from guild's inventory")
 	#delete it by nulling its index
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i]):
@@ -125,7 +125,7 @@ func remove_item_guild_by_id(itemID):
 	
 func give_item_tradeskill(itemID):
 	#we have the item ID, which we can find in the guildItems array
-	print("util.gd: Giving itemID " + str(itemID) + " to tradeskill.wildcardItemOnDeck")
+	#print("util.gd: Giving itemID " + str(itemID) + " to tradeskill.wildcardItemOnDeck")
 	for i in range(global.guildItems.size()):
 		if (global.guildItems[i]):
 			if (global.guildItems[i].itemID == itemID):
