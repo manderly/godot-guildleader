@@ -88,7 +88,7 @@ var questTimeLeft = -1
 onready var roomsLayer = $screen/rooms
 
 var onscreenHeroes = []
-
+				
 func generateStartingHeroes():
 		
 	var global_vars = get_node("/root/global")
@@ -103,11 +103,8 @@ func generateStartingHeroes():
 	heroGenerator.generate(global.guildRoster, "Cleric")
 	
 	#Generate unrecruited heroes
-	#heroGenerator.generate(global.unrecruited, "Cleric")
-	#heroGenerator.generate(global.unrecruited, "Rogue")
 	heroGenerator.generate(global.unrecruited, "Ranger")
 	heroGenerator.generate(global.unrecruited, "Druid")
-	#heroGenerator.generate(global.unrecruited, "Warrior")
 	
 	#level them up a bit for testing purposes
 	for hero in global.guildRoster:
@@ -129,7 +126,16 @@ func generateStartingHeroes():
 	roomGenerator.generate("bedroom", false)
 	roomGenerator.generate("vault", false)
 	roomGenerator.generate("bedroom", false)
+	roomGenerator.generate("bedroom", false)
 	roomGenerator.generate("topEdge", false)
+	
+	# must come after room generation
+	# so the starting heroes belong to bedrooms by default 
+	for hero in global.guildRoster:
+		hero.auto_assign_bedroom()
+		
+	# print the bedroom assignments
+	print(global.bedrooms)
 	
 	util.give_quest("test09")
 	util.give_quest("test10")

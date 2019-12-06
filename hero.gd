@@ -280,6 +280,26 @@ func _stop_walking():
 	elif (walkingToBattlePoint):
 		walkingToBattlePoint = false
 
+func auto_assign_bedroom():
+	print("finding a bedroom for " + get_first_name())
+	# find an empty spot in the bedrooms object
+	# assign this hero (by ID) to the first empty spot found
+	# get all the keys from the object as an array
+	var bedroomIDs = global.bedrooms.keys()
+	#bedrooms = [bedroom0, bedroom1]
+	
+	# iterate through array, using each key to access the array of hero IDs within
+	var foundAHome = false
+	for i in range(bedroomIDs.size()):  # bedroom0, bedroom1, etc. 
+		if (!foundAHome):
+			var key = bedroomIDs[i]
+			for j in range(global.bedrooms[key].size()):
+				if (global.bedrooms[key][j] == 0):
+					#print("setting " + bedroomIDs[i] + " index " + str(j) + " to: " + str(hero.heroID))
+					global.bedrooms[key][j] = heroID
+					foundAHome = true
+					break # exit j loop
+					
 func has_perk(perkIDStr):
 	var hasPerk = false
 	if (perkIDStr in perks):

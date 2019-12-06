@@ -26,6 +26,9 @@ func _ready():
 	global.selectedHero = global.guildRoster[lastIndex]
 	global.selectedHero.isPlayer = true
 	
+	# give it a bedroom spot
+	heroGenerator._auto_assign_bedroom(global.selectedHero)
+	
 	#for now, this new hero can only be human
 	#but we need all the human heads in one big array so this page can cycle through them
 	allHumanHeads = []

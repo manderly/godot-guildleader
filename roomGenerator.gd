@@ -26,4 +26,12 @@ func generate(type, playerBuilt):
 		newRoom.roomName += str(global.trainingRoomCount)
 		newRoom.roomID = "training"+str(global.trainingRoomCount)
 		global.trainingRoomCount += 1
+	
+	# every time a bedroom is added, add a key/value pair for it in the 
+	# bedrooms object. It will hold the two heroes (by ID) who belong to that bedroom.
+	if (type == "bedroom"):
+		newRoom.roomName += str(global.bedroomCount)
+		newRoom.roomID = "bedroom"+str(global.bedroomCount)
+		global.bedroomCount += 1
+		global.bedrooms[newRoom.roomID] = [0,0]
 		

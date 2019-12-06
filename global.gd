@@ -35,6 +35,8 @@ var selectedHero = null #which hero to show on heroPage
 
 var guildRoster = []
 var guildCapacity = 4 #each bedroom adds +2 capacity 
+var bedrooms = {} # track who belongs to each bedroom here (by heroID)
+var bedroomCount = 0
 
 var unrecruited = []
 
