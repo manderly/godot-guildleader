@@ -25,6 +25,7 @@ var xp = -1
 # These properties relate to where a hero is on the main screen
 var currentRoom = 0 #outside by default
 var atHome = true
+var idleIn = ""
 var staffedTo = ""
 var staffedToID = ""
 var savedPositionX = -1
@@ -210,6 +211,7 @@ func save():
 		"walkable":walkable,
 		"currentRoom":currentRoom,
 		"atHome":atHome,
+		"idleIn":idleIn,
 		"staffedTo":thisHero.staffedTo,
 		"staffedToID":thisHero.staffedToID,
 		"recruited":thisHero.recruited,
@@ -332,6 +334,7 @@ func set_instance_data(data):
 	dead = data.dead
 	heroID = data.heroID
 	atHome = data.atHome
+	idleIn = data.idleIn
 	staffedTo = data.staffedTo
 	sprite = data.sprite #oneBody sprite, if present (not present if humanoid)
 	headSprite = data.headSprite #sprites are set in heroGenerator.gd
@@ -590,6 +593,7 @@ func send_home():
 	atHome = true
 	staffedTo = ""
 	staffedToID = -1
+	idleIn = "bedroom"
 	
 func give_xp(xpNum):
 	xp += xpNum

@@ -23,6 +23,12 @@ func format_time(time):
 		
 	return timeFormattedForDisplay
 
+func get_hero_by_id(id):
+	for i in range(global.guildRoster.size()):
+		if (global.guildRoster[i].heroID == id):
+			return global.guildRoster[i]
+	print("util.gd error: hero with ID " + str(id) + " not found") 
+		
 func getRecipeDifficulty(trivial, crafterSkill):
 	# returns one of the following: "trivial", "white", "yellow", "red"
 	# [trivial][white][yellow][red    ]

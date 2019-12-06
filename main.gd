@@ -160,6 +160,7 @@ func _ready():
 		
 	draw_HUD()
 	$HUD/hbox/field_guildCapacity.text = str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
+	determine_atHome_positions()
 	draw_heroes()
 	draw_rooms()
 	
@@ -200,6 +201,23 @@ func _process(delta):
 	#	print("timer done")
 	pass
 	
+func determine_atHome_positions():
+	# take all the atHome heroes and assign some to be in the main hall
+	# and some to be in their bedrooms. This is just for visual purposes
+	for i in range(global.guildRoster.size()):
+		#for each hero who is at home, give him a 50/50 chance of being in his room
+		var thisHero = global.guildRoster[i]
+		if (thisHero.atHome && thisHero.staffedTo == ""):
+			# 50/50 chance of showing in bedroom instead of main hall 
+			# todo: make this based on time, not a random draw every load
+			var idleInNum = randi()%2+1 #1-2
+			if (idleInNum == 1):
+				thisHero.idleIn="bedroom"
+				print("showing thisHero in a bedroom: " + thisHero.get_first_name())
+				# bedroom.gd code will take it from here when drawRooms is called 
+			else:
+				thisHero.idleIn="main"
+			
 func draw_heroes():
 	var heroX = -1
 	var heroY = -1
@@ -208,7 +226,7 @@ func draw_heroes():
 	for i in range(global.guildRoster.size()):
 		#draw heroes who are "atHome"
 		var thisHero = global.guildRoster[i]
-		if (thisHero.atHome && thisHero.staffedTo == ""):
+		if (thisHero.atHome && thisHero.staffedTo == "" && thisHero.idleIn != "bedroom"):
 			#we only need to make a new instance if this hero
 			#is "wandering" the guildhall
 			var heroScene = load("res://baseEntity.tscn").instance()

@@ -37,6 +37,8 @@ var guildRoster = []
 var guildCapacity = 6 #each bedroom adds +2 capacity 
 
 const bedroomMaxOccupancy = 2 
+
+# bedroom assignments are separate from a hero being physically IN their bedroom
 var bedrooms = {} # track who belongs to each bedroom here (by heroID)
 var bedroomCount = 0
 
@@ -186,6 +188,7 @@ func save():
 			"parent":get_parent().get_path(),
 			"guildName":guildName,
 			"tradeskills":tradeskills,
+			"bedrooms":bedrooms,
 			"training":training,
 			"softCurrency":softCurrency,
 			"hardCurrency":hardCurrency,
