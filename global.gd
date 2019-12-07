@@ -35,6 +35,8 @@ var onscreenHeroes = []
 var nextHeroID = 100
 
 var selectedHero = null #which hero to show on heroPage
+var selectedBedroom = null # for telling the bedroom scenes apart in menus 
+var whichBed = null # for putting quilts on the CORRECT bed in each bedroom
 
 var guildRoster = []
 var guildCapacity = 6 #each bedroom adds +2 capacity 
@@ -180,6 +182,8 @@ func _ready():
 	util.give_item_guild("Leather Padding", 6)
 
 	util.give_item_guild("Caster's Circlet", 1)
+	
+	util.give_item_guild("Comfy Quilt", 2)
 
 	
 func logger(script, message):

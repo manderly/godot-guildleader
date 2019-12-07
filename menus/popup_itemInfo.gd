@@ -179,6 +179,9 @@ func _on_button_trash_pressed():
 			itemData = null
 			global.selectedHero.update_hero_stats()
 			emit_signal("updateStats") #caught by itemButton.gd
+	if (global.currentMenu == "bedroomPage"):
+		# remove this item from the bedroom inventory
+		print("popup_itemInfo.gd: implement item deletion from bedroom page")
 	elif (global.currentMenu == "vault"):
 		#here we have to pick it out of the global equipment array 
 		if (global.guildItems[vaultIndex]):
@@ -208,7 +211,34 @@ func _on_button_moveItem_pressed():
 			util.give_item_tradeskill(itemData.itemID)
 			self.hide() #hide the popup
 			get_tree().change_scene("res://menus/crafting.tscn")
+	elif (global.currentMenu == "vaultViaBedroomPage"):
+		# Use case: Moving item from vault to bedroom
+		var vaultItem = global.guildItems[vaultIndex]
+		var slot = vaultItem.slot
+		if (slot == "bed"):
+			# expand it back out to which bed, specifically
+			slot = global.whichBed
+		global.bedrooms[global.selectedBedroom]["inventory"][slot] = vaultItem
+		global.guildItems[vaultIndex] = null #null it out of the vault, it's now in the bedroom
+		#go back to bedroom page
+		global.currentMenu = "bedroomPage"
+		get_tree().change_scene("res://menus/bedroomPage.tscn") 
+	elif (global.currentMenu == "bedroomPage"):
+		var slot = itemData.slot
+		if (slot == "bed"):
+			# if this item is a "bed" item, figure out which slot it is in
+			slot = global.whichBed
+		# Use case: move item from bedroom (any bedroom) back to the vault
+		emit_signal("itemDeletedOrMovedToVault")
+		if (global.bedrooms[global.selectedBedroom]["inventory"][slot] != null):
+			for i in range(global.guildItems.size()):
+				if (global.guildItems[i] == null):
+					#finds first open null spot and puts the item there
+					global.guildItems[i] = global.bedrooms[global.selectedBedroom]["inventory"][slot]
+					break
+			global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
 	else:
+		print(global.currentMenu)
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
 		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 

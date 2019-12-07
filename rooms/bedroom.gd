@@ -56,3 +56,9 @@ func draw_hero_and_button():
 	
 func set_occupancy(occupancy):
 	field_occupancy.text = str(occupancy)+"/"+str(global.bedroomMaxOccupancy)
+
+func _on_Bedroom_Button_pressed():
+	print("pressed bedroom edit button")
+	global.selectedBedroom = roomID
+	global.currentMenu = "bedroomPage"
+	get_tree().change_scene("res://menus/bedroomPage.tscn")

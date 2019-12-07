@@ -32,7 +32,7 @@ func _position_vault_buttons():
 	#this method handles the STRUCTURE of the buttons
 	#it places the empty buttons in the correct hboxes
 	#use _draw_vault_items() to put icons and data into buttons
-	
+	print(global.currentMenu)
 	#draw all the rows, and if there happens to be an item in the corresponding guildItems array, add its data 
 	for i in range(global.vaultSpace):
 		var itemButton = preload("res://menus/itemButton.tscn").instance()
@@ -40,9 +40,10 @@ func _position_vault_buttons():
 		itemButton.connect("updateSourceButtonArt", self, "_draw_vault_items")
 		gridEquipment.add_child(itemButton)
 		buttonArray.append(itemButton)
-			
 		if (global.currentMenu == "vaultViaHeroPage"):
 			itemButton._set_info_popup_buttons(true, true, "Equip")
+		elif (global.currentMenu == "vaultViaBedroomPage"):
+			itemButton._set_info_popup_buttons(true, true, "Place")
 		elif (global.currentMenu == "alchemy" ||
 			global.currentMenu == "blacksmithing" ||
 			global.currentMenu == "chronomancy" ||
@@ -81,6 +82,10 @@ func _draw_vault_items():
 									thisHeroCanWear = true
 					if (!thisHeroCanWear):
 						currentButton.set_disabled(true)
+				elif (global.currentMenu == "vaultViaBedroomPage"):
+					#disable if this item isn't a slot match
+					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
+						currentButton.set_disabled(true) #disable button if slot mismatch 
 				elif (global.currentMenu == "blacksmithing"):
 					if (global.browsingForType == "blade"):
 						if (global.guildItems[i].itemType != "sword" && 
@@ -95,12 +100,14 @@ func _draw_vault_items():
 				currentButton._clear_label()
 				currentButton._clear_icon()
 				currentButton._clear_data()
-				if (global.currentMenu == "vaultViaHeroPage" || global.currentMenu == "vaultViaBlacksmith"):
+				if (global.currentMenu == "vaultViaHeroPage" || 
+					global.currentMenu == "vaultViaBlacksmith" ||
+					global.currentMenu == "vaultViaBedroomPage"):
 					currentButton.set_disabled(true) #disable empty buttons but only when equipping an item onto a hero 
 				#keep vault index intact 
 
 func _draw_tradeskill_items():
-	#these are on their own tab now
+	#these are on their own tab
 	#print(global.tradeskillItemsSeen) #array of item names
 	for i in range(global.tradeskillItemsSeen.size()):
 		var tradeskillItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
@@ -109,7 +116,7 @@ func _draw_tradeskill_items():
 		gridTradeskillItems.add_child(tradeskillItemDisplay)
 
 func _draw_quest_items():
-	#these are on their own tab now
+	#these are on their own tab
 	#print(global.questItemsSeen) #array of item names
 	for item in global.questItemsSeen:
 		var questItemDisplay = preload("res://menus/smallItemDisplay.tscn").instance()
@@ -126,6 +133,9 @@ func _on_button_back_pressed():
 	elif (global.currentMenu == "vaultViaBlacksmith"):
 		global.currentMenu = "blacksmithing"
 		get_tree().change_scene("res://menus/crafting.tscn")
+	elif (global.currentMenu == "vaultViaBedroomPage"):
+		global.currentMenu = "bedroom"
+		get_tree().change_scene("res://menus/bedroomPage.tscn")
 	else:
 		get_tree().change_scene("res://main.tscn")
 	

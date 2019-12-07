@@ -31,4 +31,13 @@ margin_bottom = 22.9007
 text = "0/0"
 align = 2
 
+[node name="Button" type="Button" parent="."]
+margin_left = 208.843
+margin_top = 154.516
+margin_right = 251.843
+margin_bottom = 174.516
+text = "edit"
+
 [node name="YSort" type="YSort" parent="."]
+z_index = 1
+[connection signal="pressed" from="Button" to="." method="_on_Bedroom_Button_pressed"]

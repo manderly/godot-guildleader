@@ -42,6 +42,6 @@ func generate(type, playerBuilt):
 				"bed1":null,
 				"rug":null,
 				"decor":null
-			}	
+			}
 		}
 		global.bedroomCount += 1

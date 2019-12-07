@@ -88,6 +88,10 @@ func _render_item_sprite(data):
 func _render_hero_page(data):
 	itemData = data
 	_render_item_sprite(data)
+
+func _render_bedroom_page(data):
+	itemData = data
+	_render_item_sprite(data)
 	
 func _render_vault(data):
 	itemData = data
@@ -147,7 +151,12 @@ func _on_Button_pressed():
 	else:
 		#save a record of the previous button clicked for use in swapping items 
 		global.lastItemButtonClicked = self
-		global.browsingForSlot = itemSlot
+		if (itemSlot == "bed0" || itemSlot == "bed1"):
+			global.whichBed = itemSlot
+			# we have to make this just "bed" so the vault shows us "bed" items
+			global.browsingForSlot = "bed"
+		else:
+			global.browsingForSlot = itemSlot
 		
 		#only show the item popup if there is an item, otherwise go to the vault
 		if (itemData):
@@ -158,4 +167,6 @@ func _on_Button_pressed():
 		else:
 			if (global.currentMenu == "heroPage"):
 				global.currentMenu = "vaultViaHeroPage"
+			elif (global.currentMenu == "bedroomPage"):
+				global.currentMenu = "vaultViaBedroomPage"
 			get_tree().change_scene("res://menus/vault.tscn")
