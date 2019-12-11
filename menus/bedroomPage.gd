@@ -31,3 +31,6 @@ func _ready():
 			bedroomInventoryButton._render_bedroom_page(global.bedrooms[global.selectedBedroom]["inventory"][slot])
 	
 		inventoryGrid.add_child(bedroomInventoryButton)
+		
+func _on_button_back_pressed():
+	get_tree().change_scene("res://main.tscn")
