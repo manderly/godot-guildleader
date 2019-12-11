@@ -25,16 +25,27 @@ var surnameLevel = 20
 var guildName = "" 
 var namesInUse = []
 var tickRate = 10
+var lastIdlePositionShuffle = 0 # replace with unix timestamp, compare in main.gd 
 
 var cameraPosition = Vector2(-14,2)
 var mainScreenTop = 0
 
+var onscreenHeroes = []
+
 var nextHeroID = 100
 
 var selectedHero = null #which hero to show on heroPage
+var selectedBedroom = null # for telling the bedroom scenes apart in menus 
+var whichBed = null # for putting quilts on the CORRECT bed in each bedroom
 
 var guildRoster = []
-var guildCapacity = 4 #each bedroom adds +2 capacity 
+var guildCapacity = 6 #each bedroom adds +2 capacity 
+
+const bedroomMaxOccupancy = 2 
+
+# bedroom assignments are separate from a hero being physically IN their bedroom
+var bedrooms = {} # add to every time a bedroom is added, look in roomGenerator.gd
+var bedroomCount = 0
 
 var unrecruited = []
 
@@ -171,6 +182,8 @@ func _ready():
 	util.give_item_guild("Leather Padding", 6)
 
 	util.give_item_guild("Caster's Circlet", 1)
+	
+	util.give_item_guild("Comfy Quilt", 2)
 
 	
 func logger(script, message):
@@ -182,6 +195,7 @@ func save():
 			"parent":get_parent().get_path(),
 			"guildName":guildName,
 			"tradeskills":tradeskills,
+			"bedrooms":bedrooms,
 			"training":training,
 			"softCurrency":softCurrency,
 			"hardCurrency":hardCurrency,

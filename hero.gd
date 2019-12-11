@@ -12,6 +12,11 @@ var outsideMaxX = 380
 var outsideMinY = 650
 var outsideMaxY = 820
 
+var bedroomMinX = 200
+var bedroomMaxX = 340
+var bedroomMinY = 50
+var bedroomMaxY = 85
+
 # These properties are specific to a hero
 var heroID = -1 
 var heroFirstName = "Firstname"
@@ -25,10 +30,13 @@ var xp = -1
 # These properties relate to where a hero is on the main screen
 var currentRoom = 0 #outside by default
 var atHome = true
+var idleIn = "outside" #outside, graveyard, main, bedroom, tradeskill
 var staffedTo = ""
 var staffedToID = ""
 var savedPositionX = -1
 var savedPositionY = -1
+var facing = "left"
+var savedFacing = "left"
 
 #Hero walking vars 
 var walkDestX = -1
@@ -82,14 +90,24 @@ func _start_walking():
 	walking = true
 	$animationPlayer.play("walk")
 	#pick a random destination to walk to (in the main room for now)
-	if (currentRoom == 1): #large interior room
+	if (idleIn == "main"): #large interior "main" room
 		walkDestX = rand_range(mainRoomMinX, mainRoomMaxX)
 		walkDestY = rand_range(mainRoomMinY, mainRoomMaxY)
-	else: #currentRoom == 0 #outside
+	elif (idleIn == "outside"): #currentRoom == 0 #outside
 		walkDestX = rand_range(outsideMinX, outsideMaxX)
 		walkDestY = rand_range(outsideMinY, outsideMaxY)
-			
-	# else we use the walkDestX and walkDestY set from outside this method
+	elif (idleIn == "graveyard"):
+		# todo: graveyard coords
+		walkDestX = rand_range(outsideMinX, outsideMaxX)
+		walkDestY = rand_range(outsideMinY, outsideMaxY)
+	elif (idleIn == "bedroom"):
+		# the X/Y min/max are relative to the scene the hero is in 
+		walkDestX = rand_range(bedroomMinX, bedroomMaxX)
+		walkDestY = rand_range(bedroomMinY, bedroomMaxY)
+	else:
+		# use outside coords as a catch-all 
+		walkDestX = rand_range(outsideMinX, outsideMaxX)
+		walkDestY = rand_range(outsideMinY, outsideMaxY)
 	
 	startingX = get_position().x
 	startingY = get_position().y
@@ -107,29 +125,25 @@ func _start_walking():
 	target = Vector2(walkDestX, walkDestY)
 	#flip (or don't flip) the character's body
 	if (startingX < target.x):
-		#print(heroName + " walking RIGHT // started: " + str(startingX) + " // going to:" + str(target.x))
-		#if already facing right (-1), don't do anything
-		#if facing left (1), change to -1
+		# if facing left, don't change anything
 		if ($body.scale.x == 1):
 			face_right()
-			#$body.set_scale(Vector2(-1,1))
-			#$body/weapon1.offset.x = 20
-			#$body/weapon2.offset.x = -20
-			#$body/shield.offset.x = -28
-			#$body/shield.set_scale(Vector2(abs($body.scale.x),1)) #todo: shield shouldn't flip
 	elif (startingX > target.x):
-		#print(heroName + " walking LEFT // started: " + str(startingX) + " // going to:" + str(target.x))
-		#if already facing left (1), don't do anything
-		#if facing right (-1), change to 1 by multiplying -1 
+		#if already facing right, don't change anything
 		if ($body.scale.x == -1):
-			$body.set_scale(Vector2(abs($body.scale.x),1))
-			$body/weapon1.offset.x = 0
-			$body/weapon2.offset.x = 0
-			$body/shield.offset.x = 0
+			face_left()
 		
 	#_physics_process(delta) handles the rest and determines when the heroes has arrived 
 	
+func face_left():
+	facing = "left"
+	$body.set_scale(Vector2(abs($body.scale.x),1))
+	$body/weapon1.offset.x = 0
+	$body/weapon2.offset.x = 0
+	$body/shield.offset.x = 0
+			
 func face_right():
+	facing = "right"
 	$body.set_scale(Vector2(-1,1))
 	$body/weapon1.offset.x = 20
 	$body/weapon2.offset.x = -20
@@ -179,8 +193,10 @@ func save_current_position():
 		#pair hero scene to hero in data array
 		#todo I bet this doesn't work if two heroes share a first name
 		if (global.guildRoster[i].get_first_name() == heroFirstName):
+			#print("saving " + global.guildRoster[i].get_first_name() + " position and facing: " + facing) 
 			global.guildRoster[i].savedPositionX = get_position().x
 			global.guildRoster[i].savedPositionY = get_position().y
+			global.guildRoster[i].savedFacing = facing
 	#todo: is there some smarter way to do this? I wanted to just set
 	#the variables on this hero instance but it has to be done in the roster array 
 	
@@ -210,6 +226,7 @@ func save():
 		"walkable":walkable,
 		"currentRoom":currentRoom,
 		"atHome":atHome,
+		"idleIn":idleIn,
 		"staffedTo":thisHero.staffedTo,
 		"staffedToID":thisHero.staffedToID,
 		"recruited":thisHero.recruited,
@@ -217,6 +234,7 @@ func save():
 		"dead":dead,
 		"savedPositionX":get_position().x,#savedPosition.x,
 		"savedPositionY":get_position().y,#savedPosition.y,
+		"savedFacing":thisHero.facing,
 		"hpCurrent":thisHero.hpCurrent,
 		"hp":thisHero.hp,
 		"manaCurrent":thisHero.manaCurrent,
@@ -280,6 +298,25 @@ func _stop_walking():
 	elif (walkingToBattlePoint):
 		walkingToBattlePoint = false
 
+func auto_assign_bedroom():
+	# find an empty spot in the bedrooms object
+	# assign this hero (by ID) to the first empty spot found
+	# get all the keys from the object as an array
+	var bedroomIDs = global.bedrooms.keys()
+	#bedrooms = [bedroom0, bedroom1]
+	
+	# iterate through array, using each key to access the array of hero IDs within
+	var foundAHome = false
+	for i in range(bedroomIDs.size()):  # bedroom0, bedroom1, etc. 
+		if (!foundAHome):
+			var key = bedroomIDs[i]
+			for j in range(global.bedrooms[key].occupants.size()):
+				if (global.bedrooms[key].occupants[j] == 0):
+					#print("setting " + bedroomIDs[i] + " index " + str(j) + " to: " + str(hero.heroID))
+					global.bedrooms[key].occupants[j] = heroID
+					foundAHome = true
+					break # exit j loop
+					
 func has_perk(perkIDStr):
 	var hasPerk = false
 	if (perkIDStr in perks):
@@ -312,6 +349,7 @@ func set_instance_data(data):
 	dead = data.dead
 	heroID = data.heroID
 	atHome = data.atHome
+	idleIn = data.idleIn
 	staffedTo = data.staffedTo
 	sprite = data.sprite #oneBody sprite, if present (not present if humanoid)
 	headSprite = data.headSprite #sprites are set in heroGenerator.gd
@@ -340,6 +378,7 @@ func set_instance_data(data):
 	shieldSprite = data.shieldSprite
 	savedPositionX = data.savedPositionX
 	savedPositionY = data.savedPositionY
+	savedFacing = data.savedFacing
 	isPlayer = data.isPlayer
 	showMyHelm = data.showMyHelm
 	perks = data.perks
@@ -570,6 +609,7 @@ func send_home():
 	atHome = true
 	staffedTo = ""
 	staffedToID = -1
+	idleIn = "bedroom"
 	
 func give_xp(xpNum):
 	xp += xpNum

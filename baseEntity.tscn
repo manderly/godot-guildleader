@@ -172,6 +172,7 @@ anims/idle = SubResource( 7 )
 anims/walk = SubResource( 8 )
 
 [node name="body" type="Node2D" parent="."]
+editor/display_folded = true
 position = Vector2( 30.9247, 21.1424 )
 __meta__ = {
 "_edit_lock_": true
@@ -299,7 +300,6 @@ speed_scale = 3.0
 explosiveness = 0.6
 process_material = SubResource( 5 )
 texture = ExtResource( 11 )
-
 [connection signal="pressed" from="heroButton" to="." method="_on_heroButton_pressed"]
 [connection signal="released" from="heroButton" to="." method="_on_heroButton_released"]
 [connection signal="tree_exited" from="heroButton" to="." method="_on_heroButton_tree_exited"]

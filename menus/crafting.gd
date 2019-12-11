@@ -525,6 +525,7 @@ func _on_button_dismissHero_pressed():
 		print("Collect results before unstaffing")
 	else:
 		tradeskill.hero.currentRoom = 1
+		tradeskill.hero.idleAt = "main"
 		tradeskill.hero.atHome = true
 		tradeskill.hero.staffedTo = ""
 		tradeskill.hero = null
