@@ -183,9 +183,7 @@ func _on_button_trash_pressed():
 		# remove this item from the bedroom inventory
 		print("popup_itemInfo.gd: implement item deletion from bedroom page")
 	elif (global.currentMenu == "vault"):
-		#here we have to pick it out of the global equipment array 
-		if (global.vault[vaultIndex]):
-			global.vault[vaultIndex] = null
+		global.vault.delete_item(vaultIndex)
 	self.hide()
 
 func _on_button_moveItem_pressed():
@@ -238,33 +236,20 @@ func _on_button_moveItem_pressed():
 					break
 			global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
 	else:
-		print(global.currentMenu)
 		#this button moves an item to the vault or gives it to the currently selected hero
 		#depending on which menu the player came here from 
 		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 
 		
 		#Use case 1: player is moving this item from hero to vault
 		if (global.selectedHero["equipment"][itemData.slot] != null):
-			#todo: make sure the vault has room for it first 
+			var xferMe = global.selectedHero["equipment"][itemData.slot]
 			#todo: this method should be global because the same logic is used in questComplete.gd
-			for i in range(global.vault.size()):
-				if (global.vault[i] == null):
-					#finds first open null spot and puts the item there
-					global.vault[i] = global.selectedHero["equipment"][itemData.slot]
-					break
-			global.selectedHero["equipment"][itemData.slot] = null
-			itemData = null
+			util.transfer_item_from_hero_equip_to_vault(xferMe)
 			global.selectedHero.update_hero_stats()
 			emit_signal("updateStats") #caught by itemButton.gd
 			self.hide()
-			
 		#Use case 2: the player is moving this item from the vault to a hero 
 		elif (global.selectedHero["equipment"][itemData.slot] == null):
-			#put it in the hero's equipment slot
-			var vaultItem = global.vault[vaultIndex]
-			global.selectedHero.give_existing_item(vaultItem)
-			global.vault[vaultIndex] = null #null it out of the vault, it's now on the hero
-			global.selectedHero.update_hero_stats() #recalculate hero stats
-			#go back to hero page
+			util.transfer_item_from_vault_to_hero_equip(vaultIndex)
 			global.currentMenu = "heroPage"
 			get_tree().change_scene("res://menus/heroPage.tscn")  #todo: filter by item type 

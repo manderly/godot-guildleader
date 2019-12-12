@@ -135,16 +135,10 @@ func _set_info_popup_buttons(actButton, trashButton, string):
 	showTrashButton = trashButton
 	actionButtonStr = string
 	
-func _swap_items(destinationItem, sourceItem):
-	#perform the swap 
-	global.vault[itemVaultIndex] = sourceItem
-	global.vault[global.swapItemSourceIdx] = destinationItem
-	global.inSwapItemState = false
-	
 func _on_Button_pressed():
 	if (global.inSwapItemState):
 		#we are clicking on the destination button (the source button set global.inSwapItemState)
-		_swap_items(global.vault[itemVaultIndex], global.vault[global.swapItemSourceIdx])
+		global.vault.swap_item_positions(global.swapItemSourceIdx, itemVaultIndex)
 		#updating the source button's icon/label/etc has to be handled by the Vault parent,
 		#since this button (the destination at this point) has no idea what button that was
 		emit_signal("updateSourceButtonArt")

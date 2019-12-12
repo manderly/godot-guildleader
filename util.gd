@@ -69,9 +69,26 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	elif (difficulty == "trivial"):
 		skillUpHappened = false
 	else:
-		print("Unknown difficulty - line 66 of util.gd")
+		print("Unknown difficulty score - line 66 of util.gd")
 	return skillUpHappened
 	
+func transfer_item_from_hero_equip_to_vault(item): 
+	# verify there is room in the vault
+	if (global.vault.has_room()):
+		# give the item to the guild inventory
+		global.vault.give_item(item)
+		# null it out from the hero's equipment slot  
+		global.selectedHero["equipment"][item.slot] = null
+		global.selectedHero.update_hero_stats() #recalculate hero stats
+	else:
+		print("util.gd: No Room in vault!")
+
+func transfer_item_from_vault_to_hero_equip(vaultIndex):
+	var vaultItem = global.vault.peek_item(vaultIndex)
+	global.selectedHero.give_existing_item(vaultItem)
+	global.vault.delete_item(vaultIndex) #null it out of the vault, it's now on the hero
+	global.selectedHero.update_hero_stats() #recalculate hero stats
+
 #check out hero.gd for give_item to a hero 
 func give_new_item_guild(itemName, quantity): #itemName comes in as a string
 	if (staticData.items.has(itemName)):
@@ -91,7 +108,7 @@ func give_new_item_guild(itemName, quantity): #itemName comes in as a string
 				global.playerQuestItems[itemName].count += 1
 			else:
 				# non-stackable array-inventory item 
-				global.vault.give_new_item(itemName)
+				global.vault.give_new_item(itemName, quantity)
 	else:
 		print("util.gd error: item [" + itemName + "] not found in staticData.items")
 	
