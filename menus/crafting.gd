@@ -461,7 +461,6 @@ func _on_button_combine_pressed():
 			if (recipe.ingredient1):
 				if (global.playerTradeskillItems[recipe.ingredient1].consumable):
 					global.playerTradeskillItems[recipe.ingredient1].count -= 1
-					#util.remove_item_guild_by_name(recipe.ingredient1)
 				
 			if (recipe.ingredient2):
 				if (global.playerTradeskillItems[recipe.ingredient2].consumable):
@@ -485,7 +484,6 @@ func _on_button_combine_pressed():
 				tradeskill.currentlyCrafting.conversion = true
 				tradeskill.currentlyCrafting.wildcardItem = tradeskill.wildcardItemOnDeck
 				tradeskill.wildcardItemOnDeck = null
-			#global._begin_tradeskill_timer(tradeskill.selectedRecipe.craftingTime)
 	
 			#set the currentlyCrafting item (this won't change as user browses recipes list and serves to "remember" the item being worked on)
 			if (tradeskill.selectedRecipe.type != "upgrade"):

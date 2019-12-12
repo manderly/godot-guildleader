@@ -19,7 +19,7 @@ func generate(destinationArray, classStr):
 	if (randomGender == 1):
 		newHero.gender = "male"
 	
-	#random head (these are gendered mostly so we don't end up with bearded ladies)
+	#random head (these are gendered mostly so we don't end up with so many bearded ladies)
 	if (newHero.gender == "female"):
 		newHero.headSprite = newHero.humanFemaleHeads[randi() % newHero.humanFemaleHeads.size()]
 	else:
@@ -67,6 +67,9 @@ func generate(destinationArray, classStr):
 	newHero.isPlayer = false
 	newHero.entityType = "hero"
 	newHero.showMyHelm = true
+	
+	newHero.inventory = load("res://inventory.gd").new()
+	newHero.inventory.give_new_item("Bat Wing", 1)
 
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)

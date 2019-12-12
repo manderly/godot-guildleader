@@ -50,7 +50,8 @@ onready var buttonRenameFirst = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Ri
 onready var buttonShowHelm = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_helm
 
 #containers
-onready var inventoryGrid = $CenterContainer/VBoxContainer/centerContainer/grid
+onready var equipmentGrid = $CenterContainer/VBoxContainer/centerContainer/grid
+onready var inventoryGrid = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Inventory/grid
 
 onready var tabStatsLeft = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsLeft
 onready var tabStatsRight = $CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats/StatsRight
@@ -104,34 +105,34 @@ func _ready():
 		heroEquipmentSlotNames[0] = "Bow"
 		heroEquipmentSlotNames[1] = "Arrow"
 	
-	#Create the inventory (equipment) buttons 
+	#Create the equipment (equipped gear) buttons 
 	var slot = null
 	for i in range(heroEquipmentSlots.size()):
 		slot = heroEquipmentSlots[i]
 		
-		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
-		heroInventoryButton._set_label(heroEquipmentSlotNames[i])
-		heroInventoryButton._set_slot(heroEquipmentSlots[i])
-		heroInventoryButton.add_to_group("InventoryButtons")
+		var heroEquipmentButton = preload("res://menus/itemButton.tscn").instance()
+		heroEquipmentButton._set_label(heroEquipmentSlotNames[i])
+		heroEquipmentButton._set_slot(heroEquipmentSlots[i])
+		heroEquipmentButton.add_to_group("EquipmentButtons")
 		
 		if (global.selectedHero && !global.selectedHero.recruited):
 			#don't show move to vault or trash buttons if this hero isn't recruited
-			heroInventoryButton._set_info_popup_buttons(false, false, "none")
+			heroEquipmentButton._set_info_popup_buttons(false, false, "none")
 		else:
 			#show buttons and give the option to put item in vault if hero is recruited
-			heroInventoryButton._set_info_popup_buttons(true, true, "Put in vault")
+			heroEquipmentButton._set_info_popup_buttons(true, true, "Put in vault")
 			if (global.selectedHero.dead):
-				heroInventoryButton.set_disabled(true)
+				heroEquipmentButton.set_disabled(true)
 			
-		heroInventoryButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
+		heroEquipmentButton.connect("updateStatsOnHeroPage", self, "_update_stats") #_update_stats
 		#only set icon if the hero actually has an item in this slot, otherwise empty
 		#this looks in the selected hero's equipment object for something called "mainHand" or "offHand" etc 
 		if (global.selectedHero["equipment"][slot] != null):
 			#global.logger(self, "this hero has an item in their slot: " + slot)
 			#global.logger(self, global.selectedHero["equipment"][slot])
-			heroInventoryButton._render_hero_page(global.selectedHero["equipment"][slot])
+			heroEquipmentButton._render_hero_page(global.selectedHero["equipment"][slot])
 	
-		inventoryGrid.add_child(heroInventoryButton)
+		equipmentGrid.add_child(heroEquipmentButton)
 		
 	#for each stat, place its instance into the appropriate vbox
 	#populating the data is done in a separate method, update_stats 
@@ -150,6 +151,12 @@ func _ready():
 	
 	tabStatsRight.add_child(displayCritChance)
 	
+	tabStatsRight.add_child(displayDrama)
+	tabStatsRight.add_child(displayMood)
+	tabStatsRight.add_child(displayPrestige)
+	tabStatsRight.add_child(displayGroupBonus)
+	tabStatsRight.add_child(displayRaidBonus)
+	
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
 	tabSkills.add_child(displaySkillBlacksmithing)
@@ -159,12 +166,12 @@ func _ready():
 	tabSkills.add_child(displaySkillTailoring)
 	tabSkills.add_child(displaySkillHarvesting)
 
-	#Attributes
-	tabAttributes.add_child(displayDrama)
-	tabAttributes.add_child(displayMood)
-	tabAttributes.add_child(displayPrestige)
-	tabAttributes.add_child(displayGroupBonus)
-	tabAttributes.add_child(displayRaidBonus)
+	#Inventory
+	for i in range(global.selectedHero.inventory.size()):
+		var heroInventoryButton = preload("res://menus/itemButton.tscn").instance()
+		heroInventoryButton._set_label("inventory")
+		heroInventoryButton._set_slot("mainHand")
+		heroInventoryButton.add_to_group("InventoryButtons")
 	
 	#select the first perk by default (select by key)	
 	var perkKeys = global.selectedHero.perks.keys() #an array of perk names

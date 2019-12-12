@@ -153,7 +153,7 @@ var equipment = {
 	"chest": null,
 	"legs": null,
 	"feet": null
-} 
+}
 
 #Body sprite names (todo: should eventually take sprite data from equipment dictionary)
 var headSprite = "head01.png"

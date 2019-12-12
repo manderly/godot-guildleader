@@ -184,8 +184,8 @@ func _on_button_trash_pressed():
 		print("popup_itemInfo.gd: implement item deletion from bedroom page")
 	elif (global.currentMenu == "vault"):
 		#here we have to pick it out of the global equipment array 
-		if (global.guildItems[vaultIndex]):
-			global.guildItems[vaultIndex] = null
+		if (global.vault[vaultIndex]):
+			global.vault[vaultIndex] = null
 	self.hide()
 
 func _on_button_moveItem_pressed():
@@ -213,13 +213,13 @@ func _on_button_moveItem_pressed():
 			get_tree().change_scene("res://menus/crafting.tscn")
 	elif (global.currentMenu == "vaultViaBedroomPage"):
 		# Use case: Moving item from vault to bedroom
-		var vaultItem = global.guildItems[vaultIndex]
+		var vaultItem = global.vault[vaultIndex]
 		var slot = vaultItem.slot
 		if (slot == "bed"):
 			# expand it back out to which bed, specifically
 			slot = global.whichBed
 		global.bedrooms[global.selectedBedroom]["inventory"][slot] = vaultItem
-		global.guildItems[vaultIndex] = null #null it out of the vault, it's now in the bedroom
+		global.vault[vaultIndex] = null #null it out of the vault, it's now in the bedroom
 		#go back to bedroom page
 		global.currentMenu = "bedroomPage"
 		get_tree().change_scene("res://menus/bedroomPage.tscn") 
@@ -231,10 +231,10 @@ func _on_button_moveItem_pressed():
 		# Use case: move item from bedroom (any bedroom) back to the vault
 		emit_signal("itemDeletedOrMovedToVault")
 		if (global.bedrooms[global.selectedBedroom]["inventory"][slot] != null):
-			for i in range(global.guildItems.size()):
-				if (global.guildItems[i] == null):
+			for i in range(global.vault.size()):
+				if (global.vault[i] == null):
 					#finds first open null spot and puts the item there
-					global.guildItems[i] = global.bedrooms[global.selectedBedroom]["inventory"][slot]
+					global.vault[i] = global.bedrooms[global.selectedBedroom]["inventory"][slot]
 					break
 			global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
 	else:
@@ -247,10 +247,10 @@ func _on_button_moveItem_pressed():
 		if (global.selectedHero["equipment"][itemData.slot] != null):
 			#todo: make sure the vault has room for it first 
 			#todo: this method should be global because the same logic is used in questComplete.gd
-			for i in range(global.guildItems.size()):
-				if (global.guildItems[i] == null):
+			for i in range(global.vault.size()):
+				if (global.vault[i] == null):
 					#finds first open null spot and puts the item there
-					global.guildItems[i] = global.selectedHero["equipment"][itemData.slot]
+					global.vault[i] = global.selectedHero["equipment"][itemData.slot]
 					break
 			global.selectedHero["equipment"][itemData.slot] = null
 			itemData = null
@@ -261,9 +261,9 @@ func _on_button_moveItem_pressed():
 		#Use case 2: the player is moving this item from the vault to a hero 
 		elif (global.selectedHero["equipment"][itemData.slot] == null):
 			#put it in the hero's equipment slot
-			var vaultItem = global.guildItems[vaultIndex]
+			var vaultItem = global.vault[vaultIndex]
 			global.selectedHero.give_existing_item(vaultItem)
-			global.guildItems[vaultIndex] = null #null it out of the vault, it's now on the hero
+			global.vault[vaultIndex] = null #null it out of the vault, it's now on the hero
 			global.selectedHero.update_hero_stats() #recalculate hero stats
 			#go back to hero page
 			global.currentMenu = "heroPage"

@@ -87,7 +87,7 @@ var graveyardLocs = {
 var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
-				
+
 func generateStartingHeroes():
 		
 	var global_vars = get_node("/root/global")
