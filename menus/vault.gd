@@ -138,7 +138,7 @@ func _on_button_back_pressed():
 		global.currentMenu = "blacksmithing"
 		get_tree().change_scene("res://menus/crafting.tscn")
 	elif (global.currentMenu == "vaultViaBedroomPage"):
-		global.currentMenu = "bedroom"
+		global.currentMenu = "bedroomPage"
 		get_tree().change_scene("res://menus/bedroomPage.tscn")
 	else:
 		get_tree().change_scene("res://main.tscn")

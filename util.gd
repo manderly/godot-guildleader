@@ -72,6 +72,26 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 		print("Unknown difficulty score - line 66 of util.gd")
 	return skillUpHappened
 	
+# items from the vault are identified by their index
+func transfer_item_from_vault_to_bedroom(vaultIndex):
+	var vaultItem = global.vault.peek_item(vaultIndex)
+	var slot = vaultItem.slot
+	if (slot == "bed"):
+		# expand it back out to which bed, specifically
+		slot = global.whichBed
+	global.bedrooms[global.selectedBedroom]["inventory"][slot] = vaultItem
+	global.vault.delete_item(vaultIndex) #null it out of the vault, it's now on the hero
+	
+func transfer_item_from_bedroom_to_vault(item):
+	if (global.vault.has_room()):
+		global.vault.give_item(item)
+		var slot = item.slot
+		if (slot == "bed" || slot == "bed"):
+			slot = global.whichBed
+		global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
+	else:
+		print("util.gd: No Room in vault!")
+	
 func transfer_item_from_hero_equip_to_vault(item): 
 	# verify there is room in the vault
 	if (global.vault.has_room()):

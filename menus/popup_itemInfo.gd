@@ -186,70 +186,63 @@ func _on_button_trash_pressed():
 		global.vault.delete_item(vaultIndex)
 	self.hide()
 
+func _is_tradeskill_menu():
+	if (global.currentMenu == "blacksmithing" || 
+		global.currentMenu == "chronomancy" || 
+		global.currentMenu == "alchemy" ||
+		global.currentMenu == "fletching" ||
+		global.currentMenu == "tailoring" ||
+		global.currentMenu == "jewelcraft"):
+			return true
+	else:
+		return false
+	
+		
 func _on_button_moveItem_pressed():
 	if (global.currentMenu == "vault"):
-		#in an item swap in the vault, this is the code for the SOURCE item 
-		#it emits a signal caught by itemButton 
-		#but it also makes a record of its index so vault.gd can update the button art 
+		# Performing a swap of two vault items 
+		# This is the code for the SOURCE item 
 		self.hide() #hide the popup
 		emit_signal("swappingItemWithAnother") #caught by itemButton.gd 
-	elif (global.currentMenu == "blacksmithing" || 
-			global.currentMenu == "chronomancy" || 
-			global.currentMenu == "alchemy" ||
-			global.currentMenu == "fletching" ||
-			global.currentMenu == "tailoring" ||
-			global.currentMenu == "jewelcraft"):
-		if (global.tradeskills[global.currentMenu].wildcardItemOnDeck):
-			#we have an item, so give it back to the vault
+	elif (_is_tradeskill_menu()):
+		# Give an item back from tradeskill menu to vault 
+		var wildcardItemOnDeck = global.tradeskills[global.currentMenu].wildcardItemOnDeck
+		if (wildcardItemOnDeck):
 			util.remove_item_tradeskill()
-			self.hide()
 			emit_signal("clearWildcardButton")
 		else:
 			#take the item and "give" it to the tradeskill wildcard item bucket
 			util.give_item_tradeskill(itemData.itemID)
-			self.hide() #hide the popup
 			get_tree().change_scene("res://menus/crafting.tscn")
+		self.hide() # hide the popup 
 	elif (global.currentMenu == "vaultViaBedroomPage"):
 		# Use case: Moving item from vault to bedroom
-		var vaultItem = global.vault[vaultIndex]
-		var slot = vaultItem.slot
-		if (slot == "bed"):
-			# expand it back out to which bed, specifically
-			slot = global.whichBed
-		global.bedrooms[global.selectedBedroom]["inventory"][slot] = vaultItem
-		global.vault[vaultIndex] = null #null it out of the vault, it's now in the bedroom
-		#go back to bedroom page
+		util.transfer_item_from_vault_to_bedroom(vaultIndex)
 		global.currentMenu = "bedroomPage"
 		get_tree().change_scene("res://menus/bedroomPage.tscn") 
 	elif (global.currentMenu == "bedroomPage"):
+		# Use case: move item from bedroom (any bedroom) back to the vault
 		var slot = itemData.slot
 		if (slot == "bed"):
-			# if this item is a "bed" item, figure out which slot it is in
 			slot = global.whichBed
-		# Use case: move item from bedroom (any bedroom) back to the vault
-		emit_signal("itemDeletedOrMovedToVault")
-		if (global.bedrooms[global.selectedBedroom]["inventory"][slot] != null):
-			for i in range(global.vault.size()):
-				if (global.vault[i] == null):
-					#finds first open null spot and puts the item there
-					global.vault[i] = global.bedrooms[global.selectedBedroom]["inventory"][slot]
-					break
-			global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
-	else:
-		#this button moves an item to the vault or gives it to the currently selected hero
-		#depending on which menu the player came here from 
-		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 
 		
-		#Use case 1: player is moving this item from hero to vault
-		if (global.selectedHero["equipment"][itemData.slot] != null):
-			var xferMe = global.selectedHero["equipment"][itemData.slot]
-			#todo: this method should be global because the same logic is used in questComplete.gd
-			util.transfer_item_from_hero_equip_to_vault(xferMe)
-			global.selectedHero.update_hero_stats()
-			emit_signal("updateStats") #caught by itemButton.gd
-			self.hide()
-		#Use case 2: the player is moving this item from the vault to a hero 
-		elif (global.selectedHero["equipment"][itemData.slot] == null):
-			util.transfer_item_from_vault_to_hero_equip(vaultIndex)
-			global.currentMenu = "heroPage"
-			get_tree().change_scene("res://menus/heroPage.tscn")  #todo: filter by item type 
+		emit_signal("itemDeletedOrMovedToVault")
+				
+		var xferMe = global.bedrooms[global.selectedBedroom]["inventory"][slot]
+		util.transfer_item_from_bedroom_to_vault(xferMe)
+		self.hide() # hide the popup
+	elif (global.currentMenu == "heroPage"):
+		emit_signal("itemDeletedOrMovedToVault") #caught by itemButton.gd 
+		# Player is moving this item from hero to vault
+		var xferMe = global.selectedHero["equipment"][itemData.slot]
+		util.transfer_item_from_hero_equip_to_vault(xferMe)
+		global.selectedHero.update_hero_stats()
+		emit_signal("updateStats") #caught by itemButton.gd
+		self.hide()
+	elif (global.currentMenu == "vaultViaHeroPage"):
+		# Player is moving this item from the vault to a hero 
+		util.transfer_item_from_vault_to_hero_equip(vaultIndex)
+		global.currentMenu = "heroPage"
+		get_tree().change_scene("res://menus/heroPage.tscn")
+	else:
+		print("[error] Unhandled currentMenu setting: " + global.currentMenu)
