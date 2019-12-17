@@ -433,6 +433,7 @@ func load_game():
 				global.activeHarvestingData = current_line.activeHarvestingData
 				global.activeCampData = current_line.activeCampData
 				global.vault = current_line.vault
+				global.bedrooms = current_line.bedrooms
 				
 				#new_object gets printed as [GDScript:958] res://global.gd
 				#parent is /root
@@ -440,7 +441,7 @@ func load_game():
 				#but for some reason, currencies are not restored (nor anything else in global)
 				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
 			
-			# LOAD INVENTORY
+			# LOAD GUILD VAULT (INVENTORY INSTANCE)
 			if (current_line["filename"] == "inventoryFile"): #res://inventory.tscn
 				var savedSize = current_line["inventory"].size()
 				print("main.gd: restoring inventory of " + str(savedSize) + " items")
@@ -477,14 +478,14 @@ func load_game():
 				else:
 					print("main.gd: can't place this hero object")
 				
-			#LOAD ROOMS	?
+			#LOAD ROOMS
 			if (current_line["filename"] == "res://rooms/*.tscn"):
 				var restored_room = load("res://rooms/room.gd").new()
 				#print("PROCESSING SAVED ROOM SCENE")
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent"):
 						continue
-					#print("setting " + str(key) + " " + str(current_line[key]))
+					print("setting " + str(key) + " " + str(current_line[key]))
 					restored_room.set(key, current_line[key])
 				global.rooms.append(restored_room)
 	save_game.close()
