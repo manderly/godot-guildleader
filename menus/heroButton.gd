@@ -122,6 +122,7 @@ func _on_Button_pressed():
 			global.currentMenu == "jewelcraft" ||
 			global.currentMenu == "fletching" ||
 			global.currentMenu == "alchemy" ||
+			global.currentMenu == "cooking" ||
 			global.currentMenu == "tailoring"):
 		if (heroData.atHome && heroData.staffedTo == ""):
 			heroData.staffedTo = global.currentMenu

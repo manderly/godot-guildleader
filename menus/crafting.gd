@@ -90,6 +90,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillBlacksmithing
 	elif (global.currentMenu == "chronomancy"):
 		skillNum = tradeskill.hero.skillChronomancy
+	elif (global.currentMenu == "cooking"):
+		skillNum = tradeskill.hero.skillCooking
 	elif (global.currentMenu == "tailoring"):
 		skillNum = tradeskill.hero.skillTailoring
 	elif (global.currentMenu == "jewelcraft"):
@@ -98,6 +100,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillAlchemy
 	elif (global.currentMenu == "fletching"):
 		skillNum = tradeskill.hero.skillFletching
+	else:
+		print("crafting.gd: currentMenu not handled, cannot get hero skill")
 		
 	staffedHeroName.text = tradeskill.hero.get_first_name()
 	staffedHeroSkill.text = tradeskill.displayName + " skill level: " + str(skillNum)

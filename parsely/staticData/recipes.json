@@ -1918,5 +1918,25 @@
     "ingredient3Quantity": null,
     "ingredient4": null,
     "ingredient4Quantity": null
+  },
+  {
+    "recipeName": "Golden Loaf",
+    "tradeskill": "cooking",
+    "noFail": true,
+    "type": "normal",
+    "trivial": 5,
+    "craftingTime": 120,
+    "result": "Golden Loaf",
+    "ingredientWildcard": null,
+    "statImproved": null,
+    "statIncrease": null,
+    "ingredient1": "Bread Flour",
+    "ingredient1Quantity": 1,
+    "ingredient2": "Small Egg",
+    "ingredient2Quantity": 1,
+    "ingredient3": "Bread Yeast",
+    "ingredient3Quantity": 1,
+    "ingredient4": "Water Flask",
+    "ingredient4Quantity": 1
   }
 ]
