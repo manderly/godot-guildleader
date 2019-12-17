@@ -214,6 +214,7 @@ func save():
 			"testTimerBeginTime":testTimerBeginTime,
 			"testTimerEndTime":testTimerEndTime,
 			"activeHarvestingData":activeHarvestingData,
-			"activeCampData":activeCampData
+			"activeCampData":activeCampData,
+			"vault":vault
 		}
 	return save_object 

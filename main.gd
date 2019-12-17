@@ -382,7 +382,11 @@ func save_game():
 	for hero in global.guildRoster:
 		var node_data = hero.call("save")
 		save_game.store_line(to_json(node_data))
-		
+	
+	# save the vault contents
+	var node_data = global.vault.save()
+	save_game.store_line(to_json(node_data))
+	
 	save_game.close()
 	
 func load_game():
@@ -409,6 +413,7 @@ func load_game():
 		if (current_line):
 			
 			#LOAD GLOBAL VARS
+			print(current_line["filename"])
 			if (current_line["filename"] == "res://global.gd"):
 				var new_object = load(current_line["filename"])
 				print("PROCESSING SAVED GLOBALS")
@@ -427,15 +432,31 @@ func load_game():
 				global.testTimerEndTime = current_line.testTimerEndTime
 				global.activeHarvestingData = current_line.activeHarvestingData
 				global.activeCampData = current_line.activeCampData
+				global.vault = current_line.vault
 				
-
-
 				#new_object gets printed as [GDScript:958] res://global.gd
 				#parent is /root
 				#print(new_object)
 				#but for some reason, currencies are not restored (nor anything else in global)
 				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
+			
+			# LOAD INVENTORY
+			if (current_line["filename"] == "inventoryFile"): #res://inventory.tscn
+				var savedSize = current_line["inventory"].size()
+				print("main.gd: restoring inventory of " + str(savedSize) + " items")
 				
+				# make a new inventory instance 
+				var restored_vault = load("res://inventory.gd").new()
+				
+				# it's an array of items, so iterate through and rebuild a local copy
+				for i in range(savedSize):
+					var restored_item = current_line["inventory"][i]
+					if (restored_item):
+						restored_vault._restore_from_save(restored_item)
+					else:
+						restored_vault._restore_empty_slot()
+				global.vault = restored_vault
+
 			#LOAD HEROES
 			#make this handle heroes specifically (to distinguish from other objects)
 			if (current_line["filename"] == "heroFile"): #res://hero.tscn

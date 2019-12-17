@@ -12,7 +12,11 @@ func _ready():
 	pass 
 
 func peek_item(index):
-	return inventory[index]
+	#print("Getting index " + str(index) + " in an inventory of size: " + str(inventory.size()))
+	if (index >= inventory.size()):
+		print("Error!" + str(index) + " is an invalid index")
+	else:
+		return inventory[index]
 	
 # generally, items are deleted by index from the inventory array
 # but this method should handle either an index or a name
@@ -143,6 +147,16 @@ func give_item(item):
 		if (inventory[i] == null):
 			inventory[i] = item
 			break
+
+# *** func _restore_from_save(itemData)
+# *** params: itemData from save file object
+# Only for use with restoring saved items (assumes space is available) 
+# See main.gd line ~455
+func _restore_from_save(itemData):
+	inventory.append(itemData)
+	
+func _restore_empty_slot():
+	inventory.append(null)
 	
 # *** func trash_item()
 # *** params: actual item instance
@@ -150,3 +164,13 @@ func give_item(item):
 func trash_item(item):
 	# deletes this specific item instance from the game. Does not free its ID. 
 	print("Trashing item with ID " + str(item.name))
+
+func save():
+	var thisInventory = self
+			
+	print("Saving this inventory of " + str(size()) + " items!")
+	var saved_inventory_data = {
+		"filename":"inventoryFile",
+		"inventory":inventory, #get_parent().get_path(),
+	}
+	return saved_inventory_data
