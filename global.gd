@@ -96,7 +96,7 @@ var roomMaxX = 360
 signal quest_complete
 
 #items inventory / vault
-var guildItems = []
+var guildItems = null
 var tradeskillItemsSeen = [] #keep track of all the tradeskill items we've encountered, never remove
 var playerTradeskillItems = {} #keep count of tradeskill items and their counts here
 var questItemsSeen = [] #keep track of all the quest items we've encountered, todo: player can remove
@@ -107,15 +107,22 @@ var lastItemButtonClicked = null
 var filterVaultByItemSlot = null
 var browsingForSlot = ""
 var browsingForType = ""
-
+var vault = null # instance of inventory, instantiated in ready()
 
 func _ready():
 	randomize()
 	
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
+	
+	# Init the inventories
+	# Note: quest items and tradeskill items are just fungible stacks of items, they 
+	# do not have (or need) all the moving/sorting abilities that vault items need
+	global.vault = load("res://inventory.gd").new()
+	global.playerQuestItems = {}
+	global.playerTradeskillItems = {}
 
-	#get the static data that was already built for us by Parsely	
+	#get the static data that was already built for us by Parsely
 	global.tradeskills = timedNodeData.tradeskills
 	global.activeHarvestingData = timedNodeData.harvesting
 	global.activeCampData = timedNodeData.camps
@@ -149,41 +156,42 @@ func _ready():
 		
 	
 	#since we can't init the guildItems array to the size of the vault...
-	guildItems.resize(vaultSpace)
+	global.vault.resize(vaultSpace)
 	
-	#for now, start the user off with some items (visible in the vault)
-	util.give_item_guild("Rusty Broadsword", 1)
-	util.give_item_guild("Novice's Blade", 2)
+	#for now, start the guild off with some vault items
+	# the vault is an instance of inventory.gd 
+	util.give_new_item_guild("Rusty Broadsword", 1)
+	util.give_new_item_guild("Novice's Blade", 2)
 	#here's some uber loot for testing purposes 
-	util.give_item_guild("Deadeye", 1)
-	util.give_item_guild("Simple Ring", 1)
-	util.give_item_guild("Crimson Staff", 1)
-	util.give_item_guild("Staff of the Four Winds", 1)
-	util.give_item_guild("Obsidian Quickblade", 1)
-	util.give_item_guild("Robe of Alexandra", 1)
-	util.give_item_guild("Sparkling Metallic Robe", 1)
-	util.give_item_guild("Robe of the Dunes", 1)
-	util.give_item_guild("Prestige Robe", 1)
-	util.give_item_guild("Softscale Boots", 1)
-	util.give_item_guild("Seer's Orb", 1)
-	util.give_item_guild("Bladestorm", 2)
+	util.give_new_item_guild("Deadeye", 1)
+	util.give_new_item_guild("Simple Ring", 1)
+	util.give_new_item_guild("Crimson Staff", 1)
+	util.give_new_item_guild("Staff of the Four Winds", 1)
+	util.give_new_item_guild("Obsidian Quickblade", 1)
+	util.give_new_item_guild("Robe of Alexandra", 1)
+	util.give_new_item_guild("Sparkling Metallic Robe", 1)
+	util.give_new_item_guild("Robe of the Dunes", 1)
+	util.give_new_item_guild("Prestige Robe", 1)
+	util.give_new_item_guild("Softscale Boots", 1)
+	util.give_new_item_guild("Seer's Orb", 1)
+	util.give_new_item_guild("Bladestorm", 2)
 	
-	util.give_item_guild("Scepter of the Child King", 1)
-	util.give_item_guild("Rough Stone", 15)
-	util.give_item_guild("Leather Strip", 5)
-	util.give_item_guild("Small Brick of Ore", 1)
-	util.give_item_guild("Copper Ore", 10)
-	util.give_item_guild("Silver Ore", 10)
-	util.give_item_guild("Gold Ore", 10)
-	util.give_item_guild("Topaz", 2)
-	util.give_item_guild("Pearl", 2)
+	util.give_new_item_guild("Scepter of the Child King", 1)
+	util.give_new_item_guild("Rough Stone", 15)
+	util.give_new_item_guild("Leather Strip", 5)
+	util.give_new_item_guild("Small Brick of Ore", 1)
+	util.give_new_item_guild("Copper Ore", 10)
+	util.give_new_item_guild("Silver Ore", 10)
+	util.give_new_item_guild("Gold Ore", 10)
+	util.give_new_item_guild("Topaz", 2)
+	util.give_new_item_guild("Pearl", 2)
 	
-	util.give_item_guild("Azuricite Metal", 10)
-	util.give_item_guild("Leather Padding", 6)
+	util.give_new_item_guild("Azuricite Metal", 10)
+	util.give_new_item_guild("Leather Padding", 6)
 
-	util.give_item_guild("Caster's Circlet", 1)
+	util.give_new_item_guild("Caster's Circlet", 1)
 	
-	util.give_item_guild("Comfy Quilt", 2)
+	util.give_new_item_guild("Comfy Quilt", 2)
 
 	
 func logger(script, message):
@@ -206,6 +214,7 @@ func save():
 			"testTimerBeginTime":testTimerBeginTime,
 			"testTimerEndTime":testTimerEndTime,
 			"activeHarvestingData":activeHarvestingData,
-			"activeCampData":activeCampData
+			"activeCampData":activeCampData,
+			"vault":vault
 		}
 	return save_object 

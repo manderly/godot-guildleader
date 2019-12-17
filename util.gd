@@ -69,37 +69,68 @@ func determine_if_skill_up_happens(heroSkillLevel, trivialLevel): #pass current 
 	elif (difficulty == "trivial"):
 		skillUpHappened = false
 	else:
-		print("Unknown difficulty - line 66 of util.gd")
+		print("Unknown difficulty score - line 66 of util.gd")
 	return skillUpHappened
 	
-#check out hero.gd for give_item to a hero 
-func give_item_guild(itemName, quantity): #itemName comes in as a string 
-	for i in range(quantity):
-		if (staticData.items[itemName] && staticData.items[itemName].itemType == "tradeskill"):
-			if (!global.playerTradeskillItems[itemName].seen):
-				# might be this now: global.playerTradeskillItems
-				global.tradeskillItemsSeen.append(itemName)
-				global.playerTradeskillItems[itemName].seen = true
-			#either way, increase the count
-			global.playerTradeskillItems[itemName].count += 1
-		elif (staticData.items[itemName] && staticData.items[itemName].itemType == "quest"):
-			if (!global.playerQuestItems[itemName].seen):
-				global.questItemsSeen.append(itemName)
-				global.playerQuestItems[itemName].seen = true
-			#either way, increase the count
-			global.playerQuestItems[itemName].count += 1
-		else:
-			#make sure this item actually exists in the item records
-			if (!staticData.items[itemName]):
-				print("util.gd ERROR! Make sure this item name exists: " + itemName)
-			#finds first open null spot and puts the item there
-			for i in range(global.guildItems.size()):
-				if (global.guildItems[i] == null):
-					global.guildItems[i] = staticData.items[itemName].duplicate() #make a new instance
-					global.guildItems[i].itemID = global.nextItemID
-					global.nextItemID += 1
-					break
+# items from the vault are identified by their index
+func transfer_item_from_vault_to_bedroom(vaultIndex):
+	var vaultItem = global.vault.peek_item(vaultIndex)
+	var slot = vaultItem.slot
+	if (slot == "bed"):
+		# expand it back out to which bed, specifically
+		slot = global.whichBed
+	global.bedrooms[global.selectedBedroom]["inventory"][slot] = vaultItem
+	global.vault.delete_item(vaultIndex) #null it out of the vault, it's now on the hero
 	
+func transfer_item_from_bedroom_to_vault(item):
+	if (global.vault.has_room()):
+		global.vault.give_item(item)
+		var slot = item.slot
+		if (slot == "bed" || slot == "bed"):
+			slot = global.whichBed
+		global.bedrooms[global.selectedBedroom]["inventory"][slot] = null
+	else:
+		print("util.gd: No Room in vault!")
+	
+func transfer_item_from_hero_equip_to_vault(item): 
+	# verify there is room in the vault
+	if (global.vault.has_room()):
+		# give the item to the guild inventory
+		global.vault.give_item(item)
+		# null it out from the hero's equipment slot  
+		global.selectedHero["equipment"][item.slot] = null
+		global.selectedHero.update_hero_stats() #recalculate hero stats
+	else:
+		print("util.gd: No Room in vault!")
+
+func transfer_item_from_vault_to_hero_equip(vaultIndex):
+	var vaultItem = global.vault.peek_item(vaultIndex)
+	global.selectedHero.give_existing_item(vaultItem)
+	global.vault.delete_item(vaultIndex) #null it out of the vault, it's now on the hero
+	global.selectedHero.update_hero_stats() #recalculate hero stats
+
+#check out hero.gd for give_item to a hero 
+func give_new_item_guild(itemName, quantity): #itemName comes in as a string
+	if (staticData.items.has(itemName)):
+		var newItem = staticData.items[itemName]
+		for i in range(quantity):
+			if (newItem.itemType == "tradeskill"):
+				if (!global.playerTradeskillItems[itemName].seen):
+					global.tradeskillItemsSeen.append(itemName)
+					global.playerTradeskillItems[itemName].seen = true
+				#either way, increase the count
+				global.playerTradeskillItems[itemName].count += 1
+			elif (newItem.itemType == "quest"):
+				if (!global.playerQuestItems[itemName].seen):
+					global.questItemsSeen.append(itemName)
+					global.playerQuestItems[itemName].seen = true
+				#either way, increase the count
+				global.playerQuestItems[itemName].count += 1
+			else:
+				# non-stackable array-inventory item 
+				global.vault.give_new_item(itemName, quantity)
+	else:
+		print("util.gd error: item [" + itemName + "] not found in staticData.items")
 	
 func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName comes in as a string 
 	var moddedItem = global.tradeskills[tradeskill].currentlyCrafting.wildcardItem
@@ -108,26 +139,8 @@ func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName 
 	moddedItem["improvement"] = "(+" + str(bonusAmount) + " " + stat + ")"
 	moddedItem.name = "Improved " + moddedItem.name
 	
+	global.vault.give_item(moddedItem)
 	#finds first open null spot and moves the item from the tradeskill bucket back into the array
-	for i in range(global.guildItems.size()):
-		if (global.guildItems[i] == null):
-			global.guildItems[i] = moddedItem
-			break
-		
-		
-func remove_item_guild_by_name(itemNameStr):
-	#remove first usage of this item by name
-	var removeIdx = global.guildItems.find(itemNameStr)
-	if (removeIdx):
-		global.guildItems.remove(removeIdx)
-					
-func remove_item_guild_by_id(itemID):
-	#print("util.gd: Removing itemID " + str(itemID) + " from guild's inventory")
-	#delete it by nulling its index
-	for i in range(global.guildItems.size()):
-		if (global.guildItems[i]):
-			if (global.guildItems[i].itemID == itemID): 
-				global.guildItems[i] = null
 	
 func give_item_tradeskill(itemID):
 	#we have the item ID, which we can find in the guildItems array

@@ -87,7 +87,7 @@ var graveyardLocs = {
 var questTimeLeft = -1
 
 onready var roomsLayer = $screen/rooms
-				
+
 func generateStartingHeroes():
 		
 	var global_vars = get_node("/root/global")
@@ -382,7 +382,11 @@ func save_game():
 	for hero in global.guildRoster:
 		var node_data = hero.call("save")
 		save_game.store_line(to_json(node_data))
-		
+	
+	# save the vault contents
+	var node_data = global.vault.save()
+	save_game.store_line(to_json(node_data))
+	
 	save_game.close()
 	
 func load_game():
@@ -409,6 +413,7 @@ func load_game():
 		if (current_line):
 			
 			#LOAD GLOBAL VARS
+			print(current_line["filename"])
 			if (current_line["filename"] == "res://global.gd"):
 				var new_object = load(current_line["filename"])
 				print("PROCESSING SAVED GLOBALS")
@@ -427,15 +432,29 @@ func load_game():
 				global.testTimerEndTime = current_line.testTimerEndTime
 				global.activeHarvestingData = current_line.activeHarvestingData
 				global.activeCampData = current_line.activeCampData
+				global.vault = current_line.vault
+				global.bedrooms = current_line.bedrooms
 				
-
-
 				#new_object gets printed as [GDScript:958] res://global.gd
 				#parent is /root
 				#print(new_object)
 				#but for some reason, currencies are not restored (nor anything else in global)
 				#get_node(current_line["parent"]).add_child(new_object) #current_line["parent"] is /root
+			
+			# LOAD GUILD VAULT (INVENTORY INSTANCE)
+			if (current_line["filename"] == "inventoryFile"): #res://inventory.tscn
+				var savedSize = current_line["inventory"].size()
+				print("main.gd: restoring inventory of " + str(savedSize) + " items")
 				
+				# make a new inventory instance 
+				var restored_vault = load("res://inventory.gd").new()
+				
+				# it's an array of items, so iterate through and rebuild a local copy
+				for i in range(savedSize):
+					var restored_item = current_line["inventory"][i]
+					restored_vault._restore_from_save(restored_item)
+				global.vault = restored_vault
+
 			#LOAD HEROES
 			#make this handle heroes specifically (to distinguish from other objects)
 			if (current_line["filename"] == "heroFile"): #res://hero.tscn
@@ -456,14 +475,14 @@ func load_game():
 				else:
 					print("main.gd: can't place this hero object")
 				
-			#LOAD ROOMS	?
+			#LOAD ROOMS
 			if (current_line["filename"] == "res://rooms/*.tscn"):
 				var restored_room = load("res://rooms/room.gd").new()
 				#print("PROCESSING SAVED ROOM SCENE")
 				for key in current_line.keys():
 					if (key == "filename" or key == "parent"):
 						continue
-					#print("setting " + str(key) + " " + str(current_line[key]))
+					print("setting " + str(key) + " " + str(current_line[key]))
 					restored_room.set(key, current_line[key])
 				global.rooms.append(restored_room)
 	save_game.close()

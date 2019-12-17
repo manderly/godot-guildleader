@@ -152,6 +152,7 @@ patch_margin_right = 50
 axis_stretch_vertical = 1
 
 [node name="hbox" type="HBoxContainer" parent="HUD"]
+editor/display_folded = true
 margin_left = 21.0
 margin_top = 927.0
 margin_right = 521.0

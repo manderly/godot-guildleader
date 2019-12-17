@@ -27,6 +27,8 @@ var perks = {}
 var perkPoints = 0
 var xp = -1
 
+var inventory = null
+
 # These properties relate to where a hero is on the main screen
 var currentRoom = 0 #outside by default
 var atHome = true
@@ -61,6 +63,7 @@ var isPlayer = false # to distiguish heroes the game generated vs. a hero the pl
 
 func _ready():
 	entityType = "hero"
+
 	_hide_extended_stats()
 	if (walkable):
 		if (atHome && staffedTo == ""):
@@ -260,6 +263,7 @@ func save():
 		"groupBonus":thisHero.groupBonus,
 		"raidBonus":thisHero.raidBonus,
 		"equipment":thisHero.equipment,
+		"inventory":thisHero.inventory,
 		"perkPoints":thisHero.perkPoints,
 		"perks":thisHero.perks,
 		"headSprite":thisHero.headSprite, #armor sprites should be derived from equipment 

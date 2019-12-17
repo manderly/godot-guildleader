@@ -39,20 +39,20 @@ func _on_button_collectRewards_pressed():
 	if (currentQuest.lootWon.questPrizeItem1):
 		#todo: make sure the vault has room for it first 
 		#todo: this method should be global because the same logic is used in popup_itemInfo.gd
-		for i in range(global.guildItems.size()):
-			if (global.guildItems[i] == null):
+		for i in range(global.vault.size()):
+			if (global.vault[i] == null):
 				#finds first open null spot and puts the item there
-				global.guildItems[i] = global.allGameItems[currentQuest.lootWon.questPrizeItem1]
+				global.vault[i] = global.allGameItems[currentQuest.lootWon.questPrizeItem1]
 				break
 		
 	if (currentQuest.lootWon.questPrizeItem2):
 		#global.guildItems.append(global.allGameItems[currentQuest.lootWon.questPrizeItem2])
 		#todo: make sure the vault has room for it first 
 		#todo: this method should be global because the same logic is used in popup_itemInfo.gd
-		for i in range(global.guildItems.size()):
-			if (global.guildItems[i] == null):
+		for i in range(global.vault.size()):
+			if (global.vault[i] == null):
 				#finds first open null spot and puts the item there
-				global.guildItems[i] = global.allGameItems[currentQuest.lootWon.questPrizeItem2]
+				global.vault[i] = global.allGameItems[currentQuest.lootWon.questPrizeItem2]
 				break
 	
 	#give xp to each hero in quest list, set status back to available, clear them out of the quest array

@@ -16,7 +16,7 @@ func _ready():
 		tabContainer.set_tab_title(i, tabTitles[i])
 		
 	#display inventory size and capacity
-	inventoryCapacity.text = str(global.guildItems.size()) + "/" + str(global.vaultSpace)
+	inventoryCapacity.text = str(global.vault.size()) + "/" + str(global.vaultSpace)
 	
 	#equipment tab
 	_position_vault_buttons()
@@ -32,7 +32,7 @@ func _position_vault_buttons():
 	#this method handles the STRUCTURE of the buttons
 	#it places the empty buttons in the correct hboxes
 	#use _draw_vault_items() to put icons and data into buttons
-	print(global.currentMenu)
+	
 	#draw all the rows, and if there happens to be an item in the corresponding guildItems array, add its data 
 	for i in range(global.vaultSpace):
 		var itemButton = preload("res://menus/itemButton.tscn").instance()
@@ -62,39 +62,43 @@ func _draw_vault_items():
 		var currentButton = null
 		for i in range(buttonArray.size()):
 			currentButton = buttonArray[i]
-			if (global.guildItems[i] && global.guildItems[i].itemType != "tradeskill" && global.guildItems[i].itemType != "quest"):
+			
+			var item = global.vault.peek_item(i)
+			if (item):
 				#normal item 
-				currentButton._render_vault(global.guildItems[i])
+				currentButton._render_vault(item)
 				if (global.currentMenu == "vaultViaHeroPage"):
 					#disable if this item isn't a slot match
-					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
+					if (item.slot.to_lower() != global.browsingForSlot.to_lower()):
 						currentButton.set_disabled(true) #disable button if slot mismatch 
 					
-					#disable if this item isn't a class match but also allow for "any" 
+					#check class restrictions 
 					var thisHeroCanWear = false
-					if (global.guildItems[i].classRestrictions[0] == "any"):
+					if (item.classRestrictions[0] == "any"):
 						thisHeroCanWear = true
 					else:
 						#if this isn't an "ANY" item, we have to check its restrictions against the currently selected hero
-						for p in range(global.guildItems[i].classRestrictions.size()):
-							if (global.guildItems[i].classRestrictions[p] != null):
-								if (global.guildItems[i].classRestrictions[p].to_lower() == global.selectedHero.charClass.to_lower()):
+						for p in range(item.classRestrictions.size()):
+							if (item.classRestrictions[p] != null):
+								if (item.classRestrictions[p].to_lower() == global.selectedHero.charClass.to_lower()):
 									thisHeroCanWear = true
+					# disable button if item outside of class restriction 
 					if (!thisHeroCanWear):
 						currentButton.set_disabled(true)
+						
 				elif (global.currentMenu == "vaultViaBedroomPage"):
 					#disable if this item isn't a slot match
-					if (global.guildItems[i].slot.to_lower() != global.browsingForSlot.to_lower()):
+					if (item.slot.to_lower() != global.browsingForSlot.to_lower()):
 						currentButton.set_disabled(true) #disable button if slot mismatch 
 				elif (global.currentMenu == "blacksmithing"):
 					if (global.browsingForType == "blade"):
-						if (global.guildItems[i].itemType != "sword" && 
-							global.guildItems[i].itemType != "knife" ||
-							global.guildItems[i].improved):
+						if (item.itemType != "sword" && 
+							item.itemType != "knife" ||
+							item.improved):
 							currentButton.set_disabled(true) #disable button if type mismatch 
 				elif (global.currentMenu == "tailoring"):
 					if (global.browsingForType == "cloth"):
-						if (global.guildItems[i].material != "cloth"):
+						if (item.material != "cloth"):
 							currentButton.set_disabled(true) #disable button if type mismatch 
 			else:
 				currentButton._clear_label()
@@ -134,28 +138,12 @@ func _on_button_back_pressed():
 		global.currentMenu = "blacksmithing"
 		get_tree().change_scene("res://menus/crafting.tscn")
 	elif (global.currentMenu == "vaultViaBedroomPage"):
-		global.currentMenu = "bedroom"
+		global.currentMenu = "bedroomPage"
 		get_tree().change_scene("res://menus/bedroomPage.tscn")
 	else:
 		get_tree().change_scene("res://main.tscn")
 	
 func _on_button_quickSort_pressed():
 	#sort the array such that nulls are last 
-	var start = 0
-	var end = global.vaultSpace - 1
-	var tmp = []
-	tmp.resize(global.vaultSpace)
-	
-	global.logger(self, "guild items size is now:" + str(global.guildItems.size()))
-	for i in range(global.vaultSpace):
-		if (global.guildItems[i] != null):
-			tmp[start] = global.guildItems[i]
-			start += 1
-		else:
-			tmp[end] = global.guildItems[i]
-			end -= 1
-	
-	for i in range(global.vaultSpace):
-		global.guildItems[i] = tmp[i]
-	
+	global.vault.quick_sort()
 	_draw_vault_items()

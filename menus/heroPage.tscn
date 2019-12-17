@@ -24,8 +24,9 @@ margin_bottom = 842.0
 rect_min_size = Vector2( 540, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_top = 19.0
 margin_right = 540.0
-margin_bottom = 848.0
+margin_bottom = 823.0
 custom_constants/separation = 24
 alignment = 1
 
@@ -157,6 +158,7 @@ custom_constants/hseparation = 24
 columns = 4
 
 [node name="label_attributes" type="Label" parent="CenterContainer/VBoxContainer"]
+visible = false
 margin_top = 504.0
 margin_right = 540.0
 margin_bottom = 518.0
@@ -164,18 +166,17 @@ text = "Attributes"
 align = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 542.0
+margin_top = 504.0
 margin_right = 540.0
-margin_bottom = 848.0
+margin_bottom = 804.0
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
 margin_left = 60.0
 margin_right = 480.0
-margin_bottom = 306.0
+margin_bottom = 300.0
 rect_min_size = Vector2( 420, 300 )
 
 [node name="Stats" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -184,12 +185,12 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="StatsLeft" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
-margin_bottom = 270.0
+margin_bottom = 264.0
 
 [node name="StatsRight" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Stats"]
 margin_left = 4.0
 margin_right = 4.0
-margin_bottom = 270.0
+margin_bottom = 264.0
 
 [node name="Skills" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
 visible = false
@@ -201,17 +202,9 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 160, 0 )
 
-[node name="Bonuses" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-rect_min_size = Vector2( 160, 0 )
-
 [node name="Perks" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
+editor/display_folded = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -270,6 +263,22 @@ margin_top = 206.0
 margin_right = 200.0
 margin_bottom = 226.0
 text = "REFUND PERKS [2 Chrono]"
+
+[node name="Inventory" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 160, 0 )
+
+[node name="grid" type="GridContainer" parent="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Inventory"]
+margin_left = -64.0
+margin_top = -555.0
+margin_right = -24.0
+margin_bottom = -515.0
 
 [node name="confirm_rename_dialog" parent="." instance=ExtResource( 5 )]
 margin_left = 96.0
@@ -376,10 +385,10 @@ Add another bedroom to make room for new recruits."
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_rename" to="." method="_on_button_rename_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBox_Hero/VBox_Right/button_helm" to="." method="_on_button_helm_pressed"]
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Skills" to="." method="_on_vbox_stats1_gui_input"]
-[connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Bonuses" to="." method="_on_vbox_stats2_gui_input"]
 [connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks" to="." method="_on_vbox_stats2_gui_input"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_buyPerk" to="." method="_on_button_buyPerk_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Perks/VBoxContainer3/HBoxContainer/VBox_right/button_refundPerks" to="." method="_on_button_refundPerks_pressed"]
+[connection signal="gui_input" from="CenterContainer/VBoxContainer/CenterContainer/TabContainer/Inventory" to="." method="_on_vbox_stats2_gui_input"]
 [connection signal="confirmed" from="confirm_dismiss_dialog" to="." method="_on_confirm_dismiss_dialog_confirmed"]
 [connection signal="confirmed" from="confirm_instant_train" to="." method="_on_confirm_instant_train_confirmed"]
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
