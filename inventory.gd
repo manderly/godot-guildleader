@@ -153,7 +153,10 @@ func give_item(item):
 # Only for use with restoring saved items (assumes space is available) 
 # See main.gd line ~455
 func _restore_from_save(itemData):
-	inventory.append(itemData)
+	if (itemData):
+		inventory.append(itemData)
+	else:
+		inventory.append(null)
 	
 func _restore_empty_slot():
 	inventory.append(null)

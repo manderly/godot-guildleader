@@ -452,10 +452,7 @@ func load_game():
 				# it's an array of items, so iterate through and rebuild a local copy
 				for i in range(savedSize):
 					var restored_item = current_line["inventory"][i]
-					if (restored_item):
-						restored_vault._restore_from_save(restored_item)
-					else:
-						restored_vault._restore_empty_slot()
+					restored_vault._restore_from_save(restored_item)
 				global.vault = restored_vault
 
 			#LOAD HEROES
