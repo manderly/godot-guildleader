@@ -120,7 +120,7 @@ func _on_Button_pressed():
 	elif (global.currentMenu == "blacksmithing" || 
 			global.currentMenu == "chronomancy" || 
 			global.currentMenu == "jewelcraft" ||
-			global.currentMenu == "fletching" ||
+			global.currentMenu == "woodcraft" ||
 			global.currentMenu == "alchemy" ||
 			global.currentMenu == "cooking" ||
 			global.currentMenu == "tailoring"):

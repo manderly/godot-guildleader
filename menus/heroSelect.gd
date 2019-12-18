@@ -8,7 +8,7 @@ func _ready():
 			
 	if (global.currentMenu == "alchemy" || 
 			global.currentMenu == "blacksmithing" || 
-			global.currentMenu == "fletching" || 
+			global.currentMenu == "woodcraft" || 
 			global.currentMenu == "jewelcraft" || 
 			global.currentMenu == "tailoring"):
 		heroSelectDescription.text = "Choose a hero to work at this tradeskill. Crafting recipes will improve this hero's skill at " + global.currentMenu + ". While here, this hero will not be available for quests or raids."
@@ -58,7 +58,7 @@ func _on_button_back_pressed():
 	if (global.currentMenu == "alchemy" || 
 		global.currentMenu == "blacksmithing" || 
 		global.currentMenu == "chronomancy" || 
-		global.currentMenu == "fletching" || 
+		global.currentMenu == "woodcraft" || 
 		global.currentMenu == "jewelcraft" || 
 		global.currentMenu == "tailoring"):
 		global.currentMenu = "main"

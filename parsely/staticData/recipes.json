@@ -441,7 +441,7 @@
   },
   {
     "recipeName": "Beginner's Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": true,
     "type": "normal",
     "trivial": 5,
@@ -461,7 +461,7 @@
   },
   {
     "recipeName": "Cedar Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 10,
@@ -481,7 +481,7 @@
   },
   {
     "recipeName": "Cedar Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 15,
@@ -501,7 +501,7 @@
   },
   {
     "recipeName": "Cedar Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 60,
@@ -521,7 +521,7 @@
   },
   {
     "recipeName": "Silver Tip Cedar Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 20,
@@ -541,7 +541,7 @@
   },
   {
     "recipeName": "Ash Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 30,
@@ -561,7 +561,7 @@
   },
   {
     "recipeName": "Ash Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 35,
@@ -581,7 +581,7 @@
   },
   {
     "recipeName": "Ash Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 60,
@@ -601,7 +601,7 @@
   },
   {
     "recipeName": "Silver Tip Ash Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 40,
@@ -621,7 +621,7 @@
   },
   {
     "recipeName": "Silentwood Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 50,
@@ -641,7 +641,7 @@
   },
   {
     "recipeName": "Silentwood Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 55,
@@ -661,7 +661,7 @@
   },
   {
     "recipeName": "Silentwood Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 60,
@@ -681,7 +681,7 @@
   },
   {
     "recipeName": "Silver Tip Silentwood Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 20,
@@ -701,7 +701,7 @@
   },
   {
     "recipeName": "Shadow Oak Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 60,
@@ -721,7 +721,7 @@
   },
   {
     "recipeName": "Shadow Oak Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 65,
@@ -741,7 +741,7 @@
   },
   {
     "recipeName": "Shadow Oak Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 90,
@@ -761,7 +761,7 @@
   },
   {
     "recipeName": "Silver Tip Shadow Oak Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 20,
@@ -781,7 +781,7 @@
   },
   {
     "recipeName": "Rainwood Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 80,
@@ -801,7 +801,7 @@
   },
   {
     "recipeName": "Rainwood Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 85,
@@ -821,7 +821,7 @@
   },
   {
     "recipeName": "Rainwood Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 90,
@@ -841,7 +841,7 @@
   },
   {
     "recipeName": "Silver Tip Rainwood Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 20,
@@ -861,7 +861,7 @@
   },
   {
     "recipeName": "Golden Oak Arrow Shaft",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 90,
@@ -881,7 +881,7 @@
   },
   {
     "recipeName": "Golden Oak Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 90,
@@ -901,7 +901,7 @@
   },
   {
     "recipeName": "Golden Oak Bow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 125,
@@ -921,7 +921,7 @@
   },
   {
     "recipeName": "Silver Tip Rainwood Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 20,
@@ -941,7 +941,7 @@
   },
   {
     "recipeName": "Heartpiercer Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 100,
@@ -961,7 +961,7 @@
   },
   {
     "recipeName": "Ethatrium Tip Arrow",
-    "tradeskill": "fletching",
+    "tradeskill": "woodcraft",
     "noFail": false,
     "type": "normal",
     "trivial": 110,

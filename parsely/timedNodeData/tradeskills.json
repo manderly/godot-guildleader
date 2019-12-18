@@ -10,9 +10,9 @@
     "description": "Combine fire and metal to craft weapons and armor from ore, metals, and other materials."
   },
   {
-    "tradeskill": "fletching",
-    "displayName": "Fletching",
-    "description": "Make arrows and bows"
+    "tradeskill": "woodcraft",
+    "displayName": "Woodcraft",
+    "description": "Carve wood into weapons such as staves, bows, and arrows, as well as shields and decorative items for the guild hall."
   },
   {
     "tradeskill": "jewelcraft",
@@ -32,6 +32,6 @@
   {
     "tradeskill": "cooking",
     "displayName": "Cooking",
-    "description": "Turn raw ingredients into delicious snacks and meals!"
+    "description": "Combine raw ingredients into delicious snacks and meals!"
   }
 ]

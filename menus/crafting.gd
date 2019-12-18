@@ -98,8 +98,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillJewelcraft
 	elif (global.currentMenu == "alchemy"):
 		skillNum = tradeskill.hero.skillAlchemy
-	elif (global.currentMenu == "fletching"):
-		skillNum = tradeskill.hero.skillFletching
+	elif (global.currentMenu == "woodcraft"):
+		skillNum = tradeskill.hero.skillWoodcraft
 	else:
 		print("crafting.gd: currentMenu not handled, cannot get hero skill")
 		

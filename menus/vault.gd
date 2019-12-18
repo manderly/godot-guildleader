@@ -49,7 +49,7 @@ func _position_vault_buttons():
 			global.currentMenu == "chronomancy" ||
 			global.currentMenu == "jewelcraft" ||
 			global.currentMenu == "tailoring" ||
-			global.currentMenu == "fletching"):
+			global.currentMenu == "woodcraft"):
 			#must have come from a crafting page
 			itemButton._set_info_popup_buttons(true, true, "Select")
 		else:

@@ -254,7 +254,7 @@ func save():
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
 		"skillChronomancy":thisHero.skillChronomancy,
 		"skillCooking":thisHero.skillCooking,
-		"skillFletching":thisHero.skillFletching,
+		"skillWoodcraft":thisHero.skillWoodcraft,
 		"skillJewelcraft":thisHero.skillJewelcraft,
 		"skillTailoring":thisHero.skillTailoring,
 		"skillHarvesting":thisHero.skillHarvesting,
@@ -410,7 +410,7 @@ func update_hero_stats():
 	modifiedSkillBlacksmithing = 0
 	modifiedSkillChronomancy = 0
 	modifiedSkillCooking = 0
-	modifiedSkillFletching = 0
+	modifiedSkillWoodcraft = 0
 	modifiedSkillJewelcraft = 0
 	modifiedSkillTailoring = 0
 	modifiedSkillHarvesting = 0
@@ -474,7 +474,7 @@ func update_hero_stats():
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
 	skillCooking = baseSkillCooking + modifiedSkillCooking
-	skillFletching = baseSkillFletching + modifiedSkillFletching
+	skillWoodcraft = baseSkillWoodcraft + modifiedSkillWoodcraft
 	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
 	skillTailoring = baseSkillTailoring + modifiedSkillTailoring
 	skillHarvesting = baseSkillHarvesting + modifiedSkillHarvesting
