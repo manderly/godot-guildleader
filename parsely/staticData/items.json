@@ -7460,7 +7460,7 @@
     "material": "food",
     "consumable": true,
     "prestige": 0,
-    "slot": "bed",
+    "slot": "food",
     "rarity": "common",
     "classRestriction1": "any",
     "classRestriction2": null,

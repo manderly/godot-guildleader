@@ -194,6 +194,11 @@ func _ready():
 	util.give_new_item_guild("Caster's Circlet", 1)
 	
 	util.give_new_item_guild("Comfy Quilt", 2)
+	
+	util.give_new_item_guild("Small Egg", 10)
+	util.give_new_item_guild("Bread Flour", 10)
+	util.give_new_item_guild("Water Flask", 10)
+	util.give_new_item_guild("Bread Yeast", 10)
 
 	
 func logger(script, message):
