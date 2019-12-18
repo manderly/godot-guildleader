@@ -49,6 +49,7 @@ func generate(destinationArray, classStr):
 	newHero.baseSkillAlchemy = 0
 	newHero.baseSkillBlacksmithing = 0
 	newHero.baseSkillChronomancy = 0
+	newHero.baseSkillCooking = 0
 	newHero.baseSkillFletching = 0
 	newHero.baseSkillJewelcraft = 0
 	newHero.baseSkillTailoring = 0

@@ -79,7 +79,7 @@ var returnToMap = ""
 onready var rooms = []
 onready var roomCount = 0
 var newRoomCost = [10, 20, 30, 50, 70, 80, 90, 100, 1000, 1000, 1000, 1000, 1000, 1000]
-var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft", "tailoring", "chronomancy"] #remove from array as they are built 
+var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft", "tailoring", "chronomancy", "cooking"] #remove from array as they are built 
 
 #tradeskill flags
 #use: global.tradeskills[global.currentMenu] 
@@ -153,7 +153,9 @@ func _ready():
 	
 	if (!global.tradeskills["tailoring"].selectedRecipe):
 		global.tradeskills["tailoring"].selectedRecipe = global.tradeskills.tailoring.recipes[0]
-		
+	
+	if (!global.tradeskills["cooking"].selectedRecipe):
+		global.tradeskills["cooking"].selectedRecipe = global.tradeskills.tailoring.recipes[0]	
 	
 	#since we can't init the guildItems array to the size of the vault...
 	global.vault.resize(vaultSpace)
@@ -192,6 +194,11 @@ func _ready():
 	util.give_new_item_guild("Caster's Circlet", 1)
 	
 	util.give_new_item_guild("Comfy Quilt", 2)
+	
+	util.give_new_item_guild("Small Egg", 10)
+	util.give_new_item_guild("Bread Flour", 10)
+	util.give_new_item_guild("Water Flask", 10)
+	util.give_new_item_guild("Bread Yeast", 10)
 
 	
 func logger(script, message):

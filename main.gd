@@ -306,6 +306,8 @@ func draw_rooms():
 				roomScene = load("res://rooms/blacksmith.tscn").instance()
 			elif (global.rooms[i].roomType == "chronomancy"):
 				roomScene = load("res://rooms/chronomancy.tscn").instance()
+			elif (global.rooms[i].roomType == "cooking"):
+				roomScene = load("res://rooms/cooking.tscn").instance()
 			elif (global.rooms[i].roomType == "tailoring"):
 				roomScene = load("res://rooms/tailoring.tscn").instance()
 			elif (global.rooms[i].roomType == "jewelcraft"):

@@ -90,6 +90,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillBlacksmithing
 	elif (global.currentMenu == "chronomancy"):
 		skillNum = tradeskill.hero.skillChronomancy
+	elif (global.currentMenu == "cooking"):
+		skillNum = tradeskill.hero.skillCooking
 	elif (global.currentMenu == "tailoring"):
 		skillNum = tradeskill.hero.skillTailoring
 	elif (global.currentMenu == "jewelcraft"):
@@ -98,6 +100,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillAlchemy
 	elif (global.currentMenu == "fletching"):
 		skillNum = tradeskill.hero.skillFletching
+	else:
+		print("crafting.gd: currentMenu not handled, cannot get hero skill")
 		
 	staffedHeroName.text = tradeskill.hero.get_first_name()
 	staffedHeroSkill.text = tradeskill.displayName + " skill level: " + str(skillNum)
@@ -396,7 +400,7 @@ func tradeskillItem_callback(quantity):
 		# for "render to chrono" and "render to fluff" type conversions,
 		# determine quantity to be given based on formula
 		# contained within method called
-		util.give_item_guild(tradeskill.currentlyCrafting.name, quantity)
+		util.give_new_item_guild(tradeskill.currentlyCrafting.name, quantity)
 	elif (tradeskill.currentlyCrafting.moddingAnItem):
 		#this is a "computed" item, use a different util method to give it to the guild with mods
 		util.give_modded_item_guild(
@@ -410,7 +414,7 @@ func tradeskillItem_callback(quantity):
 		if (tradeskill.currentlyCrafting.name == "Chrono"):
 			global.hardCurrency += 1
 		else:
-			util.give_item_guild(tradeskill.currentlyCrafting.name, 1)
+			util.give_new_item_guild(tradeskill.currentlyCrafting.name, 1)
 
 	progressBar.set_value(0)
 	tradeskill.wildcardItemOnDeck = null

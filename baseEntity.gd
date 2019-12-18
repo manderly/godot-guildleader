@@ -39,10 +39,12 @@ var baseIntelligence = -1
 var baseSkillAlchemy = -1
 var baseSkillBlacksmithing = -1
 var baseSkillChronomancy = -1
+var baseSkillCooking = -1
 var baseSkillFletching = -1
 var baseSkillJewelcraft = -1
 var baseSkillTailoring = -1
 var baseSkillHarvesting = -1
+
 var baseDrama = 0
 var baseMood = 0
 var basePrestige = -1
@@ -103,6 +105,7 @@ var modifiedIntelligence = 0
 var modifiedSkillAlchemy = 0
 var modifiedSkillBlacksmithing = 0
 var modifiedSkillChronomancy = 0
+var modifiedSkillCooking = 0
 var modifiedSkillFletching = 0
 var modifiedSkillJewelcraft = 0
 var modifiedSkillTailoring = 0
@@ -128,6 +131,7 @@ var intelligence = -1
 var skillAlchemy = -1
 var skillBlacksmithing = -1
 var skillChronomancy = -1
+var skillCooking = -1
 var skillFletching = -1
 var skillJewelcraft = -1
 var skillTailoring = -1
@@ -148,7 +152,7 @@ var equipment = {
 	"mainHand": null,
 	"offHand": null,
 	"jewelry": null,
-	"unknown": null,
+	"food": null,
 	"head": null,
 	"chest": null,
 	"legs": null,
@@ -169,7 +173,7 @@ func clear_all_items():
 		"mainHand": null,
 		"offHand": null,
 		"jewelry": null,
-		"unknown": null,
+		"food": null,
 		"head": null,
 		"chest": null,
 		"legs": null,
@@ -309,7 +313,7 @@ func give_gear_loadout(loadoutIDStr):
 	var loadout = staticData.loadouts[loadoutIDStr]
 	#iterate through object and give each item to the hero
 	for key in loadout.keys():
-		if (key == "loadoutId" || key == "unknown"): 
+		if (key == "loadoutId" || key == "food"): 
 			continue #don't process entries that aren't actually items
 		elif (loadout[key]): #skip empty spots
 			give_new_item(loadout[key])

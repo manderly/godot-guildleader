@@ -253,6 +253,7 @@ func save():
 		"skillAlchemy":thisHero.skillAlchemy,
 		"skillBlacksmithing":thisHero.skillBlacksmithing,
 		"skillChronomancy":thisHero.skillChronomancy,
+		"skillCooking":thisHero.skillCooking,
 		"skillFletching":thisHero.skillFletching,
 		"skillJewelcraft":thisHero.skillJewelcraft,
 		"skillTailoring":thisHero.skillTailoring,
@@ -371,7 +372,7 @@ func set_instance_data(data):
 		"mainHand": data.equipment.mainHand,
 		"offHand": data.equipment.offHand,
 		"jewelry": data.equipment.jewelry,
-		"unknown": null,
+		"food": null,
 		"head": data.equipment.head,
 		"chest": data.equipment.chest,
 		"legs": data.equipment.legs,
@@ -392,7 +393,7 @@ func update_hero_stats():
 	#global.logger(self, "updating hero stats to match equipment for: " + heroName)
 	#add up the stats from the equipment any time equipment is added or removed from hero 
 	#equipment is an object, so to iterate through it I made this array of names 
-	var equipmentSlotNames = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
+	var equipmentSlotNames = ["mainHand", "offHand", "jewelry", "food", "head", "chest", "legs", "feet"]
 	
 	#reset all the stats modified by armor to 0
 	modifiedHp = 0
@@ -408,6 +409,7 @@ func update_hero_stats():
 	modifiedSkillAlchemy = 0
 	modifiedSkillBlacksmithing = 0
 	modifiedSkillChronomancy = 0
+	modifiedSkillCooking = 0
 	modifiedSkillFletching = 0
 	modifiedSkillJewelcraft = 0
 	modifiedSkillTailoring = 0
@@ -471,6 +473,7 @@ func update_hero_stats():
 	skillAlchemy = baseSkillAlchemy + modifiedSkillAlchemy
 	skillBlacksmithing = baseSkillBlacksmithing + modifiedSkillBlacksmithing
 	skillChronomancy = baseSkillChronomancy + modifiedSkillChronomancy
+	skillCooking = baseSkillCooking + modifiedSkillCooking
 	skillFletching = baseSkillFletching + modifiedSkillFletching
 	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
 	skillTailoring = baseSkillTailoring + modifiedSkillTailoring

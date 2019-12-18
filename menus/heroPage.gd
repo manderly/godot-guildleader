@@ -1,8 +1,8 @@
 extends Node2D
 #heroPage.gd
 
-var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "unknown", "head", "chest", "legs", "feet"]
-var heroEquipmentSlotNames = ["Main", "Secondary", "Jewelry", "???", "Head", "Chest", "Legs", "Feet"]
+var heroEquipmentSlots = ["mainHand", "offHand", "jewelry", "food", "head", "chest", "legs", "feet"]
+var heroEquipmentSlotNames = ["Main", "Secondary", "Jewelry", "Food", "Head", "Chest", "Legs", "Feet"]
 
 onready var finishNowPopup = preload("res://menus/popup_finishNow.tscn").instance()
 
@@ -24,6 +24,7 @@ var displayCritChance = preload("res://menus/heroPage_heroStatDisplay.tscn").ins
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillChronomancy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displaySkillCooking = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillFletching = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillJewelcraft = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillTailoring = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -161,6 +162,7 @@ func _ready():
 	tabSkills.add_child(displaySkillAlchemy)
 	tabSkills.add_child(displaySkillBlacksmithing)
 	tabSkills.add_child(displaySkillChronomancy)
+	tabSkills.add_child(displaySkillCooking)
 	tabSkills.add_child(displaySkillFletching)
 	tabSkills.add_child(displaySkillJewelcraft)
 	tabSkills.add_child(displaySkillTailoring)
@@ -314,6 +316,7 @@ func _update_stats():
 	displaySkillAlchemy._update_fields("Alchemy", global.selectedHero.skillAlchemy)
 	displaySkillBlacksmithing._update_fields("Blacksmithing", global.selectedHero.skillBlacksmithing)
 	displaySkillChronomancy._update_fields("Chronomancy", global.selectedHero.skillChronomancy)
+	displaySkillCooking._update_fields("Cooking", global.selectedHero.skillCooking)
 	displaySkillFletching._update_fields("Fletching", global.selectedHero.skillFletching)
 	displaySkillJewelcraft._update_fields("Jewelcraft", global.selectedHero.skillJewelcraft)
 	displaySkillTailoring._update_fields("Tailoring", global.selectedHero.skillTailoring)
