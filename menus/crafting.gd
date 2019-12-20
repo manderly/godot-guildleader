@@ -225,7 +225,9 @@ func _update_results_area():
 				global.browsingForType = "cloth"
 			elif (global.currentMenu == "chronomancy"):
 				global.browsingForType = recipe.ingredientWildcard #contains the type, such as "any" 
-			
+			elif (global.currentMenu == "cooking"):
+				global.browsingForType = recipe.ingredientWildcard #contains the type, such as "meat" 
+				
 			labelComputed.hide()
 			if (tradeskill.wildcardItemOnDeck):
 				#the player already picked an "on deck" wildcard item

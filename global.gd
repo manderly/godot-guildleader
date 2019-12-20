@@ -199,6 +199,15 @@ func _ready():
 	util.give_new_item_guild("Bread Flour", 10)
 	util.give_new_item_guild("Water Flask", 10)
 	util.give_new_item_guild("Bread Yeast", 10)
+	
+	util.give_new_item_guild("Mixed Seeds", 10)
+	util.give_new_item_guild("Tasty Seasoning", 10)
+	util.give_new_item_guild("Simple Greens", 10)
+	util.give_new_item_guild("Forest Berries", 10)
+	util.give_new_item_guild("Small Seeds", 10)
+	util.give_new_item_guild("Plain Oats", 10)
+	util.give_new_item_guild("Cooking Oil", 10)
+	util.give_new_item_guild("Small Sugar", 10)
 
 	
 func logger(script, message):
