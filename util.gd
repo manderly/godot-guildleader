@@ -6,6 +6,9 @@ var months = ["January", "February", "March", "April", "May", "June", "July", "A
 func _ready():
 	pass
 
+func give_chrono(n):
+	global.hardCurrency += n
+	
 func prepare_unformatted_data_from_file(filenameStr):
 	var dataFile = File.new()
 	dataFile.open("res://gameData/"+filenameStr, dataFile.READ)

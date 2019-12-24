@@ -153,6 +153,24 @@ func _ready():
 		generateStartingHeroes()
 	else:
 		print("loaded game")
+		
+	# birthday check
+	var today = util.get_today()
+	if (today.day == global.lastCheckedBirthdays.day &&
+		today.month == global.lastCheckedBirthdays.month &&
+		today.year == global.lastCheckedBirthdays.year):
+			#print("main.gd: Already checked birthdays today")
+			pass
+	else:
+		print("main.gd: checking for birthdays")
+		for i in global.guildRoster.size():
+			var hero = global.guildRoster[i]
+			print(hero.birthday)
+			if (hero.birthday.day == today.day && hero.birthday.month == today.month):
+				print("It's " + hero.get_first_name() + "'s birthday! +1 Chrono")
+				# todo: UI for reward
+				util.give_chrono(1)
+				global.lastCheckedBirthdays = today
 
 	#restore saved camera position
 	$screen/mainCamera.set_cam_position()
@@ -428,6 +446,8 @@ func load_game():
 				global.softCurrency = current_line.softCurrency
 				global.hardCurrency = current_line.hardCurrency
 				global.guildName = current_line.guildName
+				global.guildCreationDate = current_line.guildCreationDate
+				global.lastCheckedBirthdays = current_line.lastCheckedBirthdays
 				global.initDone = current_line.initDone
 				global.nextHeroID = current_line.nextHeroID
 				global.roomCount = current_line.roomCount
