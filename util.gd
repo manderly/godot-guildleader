@@ -145,20 +145,19 @@ func give_modded_item_guild(itemName, tradeskill, stat, bonusAmount): #itemName 
 func give_item_tradeskill(itemID):
 	#we have the item ID, which we can find in the guildItems array
 	#print("util.gd: Giving itemID " + str(itemID) + " to tradeskill.wildcardItemOnDeck")
-	for i in range(global.guildItems.size()):
-		if (global.guildItems[i]):
-			if (global.guildItems[i].itemID == itemID):
+	for i in range(global.vault.size()):
+		var item = global.vault.peek_item(i)
+		if (item):
+			if (item.itemID == itemID):
 				#we found the item with the matching ID
-				global.tradeskills[global.currentMenu].wildcardItemOnDeck = global.guildItems[i].duplicate()
+				global.tradeskills[global.currentMenu].wildcardItemOnDeck = item # was .duplicate()
 				#remove from guildItems (because the tradeskill will hold it for now)
-				global.guildItems[i] = null
+				global.vault.delete_item(i)
 	
 func remove_item_tradeskill():
 	#finds first open null spot and moves the item from the tradeskill bucket back into the array
-	for i in range(global.guildItems.size()):
-		if (global.guildItems[i] == null):
-			global.guildItems[i] = global.tradeskills[global.currentMenu].wildcardItemOnDeck
-			break
+	var giveMeBack = global.tradeskills[global.currentMenu].wildcardItemOnDeck
+	global.vault.give_item(giveMeBack)
 	#empties the wildcardItemOnDeck bucket 
 	global.tradeskills[global.currentMenu].wildcardItemOnDeck = null
 	

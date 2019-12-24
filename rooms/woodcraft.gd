@@ -1,17 +1,17 @@
 extends "room.gd"
-#fletching.gd
+#woodcraft.gd
 #inherits all of room's methods 
 
 func _ready():
 	draw_hero_and_button()
 
 func draw_hero_and_button():
-	if (global.tradeskills["fletching"].hero):
+	if (global.tradeskills["woodcraft"].hero):
 		$button_staffCraft.text = "Craft"
 		#draw the hero
 		var heroScene = preload("res://baseEntity.tscn").instance()
 		heroScene.set_script(preload("res://hero.gd"))
-		heroScene.set_instance_data(global.tradeskills["fletching"].hero) #put data from array into scene 
+		heroScene.set_instance_data(global.tradeskills["woodcraft"].hero) #put data from array into scene 
 		heroScene._draw_sprites()
 		heroScene.set_position(Vector2(280, 60))
 		add_child(heroScene)
@@ -19,14 +19,14 @@ func draw_hero_and_button():
 		$button_staffCraft.text = "Staff"
 
 func _on_button_staffCraft_pressed():
-	global.currentMenu = "fletching"
-	if (!global.tradeskills["fletching"].hero):
+	global.currentMenu = "woodcraft"
+	if (!global.tradeskills["woodcraft"].hero):
 		get_tree().change_scene("res://menus/heroSelect.tscn")
 	else:
 		get_tree().change_scene("res://menus/crafting.tscn")
 
 func _process(delta):
-	var tradeskill = global.tradeskills["fletching"]
+	var tradeskill = global.tradeskills["woodcraft"]
 	
 	if (tradeskill.inProgress && !tradeskill.readyToCollect):
 		if (OS.get_unix_time() > tradeskill.currentlyCrafting.endTime):
@@ -37,5 +37,5 @@ func _process(delta):
 		$button_staffCraft.text = "DONE"
 
 func _on_button_inProgress_pressed():
-	global.currentMenu = "fletching"
+	global.currentMenu = "woodcraft"
 	get_tree().change_scene("res://menus/crafting.tscn")

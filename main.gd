@@ -119,8 +119,11 @@ func generateStartingHeroes():
 	#generate starting rooms
 	roomGenerator.generate("dummy", false) #placeholder for front yard (0)
 	roomGenerator.generate("dummy", false) #placeholder for entrance hallway (1)
-	roomGenerator.generate("chronomancy", false)
+	roomGenerator.generate("chronomancy", false) 
 	roomGenerator.generate("blacksmith", false)
+	roomGenerator.generate("cooking", false)
+	roomGenerator.generate("tailoring", false)
+	roomGenerator.generate("woodcraft", false)
 	roomGenerator.generate("training", false)
 	roomGenerator.generate("bedroom", false)
 	roomGenerator.generate("vault", false)
@@ -312,8 +315,8 @@ func draw_rooms():
 				roomScene = load("res://rooms/tailoring.tscn").instance()
 			elif (global.rooms[i].roomType == "jewelcraft"):
 				roomScene = load("res://rooms/jewelcraft.tscn").instance()
-			elif (global.rooms[i].roomType == "fletching"):
-				roomScene = load("res://rooms/fletching.tscn").instance()
+			elif (global.rooms[i].roomType == "woodcraft"):
+				roomScene = load("res://rooms/woodcraft.tscn").instance()
 			elif (global.rooms[i].roomType == "topEdge"):
 				roomScene = load("res://rooms/topEdge.tscn").instance()
 			else:
@@ -509,8 +512,8 @@ func load_game():
 			global.tradeskills["alchemy"].hero = hero
 		elif (hero.staffedTo == "tailoring"):
 			global.tradeskills["tailoring"].hero = hero
-		elif (hero.staffedTo == "fletching"):
-			global.tradeskills["fletching"].hero = hero
+		elif (hero.staffedTo == "woodcraft"):
+			global.tradeskills["woodcraft"].hero = hero
 		elif (hero.staffedTo == "jewelcraft"):
 			global.tradeskills["jewelcraft"].hero = hero
 		elif (hero.staffedTo == "harvesting"):

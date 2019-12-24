@@ -79,7 +79,7 @@ var returnToMap = ""
 onready var rooms = []
 onready var roomCount = 0
 var newRoomCost = [10, 20, 30, 50, 70, 80, 90, 100, 1000, 1000, 1000, 1000, 1000, 1000]
-var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "fletching", "jewelcraft", "tailoring", "chronomancy", "cooking"] #remove from array as they are built 
+var tradeskillRoomsToBuild = ["blacksmith", "alchemy", "woodcraft", "jewelcraft", "tailoring", "chronomancy", "cooking"] #remove from array as they are built 
 
 #tradeskill flags
 #use: global.tradeskills[global.currentMenu] 
@@ -145,8 +145,8 @@ func _ready():
 	if (!global.tradeskills["chronomancy"].selectedRecipe):
 		global.tradeskills["chronomancy"].selectedRecipe = global.tradeskills.chronomancy.recipes[0]
 		
-	if (!global.tradeskills["fletching"].selectedRecipe):
-		global.tradeskills["fletching"].selectedRecipe = global.tradeskills.fletching.recipes[0]
+	if (!global.tradeskills["woodcraft"].selectedRecipe):
+		global.tradeskills["woodcraft"].selectedRecipe = global.tradeskills.woodcraft.recipes[0]
 				
 	if (!global.tradeskills["jewelcraft"].selectedRecipe):
 		global.tradeskills["jewelcraft"].selectedRecipe = global.tradeskills.jewelcraft.recipes[0]
@@ -199,6 +199,15 @@ func _ready():
 	util.give_new_item_guild("Bread Flour", 10)
 	util.give_new_item_guild("Water Flask", 10)
 	util.give_new_item_guild("Bread Yeast", 10)
+	
+	util.give_new_item_guild("Mixed Seeds", 10)
+	util.give_new_item_guild("Tasty Seasoning", 10)
+	util.give_new_item_guild("Simple Greens", 10)
+	util.give_new_item_guild("Forest Berries", 10)
+	util.give_new_item_guild("Small Seeds", 10)
+	util.give_new_item_guild("Plain Oats", 10)
+	util.give_new_item_guild("Cooking Oil", 10)
+	util.give_new_item_guild("Small Sugar", 10)
 
 	
 func logger(script, message):

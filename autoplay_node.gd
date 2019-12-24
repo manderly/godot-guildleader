@@ -12,7 +12,7 @@ func _ready():
 	tradeskillToMaxTest("Tailoring")
 	tradeskillToMaxTest("Alchemy")
 	tradeskillToMaxTest("Jewelcraft")
-	tradeskillToMaxTest("Fletching")
+	tradeskillToMaxTest("Woodcraft")
 	print("********Done********")
 
 

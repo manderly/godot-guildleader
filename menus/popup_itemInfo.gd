@@ -190,7 +190,7 @@ func _is_tradeskill_menu():
 	if (global.currentMenu == "blacksmithing" || 
 		global.currentMenu == "chronomancy" || 
 		global.currentMenu == "alchemy" ||
-		global.currentMenu == "fletching" ||
+		global.currentMenu == "woodcraft" ||
 		global.currentMenu == "tailoring" ||
 		global.currentMenu == "jewelcraft"):
 			return true

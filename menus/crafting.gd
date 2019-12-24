@@ -98,8 +98,8 @@ func _update_hero_skill_display():
 		skillNum = tradeskill.hero.skillJewelcraft
 	elif (global.currentMenu == "alchemy"):
 		skillNum = tradeskill.hero.skillAlchemy
-	elif (global.currentMenu == "fletching"):
-		skillNum = tradeskill.hero.skillFletching
+	elif (global.currentMenu == "woodcraft"):
+		skillNum = tradeskill.hero.skillWoodcraft
 	else:
 		print("crafting.gd: currentMenu not handled, cannot get hero skill")
 		
@@ -225,7 +225,9 @@ func _update_results_area():
 				global.browsingForType = "cloth"
 			elif (global.currentMenu == "chronomancy"):
 				global.browsingForType = recipe.ingredientWildcard #contains the type, such as "any" 
-			
+			elif (global.currentMenu == "cooking"):
+				global.browsingForType = recipe.ingredientWildcard #contains the type, such as "meat" 
+				
 			labelComputed.hide()
 			if (tradeskill.wildcardItemOnDeck):
 				#the player already picked an "on deck" wildcard item
