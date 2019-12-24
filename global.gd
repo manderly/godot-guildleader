@@ -221,6 +221,7 @@ func save():
 			"filename":"res://global.gd", #res://hero.tscn
 			"parent":get_parent().get_path(),
 			"guildName":guildName,
+			"guildCreationDate":guildCreationDate,
 			"tradeskills":tradeskills,
 			"bedrooms":bedrooms,
 			"training":training,

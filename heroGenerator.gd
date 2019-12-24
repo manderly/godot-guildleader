@@ -36,7 +36,7 @@ func generate(destinationArray, classStr):
 	
 	#random birthday
 	newHero.birthday = util.get_random_birthday()
-	print(newHero.get_first_name() + " " + str(newHero.birthday))
+	# print(newHero.get_first_name() + " " + str(newHero.birthday))
 	
 	var startingStats = staticData.heroStats[newHero.charClass.to_lower()]
 	#assign stats accordingly
