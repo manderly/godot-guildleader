@@ -20,6 +20,14 @@ var displayManaRegen = preload("res://menus/heroPage_heroStatDisplay.tscn").inst
 
 var displayCritChance = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
+#Attributes
+var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayMood = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+var displayBirthday = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
+
 #Skills
 var displaySkillAlchemy = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillBlacksmithing = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
@@ -29,13 +37,6 @@ var displaySkillWoodcraft = preload("res://menus/heroPage_heroStatDisplay.tscn")
 var displaySkillJewelcraft = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillTailoring = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 var displaySkillHarvesting = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-
-#Attributes
-var displayDrama = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-var displayMood = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-var displayPrestige = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-var displayGroupBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
-var displayRaidBonus = preload("res://menus/heroPage_heroStatDisplay.tscn").instance()
 
 #fields (labels)
 onready var label_heroName = $CenterContainer/VBoxContainer/HBox_Hero/VBox_Center/field_heroName
@@ -157,6 +158,7 @@ func _ready():
 	tabStatsRight.add_child(displayPrestige)
 	tabStatsRight.add_child(displayGroupBonus)
 	tabStatsRight.add_child(displayRaidBonus)
+	tabStatsRight.add_child(displayBirthday)
 	
 	#Skills
 	tabSkills.add_child(displaySkillAlchemy)
@@ -328,6 +330,7 @@ func _update_stats():
 	displayPrestige._update_fields("Prestige", global.selectedHero.prestige)
 	displayGroupBonus._update_fields("Group Bonus", global.selectedHero.groupBonus)
 	displayRaidBonus._update_fields("Raid Bonus", global.selectedHero.raidBonus)
+	displayBirthday._update_fields("Birthday", util.format_birthday(global.selectedHero.birthday))
 	
 func check_name_input(userInput):
 	#this is for SURNAMES

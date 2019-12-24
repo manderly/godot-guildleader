@@ -26,6 +26,7 @@ var gender = "female"
 var perks = {}
 var perkPoints = 0
 var xp = -1
+var birthday = {}
 
 var inventory = null
 
@@ -226,6 +227,7 @@ func save():
 		"charClass":charClass,
 		"level":level,
 		"xp":xp,
+		"birthday":birthday,
 		"walkable":walkable,
 		"currentRoom":currentRoom,
 		"atHome":atHome,

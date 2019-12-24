@@ -1,6 +1,8 @@
 extends Node
 #util.gd 
 
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 func _ready():
 	pass
 
@@ -22,7 +24,56 @@ func format_time(time):
 		timeFormattedForDisplay = str(round(time)) + "s"
 		
 	return timeFormattedForDisplay
+	
+func get_today():
+	var date = OS.get_date()
+	return date
+	
+func get_random_birthday():
+	# we only really need the day and the month
+	var randomMonth = randi()%12+1
+	
+	var maxDay = 31
+	
+	# february
+	if (randomMonth == 2):
+		maxDay = 29
+		
+	# april, june, september, november
+	if (randomMonth == 4 || randomMonth == 6 || randomMonth == 9 || randomMonth == 11):
+		maxDay = 30
+		
+	var randomDay = randi()%maxDay+1
+	var year = (get_today().year)-1
+	
+	var birthday = {
+		"day":randomDay,
+		"month":randomMonth,
+		"year":year,
+		"weekday":0,
+		"dst":0
+	}
+	return birthday
 
+func format_birthday(birthdayObj):
+	var prettyDateStr = ""
+	
+	prettyDateStr += months[birthdayObj.month - 1]
+	prettyDateStr += " "
+	prettyDateStr += str(birthdayObj.day)
+	
+	return prettyDateStr
+
+func format_guild_creation_date(dateObj):
+	var prettyDateStr = ""
+	prettyDateStr += months[dateObj.month - 1]
+	prettyDateStr += " "
+	prettyDateStr += str(dateObj.day)
+	prettyDateStr += ", "
+	prettyDateStr += str(dateObj.year)
+	
+	return prettyDateStr
+	
 func get_hero_by_id(id):
 	for i in range(global.guildRoster.size()):
 		if (global.guildRoster[i].heroID == id):

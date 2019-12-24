@@ -34,6 +34,10 @@ func generate(destinationArray, classStr):
 	newHero.set_first_name(nameGenerator.generateFirst(newHero.gender))
 	newHero.set_last_name(nameGenerator.generateLast(newHero.charClass))
 	
+	#random birthday
+	newHero.birthday = util.get_random_birthday()
+	print(newHero.get_first_name() + " " + str(newHero.birthday))
+	
 	var startingStats = staticData.heroStats[newHero.charClass.to_lower()]
 	#assign stats accordingly
 	newHero.baseHp = startingStats["hp"]

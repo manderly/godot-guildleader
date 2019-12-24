@@ -3,6 +3,8 @@ extends Node2D
 #makes a long list of every hero in the player's guild
 #individual heroes can be clicked on to go to their hero page 
 onready var field_prestige = $vbox_guildInfo/VBoxContainer/field_prestige
+onready var field_founded = $vbox_guildInfo/vbox_bottomBox/field_founded
+
 onready var field_guildMemberCount = $vbox_guildInfo/VBoxContainer/field_guildMemberCount
 onready var field_guildName = $vbox_guildInfo/VBoxContainer/field_guildName
 
@@ -14,6 +16,7 @@ func _ready():
 	field_guildName.text = global.guildName
 	field_guildMemberCount.text = "Members: " + str(global.guildRoster.size()) + "/" + str(global.guildCapacity)
 	field_prestige.text = " Prestige: " + str(0)
+	field_founded.text = "Founded: " + util.format_guild_creation_date(global.guildCreationDate)
 	
 	$confirm_rename_dialog.set_mode("guild")
 	$confirm_rename_dialog.connect("guildNameUpdated", self, "_on_rename_guild_confirmed")

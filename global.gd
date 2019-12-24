@@ -12,6 +12,8 @@ var nameGenerator = load("res://nameGenerator.gd").new()
 #var mobGenerator = load("res://mobGenerator.gd").new()
 #var encounterGenerator = load("res://encounterGenerator.gd").new()
 
+var guildCreationDate = {}
+
 var testTimerBeginTime = 0
 var testTimerEndTime = 0
 
@@ -114,6 +116,7 @@ func _ready():
 	
 	#Name the guild!
 	global.guildName = nameGenerator.generateGuildName()
+	global.guildCreationDate = util.get_today()
 	
 	# Init the inventories
 	# Note: quest items and tradeskill items are just fungible stacks of items, they 
