@@ -485,53 +485,7 @@ func update_hero_stats():
 func give_existing_item(item): #takes the actual item (use with vault)
 	#hero.give_existing_item(actualItemObject)
 	equipment[item.slot] = item
-	
-func set_hero_class(classStr):
-	if (classStr == "Wizard"):
-		charClass = "Wizard"
-		archetype = "Caster"
-		# base entity method 
-		give_gear_loadout("wizardNew")  #"wizardNew")
-		#if we need better wizards, here's a twinked one:
-		#give_gear_loadout("wizardUber")
-			
-	elif (classStr == "Rogue"):
-		charClass = "Rogue"
-		archetype = "Melee"
-		give_gear_loadout("rogueNew") #"rogueNew")
 
-	elif (classStr == "Warrior"):
-		charClass = "Warrior"
-		archetype = "Melee"
-		give_gear_loadout("warriorNew") #"warriorNew")
-	
-	elif (classStr == "Ranger"):
-		charClass = "Ranger"
-		archetype = "Melee"
-		give_gear_loadout("rangerNew") #ranger12
-		
-	elif (classStr == "Cleric"):
-		charClass = "Cleric"
-		archetype = "Support"
-		give_gear_loadout("clericNew") #cleric12
-
-	elif (classStr == "Druid"):
-		charClass = "Druid"
-		archetype = "Support"
-		give_gear_loadout("druidNew")
-			
-	else:
-		print("ERROR - BAD HERO CLASS TYPE")
-		
-	#build perks object out of which perks this hero can actually use
-	perks = {}
-	for key in staticData.perks.keys():
-		if (staticData.perks[key].restriction == "any" ||
-			staticData.perks[key].restriction.to_lower() == archetype.to_lower() ||
-			staticData.perks[key].restriction.to_lower() == charClass.to_lower()):
-			#check if it's for anyone, this hero's archetype, or this hero's class
-			#if so, give this hero this perk option 
-			perks[key] = staticData.perks[key].duplicate()
 	
 func get_class():
 	return charClass

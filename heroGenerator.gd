@@ -1,18 +1,13 @@
 extends Node
 #heroGenerator.gd
-#makes a level 1 hero with random class and name
+#creates a level 1 hero with random class and name
 
 var nameGenerator = load("res://nameGenerator.gd").new()
 
 func _ready():
 	pass
-	
-#make new hero object
-func generate(destinationArray, classStr):
-	var newHero = load("res://hero.gd").new()
-	newHero.heroID = global.nextHeroID
-	global.nextHeroID += 1
-	
+
+func setRandomGender(newHero):
 	#random gender (they're all female by default, but if we roll a 1, change to male)
 	#this is only used to get a name that sounds somewhat masculine or feminine, no effect on gameplay
 	var randomGender = randi()%2 #0 or 1
@@ -24,18 +19,64 @@ func generate(destinationArray, classStr):
 		newHero.headSprite = newHero.humanFemaleHeads[randi() % newHero.humanFemaleHeads.size()]
 	else:
 		newHero.headSprite = newHero.humanMaleHeads[randi() % newHero.humanMaleHeads.size()]
-		
-	#random class
-	var randomClass = randi()%3+1 #1-4
-	newHero.set_hero_class(classStr)
 	
+func setRandomName(newHero):
 	#random name 
 	#todo: pass species in addition to gender 
 	newHero.set_first_name(nameGenerator.generateFirst(newHero.gender))
 	newHero.set_last_name(nameGenerator.generateLast(newHero.charClass))
 	
+func setHeroClassAndGear(newHero, heroClass):
+	if (heroClass == "Wizard"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Caster"
+		# base entity method 
+		newHero.give_gear_loadout("wizardNew")  #"wizardNew")
+		#if we need better wizards, here's a twinked one:
+		#give_gear_loadout("wizardUber")
+			
+	elif (heroClass == "Rogue"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Melee"
+		newHero.give_gear_loadout("rogueNew") #"rogueNew")
+	
+	elif (heroClass == "Warrior"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Melee"
+		newHero.give_gear_loadout("warriorNew") #"warriorNew")
+	
+	elif (heroClass == "Ranger"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Melee"
+		newHero.give_gear_loadout("rangerNew") #ranger12
+		
+	elif (heroClass == "Cleric"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Support"
+		newHero.give_gear_loadout("clericNew") #cleric12
+	
+	elif (heroClass == "Druid"):
+		newHero.charClass = heroClass
+		newHero.archetype = "Support"
+		newHero.give_gear_loadout("druidNew")
+			
+	else:
+		print("ERROR - BAD HERO CLASS TYPE")
+		
+	#build perks object out of which perks this hero can actually use
+	newHero.perks = {}
+	for key in staticData.perks.keys():
+		if (staticData.perks[key].restriction == "any" ||
+			staticData.perks[key].restriction.to_lower() == newHero.archetype.to_lower() ||
+			staticData.perks[key].restriction.to_lower() == newHero.charClass.to_lower()):
+			#check if it's for anyone, this hero's archetype, or this hero's class
+			#if so, give this hero this perk option 
+			newHero.perks[key] = staticData.perks[key].duplicate()
+	
+func setStartingStats(newHero):
+	# get the hero's class
 	var startingStats = staticData.heroStats[newHero.charClass.to_lower()]
-	#assign stats accordingly
+	# assign stats accordingly
 	newHero.baseHp = startingStats["hp"]
 	newHero.baseMana = startingStats["mana"]
 	newHero.baseDps = startingStats["dps"]
@@ -59,8 +100,8 @@ func generate(destinationArray, classStr):
 	newHero.basePrestige = startingStats["prestige"]
 	newHero.baseGroupBonus = startingStats["groupBonus"]
 	newHero.baseRaidBonus = startingStats["raidBonus"]
-
-	#other aspects of a hero 
+	
+func setAspects(newHero):
 	newHero.atHome = true
 	newHero.level = 1
 	newHero.perkPoints = 0
@@ -69,9 +110,12 @@ func generate(destinationArray, classStr):
 	newHero.entityType = "hero"
 	newHero.showMyHelm = true
 	
+func setDefaultInventory(newHero):
 	newHero.inventory = load("res://inventory.gd").new()
+	# todo: bat wing is just for testing, but new heroes should start with food and possibly some items 
 	newHero.inventory.give_new_item("Bat Wing", 1)
-
+	
+func setHeroHome(destinationArray, newHero):
 	if (destinationArray == global.guildRoster):
 		newHero.currentRoom = 1 #inside (0 by default - outside)
 		newHero.recruited = true #false by default 
@@ -80,9 +124,11 @@ func generate(destinationArray, classStr):
 		newHero.recruited = false
 		var randLevel = randi()%3+1
 		newHero.make_level(randLevel)
-		var gearRand1 = randi()%3+1
 		
-		#todo: may be a bad idea to generate these items with IDs since the user doesn't own them yet
+		# Todo: may be able to remove this entirely now that heroes get starting gear based on their class
+		#If this is an unrecruited hero, set their gear
+		var gearRand1 = randi()%3+1
+			#todo: may be a bad idea to generate these items with IDs since the user doesn't own them yet
 		#IDs are really just for items the player owns 
 		newHero.give_new_item("Muddy Boots") #everyone should start with shoes of some kind...
 
@@ -94,9 +140,30 @@ func generate(destinationArray, classStr):
 		else:
 			newHero.give_new_item("Cloth Shirt")
 			newHero.give_new_item("Simple Ring")
+		
+#make new hero object
+func generate(destinationArray, heroClass):
+	var newHero = load("res://hero.gd").new()
+	newHero.heroID = global.nextHeroID
+	global.nextHeroID += 1
 	
-
+	setRandomGender(newHero)
+	setHeroClassAndGear(newHero, heroClass)
+	
+	#these require gender and class to be set
+	setRandomName(newHero)
+	setStartingStats(newHero)
+	setAspects(newHero)
+	
+	setDefaultInventory(newHero)
+	
+	setHeroHome(destinationArray, newHero)
+	
 	newHero.update_hero_stats() #calculate hp, mana, etc.
-	newHero.hpCurrent = newHero.hp #only do this when we generate a hero (that's why it's not in update_hero_stats)
+	
+	#only do this when we generate a hero (that's why it's not in update_hero_stats)
+	newHero.hpCurrent = newHero.hp 
 	newHero.manaCurrent = newHero.mana
+	
+	#finally, put this new hero in the guild array or the unrecruited heroes array 
 	destinationArray.append(newHero)

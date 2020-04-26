@@ -96,8 +96,6 @@ func generateStartingHeroes():
 	heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 	heroGenerator.generate(global.guildRoster, "Warrior")
 	heroGenerator.generate(global.guildRoster, "Rogue")
-	#Generate a few more guildmates for quest testing
-	#heroGenerator.generate(global.guildRoster, "Wizard") #returns nothing, just puts them in the array reference that's passed in
 	heroGenerator.generate(global.guildRoster, "Ranger")
 	heroGenerator.generate(global.guildRoster, "Cleric")
 	
@@ -110,6 +108,7 @@ func generateStartingHeroes():
 		hero.make_level(18)
 		
 	# record all these names as in use
+	# todo: refactor namesInUse to  be an object instead of an array 
 	for hero in global.guildRoster:
 		global.namesInUse.append(hero.get_first_name())
 	
