@@ -258,6 +258,9 @@ func save():
 		"skillJewelcraft":thisHero.skillJewelcraft,
 		"skillTailoring":thisHero.skillTailoring,
 		"skillHarvesting":thisHero.skillHarvesting,
+		"skillFishing":thisHero.skillFishing,
+		"skillMining":thisHero.skillMining,
+		"skillBrewing":thisHero.skillBrewing,
 		"drama":thisHero.drama,
 		"mood":thisHero.mood,
 		"prestige":thisHero.prestige,
@@ -414,6 +417,9 @@ func update_hero_stats():
 	modifiedSkillJewelcraft = 0
 	modifiedSkillTailoring = 0
 	modifiedSkillHarvesting = 0
+	modifiedSkillFishing = 0
+	modifiedSkillMining = 0
+	modifiedSkillBrewing = 0
 	modifiedPrestige = 0
 	
 	#add up all the stats from armor 
@@ -478,6 +484,9 @@ func update_hero_stats():
 	skillJewelcraft = baseSkillJewelcraft + modifiedSkillJewelcraft
 	skillTailoring = baseSkillTailoring + modifiedSkillTailoring
 	skillHarvesting = baseSkillHarvesting + modifiedSkillHarvesting
+	skillFishing = baseSkillFishing + modifiedSkillFishing
+	skillMining = baseSkillMining + modifiedSkillMining
+	skillBrewing = baseSkillBrewing + modifiedSkillBrewing
 	prestige = basePrestige + modifiedPrestige
 	drama = "Low"
 	mood = "Happy"
