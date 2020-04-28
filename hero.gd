@@ -579,6 +579,9 @@ func make_level(levelNum):
 	if (levelNum > 1):
 		for level in range(levelNum - 1):
 			level_up()
+			
+func get_level():
+	return level
 	
 func restore_hp_mana():
 	hpCurrent = hp

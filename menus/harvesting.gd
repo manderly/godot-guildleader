@@ -7,8 +7,12 @@ onready var finishedItemPopup = preload("res://menus/popup_finishedItem.tscn").i
 onready var field_duration = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_duration
 onready var field_skill = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_skill
 onready var field_yield = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_yield
+onready var field_riskLevel = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer/field_riskLevel
+
 onready var field_heroName = $MarginContainer/centerContainer/VBoxContainer/VBoxContainer/field_heroName
 onready var field_heroSkill = $MarginContainer/centerContainer/VBoxContainer/VBoxContainer/field_heroSkill
+onready var field_heroRisk = $MarginContainer/centerContainer/VBoxContainer/VBoxContainer/field_heroRisk
+
 onready var field_nodeName = $MarginContainer/centerContainer/VBoxContainer/field_nodeName
 onready var button_pickHero = $MarginContainer/centerContainer/VBoxContainer/button_pickHero
 onready var buttonBeginHarvest = $MarginContainer/centerContainer/VBoxContainer/button_begin
@@ -33,7 +37,7 @@ func _ready():
 	populate_fields(currentHarvest)
 	
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
-		buttonBeginHarvest.text = "Finish now"
+		buttonBeginHarvest.text = "Stop collecting"
 	
 	#disable the begin quest button until enough heroes are assigned
 	if (!currentHarvest.hero):
@@ -68,19 +72,32 @@ func _process(delta):
 	else:
 		field_timeRemaining.set_text("Harvest not started")
 	
+func format_risk_string(heroLevel, riskLevel):
+	var riskStr = ""
+	if (heroLevel < riskLevel):
+		riskStr = "Pretty high"
+	elif (heroLevel == riskLevel):
+		riskStr = "Risky"
+	elif (heroLevel >= riskLevel):
+		riskStr = "Low risk"
+	return riskStr
+	
 func populate_fields(data):
 	field_nodeName.text = data.name
 	field_duration.text = "Time to harvest: " + str(util.format_time(data.timeToHarvest))
-	field_skill.text = "Harvesting skill required: " + str(data.minSkill)
+	field_skill.text = str(data.skillName) + " skill level required: " + str(data.minSkill)
 	field_yield.text = "Yield: " + str(data.minQuantity) + " - " + str(data.maxQuantity)
+	field_riskLevel.text = "Risk level: " + str(data.riskLevel)
 	nodeGraphic.texture = load("res://sprites/harvestNodes/" + data.icon)
 	
 	if (data.hero):
 		field_heroName.text = data.hero.get_first_name()
+		field_heroRisk.text = format_risk_string(data.hero.get_level(), data.riskLevel)
 		_update_hero_skill_display()
 	else:
 		field_heroName.text = ""
 		field_heroSkill.text = ""
+		field_heroRisk.text = ""
 	
 	if (currentHarvest.inProgress):
 		button_pickHero.set_disabled(true)
@@ -102,8 +119,6 @@ func _on_button_beginHarvesting_pressed():
 			#it has to be done there, or else will be wiped from memory when we close this particular menu 
 			#global._begin_harvesting_timer(currentHarvest.timeToHarvest, currentHarvest.harvestingId)
 			currentHarvest.inProgress = true
-			var currentTime = OS.get_unix_time()
-			currentHarvest.endTime = currentTime + currentHarvest.timeToHarvest
 			button_pickHero.set_disabled(true)
 			get_tree().change_scene("res://menus/forest.tscn")
 	#case 2: quest is active but not ready to collect 

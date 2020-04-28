@@ -50,7 +50,7 @@ func _on_button_collect_pressed():
 	for lootName in campData.campOutcome.lootedItemsNames:
 		#todo: test that it accounts for multiples of same item 
 		if (lootName): #because some entries are null
-			util.give_item_guild(lootName, 1)
+			util.give_new_item_guild(lootName, 1)
 		
 	for hero in campData.heroes:
 		#this should have all of them, not just the "live" ones 

@@ -33,5 +33,25 @@
     "tradeskill": "cooking",
     "displayName": "Cooking",
     "description": "Combine raw ingredients into delicious snacks and meals!"
+  },
+  {
+    "tradeskill": "fishing",
+    "displayName": "Fishing",
+    "description": "Catch fresh fish (and other treasures) from rivers, lakes, and oceans."
+  },
+  {
+    "tradeskill": "gathering",
+    "displayName": "Gathering",
+    "description": "Find berries, leaves, and other valuable resources in natural environments."
+  },
+  {
+    "tradeskill": "mining",
+    "displayName": "Mining",
+    "description": "Carefully pick valuable gems, metals, and minerals from less valuable rocks."
+  },
+  {
+    "tradeskill": "brewing",
+    "displayName": "Brewing",
+    "description": "Craft tasty beverages - there's something for everyone!"
   }
 ]

@@ -169,10 +169,11 @@ margin_right = 324.0
 margin_bottom = 902.0
 
 [node name="harvestingNode1" parent="." instance=ExtResource( 12 )]
-margin_left = 376.0
-margin_top = 263.0
-margin_right = 440.0
-margin_bottom = 327.0
+margin_left = 384.998
+margin_top = 257.463
+margin_right = 448.998
+margin_bottom = 321.463
+rect_pivot_offset = Vector2( -18.6586, 47.039 )
 
 [node name="harvestingNode2" parent="." instance=ExtResource( 12 )]
 margin_left = 188.0
@@ -180,6 +181,11 @@ margin_top = 745.0
 margin_right = 252.0
 margin_bottom = 809.0
 
-[node name="button_back" parent="." instance=ExtResource( 13 )]
+[node name="harvestingNode3" parent="." instance=ExtResource( 12 )]
+margin_left = 32.9525
+margin_top = 553.267
+margin_right = 96.9525
+margin_bottom = 617.267
 
+[node name="button_back" parent="." instance=ExtResource( 13 )]
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]

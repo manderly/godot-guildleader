@@ -7,398 +7,133 @@
 [ext_resource path="res://menus/buttons/button_back.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
-
 script = ExtResource( 1 )
 
-[node name="TileMap" type="TileMap" parent="." index="0"]
-
-mode = 0
+[node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 0, 27, 0, 5, 27, 0, 10, 27, 0, 15, 27, 0, 262144, 27, 0, 262149, 27, 0, 262154, 27, 0, 262159, 27, 0, 524288, 27, 0, 524293, 27, 0, 524298, 27, 0, 524303, 27, 0, 786432, 27, 0, 786437, 27, 0, 786442, 27, 0, 786447, 27, 0, 1048576, 27, 0, 1048581, 27, 0, 1048586, 27, 0, 1048591, 27, 0, 1310720, 27, 0, 1310725, 27, 0, 1310730, 27, 0, 1310735, 27, 0, 1572864, 27, 0, 1572869, 27, 0, 1572874, 27, 0, 1572879, 27, 0, 1835008, 27, 0, 1835013, 27, 0, 1835018, 27, 0, 1835023, 27, 0 )
-_sections_unfolded = [ "Cell" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="." index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
 margin_top = 10.0
 margin_right = 480.0
 margin_bottom = 436.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 theme = ExtResource( 3 )
-_sections_unfolded = [ "Margin", "Rect", "Theme" ]
 
-[node name="centerContainer" type="CenterContainer" parent="MarginContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 8.0
+[node name="centerContainer" type="CenterContainer" parent="MarginContainer"]
 margin_right = 480.0
 margin_bottom = 426.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-use_top_left = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer"]
+margin_left = 166.0
+margin_top = 83.0
+margin_right = 313.0
+margin_bottom = 343.0
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 162.0
-margin_top = 93.0
-margin_right = 309.0
-margin_bottom = 333.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="field_nodeName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_nodeName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer"]
 margin_right = 147.0
 margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#NODE NAME"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 147.0
-margin_bottom = 82.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+margin_bottom = 86.0
 
-[node name="icon_nodeGraphic" type="TextureRect" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="icon_nodeGraphic" type="TextureRect" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer"]
 margin_right = 64.0
-margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_bottom = 68.0
 texture = ExtResource( 4 )
-stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer" index="1"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer"]
 margin_left = 68.0
 margin_right = 147.0
-margin_bottom = 64.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+margin_bottom = 68.0
 
-[node name="field_duration" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_duration" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 79.0
 margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#DURATION"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_yield" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_yield" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 79.0
 margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#YIELD"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_skill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_skill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 36.0
 margin_right = 79.0
 margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#SKILL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="button_pickHero" type="Button" parent="MarginContainer/centerContainer/VBoxContainer" index="2"]
+[node name="field_riskLevel" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 79.0
+margin_bottom = 68.0
+text = "#SKILL"
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 86.0
+[node name="button_pickHero" type="Button" parent="MarginContainer/centerContainer/VBoxContainer"]
+margin_top = 90.0
 margin_right = 147.0
-margin_bottom = 124.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
+margin_bottom = 128.0
 text = "PICK HERO"
-flat = false
-align = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer" index="3"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 128.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/centerContainer/VBoxContainer"]
+margin_top = 132.0
 margin_right = 147.0
-margin_bottom = 160.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+margin_bottom = 182.0
 
-[node name="field_heroName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_heroName" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer"]
 margin_right = 147.0
 margin_bottom = 14.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#HERO NAME"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="field_heroSkill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="field_heroSkill" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 147.0
 margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "#HERO SKILL"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="button_begin" type="Button" parent="MarginContainer/centerContainer/VBoxContainer" index="4"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 164.0
+[node name="field_heroRisk" type="Label" parent="MarginContainer/centerContainer/VBoxContainer/VBoxContainer"]
+margin_top = 36.0
 margin_right = 147.0
-margin_bottom = 202.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
+margin_bottom = 50.0
+text = "#RISK LEVEL"
+
+[node name="button_begin" type="Button" parent="MarginContainer/centerContainer/VBoxContainer"]
+margin_top = 186.0
+margin_right = 147.0
+margin_bottom = 224.0
 text = "BEGIN"
-flat = false
-align = 1
 
-[node name="field_timeRemaining" type="Label" parent="MarginContainer/centerContainer/VBoxContainer" index="5"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 206.0
+[node name="field_timeRemaining" type="Label" parent="MarginContainer/centerContainer/VBoxContainer"]
+margin_top = 228.0
 margin_right = 147.0
-margin_bottom = 220.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
+margin_bottom = 242.0
 text = "#TIME REMAINING"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/centerContainer/VBoxContainer" index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 224.0
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/centerContainer/VBoxContainer"]
+margin_top = 246.0
 margin_right = 147.0
-margin_bottom = 240.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-min_value = 0.0
-max_value = 100.0
+margin_bottom = 260.0
 step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-percent_visible = true
 
-[node name="button_back" parent="." index="2" instance=ExtResource( 5 )]
+[node name="button_back" parent="." instance=ExtResource( 5 )]
 
-[node name="quest_finish_now_dialog" type="ConfirmationDialog" parent="." index="3"]
-
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="quest_finish_now_dialog" type="ConfirmationDialog" parent="."]
 margin_left = 80.0
 margin_top = 550.0
 margin_right = 420.0
 margin_bottom = 730.0
 rect_min_size = Vector2( 200, 70 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-popup_exclusive = false
 window_title = "Finish quest now"
-resizable = false
 dialog_text = "Finish quest now for 1 diamond?"
-dialog_hide_on_ok = true
-_sections_unfolded = [ "Dialog" ]
-
 [connection signal="pressed" from="MarginContainer/centerContainer/VBoxContainer/button_pickHero" to="." method="_on_button_pickHero_pressed"]
-
 [connection signal="pressed" from="MarginContainer/centerContainer/VBoxContainer/button_begin" to="." method="_on_button_beginHarvesting_pressed"]
-
 [connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
-
 [connection signal="confirmed" from="quest_finish_now_dialog" to="." method="_on_quest_finish_now_dialog_confirmed"]
-
-

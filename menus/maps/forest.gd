@@ -13,7 +13,8 @@ func _ready():
 
 	$harvestingNode1._set_data("harvesting_forest_copperOre")
 	$harvestingNode2._set_data("harvesting_forest_roughStone")
-	
+	$harvestingNode3._set_data("harvesting_forest_fish")
+		
 	#todo: hide/show the harvesting nodes on a timer
 	#todo: randomize position of harvesting nodes 
 

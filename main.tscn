@@ -203,6 +203,7 @@ margin_bottom = 23.0
 text = "# / #"
 
 [node name="button_saveGame" type="TextureButton" parent="HUD"]
+editor/display_folded = true
 anchor_right = 1.0
 margin_left = 466.0
 margin_top = 11.0
@@ -219,6 +220,7 @@ text = "SAVE"
 align = 1
 
 [node name="button_loadGame" type="TextureButton" parent="HUD"]
+editor/display_folded = true
 anchor_right = 1.0
 margin_left = 466.0
 margin_top = 101.0
@@ -235,6 +237,7 @@ text = "LOAD"
 align = 1
 
 [node name="button_beginTimer" type="TextureButton" parent="HUD"]
+editor/display_folded = true
 anchor_right = 1.0
 margin_left = 605.0
 margin_top = 574.0
@@ -251,6 +254,7 @@ text = "BEGIN TIMER"
 align = 1
 
 [node name="button_createHero" type="TextureButton" parent="HUD"]
+editor/display_folded = true
 anchor_right = 1.0
 margin_left = 471.0
 margin_top = 225.0
