@@ -592,6 +592,10 @@ func make_level(levelNum):
 func get_level():
 	return level
 	
+func get_skill_level(skillName): #Fishing
+	var skillStr = "skill" + skillName # skillFishing, skillBlacksmithing, etc 
+	return self[skillStr]
+	
 func restore_hp_mana():
 	hpCurrent = hp
 	manaCurrent = mana

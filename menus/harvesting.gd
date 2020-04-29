@@ -25,11 +25,8 @@ func _ready():
 	add_child(finishedItemPopup)
 	
 	currentHarvest = global.activeHarvestingData[global.selectedHarvestingID]
-	
-	if (currentHarvest.endTime > -1):
-		var currentTime = OS.get_unix_time()
-		if (currentTime >= currentHarvest.endTime):
-			currentHarvest.readyToCollect = true
+	# give this one its own brand new prize array 
+	currentHarvest.harvestedItems = []
 	
 	populate_fields(currentHarvest)
 	
@@ -42,22 +39,45 @@ func _ready():
 	else:
 		buttonBeginHarvest.set_disabled(false)
 		
+func try_harvest_chance(): 
+	var random = randi()%100 #0 - 99
+	var outcome = random + currentHarvest.hero.get_skill_level(currentHarvest.skillName)
+	# just some fudged numbers for now 
+	if (outcome > 50):
+		return true
+	else:
+		return false
+	# todo: account for "risk"
+	
 func _process(delta):
 	#Displays how much time is left on the active quest 
+	# "ready to collect" is set if something ends the harvest prematurely, ie: hero "dies" 
 	if (currentHarvest.inProgress && !currentHarvest.readyToCollect):
 		#set the display fields 
-		if ((OS.get_unix_time() - currentHarvest.startTime) < 10):
-			field_timeElapsed.set_text("Time Elapsed: Just arrived!")
-		elif ((OS.get_unix_time() - currentHarvest.startTime) < 45):
-			field_timeElapsed.set_text("Time Elapsed: Getting settled...")
-		elif ((OS.get_unix_time() - currentHarvest.startTime) > 60):
+		if ((OS.get_unix_time() - currentHarvest.startTime) > 30):
 			field_timeElapsed.set_text("Time Elapsed: " + util.format_time(OS.get_unix_time() - currentHarvest.startTime))
+			if ((int(floor(OS.get_unix_time() - currentHarvest.startTime)) / 20)  > currentHarvest.harvestedItems.size()):
+				print(str(OS.get_unix_time()) + ": 20 seconds have passed! Roll to see if we successfully mined something!")
+				if (try_harvest_chance()):
+					print(currentHarvest.hero.get_first_name() + " was successful!")
+					currentHarvest.harvestedItems.append(1)
+					print("Prize count is now: " + str(currentHarvest.harvestedItems.size()))
+				else:
+					if (currentHarvest.skillName == "Fishing"):
+						print(currentHarvest.hero.get_first_name() + " didn't catch anything.")
+					else:
+						print(currentHarvest.hero.get_first_name() + " failed that attempt at " + currentHarvest.skillName.to_lower() + ".")
+		elif ((OS.get_unix_time() - currentHarvest.startTime) < 8):
+			field_timeElapsed.set_text("Time Elapsed: Just arrived!")
+		elif ((OS.get_unix_time() - currentHarvest.startTime) < 16):
+			field_timeElapsed.set_text("Time Elapsed: Getting settled...")
+			
 		#do not split the "currentHarvest.endtime - OS.get_unix_time into its own var 
 		#it's too dumb and slow to keep up with it as a separate var and will just calculate to 0 
 
 		#60 - 54 / 60 .... 6/60 = .01  = 1%.... this should work wtf 
 		#print(100 * ((currentHarvest.timeToHarvest - timeLeft) / currentHarvest.timeToHarvest))
-		buttonBeginHarvest.text = "FINISH NOW"
+		buttonBeginHarvest.text = "DONE " + currentHarvest.skillName
 	elif (currentHarvest.readyToCollect):
 		field_timeElapsed.set_text("Hero finished here")
 		buttonBeginHarvest.text = "COLLECT"

@@ -83,7 +83,6 @@ func _check_valid():
 	# check points spent (todo)
 	button_createHero.set_disabled(false)
 	
-	
 func sanitize_name_input(userInput):
 	#this is for FIRST NAMES and the check runs every character input
 	#Rules are more strict here
