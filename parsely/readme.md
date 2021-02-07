@@ -1,6 +1,6 @@
 # Parsely Tool
 
-Developed for Guild Leader project (December 2018)
+Developed for Guild Leader project (personal project)
 Allows user to export game data (recipes, items, loot tables, etc.) from Google Sheets into a format Godot engine can use. 
 
 To use:
