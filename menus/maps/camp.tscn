@@ -189,7 +189,6 @@ text = "JOIN CAMP: 6hr"
 position = Vector2( 17.2991, 320.033 )
 
 [node name="button_back" parent="." instance=ExtResource( 6 )]
-
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/CenterContainer/button_autoPickHeroes" to="." method="_on_button_autoPickHeroes_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampShort" to="." method="_on_button_startCampShort_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/button_startCampMedium" to="." method="_on_button_startCampMedium_pressed"]

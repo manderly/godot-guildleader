@@ -289,8 +289,10 @@ func _physics_process(delta):
 			_stop_walking()
 	elif (walkingToBattlePoint):
 		velocity = (target - position).normalized() * speed
+
 		if ((target - position).length() > 1):
 			var collision_info = move_and_collide(velocity * delta)
+			
 			if collision_info:
 				_stop_walking()
 		else:
@@ -299,11 +301,12 @@ func _physics_process(delta):
 func _stop_walking():
 	target = get_position()
 	velocity = 0
-	$animationPlayer.play("idle")
 	if (walking):
+		$animationPlayer.play("idle")
 		walking = false
 		$idleTimer.start()
 	elif (walkingToBattlePoint):
+		$animationPlayer.play("walk")
 		walkingToBattlePoint = false
 
 func auto_assign_bedroom():
@@ -595,6 +598,10 @@ func get_level():
 func get_skill_level(skillName): #Fishing
 	var skillStr = "skill" + skillName # skillFishing, skillBlacksmithing, etc 
 	return self[skillStr]
+
+func increase_skill_level(skillName): #Fishing
+	var skillStr = "skill" + skillName # skillFishing, etc
+	self[skillStr] += 1
 	
 func restore_hp_mana():
 	hpCurrent = hp

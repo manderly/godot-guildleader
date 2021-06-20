@@ -49,7 +49,7 @@ func _ready():
 		$battleScene.hide()
 	else:
 		field_battleNum.show()
-		#_play_camp_animatic()
+		_play_camp_animatic(campData)
 		
 	add_child(finishNowPopup)
 	_draw_hero_buttons()
@@ -81,10 +81,8 @@ func _process(delta):
 
 	
 func _play_camp_animatic(campData):
-	#field_battleNum.text = "Pulling..."
-	#field_battleNum.show()
 	$battleScene.show()
-	$battleScene.play_vignette(campData.campOutcome.vignetteData) #also need to know how far into the camp we are, temporally speaking
+	$battleScene.play_vignette(campData.campOutcome.vignetteData) 
 	$battleScene.set_background("res://menus/maps/battleBackgrounds/" + campData.bgFilepath)
 	field_difficultyEstimate.text = "Camp in progress..."
 	
@@ -243,12 +241,11 @@ func _start_camp(duration, enableButtonStr):
 				"lootedItemsNames":generatedOutcome.lootedItemsNames,
 				"scTotal":generatedOutcome.scTotal,
 				"summary":generatedOutcome.summary,
-				"detailedPlayByPlay":generatedOutcome.detailedPlayByPlay,
 				"vignetteData":generatedOutcome.vignetteData
 			}
 			
 			_play_camp_animatic(campData)
-			#todo: populate enemies 
+
 			_enable_and_disable_duration_buttons() #todo: potential race condition here, depends on props set by above line
 	elif (campData.inProgress && !campData.readyToCollect):
 		#todo: cost logic for speeding up a recipe is based on trivial level of recipe and time left 

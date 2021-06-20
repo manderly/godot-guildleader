@@ -4,8 +4,6 @@ onready var field_campName = $MarginContainer/CenterContainer/VBoxContainer/fiel
 onready var field_campDescription = $MarginContainer/CenterContainer/VBoxContainer/field_campDescription
 onready var field_resultsScrollBox = $MarginContainer/CenterContainer/VBoxContainer/ScrollContainer/VBoxContainer
 onready var field_lootItems = $MarginContainer/CenterContainer/VBoxContainer/vbox_prizes
-onready var campLogPopup = $campLog
-onready var campLog = $campLog/ScrollContainer/VBoxContainer
 
 var campData = null
 var battlePrint = false
@@ -39,11 +37,6 @@ func _populate_fields():
 		var eventText = Label.new()
 		eventText.text = str(event)
 		field_resultsScrollBox.add_child(eventText)
-		
-	for event in campData.campOutcome.detailedPlayByPlay:
-		var detailedEvent = Label.new()
-		detailedEvent.text = str(event)
-		campLog.add_child(detailedEvent)
 
 func _on_button_collect_pressed():
 	#todo: iterate through campData.campOutcome.lootedItems and give those items to guild
@@ -73,5 +66,3 @@ func _on_button_collect_pressed():
 
 	get_tree().change_scene(global.returnToMap)
 	
-func _on_button_detailedCombatLog_pressed():
-	campLogPopup.popup()

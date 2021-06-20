@@ -15,6 +15,8 @@ onready var field_nodeName = $MarginContainer/centerContainer/VBoxContainer/fiel
 onready var button_pickHero = $MarginContainer/centerContainer/VBoxContainer/button_pickHero
 onready var buttonBeginHarvest = $MarginContainer/centerContainer/VBoxContainer/button_begin
 onready var field_timeElapsed = $MarginContainer/centerContainer/VBoxContainer/field_timeElapsed
+onready var field_prizeCount = $MarginContainer/centerContainer/VBoxContainer/field_prizeCount
+
 onready var nodeGraphic = $MarginContainer/centerContainer/VBoxContainer/HBoxContainer/icon_nodeGraphic
 
 var currentHarvest = null
@@ -40,10 +42,18 @@ func _ready():
 		buttonBeginHarvest.set_disabled(false)
 		
 func try_harvest_chance(): 
+	# first, see if this attempt results in a skillup
+	if (util.determine_if_skill_up_happens(currentHarvest.hero.get_skill_level(currentHarvest.skillName), currentHarvest.minSkill+20)): #pass current skill, pass trivial level
+		currentHarvest.hero.increase_skill_level(currentHarvest.skillName)
+		print(currentHarvest.hero.get_first_name() + " got better at " + currentHarvest.skillName + "! (" + str(currentHarvest.hero.get_skill_level(currentHarvest.skillName)) + ")")
+		#finishedItemPopup._set_skill_up(currentHarvest.hero, currentHarvest.skillName)
+		#_update_hero_skill_display()
+		
+	# next, see if this attempt results in an item 
 	var random = randi()%100 #0 - 99
 	var outcome = random + currentHarvest.hero.get_skill_level(currentHarvest.skillName)
-	# just some fudged numbers for now 
-	if (outcome > 50):
+	# just some fudged numbers for now, more likely to get an item if you have higher skill 
+	if (outcome > 80):
 		return true
 	else:
 		return false
@@ -56,12 +66,13 @@ func _process(delta):
 		#set the display fields 
 		if ((OS.get_unix_time() - currentHarvest.startTime) > 30):
 			field_timeElapsed.set_text("Time Elapsed: " + util.format_time(OS.get_unix_time() - currentHarvest.startTime))
-			if ((int(floor(OS.get_unix_time() - currentHarvest.startTime)) / 20)  > currentHarvest.harvestedItems.size()):
-				print(str(OS.get_unix_time()) + ": 20 seconds have passed! Roll to see if we successfully mined something!")
+			if ((int(floor(OS.get_unix_time() - currentHarvest.startTime)) / 120)  > currentHarvest.harvestedItems.size()):
+				print(str(OS.get_unix_time()) + ": 120 seconds have passed! Roll to see if we successfully mined something!")
 				if (try_harvest_chance()):
 					print(currentHarvest.hero.get_first_name() + " was successful!")
 					currentHarvest.harvestedItems.append(1)
-					print("Prize count is now: " + str(currentHarvest.harvestedItems.size()))
+					#print("Prize count is now: " + str(currentHarvest.harvestedItems.size()))
+					field_prizeCount.set_text("Prize count: " + str(currentHarvest.harvestedItems.size()))
 				else:
 					if (currentHarvest.skillName == "Fishing"):
 						print(currentHarvest.hero.get_first_name() + " didn't catch anything.")
@@ -139,16 +150,9 @@ func _on_button_beginHarvesting_pressed():
 		print("harvestingConfirm.gd error - not sure what state we're in")
 
 func _open_collect_result_popup():
-	#determine if we get a skillup and show or hide skillup text accordingly 
-	if (util.determine_if_skill_up_happens(currentHarvest.hero.skillHarvesting, currentHarvest.minSkill+20)): #pass current skill, pass trivial level
-		currentHarvest.hero.skillHarvesting += 1
-		finishedItemPopup._set_skill_up(currentHarvest.hero, currentHarvest.skillName)
-		_update_hero_skill_display()
-	else:
-		finishedItemPopup._show_skill_up_text(false)
-		
+	#determine if we get a skillup and show or hide skillup text accordingly
 	finishedItemPopup._set_icon(currentHarvest.icon)
-	finishedItemPopup._set_item_name(currentHarvest.prizeItem1)
+	finishedItemPopup._set_item_name(str(currentHarvest.harvestedItems.size()))
 	finishedItemPopup.popup()
 	
 func harvestItem_callback():
