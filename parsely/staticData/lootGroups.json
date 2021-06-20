@@ -1,6 +1,6 @@
 [
   {
-    "lootGroupName": "null",
+    "lootGroupName": null,
     "item1": null,
     "item2": null,
     "item3": null,
@@ -144,8 +144,8 @@
     "item6": "Soft Silk Slippers",
     "item7": "Spider Legs",
     "item8": "Spider Legs",
-    "item9": "Spun Silk",
-    "item10": "Spun Silk",
+    "item9": "Spun Spider Silk",
+    "item10": "Spun Spider Silk",
     "item11": "Spider Web",
     "item12": "Spider Web"
   }

@@ -27,4 +27,5 @@ texture = ExtResource( 2 )
 [node name="bat" type="AnimatedSprite" parent="."]
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
+frame = 4
 playing = true

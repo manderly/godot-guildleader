@@ -179,7 +179,8 @@ func calculate_encounter_mobs(camp):
 	
 	# for t in time, spawn mobs
 	var t = 0;
-	while t < 15: #camp.duration:
+	var adjustedCampDuration = camp.selectedDuration / 30
+	while t < adjustedCampDuration:
 		var spawnPoint1Mob = _get_random_mob_from_table(spawnPoint1Table)
 		var spawnPoint2Mob = _get_random_mob_from_table(spawnPoint2Table)
 		var spawnPoint3Mob = _get_random_mob_from_table(spawnPoint3Table)
@@ -197,7 +198,6 @@ func calculate_encounter_loot(mobs):
 	for mob in mobs:
 		var lootTable = staticData.lootTables[mob.lootTable]
 		var lootGroup = staticData.lootGroups[lootTable.lootGroup]
-	
 		#Todo: determine the upper limit based on how long the camp is expected to last
 		#shorter camps have a slightly greater chance of dropping items
 		#longer camps have a slightly lower chance of dropping items 
@@ -216,7 +216,7 @@ func calculate_encounter_loot(mobs):
 						else:
 							print("item " + str(itemRand) + " does not exist! check lootGroups.json!")
 		else:
-			print("encounterGenerator 220: lootGroup not found")
+			print("ERROR: encounterGenerator.gd, line 220: lootGroup not found")
 		
 		if (_get_rand_between(0, 100) < lootTable.item1Chance):
 			#newBattle.rawBattleLog.append("Looted this item: " + lootTable.item1)
@@ -248,7 +248,8 @@ func calculate_encounter_outcome(camp):
 	encounter.vignetteData.campMobs = encounterMobs
 		
 	# calculate the outcome (xp, rewards, loot, hero deaths)
-	encounter.lootedItemsNames = calculate_encounter_loot(encounterMobs)
+	# problem is here, lootedItemNames is filled up by this method call 
+	calculate_encounter_loot(encounterMobs)
 	encounter.summary.append("The heroes camped " + camp.name + " for " + str(camp.selectedDuration))
 	
 	# formula here: hero xp is a lot if they're lower level than the camp, a little if they're higher level
