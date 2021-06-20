@@ -4,9 +4,9 @@ Developed for Guild Leader project (personal project)
 Allows user to export game data (recipes, items, loot tables, etc.) from Google Sheets into a format Godot engine can use. 
 
 To use:
-1. Export .json from Google Sheets using exporter add-on 
+1. Export .json from Google Sheets using exporter add-on (see [example and walk-through](https://www.tilcode.com/godot-3-0-exporting-game-data-from-google-sheets-into-a-staticdata-gd-file-using-node-js/))
 2. Place .json files in parsely/names, parsely/staticData, parsely/timedNodeData, etc. 
-3. In Terminal, ```node parsely.js```
+3. In Terminal, cd to the ```parsely``` subdirectory and run ```node parsely.js```
 4. Exported .gd files are placed directly in gameData folder
 
 Todo:
