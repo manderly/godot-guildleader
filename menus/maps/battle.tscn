@@ -27,12 +27,4 @@ texture = ExtResource( 2 )
 [node name="bat" type="AnimatedSprite" parent="."]
 position = Vector2( 548.746, 109.302 )
 frames = SubResource( 1 )
-frame = 3
 playing = true
-
-[node name="label_battleN" type="Label" parent="."]
-margin_left = 192.0
-margin_top = 123.0
-margin_right = 251.0
-margin_bottom = 137.0
-text = "BATTLE #"

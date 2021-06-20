@@ -169,21 +169,17 @@ func calculate_encounter_xp_gains(camp):
 				hero.xp = staticData.levelXpData[str(hero.level)].total
 				encounter.summary.append(hero.get_first_name() + " is full xp and ready to train.")
 	
-func calculate_encounter_loot(camp):
-	
-	# camp data contains spawn tables for 3 distinct spawn points
+func calculate_encounter_mobs(camp):
+	# camp data spreadhseet contains spawn tables for 3 distinct spawn points
 	var spawnPoint1Table = staticData.spawnTables[camp.spawnPointData.spawnPoint1TableName]
 	var spawnPoint2Table = staticData.spawnTables[camp.spawnPointData.spawnPoint2TableName]
 	var spawnPoint3Table = staticData.spawnTables[camp.spawnPointData.spawnPoint3TableName]
 	
-	#in a battle, it's all the available heroes vs. a random assortment of mobs
-	# to summarize this, we look at how many times each mob would've spawned in T time
-	# then aggregate the loot from that
-	
 	var mobs = []
 	
 	# for t in time, spawn mobs
-	for t in camp.duration:
+	var t = 0;
+	while t < 15: #camp.duration:
 		var spawnPoint1Mob = _get_random_mob_from_table(spawnPoint1Table)
 		var spawnPoint2Mob = _get_random_mob_from_table(spawnPoint2Table)
 		var spawnPoint3Mob = _get_random_mob_from_table(spawnPoint3Table)
@@ -191,10 +187,13 @@ func calculate_encounter_loot(camp):
 		mobs.append(spawnPoint1Mob)
 		mobs.append(spawnPoint2Mob)
 		mobs.append(spawnPoint3Mob)
+		t+=1
 		
-	print(mobs)
-
-	#give loot (randomly determined from loot table)
+	return mobs
+	
+func calculate_encounter_loot(mobs):
+	# for every mob that would've spawned, get some loot from it 
+	# this might end up being too heavy of a calculation 
 	for mob in mobs:
 		var lootTable = staticData.lootTables[mob.lootTable]
 		var lootGroup = staticData.lootGroups[lootTable.lootGroup]
@@ -241,23 +240,16 @@ func calculate_encounter_loot(camp):
 
 func calculate_encounter_outcome(camp): 
 
-	#so the vignette knows which heroes to display
+	# build vignette data (used to build fight animation that plays during camp)
 	for hero in camp.heroes:
 		encounter.vignetteData.campHeroes.append(hero)
-		
-	# and a selection of mobs
-	# todo
-		
-	# generate loot (use data)
-		#for lootName in battleOutcome.loot:
-			#encounter.lootedItemsNames.append(lootName)
 	
-	encounter.scTotal += 1214
-			
-	#the summary is shown on the results page, but there is also a more detailed battle log to view
-	encounter.summary.append("The heroes camped this spot for X minutes/hours")
-	
-
+	var encounterMobs = calculate_encounter_mobs(camp)
+	encounter.vignetteData.campMobs = encounterMobs
+		
+	# calculate the outcome (xp, rewards, loot, hero deaths)
+	encounter.lootedItemsNames = calculate_encounter_loot(encounterMobs)
+	encounter.summary.append("The heroes camped " + camp.name + " for " + str(camp.selectedDuration))
 	
 	# formula here: hero xp is a lot if they're lower level than the camp, a little if they're higher level
 	# hero xp is also based on how long they were out camping

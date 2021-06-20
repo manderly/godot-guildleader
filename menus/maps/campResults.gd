@@ -19,12 +19,12 @@ func _populate_fields():
 	#create item boxes for each item won
 	var lootDictionaryWithCounts = {} #to track counts
 	var uniqueLootNames = [] #to control how many unique items we actually display 
-	for itemName in campData.campOutcome.lootedItemsNames:
-		if (lootDictionaryWithCounts.has(itemName)):
-			lootDictionaryWithCounts[itemName] += 1
-		else:
-			lootDictionaryWithCounts[itemName] = 1
-			uniqueLootNames.append(itemName)
+	#for itemName in campData.campOutcome.lootedItemsNames:
+	#	if (lootDictionaryWithCounts.has(itemName)):
+	#		lootDictionaryWithCounts[itemName] += 1
+	#	else:
+	#		lootDictionaryWithCounts[itemName] = 1
+	#		uniqueLootNames.append(itemName)
 		
 	for itemName in uniqueLootNames:
 		var itemIconAndCountDisplay = preload("res://menus/smallItemDisplay.tscn").instance()

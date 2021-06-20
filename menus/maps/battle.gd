@@ -70,6 +70,7 @@ func _ready():
 	pass
 	
 func play_vignette(data):
+
 	# each battle has heroes, mobs, start hp and end hp for each
 	# each battle also has a duration (tbd by camp factors)
 	
