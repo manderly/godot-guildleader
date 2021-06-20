@@ -70,15 +70,15 @@ func _ready():
 	pass
 	
 func play_vignette(data):
-
-	# each battle has heroes, mobs, start hp and end hp for each
-	# each battle also has a duration (tbd by camp factors)
+	# data { 
+	# campHeroes: array of kinematic body
+	# campMobs: array of kinematic body
+	# respawn rate: int 
+	# } 
 	
-	# every battle and its outcome has already been decided and recorded in this data structure
-	# this method just "plays it out"
-	
-	# put heroes on the stage - these heroes will persist battle-to-battle and get updated
-	# and possibly killed and removed from later battles
+	# the vignette plays the entire time the heroes are at the camp
+	# heroes walk in the center of the screen and "fight" (it's fake) 
+	# the mobs that spawn every random T seconds
 	
 	# these heroes should be recognized as a consistent group 
 	populate_heroes(data.campHeroes)
@@ -88,22 +88,26 @@ func play_vignette(data):
 		var hero = heroes[i]
 		hero.vignette_walk_to_point(heroPositions[str(i)]["x"], heroPositions[str(i)]["y"])
 
-	# 6/17/2021 - removed the concept of showing each battle in favor of a 
-	# steady stream of mobs from the right
+	var m = 0
+	while m < data.campMobs.size():
+		var randomWait = randi()%10+2 #random wait for next mob: 2 to 10 seconds
+		yield(get_tree().create_timer(randomWait), "timeout")
+		# get the next mob from the array 
+		var mobData = data.campMobs[m]
+		spawn_mob(mobData)
+		m+=1
+		
+		# spawn it somewhere
+		#mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
+		#m++
 	
-	#var battle = data.battleSnapshots[i]
+	
 	#populate_mobs(battle.mobs)
 	#yield(get_tree().create_timer(1.0), "timeout")
 			
 	# create a group of mobs to represent this camp
-	var mobs = get_tree().get_nodes_in_group("mobs")
+	#var mobs = get_tree().get_nodes_in_group("mobs")
 	
-		
-	#print("mobs.size() is: " + str(mobs.size()))
-	for i in mobs.size():
-		var mob = mobs[i]
-		mob.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
-		
 
 func populate_heroes(heroes):
 	for i in heroes.size():
@@ -117,22 +121,24 @@ func populate_heroes(heroes):
 		heroScene.add_to_group("heroes")
 		add_child(heroScene)
 		
-func populate_mobs(mobs):
-	for i in mobs.size():
-		var mobScene = preload("res://baseEntity.tscn").instance()
-		mobScene.hide()
-		mobScene.set_script(load("res://mob.gd"))
-		mobScene.set_instance_data(mobs[i])
-		var p_spawnCloud = load("res://particles/particles_spawnCloud.tscn").instance()
-		var p_boomRing = load("res://particles/particles_boomRing.tscn").instance()
-		p_spawnCloud.set_emitting(true)
-		p_boomRing.set_emitting(true)
-		mobScene.add_child(p_spawnCloud)
-		mobScene.add_child(p_boomRing)
-		mobScene.set_position(Vector2(mobPositions[str(i)]["x"], mobPositions[str(i)]["y"]))
-		mobScene.set_display_params(false, true) #no walking, show name 
-		mobScene.add_to_group("mobs")
-		add_child(mobScene)
+func spawn_mob(mobData): #mobData is expected to be a kinematic body 
+	# make a scene to represent this mob
+	var mobScene = preload("res://baseEntity.tscn").instance()
+	mobScene.hide()
+	mobScene.set_script(load("res://mob.gd"))
+	mobScene.set_instance_data(mobData)
+	# spawn-in animations
+	var p_spawnCloud = load("res://particles/particles_spawnCloud.tscn").instance()
+	var p_boomRing = load("res://particles/particles_boomRing.tscn").instance()
+	p_spawnCloud.set_emitting(true)
+	p_boomRing.set_emitting(true)
+	mobScene.add_child(p_spawnCloud)
+	mobScene.add_child(p_boomRing)
+	var randomPos = randi()%3 #random number: 0, 1, 2, or 3
+	mobScene.set_position(Vector2(mobPositions[str(randomPos)]["x"], mobPositions[str(randomPos)]["y"]))
+	mobScene.set_display_params(false, true) #no walking, show name 
+	mobScene.add_to_group("mobs")
+	add_child(mobScene)
 	
 	yield(get_tree().create_timer(0.5), "timeout")
 	get_tree().call_group("mobs", "show")
