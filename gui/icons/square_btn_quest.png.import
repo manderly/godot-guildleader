@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tree.png-2229f653ca87c098132ca441fd42640b.stex"
+path="res://.import/square_btn_quest.png-92d558fb79a5cf4c036a9f0de9d710dd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/outside/tree.png"
-dest_files=[ "res://.import/tree.png-2229f653ca87c098132ca441fd42640b.stex" ]
+source_file="res://gui/icons/square_btn_quest.png"
+dest_files=[ "res://.import/square_btn_quest.png-92d558fb79a5cf4c036a9f0de9d710dd.stex" ]
 
 [params]
 

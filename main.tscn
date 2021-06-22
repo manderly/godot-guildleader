@@ -39,11 +39,9 @@ __meta__ = {
 }
 
 [node name="HUD" type="CanvasLayer" parent="."]
-editor/display_folded = true
 script = ExtResource( 2 )
 
 [node name="hbox_bottomBar" type="HBoxContainer" parent="HUD"]
-editor/display_folded = true
 anchor_bottom = 1.0
 margin_left = 25.0
 margin_top = 829.0
@@ -53,7 +51,6 @@ custom_constants/separation = 12
 alignment = 1
 
 [node name="vbox button MAP" type="VBoxContainer" parent="HUD/hbox_bottomBar"]
-editor/display_folded = true
 margin_left = 31.0
 margin_right = 95.0
 margin_bottom = 82.0
@@ -72,7 +69,6 @@ text = "Map"
 align = 1
 
 [node name="vbox button QUESTS" type="VBoxContainer" parent="HUD/hbox_bottomBar"]
-editor/display_folded = true
 margin_left = 107.0
 margin_right = 171.0
 margin_bottom = 82.0
@@ -90,7 +86,6 @@ text = "Quests"
 align = 1
 
 [node name="vbox button VAULT" type="VBoxContainer" parent="HUD/hbox_bottomBar"]
-editor/display_folded = true
 margin_left = 183.0
 margin_right = 247.0
 margin_bottom = 82.0
@@ -108,7 +103,6 @@ text = "Vault"
 align = 1
 
 [node name="vbox button ROSTER" type="VBoxContainer" parent="HUD/hbox_bottomBar"]
-editor/display_folded = true
 margin_left = 259.0
 margin_right = 323.0
 margin_bottom = 82.0
@@ -126,7 +120,6 @@ text = "Market"
 align = 1
 
 [node name="vbox button MARKET" type="VBoxContainer" parent="HUD/hbox_bottomBar"]
-editor/display_folded = true
 margin_left = 335.0
 margin_right = 399.0
 margin_bottom = 82.0
@@ -351,12 +344,8 @@ texture = ExtResource( 17 )
 position = Vector2( 569.541, 520.045 )
 texture = ExtResource( 17 )
 
-[node name="sprite_tree1" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 468.846, 644.776 )
-texture = ExtResource( 17 )
-
 [node name="sprite_tree2" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 516.222, 692.96 )
+position = Vector2( 480.526, 626.618 )
 texture = ExtResource( 18 )
 
 [node name="sprite_tree13" type="Sprite" parent="screen/outside sprites"]
@@ -372,7 +361,7 @@ position = Vector2( 536.245, 51.8721 )
 texture = ExtResource( 18 )
 
 [node name="sprite_tree8" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 390, 760 )
+position = Vector2( 444.935, 678.245 )
 texture = ExtResource( 18 )
 
 [node name="sprite_tree4" type="Sprite" parent="screen/outside sprites"]
@@ -380,7 +369,7 @@ position = Vector2( 30, 570 )
 texture = ExtResource( 18 )
 
 [node name="sprite_tree5" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 64.8428, 632.209 )
+position = Vector2( 87.6558, 628.917 )
 texture = ExtResource( 18 )
 
 [node name="sprite_tree6" type="Sprite" parent="screen/outside sprites"]
@@ -388,11 +377,11 @@ position = Vector2( 50, 740 )
 texture = ExtResource( 17 )
 
 [node name="sprite_tree9" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 517.332, 810.729 )
+position = Vector2( 490.011, 761.539 )
 texture = ExtResource( 17 )
 
 [node name="sprite_tree7" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 130, 800 )
+position = Vector2( 111.75, 1032.69 )
 texture = ExtResource( 17 )
 
 [node name="sprite_tree16" type="Sprite" parent="screen/outside sprites"]
@@ -400,19 +389,19 @@ position = Vector2( 510, 130 )
 texture = ExtResource( 17 )
 
 [node name="sprite_shrub1" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 345.168, 678.431 )
+position = Vector2( 351.847, 632.511 )
 texture = ExtResource( 19 )
 
 [node name="sprite_shrub2" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 200.348, 681.391 )
+position = Vector2( 190.051, 631.575 )
 texture = ExtResource( 19 )
 
 [node name="sprite_lamp" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 325.897, 701.828 )
+position = Vector2( 326.732, 653.682 )
 texture = ExtResource( 20 )
 
 [node name="sprite_lamp2" type="Sprite" parent="screen/outside sprites"]
-position = Vector2( 217.029, 699.978 )
+position = Vector2( 212.298, 651.275 )
 texture = ExtResource( 20 )
 
 [node name="button_addRoom" type="Button" parent="screen"]
